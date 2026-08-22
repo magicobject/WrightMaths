@@ -1,0 +1,36 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+Desktop.ini
+ 
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+ 
+# Logs
+*.log
+npm-debug.log*
+ 
+# Environment / secrets — never commit these
+.env
+.env.*
+!.env.example
+ 
+# Node (only relevant if you ever add build tooling, e.g. a Formspree/Cloudflare Functions setup)
+node_modules/
+package-lock.json
+ 
+# Cloudflare
+.wrangler/
+wrangler.toml.bak
+ 
+# Local build/preview output, if you ever add a build step
+dist/
+.cache/
+ 
+# Zip bundles / backups you might drop in this folder while working
+*.zip
+*.bak
