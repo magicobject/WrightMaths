@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Maths Resources: GCSE, A Level, IB &amp; Beyond | Wright Maths Tuition</title>
+<meta name="description" content="A curated list of the best free maths resources for GCSE, A Level, IB and university-level study, hand-picked by a Leominster-based maths tutor.">
+<link rel="canonical" href="https://www.wrightmaths.uk/resources.html">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2" opacity="0.35" fill="none"/><path d="M10 32 L18 24 L26 28 L38 12" stroke="#c19a49" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="38" cy="12" r="3" fill="#c19a49"/></svg>
+      <span class="brand-text"><span class="name">Wright Maths Tuition</span><br><span class="tag">Leominster &amp; online</span></span>
+    </a>
+    <nav class="mainnav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About &amp; DBS</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="resources.html" aria-current="page">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="header-cta" href="contact.html">Get in touch</a>
+  </div>
+</header>
+
+<section class="hero" style="padding:56px 0 64px;">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Free resources</span>
+      <h1>The best free maths resources, by level.</h1>
+      <p class="lead">A hand-picked list I actually recommend to my students — free to use whether or not you tutor with me. Bookmark this page.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="res-group">
+      <h3>GCSE</h3>
+      <ul class="res-list">
+        <li class="res-item"><a href="https://corbettmaths.com" target="_blank" rel="noopener">Corbettmaths</a><p>Video tutorials, practice questions and exam-style "5-a-day" for every GCSE topic.</p></li>
+        <li class="res-item"><a href="https://www.mathsgenie.co.uk" target="_blank" rel="noopener">Maths Genie</a><p>Topic-by-topic worksheets, past papers and model answers by grade.</p></li>
+        <li class="res-item"><a href="https://www.drfrostmaths.com" target="_blank" rel="noopener">Dr Frost Maths</a><p>Free, well-sequenced practice with automatic marking — excellent for independent revision.</p></li>
+        <li class="res-item"><a href="https://www.bbc.co.uk/bitesize/subjects/z38pv4j" target="_blank" rel="noopener">BBC Bitesize — GCSE Maths</a><p>Clear topic summaries and quizzes, good for a quick refresher.</p></li>
+      </ul>
+    </div>
+
+    <div class="res-group">
+      <h3>A Level ★ speciality</h3>
+      <ul class="res-list">
+        <li class="res-item"><a href="https://www.physicsandmathstutor.com/maths-revision/" target="_blank" rel="noopener">Physics &amp; Maths Tutor (PMT)</a><p>The single best source for A Level past papers, topic questions and mark schemes across all boards.</p></li>
+        <li class="res-item"><a href="https://www.mathsgenie.co.uk/a-level.html" target="_blank" rel="noopener">Maths Genie — A Level</a><p>Pure, statistics and mechanics topic tests with worked solutions.</p></li>
+        <li class="res-item"><a href="https://www.examsolutions.net" target="_blank" rel="noopener">ExamSolutions</a><p>Step-by-step video walkthroughs, particularly strong for pure maths methods.</p></li>
+        <li class="res-item"><a href="https://integralmaths.org" target="_blank" rel="noopener">Integral Mathematics (MEI)</a><p>Structured online resources for A Level and Further Maths (school/college login usually required).</p></li>
+        <li class="res-item"><a href="https://undergroundmathematics.org" target="_blank" rel="noopener">Underground Mathematics</a><p>Rich, University of Cambridge–built resources that build real understanding beyond rote method.</p></li>
+      </ul>
+    </div>
+
+    <div class="res-group">
+      <h3>IB Diploma ★ speciality</h3>
+      <ul class="res-list">
+        <li class="res-item"><a href="https://www.revisionvillage.com" target="_blank" rel="noopener">Revision Village</a><p>The most complete IB-specific question bank and video course for AA and AI, SL and HL.</p></li>
+        <li class="res-item"><a href="https://exam-mate.com" target="_blank" rel="noopener">Exam-Mate</a><p>Searchable past-paper questions by topic for IB Maths — very useful nearer exams.</p></li>
+        <li class="res-item"><a href="https://haesemathematics.com" target="_blank" rel="noopener">Haese Mathematics</a><p>Publisher of the standard IB Maths textbooks, with sample chapters and worked examples.</p></li>
+      </ul>
+    </div>
+
+    <div class="res-group">
+      <h3>Beyond A Level / IB — university &amp; lifelong learning ★ speciality</h3>
+      <ul class="res-list">
+        <li class="res-item"><a href="https://www.maths.cam.ac.uk/undergrad/admissions/step" target="_blank" rel="noopener">STEP Support (Cambridge)</a><p>Official support programme for STEP, the entrance exam for Cambridge and other top maths courses.</p></li>
+        <li class="res-item"><a href="https://www.physicsandmathstutor.com/maths-revision/mat/" target="_blank" rel="noopener">MAT / TMUA practice (PMT)</a><p>Past papers and worked solutions for the Oxford MAT and TMUA admissions tests.</p></li>
+        <li class="res-item"><a href="https://ocw.mit.edu/courses/mathematics/" target="_blank" rel="noopener">MIT OpenCourseWare — Mathematics</a><p>Full free university-level courses, lecture notes and problem sets from MIT.</p></li>
+        <li class="res-item"><a href="https://www.youtube.com/@3blue1brown" target="_blank" rel="noopener">3Blue1Brown</a><p>Beautifully visual explanations of calculus, linear algebra and more — brilliant for real intuition.</p></li>
+        <li class="res-item"><a href="https://brilliant.org" target="_blank" rel="noopener">Brilliant</a><p>Interactive courses in maths and quantitative reasoning for curious adults and advanced students.</p></li>
+        <li class="res-item"><a href="https://www.khanacademy.org/math" target="_blank" rel="noopener">Khan Academy — Maths</a><p>Free structured courses from arithmetic right through to multivariable calculus.</p></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-navy">
+  <div class="wrap" style="text-align:center;">
+    <h2>Want a study plan built around these?</h2>
+    <p style="max-width:56ch;margin:0 auto 22px;">I can help turn a resource list into a focused, exam-ready plan.</p>
+    <a class="btn btn-gold" href="contact.html">Get in touch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcol">
+      <h4>Wright Maths Tuition</h4>
+      <p style="max-width:32ch;">Enhanced-DBS-checked maths tuition around Leominster and online — GCSE, A Level, IB and beyond.</p>
+    </div>
+    <div class="fcol">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="about.html">About &amp; DBS</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="tel:+447449301083">07449 301083</a></li>
+        <li><a href="mailto:greg@gregwright.it">greg@gregwright.it</a></li>
+        <li>Leominster, Herefordshire</li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal wrap">&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held.</div>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</footer>
+</body>
+</html>

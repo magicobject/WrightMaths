@@ -1,0 +1,11 @@
+# Cloudflare Pages redirects config — applies automatically on deploy.
+# https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Not strictly needed: Cloudflare Pages automatically serves 404.html
+# (this folder's root-level 404 page) for any unmatched route, and issues
+# a real 404 status code, so no explicit rule is required for that.
+#
+# Kept here, commented out, in case you want it later — e.g. once you
+# retire the old wrightmaths.uk vs primemathstuition.uk naming decision,
+# or want to force the www subdomain:
+# https://wrightmaths.uk/*  https://www.wrightmaths.uk/:splat  301!
