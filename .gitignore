@@ -19,17 +19,21 @@ npm-debug.log*
 .env.*
 !.env.example
  
-# Node (only relevant if you ever add build tooling, e.g. a Formspree/Cloudflare Functions setup)
+# Node
 node_modules/
-package-lock.json
- 
+
 # Cloudflare
 .wrangler/
 wrangler.toml.bak
- 
+
 # Local build/preview output, if you ever add a build step
 dist/
 .cache/
+
+# Playwright test output
+test-results/
+playwright-report/
+blob-report/
  
 # Zip bundles / backups you might drop in this folder while working
 *.zip
