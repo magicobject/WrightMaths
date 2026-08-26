@@ -3,7 +3,7 @@
 // Run `npm run build` after editing anything in templates/ or src/, and commit the
 // regenerated public/*.html — Cloudflare serves that directory as-is.
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { NAV, PAGES } from '../src/pages.config.mjs';
@@ -14,6 +14,13 @@ const read = (path) => readFileSync(join(root, path), 'utf8');
 const pageTemplate = read('templates/page.html');
 const headerTemplate = read('templates/header.html').trimEnd();
 const footerTemplate = read('templates/footer.html').trimEnd();
+
+function readBuildNumber() {
+  const file = join(root, 'build-number.json');
+  if (!existsSync(file)) return '0000.00.00.000';
+  const { date, build } = JSON.parse(readFileSync(file, 'utf8'));
+  return `${date}.${String(build).padStart(3, '0')}`;
+}
 
 function renderNavItems(activeHref) {
   return NAV.map(({ href, label }) => {
@@ -26,7 +33,9 @@ const footerNavItems = NAV.map(
   ({ href, label }) => `        <li><a href="${href}">${label}</a></li>`
 ).join('\n');
 
-const footer = footerTemplate.replace('{{FOOTER_NAV_ITEMS}}', footerNavItems);
+const footer = footerTemplate
+  .replace('{{FOOTER_NAV_ITEMS}}', footerNavItems)
+  .replace('{{BUILD_NUMBER}}', readBuildNumber());
 
 for (const page of PAGES) {
   const cta = page.cta ?? { href: 'contact.html', text: 'Get in touch' };
