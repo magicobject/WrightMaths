@@ -6,6 +6,7 @@ export const NAV = [
   { href: 'index.html', label: 'Home' },
   { href: 'about.html', label: 'About' },
   { href: 'lessons.html', label: 'Lessons' },
+  { href: 'safeguarding.html', label: 'Safeguarding' },
   { href: 'resources.html', label: 'Resources' },
   { href: 'contact.html', label: 'Contact' },
 ];
@@ -28,6 +29,12 @@ export const PAGES = [
     title: 'Maths Lessons: GCSE, A Level, IB &amp; Beyond | Wright Maths Tuition, Leominster',
     description: "One-to-one maths lessons in Leominster and online. GCSE, A Level, IB Diploma and beyond, matched to exam board specification and each student's own gaps.",
     active: 'lessons.html',
+  },
+  {
+    slug: 'safeguarding',
+    title: 'Safeguarding &amp; Child Protection | Wright Maths Tuition, Leominster',
+    description: 'How Wright Maths Tuition keeps students safe: Enhanced DBS check, parent access to every lesson, online session conduct, and what to do if you have a concern.',
+    active: 'safeguarding.html',
   },
   {
     slug: 'resources',

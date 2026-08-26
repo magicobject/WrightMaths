@@ -31,6 +31,12 @@ export const PAGES: SitePage[] = [
     heading: /meet you where you are/i,
   },
   {
+    path: '/safeguarding.html',
+    navLabel: 'Safeguarding',
+    titleContains: 'Safeguarding',
+    heading: /safety comes first/i,
+  },
+  {
     path: '/resources.html',
     navLabel: 'Resources',
     titleContains: 'Free Maths Resources',
