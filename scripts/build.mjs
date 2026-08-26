@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+// Assembles public/*.html from templates/ + src/pages/*.html + src/pages.config.mjs.
+// Run `npm run build` after editing anything in templates/ or src/, and commit the
+// regenerated public/*.html — Cloudflare serves that directory as-is.
+
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { NAV, PAGES } from '../src/pages.config.mjs';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const read = (path) => readFileSync(join(root, path), 'utf8');
+
+const pageTemplate = read('templates/page.html');
+const headerTemplate = read('templates/header.html').trimEnd();
+const footerTemplate = read('templates/footer.html').trimEnd();
+
+function renderNavItems(activeHref) {
+  return NAV.map(({ href, label }) => {
+    const current = href === activeHref ? ' aria-current="page"' : '';
+    return `        <li><a href="${href}"${current}>${label}</a></li>`;
+  }).join('\n');
+}
+
+const footerNavItems = NAV.map(
+  ({ href, label }) => `        <li><a href="${href}">${label}</a></li>`
+).join('\n');
+
+const footer = footerTemplate.replace('{{FOOTER_NAV_ITEMS}}', footerNavItems);
+
+for (const page of PAGES) {
+  const cta = page.cta ?? { href: 'contact.html', text: 'Get in touch' };
+
+  const header = headerTemplate
+    .replace('{{NAV_ITEMS}}', renderNavItems(page.active))
+    .replace('{{CTA_HREF}}', cta.href)
+    .replace('{{CTA_TEXT}}', cta.text);
+
+  const content = read(`src/pages/${page.slug}.html`).trimEnd();
+
+  let extraHead = '';
+  if (page.robots) extraHead += `<meta name="robots" content="${page.robots}">\n`;
+  if (page.canonical !== false) {
+    extraHead += `<link rel="canonical" href="https://wrightmaths.uk/${page.slug}.html">\n`;
+  }
+
+  const html = pageTemplate
+    .replace('{{TITLE}}', page.title)
+    .replace('{{DESCRIPTION}}', page.description)
+    .replace('{{EXTRA_HEAD}}', extraHead)
+    .replace('{{HEADER}}', header)
+    .replace('{{CONTENT}}', content)
+    .replace('{{FOOTER}}', footer);
+
+  writeFileSync(join(root, 'public', `${page.slug}.html`), html);
+  console.log(`built public/${page.slug}.html`);
+}
