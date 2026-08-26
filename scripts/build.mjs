@@ -33,9 +33,11 @@ const footerNavItems = NAV.map(
   ({ href, label }) => `        <li><a href="${href}">${label}</a></li>`
 ).join('\n');
 
+const buildNumber = readBuildNumber();
+
 const footer = footerTemplate
   .replace('{{FOOTER_NAV_ITEMS}}', footerNavItems)
-  .replace('{{BUILD_NUMBER}}', readBuildNumber());
+  .replace('{{BUILD_NUMBER}}', buildNumber);
 
 for (const page of PAGES) {
   const cta = page.cta ?? { href: 'contact.html', text: 'Get in touch' };
@@ -57,6 +59,7 @@ for (const page of PAGES) {
     .replace('{{TITLE}}', page.title)
     .replace('{{DESCRIPTION}}', page.description)
     .replace('{{EXTRA_HEAD}}', extraHead)
+    .replace('{{BUILD_NUMBER}}', buildNumber)
     .replace('{{HEADER}}', header)
     .replace('{{CONTENT}}', content)
     .replace('{{FOOTER}}', footer);
