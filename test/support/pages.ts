@@ -28,7 +28,7 @@ export const PAGES: SitePage[] = [
     path: '/lessons.html',
     navLabel: 'Lessons',
     titleContains: 'Maths Lessons',
-    heading: /meet you where you are/i,
+    heading: /Leominster tutor/i,
   },
   {
     path: '/safeguarding.html',
