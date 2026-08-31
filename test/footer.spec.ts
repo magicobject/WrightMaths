@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { PAGES } from './support/pages';
+import { ALL_PAGES } from './support/pages';
 
-const ALL_PATHS = [...PAGES.map((p) => p.path), '/404.html'];
+const ALL_PATHS = [...ALL_PAGES.map((p) => p.path), '/404.html'];
 
 for (const path of ALL_PATHS) {
   test(`${path} shows a build number in the footer`, async ({ page }) => {

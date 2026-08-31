@@ -50,6 +50,13 @@ export const PAGES = [
     cta: { href: 'tel:+447449301083', text: 'Call now' },
   },
   {
+    slug: 'updates',
+    title: 'Site Updates | Wright Maths Tuition',
+    description: 'Internal build changelog for wrightmaths.uk — not linked from anywhere on the site.',
+    active: null,
+    robots: 'noindex',
+  },
+  {
     slug: '404',
     title: 'Page Not Found | Wright Maths Tuition',
     description: "This page couldn't be found. Find your way back to Wright Maths Tuition's home, lessons, resources or contact page.",

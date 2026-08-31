@@ -48,6 +48,12 @@ This is maintained automatically, not by hand. `npm install` runs the `prepare` 
 
 In other words: **you never bump the build number or rebuild `public/` yourself** — just edit source files under `src/`/`templates/` and commit as normal. If you ever see a commit whose diff is *only* a build-number/cache-bust change with none of your actual edits, that's the signal an edit was made directly to `public/` and got overwritten — go make the change in `src/pages/` instead.
 
+## Build tags and the /updates changelog
+
+Every commit gets a matching git tag, `build-<date>.<NNN>` (e.g. `build-2026.08.31.001`) — the same value as the footer's "Build ..." text for that commit, so any deployed build is checkoutable by name (`git checkout build-2026.08.31.001`) without digging through `git log`.
+
+[src/pages/updates.html](src/pages/updates.html) (served at `/updates.html`) is a hand-maintained changelog, one entry per build number, newest first — the human-readable counterpart to the git tags. It's a real page, built by the normal pipeline like any other, but it's deliberately not linked from the nav, the footer, or anywhere else on the site (and it's `robots: noindex` in `src/pages.config.mjs`), since it's a build log for whoever knows the URL, not user-facing content.
+
 ## Tests
 
 [Playwright](https://playwright.dev) specs in `test/` cover navigation state, the footer build-number format, 404 handling, and that each page renders its own title/heading/canonical URL (a regression guard — pages once served each other's content by mistake). `test/support/pages.ts` is the shared list of expected page metadata used across specs; add an entry there when adding a new page.
