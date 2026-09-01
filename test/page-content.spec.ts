@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './support/fixtures';
 import { ALL_PAGES, PAGES, UPDATES_PAGE } from './support/pages';
 
 // Regression guard: each page's file once served the wrong page's content

@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect } from './support/fixtures';
+import type { Page } from '@playwright/test';
 import { PAGES } from './support/pages';
 
 async function activeNavLabel(page: Page): Promise<string> {
