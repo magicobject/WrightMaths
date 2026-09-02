@@ -27,3 +27,6 @@ The pre-commit hook bumps `build-number.json` on every commit (same date → cou
 2. **After committing**, tag it with that same build number and push the tag: `git tag build-<date>.<NNN>` (e.g. `build-2026.08.31.007`, matching the footer's "Build 2026.08.31.007" text exactly), then `git push origin build-<date>.<NNN>`.
 
 `/updates.html` is a real, reachable page — it's just not linked from anywhere on the site (not in the nav, not the footer, not any sitemap), and is marked `robots: noindex` in `src/pages.config.mjs` for exactly that reason. It's a build log for whoever knows the URL, not user-facing content.
+
+## Data kept in sync by hand
+Unlike kington-parishes/kingtonfoodbank, this repo has no `site.config.mjs` centralizing contact details — phone (`+447449301083` / `07449 301083`) and email (`info@wrightmaths.uk`) are hardcoded independently in three places: `templates/footer.html`, `src/pages/contact.html`, and the JSON-LD `ProfessionalService` block in `templates/page.html`. Nothing tests that they agree. Change one, change all three.
