@@ -8,7 +8,7 @@ Static site for Wright Maths Tuition, live at [wrightmaths.uk](https://wrightmat
 npm install       # also wires up the pre-commit hook — see below
 npm run build     # generate public/*.html from templates/ + src/
 npm run serve     # serve public/ locally at http://localhost:4173
-npm test          # run the Playwright suite
+npm test          # run the unit tests, then the Playwright suite
 ```
 
 ## How the build works
@@ -57,6 +57,12 @@ Every commit gets a matching git tag, `build-<date>.<NNN>` (e.g. `build-2026.08.
 ## Tests
 
 [Playwright](https://playwright.dev) specs in `test/` cover navigation state, the footer build-number format, 404 handling, and that each page renders its own title/heading/canonical URL (a regression guard — pages once served each other's content by mistake). `test/support/pages.ts` is the shared list of expected page metadata used across specs; add an entry there when adding a new page.
+
+Unit tests in `test-unit/` (Node's built-in runner, `npm run test:unit`) cover the vulnerability watch below and guard the GitHub Actions workflows (actions pinned to commit SHAs, explicit permissions). `npm test` runs them first.
+
+## Vulnerability watch
+
+[.github/workflows/vuln-watch.yml](.github/workflows/vuln-watch.yml) runs [scripts/vuln-watch.mjs](scripts/vuln-watch.mjs) every day at 06:17 UTC (and on demand). It checks every installed package against the GitHub Advisory Database (`npm audit`) and [OSV](https://osv.dev), opens one `security-advisory` issue per advisory, and fails the run — so GitHub emails the owner — on anything high or critical. It never changes code itself. Run `node scripts/vuln-watch.mjs --dry-run` to see what it would report without touching GitHub. [.github/dependabot.yml](.github/dependabot.yml) proposes npm and Actions updates weekly as PRs.
 
 ## Deployment
 
