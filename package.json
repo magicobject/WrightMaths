@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/magicobject/WrightMaths#readme",
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
-    "@types/node": "^26.3.0",
-    "tsx": "^4.23.12",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "allowScripts": {
