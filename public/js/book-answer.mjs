@@ -97,3 +97,28 @@ export function rightValueWrongForm(input, answers) {
 export function splitList(attr) {
   return String(attr ?? '').split(';').map((x) => x.trim()).filter((x) => x !== '');
 }
+
+/**
+ * Generic hints for slips that need no hand-written message. Returns a short
+ * sentence or null. Only for numeric answers.
+ *  - right size, wrong sign
+ *  - 10, 100, 1000 times too big or too small (a decimal point or a zero slipped)
+ */
+export function diagnose(input, answers) {
+  const n = parseNumber(input);
+  if (n === null) return null;
+  const list = (Array.isArray(answers) ? answers : [answers]).map(parseNumber).filter((x) => x !== null);
+  if (list.length === 0) return null;
+  for (const a of list) {
+    if (n !== 0 && close(-n, a)) return 'Check the sign: should the answer be positive or negative?';
+  }
+  for (const a of list) {
+    if (a === 0 || n === 0) continue;
+    const ratio = n / a;
+    for (const p of [10, 100, 1000]) {
+      if (close(ratio, p)) return 'Your answer is ' + p.toLocaleString('en-GB') + ' times too big. Check the decimal point or a zero.';
+      if (close(ratio, 1 / p)) return 'Your answer is ' + p.toLocaleString('en-GB') + ' times too small. Check the decimal point or a zero.';
+    }
+  }
+  return null;
+}

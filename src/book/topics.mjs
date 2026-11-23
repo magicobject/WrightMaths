@@ -10,6 +10,7 @@
 // strand: n Number, a Algebra, r Ratio, g Geometry, p Probability, s Statistics
 // tier:   'F' = Foundation and Higher, 'H' = Higher only
 // flip:   the reverse side of this topic (plain text, shown on the page and map)
+// words:  the 4 to 6 glossary ids shown in the "Words you need" strip at the top of a live topic
 
 export const STRANDS = {
   n: { name: 'Number', short: 'Number' },
@@ -22,19 +23,19 @@ export const STRANDS = {
 
 export const TOPICS = [
   // Base layer: the ideas everything else rests on. (the whole base layer is written.)
-  { id: 'place-value', title: 'Place value', strand: 'n', tier: 'F', status: 'live', needs: [], flip: 'Reading a number and writing it down' },
-  { id: 'four-operations', title: 'Add, subtract, multiply, divide', strand: 'n', tier: 'F', status: 'live', needs: ['place-value'], flip: 'Multiplying and dividing; adding and subtracting' },
-  { id: 'negative-numbers', title: 'Negative numbers', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Adding a negative and subtracting a positive' },
-  { id: 'order-of-operations', title: 'Order of operations', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Building a calculation and unpicking it' },
-  { id: 'factors-multiples', title: 'Factors and multiples', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Factors and multiples are two views of the same facts' },
-  { id: 'squares-roots', title: 'Squares and square roots', strand: 'n', tier: 'F', status: 'live', needs: ['factors-multiples'], flip: 'Squaring and square-rooting' },
-  { id: 'shapes-angles', title: 'Shapes and angles', strand: 'g', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Finding an angle and building a shape from angles' },
-  { id: 'algebra-basics', title: 'Algebra basics', strand: 'a', tier: 'F', status: 'live', needs: ['order-of-operations', 'negative-numbers'], flip: 'Substituting numbers in, and writing a rule from numbers' },
+  { id: 'place-value', title: 'Place value', strand: 'n', tier: 'F', status: 'live', needs: [], flip: 'Reading a number and writing it down', words: ['digit', 'place-value', 'decimal', 'round', 'decimal-place', 'significant-figure'] },
+  { id: 'four-operations', title: 'Add, subtract, multiply, divide', strand: 'n', tier: 'F', status: 'live', needs: ['place-value'], flip: 'Multiplying and dividing; adding and subtracting', words: ['sum', 'difference', 'product', 'quotient', 'divisor', 'remainder'] },
+  { id: 'negative-numbers', title: 'Negative numbers', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Adding a negative and subtracting a positive', words: ['negative-number', 'number-line', 'integer', 'difference'] },
+  { id: 'order-of-operations', title: 'Order of operations', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Building a calculation and unpicking it', words: ['bidmas', 'operation', 'power', 'square-root'] },
+  { id: 'factors-multiples', title: 'Factors and multiples', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Factors and multiples are two views of the same facts', words: ['factor', 'multiple', 'prime-number', 'composite-number', 'hcf', 'lcm'] },
+  { id: 'squares-roots', title: 'Squares and square roots', strand: 'n', tier: 'F', status: 'live', needs: ['factors-multiples'], flip: 'Squaring and square-rooting', words: ['square-number', 'square-root', 'cube-number', 'cube-root', 'power', 'irrational'] },
+  { id: 'shapes-angles', title: 'Shapes and angles', strand: 'g', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Finding an angle and building a shape from angles', words: ['angle', 'acute-angle', 'obtuse-angle', 'reflex-angle', 'parallel', 'polygon'] },
+  { id: 'algebra-basics', title: 'Algebra basics', strand: 'a', tier: 'F', status: 'live', needs: ['order-of-operations', 'negative-numbers'], flip: 'Substituting numbers in, and writing a rule from numbers', words: ['unknown', 'expression', 'term', 'coefficient', 'like-terms', 'substitute'] },
 
   // Pilot topics: written and live in the pilot edition.
-  { id: 'fractions', title: 'Fractions', strand: 'n', tier: 'F', status: 'live', needs: ['factors-multiples', 'four-operations'], flip: 'Finding a fraction of an amount, and finding the whole from a fraction of it' },
-  { id: 'solving-equations', title: 'Solving equations', strand: 'a', tier: 'F', status: 'live', needs: ['algebra-basics', 'negative-numbers'], flip: 'Solving an equation, and building one from a number puzzle' },
-  { id: 'pythagoras', title: "Pythagoras' theorem", strand: 'g', tier: 'F', status: 'live', needs: ['squares-roots', 'shapes-angles'], flip: 'Finding the long side, and finding a short side' },
+  { id: 'fractions', title: 'Fractions', strand: 'n', tier: 'F', status: 'live', needs: ['factors-multiples', 'four-operations'], flip: 'Finding a fraction of an amount, and finding the whole from a fraction of it', words: ['fraction', 'numerator', 'denominator', 'equivalent-fractions', 'simplify-fraction', 'common-denominator'] },
+  { id: 'solving-equations', title: 'Solving equations', strand: 'a', tier: 'F', status: 'live', needs: ['algebra-basics', 'negative-numbers'], flip: 'Solving an equation, and building one from a number puzzle', words: ['equation', 'unknown', 'solve', 'inverse-operation', 'expand'] },
+  { id: 'pythagoras', title: "Pythagoras' theorem", strand: 'g', tier: 'F', status: 'live', needs: ['squares-roots', 'shapes-angles'], flip: 'Finding the long side, and finding a short side', words: ['hypotenuse', 'right-angle', 'pythagoras-theorem', 'pythagorean-triple', 'converse', 'square-root'] },
 
   // What the pilot topics unlock (planned).
   { id: 'percentages', title: 'Percentages', strand: 'n', tier: 'F', status: 'planned', needs: ['fractions'], flip: 'Percentage increase, and reverse percentages' },

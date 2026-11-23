@@ -160,7 +160,7 @@ test.describe('questions', () => {
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/16');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(q.locator('.q-feedback')).toContainText('still cut into 8 slices');
+    await expect(q.locator('.q-feedback')).toContainText('The slices are still eighths');
     await expect(q).not.toHaveClass(/q-correct/);
   });
 
@@ -169,7 +169,7 @@ test.describe('questions', () => {
     const q = page.locator('.q', { hasText: 'Simplify' }).first();
     await q.getByLabel('Your answer').fill('4/6');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(q.locator('.q-feedback')).toContainText('not fully simplified');
+    await expect(q.locator('.q-feedback')).toContainText('Right value');
   });
 
   test('"Help, I\'m stuck!" reveals hints one at a time, then the duck, then a person, then the answer', async ({ page }) => {
@@ -183,7 +183,7 @@ test.describe('questions', () => {
     await expect(q.locator('.rungs li')).toHaveCount(2);
     await help.click(); // the duck
     await expect(q.locator('.duck-rung')).toBeVisible();
-    await expect(q.locator('.duck-rung')).toContainText('What is the question asking me to find?');
+    await expect(q.locator('.duck-rung')).toContainText('The question asks me to find');
     await help.click(); // a person
     await expect(q.locator('.rungs li').last()).toContainText('Show this question to your teacher');
     await expect(help).toHaveText('Show me the answer');
@@ -225,9 +225,9 @@ test.describe('questions', () => {
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/8');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(page.locator('[data-topic-progress]')).toContainText('You have got 1 of');
+    await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 of');
     await page.goto('/books/gcse/');
-    await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/^1 of \d+ right$/);
+    await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/^1 of \d+ done$/);
     expect(await page.evaluate(() => Object.keys(window.localStorage))).toEqual(['wm-gcse-v1']);
     page.once('dialog', (d) => d.accept());
     await page.locator('[data-reset-progress]').click();
@@ -253,5 +253,112 @@ test.describe('without JavaScript', () => {
     await expect(page.locator('.q .ladder').first()).toBeVisible();
     await expect(page.locator('.q .solution').first()).toBeVisible();
     await expect(page.locator('.q-form')).toHaveCount(0);
+  });
+});
+
+test.describe('feedback that helps instead of scolds', () => {
+  test('a right value in the wrong form gets an amber "nearly", not a cross, and does not count as a wrong try', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    const q = page.locator('.q', { hasText: 'Simplify' }).first();
+    await q.getByLabel('Your answer').fill('4/6');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q.locator('.q-feedback')).toHaveClass(/nearly/);
+    await expect(q.locator('.q-feedback')).not.toHaveClass(/oops/);
+  });
+
+  test('a slipped decimal point or a wrong sign gets a generic hint even with no hand-written message', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 100' }).first();
+    await q.getByLabel('Your answer').fill('10000');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q.locator('.q-feedback')).toContainText('10 times too big');
+  });
+
+  test('a typed minus in any style, a pound sign and x= are all accepted', async ({ page }) => {
+    await page.goto('/books/gcse/negative-numbers.html');
+    const q = page.locator('.q', { hasText: 'Work out 3 \u00d7 (\u22124)' }).first();
+    await q.getByLabel('Your answer').fill('\u2212 12');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q).toHaveClass(/q-correct/);
+  });
+
+  test('multiple-choice options are shuffled across loads but always contain the right one', async ({ page }) => {
+    const orders = new Set<string>();
+    for (let i = 0; i < 6; i += 1) {
+      await page.goto('/books/gcse/raise-your-grade.html');
+      orders.add((await page.locator('.q').first().locator('.mc-option').allTextContents()).join('|'));
+    }
+    expect(orders.size).toBeGreaterThan(1);
+  });
+
+  test('a question with several hints offers the duck; a one-hint question skips it', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const qs = page.locator('.q');
+    const oneHint = qs.filter({ hasText: 'Work out 10 \u00d7 10.' }).first();
+    const help = oneHint.getByRole('button', { name: /Help, I'm stuck/ });
+    await help.click();
+    await expect(oneHint.locator('.duck-rung')).toHaveCount(0);
+  });
+});
+
+test.describe('reading options and listen', () => {
+  test('text size, easy-read font, tint and ruler can be switched on, and are remembered', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.locator('.read-tools summary').click();
+    await page.getByRole('button', { name: 'Bigger text' }).click();
+    await page.getByRole('button', { name: 'Easy-read font' }).click();
+    await page.getByRole('button', { name: 'Tinted page' }).click();
+    await page.getByRole('button', { name: 'Reading ruler' }).click();
+    const cls = await page.evaluate(() => document.documentElement.className);
+    expect(cls).toContain('read-big1');
+    expect(cls).toContain('read-easy');
+    expect(cls).toContain('read-tint');
+    expect(cls).toContain('read-ruler-on');
+    await page.reload();
+    expect(await page.evaluate(() => document.documentElement.className)).toContain('read-easy');
+    await page.locator('.read-tools summary').click();
+    await page.getByRole('button', { name: 'Reset' }).click();
+    expect(await page.evaluate(() => document.documentElement.className)).not.toContain('read-easy');
+  });
+
+  test('questions and key ideas have a Listen button that uses the browser voice only', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    expect(await page.locator('.qtext .listen').count()).toBeGreaterThan(10);
+    expect(await page.locator('.key .listen').count()).toBeGreaterThan(2);
+  });
+});
+
+test.describe('mixed practice', () => {
+  test('deals five mixed questions, they work, and a new set is different', async ({ page }) => {
+    await page.goto('/books/gcse/practice.html');
+    const qs = page.locator('[data-practice-set] .q');
+    await expect(qs).toHaveCount(5);
+    const before = await qs.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
+    expect(new Set(before.map((id) => id!.replace(/-\d+$/, ''))).size).toBeGreaterThan(1);
+    await qs.first().getByRole('button', { name: /Help, I'm stuck/ }).click();
+    await expect(qs.first().locator('.rungs li')).toHaveCount(1);
+    await page.getByRole('button', { name: 'Give me five new questions' }).click();
+    await expect(qs).toHaveCount(5);
+  });
+
+  test('only the topics ticked are used', async ({ page }) => {
+    await page.goto('/books/gcse/practice.html');
+    for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
+    await page.locator('input[name="practice-topic"][value="pythagoras"]').check();
+    await page.getByRole('button', { name: 'Give me five new questions' }).click();
+    const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
+    expect(ids.length).toBe(5);
+    for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+  });
+
+  test('finishing any question records a practice day on this device, once a day', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 10.' }).first();
+    await q.getByLabel('Your answer').fill('100');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q).toHaveClass(/q-correct/);
+    const days = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').days);
+    expect(days).toHaveLength(1);
+    expect(days[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });

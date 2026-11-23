@@ -1,0 +1,28 @@
+<main class="book" data-book-page="practice">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Mixed practice</span>
+      <h1>Give me five</h1>
+      <p class="lead">Five questions from different topics, mixed up. Two minutes a day is plenty. The book picks questions you have not finished yet.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Mixed practice</span></nav>
+    <div class="key">
+      <p><b>Why mixed?</b> In an exam nobody tells you the topic. Choosing the method is part of the skill, and it is the best way to make maths stick. Come back often: a little every day beats a lot once.</p>
+    </div>
+    <div data-practice>
+      {practice-topics}
+      <p><button type="button" class="btn btn-navy" data-practice-new>Give me five new questions</button></p>
+      <p class="practice-status" role="status" data-practice-status>Getting your questions&hellip;</p>
+      <div data-practice-set></div>
+      <noscript><p class="muted">This page needs JavaScript. You can still do every question on the topic pages.</p></noscript>
+    </div>
+    <p class="muted">Your ticks are saved only in this browser. Nothing is sent anywhere.</p>
+  </div>
+</section>
+</main>

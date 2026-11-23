@@ -15,7 +15,7 @@ import { STRANDS, TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
 import {
   buildGraph, expandInline, addQuestionIds, countQuestions,
-  renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage,
+  renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage, renderWords, renderPracticeTopics,
 } from './book-lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -75,13 +75,15 @@ function renderBookContent(page, raw) {
     .replaceAll('{prereqs}', () => (topic ? renderPrereqs(topic.id, graph) : ''))
     .replaceAll('{unlocks}', () => (topic ? renderUnlocks(topic.id, graph) : ''))
     .replaceAll('{pyramid}', () => renderPyramid(graph))
+    .replaceAll('{words}', () => (topic ? renderWords(topic.id, graph, glossaryById) : ''))
+    .replaceAll('{practice-topics}', () => renderPracticeTopics(graph))
     .replace(/\{qcount:([a-z0-9-]+)\}/g, (_, id) => {
       if (!questionCounts.has(id)) throw new Error(`qcount: "${id}" is not a live topic`);
       return String(questionCounts.get(id));
     });
   html = expandInline(html, { glossaryById, usage: topic ? usage : undefined, page: topic?.id ?? page.slug });
   // Anything still in braces that looks like shorthand is a typo: fail loudly.
-  const leftover = html.match(/\{(frac|term|qcount|prereqs|unlocks|pyramid)[:}]/);
+  const leftover = html.match(/\{(frac|term|qcount|prereqs|unlocks|pyramid|words|practice-topics)[:}]/);
   if (leftover) throw new Error(`${page.slug}: unexpanded shorthand ${leftover[0]}`);
   return html;
 }

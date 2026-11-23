@@ -4,14 +4,14 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList } from './book-answer.mjs';
+import { matches, rightValueWrongForm, splitList, diagnose } from './book-answer.mjs';
 
 const STORE_KEY = 'wm-gcse-v1';
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
 const NUDGES = [
   'Not quite. Have another go.',
-  'Not quite yet. Try again, or open a hint.',
-  'Still not there. A hint is not cheating: it is how you learn.',
+  'Not quite yet. Open a hint if you want one.',
+  'Still not there. Try a hint, or explain it to the duck: that often shows what is wrong.',
 ];
 
 // ---------- saved progress ----------
@@ -20,9 +20,9 @@ function load() {
   try {
     const raw = window.localStorage.getItem(STORE_KEY);
     const data = raw ? JSON.parse(raw) : null;
-    if (data && typeof data === 'object') return { done: data.done ?? {}, ticks: data.ticks ?? {} };
+    if (data && typeof data === 'object') return { done: data.done ?? {}, ticks: data.ticks ?? {}, days: Array.isArray(data.days) ? data.days : [] };
   } catch { /* storage unavailable: carry on without saving */ }
-  return { done: {}, ticks: {} };
+  return { done: {}, ticks: {}, days: [] };
 }
 
 let store = load();
@@ -44,6 +44,14 @@ const el = (tag, attrs = {}, ...kids) => {
   return node;
 };
 
+function shuffle(list) {
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+}
+
 const hashOf = (text) => [...text].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
 let uid = 0;
 
@@ -52,11 +60,22 @@ function pageKey() {
   return body?.dataset.topic ?? body?.dataset.bookPage ?? 'page';
 }
 
+function today() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 function markDone(qid) {
+  let changed = false;
   if (!store.done[qid]) {
     store.done[qid] = 1;
-    save();
+    changed = true;
   }
+  if (!store.days.includes(today())) {
+    store.days.push(today());
+    changed = true;
+  }
+  if (changed) save();
   updateProgress();
 }
 
@@ -72,24 +91,34 @@ const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focus
 
 function duckRung(li, q) {
   li.className = 'duck-rung';
-  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Explain it to the duck</b></p>`
-    + '<p>Explaining a problem to someone else, even a rubber duck, often makes the answer pop out. Programmers do it all the time. Tell the duck:</p>'
-    + '<ol class="duck-prompts"><li>What is the question asking me to find?</li><li>What do I already know?</li><li>What did I try, and what happened?</li><li>Which step stopped making sense?</li></ol></div>';
+  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Tell the duck</b> <span class="muted">(optional)</span></p>`
+    + '<p>Saying a problem out loud often makes it clear. The duck will not judge. It is a duck. Tap a start, or just talk.</p></div>';
+  const starts = ['The question asks me to find…', 'I already know…', 'I tried… and then…', 'I got stuck when…'];
+  const chips = el('div', { class: 'duck-chips', role: 'group', 'aria-label': 'Sentence starters' });
   const area = el('textarea', {
-    class: 'duck-text', rows: '4', maxlength: '600', 'aria-label': 'Tell the duck what is going on', placeholder: 'Type it, or just say it out loud',
+    class: 'duck-text', rows: '3', maxlength: '600', 'aria-label': 'Tell the duck what is going on', placeholder: 'Type it, or just say it out loud',
   });
+  for (const start of starts) {
+    const chip = el('button', { type: 'button', class: 'duck-chip', text: start });
+    chip.addEventListener('click', () => {
+      const lineBreak = String.fromCharCode(10);
+      area.value += (area.value && !area.value.endsWith(lineBreak) ? lineBreak : '') + start.replace('…', ' ');
+      area.focus();
+    });
+    chips.append(chip);
+  }
   const note = el('p', { class: 'muted duck-note', text: 'The duck only listens. What you type stays on this screen and is not saved or sent anywhere.' });
   const done = el('button', { type: 'button', class: 'btn-check', text: 'I have explained it: let me try again' });
   done.addEventListener('click', () => {
     area.value = '';
     q.querySelector('.q-input, .mc-option')?.focus();
   });
-  li.querySelector('.duck-body-text').append(area, note, done);
+  li.querySelector('.duck-body-text').append(chips, area, note, done);
 }
 
 // ---------- questions ----------
 
-function enhanceQuestion(q, index) {
+export function enhanceQuestion(q, index) {
   const qid = q.dataset.qid ?? `${pageKey()}-${index + 1}`;
   q.dataset.qid = qid;
   q.classList.add('q-live');
@@ -105,7 +134,7 @@ function enhanceQuestion(q, index) {
 
   const feedback = el('div', { class: 'q-feedback', role: 'status', 'aria-live': 'polite' });
   const rungs = ladder ? [...ladder.children].map((li) => li.innerHTML) : [];
-  rungs.push({ duck: true });
+  if ((ladder?.children.length ?? 0) > 1) rungs.push({ duck: true });
   rungs.push('Still stuck? Show this question to your teacher, or ask a parent or carer to get in touch about lessons. A person can often unstick you in a minute.');
   let rungsShown = 0;
   let wrongCount = 0;
@@ -166,8 +195,15 @@ function enhanceQuestion(q, index) {
     feedback.textContent = message ?? NUDGES[Math.min(wrongCount - 1, NUDGES.length - 1)];
   }
 
+  // The value is right but the form is not what was asked for: not a mistake, so no cross.
+  function nearly(messageHtml) {
+    q.classList.add('q-tried');
+    feedback.className = 'q-feedback nearly';
+    feedback.innerHTML = messageHtml;
+  }
+
   if (q.dataset.type === 'mc' && optionList) {
-    const items = [...optionList.children];
+    const items = shuffle([...optionList.children]);
     const group = el('div', { class: 'mc', role: 'group', 'aria-label': 'Choose one answer' });
     for (const li of items) {
       const correct = li.hasAttribute('data-correct');
@@ -217,13 +253,14 @@ function enhanceQuestion(q, index) {
         return;
       }
       const specific = wrongs.find((w) => matches(value, w.list, mode));
-      if (specific) {
+      const rightValue = mode === 'exact' && rightValueWrongForm(value, answers);
+      if (rightValue) {
+        nearly(specific ? specific.message : 'Right value! The question wants it in a different form (for example, fully simplified). One more step.');
+      } else if (specific) {
         failure(null);
         feedback.innerHTML = specific.message;
-      } else if (mode === 'exact' && rightValueWrongForm(value, answers)) {
-        failure('That has the right value, but it is not in the form the question asked for (for example, not fully simplified). Have another look.');
       } else {
-        failure(null);
+        failure(mode === 'value' ? diagnose(value, answers) : null);
       }
     });
     (text ?? q).after(form);
@@ -248,15 +285,15 @@ function updateProgress() {
     const qs = [...document.querySelectorAll('.q')];
     const got = qs.filter((q) => store.done[q.dataset.qid]).length;
     line.innerHTML = '';
-    const bar = el('span', { class: 'bar', role: 'img', 'aria-label': `${got} of ${qs.length} questions right` });
+    const bar = el('span', { class: 'bar', role: 'img', 'aria-label': `${got} of ${qs.length} questions finished` });
     bar.append(el('span', { class: 'bar-fill', style: `width:${qs.length ? Math.round((got / qs.length) * 100) : 0}%` }));
-    line.append(bar, el('span', { text: ` You have got ${got} of ${qs.length} questions right on this page.` }));
+    line.append(bar, el('span', { text: ` You have finished ${got} of ${qs.length} questions on this page. No rush.` }));
   }
   for (const node of document.querySelectorAll('[data-progress-for]')) {
     const id = node.dataset.progressFor;
     const total = Number(node.dataset.total);
     const got = Object.keys(store.done).filter((k) => k.startsWith(`${id}-`)).length;
-    node.textContent = got > 0 ? `${got} of ${total} right` : `${total} questions`;
+    node.textContent = got > 0 ? `${got} of ${total} done` : `${total} questions`;
     node.classList.toggle('has-progress', got > 0);
   }
   return key;
@@ -362,17 +399,155 @@ function enhanceGlossary() {
   apply();
 }
 
+
+// ---------- reading options ----------
+// Size, an easy-read font stack, a tinted page and a reading ruler. Saved on this device only.
+
+const READ_KEY = 'wm-gcse-read';
+
+function loadRead() {
+  try {
+    const raw = window.localStorage.getItem(READ_KEY);
+    const d = raw ? JSON.parse(raw) : {};
+    return { size: Math.min(3, Math.max(0, Number(d.size) || 0)), easy: Boolean(d.easy), tint: Boolean(d.tint), ruler: Boolean(d.ruler) };
+  } catch { return { size: 0, easy: false, tint: false, ruler: false }; }
+}
+
+function applyRead(prefs) {
+  const c = document.documentElement.classList;
+  for (const n of [1, 2, 3]) c.remove(`read-big${n}`);
+  if (prefs.size) c.add(`read-big${prefs.size}`);
+  c.toggle('read-easy', prefs.easy);
+  c.toggle('read-tint', prefs.tint);
+  c.toggle('read-ruler-on', prefs.ruler);
+}
+
+function initReadingTools() {
+  const main = document.querySelector('main.book');
+  if (!main) return;
+  const prefs = loadRead();
+  applyRead(prefs);
+  const persist = () => {
+    try { window.localStorage.setItem(READ_KEY, JSON.stringify(prefs)); } catch { /* ignore */ }
+    applyRead(prefs);
+  };
+
+  const details = el('details', { class: 'read-tools' });
+  details.append(el('summary', { text: 'Reading options' }));
+  const row = el('div', { class: 'read-row' });
+  const smaller = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'Smaller text', text: 'A\u2212' });
+  const bigger = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'Bigger text', text: 'A+' });
+  smaller.addEventListener('click', () => { prefs.size = Math.max(0, prefs.size - 1); persist(); });
+  bigger.addEventListener('click', () => { prefs.size = Math.min(3, prefs.size + 1); persist(); });
+  row.append(smaller, bigger);
+  const toggle = (key, label) => {
+    const b = el('button', { type: 'button', class: 'read-btn', 'aria-pressed': String(prefs[key]), text: label });
+    b.addEventListener('click', () => {
+      prefs[key] = !prefs[key];
+      b.setAttribute('aria-pressed', String(prefs[key]));
+      persist();
+    });
+    return b;
+  };
+  row.append(toggle('easy', 'Easy-read font'), toggle('tint', 'Tinted page'), toggle('ruler', 'Reading ruler'));
+  const reset = el('button', { type: 'button', class: 'read-btn', text: 'Reset' });
+  reset.addEventListener('click', () => {
+    Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false });
+    row.querySelectorAll('[aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    persist();
+  });
+  row.append(reset);
+  details.append(row);
+  const firstSection = main.querySelector('section');
+  if (firstSection) firstSection.after(details); else main.prepend(details);
+
+  const ruler = el('div', { class: 'read-ruler', 'aria-hidden': 'true' });
+  document.body.append(ruler);
+  const move = (y) => { ruler.style.top = `${y - ruler.offsetHeight / 2}px`; };
+  window.addEventListener('mousemove', (e) => move(e.clientY), { passive: true });
+  window.addEventListener('touchmove', (e) => { if (e.touches[0]) move(e.touches[0].clientY); }, { passive: true });
+}
+
+// ---------- listen (the browser's own voice; nothing is sent anywhere) ----------
+
+function spokenText(node) {
+  const clone = node.cloneNode(true);
+  clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
+  return clone.textContent.replace(/\s+/g, ' ').trim();
+}
+
+function addListenButtons(root = document) {
+  if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
+  for (const node of root.querySelectorAll('.qtext, .key')) {
+    if (node.querySelector(':scope > .listen')) continue;
+    const btn = el('button', { type: 'button', class: 'listen', 'aria-label': 'Listen to this', text: 'Listen' });
+    btn.addEventListener('click', () => {
+      const synth = window.speechSynthesis;
+      if (synth.speaking) { synth.cancel(); return; }
+      const u = new window.SpeechSynthesisUtterance(spokenText(node));
+      u.lang = 'en-GB';
+      synth.speak(u);
+    });
+    node.append(btn);
+  }
+}
+
+// ---------- mixed practice ("Give me five") ----------
+// Pulls questions from the topic pages (same-origin only), favouring ones you have not finished.
+
+async function startPractice() {
+  const root = document.querySelector('[data-practice]');
+  if (!root) return;
+  const setBox = root.querySelector('[data-practice-set]');
+  const status = root.querySelector('[data-practice-status]');
+  const boxes = [...root.querySelectorAll('input[name="practice-topic"]')];
+  const pool = new Map(); // topic id -> array of .q nodes
+  const loadTopic = async (id) => {
+    if (pool.has(id)) return pool.get(id);
+    const res = await fetch(`${id}.html`);
+    const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+    const qs = [...doc.querySelectorAll('.q[data-qid]')];
+    pool.set(id, qs);
+    return qs;
+  };
+  const deal = async () => {
+    const chosen = boxes.filter((b) => b.checked).map((b) => b.value);
+    if (chosen.length === 0) { status.textContent = 'Pick at least one topic.'; return; }
+    status.textContent = 'Getting your questions\u2026';
+    let all = [];
+    for (const id of chosen) all = all.concat(await loadTopic(id));
+    shuffle(all);
+    all.sort((a, b) => (store.done[a.dataset.qid] ? 1 : 0) - (store.done[b.dataset.qid] ? 1 : 0));
+    const five = shuffle(all.slice(0, Math.min(10, all.length))).slice(0, 5);
+    setBox.replaceChildren();
+    five.forEach((src, i) => {
+      const q = document.importNode(src, true);
+      setBox.append(q);
+      enhanceQuestion(q, i);
+    });
+    addListenButtons(setBox);
+    const n = store.days.length;
+    status.textContent = `Five questions, mixed up. You have practised on ${n} ${n === 1 ? 'day' : 'days'} so far.`;
+  };
+  root.querySelector('[data-practice-new]')?.addEventListener('click', deal);
+  boxes.forEach((b) => b.addEventListener('change', () => { status.textContent = 'Press the button for new questions.'; }));
+  await deal();
+}
+
 // ---------- start-up ----------
 
 function start() {
+  initReadingTools();
   document.querySelectorAll('.q').forEach(enhanceQuestion);
+  addListenButtons();
+  startPractice().catch((e) => console.error('practice failed', e));
   enhanceChecklists();
   enhanceTerms();
   enhanceGlossary();
   updateProgress();
   document.querySelector('[data-reset-progress]')?.addEventListener('click', () => {
     if (window.confirm('Clear all your saved ticks and answers on this device?')) {
-      store = { done: {}, ticks: {} };
+      store = { done: {}, ticks: {}, days: [] };
       save();
       window.location.reload();
     }
