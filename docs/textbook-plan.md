@@ -171,7 +171,7 @@ Each topic follows the repo's rules: own branch and PR, `/updates` entry, build 
 
 Maths stands on itself, so the order of writing follows the topic graph in `src/book/topics.mjs`, bottom up:
 
-1. **Base layer (next):** place value, the four operations, negative numbers, order of operations, factors and multiples, squares and roots, shapes and angles, algebra basics. The pilot topics already name these as prerequisites, so they are on the pyramid now as "coming soon".
+1. **Base layer (in progress):** place value, add/subtract/multiply/divide and negative numbers are written. Still to do: order of operations, factors and multiples, squares and roots, shapes and angles, algebra basics (the pilot topics already name these as prerequisites, so they are on the pyramid as "coming soon").
 2. **Then what the pilot unlocks:** percentages, ratio, rearranging formulae, simultaneous equations, quadratics, trigonometry, repeated percentage change.
 3. Only then the wider strands (probability, statistics, the rest of geometry).
 

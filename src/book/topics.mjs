@@ -21,10 +21,10 @@ export const STRANDS = {
 };
 
 export const TOPICS = [
-  // Base layer: the ideas everything else rests on.
-  { id: 'place-value', title: 'Place value', strand: 'n', tier: 'F', status: 'planned', needs: [], flip: 'Reading a number and writing it down' },
-  { id: 'four-operations', title: 'Add, subtract, multiply, divide', strand: 'n', tier: 'F', status: 'planned', needs: ['place-value'], flip: 'Multiplying and dividing; adding and subtracting' },
-  { id: 'negative-numbers', title: 'Negative numbers', strand: 'n', tier: 'F', status: 'planned', needs: ['four-operations'], flip: 'Adding a negative and subtracting a positive' },
+  // Base layer: the ideas everything else rests on. (place-value, four-operations and negative-numbers are written; the rest are planned.)
+  { id: 'place-value', title: 'Place value', strand: 'n', tier: 'F', status: 'live', needs: [], flip: 'Reading a number and writing it down' },
+  { id: 'four-operations', title: 'Add, subtract, multiply, divide', strand: 'n', tier: 'F', status: 'live', needs: ['place-value'], flip: 'Multiplying and dividing; adding and subtracting' },
+  { id: 'negative-numbers', title: 'Negative numbers', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Adding a negative and subtracting a positive' },
   { id: 'order-of-operations', title: 'Order of operations', strand: 'n', tier: 'F', status: 'planned', needs: ['four-operations'], flip: 'Building a calculation and unpicking it' },
   { id: 'factors-multiples', title: 'Factors and multiples', strand: 'n', tier: 'F', status: 'planned', needs: ['four-operations'], flip: 'Factors and multiples are two views of the same facts' },
   { id: 'squares-roots', title: 'Squares and square roots', strand: 'n', tier: 'F', status: 'planned', needs: ['factors-multiples'], flip: 'Squaring and square-rooting' },

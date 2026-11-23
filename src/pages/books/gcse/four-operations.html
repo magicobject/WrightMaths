@@ -1,0 +1,474 @@
+<main class="book strand-number" data-book-page="topic" data-topic="four-operations">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Number &middot; Foundation and Higher</span>
+      <h1>Add, subtract, multiply, divide</h1>
+      <p class="lead">The four operations with whole numbers and decimals, how each one undoes another, and how to choose the right one in a real problem.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Add, subtract, multiply, divide</span></nav>
+    {prereqs}
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Have a go before you read anything. The last three are from Place value, the layer this stands on.</p>
+    <div class="q" data-answers="144" data-mode="value">
+      <p class="qtext">A pack has 24 cards. How many cards are in 6 packs?</p>
+      <ol class="ladder"><li>Six lots of 24.</li><li>6 &times; 20 and 6 &times; 4, then add.</li></ol>
+      <ul class="wrong"><li data-if="30">That is 24 + 6. The question has 6 packs of 24, so multiply.</li></ul>
+      <div class="solution"><p>6 &times; 24 = 120 + 24 = 144.</p></div>
+    </div>
+    <div class="q" data-answers="400" data-mode="value">
+      <p class="qtext">Last time: what is the value of the 4 in 3,412?</p>
+      <ol class="ladder"><li>Units 2, tens 1, hundreds 4.</li></ol>
+      <ul class="wrong"><li data-if="4">That is the digit. Its value depends on its column.</li></ul>
+      <div class="solution"><p>The 4 is in the hundreds column: 400.</p></div>
+    </div>
+    <div class="q" data-answers="4900" data-mode="value">
+      <p class="qtext">Round 4,862 to the nearest 100.</p>
+      <ol class="ladder"><li>Look at the tens digit (6) after the hundreds.</li></ol>
+      <ul class="wrong"><li data-if="4800">The 6 rounds up.</li></ul>
+      <div class="solution"><p>6 rounds up, so 4,900.</p></div>
+    </div>
+    <div class="q" data-answers="34" data-mode="value">
+      <p class="qtext">Work out 3.4 &times; 10.</p>
+      <ol class="ladder"><li>Move each digit one place left.</li></ol>
+      <ul class="wrong"><li data-if="3.40">That is the same as 3.4. Multiplying by 10 makes it bigger.</li></ul>
+      <div class="solution"><p>3.4 &times; 10 = 34.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Adding and subtracting</h2>
+    <p>The {term:sum|sum} of two numbers is what you get by adding them. The {term:difference|difference} is what you get by subtracting the smaller from the larger. Both written methods use columns, so line up the {term:place-value|place values}: units under units, tens under tens, and the decimal points under each other.</p>
+    <div class="key"><p><b>Key idea:</b> start at the right-hand column. When a column adds to 10 or more, <b>carry</b> into the next one. When you cannot take away, <b>borrow</b> from the next column. Keep the digits tidy and in line, because most mistakes are untidiness.</p></div>
+    <div class="worked">
+      <h3>Worked example: add</h3>
+      <p>Work out 4,578 + 3,964.</p>
+      <ol class="steps">
+        <li>Units: 8 + 4 = 12. Write 2, carry 1.</li>
+        <li>Tens: 7 + 6 + 1 = 14. Write 4, carry 1.</li>
+        <li>Hundreds: 5 + 9 + 1 = 15. Write 5, carry 1.</li>
+        <li>Thousands: 4 + 3 + 1 = 8.</li>
+        <li>4,578 + 3,964 = 8,542.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it: subtract</h3>
+      <p>Work out 6,003 &minus; 2,458.</p>
+      <ol class="steps">
+        <li>Units: 3 &minus; 8 cannot be done. Borrow from the tens, but the tens and hundreds are zero, so borrow from the thousands: 6,003 becomes 5 thousands, 9 hundreds, 9 tens and 13 units.</li>
+        <li>13 &minus; 8 = 5, 9 &minus; 5 = 4, 9 &minus; 4 = 5, 5 &minus; 2 = 3.</li>
+        <li>So the answer is ___.</li>
+      </ol>
+      <p class="muted">3,545. Check by adding: 3,545 + 2,458 = 6,003.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: add and subtract</h2>
+    <div class="q" data-answers="8542" data-mode="value">
+      <p class="qtext">Work out 4,578 + 3,964.</p>
+      <ol class="ladder"><li>Units first: 8 + 4 = 12.</li></ol>
+      <ul class="wrong"><li data-if="8532">You missed a carry. 8 + 4 = 12: write 2 and carry the 1 into the tens, which then add to 14.</li></ul>
+      <div class="solution"><p>8,542 (carry 1 three times).</p></div>
+    </div>
+    <div class="q" data-answers="3545" data-mode="value">
+      <p class="qtext">Work out 6,003 &minus; 2,458.</p>
+      <ol class="ladder"><li>Borrow across the zeros, or count up from 2,458 to 6,003.</li></ol>
+      <ul class="wrong"><li data-if="4455">That subtracts the smaller digit from the bigger in each column. When the top digit is smaller you must borrow.</li></ul>
+      <div class="solution"><p>6,003 &minus; 2,458 = 3,545. Check: 3,545 + 2,458 = 6,003.</p></div>
+    </div>
+    <div class="q" data-answers="21.15" data-mode="value">
+      <p class="qtext">Work out 12.7 + 8.45.</p>
+      <ol class="ladder"><li>Line up the points: 12.70 + 8.45.</li></ol>
+      <ul class="wrong"><li data-if="20.15">You missed a carry: tenths 7 + 4 = 11, write 1 and carry 1 into the units.</li><li data-if="9.72">Line up the decimal points, not the right-hand ends: 12.70 and 8.45.</li></ul>
+      <div class="solution"><p>12.70 + 8.45 = 21.15.</p></div>
+    </div>
+    <div class="q" data-answers="32.62" data-mode="value">
+      <p class="qtext">Work out 50 &minus; 17.38.</p>
+      <ol class="ladder"><li>Write 50 as 50.00 and subtract.</li></ol>
+      <ul class="wrong"><li data-if="33.62">Check by adding back: 33.62 + 17.38 = 51.</li></ul>
+      <div class="solution"><p>50.00 &minus; 17.38 = 32.62. Check: 32.62 + 17.38 = 50.</p></div>
+    </div>
+    <div class="q" data-answers="44" data-mode="value">
+      <p class="qtext">What is the {term:difference} between 83 and 127?</p>
+      <ol class="ladder"><li>Difference means subtract the smaller from the larger.</li></ol>
+      <ul class="wrong"><li data-if="210">That is the sum. The difference is how far apart they are.</li></ul>
+      <div class="solution"><p>127 &minus; 83 = 44.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Multiplying</h2>
+    <p>The {term:product|product} of two numbers is the answer when you multiply them. For bigger numbers, split one number into easy pieces (partitioning), multiply each, then add.</p>
+    <div class="key"><p><b>Key idea:</b> multiplying a decimal is the same as multiplying the whole numbers, then putting the point back. Count the decimal places in the question and give the answer the same number in total.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Work out 36 &times; 24.</p>
+      <ol class="steps">
+        <li>Split 24 into 20 + 4.</li>
+        <li>36 &times; 20 = 720 and 36 &times; 4 = 144.</li>
+        <li>720 + 144 = 864.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: decimals</h3>
+      <p>Work out 0.3 &times; 0.4.</p>
+      <ol class="steps">
+        <li>Ignore the points: 3 &times; 4 = 12.</li>
+        <li>There is 1 decimal place in 0.3 and 1 in 0.4, so 2 in the answer.</li>
+        <li>0.3 &times; 0.4 = 0.12.</li>
+      </ol>
+      <p class="muted">Sense check: multiplying by a number less than 1 makes things smaller, so the answer must be less than 0.3 (and less than 0.4).</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: multiply</h2>
+    <div class="q" data-answers="282" data-mode="value">
+      <p class="qtext">Work out 47 &times; 6.</p>
+      <ol class="ladder"><li>40 &times; 6 and 7 &times; 6.</li></ol>
+      <ul class="wrong"><li data-if="252">7 &times; 6 = 42, not 12. Try 240 + 42.</li></ul>
+      <div class="solution"><p>240 + 42 = 282.</p></div>
+    </div>
+    <div class="q" data-answers="620" data-mode="value">
+      <p class="qtext">Work out 124 &times; 5.</p>
+      <ol class="ladder"><li>Half of 124 &times; 10.</li></ol>
+      <ul class="wrong"><li data-if="600">That leaves out 4 &times; 5 = 20: 500 + 100 + 20 = 620.</li></ul>
+      <div class="solution"><p>124 &times; 10 = 1,240, and half of that is 620.</p></div>
+    </div>
+    <div class="q" data-answers="864" data-mode="value">
+      <p class="qtext">Work out 36 &times; 24.</p>
+      <ol class="ladder"><li>Split 24 into 20 + 4.</li></ol>
+      <ul class="wrong"><li data-if="144">That is only 36 &times; 4. You also need 36 &times; 20.</li><li data-if="720">That is only 36 &times; 20. You also need 36 &times; 4.</li></ul>
+      <div class="solution"><p>720 + 144 = 864.</p></div>
+    </div>
+    <div class="q" data-answers="12.8" data-mode="value">
+      <p class="qtext">Work out 3.2 &times; 4.</p>
+      <ol class="ladder"><li>32 &times; 4, then put the point back.</li></ol>
+      <ul class="wrong"><li data-if="128">Put the decimal point back: there is one decimal place in 3.2.</li></ul>
+      <div class="solution"><p>32 &times; 4 = 128. One decimal place in the question, so 12.8.</p></div>
+    </div>
+    <div class="q" data-answers="0.12" data-mode="value">
+      <p class="qtext">Work out 0.3 &times; 0.4.</p>
+      <ol class="ladder"><li>3 &times; 4 = 12. Two decimal places in total.</li></ol>
+      <ul class="wrong"><li data-if="1.2">There are two decimal places in the question (one in each number), so two in the answer.</li><li data-if="12">Put the decimal point back: two decimal places in total.</li></ul>
+      <div class="solution"><p>0.12.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Dividing</h2>
+    <p>The {term:quotient|quotient} is the answer to a division. When a number does not divide exactly, what is left over is the {term:remainder|remainder}. Use short division when you can, laying the digits out so you can see each step.</p>
+    <div class="key"><p><b>Key idea:</b> division asks &ldquo;how many lots of this fit in?&rdquo; or &ldquo;share equally between this many&rdquo;. To divide by a decimal, make the divisor whole by multiplying <i>both</i> numbers by the same power of ten: 3.6 &divide; 0.4 = 36 &divide; 4.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Work out 1,456 &divide; 7.</p>
+      <ol class="steps">
+        <li>How many 7s in 14? 2. Write 2 above the 4 (the thousands and hundreds 14).</li>
+        <li>5 &divide; 7 does not go (0), so carry 5 into the next digit: 56 &divide; 7 = 8.</li>
+        <li>1,456 &divide; 7 = 208.</li>
+      </ol>
+      <p class="muted">Check by multiplying: 7 &times; 208 = 1,456. &#10003;</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: divide</h2>
+    <div class="q" data-answers="42" data-mode="value">
+      <p class="qtext">Work out 252 &divide; 6.</p>
+      <ol class="ladder"><li>25 &divide; 6 = 4 remainder 1.</li></ol>
+      <ul class="wrong"><li data-if="402">Carry the remainder: 25 &divide; 6 = 4 remainder 1, then 12 &divide; 6 = 2.</li></ul>
+      <div class="solution"><p>252 &divide; 6 = 42. Check: 6 &times; 42 = 252.</p></div>
+    </div>
+    <div class="q" data-answers="208" data-mode="value">
+      <p class="qtext">Work out 1,456 &divide; 7.</p>
+      <ol class="ladder"><li>14 &divide; 7 = 2, then 5, then 56.</li></ol>
+      <ul class="wrong"><li data-if="28">Watch the zero: 5 &divide; 7 does not go, so there is a 0 in the answer.</li></ul>
+      <div class="solution"><p>208. Check: 7 &times; 208 = 1,456.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">What is the {term:remainder|remainder} when 95 is divided by 4?</p>
+      <ol class="ladder"><li>4 &times; 23 = 92.</li></ol>
+      <ul class="wrong"><li data-if="23">That is the quotient (how many whole 4s). The remainder is what is left over.</li></ul>
+      <div class="solution"><p>4 &times; 23 = 92 and 95 &minus; 92 = 3.</p></div>
+    </div>
+    <div class="q" data-answers="23.75" data-mode="value">
+      <p class="qtext">Write 95 &divide; 4 as a decimal.</p>
+      <ol class="ladder"><li>23 remainder 3: the 3 is three quarters.</li></ol>
+      <ul class="wrong"><li data-if="23.3">The remainder 3 out of 4 is 0.75, not 0.3.</li></ul>
+      <div class="solution"><p>95 &divide; 4 = 23.75.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Work out 3.6 &divide; 0.4.</p>
+      <ol class="ladder"><li>Multiply both numbers by 10: 36 &divide; 4.</li></ol>
+      <ul class="wrong"><li data-if="0.9">Multiply both numbers by 10 to make the divisor whole: 36 &divide; 4.</li></ul>
+      <div class="solution"><p>36 &divide; 4 = 9.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: every operation has a partner that undoes it</h2>
+    <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>342 + 289 = 631</p><p class="muted">Add to build up.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>631 &minus; 289 = 342</p><p class="muted">Subtract to undo it.</p></div>
+    </div>
+    <div class="key"><p><b>Key idea:</b> add and subtract are {term:inverse-operation|inverse operations}, and so are multiply and divide. This lets you <b>check</b> any answer by reversing it, and <b>find a missing number</b> by undoing the steps.</p></div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>24 &times; 6 = 144</p><p class="muted">Lots of 24.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>144 &divide; 6 = 24, and 144 &divide; 24 = 6</p><p class="muted">One multiplication gives you two divisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="342" data-mode="value">
+      <p class="qtext">You know 342 + 289 = 631. What is 631 &minus; 289?</p>
+      <ol class="ladder"><li>Subtracting undoes adding.</li></ol>
+      <ul class="wrong"><li data-if="920">That is 631 + 289. Subtract to undo the addition.</li></ul>
+      <div class="solution"><p>631 &minus; 289 = 342: you get back to where you started.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">I think of a number, multiply it by 7 and get 91. What is my number?</p>
+      <ol class="ladder"><li>Undo &times; 7 with &divide; 7.</li></ol>
+      <ul class="wrong"><li data-if="637">That is 91 &times; 7. To undo a multiplication, divide.</li></ul>
+      <div class="solution"><p>91 &divide; 7 = 13. Check: 13 &times; 7 = 91.</p></div>
+    </div>
+    <div class="q" data-answers="26" data-mode="value">
+      <p class="qtext">46 &times; ? = 1,196. Find the missing number.</p>
+      <ol class="ladder"><li>Undo with division: 1,196 &divide; 46.</li></ol>
+      <ul class="wrong"><li data-if="55016">That is 46 &times; 1,196. Divide to find the missing factor.</li></ul>
+      <div class="solution"><p>1,196 &divide; 46 = 26. Check: 46 &times; 26 = 1,196.</p></div>
+    </div>
+    <div class="q" data-answers="405" data-mode="value">
+      <p class="qtext">? &minus; 138 = 267. Find the missing number.</p>
+      <ol class="ladder"><li>The missing number is bigger. Undo &minus; 138 with + 138.</li></ol>
+      <ul class="wrong"><li data-if="129">That is 267 &minus; 138. To undo a subtraction, add.</li></ul>
+      <div class="solution"><p>267 + 138 = 405. Check: 405 &minus; 138 = 267.</p></div>
+    </div>
+    <div class="q" data-answers="120" data-mode="value">
+      <p class="qtext">? &divide; 8 = 15. Find the missing number.</p>
+      <ol class="ladder"><li>Undo &divide; 8 with &times; 8.</li></ol>
+      <ul class="wrong"><li data-if="2">That is 15 &divide; 8 (about 2). To undo a division, multiply.</li></ul>
+      <div class="solution"><p>15 &times; 8 = 120.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">You know 24 &times; 6 = 144. Write the answer to 144 &divide; 24.</p>
+      <ol class="ladder"><li>One multiplication gives two divisions.</li></ol>
+      <ul class="wrong"><li data-if="24">Look at which factor is left over after you divide by 24.</li></ul>
+      <div class="solution"><p>144 &divide; 24 = 6, because 24 &times; 6 = 144.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Using it in real situations</h2>
+    <p>In a problem, first decide <i>which operation</i>. Words can give clues (&ldquo;altogether&rdquo; often means adding, &ldquo;change&rdquo; subtracting, &ldquo;shared equally&rdquo; dividing), but keywords can mislead: &ldquo;each&rdquo; can mean multiply or divide. Picture what is happening first. Then do a quick {term:estimate|estimate} to check the size of your answer.</p>
+    <div class="key"><p><b>Key idea:</b> if the answer is a number of whole things (people, buses, boxes), a remainder usually means you need <b>one more</b>. 70 students in minibuses that each hold 16 need 5 minibuses, not 4.375.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: problems</h2>
+    <div class="q" data-answers="37" data-mode="value">
+      <p class="qtext">Four tickets cost &pound;8.50 each, and there is a &pound;3 booking fee on the whole order. What is the total cost in pounds?</p>
+      <ol class="ladder"><li>Four tickets first: 4 &times; 8.50.</li><li>Then add the booking fee once.</li></ol>
+      <ul class="wrong"><li data-if="11.5">That adds instead of multiplying. There are four tickets at &pound;8.50 each.</li><li data-if="46">That charges the &pound;3 fee on each ticket: 4 &times; 11. It is charged once on the whole order.</li><li data-if="34">That leaves out the booking fee. Add the &pound;3 once.</li></ul>
+      <div class="solution"><p>4 &times; 8.50 = 34, and 34 + 3 = &pound;37.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">156 sweets are shared equally between 12 children. How many sweets does each child get?</p>
+      <ol class="ladder"><li>Shared equally means divide.</li></ol>
+      <ul class="wrong"><li data-if="168">That is 156 + 12. Sharing means dividing.</li></ul>
+      <div class="solution"><p>156 &divide; 12 = 13. Check: 12 &times; 13 = 156.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">70 students go on a trip. Each minibus holds 16 students. How many minibuses are needed?</p>
+      <ol class="ladder"><li>70 &divide; 16 is a bit more than 4.</li><li>You cannot have part of a minibus.</li></ol>
+      <ul class="wrong"><li data-if="4">4 minibuses hold 64 students, so 6 would be left behind.</li><li data-if="4.375">That is the exact division, but you cannot hire part of a minibus.</li></ul>
+      <div class="solution"><p>70 &divide; 16 = 4.375, so 4 minibuses would leave some students behind. You need 5.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">A bag holds 1.5 kg of flour. How many 250 g portions can you make? (1 kg = 1,000 g.)</p>
+      <ol class="ladder"><li>Change to grams first: 1.5 kg = 1,500 g.</li></ol>
+      <ul class="wrong"><li data-if="0.006">That divides 1.5 by 250. Change both to the same unit first: 1,500 g &divide; 250 g.</li><li data-if="375">That multiplies. You want to know how many 250 g portions fit, so divide.</li></ul>
+      <div class="solution"><p>1,500 &divide; 250 = 6.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Jo saves &pound;12.50 each week. How many weeks does it take her to save at least &pound;100?</p>
+      <ol class="ladder"><li>100 &divide; 12.50 = 8 exactly.</li></ol>
+      <ul class="wrong"><li data-if="7">7 weeks gives only &pound;87.50.</li></ul>
+      <div class="solution"><p>12.50 &times; 8 = 100, so 8 weeks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Mia says:</b> &ldquo;6,003 &minus; 2,458 = 4,455.&rdquo; (She did each column by taking the smaller digit from the bigger.) What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She took the smaller digit from the bigger each time instead of borrowing when the top digit was smaller.</li>
+        <li data-why="Check by adding: 4,455 + 2,458 = 6,913, not 6,003.">Nothing: it is right</li>
+        <li data-why="The question asks for a subtraction.">She should have added</li>
+      </ul>
+      <ol class="ladder"><li>Check by adding back: 4,455 + 2,458.</li></ol>
+      <div class="solution"><p>The correct answer is 3,545. Check: 3,545 + 2,458 = 6,003.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Tom says:</b> &ldquo;3.5 &times; 0.2 = 7.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He forgot the decimal point. 35 &times; 2 = 70, with two decimal places: 0.70 = 0.7.</li>
+        <li data-why="Count the decimal places: 3.5 has one and 0.2 has one, so the answer has two.">Nothing: 35 &times; 2 = 70, so 7 is right</li>
+        <li data-why="The question multiplies.">He should have divided</li>
+      </ul>
+      <ol class="ladder"><li>Estimate: 3.5 is about 4, 0.2 is a fifth. A fifth of 4 is a bit less than 1.</li></ol>
+      <div class="solution"><p>0.7. A fifth of 3.5 is 0.7.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="43" data-mode="value">
+      <p class="qtext">Work out 52 &minus; 17 + 8.</p>
+      <ol class="ladder"><li>Work from left to right.</li></ol>
+      <ul class="wrong"><li data-if="27">That does 17 + 8 first. With only + and &minus; you go left to right.</li></ul>
+      <div class="solution"><p>52 &minus; 17 = 35, and 35 + 8 = 43.</p></div>
+    </div>
+    <div class="q" data-answers="4.05" data-mode="value">
+      <p class="qtext">Work out 3.2 + 0.85.</p>
+      <ol class="ladder"><li>3.20 + 0.85.</li></ol>
+      <ul class="wrong"><li data-if="4.07">Line up the decimal points: 3.20 + 0.85.</li></ul>
+      <div class="solution"><p>4.05.</p></div>
+    </div>
+    <div class="q" data-answers="1000" data-mode="value">
+      <p class="qtext">Work out 125 &times; 8.</p>
+      <ol class="ladder"><li>Half of 125 &times; 16, or 100 &times; 8 + 25 &times; 8.</li></ol>
+      <ul class="wrong"><li data-if="960">Check: 25 &times; 8 = 200, so 800 + 200.</li></ul>
+      <div class="solution"><p>800 + 200 = 1,000.</p></div>
+    </div>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Work out 432 &divide; 12.</p>
+      <ol class="ladder"><li>12 &times; 30 = 360, then how many more 12s?</li></ol>
+      <ul class="wrong"><li data-if="360">That is only the first part. 432 &minus; 360 = 72, and 72 &divide; 12 = 6 more.</li></ul>
+      <div class="solution"><p>12 &times; 36 = 432.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">A box holds 12 eggs. How many boxes are needed for 100 eggs?</p>
+      <ol class="ladder"><li>100 &divide; 12 = 8 remainder 4.</li></ol>
+      <ul class="wrong"><li data-if="8">8 boxes hold only 96 eggs.</li><li data-if="8.33">You cannot buy part of a box.</li></ul>
+      <div class="solution"><p>8 boxes hold 96 eggs. 4 eggs are left over, so you need 9 boxes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Concert tickets cost &pound;12.50 for an adult and &pound;7.25 for a child. A group buys tickets for 2 adults and 3 children.</p>
+    <div class="q" data-answers="46.75" data-mode="value">
+      <p class="qtext"><b>(a)</b> [3 marks] Work out the total cost, in pounds.</p>
+      <ol class="ladder"><li>Adults: 2 &times; 12.50. Children: 3 &times; 7.25.</li><li>Add the two totals.</li></ol>
+      <ul class="wrong"><li data-if="19.75">That adds one adult and one child price. There are 2 adults and 3 children.</li><li data-if="21.75">That is only the children. Add the adults too.</li></ul>
+      <div class="solution"><p>2 &times; 12.50 = 25 and 3 &times; 7.25 = 21.75. 25 + 21.75 = &pound;46.75.</p></div>
+    </div>
+    <div class="q" data-answers="3.25" data-mode="value">
+      <p class="qtext"><b>(b)</b> [2 marks] They pay with a &pound;50 note. How much change do they get, in pounds?</p>
+      <ol class="ladder"><li>Change = 50 &minus; the total.</li></ol>
+      <ul class="wrong"><li data-if="96.75">That adds. Change is what is left from the &pound;50.</li></ul>
+      <div class="solution"><p>50 &minus; 46.75 = &pound;3.25. Check: 46.75 + 3.25 = 50.</p></div>
+    </div>
+    <div class="q" data-answers="245" data-mode="value">
+      <p class="qtext"><b>(c)</b> [3 marks] A coach has 52 seats. 4 coaches are completely full and a fifth has 37 people. How many people are there altogether?</p>
+      <ol class="ladder"><li>4 full coaches: 4 &times; 52.</li><li>Then add the 37.</li></ol>
+      <ul class="wrong"><li data-if="89">That is 52 + 37. There are 4 full coaches.</li></ul>
+      <div class="solution"><p>4 &times; 52 = 208 and 208 + 37 = 245.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Going further</h2>
+    <div class="q" data-answers="128" data-mode="value">
+      <p class="qtext">Use the digits 2, 3 and 4 once each to make a two-digit number multiplied by a one-digit number. What is the largest product you can make?</p>
+      <ol class="ladder"><li>There are only six ways to arrange 2, 3 and 4. Try them all and compare.</li></ol>
+      <ul class="wrong"><li data-if="86">Putting the biggest digits together does not give the biggest product. Try all six.</li></ul>
+      <div class="solution"><p>43 &times; 2 = 86, 42 &times; 3 = 126, 32 &times; 4 = 128, 34 &times; 2 = 68, 24 &times; 3 = 72, 23 &times; 4 = 92. The largest is 32 &times; 4 = 128. Putting the biggest digit (4) on its own as the multiplier wins.</p></div>
+    </div>
+    <div class="q" data-answers="4872" data-mode="value">
+      <p class="qtext">You know 4,872 &divide; 24 = 203. What is 203 &times; 24?</p>
+      <ol class="ladder"><li>Multiplying undoes dividing.</li></ol>
+      <ul class="wrong"><li data-if="227">That is 203 + 24. Multiplying by 24 undoes dividing by 24.</li></ul>
+      <div class="solution"><p>203 &times; 24 = 4,872, the number you started with.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Carrying and borrowing</b> are just place value: ten units become one ten, and one ten becomes ten units.</li>
+      <li><b>Partitioning</b> works because multiplication spreads over addition: 36 &times; 24 = 36 &times; 20 + 36 &times; 4.</li>
+      <li><b>Inverse operations</b> undo each other, so every answer can be checked by running it backwards.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Not lining up place values or decimal points.</li>
+      <li>Taking the smaller digit from the bigger in every column.</li>
+      <li>Losing the decimal point after multiplying.</li>
+      <li>Forgetting the zero in an answer such as 208.</li>
+      <li>Giving 4.375 minibuses when a whole number was needed.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="four-operations">
+      <li><label><input type="checkbox"> add and subtract whole numbers and decimals using columns</label></li>
+      <li><label><input type="checkbox"> multiply with partitioning, and multiply decimals</label></li>
+      <li><label><input type="checkbox"> divide whole numbers and decimals, and deal with remainders</label></li>
+      <li><label><input type="checkbox"> check any answer using the inverse operation</label></li>
+      <li><label><input type="checkbox"> choose the right operation in a word problem and say what a remainder means</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

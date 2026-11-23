@@ -1,0 +1,507 @@
+<main class="book strand-number" data-book-page="topic" data-topic="place-value">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Number &middot; Foundation and Higher</span>
+      <h1>Place value</h1>
+      <p class="lead">The idea everything else stands on: what a digit is worth because of where it sits, to the left and the right of the point.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Place value</span></nav>
+    {prereqs}
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Have a go before you read anything. This is the very base of the pyramid, so there is nothing to check underneath it.</p>
+    <div class="q" data-answers="80" data-mode="value">
+      <p class="qtext">A gamer scores 4,082 points. What is the value of the digit 8 in that score?</p>
+      <ol class="ladder"><li>Which column is the 8 in: units, tens, hundreds or thousands?</li><li>Units, tens, hundreds, thousands read from the right: 2, 8, 0, 4.</li></ol>
+      <ul class="wrong"><li data-if="8">That is the digit itself. Its <i>value</i> depends on its column. It is in the tens column.</li><li data-if="800">That would be the hundreds column. Count from the right: units, tens, hundreds.</li></ul>
+      <div class="solution"><p>The 8 is in the tens column, so it is worth 8 tens, which is 80.</p></div>
+    </div>
+    <div class="q" data-answers="3100" data-mode="value">
+      <p class="qtext">What is 1 more than 3,099?</p>
+      <ol class="ladder"><li>Add 1 to 99 and carry.</li></ol>
+      <ul class="wrong"><li data-if="3000">The 9s do become zeros, but the carry adds 1 to the hundreds column.</li></ul>
+      <div class="solution"><p>3,099 + 1 = 3,100. The 9s turn to 0s and carry into the next column.</p></div>
+    </div>
+    <div class="q" data-answers="100" data-mode="value">
+      <p class="qtext">Work out 10 &times; 10.</p>
+      <ol class="ladder"><li>Ten tens.</li></ol>
+      
+      <div class="solution"><p>10 &times; 10 = 100.</p></div>
+    </div>
+    <div class="q" data-answers="1000" data-mode="value">
+      <p class="qtext">Work out 10 &times; 100.</p>
+      <ol class="ladder"><li>Ten hundreds make a thousand.</li></ol>
+      
+      <div class="solution"><p>10 &times; 100 = 1,000.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. What a digit is worth</h2>
+    <p>Every number is built from {term:digit|digits}, the symbols 0 to 9. What a digit is worth depends on where it sits. That is {term:place-value}.</p>
+    <p class="sum-line">4,082 = 4 thousands + 0 hundreds + 8 tens + 2 units</p>
+    <div class="key"><p><b>Key idea:</b> the same digit is worth different amounts in different columns. The 8 in 4,082 is worth 80; the 8 in 4,802 is worth 800. A <b>zero holds a column open</b>: 4,082 is not 482.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>What is the value of the 7 in 53,729?</p>
+      <ol class="steps">
+        <li>Read the columns from the right: units 9, tens 2, hundreds 7.</li>
+        <li>The 7 is in the hundreds column.</li>
+        <li>Its value is 7 hundreds = 700.</li>
+      </ol>
+    </div>
+    <p>Big numbers are written with a comma (or a space) every three digits to make them easy to read: 52,684 is fifty-two thousand, six hundred and eighty-four.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: digits and columns</h2>
+    <div class="q" data-answers="700" data-mode="value">
+      <p class="qtext">What is the value of the 7 in 3,725?</p>
+      <ol class="ladder"><li>3,725: units 5, tens 2, hundreds 7.</li></ol>
+      <ul class="wrong"><li data-if="7">That is the digit. Its value depends on its column.</li><li data-if="70">That is the tens column. Count again from the right.</li></ul>
+      <div class="solution"><p>The 7 is in the hundreds column: 700.</p></div>
+    </div>
+    <div class="q" data-answers="4035" data-mode="value">
+      <p class="qtext">Write as a number: 4 thousands, 0 hundreds, 3 tens and 5 units.</p>
+      <ol class="ladder"><li>Put each amount in its column, and use 0 for the empty hundreds.</li></ol>
+      <ul class="wrong"><li data-if="435">The zero holds the hundreds column open. Without it the 4 would be worth 400, not 4,000.</li></ul>
+      <div class="solution"><p>4,000 + 0 + 30 + 5 = 4,035.</p></div>
+    </div>
+    <div class="q" data-answers="4030" data-mode="value">
+      <p class="qtext">Write &ldquo;four thousand and thirty&rdquo; in digits.</p>
+      <ol class="ladder"><li>Four thousands, no hundreds, three tens, no units.</li></ol>
+      <ul class="wrong"><li data-if="430">A zero is needed in the hundreds column to keep the 4 worth 4,000.</li><li data-if="40030">40,030 is forty thousand and thirty. Four thousand is a 4 followed by three more digits: 4,000 &hellip;</li></ul>
+      <div class="solution"><p>4,030. The zeros hold the hundreds and units columns open.</p></div>
+    </div>
+    <div class="q" data-answers="56" data-mode="value">
+      <p class="qtext">How many tens are there in 560?</p>
+      <ol class="ladder"><li>Each ten is 10. How many tens make 560?</li><li>Divide by 10.</li></ol>
+      <ul class="wrong"><li data-if="6">That is the digit in the tens column. The 5 hundreds are also made of tens: 50 tens.</li></ul>
+      <div class="solution"><p>560 &divide; 10 = 56. The 6 tens plus the 50 tens (500) make 56 tens.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which is bigger: 9,099 or 9,101?</p>
+      <ul class="options">
+        <li data-why="Compare column by column from the left: both have 9 thousands, but 9,101 has 1 hundred and 9,099 has none.">9,099</li>
+        <li data-correct>9,101</li>
+        <li data-why="They are 2 apart: 9,101 &minus; 9,099 = 2.">They are equal</li>
+      </ul>
+      <ol class="ladder"><li>Compare the leftmost digits first, then move right.</li></ol>
+      <div class="solution"><p>Both have 9 thousands. Then hundreds: 1 beats 0. So 9,101 is bigger, even though its last digits look small.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Decimals: columns to the right of the point</h2>
+    <p>The columns carry on to the right of the {term:decimal|decimal} point, each one ten times smaller: tenths, hundredths, thousandths.</p>
+    <p class="sum-line">3.254 = 3 units + 2 tenths + 5 hundredths + 4 thousandths</p>
+    <div class="key"><p><b>Key idea:</b> compare decimals digit by digit from the left, <i>not</i> by how long they look. 0.4 is bigger than 0.35 because 4 tenths beat 3 tenths, even though 35 is bigger than 4.</p></div>
+    <div class="worked">
+      <h3>Worked example: order from smallest to largest</h3>
+      <p>Put 0.4, 0.37 and 0.399 in order.</p>
+      <ol class="steps">
+        <li>Give them all three decimal places: 0.400, 0.370, 0.399.</li>
+        <li>Compare as if they were whole numbers: 370, 399, 400.</li>
+        <li>So the order is 0.37, 0.399, 0.4.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: decimals</h2>
+    <div class="q" data-answers="0.05" data-mode="value">
+      <p class="qtext">What is the value of the 5 in 3.254?</p>
+      <ol class="ladder"><li>After the point: tenths 2, hundredths 5, thousandths 4.</li></ol>
+      <ul class="wrong"><li data-if="0.5">That is the tenths column. The 5 is one column further right.</li><li data-if="5">That is the digit. Its value is 5 hundredths.</li></ul>
+      <div class="solution"><p>The 5 is in the hundredths column, so its value is 5 hundredths = 0.05.</p></div>
+    </div>
+    <div class="q" data-answers="7/10" data-mode="value">
+      <p class="qtext">Write 0.7 as a fraction.</p>
+      <ol class="ladder"><li>0.7 is 7 tenths.</li></ol>
+      <ul class="wrong"><li data-if="7/100">7 hundredths is 0.07. The 7 in 0.7 is in the tenths column.</li></ul>
+      <div class="solution"><p>0.7 = {frac:7/10}.</p></div>
+    </div>
+    <div class="q" data-answers="60" data-mode="value">
+      <p class="qtext">How many hundredths are there in 0.6?</p>
+      <ol class="ladder"><li>0.6 = 0.60. Read it as hundredths.</li></ol>
+      <ul class="wrong"><li data-if="6">That is 6 tenths. Each tenth is 10 hundredths, so 6 tenths are 60 hundredths.</li></ul>
+      <div class="solution"><p>0.6 = 0.60 = 60 hundredths.</p></div>
+    </div>
+    <div class="q" data-answers="3.25" data-mode="value">
+      <p class="qtext">Write 3 + {frac:2/10} + {frac:5/100} as a decimal.</p>
+      <ol class="ladder"><li>3 units, 2 tenths, 5 hundredths.</li></ol>
+      <ul class="wrong"><li data-if="3.52">The tenths come first after the point: 2 tenths, then 5 hundredths.</li></ul>
+      <div class="solution"><p>3 + 0.2 + 0.05 = 3.25.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the biggest: 0.4, 0.37 or 0.399?</p>
+      <ul class="options">
+        <li data-correct>0.4</li>
+        <li data-why="37 is bigger than 4, but 0.37 is 37 hundredths while 0.4 is 40 hundredths.">0.37</li>
+        <li data-why="0.399 is very close, but 0.400 is a little bigger.">0.399</li>
+      </ul>
+      <ol class="ladder"><li>Write them all with three decimal places.</li></ol>
+      <div class="solution"><p>0.400, 0.370 and 0.399: the biggest is 0.4.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Multiplying and dividing by 10, 100, 1000</h2>
+    <p>Because every column is ten times the one to its right, multiplying by 10 moves every digit <b>one column to the left</b>, and dividing by 10 moves every digit <b>one column to the right</b>. The point does not move; the digits do.</p>
+    <div class="key"><p><b>Key idea:</b> &times; 10 moves digits left one place, &divide; 10 moves them right one place. For 100 it is two places, and for 1,000 it is three. Zeros fill the empty columns.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Work out 3.4 &times; 100.</p>
+      <ol class="steps">
+        <li>100 has two zeros, so move each digit two columns left.</li>
+        <li>3.4 becomes 340 (the 4 moves into the tens, the 3 into the hundreds, and a zero fills the units).</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Work out 45 &divide; 10.</p>
+      <ol class="steps">
+        <li>10 has one zero, so move each digit one column right.</li>
+        <li>45 becomes ___.</li>
+      </ol>
+      <p class="muted">4.5: the 5 moves into the tenths column.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: powers of ten</h2>
+    <div class="q" data-answers="340" data-mode="value">
+      <p class="qtext">Work out 3.4 &times; 100.</p>
+      <ol class="ladder"><li>Two places left.</li></ol>
+      <ul class="wrong"><li data-if="3.400">That is the same as 3.4. Multiplying by 100 makes it bigger.</li><li data-if="34">That is &times; 10. 100 moves the digits two places.</li></ul>
+      <div class="solution"><p>3.4 &times; 100 = 340.</p></div>
+    </div>
+    <div class="q" data-answers="56" data-mode="value">
+      <p class="qtext">Work out 5,600 &divide; 100.</p>
+      <ol class="ladder"><li>Two places right.</li></ol>
+      <ul class="wrong"><li data-if="560">That is &divide; 10. 100 moves the digits two places.</li></ul>
+      <div class="solution"><p>5,600 &divide; 100 = 56.</p></div>
+    </div>
+    <div class="q" data-answers="70" data-mode="value">
+      <p class="qtext">Work out 0.07 &times; 1000.</p>
+      <ol class="ladder"><li>Three places left.</li></ol>
+      <ul class="wrong"><li data-if="7">That is &times; 100. 1,000 has three zeros: three places.</li></ul>
+      <div class="solution"><p>0.07 &times; 1,000 = 70.</p></div>
+    </div>
+    <div class="q" data-answers="4.5" data-mode="value">
+      <p class="qtext">Work out 45 &divide; 10.</p>
+      <ol class="ladder"><li>One place right.</li></ol>
+      <ul class="wrong"><li data-if="450">That is &times; 10. Dividing makes it smaller.</li></ul>
+      <div class="solution"><p>45 &divide; 10 = 4.5.</p></div>
+    </div>
+    <div class="q" data-answers="3.6" data-mode="value">
+      <p class="qtext">Work out 0.36 &times; 10.</p>
+      <ol class="ladder"><li>One place left.</li></ol>
+      <ul class="wrong"><li data-if="0.036">That is &divide; 10. Multiplying makes it bigger.</li></ul>
+      <div class="solution"><p>0.36 &times; 10 = 3.6.</p></div>
+    </div>
+    <div class="q" data-answers="0.0025" data-mode="value">
+      <p class="qtext">Work out 2.5 &divide; 1000.</p>
+      <ol class="ladder"><li>Three places right, filling with zeros.</li></ol>
+      <ul class="wrong"><li data-if="2500">That is &times; 1,000. Dividing makes it smaller.</li></ul>
+      <div class="solution"><p>2.5 &divide; 1,000 = 0.0025.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Rounding</h2>
+    <p>To {term:round|round} a number, replace it with a nearby simpler one. Find the column you are rounding to, look at the digit <b>just after</b> it, and round up if that digit is 5 or more, or down if it is less than 5.</p>
+    <div class="key"><p><b>Key idea:</b> only the digit right after your column decides. For 3,468 to the nearest 100, the hundreds digit is 4 and the next digit is 6, which is 5 or more, so the 4 goes up to 5: 3,500.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Round 3,468 to the nearest 100.</p>
+      <ol class="steps">
+        <li>The hundreds column holds the 4.</li>
+        <li>The next digit is 6, which is 5 or more, so round up.</li>
+        <li>3,468 &asymp; 3,500.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Round 6.749 to 1 decimal place ({term:decimal-place|d.p.}).</p>
+      <ol class="steps">
+        <li>The tenths column holds the 7.</li>
+        <li>The next digit is 4, which is less than 5, so round down (keep the 7).</li>
+        <li>6.749 &asymp; ___.</li>
+      </ol>
+      <p class="muted">6.7. The 49 after the 7 does not matter: only the 4 decides.</p>
+    </div>
+    <p>You can also round to {term:significant-figure|significant figures}: count from the first digit that is not zero. 0.0527 to 1 s.f. is 0.05.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: rounding</h2>
+    <div class="q" data-answers="4900" data-mode="value">
+      <p class="qtext">Round 4,862 to the nearest 100.</p>
+      <ol class="ladder"><li>The hundreds digit is 8; the next digit is 6.</li></ol>
+      <ul class="wrong"><li data-if="4800">The next digit is 6, which rounds up. 4,800 would be rounding down.</li><li data-if="5000">That is the nearest 1,000. For the nearest 100 keep the thousands digit.</li></ul>
+      <div class="solution"><p>6 is 5 or more, so the 8 rounds up to 9: 4,900.</p></div>
+    </div>
+    <div class="q" data-answers="6.7" data-mode="value">
+      <p class="qtext">Round 6.749 to 1 decimal place.</p>
+      <ol class="ladder"><li>The tenths digit is 7; look at the 4 after it.</li></ol>
+      <ul class="wrong"><li data-if="6.8">You looked at the 9. Only the digit right after the tenths column (the 4) decides.</li></ul>
+      <div class="solution"><p>4 is less than 5, so round down: 6.7.</p></div>
+    </div>
+    <div class="q" data-answers="16000" data-mode="value">
+      <p class="qtext">Round 15,650 to the nearest 1,000.</p>
+      <ol class="ladder"><li>The thousands digit is 5; the next digit is 6.</li></ol>
+      <ul class="wrong"><li data-if="15000">The next digit is 6, which rounds up.</li></ul>
+      <div class="solution"><p>6 rounds up, so 15,000 becomes 16,000.</p></div>
+    </div>
+    <div class="q" data-answers="0.05" data-mode="value">
+      <p class="qtext">Round 0.0527 to 1 significant figure.</p>
+      <ol class="ladder"><li>The first digit that is not zero is the 5.</li></ol>
+      <ul class="wrong"><li data-if="0.1">The zeros at the start do not count: the first significant figure is the 5.</li><li data-if="0.06">The next digit is 2, which rounds down.</li></ul>
+      <div class="solution"><p>The first significant figure is 5. The next digit is 2, so round down: 0.05.</p></div>
+    </div>
+    <div class="q" data-answers="4;4.00" data-mode="value">
+      <p class="qtext">Round 3.996 to 2 decimal places.</p>
+      <ol class="ladder"><li>The hundredths digit is 9; the next digit is 6, so round up and carry.</li></ol>
+      <ul class="wrong"><li data-if="3.99">The next digit is 6, which rounds up, and a 9 rounding up carries.</li></ul>
+      <div class="solution"><p>3.996 is between 3.99 and 4.00. The 6 after the hundredths rounds it up to 4.00 (3.99 + 0.01). Keep the zeros when the question asks for 2 d.p.</p></div>
+    </div>
+    <div class="q" data-answers="7400" data-mode="value">
+      <p class="qtext">Round 7,350 to the nearest 100.</p>
+      <ol class="ladder"><li>The tens digit is 5.</li></ol>
+      <ul class="wrong"><li data-if="7300">A 5 rounds up, not down.</li></ul>
+      <div class="solution"><p>The digit after the hundreds is 5, which counts as &ldquo;5 or more&rdquo;, so round up: 7,400.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>Read the number 52,684 and say what each digit is worth.</p><p class="muted">From digits to values.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>Hear &ldquo;fifty-two thousand, six hundred and eighty-four&rdquo; and write it in digits.</p><p class="muted">From values to digits.</p></div>
+    </div>
+    <div class="key"><p><b>Key idea:</b> going forwards and backwards through the same columns is how you know you really understand them.</p></div>
+    <p>The other pairs: &times; 10 and &divide; 10 undo each other, and rounding has a reverse too: instead of rounding a number, ask <i>which numbers could round to this?</i></p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>Round 37 to the nearest 10.</p><p class="muted">Answer: 40.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>Which whole numbers round to 40?</p><p class="muted">Answer: 35, 36, &hellip; 44.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="34" data-mode="value">
+      <p class="qtext">A number multiplied by 10 gives 340. What is the number?</p>
+      <ol class="ladder"><li>Undo &times; 10 with &divide; 10.</li></ol>
+      <ul class="wrong"><li data-if="3400">That is &times; 10 again. Undo it by dividing.</li></ul>
+      <div class="solution"><p>340 &divide; 10 = 34.</p></div>
+    </div>
+    <div class="q" data-answers="56" data-mode="value">
+      <p class="qtext">A number divided by 100 gives 0.56. What is the number?</p>
+      <ol class="ladder"><li>Undo &divide; 100 with &times; 100.</li></ol>
+      <ul class="wrong"><li data-if="0.0056">That is &divide; 100 again. Undo it by multiplying.</li></ul>
+      <div class="solution"><p>0.56 &times; 100 = 56.</p></div>
+    </div>
+    <div class="q" data-answers="35" data-mode="value">
+      <p class="qtext">What is the smallest whole number that rounds to 40 when rounded to the nearest 10?</p>
+      <ol class="ladder"><li>Numbers from 35 up round up to 40. What about 34?</li></ol>
+      <ul class="wrong"><li data-if="36">Close, but 35 also rounds up to 40: a 5 rounds up.</li><li data-if="30">That would round to 30.</li></ul>
+      <div class="solution"><p>35 rounds up to 40, but 34 rounds down to 30. So 35 is the smallest.</p></div>
+    </div>
+    <div class="q" data-answers="44" data-mode="value">
+      <p class="qtext">What is the largest whole number that rounds to 40 to the nearest 10?</p>
+      <ol class="ladder"><li>45 rounds up to 50. What about 44?</li></ol>
+      <ul class="wrong"><li data-if="45">A 5 rounds up, so 45 goes to 50.</li><li data-if="49">49 rounds up to 50.</li></ul>
+      <div class="solution"><p>44 rounds down to 40, but 45 rounds up to 50. So 44 is the largest.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A number rounded to 1 decimal place is 2.5. Which of these could be the original number?</p>
+      <ul class="options">
+        <li data-correct>2.46</li>
+        <li data-why="2.56 rounds up to 2.6.">2.56</li>
+        <li data-why="2.44 rounds down to 2.4.">2.44</li>
+      </ul>
+      <ol class="ladder"><li>Round each option to 1 d.p. and see which gives 2.5.</li></ol>
+      <div class="solution"><p>2.46 has a 6 after the 4, so it rounds up to 2.5.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding someone else's error is one of the fastest ways to learn.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ravi says:</b> &ldquo;3.45 is bigger than 3.5, because 45 is bigger than 5.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He compared the digits after the point as if they were whole numbers. 3.5 is 3.50, and 50 hundredths beat 45.</li>
+        <li data-why="Whole numbers compare by length, but decimals compare column by column from the left.">Nothing: 45 is bigger than 5</li>
+        <li data-why="3.5 = 3.50, which is 5 hundredths more than 3.45.">3.5 and 3.45 are equal</li>
+      </ul>
+      <ol class="ladder"><li>Write both with two decimal places: 3.45 and 3.50.</li></ol>
+      <div class="solution"><p>Tenths: 4 against 5. The 5 is bigger, so 3.5 is the bigger number.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Zoe says:</b> &ldquo;6.07 &times; 10 = 6.70.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She moved the 7 but not the other digits. Every digit moves one place left: 6.07 &times; 10 = 60.7.</li>
+        <li data-why="Adding a zero only works for whole numbers; with decimals the digits move.">Nothing: multiplying by 10 adds a zero on the end</li>
+        <li data-why="Multiplying makes the number bigger, so digits move left.">She should have moved the digits right</li>
+      </ul>
+      <ol class="ladder"><li>6.07 is about 6, so &times; 10 should be about 60. Is 6.70 about 60?</li></ol>
+      <div class="solution"><p>60.7. The 6 moves to the tens column, the 0 to the units and the 7 to the tenths.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="53000" data-mode="value">
+      <p class="qtext">Round 52,684 to the nearest 1,000.</p>
+      <ol class="ladder"><li>The thousands digit is 2; the next digit is 6.</li></ol>
+      <ul class="wrong"><li data-if="52000">The next digit is 6, which rounds up.</li></ul>
+      <div class="solution"><p>6 rounds up: 53,000.</p></div>
+    </div>
+    <div class="q" data-answers="50000" data-mode="value">
+      <p class="qtext">What is the value of the 5 in 52,684?</p>
+      <ol class="ladder"><li>Count the columns from the right: units 4, tens 8, hundreds 6, thousands 2, ten-thousands 5.</li></ol>
+      <ul class="wrong"><li data-if="5000">That is the thousands column. The 5 is one column further left.</li><li data-if="5">That is the digit. Its value is 50,000.</li></ul>
+      <div class="solution"><p>The 5 is in the ten-thousands column: 50,000.</p></div>
+    </div>
+    <div class="q" data-answers="4.8" data-mode="value">
+      <p class="qtext">Work out 0.0048 &times; 1000.</p>
+      <ol class="ladder"><li>Three places left.</li></ol>
+      <ul class="wrong"><li data-if="48">You moved four places. 1,000 is three places.</li></ul>
+      <div class="solution"><p>0.0048 &times; 1,000 = 4.8.</p></div>
+    </div>
+    <div class="q" data-answers="0.05" data-mode="value">
+      <p class="qtext">Which is the smallest of 0.5, 0.05, 0.505 and 0.55? Type the number.</p>
+      <ol class="ladder"><li>Write each with three decimal places.</li></ol>
+      <ul class="wrong"><li data-if="0.5">0.5 is 5 tenths, which is bigger than 0.05 (5 hundredths).</li></ul>
+      <div class="solution"><p>0.500, 0.050, 0.505, 0.550. The smallest is 0.05.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is closest to 1,000?</p>
+      <ul class="options">
+        <li data-why="1,000 &minus; 950 = 50.">950</li>
+        <li data-why="1,040 &minus; 1,000 = 40, but 1,008 is only 8 away.">1,040</li>
+        <li data-correct>1,008</li>
+      </ul>
+      <ol class="ladder"><li>Work out how far each is from 1,000.</li></ol>
+      <div class="solution"><p>950 is 50 away, 1,040 is 40 away, 1,008 is 8 away.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">A football stadium holds 52,684 people. Show your working where the marks suggest it.</p>
+    <div class="q" data-answers="53000" data-mode="value">
+      <p class="qtext"><b>(a)</b> [1 mark] Write the number of people to the nearest thousand.</p>
+      <ol class="ladder"><li>The next digit after the thousands is 6.</li></ol>
+      <ul class="wrong"><li data-if="52000">The 6 after the thousands digit rounds up.</li></ul>
+      <div class="solution"><p>52,684 rounds up to 53,000.</p></div>
+    </div>
+    <div class="q" data-answers="600" data-mode="value">
+      <p class="qtext"><b>(b)</b> [1 mark] Write down the value of the digit 6 in 52,684.</p>
+      <ol class="ladder"><li>The 6 is in the hundreds column.</li></ol>
+      <ul class="wrong"><li data-if="6">The value, not the digit.</li><li data-if="60">That is the tens column.</li></ul>
+      <div class="solution"><p>The 6 is worth 600.</p></div>
+    </div>
+    <div class="q" data-answers="1000" data-mode="value">
+      <p class="qtext"><b>(c)</b> [2 marks] Estimate 48.7 &times; 19.8 by rounding each number to 1 significant figure.</p>
+      <ol class="ladder"><li>48.7 to 1 s.f. is 50. What is 19.8 to 1 s.f.?</li><li>Then work out 50 &times; 20.</li></ol>
+      <ul class="wrong"><li data-if="964.26">That is the exact answer. An estimate rounds each number to 1 significant figure first, then multiplies.</li><li data-if="980">That rounds 48.7 to 49. To 1 significant figure it is 50.</li></ul>
+      <div class="solution"><p>48.7 &asymp; 50 and 19.8 &asymp; 20, so 50 &times; 20 = 1,000. (The exact answer is 964.26, so the estimate is sensible.)</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Going further</h2>
+    <div class="q" data-answers="0.046" data-mode="value">
+      <p class="qtext">Round 0.04567 to 2 significant figures.</p>
+      <ol class="ladder"><li>The first significant figure is the 4; the second is 5; the next digit is 6.</li></ol>
+      <ul class="wrong"><li data-if="0.045">The next digit is 6, which rounds up.</li></ul>
+      <div class="solution"><p>0.0456&hellip; &asymp; 0.046 (the 6 rounds the 5 up).</p></div>
+    </div>
+    <div class="q" data-answers="3449" data-mode="value">
+      <p class="qtext">A number rounds to 3,400 to the nearest 100. What is the largest whole number it could be?</p>
+      <ol class="ladder"><li>A 50 in the tens and units rounds up. Which is the largest number below 3,450?</li></ol>
+      <ul class="wrong"><li data-if="3450">3,450 rounds up to 3,500.</li></ul>
+      <div class="solution"><p>3,449 rounds down to 3,400, but 3,450 rounds up to 3,500. So 3,449.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Columns are powers of ten.</b> Each column is ten times the one to its right, which is why &times; 10 and &divide; 10 just move the digits.</li>
+      <li><b>Zero is a placeholder.</b> It holds a column open so the other digits keep their value.</li>
+      <li><b>Rounding looks one column to the right.</b> That digit tells you whether you are nearer the lower or the higher neighbour.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Reading the digit instead of its <i>value</i> (the 8 in 4,082 is 80, not 8).</li>
+      <li>Comparing decimals by length (0.35 is not bigger than 0.4).</li>
+      <li>Adding a zero to multiply a decimal by 10.</li>
+      <li>Rounding using more than one digit after the column.</li>
+      <li>Forgetting that 5 rounds up.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="place-value">
+      <li><label><input type="checkbox"> say the value of any digit in a whole number or a decimal</label></li>
+      <li><label><input type="checkbox"> write numbers from words, with zeros in the right places</label></li>
+      <li><label><input type="checkbox"> order decimals correctly</label></li>
+      <li><label><input type="checkbox"> multiply and divide by 10, 100 and 1,000 by moving the digits</label></li>
+      <li><label><input type="checkbox"> round to the nearest 10, 100, 1,000, to decimal places and to significant figures</label></li>
+      <li><label><input type="checkbox"> work backwards: find the number before it was multiplied or rounded</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

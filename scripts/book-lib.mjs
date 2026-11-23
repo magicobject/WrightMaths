@@ -111,6 +111,12 @@ function chip(topic) {
 
 export function renderPrereqs(id, graph) {
   const t = graph.get(id);
+  if (t.needs.length === 0) {
+    return `<aside class="bys" aria-labelledby="bys-title">
+    <h2 id="bys-title">Before you start: the base of the pyramid</h2>
+    <p>Maths is built like a pyramid, each topic standing on the ones below. This topic is at the very bottom, so there is nothing underneath it to check first. Everything else in the book stands on it.</p>
+  </aside>`;
+  }
   const items = t.needs.map((n) => {
     const need = graph.get(n);
     return `<li class="${need.status}">${link(n, graph)} ${chip(need)}</li>`;
