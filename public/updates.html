@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.23.001">
+<link rel="stylesheet" href="css/style.css?v=2026.11.23.002">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,8 +79,12 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.23.002</span><span class="changelog-date">23 November 2026</span></div>
+        <p>Fixed the previous entry: it linked to the hidden GCSE book pages, which the tests rightly refuse. The paths are now plain text, so nothing on the site links to the book.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.23.001</span><span class="changelog-date">23 November 2026</span></div>
-        <p>Started a hidden pilot of a GCSE maths textbook at <a href="books/gcse/">books/gcse/</a>: three topics (<a href="books/gcse/fractions.html">Fractions</a>, <a href="books/gcse/solving-equations.html">Solving equations</a>, <a href="books/gcse/pythagoras.html">Pythagoras</a>) with about 100 check-your-knowledge questions, a pyramid of what each topic builds on, a <a href="books/gcse/glossary.html">glossary</a> of maths terms with examples, and a guide to <a href="books/gcse/raise-your-grade.html">raising your grade</a>. Not linked from anywhere and marked noindex. The page builder now supports pages in folders, and an axe-core accessibility test runs on every page (the main site's two known colour-contrast issues are noted in the test).</p>
+        <p>Started a hidden pilot of a GCSE maths textbook at <code>books/gcse/</code>: three topics (Fractions (<code>books/gcse/fractions.html</code>), Solving equations (<code>books/gcse/solving-equations.html</code>), Pythagoras (<code>books/gcse/pythagoras.html</code>)) with about 100 check-your-knowledge questions, a pyramid of what each topic builds on, a glossary (<code>books/gcse/glossary.html</code>) of maths terms with examples, and a guide to raising your grade (<code>books/gcse/raise-your-grade.html</code>). Not linked from anywhere and marked noindex. The page builder now supports pages in folders, and an axe-core accessibility test runs on every page (the main site's two known colour-contrast issues are noted in the test).</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.10.19.001</span><span class="changelog-date">19 October 2026</span></div>
@@ -214,9 +218,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.23.001</span>
+    <span class="build-number">Build 2026.11.23.002</span>
   </div>
-  <script src="js/main.js?v=2026.11.23.001" defer></script>
+  <script src="js/main.js?v=2026.11.23.002" defer></script>
 </footer>
 </body>
 </html>
