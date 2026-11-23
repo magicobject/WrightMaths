@@ -8,6 +8,9 @@ export interface BookPage {
 }
 
 export const BOOK_TOPICS: BookPage[] = [
+  { path: '/books/gcse/place-value.html', titleContains: 'Place value', heading: /^Place value$/ },
+  { path: '/books/gcse/four-operations.html', titleContains: 'Add, subtract', heading: /Add, subtract, multiply, divide/ },
+  { path: '/books/gcse/negative-numbers.html', titleContains: 'Negative numbers', heading: /^Negative numbers$/ },
   { path: '/books/gcse/fractions.html', titleContains: 'Fractions', heading: /^Fractions$/ },
   { path: '/books/gcse/solving-equations.html', titleContains: 'Solving equations', heading: /^Solving equations$/ },
   { path: '/books/gcse/pythagoras.html', titleContains: 'Pythagoras', heading: /Pythagoras/ },
