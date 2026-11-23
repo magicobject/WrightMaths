@@ -52,6 +52,17 @@ test.describe('the book in its interactive states', () => {
     expect(await violations(page)).toEqual([]);
   });
 
+  test('with the duck open', async ({ page }) => {
+    await page.goto('/books/gcse/solving-equations.html');
+    const q = page.locator('.q').first();
+    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    await help.click();
+    await help.click();
+    await help.click();
+    await expect(q.locator('.duck-rung')).toBeVisible();
+    expect(await violations(page)).toEqual([]);
+  });
+
   test('multiple choice, right and wrong', async ({ page }) => {
     await page.goto('/books/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();

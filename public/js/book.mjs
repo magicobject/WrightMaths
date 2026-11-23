@@ -60,6 +60,33 @@ function markDone(qid) {
   updateProgress();
 }
 
+// ---------- the rubber duck ----------
+// Explaining a problem to someone else (even a rubber duck) often unsticks you.
+// What is typed here stays on screen: it is never stored or sent anywhere.
+
+const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focusable="false">'
+  + '<path class="duck-water" d="M2 62 Q12 56 22 62 T42 62 T62 62 T82 62" />'
+  + '<ellipse class="duck-body" cx="38" cy="46" rx="27" ry="16"/><path class="duck-wing" d="M26 44 Q38 34 50 46 Q38 54 26 44Z"/>'
+  + '<circle class="duck-body" cx="62" cy="24" r="14"/><path class="duck-beak" d="M74 24 L88 29 L74 33Z"/>'
+  + '<circle class="duck-eye" cx="66" cy="20" r="2.6"/></svg>';
+
+function duckRung(li, q) {
+  li.className = 'duck-rung';
+  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Explain it to the duck</b></p>`
+    + '<p>Explaining a problem to someone else, even a rubber duck, often makes the answer pop out. Programmers do it all the time. Tell the duck:</p>'
+    + '<ol class="duck-prompts"><li>What is the question asking me to find?</li><li>What do I already know?</li><li>What did I try, and what happened?</li><li>Which step stopped making sense?</li></ol></div>';
+  const area = el('textarea', {
+    class: 'duck-text', rows: '4', maxlength: '600', 'aria-label': 'Tell the duck what is going on', placeholder: 'Type it, or just say it out loud',
+  });
+  const note = el('p', { class: 'muted duck-note', text: 'The duck only listens. What you type stays on this screen and is not saved or sent anywhere.' });
+  const done = el('button', { type: 'button', class: 'btn-check', text: 'I have explained it: let me try again' });
+  done.addEventListener('click', () => {
+    area.value = '';
+    q.querySelector('.q-input, .mc-option')?.focus();
+  });
+  li.querySelector('.duck-body-text').append(area, note, done);
+}
+
 // ---------- questions ----------
 
 function enhanceQuestion(q, index) {
@@ -78,6 +105,7 @@ function enhanceQuestion(q, index) {
 
   const feedback = el('div', { class: 'q-feedback', role: 'status', 'aria-live': 'polite' });
   const rungs = ladder ? [...ladder.children].map((li) => li.innerHTML) : [];
+  rungs.push({ duck: true });
   rungs.push('Still stuck? Show this question to your teacher, or ask a parent or carer to get in touch about lessons. A person can often unstick you in a minute.');
   let rungsShown = 0;
   let wrongCount = 0;
@@ -95,7 +123,9 @@ function enhanceQuestion(q, index) {
   function revealRung() {
     if (rungsShown < rungs.length) {
       const li = el('li');
-      li.innerHTML = rungs[rungsShown];
+      const rung = rungs[rungsShown];
+      if (typeof rung === 'object') duckRung(li, q);
+      else li.innerHTML = rung;
       hintList.append(li);
       rungsShown += 1;
       li.setAttribute('tabindex', '-1');

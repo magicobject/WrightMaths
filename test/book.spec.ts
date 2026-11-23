@@ -172,7 +172,7 @@ test.describe('questions', () => {
     await expect(q.locator('.q-feedback')).toContainText('not fully simplified');
   });
 
-  test('"Help, I\'m stuck!" reveals one hint at a time and ends with a person to ask, then the answer', async ({ page }) => {
+  test('"Help, I\'m stuck!" reveals hints one at a time, then the duck, then a person, then the answer', async ({ page }) => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     await expect(q.locator('.solution')).toBeHidden();
@@ -181,12 +181,33 @@ test.describe('questions', () => {
     await expect(q.locator('.rungs li')).toHaveCount(1);
     await help.click();
     await expect(q.locator('.rungs li')).toHaveCount(2);
-    await help.click();
-    await expect(q.locator('.rungs li')).toHaveCount(3);
+    await help.click(); // the duck
+    await expect(q.locator('.duck-rung')).toBeVisible();
+    await expect(q.locator('.duck-rung')).toContainText('What is the question asking me to find?');
+    await help.click(); // a person
     await expect(q.locator('.rungs li').last()).toContainText('Show this question to your teacher');
     await expect(help).toHaveText('Show me the answer');
     await help.click();
     await expect(q.locator('.solution')).toBeVisible();
+  });
+
+  test('the duck listens but nothing typed to it is stored or sent anywhere', async ({ page }) => {
+    const requests: string[] = [];
+    page.on('request', (r) => { if (r.method() !== 'GET') requests.push(r.url()); });
+    await page.goto('/books/gcse/solving-equations.html');
+    const q = page.locator('.q').first();
+    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    await help.click();
+    await help.click();
+    await help.click();
+    const text = q.getByLabel('Tell the duck what is going on');
+    await text.fill('my secret thought about the problem');
+    await q.getByRole('button', { name: /I have explained it/ }).click();
+    await expect(text).toHaveValue('');
+    await expect(q.locator('.q-input')).toBeFocused();
+    const stored = await page.evaluate(() => JSON.stringify({ ...window.localStorage }) + JSON.stringify({ ...window.sessionStorage }));
+    expect(stored).not.toContain('secret thought');
+    expect(requests).toEqual([]);
   });
 
   test('multiple choice explains a wrong pick and celebrates the right one', async ({ page }) => {

@@ -215,6 +215,21 @@
 .geo-svg .arrow{fill:none;stroke:var(--navy);stroke-width:2.5;}
 .geo-svg .svg-t{font:700 17px "Source Sans 3",sans-serif;fill:var(--ink);}
 
+/* ---------- the rubber duck ---------- */
+.duck-rung{display:flex;gap:14px;align-items:flex-start;background:#fff7d6 !important;border:2px dashed var(--c-statistics);border-radius:10px;padding:12px 14px !important;list-style:none !important;}
+.duck{flex:none;width:84px;height:auto;}
+.duck-body{fill:#f6c83c;stroke:#7a5800;stroke-width:2;}
+.duck-wing{fill:#e9b21a;stroke:#7a5800;stroke-width:1.5;}
+.duck-beak{fill:#ee8a1c;stroke:#7a5800;stroke-width:1.5;}
+.duck-eye{fill:#1b2430;}
+.duck-water{fill:none;stroke:var(--c-number);stroke-width:3;stroke-linecap:round;}
+.duck-body-text{flex:1;min-width:0;}
+.duck-body-text p{color:var(--ink);margin-bottom:.5em;}
+.duck-prompts{margin:.2em 0 .8em;padding-left:1.3em;color:var(--ink);}
+.duck-text{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);color:var(--ink);resize:vertical;}
+.duck-note{font-size:.88rem;}
+@media (max-width:560px){.duck-rung{flex-direction:column;}}
+
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
 .g-letter-h{font-size:2.2rem;color:var(--gold);border-bottom:2px solid var(--gold);margin:0 0 10px;}
