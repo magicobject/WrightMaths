@@ -1,0 +1,446 @@
+<main class="book strand-geometry" data-book-page="topic" data-topic="pythagoras">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Geometry &middot; Foundation and Higher</span>
+      <h1>Pythagoras' theorem</h1>
+      <p class="lead">One rule about right-angled triangles that finds missing lengths, and runs both ways: find the long side, find a short side, or test whether a triangle has a right angle at all.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Pythagoras' theorem</span></nav>
+    {prereqs}
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Have a go before you read anything. A guess is fine.</p>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">A 5 m ladder leans against a vertical wall. Its foot is 3 m from the wall. How high up the wall does the ladder reach, in metres? (Hint: it is a nice whole number.)</p>
+      <ol class="ladder">
+        <li>The ladder, the wall and the ground make a right-angled triangle. Which side is the ladder?</li>
+        <li>Try 3&sup2; + ?&sup2; = 5&sup2;. What square number added to 9 makes 25?</li>
+      </ol>
+      <ul class="wrong"><li data-if="8">That is 3 + 5. The ladder is the longest side, so the wall must be shorter than 5 m.</li><li data-if="2">That is 5 &minus; 3. Lengths do not subtract like that in a right-angled triangle: work with squares.</li><li data-if="5.8">That is &radic;(9 + 25). But the ladder (5 m) is the longest side, so the answer must be shorter than 5 m: subtract the squares.</li></ul>
+      <div class="solution"><p>9 + ?&sup2; = 25, so ?&sup2; = 16 and ? = 4. The ladder reaches 4 m up the wall. You just used Pythagoras.</p></div>
+    </div>
+    <h3>Last time: the base this stands on</h3>
+    <div class="q" data-answers="49" data-mode="value">
+      <p class="qtext">Work out 7&sup2;.</p>
+      <ol class="ladder"><li>7 &times; 7.</li></ol>
+      <ul class="wrong"><li data-if="14">That is 7 &times; 2. Squaring means multiplying a number by itself.</li></ul>
+      <div class="solution"><p>7&sup2; = 7 &times; 7 = 49.</p></div>
+    </div>
+    <div class="q" data-answers="144" data-mode="value">
+      <p class="qtext">Work out 12&sup2;.</p>
+      <ol class="ladder"><li>12 &times; 12. Ten twelves are 120, then add two more twelves.</li></ol>
+      <div class="solution"><p>12 &times; 12 = 144.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Work out &radic;81.</p>
+      <ol class="ladder"><li>Which number multiplied by itself gives 81?</li></ol>
+      <ul class="wrong"><li data-if="40.5">That is 81 &divide; 2. A square root asks "what times itself makes 81?".</li></ul>
+      <div class="solution"><p>9 &times; 9 = 81, so &radic;81 = 9. (Squaring and square-rooting undo each other.)</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">Work out &radic;169.</p>
+      <ol class="ladder"><li>It is a little more than 12, because 12&sup2; = 144.</li></ol>
+      <div class="solution"><p>13 &times; 13 = 169, so &radic;169 = 13.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. The theorem</h2>
+    <p>A triangle with one {term:right-angle|right angle} is a right-angled triangle. Its longest side, always opposite the right angle, is the {term:hypotenuse}. {term:pythagoras-theorem|Pythagoras' theorem} says the squares on the two shorter sides add up to the square on the hypotenuse.</p>
+    <p class="sum-line">a&sup2; + b&sup2; = c&sup2;</p>
+    <figure class="figure">
+      <svg viewBox="0 0 360 380" role="img" aria-labelledby="pyth-t pyth-d" class="pyth-svg">
+        <title id="pyth-t">Squares on the sides of a 3, 4, 5 triangle</title>
+        <desc id="pyth-d">A right-angled triangle with sides 3, 4 and 5. A square of area 9 is drawn on the side of length 3, a square of area 16 on the side of length 4, and a square of area 25 on the longest side. 9 plus 16 equals 25.</desc>
+        <polygon class="sq sq-1" points="30,150 120,150 120,240 30,240"/>
+        <polygon class="sq sq-2" points="120,240 240,240 240,360 120,360"/>
+        <polygon class="sq sq-3" points="120,150 240,240 330,120 210,30"/>
+        <polygon class="tri" points="120,150 120,240 240,240"/>
+        <polyline class="rt" points="132,240 132,228 120,228"/>
+        <text x="75" y="200" text-anchor="middle" class="svg-t">3&#178; = 9</text>
+        <text x="180" y="305" text-anchor="middle" class="svg-t">4&#178; = 16</text>
+        <text x="225" y="140" text-anchor="middle" class="svg-t">5&#178; = 25</text>
+      </svg>
+      <figcaption>The two small squares (9 + 16) have the same total area as the big one (25).</figcaption>
+    </figure>
+    <div class="key">
+      <p><b>Key idea:</b> it only works for right-angled triangles, and the <i>c</i> must be the hypotenuse, the side opposite the right angle.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find the hypotenuse</h3>
+      <p>A right-angled triangle has shorter sides 6 cm and 8 cm. Find the hypotenuse.</p>
+      <ol class="steps">
+        <li>a&sup2; + b&sup2; = c&sup2;, so 6&sup2; + 8&sup2; = c&sup2;.</li>
+        <li>36 + 64 = 100, so c&sup2; = 100.</li>
+        <li>c = &radic;100 = 10 cm.</li>
+        <li>Sense check: 10 is longer than 6 and 8 &#10003;</li>
+      </ol>
+    </div>
+    <p>Many triangles do not give a whole number. Then use a calculator and round as asked. A set of three whole numbers that fits the rule, like 3, 4, 5 or 5, 12, 13, is a {term:pythagorean-triple}.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the hypotenuse</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Triangle PQR has a right angle at Q. Which side is the hypotenuse?</p>
+      <ul class="options">
+        <li data-why="PQ touches the right angle at Q. The hypotenuse is opposite the right angle, so it is the side that does not touch Q.">PQ</li>
+        <li data-why="QR touches the right angle at Q. The hypotenuse does not touch the right angle.">QR</li>
+        <li data-correct>PR</li>
+      </ul>
+      <ol class="ladder"><li>The hypotenuse is opposite the right angle. Which side is opposite Q?</li></ol>
+      <div class="solution"><p>PR is opposite Q, so PR is the hypotenuse (and the longest side).</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">Find the hypotenuse of a right-angled triangle with shorter sides 5 cm and 12 cm. Answer in cm.</p>
+      <ol class="ladder"><li>c&sup2; = 5&sup2; + 12&sup2;.</li><li>25 + 144 = ?</li></ol>
+      <ul class="wrong"><li data-if="17">That is 5 + 12. Square first, add, then take the square root.</li><li data-if="169">That is c&sup2;. Take the square root to find c.</li></ul>
+      <div class="solution"><p>c&sup2; = 25 + 144 = 169, so c = 13 cm.</p></div>
+    </div>
+    <div class="q" data-answers="17" data-mode="value">
+      <p class="qtext">Find the hypotenuse when the shorter sides are 8 cm and 15 cm.</p>
+      <ol class="ladder"><li>64 + 225 = ?</li></ol>
+      <ul class="wrong"><li data-if="23">That is 8 + 15. Square first.</li><li data-if="289">That is c&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>c&sup2; = 64 + 225 = 289, so c = 17 cm.</p></div>
+    </div>
+    <div class="q" data-answers="7.2" data-mode="value">
+      <p class="qtext">Find the hypotenuse when the shorter sides are 4 cm and 6 cm. Give your answer to 1 decimal place.</p>
+      <ol class="ladder"><li>16 + 36 = 52.</li><li>Use &radic;52 on your calculator, then round to 1 d.p.</li></ol>
+      <ul class="wrong"><li data-if="10">That is 4 + 6. Square, add, then square root.</li><li data-if="52">That is c&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>c&sup2; = 52, so c = &radic;52 = 7.211&hellip; = 7.2 cm (1 d.p.). Sense check: longer than 6, shorter than 4 + 6 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="8.6" data-mode="value">
+      <p class="qtext">Find the hypotenuse when the shorter sides are 5 cm and 7 cm, to 1 d.p.</p>
+      <ol class="ladder"><li>25 + 49 = 74.</li></ol>
+      <ul class="wrong"><li data-if="12">That is 5 + 7. Square, add, square root.</li><li data-if="74">That is c&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>&radic;74 = 8.602&hellip; = 8.6 cm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Finding a shorter side</h2>
+    <p>If you know the hypotenuse and one other side, rearrange the rule: a&sup2; = c&sup2; &minus; b&sup2;. You <i>subtract</i> the squares.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the hypotenuse is always the longest side. So when you find a short side, your answer must be <i>smaller</i> than the hypotenuse. If it is bigger, you added when you should have subtracted.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>The hypotenuse is 13 cm and one shorter side is 5 cm. Find the other side.</p>
+      <ol class="steps">
+        <li>a&sup2; + 5&sup2; = 13&sup2;, so a&sup2; = 13&sup2; &minus; 5&sup2;.</li>
+        <li>a&sup2; = 169 &minus; 25 = 144.</li>
+        <li>a = &radic;144 = 12 cm.</li>
+        <li>Sense check: 12 is shorter than 13 &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The hypotenuse is 10 cm and one shorter side is 6 cm.</p>
+      <ol class="steps">
+        <li>a&sup2; = 10&sup2; &minus; 6&sup2; = 100 &minus; 36 = ___.</li>
+        <li>a = &radic;___ = ___.</li>
+      </ol>
+      <p class="muted">a&sup2; = 64 and a = 8 cm. (A 6, 8, 10 triangle: double the 3, 4, 5.)</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: a shorter side</h2>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">The hypotenuse is 17 cm and one shorter side is 8 cm. Find the other side.</p>
+      <ol class="ladder"><li>Subtract: 17&sup2; &minus; 8&sup2; = 289 &minus; 64.</li></ol>
+      <ul class="wrong"><li data-if="18.8">You added the squares. A short side must be shorter than the 17 cm hypotenuse, so subtract.</li><li data-if="225">That is the square of the answer. Take the square root.</li></ul>
+      <div class="solution"><p>289 &minus; 64 = 225, so the side is &radic;225 = 15 cm.</p></div>
+    </div>
+    <div class="q" data-answers="24" data-mode="value">
+      <p class="qtext">The hypotenuse is 25 cm and one shorter side is 7 cm. Find the other side.</p>
+      <ol class="ladder"><li>625 &minus; 49 = ?</li></ol>
+      <ul class="wrong"><li data-if="26">You added the squares. The other side must be shorter than 25 cm.</li></ul>
+      <div class="solution"><p>625 &minus; 49 = 576, so the side is &radic;576 = 24 cm.</p></div>
+    </div>
+    <div class="q" data-answers="7.5" data-mode="value">
+      <p class="qtext">The hypotenuse is 9 cm and one shorter side is 5 cm. Find the other side to 1 decimal place.</p>
+      <ol class="ladder"><li>81 &minus; 25 = 56.</li></ol>
+      <ul class="wrong"><li data-if="10.3">You added the squares, but a short side cannot be longer than the 9 cm hypotenuse. Subtract.</li><li data-if="56">That is the square of the answer. Take the square root.</li></ul>
+      <div class="solution"><p>&radic;56 = 7.483&hellip; = 7.5 cm.</p></div>
+    </div>
+    <div class="q" data-answers="9.7" data-mode="value">
+      <p class="qtext">The hypotenuse is 12 cm and one shorter side is 7 cm. Find the other side to 1 d.p.</p>
+      <ol class="ladder"><li>144 &minus; 49 = ?</li></ol>
+      <ul class="wrong"><li data-if="13.9">You added. The other side must be shorter than 12 cm.</li><li data-if="95">That is the square of the answer. Take the square root.</li></ul>
+      <div class="solution"><p>144 &minus; 49 = 95, and &radic;95 = 9.746&hellip; = 9.7 cm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: the theorem backwards</h2>
+    <p>So far you have used the rule to <i>find a length</i>. Flip it, and use it to <i>test a triangle</i>.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>"The triangle is right-angled, so a&sup2; + b&sup2; = c&sup2;."</p><p class="muted">Find the missing length.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>"a&sup2; + b&sup2; = c&sup2;, so the triangle is right-angled."</p><p class="muted">Decide whether the angle is 90&deg;.</p></div>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> the backwards statement is called the {term:converse}. It is not true for every theorem, but it is true for Pythagoras. Builders use it: lay out a 3, 4, 5 triangle and the corner is a perfect right angle.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Is a triangle with sides 7, 24 and 25 right-angled?</p>
+      <ol class="steps">
+        <li>Test the longest side as c: 7&sup2; + 24&sup2; = 49 + 576 = 625.</li>
+        <li>25&sup2; = 625. They match, so <b>yes</b>.</li>
+      </ol>
+      <p class="muted">If the two sides of the test do not match, the triangle is not right-angled.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">A triangle has sides 5 cm, 6 cm and 8 cm. Is it right-angled?</p>
+      <ul class="options">
+        <li data-why="Test it: 25 + 36 = 61, but 8&sup2; = 64. They do not match, so no.">Yes</li>
+        <li data-correct>No, because 5&sup2; + 6&sup2; = 61 but 8&sup2; = 64</li>
+        <li data-why="The numbers are close, but close is not enough: the two sides must match exactly.">It is almost right-angled, so it counts</li>
+      </ul>
+      <ol class="ladder"><li>Put the longest side (8) as c and test a&sup2; + b&sup2; against c&sup2;.</li></ol>
+      <div class="solution"><p>25 + 36 = 61, which is not 64, so the triangle is not right-angled.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A triangle has sides 9 cm, 12 cm and 15 cm. Is it right-angled?</p>
+      <ul class="options">
+        <li data-correct>Yes: 81 + 144 = 225 = 15&sup2;</li>
+        <li data-why="Test it: 9&sup2; + 12&sup2; = 81 + 144 = 225, and 15&sup2; = 225. They match, so yes.">No, because 9 + 12 = 21, not 15</li>
+        <li data-why="You need all three sides to test it, and you have them.">Cannot tell</li>
+      </ul>
+      <ol class="ladder"><li>It is a 3, 4, 5 triangle multiplied by 3.</li></ol>
+      <div class="solution"><p>81 + 144 = 225 and 15&sup2; = 225. Yes, right-angled.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">3, 4, 5 and 6, 8, ___ are both triples (and the second is the first doubled). What is the missing number?</p>
+      <ol class="ladder"><li>Double the 5.</li><li>Or check: 36 + 64 = 100.</li></ol>
+      <div class="solution"><p>Doubling 3, 4, 5 gives 6, 8, 10. Check: 36 + 64 = 100 = 10&sup2; &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">One more triple: 5, ___, 13. Find the missing shorter side.</p>
+      <ol class="ladder"><li>Flip it: this is finding a shorter side. 169 &minus; 25.</li></ol>
+      <div class="solution"><p>169 &minus; 25 = 144 and &radic;144 = 12. So 5, 12, 13.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Using it in the real world</h2>
+    <p>Look for a right angle hiding in the problem. Sketch it, mark the right angle, and decide whether you are finding the hypotenuse or a shorter side.</p>
+    <div class="worked">
+      <h3>Worked example: distance on a grid</h3>
+      <p>Point A is (1, 2) and point B is (5, 5). Find the distance AB.</p>
+      <ol class="steps">
+        <li>Across: 5 &minus; 1 = 4. Up: 5 &minus; 2 = 3.</li>
+        <li>These are the shorter sides of a right-angled triangle, and AB is the hypotenuse.</li>
+        <li>AB&sup2; = 4&sup2; + 3&sup2; = 25, so AB = 5.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a hidden right angle</h3>
+      <p>An isosceles triangle has two sides of 13 cm and a base of 10 cm. Find its height.</p>
+      <ol class="steps">
+        <li>The height splits the base in half, so one half is 5 cm.</li>
+        <li>Each half makes a right-angled triangle with hypotenuse 13 and a shorter side 5.</li>
+        <li>h&sup2; = 13&sup2; &minus; 5&sup2; = 144, so h = 12 cm.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: in context</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the distance between (0, 0) and (3, 4).</p>
+      <ol class="ladder"><li>Across 3, up 4, then the hypotenuse.</li></ol>
+      <ul class="wrong"><li data-if="7">That is 3 + 4, the distance if you could only travel along the grid. The straight-line distance is shorter.</li></ul>
+      <div class="solution"><p>&radic;(9 + 16) = &radic;25 = 5.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">A rectangle is 9 cm by 12 cm. How long is its diagonal, in cm?</p>
+      <ol class="ladder"><li>The diagonal splits the rectangle into two right-angled triangles. It is the hypotenuse.</li></ol>
+      <ul class="wrong"><li data-if="21">That is 9 + 12. Square, add, then square root.</li></ul>
+      <div class="solution"><p>81 + 144 = 225, and &radic;225 = 15 cm.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">A 6.5 m ladder leans against a vertical wall with its foot 2.5 m from the wall. How high up the wall does it reach, in m?</p>
+      <ol class="ladder"><li>The ladder is the hypotenuse. You want a shorter side, so subtract.</li><li>6.5&sup2; = 42.25 and 2.5&sup2; = 6.25.</li></ol>
+      <ul class="wrong"><li data-if="6.96">You added the squares. The wall is shorter than the ladder, so subtract.</li></ul>
+      <div class="solution"><p>42.25 &minus; 6.25 = 36 and &radic;36 = 6 m.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> "The shorter sides are 6 and 8, so the hypotenuse is 6 + 8 = 14." What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He added the lengths. Pythagoras adds the <i>squares</i>: 36 + 64 = 100, so it is 10.</li>
+        <li data-why="The hypotenuse is the longest side but it is not longer than the two others added. The rule involves squares.">14 is correct because the hypotenuse is the longest side</li>
+        <li data-why="The triangle is fine. The error is in the method.">The sides cannot make a triangle</li>
+      </ul>
+      <ol class="ladder"><li>Sense check: in a triangle, the hypotenuse is shorter than the sum of the other two sides, but it is never equal to it. A 6, 8, 10 triangle fits.</li></ol>
+      <div class="solution"><p>Correct: &radic;(36 + 64) = &radic;100 = 10.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eve says:</b> "6&sup2; + 8&sup2; = 100, so the hypotenuse is 100." What went wrong?</p>
+      <ul class="options">
+        <li data-why="Her sum is fine. The mistake is the last step.">She added wrongly</li>
+        <li data-correct>She stopped at c&sup2;. She needed to take the square root: &radic;100 = 10.</li>
+        <li data-why="Pythagoras does apply to a triangle with sides 6 and 8. She needs the final step.">Pythagoras does not apply here</li>
+      </ul>
+      <ol class="ladder"><li>Check the size: could the hypotenuse of a triangle with sides 6 and 8 really be 100?</li></ol>
+      <div class="solution"><p>c&sup2; = 100 means c = 10.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="intro">Hypotenuse or shorter side? Add or subtract? Choosing is part of the job.</p>
+    <div class="q" data-answers="29" data-mode="value">
+      <p class="qtext">The shorter sides of a right-angled triangle are 20 cm and 21 cm. How long is the hypotenuse, in cm?</p>
+      <ol class="ladder"><li>400 + 441 = ?</li></ol>
+      <ul class="wrong"><li data-if="41">That is 20 + 21. Square, add, square root.</li><li data-if="841">That is c&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>400 + 441 = 841 and &radic;841 = 29 cm.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">The hypotenuse is 15 cm and one shorter side is 9 cm. Find the other side, in cm.</p>
+      <ol class="ladder"><li>You are finding a shorter side, so subtract: 225 &minus; 81.</li></ol>
+      <ul class="wrong"><li data-if="17.5">You added. The other side must be shorter than 15 cm.</li></ul>
+      <div class="solution"><p>225 &minus; 81 = 144 and &radic;144 = 12 cm. (A 3, 4, 5 triangle times 3.)</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a Pythagorean triple?</p>
+      <ul class="options">
+        <li data-why="36 + 49 = 85, but 8&sup2; = 64.">6, 7, 8</li>
+        <li data-correct>8, 15, 17</li>
+        <li data-why="81 + 100 = 181, but 11&sup2; = 121.">9, 10, 11</li>
+      </ul>
+      <ol class="ladder"><li>Test each: do the two smaller squares add to the biggest square?</li></ol>
+      <div class="solution"><p>64 + 225 = 289 = 17&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="2.5" data-mode="value">
+      <p class="qtext">The shorter sides of a right-angled triangle are 1.5 m and 2 m. Find the hypotenuse, in m.</p>
+      <ol class="ladder"><li>1.5&sup2; = 2.25 and 2&sup2; = 4.</li></ol>
+      <ul class="wrong"><li data-if="3.5">That is 1.5 + 2. Square, add, square root.</li><li data-if="6.25">That is c&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>2.25 + 4 = 6.25 and &radic;6.25 = 2.5 m. (It is a 3, 4, 5 triangle halved.)</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">The two shorter sides of a right-angled triangle are in the ratio 3 : 4, and the longer of them is 12 cm. Find the hypotenuse, in cm.</p>
+      <ol class="ladder"><li>The 4 parts are 12 cm, so each part is 3 cm. The shorter of the two sides is 3 parts.</li><li>Then it is a 9, 12, ? triangle.</li></ol>
+      <ul class="wrong"><li data-if="13">12 and 5 would give 13, but the sides are in the ratio 3 : 4, so the other side is 9, not 5.</li></ul>
+      <div class="solution"><p>The other side is 9 cm. 81 + 144 = 225 and &radic;225 = 15 cm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Show your working. The marks tell you how many steps to write.</p>
+    <div class="q" data-answers="50" data-mode="value">
+      <p class="qtext"><b>(a)</b> [3 marks] A television screen is 40 cm wide and 30 cm tall. Work out the length of its diagonal, in cm.</p>
+      <ol class="ladder"><li>The diagonal is the hypotenuse of a right-angled triangle.</li><li>1600 + 900 = ?</li></ol>
+      <ul class="wrong"><li data-if="70">That is 40 + 30. Square each, add, then take the square root.</li><li data-if="2500">That is the square. Take the square root.</li></ul>
+      <div class="solution"><p>c&sup2; = 40&sup2; + 30&sup2; = 1600 + 900 = 2500, so c = 50 cm. (A 3, 4, 5 triangle times 10.)</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext"><b>(b)</b> [3 marks] A flagpole is held upright by a wire 13 m long from the top to a point on the ground 5 m from the base of the pole. How tall is the pole, in m?</p>
+      <ol class="ladder"><li>The wire is the hypotenuse. You want a shorter side: subtract.</li></ol>
+      <ul class="wrong"><li data-if="13.9">You added the squares. The pole is shorter than the wire.</li><li data-if="8">That is 13 &minus; 5. Lengths do not subtract: work with squares.</li></ul>
+      <div class="solution"><p>13&sup2; &minus; 5&sup2; = 169 &minus; 25 = 144, so the pole is 12 m tall.</p></div>
+    </div>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext"><b>(c)</b> [3 marks] Work out the area of the right-angled triangle formed by the pole, the ground and the wire, in m&sup2;.</p>
+      <ol class="ladder"><li>The pole and the ground meet at a right angle, so they are the base and the height.</li><li>Area of a triangle = {frac:1/2} &times; base &times; height. Use 5 and your answer to (b).</li></ol>
+      <ul class="wrong"><li data-if="60">That is 5 &times; 12, the area of a rectangle. A triangle is half of that.</li><li data-if="32.5">That uses the wire (13) as a base. Use the two sides that meet at the right angle: 5 and 12.</li></ul>
+      <div class="solution"><p>{frac:1/2} &times; 5 &times; 12 = 30 m&sup2;.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Squares are areas.</b> The figure shows a square on each side. The two smaller areas add up to the big one: 9 + 16 = 25.</li>
+      <li><b>Adding vs subtracting.</b> The hypotenuse is the biggest, so it stands alone on one side. Finding it, you add. Finding anything else, you subtract.</li>
+      <li><b>Square root undoes square.</b> The theorem gives c&sup2;, and the square root undoes the squaring to give c.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Adding the lengths instead of the squares.</li>
+      <li>Stopping at c&sup2; and forgetting the square root.</li>
+      <li>Adding when you are finding a shorter side.</li>
+      <li>Using Pythagoras on a triangle with no right angle.</li>
+      <li>Rounding too early.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Going further</h2>
+    <div class="q" data-answers="3√2;3sqrt2;3sqrt(2)" data-mode="exact">
+      <p class="qtext">A right-angled triangle has two shorter sides, both 3 cm. Find the exact length of the hypotenuse as a {term:surd}. (Type it like 3√2 or 3sqrt2.)</p>
+      <ol class="ladder"><li>c&sup2; = 9 + 9 = 18, so c = &radic;18.</li><li>Simplify: &radic;18 = &radic;9 &times; &radic;2.</li></ol>
+      <ul class="wrong"><li data-if="√18;sqrt18">Correct, but it can be simplified: &radic;18 = 3&radic;2.</li></ul>
+      <div class="solution"><p>&radic;18 = &radic;(9 &times; 2) = 3&radic;2 cm, about 4.24 cm.</p></div>
+    </div>
+    <div class="q" data-answers="5√2;5sqrt2;5sqrt(2)" data-mode="exact">
+      <p class="qtext">A square has sides of 5 cm. Find the exact length of its diagonal. (Type it like 5√2 or 5sqrt2.)</p>
+      <ol class="ladder"><li>The diagonal is the hypotenuse of a right-angled triangle with shorter sides 5 and 5.</li></ol>
+      <div class="solution"><p>c&sup2; = 25 + 25 = 50, so c = &radic;50 = 5&radic;2 cm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="pythagoras">
+      <li><label><input type="checkbox"> pick out the hypotenuse in any right-angled triangle</label></li>
+      <li><label><input type="checkbox"> find the hypotenuse by adding the squares and square-rooting</label></li>
+      <li><label><input type="checkbox"> find a shorter side by subtracting the squares</label></li>
+      <li><label><input type="checkbox"> test whether a triangle is right-angled using the converse</label></li>
+      <li><label><input type="checkbox"> spot a hidden right-angled triangle in a real problem</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

@@ -1,0 +1,441 @@
+<main class="book strand-algebra" data-book-page="topic" data-topic="solving-equations">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra &middot; Foundation and Higher</span>
+      <h1>Solving equations</h1>
+      <p class="lead">An equation is a puzzle with a missing number. Learn to undo it step by step, then flip it round and build your own puzzles.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Solving equations</span></nav>
+    {prereqs}
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Have a go before you read anything. Wrong answers are welcome: they show where to look.</p>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">I think of a number, double it, then add 3. My answer is 17. What was my number?</p>
+      <ol class="ladder">
+        <li>Work backwards from 17. What was the last thing I did?</li>
+        <li>Undo it: take 3 away. Then undo the doubling.</li>
+      </ol>
+      <ul class="wrong"><li data-if="14">That is 17 &minus; 3. I also doubled my number at the start, so there is one more step to undo.</li><li data-if="10">You added 3 instead of taking it away. Working backwards means doing the opposite.</li></ul>
+      <div class="solution"><p>17 &minus; 3 = 14, then 14 &divide; 2 = 7. You just solved 2x + 3 = 17.</p></div>
+    </div>
+    <h3>Last time: the base this stands on</h3>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Work out &minus;3 + 5.</p>
+      <ol class="ladder"><li>Start at &minus;3 on a number line and move 5 to the right.</li></ol>
+      <div class="solution"><p>&minus;3 + 5 = 2.</p></div>
+    </div>
+    <div class="q" data-answers="-8" data-mode="value">
+      <p class="qtext">Work out 2 &times; (&minus;4).</p>
+      <ol class="ladder"><li>Positive times negative is negative.</li></ol>
+      <ul class="wrong"><li data-if="8">The sign is wrong: a positive times a negative gives a negative.</li></ul>
+      <div class="solution"><p>2 &times; (&minus;4) = &minus;8.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">Work out 18 &divide; (&minus;3).</p>
+      <ol class="ladder"><li>Positive divided by negative is negative.</li></ol>
+      <ul class="wrong"><li data-if="6">The size is right but not the sign. Positive divided by negative is negative.</li></ul>
+      <div class="solution"><p>18 &divide; 3 = 6, and with one negative the answer is &minus;6.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Work out 5 &minus; (&minus;2).</p>
+      <ol class="ladder"><li>Subtracting a negative is the same as adding the positive.</li></ol>
+      <ul class="wrong"><li data-if="3">That is 5 &minus; 2. Taking away a negative makes the answer bigger.</li></ul>
+      <div class="solution"><p>5 &minus; (&minus;2) = 5 + 2 = 7.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. An equation is a balance</h2>
+    <p>An {term:equation} says two things are equal, like a set of balanced scales. The {term:unknown} is a letter, usually x, standing for the number you want to find. To {term:solve} the equation is to find the value that keeps it true.</p>
+    <p class="sum-line">x + 7 = 12</p>
+    <div class="key">
+      <p><b>Key idea:</b> whatever you do to one side you must do to the other, so the scales stay balanced. To find x, use the {term:inverse-operation|inverse operation}: the one that undoes what was done to x.</p>
+    </div>
+    <div class="pairs">
+      <div><b>+</b> undoes <b>&minus;</b></div>
+      <div><b>&minus;</b> undoes <b>+</b></div>
+      <div><b>&times;</b> undoes <b>&divide;</b></div>
+      <div><b>&divide;</b> undoes <b>&times;</b></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve x + 7 = 12.</p>
+      <ol class="steps">
+        <li>7 has been added to x. The inverse is to take away 7.</li>
+        <li>Do it to both sides: x + 7 &minus; 7 = 12 &minus; 7.</li>
+        <li>x = 5.</li>
+        <li>Check: 5 + 7 = 12 &#10003;</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: one-step equations</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve x + 7 = 12. Give x.</p>
+      <ol class="ladder"><li>What has been done to x?</li><li>Do the opposite to both sides.</li></ol>
+      <ul class="wrong"><li data-if="19">You added 7. The inverse of "+ 7" is "&minus; 7".</li></ul>
+      <div class="solution"><p>x = 12 &minus; 7 = 5.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">Solve x &minus; 4 = 9.</p>
+      <ol class="ladder"><li>The inverse of "&minus; 4" is "+ 4".</li></ol>
+      <ul class="wrong"><li data-if="5">You subtracted 4 again. Undo a subtraction by adding.</li></ul>
+      <div class="solution"><p>x = 9 + 4 = 13.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Solve 3x = 21.</p>
+      <ol class="ladder"><li>3x means 3 &times; x. What undoes multiplying by 3?</li></ol>
+      <ul class="wrong"><li data-if="18">You subtracted 3. 3x is multiplication, so divide.</li><li data-if="63">You multiplied. Undo a multiplication by dividing.</li></ul>
+      <div class="solution"><p>x = 21 &divide; 3 = 7.</p></div>
+    </div>
+    <div class="q" data-answers="20" data-mode="value">
+      <p class="qtext">Solve {frac:x/4} = 5.</p>
+      <ol class="ladder"><li>{frac:x/4} means x &divide; 4. What undoes dividing by 4?</li></ol>
+      <ul class="wrong"><li data-if="1.25">You divided again. Undo a division by multiplying.</li></ul>
+      <div class="solution"><p>x = 5 &times; 4 = 20. Check: 20 &divide; 4 = 5 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Two steps</h2>
+    <p>Most equations have two things done to x. Undo them in the <i>reverse</i> order to the way they were done. Think of getting dressed: socks, then shoes. To undo it you take off the shoes first.</p>
+    <div class="key">
+      <p><b>Key idea:</b> in 3x + 5 = 20, x was first multiplied by 3, then 5 was added. So undo the "+ 5" first, then the "&times; 3".</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve 3x + 5 = 20.</p>
+      <ol class="steps">
+        <li>Take 5 from both sides: 3x = 15.</li>
+        <li>Divide both sides by 3: x = 5.</li>
+        <li>Check: 3 &times; 5 + 5 = 20 &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {frac:x/2} + 3 = 8.</p>
+      <ol class="steps">
+        <li>Take 3 from both sides: {frac:x/2} = 5.</li>
+        <li>Multiply both sides by 2: x = ___.</li>
+      </ol>
+      <p class="muted">x = 10. Check: 10 &divide; 2 + 3 = 8 &#10003;</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: two-step equations</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve 4x + 1 = 21.</p>
+      <ol class="ladder"><li>Undo the "+ 1" first.</li><li>You get 4x = 20. Now undo the "&times; 4".</li></ol>
+      <ul class="wrong"><li data-if="20">That is 4x. One more step: divide by 4.</li><li data-if="5.25">You divided before taking away the 1. Undo the add or subtract first.</li></ul>
+      <div class="solution"><p>4x = 20, so x = 5. Check: 4 &times; 5 + 1 = 21 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Solve 7x &minus; 3 = 18.</p>
+      <ol class="ladder"><li>Undo the "&minus; 3" by adding 3 to both sides.</li></ol>
+      <ul class="wrong"><li data-if="15">You subtracted 3 again. To undo a minus, add.</li><li data-if="21">That is 7x. Divide by 7 to finish.</li></ul>
+      <div class="solution"><p>7x = 21, so x = 3.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">Solve {frac:x/3} + 2 = 6.</p>
+      <ol class="ladder"><li>Take 2 from both sides first.</li><li>Then undo the "&divide; 3".</li></ol>
+      <ul class="wrong"><li data-if="4">That is {frac:x/3}. One more step: multiply by 3.</li></ul>
+      <div class="solution"><p>{frac:x/3} = 4, so x = 12. Check: 12 &divide; 3 + 2 = 6 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve 12 &minus; 2x = 4.</p>
+      <ol class="ladder">
+        <li>Be careful: x has a minus in front of it. Take 12 from both sides to get &minus;2x = &minus;8.</li>
+        <li>Or, add 2x to both sides to make the x positive: 12 = 4 + 2x.</li>
+      </ol>
+      <ul class="wrong"><li data-if="-4">Check the signs: &minus;2x = &minus;8 means x = (&minus;8) &divide; (&minus;2) = +4.</li><li data-if="8">You took 4 from 12. Try again, or put x back in to check.</li></ul>
+      <div class="solution"><p>12 &minus; 2x = 4 gives &minus;2x = &minus;8, so x = 4. Check: 12 &minus; 2 &times; 4 = 4 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Solve 3x + 10 = 4. The answer is negative.</p>
+      <ol class="ladder"><li>Take 10 from both sides: 3x = 4 &minus; 10.</li></ol>
+      <ul class="wrong"><li data-if="2">The size is right, but 4 &minus; 10 is &minus;6, so x is negative.</li></ul>
+      <div class="solution"><p>3x = &minus;6, so x = &minus;2. Check: 3 &times; (&minus;2) + 10 = 4 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Brackets and letters on both sides</h2>
+    <p>With brackets you have two options: divide both sides by the number outside, or {term:expand} the bracket first. If x appears on both sides, collect the x terms on one side, then the numbers on the other.</p>
+    <div class="worked">
+      <h3>Worked example: brackets</h3>
+      <p>Solve 3(x + 2) = 21.</p>
+      <ol class="steps">
+        <li>Divide both sides by 3: x + 2 = 7.</li>
+        <li>Take 2 from both sides: x = 5.</li>
+        <li>Check: 3 &times; (5 + 2) = 21 &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: x on both sides</h3>
+      <p>Solve 5x + 3 = 2x + 15.</p>
+      <ol class="steps">
+        <li>Take 2x from both sides, so the x terms are on the left: 3x + 3 = 15.</li>
+        <li>Take 3 from both sides: 3x = 12.</li>
+        <li>Divide by 3: x = 4.</li>
+        <li>Check: left 5 &times; 4 + 3 = 23; right 2 &times; 4 + 15 = 23 &#10003;</li>
+      </ol>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> the bigger x-term is the safer one to keep, so you end up with a positive number of x.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: brackets and both sides</h2>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve 2(x + 3) = 14.</p>
+      <ol class="ladder"><li>Divide both sides by 2.</li></ol>
+      <ul class="wrong"><li data-if="11">You took 3 away but forgot the 2 multiplies the whole bracket. Divide by 2 first.</li><li data-if="7">That is x + 3. One more step.</li></ul>
+      <div class="solution"><p>x + 3 = 7, so x = 4.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Solve 4(x &minus; 1) = 20.</p>
+      <ol class="ladder"><li>Divide both sides by 4, then deal with the &minus; 1.</li></ol>
+      <ul class="wrong"><li data-if="4">You subtracted 1 from 5. To undo "&minus; 1", add 1.</li><li data-if="5">That is x &minus; 1. One more step.</li></ul>
+      <div class="solution"><p>x &minus; 1 = 5, so x = 6.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve 7x &minus; 4 = 3x + 16.</p>
+      <ol class="ladder"><li>Take 3x from both sides.</li><li>Now you have 4x &minus; 4 = 16. Add 4, then divide.</li></ol>
+      <ul class="wrong"><li data-if="20">That is 4x. One more step: divide by 4.</li><li data-if="12">Check the signs when moving the numbers: 4x &minus; 4 = 16 means 4x = 20.</li></ul>
+      <div class="solution"><p>4x = 20, so x = 5. Check: left 7 &times; 5 &minus; 4 = 31, right 3 &times; 5 + 16 = 31 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve 2(3x &minus; 1) = 4x + 8.</p>
+      <ol class="ladder"><li>Expand the bracket: 6x &minus; 2.</li><li>Collect: 6x &minus; 4x = 8 + 2.</li></ol>
+      <ul class="wrong"><li data-if="-3">Check the signs: 6x &minus; 2 = 4x + 8 gives 2x = 8 + 2 = 10. Adding 2 to both sides, not taking it away.</li><li data-if="4.5">You forgot to multiply the &minus;1 by 2 when expanding. 2(3x &minus; 1) = 6x &minus; 2, not 6x &minus; 1.</li></ul>
+      <div class="solution"><p>6x &minus; 2 = 4x + 8, so 2x = 10, x = 5. Check: 2(15 &minus; 1) = 28 and 20 + 8 = 28 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: build the equation</h2>
+    <p>Solving goes from an equation to a number. Flip it: go from a number puzzle or a real situation <i>to</i> an equation. Being able to do both is what turns algebra from symbols into a tool.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>Solve 3x &minus; 4 = 11</p><p class="muted">From the equation to x.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>"I think of a number, multiply by 3, take away 4, and get 11."</p><p class="muted">From the words to the equation.</p></div>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> a number puzzle <i>is</i> an equation told in words. Call the number x and write each step in order: 3x &minus; 4 = 11. To solve it, undo the steps in reverse: 11 + 4 = 15, then 15 &divide; 3 = 5.</p>
+    </div>
+    <p>Another reversal: checking. Put your answer back into the equation. If both sides match, you are right. If they do not, you will find the slip.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Is x = 3 a solution of 2x + 5 = 11?</p>
+      <ul class="options">
+        <li data-correct>Yes: 2 &times; 3 + 5 = 11</li>
+        <li data-why="Try it: 2 &times; 3 = 6, then 6 + 5 = 11, which is the right-hand side.">No: it gives 10</li>
+        <li data-why="Substitute: 2 &times; 3 + 5 = 11, so it does work.">No: it gives 12</li>
+      </ul>
+      <ol class="ladder"><li>Replace x with 3 and work out the left-hand side.</li></ol>
+      <div class="solution"><p>2 &times; 3 + 5 = 11, which equals the right-hand side, so x = 3 is a solution.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which equation has the solution x = 6?</p>
+      <ul class="options">
+        <li data-correct>2x &minus; 3 = 9</li>
+        <li data-why="2x + 3 = 9 gives 2x = 6, so x = 3.">2x + 3 = 9</li>
+        <li data-why="3x &minus; 6 = 9 gives 3x = 15, so x = 5.">3x &minus; 6 = 9</li>
+      </ul>
+      <ol class="ladder"><li>Put x = 6 into each one and see which gives the right-hand side.</li></ol>
+      <div class="solution"><p>2 &times; 6 &minus; 3 = 9 &#10003;. The other two give 15 and 12 on the left.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">I think of a number, multiply by 4, then subtract 6. The answer is 22. What is my number?</p>
+      <ol class="ladder"><li>Call the number x and write the equation: 4x &minus; 6 = 22.</li><li>Undo in reverse: add 6, then divide by 4.</li></ol>
+      <ul class="wrong"><li data-if="4">You subtracted 6, but the puzzle subtracted 6 from 4x, so undo it by adding: 22 + 6 = 28, then divide by 4.</li></ul>
+      <div class="solution"><p>4x &minus; 6 = 22 &rArr; 4x = 28 &rArr; x = 7. Check: 4 &times; 7 &minus; 6 = 22 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">A pen costs &pound;x. Four pens and a &pound;2 ruler cost &pound;10 altogether. Form an equation and find x (in pounds).</p>
+      <ol class="ladder"><li>Four pens cost 4x. Add the ruler: 4x + 2 = 10.</li></ol>
+      <ul class="wrong"><li data-if="3">Check by putting it back: 4 &times; 3 + 2 = 14, not 10.</li><li data-if="8">That is 4x. The question asks for the price of one pen.</li></ul>
+      <div class="solution"><p>4x + 2 = 10, so 4x = 8 and x = 2. A pen costs &pound;2.</p></div>
+    </div>
+    <div class="q" data-answers="11" data-mode="value">
+      <p class="qtext">Tom is x years old. His sister is 3 years older. Their ages add up to 25. How old is Tom?</p>
+      <ol class="ladder"><li>Sister is x + 3. The sum is x + (x + 3) = 25.</li></ol>
+      <ul class="wrong"><li data-if="12.5">You split 25 equally, but the ages are not equal: sister is 3 years older.</li><li data-if="14">That is the sister's age. The question asks for Tom.</li></ul>
+      <div class="solution"><p>2x + 3 = 25, so 2x = 22 and x = 11. Tom is 11, his sister is 14 and 11 + 14 = 25 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ali says:</b> "3x + 5 = 20, so 3x = 25." What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He added 5 to both sides. To undo "+ 5" he should have subtracted 5.</li>
+        <li data-why="Dividing by 3 is a sensible next step, but not the mistake. The mistake was already made in the line before.">He should have divided by 3 first</li>
+        <li data-why="He is solving in a sensible way. The error is one step in.">You cannot solve this kind of equation</li>
+      </ul>
+      <ol class="ladder"><li>Check Ali's line by putting x = 25 &divide; 3 back in: it will not give 20.</li></ol>
+      <div class="solution"><p>The correct step is 3x = 20 &minus; 5 = 15, so x = 5.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Bea says:</b> "2(x + 3) = 10, so 2x + 3 = 10." What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She multiplied only the x by 2. The 2 multiplies everything in the bracket, giving 2x + 6.</li>
+        <li data-why="Her next step would be fine; the error is in expanding the bracket.">She should have subtracted 10 first</li>
+        <li data-why="2(x + 3) is 2x + 6, not 2x + 3, so her line is wrong.">Nothing: her line is right</li>
+      </ul>
+      <ol class="ladder"><li>Expand 2(x + 3). Does every term inside get multiplied by 2?</li></ol>
+      <div class="solution"><p>2x + 6 = 10, so 2x = 4 and x = 2.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="intro">All kinds of equation shuffled together. Decide what has been done to x, then undo it.</p>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve 5x &minus; 3 = 22.</p>
+      <ol class="ladder"><li>Add 3 to both sides, then divide by 5.</li></ol>
+      <ul class="wrong"><li data-if="19">That is 22 &minus; 3. To undo "&minus; 3" you add 3.</li><li data-if="25">That is 5x. One more step: divide by 5.</li></ul>
+      <div class="solution"><p>5x = 25, so x = 5.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve 3(2x + 1) = 27.</p>
+      <ol class="ladder"><li>Divide both sides by 3 first.</li></ol>
+      <ul class="wrong"><li data-if="5">Check: 2x + 1 = 9 means 2x = 8, not 10.</li></ul>
+      <div class="solution"><p>2x + 1 = 9, so 2x = 8 and x = 4. Check: 3(8 + 1) = 27 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">Solve {frac:x/5} &minus; 2 = 1.</p>
+      <ol class="ladder"><li>Add 2 to both sides, then multiply by 5.</li></ol>
+      <ul class="wrong"><li data-if="3">That is {frac:x/5}. One more step: multiply by 5.</li></ul>
+      <div class="solution"><p>{frac:x/5} = 3, so x = 15.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve 9x &minus; 4 = 5x + 12.</p>
+      <ol class="ladder"><li>Take 5x from both sides: 4x &minus; 4 = 12.</li></ol>
+      <ul class="wrong"><li data-if="16">That is 4x. One more step: divide by 4.</li></ul>
+      <div class="solution"><p>4x = 16, so x = 4. Check: 36 &minus; 4 = 32 and 20 + 12 = 32 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">The sum of three consecutive whole numbers is 48. What is the smallest of them?</p>
+      <ol class="ladder"><li>Call the smallest n. The others are n + 1 and n + 2.</li><li>n + (n + 1) + (n + 2) = 48.</li></ol>
+      <ul class="wrong"><li data-if="16">That is the middle number (48 &divide; 3). The smallest is one less.</li></ul>
+      <div class="solution"><p>3n + 3 = 48, so n = 15. The numbers are 15, 16, 17: 15 + 16 + 17 = 48 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">A triangle has sides of length x cm, (2x + 1) cm and (3x &minus; 2) cm. Its perimeter is 29 cm.</p>
+    <div class="q" data-answers="6x-1;-1+6x" data-mode="exact">
+      <p class="qtext"><b>(a)</b> [2 marks] Write down a simplified expression for the perimeter in terms of x. (Type it like 6x-1.)</p>
+      <ol class="ladder"><li>Add the three sides: x + (2x + 1) + (3x &minus; 2).</li><li>Collect the x terms (x + 2x + 3x) and then the numbers (+1 &minus; 2).</li></ol>
+      <ul class="wrong"><li data-if="6x+1">Check the numbers: +1 and &minus;2 make &minus;1.</li><li data-if="6x-3">+1 and &minus;2 make &minus;1, not &minus;3.</li></ul>
+      <div class="solution"><p>x + 2x + 3x = 6x and 1 &minus; 2 = &minus;1, so the perimeter is 6x &minus; 1.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext"><b>(b)</b> [2 marks] Use the perimeter to form an equation and find x.</p>
+      <ol class="ladder"><li>6x &minus; 1 = 29.</li></ol>
+      <ul class="wrong"><li data-if="30">That is 6x. One more step: divide both sides by 6.</li><li data-if="4.67">That is 28 &divide; 6. First add 1 to both sides: 6x = 30.</li></ul>
+      <div class="solution"><p>6x = 30, so x = 5.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext"><b>(c)</b> [1 mark] What is the length of the longest side, in cm?</p>
+      <ol class="ladder"><li>Put x = 5 into each side to find all three.</li></ol>
+      <ul class="wrong"><li data-if="5">That is the shortest side. Work out all three first.</li><li data-if="11">That is the middle side, 2x + 1. The longest is 3x &minus; 2.</li></ul>
+      <div class="solution"><p>The sides are 5, 11 and 13 cm. Check: 5 + 11 + 13 = 29 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Same on both sides.</b> If A = B, then A + 5 = B + 5 and 3A = 3B. The equals sign is a promise, and doing the same to both sides keeps it.</li>
+      <li><b>Reverse order.</b> The steps were done in one order, so the undoing happens in the opposite order. Shoes off before socks.</li>
+      <li><b>Checking is a reverse.</b> Substituting your answer runs the equation forwards and tests the solution.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Doing the operation to only one side.</li>
+      <li>Using the same operation instead of the inverse (adding when you should take away).</li>
+      <li>Dividing before undoing the plus or minus.</li>
+      <li>Forgetting that a bracket multiplies <i>everything</i> inside.</li>
+      <li>Losing a minus sign, especially with "12 &minus; 2x".</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Going further</h2>
+    <div class="q" data-answers="11" data-mode="value">
+      <p class="qtext">Solve {frac:x + 1/3} = {frac:x &minus; 3/2}.</p>
+      <ol class="ladder"><li>Multiply both sides by 6 (the LCM of 3 and 2) to clear the fractions: 2(x + 1) = 3(x &minus; 3).</li><li>Expand: 2x + 2 = 3x &minus; 9.</li></ol>
+      <div class="solution"><p>2x + 2 = 3x &minus; 9 gives 11 = x. Check: {frac:12/3} = 4 and {frac:8/2} = 4 &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Solve 5 &minus; 2x = 3x &minus; 10.</p>
+      <ol class="ladder"><li>Add 2x to both sides so x is positive: 5 = 5x &minus; 10.</li></ol>
+      <ul class="wrong"><li data-if="-3">Check the signs: 5 + 10 = 15, so 5x = 15.</li></ul>
+      <div class="solution"><p>5 = 5x &minus; 10 &rArr; 15 = 5x &rArr; x = 3. Check: 5 &minus; 6 = &minus;1 and 9 &minus; 10 = &minus;1 &#10003;</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="solving-equations">
+      <li><label><input type="checkbox"> use inverse operations to solve one-step and two-step equations</label></li>
+      <li><label><input type="checkbox"> solve equations with brackets and with x on both sides</label></li>
+      <li><label><input type="checkbox"> check a solution by substituting it back in</label></li>
+      <li><label><input type="checkbox"> turn a number puzzle or a real situation into an equation</label></li>
+      <li><label><input type="checkbox"> spot sign errors and bracket errors in working</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

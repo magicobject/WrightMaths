@@ -16,6 +16,14 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.23.002</span><span class="changelog-date">23 November 2026</span></div>
+        <p>Fixed the previous entry: it linked to the hidden GCSE book pages, which the tests rightly refuse. The paths are now plain text, so nothing on the site links to the book.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.23.001</span><span class="changelog-date">23 November 2026</span></div>
+        <p>Started a hidden pilot of a GCSE maths textbook at <code>books/gcse/</code>: three topics (Fractions (<code>books/gcse/fractions.html</code>), Solving equations (<code>books/gcse/solving-equations.html</code>), Pythagoras (<code>books/gcse/pythagoras.html</code>)) with about 100 check-your-knowledge questions, a pyramid of what each topic builds on, a glossary (<code>books/gcse/glossary.html</code>) of maths terms with examples, and a guide to raising your grade (<code>books/gcse/raise-your-grade.html</code>). Not linked from anywhere and marked noindex. The page builder now supports pages in folders, and an axe-core accessibility test runs on every page (the main site's two known colour-contrast issues are noted in the test).</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.10.19.001</span><span class="changelog-date">19 October 2026</span></div>
         <p>Added <code>claude-pr-automerge.yml</code>: a GitHub Action that re-runs <code>npm test</code> and <code>npm audit --omit=dev</code> against any Claude or Dependabot PR and merges, holds or asks Greg by name depending on the repo's <code>AUTO_MERGE_LEVEL</code> setting (now <code>standard</code>) and the PR's risk label. CI/tooling only, no pages changed.</p>
       </li>
