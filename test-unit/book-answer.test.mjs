@@ -101,3 +101,9 @@ test('typing styles students use are all accepted: x=, pound sign, units, true m
   assert.ok(matches('50%', ['1/2']));
   assert.ok(matches('4.0', ['4;4.00'.split(';')[0]]));
 });
+
+test('a temperature typed with the unit is accepted', () => {
+  assert.ok(matches('5\u00b0C', ['5']));
+  assert.ok(matches('\u22125 \u00b0C', ['-5']));
+  assert.ok(matches('-5\u00b0', ['-5']));
+});

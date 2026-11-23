@@ -202,7 +202,7 @@ test.describe('questions', () => {
     await help.click();
     const text = q.getByLabel('Tell the duck what is going on');
     await text.fill('my secret thought about the problem');
-    await q.getByRole('button', { name: /I have explained it/ }).click();
+    await q.getByRole('button', { name: /Done: let me try again/ }).click();
     await expect(text).toHaveValue('');
     await expect(q.locator('.q-input')).toBeFocused();
     const stored = await page.evaluate(() => JSON.stringify({ ...window.localStorage }) + JSON.stringify({ ...window.sessionStorage }));
@@ -360,5 +360,52 @@ test.describe('mixed practice', () => {
     const days = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').days);
     expect(days).toHaveLength(1);
     expect(days[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});
+
+test.describe('display on a phone', () => {
+  test.use({ viewport: { width: 375, height: 812 } });
+
+  test('the header does not stick, and the main tap targets are at least 44px high', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    expect(await page.locator('.site-header').evaluate((e) => getComputedStyle(e).position)).toBe('static');
+    await page.locator('.read-tools summary').click();
+    const heights = await page.locator('.read-tools summary, .read-btn, .header-cta, a.brand').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().height)));
+    for (const h of heights) expect(h).toBeGreaterThanOrEqual(43);
+  });
+
+  test('a topic page has an On this page list whose links go to real headings, and a back-to-top button', async ({ page }) => {
+    await page.goto('/books/gcse/shapes-angles.html');
+    await page.locator('.toc summary').click();
+    const hrefs = await page.locator('.toc a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+    expect(hrefs.length).toBeGreaterThanOrEqual(8);
+    for (const href of hrefs) expect(await page.locator(href!).count(), href!).toBe(1);
+    await expect(page.locator('.to-top')).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, 3000));
+    await expect(page.locator('.to-top')).toBeVisible();
+    await page.locator('.to-top').click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(50);
+  });
+
+  test('reading options show a clear on/off state and the current text size', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.locator('.read-tools summary').click();
+    await expect(page.locator('.read-size')).toContainText('Text size 1 of 4');
+    await page.getByRole('button', { name: 'Bigger text' }).click();
+    await expect(page.locator('.read-size')).toContainText('Text size 2 of 4');
+    const easy = page.getByRole('button', { name: /Easy-read font/ });
+    await expect(easy).toHaveAttribute('aria-pressed', 'false');
+    await easy.click();
+    await expect(easy).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('the pyramid comes before the five habits on the hub', async ({ page }) => {
+    await page.goto('/books/gcse/');
+    const order = await page.evaluate(() => {
+      const a = document.querySelector('#pyramid')!.getBoundingClientRect().top;
+      const b = document.querySelector('.how-grid')!.getBoundingClientRect().top;
+      return a < b;
+    });
+    expect(order).toBe(true);
   });
 });
