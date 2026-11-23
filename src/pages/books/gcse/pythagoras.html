@@ -14,6 +14,7 @@
   <div class="wrap narrow">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Pythagoras' theorem</span></nav>
     {prereqs}
+    {words}
   </div>
 </section>
 
@@ -27,7 +28,7 @@
         <li>The ladder, the wall and the ground make a right-angled triangle. Which side is the ladder?</li>
         <li>Try 3&sup2; + ?&sup2; = 5&sup2;. What square number added to 9 makes 25?</li>
       </ol>
-      <ul class="wrong"><li data-if="8">That is 3 + 5. The ladder is the longest side, so the wall must be shorter than 5 m.</li><li data-if="2">That is 5 &minus; 3. Lengths do not subtract like that in a right-angled triangle: work with squares.</li><li data-if="5.8">That is &radic;(9 + 25). But the ladder (5 m) is the longest side, so the answer must be shorter than 5 m: subtract the squares.</li></ul>
+      <ul class="wrong"><li data-if="8">That is 3 + 5. The ladder is the longest side, so the wall must be shorter than 5 m.</li><li data-if="2">That is 5 &minus; 3. Lengths do not subtract like that in a right-angled triangle: work with squares.</li><li data-if="5.8;5.83">That is &radic;(9 + 25). But the ladder (5 m) is the longest side, so the answer must be shorter than 5 m: subtract the squares.</li></ul>
       <div class="solution"><p>9 + ?&sup2; = 25, so ?&sup2; = 16 and ? = 4. The ladder reaches 4 m up the wall. You just used Pythagoras.</p></div>
     </div>
     <h3>Last time: the base this stands on</h3>
@@ -135,6 +136,92 @@
 
 <section>
   <div class="wrap narrow">
+    <h2>A proof you can check</h2>
+    <p>9 + 16 = 25 is one example. A {term:proof} shows that a rule is true for <i>every</i> case, not just one. Here is a proof of Pythagoras' theorem using areas.</p>
+    <p>Take any right-angled triangle with short sides <i>a</i> and <i>b</i> and hypotenuse <i>c</i>. Take four identical copies of this triangle. Draw a big square with side <i>a</i> + <i>b</i>. Now fit the four triangles inside it in two different ways.</p>
+    <figure class="figure">
+      <svg viewBox="0 0 250 250" role="img" aria-labelledby="prf1-t prf1-d" class="geo-svg">
+        <title id="prf1-t">Arrangement 1: four triangles leave two squares</title>
+        <desc id="prf1-d">A big square of side a plus b. Four right-angled triangles sit in it, two in each of two rectangles. The space left over is a small square of area a squared in the top left and a larger square of area b squared in the bottom right.</desc>
+        <rect x="20" y="20" width="210" height="210" fill="#ffffff" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="20,20 110,20 110,110 20,110" fill="#e4eefb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="110,110 230,110 230,230 110,230" fill="#e1f3e6" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="110,20 230,20 230,110" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="110,20 110,110 230,110" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="20,110 110,110 110,230" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="20,110 20,230 110,230" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <text x="65" y="70" text-anchor="middle" class="svg-t">a&#178;</text>
+        <text x="170" y="175" text-anchor="middle" class="svg-t">b&#178;</text>
+        <text x="65" y="12" text-anchor="middle" class="svg-t">a</text>
+        <text x="170" y="12" text-anchor="middle" class="svg-t">b</text>
+      </svg>
+      <figcaption>Arrangement 1: the four triangles leave a square of area <i>a</i>&sup2; and a square of area <i>b</i>&sup2;.</figcaption>
+    </figure>
+    <figure class="figure">
+      <svg viewBox="0 0 250 250" role="img" aria-labelledby="prf2-t prf2-d" class="geo-svg">
+        <title id="prf2-t">Arrangement 2: four triangles leave one tilted square</title>
+        <desc id="prf2-d">The same big square of side a plus b. Four right-angled triangles sit in the four corners, each with its hypotenuse facing the middle. The space left over is one tilted square whose side is the hypotenuse c, so its area is c squared.</desc>
+        <rect x="20" y="20" width="210" height="210" fill="#ffffff" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="110,20 230,110 140,230 20,140" fill="#e1f3e6" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="20,20 110,20 20,140" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="110,20 230,20 230,110" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="230,110 230,230 140,230" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <polygon points="20,140 20,230 140,230" fill="#fbeadb" stroke="#0f2440" stroke-width="1.5"/>
+        <text x="125" y="130" text-anchor="middle" class="svg-t">c&#178;</text>
+        <text x="65" y="12" text-anchor="middle" class="svg-t">a</text>
+        <text x="170" y="12" text-anchor="middle" class="svg-t">b</text>
+      </svg>
+      <figcaption>Arrangement 2: the same four triangles leave one tilted square of area <i>c</i>&sup2;.</figcaption>
+    </figure>
+    <ol class="steps">
+      <li>The big square is the same size in both pictures. Its area is (<i>a</i> + <i>b</i>)&sup2;.</li>
+      <li>Arrangement 1: big square = <i>a</i>&sup2; + <i>b</i>&sup2; + (four triangles).</li>
+      <li>Arrangement 2: big square = <i>c</i>&sup2; + (four triangles).</li>
+      <li>The big squares are equal and the four triangles are the same in both, so <i>a</i>&sup2; + <i>b</i>&sup2; + (four triangles) = <i>c</i>&sup2; + (four triangles).</li>
+      <li>Take away the four triangles from both sides: <b><i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;</b>.</li>
+    </ol>
+    <div class="key">
+      <p><b>Key idea:</b> nothing in the proof depends on the numbers 3 and 4. It works for any right-angled triangle, which is why it is a proof and not just an example.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the proof</h2>
+    <div class="q" data-answers="25" data-mode="value">
+      <p class="qtext">A big square has side 7 cm. Four right-angled triangles with short sides 3 cm and 4 cm sit inside it, leaving a tilted square in the middle. Find the area of the tilted square, in cm&sup2;.</p>
+      <ol class="ladder"><li>Area of the tilted square = area of the big square &minus; area of the four triangles.</li><li>One triangle has area {frac:1/2} &times; 3 &times; 4.</li></ol>
+      <ul class="wrong"><li data-if="49">That is the whole big square. Take away the four triangles as well.</li><li data-if="43">You took away one triangle (6), not four.</li><li data-if="1">You used 3 &times; 4 = 12 for each triangle. A triangle is half of that.</li></ul>
+      <div class="solution"><p>Big square: 7 &times; 7 = 49. One triangle: {frac:1/2} &times; 3 &times; 4 = 6, so four triangles = 24. Tilted square: 49 &minus; 24 = 25 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">What is the side length of the tilted square in the last question, in cm?</p>
+      <ol class="ladder"><li>You know its area. Undo the squaring.</li></ol>
+      <ul class="wrong"><li data-if="25">That is the area. The side is the square root of the area.</li><li data-if="12.5">That is 25 &divide; 2. Take the square root.</li></ul>
+      <div class="solution"><p>&radic;25 = 5 cm. This is the hypotenuse of the 3, 4, 5 triangle, as the theorem says: 3&sup2; + 4&sup2; = 5&sup2;.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is the key reason that <i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2; for every right-angled triangle?</p>
+      <ul class="options">
+        <li data-correct>The big square has the same area in both pictures, and both use the same four triangles</li>
+        <li data-why="One example is not a proof. The argument must work for any triangle, whatever the numbers.">3&sup2; + 4&sup2; = 5&sup2;, so the rule must hold for all triangles</li>
+        <li data-why="The triangles are identical in both pictures. If they changed size, the two big squares could not be equal.">The triangles in the second picture are bigger than in the first</li>
+      </ul>
+      <ol class="ladder"><li>What is the same in both pictures? What does that let you cancel?</li></ol>
+      <div class="solution"><p>The big square and the four triangles are the same in both pictures, so what is left over must have the same area: <i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="169" data-mode="value">
+      <p class="qtext">Four triangles with short sides 5 cm and 12 cm sit inside a big square of side 17 cm, leaving a tilted square. Find the area of the tilted square, in cm&sup2;.</p>
+      <ol class="ladder"><li>Big square minus four triangles.</li></ol>
+      <ul class="wrong"><li data-if="289">That is the whole big square. Take away the four triangles.</li><li data-if="229">You took away only two triangles. There are four.</li></ul>
+      <div class="solution"><p>17&sup2; = 289. One triangle: {frac:1/2} &times; 5 &times; 12 = 30, so four triangles = 120. Tilted square: 289 &minus; 120 = 169 cm&sup2;, so its side is 13 cm: the 5, 12, 13 triple.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
     <h2>2. Finding a shorter side</h2>
     <p>If you know the hypotenuse and one other side, rearrange the rule: a&sup2; = c&sup2; &minus; b&sup2;. You <i>subtract</i> the squares.</p>
     <div class="key">
@@ -212,6 +299,14 @@
       </ol>
       <p class="muted">If the two sides of the test do not match, the triangle is not right-angled.</p>
     </div>
+    <h3>When the sides do not match</h3>
+    <p>The test also says <i>what kind</i> of triangle you have. In the test, <i>c</i> must be the <b>longest side</b>. Add the squares of the two shorter sides and compare with <i>c</i>&sup2;.</p>
+    <ul class="tick">
+      <li>If <i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;, the triangle is right-angled.</li>
+      <li>If <i>a</i>&sup2; + <i>b</i>&sup2; &gt; <i>c</i>&sup2;, the triangle is <b>acute</b>: every angle is less than 90&deg;.</li>
+      <li>If <i>a</i>&sup2; + <i>b</i>&sup2; &lt; <i>c</i>&sup2;, the triangle is <b>obtuse</b>: the biggest angle is more than 90&deg;.</li>
+    </ul>
+    <p class="muted">Why: if the angle between the two short sides is wider than a right angle, the third side is longer than it would be for a right angle, so <i>c</i>&sup2; is bigger than <i>a</i>&sup2; + <i>b</i>&sup2;. The triangle in the next set with sides 5, 6 and 8 is an example (25 + 36 = 61 is less than 64).</p>
   </div>
 </section>
 
@@ -237,6 +332,26 @@
       </ul>
       <ol class="ladder"><li>It is a 3, 4, 5 triangle multiplied by 3.</li></ol>
       <div class="solution"><p>81 + 144 = 225 and 15&sup2; = 225. Yes, right-angled.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A triangle has sides 4 cm, 5 cm and 6 cm. What type of triangle is it?</p>
+      <ul class="options">
+        <li data-correct>Acute, because 4&sup2; + 5&sup2; = 41 is more than 6&sup2; = 36</li>
+        <li data-why="A right angle needs the two sums to be equal. 41 and 36 are not equal.">Right-angled, because 4&sup2; + 5&sup2; is close to 6&sup2;</li>
+        <li data-why="Obtuse needs the sum of the smaller squares to be less than the biggest square. Here 41 is more than 36.">Obtuse, because 4&sup2; + 5&sup2; = 41 is less than 6&sup2; = 36</li>
+      </ul>
+      <ol class="ladder"><li>The longest side is 6, so use it as <i>c</i>.</li><li>Compare 16 + 25 with 36.</li></ol>
+      <div class="solution"><p>16 + 25 = 41, which is greater than 36, so the triangle is acute.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A triangle has sides 2 cm, 3 cm and 4 cm. What type of triangle is it?</p>
+      <ul class="options">
+        <li data-correct>Obtuse, because 2&sup2; + 3&sup2; = 13 is less than 4&sup2; = 16</li>
+        <li data-why="Acute needs the sum of the smaller squares to be bigger than the biggest square. 13 is less than 16.">Acute, because 2&sup2; + 3&sup2; = 13 is more than 4&sup2; = 16</li>
+        <li data-why="A right angle needs the two sums to be equal. 13 and 16 are not equal.">Right-angled, because the sides are consecutive whole numbers</li>
+      </ul>
+      <ol class="ladder"><li>The longest side is 4, so use it as <i>c</i>.</li><li>Compare 4 + 9 with 16.</li></ol>
+      <div class="solution"><p>4 + 9 = 13, which is less than 16, so the triangle is obtuse.</p></div>
     </div>
     <div class="q" data-answers="10" data-mode="value">
       <p class="qtext">3, 4, 5 and 6, 8, ___ are both triples (and the second is the first doubled). What is the missing number?</p>
@@ -302,15 +417,65 @@
 
 <section>
   <div class="wrap narrow">
+    <h2>4. Pythagoras in three dimensions</h2>
+    <p>The longest straight line inside a cuboid runs from one corner to the opposite corner. Find it in two steps, using Pythagoras twice: first the diagonal of the base, then a right-angled triangle that stands up from that diagonal.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for a cuboid with sides <i>l</i>, <i>w</i> and <i>h</i>, the base diagonal <i>d</i> has <i>d</i>&sup2; = <i>l</i>&sup2; + <i>w</i>&sup2;. The longest line <i>x</i> has <i>x</i>&sup2; = <i>d</i>&sup2; + <i>h</i>&sup2;, so <i>x</i>&sup2; = <i>l</i>&sup2; + <i>w</i>&sup2; + <i>h</i>&sup2;.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A cuboid measures 3 cm by 4 cm by 12 cm. Find the longest straight line inside it.</p>
+      <ol class="steps">
+        <li>Base diagonal: 3&sup2; + 4&sup2; = 25, so the diagonal is 5 cm.</li>
+        <li>The line from a base corner up to the opposite top corner is the hypotenuse of a triangle with short sides 5 and 12.</li>
+        <li>x&sup2; = 5&sup2; + 12&sup2; = 25 + 144 = 169, so x = 13 cm.</li>
+      </ol>
+      <p class="muted">Shortcut check: 9 + 16 + 144 = 169. &#10003;</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: three dimensions</h2>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">A cuboid measures 2 cm by 3 cm by 6 cm. Find the length of the longest straight line inside it, in cm.</p>
+      <ol class="ladder"><li>Find the diagonal of the 2 by 3 base first.</li><li>Then use that diagonal and the height 6 as the short sides of a new triangle.</li></ol>
+      <ul class="wrong"><li data-if="11">That is 2 + 3 + 6. Lengths do not add: square, add, then take the root.</li><li data-if="49">That is x&sup2;. Take the square root.</li><li data-if="3.6;3.61">That is only the base diagonal, &radic;13. The line also rises 6 cm: use Pythagoras a second time.</li></ul>
+      <div class="solution"><p>Base diagonal: &radic;(4 + 9) = &radic;13. Longest line: &radic;(13 + 36) = &radic;49 = 7 cm.</p></div>
+    </div>
+    <div class="q" data-answers="9.5" data-mode="value">
+      <p class="qtext">A cuboid measures 4 cm by 5 cm by 7 cm. Find the length of the longest straight line inside it, to 1 decimal place.</p>
+      <ol class="ladder"><li>x&sup2; = 4&sup2; + 5&sup2; + 7&sup2;.</li></ol>
+      <ul class="wrong"><li data-if="16">That is 4 + 5 + 7. Square, add, then take the root.</li><li data-if="90">That is x&sup2;. Take the square root.</li><li data-if="6.4">That is only the base diagonal, &radic;41. Include the height 7 as well.</li></ul>
+      <div class="solution"><p>16 + 25 + 49 = 90, and &radic;90 = 9.486&hellip; = 9.5 cm.</p></div>
+    </div>
+    <div class="q" data-answers="7.1" data-mode="value">
+      <p class="qtext">A room is 4 m long, 5 m wide and 3 m high. What is the longest straight pole that fits inside it, in m, to 1 decimal place?</p>
+      <ol class="ladder"><li>The pole goes from a floor corner to the opposite corner of the ceiling.</li></ol>
+      <ul class="wrong"><li data-if="12">That is 4 + 5 + 3. Square, add, then take the root.</li><li data-if="50">That is x&sup2;. Take the square root.</li><li data-if="6.4">That is the diagonal of the floor only. The pole rises 3 m as well.</li></ul>
+      <div class="solution"><p>16 + 25 + 9 = 50, and &radic;50 = 7.071&hellip; = 7.1 m.</p></div>
+    </div>
+    <div class="q" data-answers="26" data-mode="value">
+      <p class="qtext">The base of a cuboid has a diagonal of 10 cm. The cuboid is 24 cm high. Find the longest line inside it, in cm.</p>
+      <ol class="ladder"><li>You already have the base diagonal, so one use of Pythagoras is enough.</li></ol>
+      <ul class="wrong"><li data-if="34">That is 10 + 24. Square, add, then take the root.</li><li data-if="676">That is x&sup2;. Take the square root.</li></ul>
+      <div class="solution"><p>100 + 576 = 676, and &radic;676 = 26 cm. (A 5, 12, 13 triple doubled.)</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
     <h2>Spot the mistake</h2>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Dev says:</b> "The shorter sides are 6 and 8, so the hypotenuse is 6 + 8 = 14." What went wrong?</p>
       <ul class="options">
         <li data-correct>He added the lengths. Pythagoras adds the <i>squares</i>: 36 + 64 = 100, so it is 10.</li>
-        <li data-why="The hypotenuse is the longest side but it is not longer than the two others added. The rule involves squares.">14 is correct because the hypotenuse is the longest side</li>
+        <li data-why="If 6 + 8 = 14 were the hypotenuse, the two short sides would lie flat in a straight line. The hypotenuse must be shorter than the two sides added together.">14 is correct because the hypotenuse is the longest side</li>
         <li data-why="The triangle is fine. The error is in the method.">The sides cannot make a triangle</li>
       </ul>
-      <ol class="ladder"><li>Sense check: in a triangle, the hypotenuse is shorter than the sum of the other two sides, but it is never equal to it. A 6, 8, 10 triangle fits.</li></ol>
+      <ol class="ladder"><li>Sense check: the hypotenuse is longer than each short side but shorter than the two added together. Does 10 fit between 8 and 14?</li></ol>
       <div class="solution"><p>Correct: &radic;(36 + 64) = &radic;100 = 10.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -396,7 +561,7 @@
   <div class="wrap narrow">
     <h2>Why it works</h2>
     <ul class="tick">
-      <li><b>Squares are areas.</b> The figure shows a square on each side. The two smaller areas add up to the big one: 9 + 16 = 25.</li>
+      <li><b>Squares are areas.</b> The first figure shows a square on each side. The two smaller areas add up to the big one: 9 + 16 = 25. That is one example. The proof above shows why it works for every right-angled triangle.</li>
       <li><b>Adding vs subtracting.</b> The hypotenuse is the biggest, so it stands alone on one side. Finding it, you add. Finding anything else, you subtract.</li>
       <li><b>Square root undoes square.</b> The theorem gives c&sup2;, and the square root undoes the squaring to give c.</li>
     </ul>
@@ -435,7 +600,9 @@
       <li><label><input type="checkbox"> pick out the hypotenuse in any right-angled triangle</label></li>
       <li><label><input type="checkbox"> find the hypotenuse by adding the squares and square-rooting</label></li>
       <li><label><input type="checkbox"> find a shorter side by subtracting the squares</label></li>
-      <li><label><input type="checkbox"> test whether a triangle is right-angled using the converse</label></li>
+      <li><label><input type="checkbox"> explain why a&sup2; + b&sup2; = c&sup2; using the two arrangements of four triangles</label></li>
+      <li><label><input type="checkbox"> test whether a triangle is right-angled, acute or obtuse using the converse</label></li>
+      <li><label><input type="checkbox"> find the longest line inside a cuboid</label></li>
       <li><label><input type="checkbox"> spot a hidden right-angled triangle in a real problem</label></li>
     </ul>
     <p class="muted">Come back in a week and tick again, without looking.</p>

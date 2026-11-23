@@ -73,6 +73,18 @@ export const PAGES = [
     description: 'Every mathematical term in the GCSE book, in plain English, with an example, a warning about common traps and the reverse side of the idea.',
   },
   {
+    slug: 'books/gcse/practice',
+    book: 'practice',
+    title: 'Mixed Practice | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Five mixed questions at a time from across the GCSE book, favouring the ones you have not finished yet.',
+  },
+  {
+    slug: 'books/gcse/command-words',
+    book: 'commands',
+    title: 'Question Words Explained | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'What work out, calculate, show that, explain and the other exam question words ask you to do, with a short example of each.',
+  },
+  {
     slug: 'books/gcse/raise-your-grade',
     book: 'grades',
     title: 'How to Raise Your Grade | GCSE Maths Book (pilot) | Wright Maths Tuition',

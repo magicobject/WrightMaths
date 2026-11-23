@@ -219,3 +219,34 @@ export function renderGlossaryPage(glossary, usage, graph, strands) {
 
   return { jump, groups, count: glossary.length };
 }
+
+/** The "Words you need" strip at the top of a topic: the glossary terms it uses, with their plain definitions. */
+export function renderWords(id, graph, glossaryById) {
+  const t = graph.get(id);
+  const words = t.words ?? [];
+  if (words.length === 0) return '';
+  const items = words.map((w) => {
+    const g = glossaryById.get(w);
+    if (!g) throw new Error(`topics: "${id}" lists unknown word "${w}"`);
+    return `<dt>{term:${w}}</dt><dd>${g.def}</dd>`;
+  }).join('\n      ');
+  return `<aside class="words-strip" aria-labelledby="words-title">
+    <h2 id="words-title">Words you need</h2>
+    <p class="muted">Tap a teal word anywhere on the page to see this again.</p>
+    <dl>
+      ${items}
+    </dl>
+  </aside>`;
+}
+
+/** Topic checkboxes for the mixed-practice page. */
+export function renderPracticeTopics(graph) {
+  const live = [...graph.values()].filter((t) => t.status === 'live').sort((a, b) => a.layer - b.layer || a.title.localeCompare(b.title));
+  const items = live.map((t) => `<li><label><input type="checkbox" name="practice-topic" value="${t.id}" checked> ${t.title}</label></li>`).join('\n        ');
+  return `<fieldset class="practice-topics">
+      <legend>Topics to mix</legend>
+      <ul>
+        ${items}
+      </ul>
+    </fieldset>`;
+}

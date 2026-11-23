@@ -14,6 +14,7 @@
   <div class="wrap narrow">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Factors and multiples</span></nav>
     {prereqs}
+    {words}
   </div>
 </section>
 
@@ -93,13 +94,13 @@
       <div class="solution"><p>12 &times; 8 = 96 is too small; 12 &times; 9 = 108.</p></div>
     </div>
     <div class="q" data-type="mc">
-      <p class="qtext">Is 91 a multiple of 7?</p>
+      <p class="qtext">Is 119 a multiple of 7?</p>
       <ul class="options">
-        <li data-correct>Yes: 7 &times; 13 = 91</li>
-        <li data-why="You skipped 7 &times; 13 = 91.">No: 7 &times; 12 = 84 and 7 &times; 14 = 98</li>
+        <li data-correct>Yes: 7 &times; 17 = 119</li>
+        <li data-why="You skipped 7 &times; 17 = 119.">No: 7 &times; 16 = 112 and 7 &times; 18 = 126</li>
       </ul>
-      <ol class="ladder"><li>Try 91 &divide; 7.</li></ol>
-      <div class="solution"><p>91 &divide; 7 = 13 exactly, so yes.</p></div>
+      <ol class="ladder"><li>Try 119 &divide; 7.</li></ol>
+      <div class="solution"><p>119 &divide; 7 = 17 exactly, so yes.</p></div>
     </div>
     <div class="q" data-answers="7" data-mode="value">
       <p class="qtext">The 3rd multiple of a number is 21. What is the number?</p>
@@ -126,7 +127,9 @@
         <li>Factors of 20: 1, 2, 4, 5, 10, 20.</li>
       </ol>
     </div>
+    <p>Factors always come in pairs, except for square numbers, which have one factor paired with itself (6 &times; 6 = 36). That is why a square number has an odd number of factors, and every other number has an even number.</p>
     <p>Quick {term:divisible|divisibility} tests save time: even numbers divide by 2; a number divides by 3 if its digit sum divides by 3, and by 9 if its digit sum divides by 9; by 5 if it ends in 0 or 5; by 10 if it ends in 0.</p>
+    <div class="key"><p><b>Why the tests for 3 and 9 work:</b> 10 leaves remainder 1 when you divide by 9, so 100 and 1000 do too (99 and 999 are multiples of 9). So a number is its digit sum plus a multiple of 9. For example 4,563 = 4 &times; 999 + 5 &times; 99 + 6 &times; 9 + (4 + 5 + 6 + 3). The first three parts divide by 9, so only the digit sum, 18, decides. Since 3 divides 9, the same test works for 3.</p></div>
   </div>
 </section>
 
@@ -134,10 +137,10 @@
   <div class="wrap narrow">
     <h2>Check your knowledge: factors</h2>
     <div class="q" data-answers="6" data-mode="value">
-      <p class="qtext">How many factors does 20 have?</p>
-      <ol class="ladder"><li>Factor pairs of 20: 1 &times; 20, 2 &times; 10, 4 &times; 5.</li></ol>
-      <ul class="wrong"><li data-if="3">That counts the pairs. Each pair has two factors.</li><li data-if="5">You missed one. Use the pairs 1 &times; 20, 2 &times; 10, 4 &times; 5.</li></ul>
-      <div class="solution"><p>1, 2, 4, 5, 10, 20: six factors.</p></div>
+      <p class="qtext">How many factors does 50 have?</p>
+      <ol class="ladder"><li>Find the factor pairs in order, starting with 1 &times; 50.</li></ol>
+      <ul class="wrong"><li data-if="3">That counts the pairs. Each pair has two factors.</li><li data-if="5">You missed one. Check every pair, then count both numbers in each.</li></ul>
+      <div class="solution"><p>1 &times; 50, 2 &times; 25, 5 &times; 10 give 1, 2, 5, 10, 25, 50: six factors.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext">Which of these is NOT a factor of 30?</p>
@@ -180,6 +183,7 @@
     <h2>3. Prime numbers</h2>
     <p>A {term:prime-number|prime number} has exactly two factors: 1 and itself. The first few are 2, 3, 5, 7, 11, 13, 17, 19, 23. Every other whole number bigger than 1 is built from primes by multiplying, which is called its {term:prime-factorisation|prime factorisation}.</p>
     <div class="key"><p><b>Key idea:</b> 1 is not prime (it has only one factor). 2 is the only even prime. Break any number into primes with a <b>factor tree</b>: split it into two factors, keep splitting until every branch ends in a prime.</p></div>
+    <p>To test whether <i>n</i> is prime you only need to try the primes up to &radic;<i>n</i>. Factors come in pairs, and in every pair one factor is at most &radic;<i>n</i>. So if there is no factor up to &radic;<i>n</i>, there is none above it either.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Write 84 as a product of prime factors.</p>
@@ -228,11 +232,17 @@
       <ul class="wrong"><li data-if="1">1 is not prime: it has only one factor.</li></ul>
       <div class="solution"><p>2 is the smallest prime, and the only even one.</p></div>
     </div>
-    <div class="q" data-answers="7" data-mode="value">
-      <p class="qtext">84 = 2 &times; 2 &times; 3 &times; 7. What is the largest prime factor of 84?</p>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">150 = 2 &times; 3 &times; 5 &times; 5. What is the largest prime factor of 150?</p>
       <ol class="ladder"><li>Look at the primes in the product.</li></ol>
-      <ul class="wrong"><li data-if="84">84 is not prime. The prime factors are 2, 3 and 7.</li></ul>
-      <div class="solution"><p>The primes are 2, 3 and 7. The largest is 7.</p></div>
+      <ul class="wrong"><li data-if="150">150 is not prime. The prime factors are 2, 3 and 5.</li><li data-if="25">25 is 5 &times; 5, so it is not prime. Use 5.</li></ul>
+      <div class="solution"><p>The primes are 2, 3 and 5. The largest is 5.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">To decide whether 89 is prime, you only need to test primes up to &radic;89. What is the largest prime you need to test?</p>
+      <ol class="ladder"><li>&radic;89 is between 9 and 10, because 9&sup2; = 81 and 10&sup2; = 100.</li><li>Which primes are less than 9.4?</li></ol>
+      <ul class="wrong"><li data-if="9">9 = 3 &times; 3 is not prime. The primes up to 9 are 2, 3, 5, 7.</li><li data-if="11">11&sup2; = 121 is already bigger than 89, so 11 is not needed.</li></ul>
+      <div class="solution"><p>&radic;89 = 9.43&hellip;, so test 2, 3, 5 and 7. The largest is 7. None divides 89, so 89 is prime.</p></div>
     </div>
     <div class="q" data-answers="4" data-mode="value">
       <p class="qtext">How many prime factors does 36 have, counting repeats? (36 = 2 &times; 2 &times; 3 &times; 3)</p>
@@ -284,17 +294,17 @@
       <ul class="wrong"><li data-if="24">24 is a common multiple, but not the lowest.</li><li data-if="2">2 is the HCF. The LCM is a multiple.</li></ul>
       <div class="solution"><p>Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. First common: 12.</p></div>
     </div>
-    <div class="q" data-answers="12" data-mode="value">
-      <p class="qtext">Find the HCF of 24 and 36.</p>
-      <ol class="ladder"><li>Common factors include 6 and 12.</li></ol>
-      <ul class="wrong"><li data-if="6">6 is a common factor, but 12 is bigger.</li></ul>
-      <div class="solution"><p>12 divides into 24 (twice) and 36 (three times).</p></div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Find the HCF of 40 and 56.</p>
+      <ol class="ladder"><li>List the factors of each and look for the biggest one in both.</li></ol>
+      <ul class="wrong"><li data-if="4">4 is a common factor, but 8 is bigger.</li><li data-if="280">280 is the LCM, a multiple. The HCF is a factor.</li></ul>
+      <div class="solution"><p>Factors of 40: 1, 2, 4, 5, 8, 10, 20, 40. Factors of 56: 1, 2, 4, 7, 8, 14, 28, 56. The biggest in both is 8.</p></div>
     </div>
-    <div class="q" data-answers="24" data-mode="value">
-      <p class="qtext">Find the LCM of 6 and 8.</p>
-      <ol class="ladder"><li>Multiples of 8: 8, 16, 24.</li></ol>
-      <ul class="wrong"><li data-if="48">48 is a common multiple, but 24 comes first.</li></ul>
-      <div class="solution"><p>The first number in both the 6s and 8s lists is 24.</p></div>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext">Find the LCM of 10 and 15.</p>
+      <ol class="ladder"><li>List multiples of the bigger number and check each against 10.</li></ol>
+      <ul class="wrong"><li data-if="60">60 is a common multiple, but 30 comes first.</li><li data-if="5">5 is the HCF. The LCM is a multiple.</li></ul>
+      <div class="solution"><p>Multiples of 15: 15, 30. 30 is also a multiple of 10, so the LCM is 30.</p></div>
     </div>
     <div class="q" data-answers="35" data-mode="value">
       <p class="qtext">Find the LCM of 5 and 7.</p>
@@ -340,11 +350,11 @@
       <ol class="ladder"><li>7 &times; 8 = 56.</li></ol>
       <div class="solution"><p>56 is a multiple of 7.</p></div>
     </div>
-    <div class="q" data-answers="84" data-mode="value">
-      <p class="qtext">What is the product of the prime factors 2 &times; 2 &times; 3 &times; 7?</p>
-      <ol class="ladder"><li>Multiply them: 2 &times; 2 = 4, 4 &times; 3 = 12, 12 &times; 7.</li></ol>
-      <ul class="wrong"><li data-if="14">That is 2 + 2 + 3 + 7. Multiply the primes to rebuild the number.</li></ul>
-      <div class="solution"><p>4 &times; 3 = 12 and 12 &times; 7 = 84.</p></div>
+    <div class="q" data-answers="90" data-mode="value">
+      <p class="qtext">What is the product of the prime factors 2 &times; 3 &times; 3 &times; 5?</p>
+      <ol class="ladder"><li>Multiply them in order: 2 &times; 3, then &times; 3, then &times; 5.</li></ol>
+      <ul class="wrong"><li data-if="13">That is 2 + 3 + 3 + 5. Multiply the primes to rebuild the number.</li></ul>
+      <div class="solution"><p>2 &times; 3 = 6, 6 &times; 3 = 18 and 18 &times; 5 = 90.</p></div>
     </div>
     <div class="q" data-answers="16" data-mode="value">
       <p class="qtext">I am a multiple of 8 and a factor of 48. I am bigger than 8. What is the smallest number I could be?</p>
@@ -383,17 +393,17 @@
       <ul class="wrong"><li data-if="6">6 is the HCF. They next leave together at a multiple of both.</li></ul>
       <div class="solution"><p>Multiples of 12: 12, 24, 36. Multiples of 18: 18, 36. LCM = 36 minutes.</p></div>
     </div>
-    <div class="q" data-answers="12" data-mode="value">
-      <p class="qtext">Ribbons of 24 cm and 36 cm are cut into equal pieces with no ribbon left over. What is the longest piece possible, in cm?</p>
-      <ol class="ladder"><li>&ldquo;Biggest piece that fits both&rdquo;: HCF of 24 and 36.</li></ol>
-      <ul class="wrong"><li data-if="72">72 is the LCM. The pieces must fit into both ribbons, so use the HCF.</li></ul>
-      <div class="solution"><p>HCF of 24 and 36 is 12 cm.</p></div>
+    <div class="q" data-answers="18" data-mode="value">
+      <p class="qtext">Ribbons of 36 cm and 54 cm are cut into equal pieces with no ribbon left over. What is the longest piece possible, in cm?</p>
+      <ol class="ladder"><li>&ldquo;Biggest piece that fits both&rdquo;: HCF of 36 and 54.</li></ol>
+      <ul class="wrong"><li data-if="108">108 is the LCM. The pieces must fit into both ribbons, so use the HCF.</li><li data-if="9">9 fits both, but a longer piece also does.</li><li data-if="12">12 goes into 36 but not into 54.</li></ul>
+      <div class="solution"><p>HCF of 36 and 54 is 18 cm: 36 = 2 &times; 18 and 54 = 3 &times; 18.</p></div>
     </div>
-    <div class="q" data-answers="24" data-mode="value">
-      <p class="qtext">Hot dog rolls are sold in packs of 8 and sausages in packs of 6. What is the smallest number of sausages you can buy so that there are no rolls or sausages left over? </p>
-      <ol class="ladder"><li>LCM of 6 and 8.</li></ol>
-      <ul class="wrong"><li data-if="48">48 works too, but 24 is smaller.</li></ul>
-      <div class="solution"><p>LCM of 6 and 8 is 24. That is 4 packs of sausages and 3 packs of rolls.</p></div>
+    <div class="q" data-answers="40" data-mode="value">
+      <p class="qtext">Pencils are sold in packs of 10 and notebooks in packs of 8. What is the smallest number of notebooks you can buy so that you have exactly the same number of pencils and notebooks?</p>
+      <ol class="ladder"><li>The two numbers must match, so it is a common multiple of 10 and 8.</li></ol>
+      <ul class="wrong"><li data-if="80">80 works too, but 40 is smaller.</li><li data-if="2">2 is the HCF. The number bought is a multiple.</li><li data-if="24">24 is a multiple of 8 but not of 10.</li></ul>
+      <div class="solution"><p>LCM of 8 and 10 is 40. That is 5 packs of notebooks and 4 packs of pencils.</p></div>
     </div>
   </div>
 </section>
@@ -412,14 +422,14 @@
       <div class="solution"><p>1 is neither prime nor composite.</p></div>
     </div>
     <div class="q" data-type="mc">
-      <p class="qtext"><b>Lia says:</b> &ldquo;The LCM of 4 and 6 is 2.&rdquo; What went wrong?</p>
+      <p class="qtext"><b>Lia says:</b> &ldquo;The LCM of 6 and 9 is 3.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>She found the HCF. The LCM is a multiple: 12.</li>
-        <li data-why="2 is a common factor. The LCM is the smallest common <i>multiple</i>.">Nothing: 2 goes into both</li>
-        <li data-why="24 is a common multiple but not the lowest.">The LCM is 24</li>
+        <li data-correct>She found the HCF. The LCM is a multiple: 18.</li>
+        <li data-why="3 is a common factor. The LCM is the smallest common <i>multiple</i>.">Nothing: 3 goes into both</li>
+        <li data-why="54 is a common multiple but not the lowest.">The LCM is 54</li>
       </ul>
       <ol class="ladder"><li>A multiple is at least as big as the number.</li></ol>
-      <div class="solution"><p>Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. LCM = 12.</p></div>
+      <div class="solution"><p>Multiples of 6: 6, 12, 18. Multiples of 9: 9, 18. LCM = 18.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Max says:</b> &ldquo;The factors of 12 are 1, 2, 3, 4 and 6.&rdquo; What went wrong?</p>
@@ -437,11 +447,11 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Check your knowledge: mixed review</h2>
-    <div class="q" data-answers="6" data-mode="value">
-      <p class="qtext">Write all the factors of 28 and count them. How many factors does 28 have?</p>
-      <ol class="ladder"><li>1 &times; 28, 2 &times; 14, 4 &times; 7.</li></ol>
-      <ul class="wrong"><li data-if="3">That counts the pairs. Each has two factors.</li></ul>
-      <div class="solution"><p>1, 2, 4, 7, 14, 28: six.</p></div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Write all the factors of 40 and count them. How many factors does 40 have?</p>
+      <ol class="ladder"><li>1 &times; 40, 2 &times; 20, then keep going in order.</li></ol>
+      <ul class="wrong"><li data-if="4">That counts the pairs. Each has two factors.</li><li data-if="7">You missed one. Check every pair, then count both numbers in each.</li></ul>
+      <div class="solution"><p>1, 2, 4, 5, 8, 10, 20, 40: eight.</p></div>
     </div>
     <div class="q" data-answers="54" data-mode="value">
       <p class="qtext">What is the 9th multiple of 6?</p>
@@ -478,11 +488,11 @@
   <div class="wrap narrow">
     <h2>Exam style</h2>
     <p class="muted">Show your working.</p>
-    <div class="q" data-answers="6" data-mode="value">
-      <p class="qtext"><b>(a)</b> [2 marks] How many factors does 28 have?</p>
-      <ol class="ladder"><li>Use factor pairs.</li></ol>
-      <ul class="wrong"><li data-if="3">That counts the pairs. Count each factor.</li></ul>
-      <div class="solution"><p>1, 2, 4, 7, 14, 28: six factors.</p></div>
+    <div class="q" data-answers="11" data-mode="value">
+      <p class="qtext"><b>(a)</b> [2 marks] Write 28 as a product of prime factors. Then add up the prime factors in your product, counting repeats. Give the total.</p>
+      <ol class="ladder"><li>Start a factor tree: 28 = 2 &times; ?</li></ol>
+      <ul class="wrong"><li data-if="9">That adds 2 and 7 once each. The 2 appears twice, so count it twice.</li><li data-if="3">That counts how many primes there are, not their sum.</li></ul>
+      <div class="solution"><p>28 = 2 &times; 14 = 2 &times; 2 &times; 7. Total: 2 + 2 + 7 = 11.</p></div>
     </div>
     <div class="q" data-answers="14" data-mode="value">
       <p class="qtext"><b>(b)</b> [2 marks] Find the highest common factor (HCF) of 28 and 42.</p>
@@ -502,17 +512,63 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Going further</h2>
+    <h3>Spot a pattern: HCF and LCM</h3>
+    <div class="q" data-answers="96" data-mode="value">
+      <p class="qtext">Find the HCF of 8 and 12 and the LCM of 8 and 12. Multiply them together. What do you get?</p>
+      <ol class="ladder"><li>List the factors of 8 and 12, then the multiples of 8 and 12.</li></ol>
+      <ul class="wrong"><li data-if="28">That is 4 + 24. Multiply the HCF and the LCM.</li></ul>
+      <div class="solution"><p>HCF = 4 and LCM = 24, so 4 &times; 24 = 96. Notice that 8 &times; 12 is also 96.</p></div>
+    </div>
+    <div class="q" data-answers="90" data-mode="value">
+      <p class="qtext">Do the same for 6 and 15: work out HCF &times; LCM.</p>
+      <ol class="ladder"><li>Common factors of 6 and 15, then common multiples.</li></ol>
+      <ul class="wrong"><li data-if="33">That is 3 + 30. Multiply the HCF and the LCM.</li></ul>
+      <div class="solution"><p>HCF = 3 and LCM = 30, so 3 &times; 30 = 90. And 6 &times; 15 = 90 as well.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What pattern do the last two questions suggest for any two whole numbers?</p>
+      <ul class="options">
+        <li data-correct>HCF &times; LCM equals the two numbers multiplied together</li>
+        <li data-why="Test it with 8 and 12: HCF + LCM = 28, but 8 + 12 = 20.">HCF + LCM equals the two numbers added together</li>
+        <li data-why="Test it with 8 and 12: HCF &times; LCM = 96, but 12&sup2; = 144.">HCF &times; LCM equals the bigger number squared</li>
+      </ul>
+      <ol class="ladder"><li>Compare your two answers with 8 &times; 12 and 6 &times; 15.</li></ol>
+      <div class="solution"><p>In both cases HCF &times; LCM matched the product of the two numbers. This is true for every pair of whole numbers.</p></div>
+    </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">The HCF of two numbers is 4 and their LCM is 24. One of the numbers is 8. What is the other?</p>
-      <ol class="ladder"><li>The product of the two numbers equals HCF &times; LCM.</li><li>8 &times; ? = 4 &times; 24.</li></ol>
+      <ol class="ladder"><li>Use the pattern you just found.</li></ol>
       <ul class="wrong"><li data-if="24">HCF(8, 24) = 8, not 4.</li><li data-if="4">LCM(8, 4) = 8, not 24.</li></ul>
-      <div class="solution"><p>8 &times; ? = 96, so ? = 12. Check: HCF(8, 12) = 4 and LCM(8, 12) = 24.</p></div>
+      <div class="solution"><p>8 &times; ? = 4 &times; 24 = 96, so ? = 12. Check: HCF(8, 12) = 4 and LCM(8, 12) = 24.</p></div>
+    </div>
+    <h3>Counting factors</h3>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">How many numbers from 1 to 50 have an odd number of factors?</p>
+      <ol class="ladder"><li>Try a few: 9 has factors 1, 3, 9. 10 has 1, 2, 5, 10. Look for what the odd ones share.</li></ol>
+      <ul class="wrong"><li data-if="25">That counts the odd numbers. Being odd does not decide the number of factors.</li><li data-if="6">You missed one square number. Check the squares up to 50.</li></ul>
+      <div class="solution"><p>The numbers are the squares 1, 4, 9, 16, 25, 36 and 49: seven numbers.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why do the square numbers have an odd number of factors?</p>
+      <ul class="options">
+        <li data-correct>Factors come in pairs, except when a number pairs with itself, as in 6 &times; 6</li>
+        <li data-why="4, 16 and 36 are even squares. Whether a number is odd does not decide how many factors it has.">Square numbers are always odd, so they have odd numbers of factors</li>
+        <li data-why="Not so: 36 has 9 factors but 37 has only 2. The pairing is the reason, not the size.">Square numbers always have more factors than other numbers</li>
+      </ul>
+      <ol class="ladder"><li>Write the factors of 36 as pairs d and 36 &divide; d.</li></ol>
+      <div class="solution"><p>Each factor <i>d</i> of <i>n</i> pairs with <i>n</i> &divide; <i>d</i>. A pair collapses to one factor only when <i>d</i> = <i>n</i> &divide; <i>d</i>, which means <i>n</i> = <i>d</i>&sup2;: a square number.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Two whole numbers have HCF 6 and LCM 180. How many different pairs (smaller number, larger number) are possible?</p>
+      <ol class="ladder"><li>Both numbers are multiples of 6, so write them as 6<i>p</i> and 6<i>q</i>, where <i>p</i> and <i>q</i> have no common factor.</li><li>Use the pattern for HCF &times; LCM to find <i>p</i> &times; <i>q</i>.</li></ol>
+      <ul class="wrong"><li data-if="8">That counts each pair twice, once each way round. Count (smaller, larger) once.</li><li data-if="3">You missed a pair. Check every way to split the number into <i>p</i> &times; <i>q</i>.</li></ul>
+      <div class="solution"><p>6<i>p</i> &times; 6<i>q</i> = 6 &times; 180, so <i>p</i> &times; <i>q</i> = 30 with no common factor: (1, 30), (2, 15), (3, 10), (5, 6). The pairs are (6, 180), (12, 90), (18, 60) and (30, 36): four pairs.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">What is the smallest number with exactly 6 factors?</p>
-      <ol class="ladder"><li>1, 2, 3, 4, 6, 12 has six factors. Is there anything smaller?</li></ol>
-      <ul class="wrong"><li data-if="18">18 also has 6 factors but is not the smallest.</li><li data-if="32">32 has 6 factors, but 12 is smaller.</li></ul>
-      <div class="solution"><p>12 = 1, 2, 3, 4, 6, 12. Smaller numbers have fewer: 8 has 4 factors, 10 has 4, 6 has 4.</p></div>
+      <ol class="ladder"><li>Test numbers in order and count their factors.</li></ol>
+      <ul class="wrong"><li data-if="18">18 also has 6 factors but is not the smallest.</li><li data-if="32">32 has 6 factors, but a smaller number has too.</li><li data-if="6">6 has only four factors: 1, 2, 3 and 6.</li></ul>
+      <div class="solution"><p>12 = 1, 2, 3, 4, 6, 12. Every smaller number has fewer: 8 has 4 factors, 10 has 4, 6 has 4.</p></div>
     </div>
   </div>
 </section>

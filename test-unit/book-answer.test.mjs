@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseNumber, matches, rightValueWrongForm, textKey, splitList } from '../public/js/book-answer.mjs';
+import { parseNumber, matches, rightValueWrongForm, textKey, splitList, diagnose } from '../public/js/book-answer.mjs';
 
 test('parseNumber reads integers, decimals, fractions, mixed numbers and percentages', () => {
   assert.equal(parseNumber('12'), 12);
@@ -78,4 +78,26 @@ test('surd answers accept the common ways of typing a root', () => {
 test('splitList trims and drops empty items', () => {
   assert.deepEqual(splitList('3/2; 1 1/2 ;'), ['3/2', '1 1/2']);
   assert.deepEqual(splitList(undefined), []);
+});
+
+test('diagnose spots a wrong sign and a slipped decimal point, and nothing else', () => {
+  assert.match(diagnose('8', ['-8']), /sign/);
+  assert.match(diagnose('-5', ['5']), /sign/);
+  assert.match(diagnose('340', ['34']), /10 times too big/);
+  assert.match(diagnose('3.4', ['34']), /10 times too small/);
+  assert.match(diagnose('4800', ['48']), /100 times too big/);
+  assert.equal(diagnose('7', ['8']), null);
+  assert.equal(diagnose('abc', ['8']), null);
+  assert.equal(diagnose('0', ['0']), null);
+});
+
+test('typing styles students use are all accepted: x=, pound sign, units, true minus, en dash, % and fractions', () => {
+  assert.ok(matches('x = 5', ['5']));
+  assert.ok(matches('£35', ['35']));
+  assert.ok(matches('−75 m', ['-75']));
+  assert.ok(matches('–75', ['-75']));
+  assert.ok(matches('-75', ['-75']));
+  assert.ok(matches('0.5', ['1/2']));
+  assert.ok(matches('50%', ['1/2']));
+  assert.ok(matches('4.0', ['4;4.00'.split(';')[0]]));
 });

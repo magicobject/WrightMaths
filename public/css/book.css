@@ -230,6 +230,48 @@
 .duck-note{font-size:.88rem;}
 @media (max-width:560px){.duck-rung{flex-direction:column;}}
 
+/* ---------- feedback: nearly (right value, different form), facts lists, listen ---------- */
+.q-feedback.nearly{color:#7a4a00;}
+.q-feedback.nearly::before{content:"\2192\00a0Nearly: ";font-weight:700;}
+.facts{list-style:none;margin:0 0 .8em;padding:8px 14px;background:var(--paper);border-left:4px solid var(--strand);border-radius:0 8px 8px 0;}
+.facts li{color:var(--ink);margin:2px 0;}
+.listen{font:inherit;font-size:.78rem;font-weight:700;margin-left:10px;padding:1px 10px;border:1.5px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);cursor:pointer;vertical-align:middle;}
+.listen:hover{background:var(--paper-dim);}
+.duck-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px;}
+.duck-chip{font:inherit;font-size:.88rem;padding:4px 12px;border:1.5px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);cursor:pointer;}
+.duck-chip:hover{background:var(--paper-dim);}
+
+/* ---------- reading options ---------- */
+.read-tools{max-width:800px;margin:0 auto;padding:6px 24px;}
+.read-tools summary{cursor:pointer;font-weight:700;color:var(--navy);padding:6px 0;}
+.read-row{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 10px;}
+.read-btn{font:inherit;font-size:.92rem;padding:6px 14px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);cursor:pointer;}
+.read-btn:hover{background:var(--paper-dim);}
+.read-btn[aria-pressed="true"]{background:var(--navy);color:var(--white);}
+html.read-big1{font-size:112.5%;}
+html.read-big2{font-size:125%;}
+html.read-big3{font-size:150%;}
+html.read-easy body,html.read-easy .book{font-family:Verdana,"Trebuchet MS",Tahoma,sans-serif;line-height:1.9;letter-spacing:.03em;word-spacing:.12em;}
+html.read-easy .book h1,html.read-easy .book h2,html.read-easy .book h3,html.read-easy .node-title,html.read-easy .sum-line{font-family:Verdana,"Trebuchet MS",Tahoma,sans-serif;letter-spacing:.02em;}
+html.read-easy .book p,html.read-easy .book li{max-width:68ch;}
+html.read-tint body{background:#fdf1d6;}
+html.read-tint .book .card,html.read-tint .book .q,html.read-tint .book .worked,html.read-tint .book .bys,html.read-tint .book .g-entry{background:#fffaf0;}
+.read-ruler{position:fixed;left:0;right:0;top:-100px;height:2.6em;background:rgba(255,235,120,.28);border-top:2px solid rgba(122,88,0,.45);border-bottom:2px solid rgba(122,88,0,.45);pointer-events:none;display:none;z-index:60;}
+html.read-ruler-on .read-ruler{display:block;}
+
+/* ---------- mixed practice ---------- */
+.practice-topics{border:1px solid var(--line);border-radius:var(--radius);background:var(--white);padding:10px 16px 14px;margin:14px 0;}
+.practice-topics legend{font-weight:700;color:var(--navy);padding:0 6px;}
+.practice-topics ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px 16px;}
+.practice-topics label{display:flex;gap:8px;align-items:center;color:var(--ink);}
+.practice-topics input{width:20px;height:20px;accent-color:var(--navy);}
+.practice-status{color:var(--ink);font-weight:600;}
+.words-strip{background:var(--white);border:1px solid var(--line);border-left:6px solid var(--c-term);border-radius:var(--radius);padding:8px 22px 12px;margin:18px 0;}
+.words-strip h2{font-size:1.15rem;margin-top:10px;}
+.words-strip dl{margin:0;display:grid;gap:6px;}
+.words-strip dt{font-weight:700;}
+.words-strip dd{margin:0 0 4px;color:var(--ink);}
+
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
 .g-letter-h{font-size:2.2rem;color:var(--gold);border-bottom:2px solid var(--gold);margin:0 0 10px;}

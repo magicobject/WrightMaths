@@ -14,29 +14,31 @@
   <div class="wrap narrow">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Order of operations</span></nav>
     {prereqs}
+    {words}
   </div>
 </section>
 
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Warm-up: what do you already know?</h2>
-    <p class="intro">Have a go before you read anything. The last three are from Add, subtract, multiply, divide, the layer this stands on.</p>
+    <p class="intro">Quick warm-up. No marks, and nobody is watching.</p>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">Work out 3 + 4 &times; 2.</p>
-      <ol class="ladder"><li>Is it (3 + 4) &times; 2 or 3 + (4 &times; 2)? Think about which gives the answer people agree on.</li></ol>
-      <ul class="wrong"><li data-if="14">That adds first. Multiplication must be done before addition.</li></ul>
+      <ol class="ladder"><li>Is it (3 + 4) &times; 2 or 3 + (4 &times; 2)? Everyone must get the same answer.</li></ol>
+      <ul class="wrong"><li data-if="14">You added first. Multiply before you add.</li></ul>
       <div class="solution"><p>Multiplication comes before addition: 4 &times; 2 = 8, then 3 + 8 = 11.</p></div>
     </div>
+    <h3>Quick recap (no marks)</h3>
     <div class="q" data-answers="42" data-mode="value">
-      <p class="qtext">Last time: work out 6 &times; 7.</p>
-      <ol class="ladder"><li>Six lots of seven.</li></ol>
+      <p class="qtext">Work out 6 &times; 7.</p>
+      <ol class="ladder"><li>Six groups of seven.</li></ol>
       
       <div class="solution"><p>6 &times; 7 = 42.</p></div>
     </div>
     <div class="q" data-answers="37" data-mode="value">
       <p class="qtext">Work out 56 &minus; 19.</p>
       <ol class="ladder"><li>56 &minus; 20 = 36, then add 1 back.</li></ol>
-      <ul class="wrong"><li data-if="47">That only takes away 9. Take away 19: 56 &minus; 20 = 36, then add 1 back.</li></ul>
+      <ul class="wrong"><li data-if="47">That takes away only 9. Take away 20, then add 1 back.</li></ul>
       <div class="solution"><p>56 &minus; 19 = 37.</p></div>
     </div>
     <div class="q" data-answers="15" data-mode="value">
@@ -51,22 +53,40 @@
 <section>
   <div class="wrap narrow">
     <h2>1. Why there has to be an order</h2>
-    <p>What is 3 + 4 &times; 2? One person adds first and gets 14. Another multiplies first and gets 11. If maths is to mean the same thing to everybody, there must be an <b>agreed order</b> for the {term:operation|operations}. That order is {term:bidmas|BIDMAS}:</p>
+    <p>What is 3 + 4 &times; 2? One person adds first and gets 14. Another multiplies first and gets 11. Maths must mean the same to everybody. So there is an <b>agreed order</b> for the {term:operation|operations}. The order is {term:bidmas|BIDMAS}:</p>
     <div class="pairs">
       <div><b>B</b>rackets first</div>
       <div><b>I</b>ndices (powers) next</div>
       <div><b>D</b>ivision and <b>M</b>ultiplication together</div>
       <div><b>A</b>ddition and <b>S</b>ubtraction together</div>
     </div>
-    <div class="key"><p><b>Key idea:</b> D and M have the <b>same</b> priority, and so do A and S. When you have a run of operations of equal priority, work from <b>left to right</b>. So 10 &minus; 2 + 3 = 8 + 3 = 11, and 8 &divide; 2 &times; 4 = 4 &times; 4 = 16.</p></div>
+    <div class="key"><p><b>Key idea:</b> &times; and &divide; are equal. + and &minus; are equal. Equal? Go left to right.</p></div>
+    <p>10 &minus; 2 + 3 = 8 + 3 = 11</p>
+    <p>8 &divide; 2 &times; 4 = 4 &times; 4 = 16</p>
+    <figure class="figure">
+      <svg class="geo-svg" viewBox="0 0 400 240" role="img" aria-labelledby="bidmas-t bidmas-d">
+        <title id="bidmas-t">The BIDMAS staircase</title>
+        <desc id="bidmas-d">Four steps going down. Step 1 is Brackets, step 2 is Indices, step 3 is Divide and Multiply, step 4 is Add and Subtract. Work down the steps in order.</desc>
+        <rect x="10" y="10" width="290" height="48" rx="6" fill="#e4eefb" stroke="#0f2440" stroke-width="3"/>
+        <text class="svg-t" x="26" y="40">1  Brackets</text>
+        <rect x="40" y="66" width="290" height="48" rx="6" fill="#e1f3e6" stroke="#0f2440" stroke-width="3"/>
+        <text class="svg-t" x="56" y="96">2  Indices (powers)</text>
+        <rect x="70" y="122" width="290" height="48" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="3"/>
+        <text class="svg-t" x="86" y="152">3  Divide / Multiply</text>
+        <rect x="100" y="178" width="290" height="48" rx="6" fill="#e4eefb" stroke="#0f2440" stroke-width="3"/>
+        <text class="svg-t" x="116" y="208">4  Add / Subtract</text>
+      </svg>
+      <figcaption>The BIDMAS staircase. Start at the top. Inside step 3, &times; and &divide; are equal. Inside step 4, + and &minus; are equal. Go left to right in each.</figcaption>
+    </figure>
+    <p><b>Try it:</b> work out 2 + 3 &times; 4.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Work out 20 &minus; 6 &divide; 2.</p>
       <ol class="steps">
-        <li>Division comes before subtraction: 6 &divide; 2 = 3.</li>
+        <li>Divide before you subtract: 6 &divide; 2 = 3.</li>
         <li>20 &minus; 3 = 17.</li>
       </ol>
-      <p class="muted">A calculator that follows the order of operations gives 17 too. If yours gives 7, it is working left to right.</p>
+      <p class="muted">A scientific calculator gives 17 too. If yours gives 7, it works left to right only.</p>
     </div>
   </div>
 </section>
@@ -77,31 +97,31 @@
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">Work out 3 + 4 &times; 2.</p>
       <ol class="ladder"><li>Multiply first.</li></ol>
-      <ul class="wrong"><li data-if="14">You added first. Multiplication is done before addition.</li></ul>
+      <ul class="wrong"><li data-if="14">You added first. Multiply before you add.</li></ul>
       <div class="solution"><p>4 &times; 2 = 8, then 3 + 8 = 11.</p></div>
     </div>
     <div class="q" data-answers="17" data-mode="value">
       <p class="qtext">Work out 20 &minus; 6 &divide; 2.</p>
       <ol class="ladder"><li>Divide first.</li></ol>
-      <ul class="wrong"><li data-if="7">You subtracted first. Division comes before subtraction.</li></ul>
+      <ul class="wrong"><li data-if="7">You subtracted first. Divide before you subtract.</li></ul>
       <div class="solution"><p>6 &divide; 2 = 3, then 20 &minus; 3 = 17.</p></div>
     </div>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">Work out 10 &minus; 2 + 3.</p>
       <ol class="ladder"><li>Same priority: work left to right.</li></ol>
-      <ul class="wrong"><li data-if="5">You did 2 + 3 first. Addition and subtraction have the same priority, so go left to right.</li></ul>
+      <ul class="wrong"><li data-if="5">You did 2 + 3 first. Go left to right: 10 &minus; 2 first.</li></ul>
       <div class="solution"><p>10 &minus; 2 = 8, then 8 + 3 = 11.</p></div>
     </div>
     <div class="q" data-answers="16" data-mode="value">
       <p class="qtext">Work out 8 &divide; 2 &times; 4.</p>
       <ol class="ladder"><li>Same priority: left to right.</li></ol>
-      <ul class="wrong"><li data-if="1">You did 2 &times; 4 first. Division and multiplication have the same priority, so go left to right.</li></ul>
+      <ul class="wrong"><li data-if="1">You did 2 &times; 4 first. Go left to right: 8 &divide; 2 first.</li></ul>
       <div class="solution"><p>8 &divide; 2 = 4, then 4 &times; 4 = 16.</p></div>
     </div>
     <div class="q" data-answers="19" data-mode="value">
       <p class="qtext">Work out 5 + 6 &times; 3 &minus; 4.</p>
       <ol class="ladder"><li>Multiplication first: 6 &times; 3.</li><li>Then left to right.</li></ol>
-      <ul class="wrong"><li data-if="29">You added 5 + 6 first. Multiply first, then go left to right.</li></ul>
+      <ul class="wrong"><li data-if="29">You added 5 + 6 first. Multiply first.</li></ul>
       <div class="solution"><p>6 &times; 3 = 18, then 5 + 18 = 23, then 23 &minus; 4 = 19.</p></div>
     </div>
   </div>
@@ -110,9 +130,14 @@
 <section>
   <div class="wrap narrow">
     <h2>2. Brackets and powers</h2>
-    <p><b>Brackets</b> mean &ldquo;do this first&rdquo;. They let you change the normal order. (3 + 4) &times; 2 = 7 &times; 2 = 14. A <b>fraction bar</b> and a <b>square root sign</b> also act like brackets: whatever is above the bar, or under the root, is worked out first.</p>
-    <p><b>Indices</b> (powers) come next, before multiplying: 3 + 2&sup2; = 3 + 4 = 7, but (3 + 2)&sup2; = 5&sup2; = 25.</p>
-    <div class="key"><p><b>Key idea:</b> a power only applies to the number <i>immediately</i> before it. In 2 &times; 3&sup2; the square belongs to the 3 alone: 3&sup2; = 9 first, then 2 &times; 9 = 18. To square the whole thing, use brackets: (2 &times; 3)&sup2; = 36.</p></div>
+    <p><b>Brackets</b> mean &ldquo;do this first&rdquo;. They change the normal order.</p>
+    <p>(3 + 4) &times; 2 = 7 &times; 2 = 14</p>
+    <p>A fraction line works like brackets. Do the top first. A square root sign works the same way: work out what is under it first.</p>
+    <p><b>Indices</b> (powers) come next, before multiplying.</p>
+    <p>3 + 2&sup2; = 3 + 4 = 7</p>
+    <p>(3 + 2)&sup2; = 5&sup2; = 25</p>
+    <div class="key"><p><b>Key idea:</b> a power belongs only to the number just before it. In 2 &times; 3&sup2; the square belongs to the 3. So 3&sup2; = 9 first, then 2 &times; 9 = 18. To square both numbers, use brackets: (2 &times; 3)&sup2; = 36.</p></div>
+    <p><b>Try it:</b> work out 4 + 3&sup2;.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Work out 5 + (6 &minus; 2)&sup2; &times; 3.</p>
@@ -127,10 +152,10 @@
       <h3>Now you finish it: a fraction bar</h3>
       <p>Work out {frac:12 + 8/4}.</p>
       <ol class="steps">
-        <li>The fraction bar works like brackets: the top is 12 + 8 = 20.</li>
+        <li>The fraction line works like brackets. Do the top first: 12 + 8 = 20.</li>
         <li>Then 20 &divide; 4 = ___.</li>
       </ol>
-      <p class="muted">5. Without the bar, 12 + 8 &divide; 4 would be 12 + 2 = 14. The bar changes the order.</p>
+      <p class="muted">Answer: 5. Without the line, 12 + 8 &divide; 4 would be 12 + 2 = 14. The line changes the order.</p>
     </div>
   </div>
 </section>
@@ -141,37 +166,37 @@
     <div class="q" data-answers="16" data-mode="value">
       <p class="qtext">Work out 2 &times; (5 + 3).</p>
       <ol class="ladder"><li>Brackets first: 5 + 3.</li></ol>
-      <ul class="wrong"><li data-if="13">You multiplied before the brackets: 2 &times; 5 + 3. The brackets must be done first.</li></ul>
+      <ul class="wrong"><li data-if="13">You did 2 &times; 5 + 3. Do the brackets first.</li></ul>
       <div class="solution"><p>5 + 3 = 8, then 2 &times; 8 = 16.</p></div>
     </div>
     <div class="q" data-answers="4" data-mode="value">
       <p class="qtext">Work out (12 &minus; 4) &divide; 2.</p>
       <ol class="ladder"><li>Brackets first.</li></ol>
-      <ul class="wrong"><li data-if="10">You divided 4 &divide; 2 first. The brackets are done before the division.</li></ul>
+      <ul class="wrong"><li data-if="10">You did 4 &divide; 2 first. Brackets come first.</li></ul>
       <div class="solution"><p>12 &minus; 4 = 8, then 8 &divide; 2 = 4.</p></div>
     </div>
     <div class="q" data-answers="7" data-mode="value">
       <p class="qtext">Work out 3 + 2&sup2;.</p>
       <ol class="ladder"><li>Powers before adding: 2&sup2; = 4.</li></ol>
-      <ul class="wrong"><li data-if="25">That squares the 5 (3 + 2). The square belongs only to the 2.</li></ul>
+      <ul class="wrong"><li data-if="25">You squared 3 + 2. The square belongs only to the 2.</li></ul>
       <div class="solution"><p>2&sup2; = 4, then 3 + 4 = 7.</p></div>
     </div>
     <div class="q" data-answers="25" data-mode="value">
       <p class="qtext">Work out (3 + 2)&sup2;.</p>
       <ol class="ladder"><li>Brackets first: 3 + 2 = 5.</li></ol>
-      <ul class="wrong"><li data-if="7">With the brackets, 3 + 2 is done first, then squared.</li></ul>
+      <ul class="wrong"><li data-if="7">You squared only the 2. The brackets mean add first.</li></ul>
       <div class="solution"><p>5&sup2; = 25.</p></div>
     </div>
     <div class="q" data-answers="18" data-mode="value">
       <p class="qtext">Work out 2 &times; 3&sup2;.</p>
       <ol class="ladder"><li>Square the 3 first.</li></ol>
-      <ul class="wrong"><li data-if="36">That squares the 6 (2 &times; 3). The square belongs only to the 3.</li></ul>
+      <ul class="wrong"><li data-if="36">You squared 2 &times; 3. The square belongs only to the 3.</li></ul>
       <div class="solution"><p>3&sup2; = 9, then 2 &times; 9 = 18.</p></div>
     </div>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">Work out {frac:12 + 8/4}.</p>
       <ol class="ladder"><li>The top of a fraction is worked out first.</li></ol>
-      <ul class="wrong"><li data-if="14">That treats it as 12 + 8 &divide; 4. The fraction bar groups 12 + 8.</li></ul>
+      <ul class="wrong"><li data-if="14">You did 8 &divide; 4 first. The fraction line groups 12 + 8.</li></ul>
       <div class="solution"><p>12 + 8 = 20, then 20 &divide; 4 = 5.</p></div>
     </div>
   </div>
@@ -180,13 +205,13 @@
 <section class="flip-section">
   <div class="wrap narrow">
     <h2>Flip it: build it and unpick it</h2>
-    <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
+    <p>So far you have gone one way. Now run it backwards. Same idea, other direction.</p>
     <div class="flip-grid">
       <div class="flip-side"><h3>Forwards</h3><p>Given 2 + 3 &times; 4, work out the answer: 14.</p><p class="muted">Follow the rules to get an answer.</p></div>
       <div class="flip-side"><h3>Backwards</h3><p>Given the answer 20 and the numbers 2, 3 and 4, put in brackets to make it work: (2 + 3) &times; 4 = 20.</p><p class="muted">Choose the brackets (or operations) to hit a target.</p></div>
     </div>
-    <div class="key"><p><b>Key idea:</b> knowing the rules lets you go forwards (work out the answer) and backwards (decide where the brackets must go, or which number is missing). This is also how you check a calculation.</p></div>
-    <p>Missing numbers work the same way: undo the operations in the <i>opposite</i> order. To solve 3 &times; (? + 2) = 21, divide 21 by 3 to undo the multiplication, then take 2 away.</p>
+    <div class="key"><p><b>Key idea:</b> you can go forwards (work out the answer). You can go backwards (decide where the brackets go, or find a missing number). Going backwards also checks a calculation.</p></div>
+    <p>For a missing number, undo the operations in the opposite order. For 3 &times; (? + 2) = 21: divide 21 by 3, then take 2 away.</p>
   </div>
 </section>
 
@@ -217,19 +242,19 @@
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">3 &times; (? + 2) = 21. Find the missing number.</p>
       <ol class="ladder"><li>Undo the &times; 3 first: 21 &divide; 3.</li><li>Then undo the + 2.</li></ol>
-      <ul class="wrong"><li data-if="7">That is 21 &divide; 3, the value of the whole bracket. Now take away the 2.</li><li data-if="19">That is 21 &minus; 2. Undo the multiplication (the outer operation) first.</li></ul>
+      <ul class="wrong"><li data-if="7">That is 21 &divide; 3, the whole bracket. Now take away 2.</li><li data-if="19">That is 21 &minus; 2. Undo the &times; 3 first.</li></ul>
       <div class="solution"><p>21 &divide; 3 = 7, and 7 &minus; 2 = 5. Check: 3 &times; (5 + 2) = 21.</p></div>
     </div>
     <div class="q" data-answers="20" data-mode="value">
       <p class="qtext">? &divide; 4 + 1 = 6. Find the missing number.</p>
       <ol class="ladder"><li>Undo the + 1 first: 6 &minus; 1.</li><li>Then undo the &divide; 4.</li></ol>
-      <ul class="wrong"><li data-if="24">That undoes the steps in the wrong order. Undo the + 1 first.</li><li data-if="5">That is 6 &minus; 1. Now undo the &divide; 4.</li></ul>
+      <ul class="wrong"><li data-if="24">You undid &divide; 4 but forgot to undo the + 1.</li><li data-if="5">That is 6 &minus; 1. Now undo &divide; 4.</li></ul>
       <div class="solution"><p>6 &minus; 1 = 5, and 5 &times; 4 = 20. Check: 20 &divide; 4 + 1 = 6.</p></div>
     </div>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">Jo works out 8 + 12 &divide; 4 and gets 5. What should the answer be?</p>
       <ol class="ladder"><li>Divide first.</li></ol>
-      <ul class="wrong"><li data-if="5">That is Jo's mistake: adding 8 + 12 first.</li></ul>
+      <ul class="wrong"><li data-if="5">That is Jo's answer: 8 + 12 first.</li></ul>
       <div class="solution"><p>12 &divide; 4 = 3, then 8 + 3 = 11. Jo added first (20 &divide; 4 = 5).</p></div>
     </div>
   </div>
@@ -241,32 +266,32 @@
     <div class="q" data-type="mc">
       <p class="qtext"><b>Ali says:</b> &ldquo;6 + 4 &times; 2 = 20.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>He added before multiplying. 4 &times; 2 = 8 first, so the answer is 14.</li>
-        <li data-why="That works left to right, but multiplication has priority over addition.">Nothing: 6 + 4 = 10 and 10 &times; 2 = 20</li>
-        <li data-why="The question has no subtraction.">He should have subtracted</li>
+        <li data-correct>He added first. He should multiply 4 &times; 2 first.</li>
+        <li data-why="That goes left to right, but &times; comes before +.">Nothing is wrong: 6 + 4 = 10, then &times; 2.</li>
+        <li data-why="The question has no subtraction.">He should have subtracted, not added.</li>
       </ul>
       <ol class="ladder"><li>Which operation has priority?</li></ol>
-      <div class="solution"><p>6 + 8 = 14.</p></div>
+      <div class="solution"><p>4 &times; 2 = 8, then 6 + 8 = 14.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Bea says:</b> &ldquo;12 &divide; 3 &times; 2 = 2.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>She did 3 &times; 2 first. Division and multiplication have equal priority, so go left to right: 12 &divide; 3 = 4, then 4 &times; 2 = 8.</li>
-        <li data-why="D and M have the same priority: left to right.">Nothing: multiplication always comes first</li>
-        <li data-why="There is no addition.">She should have added</li>
+        <li data-correct>She did 3 &times; 2 first. &divide; and &times; go left to right.</li>
+        <li data-why="&divide; and &times; are equal. Go left to right.">Nothing is wrong: &times; always comes first.</li>
+        <li data-why="There is no addition.">She should have added the numbers.</li>
       </ul>
       <ol class="ladder"><li>Equal priority means left to right.</li></ol>
-      <div class="solution"><p>12 &divide; 3 &times; 2 = 4 &times; 2 = 8.</p></div>
+      <div class="solution"><p>12 &divide; 3 = 4, then 4 &times; 2 = 8.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Cal says:</b> &ldquo;3&sup2; = 6.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>He doubled the 3. 3&sup2; = 3 &times; 3 = 9.</li>
-        <li data-why="The little 2 says how many 3s to multiply together, not what to multiply by.">Nothing: 3 &times; 2 = 6</li>
-        <li data-why="That adds 3 + 2.">It should be 5</li>
+        <li data-correct>He doubled the 3. But 3&sup2; means 3 &times; 3.</li>
+        <li data-why="The little 2 says how many 3s to multiply.">Nothing is wrong: 3 &times; 2 = 6.</li>
+        <li data-why="That adds 3 + 2.">It should be 3 + 2, which is 5.</li>
       </ul>
       <ol class="ladder"><li>What does the small 2 mean?</li></ol>
-      <div class="solution"><p>3&sup2; = 3 &times; 3 = 9.</p></div>
+      <div class="solution"><p>3&sup2; = 3 &times; 3 = 9. The little 2 says how many 3s to multiply.</p></div>
     </div>
   </div>
 </section>
@@ -277,31 +302,31 @@
     <div class="q" data-answers="25" data-mode="value">
       <p class="qtext">Work out 7 + 3 &times; (8 &minus; 2).</p>
       <ol class="ladder"><li>Brackets first, then multiply, then add.</li></ol>
-      <ul class="wrong"><li data-if="60">That adds 7 + 3 first. Multiply before you add.</li></ul>
+      <ul class="wrong"><li data-if="60">You added 7 + 3 first. Multiply before you add.</li></ul>
       <div class="solution"><p>8 &minus; 2 = 6, 3 &times; 6 = 18, 7 + 18 = 25.</p></div>
     </div>
     <div class="q" data-answers="32" data-mode="value">
       <p class="qtext">Work out 50 &minus; 3&sup2; &times; 2.</p>
       <ol class="ladder"><li>Power, then multiply, then subtract.</li></ol>
-      <ul class="wrong"><li data-if="82">You subtracted 50 &minus; 9 before multiplying. Multiplying comes before subtracting.</li></ul>
+      <ul class="wrong"><li data-if="82">You did 50 &minus; 9 first. Multiply before you subtract.</li></ul>
       <div class="solution"><p>3&sup2; = 9, 9 &times; 2 = 18, 50 &minus; 18 = 32.</p></div>
     </div>
     <div class="q" data-answers="13" data-mode="value">
       <p class="qtext">Work out 2&sup2; + 3&sup2;.</p>
       <ol class="ladder"><li>Square each, then add.</li></ol>
-      <ul class="wrong"><li data-if="25">That is (2 + 3)&sup2;. Here each number is squared separately.</li></ul>
+      <ul class="wrong"><li data-if="25">That is (2 + 3)&sup2;. Square each number on its own.</li></ul>
       <div class="solution"><p>4 + 9 = 13.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Work out (10 &minus; 4)&sup2; &divide; 3.</p>
       <ol class="ladder"><li>Brackets, then the power, then divide.</li></ol>
-      <ul class="wrong"><li data-if="4">You divided 6 by 3 before squaring. Powers come before division.</li></ul>
+      <ul class="wrong"><li data-if="4">You did 6 &divide; 3 first. Powers come before division.</li></ul>
       <div class="solution"><p>10 &minus; 4 = 6, 6&sup2; = 36, 36 &divide; 3 = 12.</p></div>
     </div>
     <div class="q" data-answers="18" data-mode="value">
       <p class="qtext">Work out 36 &divide; (2 + 4) &times; 3.</p>
       <ol class="ladder"><li>Brackets first.</li><li>Then left to right.</li></ol>
-      <ul class="wrong"><li data-if="2">You did 6 &times; 3 first. After the brackets, go left to right: 36 &divide; 6 first.</li></ul>
+      <ul class="wrong"><li data-if="2">You did 6 &times; 3 first. Go left to right: 36 &divide; 6.</li></ul>
       <div class="solution"><p>2 + 4 = 6, 36 &divide; 6 = 6, 6 &times; 3 = 18.</p></div>
     </div>
   </div>
@@ -310,23 +335,25 @@
 <section class="exam-section">
   <div class="wrap narrow">
     <h2>Exam style</h2>
-    <p class="muted">No calculator. Show each step; marks are given for the right order.</p>
+    <p class="muted">No calculator. Marks are given for the right order.</p>
+    <p class="muted">Not sure what a question word means? <a href="command-words.html">Question words explained</a>.</p>
+    <p class="muted">Write your working on paper, then type the answer.</p>
     <div class="q" data-answers="103" data-mode="value">
       <p class="qtext"><b>(a)</b> [1 mark] Work out 3 + 4 &times; 5&sup2;.</p>
       <ol class="ladder"><li>Power first, then multiply, then add.</li></ol>
-      <ul class="wrong"><li data-if="175">That adds 3 + 4 first. Do the power, then the multiplication, then the addition.</li></ul>
+      <ul class="wrong"><li data-if="175">You added 3 + 4 first. Power, then multiply, then add.</li></ul>
       <div class="solution"><p>5&sup2; = 25, 4 &times; 25 = 100, 3 + 100 = 103.</p></div>
     </div>
     <div class="q" data-answers="27" data-mode="value">
       <p class="qtext"><b>(b)</b> [2 marks] Work out (12 &minus; 3)&sup2; &divide; 3.</p>
       <ol class="ladder"><li>Brackets: 12 &minus; 3.</li></ol>
-      <ul class="wrong"><li data-if="9">That is only the bracket, 12 &minus; 3. Now square it and divide by 3.</li><li data-if="81">That stops before dividing by 3.</li></ul>
+      <ul class="wrong"><li data-if="9">That is only the bracket. Now square it and divide by 3.</li><li data-if="81">That stops before dividing by 3.</li></ul>
       <div class="solution"><p>9&sup2; = 81 and 81 &divide; 3 = 27.</p></div>
     </div>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext"><b>(c)</b> [2 marks] Jo works out 8 + 12 &divide; 4 and gets 5. What is the correct answer?</p>
       <ol class="ladder"><li>Divide before you add.</li></ol>
-      <ul class="wrong"><li data-if="5">That is Jo's mistake: adding first.</li></ul>
+      <ul class="wrong"><li data-if="5">That is Jo's answer: adding first.</li></ul>
       <div class="solution"><p>12 &divide; 4 = 3, then 8 + 3 = 11.</p></div>
     </div>
   </div>
@@ -338,13 +365,13 @@
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Work out {frac:2 + 10/3} + 4 &times; 2.</p>
       <ol class="ladder"><li>Top of the fraction first: 2 + 10 = 12.</li><li>Then 12 &divide; 3, then add 4 &times; 2.</li></ol>
-      <ul class="wrong"><li data-if="20">Check the fraction: the top is 2 + 10 = 12, so {frac:12/3} = 4 (not 12).</li></ul>
+      <ul class="wrong"><li data-if="20">The top is 12. {frac:12/3} = 4, not 12.</li></ul>
       <div class="solution"><p>{frac:12/3} = 4 and 4 &times; 2 = 8. 4 + 8 = 12.</p></div>
     </div>
     <div class="q" data-answers="2" data-mode="value">
       <p class="qtext">Work out 2 &times; 3&sup2; &divide; 6 + (&minus;1).</p>
       <ol class="ladder"><li>Power, then left to right. Adding (&minus;1) is the same as subtracting 1.</li></ol>
-      <ul class="wrong"><li data-if="4">The last step adds a negative, which takes 1 away.</li><li data-if="0">That leaves the 3 unsquared. 3&sup2; = 9, so 2 &times; 9 = 18 first.</li></ul>
+      <ul class="wrong"><li data-if="4">Adding &minus;1 takes 1 away. It does not add 1.</li><li data-if="0">You did not square the 3. 3&sup2; = 9, so 2 &times; 9 = 18.</li></ul>
       <div class="solution"><p>3&sup2; = 9, 2 &times; 9 = 18, 18 &divide; 6 = 3, 3 + (&minus;1) = 2.</p></div>
     </div>
   </div>
@@ -360,8 +387,8 @@
     </ul>
     <h2>Common traps</h2>
     <ul class="tick traps">
-      <li>Working strictly left to right.</li>
-      <li>Doing all the multiplication before any division (D and M are equal).</li>
+      <li>Working only from left to right.</li>
+      <li>Doing all the multiplication before any division. They are equal.</li>
       <li>Squaring more than the number just before the power.</li>
       <li>Forgetting that a fraction bar acts like brackets.</li>
       <li>Undoing steps in the wrong order when finding a missing number.</li>
