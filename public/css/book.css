@@ -197,6 +197,24 @@
 .js .q .ladder,.js .q .wrong,.js .q .options,.js .q .solution{display:none;}
 .js .q .solution.open{display:block;}
 
+/* ---------- kitchen scale and geometry figures ---------- */
+.scale-svg,.geo-svg{width:100%;max-width:420px;height:auto;margin:0 auto;display:block;}
+.scale-svg .base,.scale-svg .post{fill:var(--navy);}
+.scale-svg .beam{stroke:var(--navy);stroke-width:7;stroke-linecap:round;}
+.scale-svg .pivot{fill:var(--gold);stroke:var(--navy);stroke-width:3;}
+.scale-svg .cord{stroke:var(--navy-mid);stroke-width:2;}
+.scale-svg .pan{fill:#efe9db;stroke:var(--navy);stroke-width:3;}
+.scale-svg .wt{stroke:var(--navy);stroke-width:2;}
+.scale-svg .wt-x{fill:#efe7f8;}
+.scale-svg .wt-n{fill:#fbeadb;}
+.scale-svg .wlab{font:700 17px "Source Sans 3",sans-serif;fill:var(--ink);}
+.scale-svg .eq-sign{font:700 28px "Fraunces",Georgia,serif;fill:var(--c-algebra);}
+.geo-svg .ln{stroke:var(--navy);stroke-width:3;stroke-linecap:round;}
+.geo-svg .arc{fill:none;stroke:var(--c-geometry);stroke-width:3;}
+.geo-svg .tri{fill:#e1f3e6;stroke:var(--navy);stroke-width:3;}
+.geo-svg .arrow{fill:none;stroke:var(--navy);stroke-width:2.5;}
+.geo-svg .svg-t{font:700 17px "Source Sans 3",sans-serif;fill:var(--ink);}
+
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
 .g-letter-h{font-size:2.2rem;color:var(--gold);border-bottom:2px solid var(--gold);margin:0 0 10px;}
