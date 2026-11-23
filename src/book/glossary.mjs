@@ -297,6 +297,54 @@ export const GLOSSARY = [
     see: ['negative-number', 'integer'],
   },
 
+  {
+    id: 'bidmas', term: 'BIDMAS', strand: 'n', level: 'F',
+    def: 'The agreed order for working out a calculation: Brackets, Indices (powers), Division and Multiplication together, then Addition and Subtraction together. Some people call it BODMAS or PEMDAS.',
+    example: '3 + 4 &times; 2 = 3 + 8 = 11 (multiply before adding). (3 + 4) &times; 2 = 14 (brackets first).',
+    watch: 'D and M have the same priority, and so do A and S: work left to right. 8 &divide; 2 &times; 4 = 16, not 1. A fraction bar and a root sign act like brackets.',
+    flip: 'Building a calculation with brackets to hit a target, and unpicking it step by step.',
+    see: ['operation', 'power'],
+  },
+  {
+    id: 'operation', term: 'Operation', strand: 'n', level: 'F',
+    def: 'A mathematical process such as add, subtract, multiply or divide. Squaring and square-rooting are operations too.',
+    example: 'The four operations: +, &minus;, &times;, &divide;.',
+    flip: 'Every operation has an inverse that undoes it.',
+    see: ['inverse-operation', 'bidmas'],
+  },
+  {
+    id: 'divisible', term: 'Divisible', strand: 'n', level: 'F',
+    def: 'A number is divisible by another if it divides into it exactly, with no remainder.',
+    example: '78 is divisible by 6 because 78 &divide; 6 = 13. 4,563 is divisible by 3 because its digits add up to 18, which is a multiple of 3.',
+    watch: 'Quick tests: by 2 if it ends in an even digit; by 3 if the digit sum divides by 3, and by 9 if it divides by 9; by 5 if it ends in 0 or 5; by 10 if it ends in 0.',
+    flip: 'If A is divisible by B, then B is a factor of A and A is a multiple of B.',
+    see: ['factor', 'multiple'],
+  },
+  {
+    id: 'prime-factorisation', term: 'Prime factorisation', strand: 'n', level: 'F',
+    def: 'Writing a number as a product of prime numbers. Every whole number bigger than 1 has exactly one prime factorisation (ignoring order).',
+    example: '84 = 2 &times; 2 &times; 3 &times; 7 = 2&sup2; &times; 3 &times; 7. A factor tree breaks a number into primes step by step.',
+    watch: 'Keep splitting until every branch ends in a prime. 1 is not prime, so a branch never ends in 1.',
+    flip: 'Break a number into primes, or multiply the primes together to rebuild it.',
+    see: ['prime-number', 'factor', 'hcf'],
+  },
+  {
+    id: 'cube-number', term: 'Cube number', strand: 'n', level: 'F',
+    def: 'The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.',
+    example: '1, 8, 27, 64, 125 &hellip; 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64.',
+    watch: 'A negative number cubed stays negative: (&minus;2)<sup>3</sup> = &minus;8.',
+    flip: 'Cubing and cube-rooting undo each other.',
+    see: ['cube-root', 'square-number', 'power'],
+  },
+  {
+    id: 'cube-root', term: 'Cube root', strand: 'n', level: 'F',
+    def: 'The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.',
+    example: '&#8731;125 = 5 because 5 &times; 5 &times; 5 = 125.',
+    watch: 'Unlike square roots, a cube root of a negative number exists: &#8731;(&minus;8) = &minus;2.',
+    flip: 'The inverse of cubing.',
+    see: ['cube-number', 'square-root'],
+  },
+
   // ---------- Algebra ----------
   {
     id: 'unknown', term: 'Unknown (variable)', strand: 'a', level: 'F',
@@ -456,6 +504,15 @@ export const GLOSSARY = [
     see: ['equation'],
   },
 
+  {
+    id: 'like-terms', term: 'Like terms', strand: 'a', level: 'F',
+    def: 'Terms that have exactly the same letter part, so they can be added or subtracted.',
+    example: '3a and 5a are like terms: 3a + 5a = 8a. 3a and 3b are not, and neither are 3a and 3a&sup2;.',
+    watch: 'Each term keeps the sign in front of it: in 5x + 2 &minus; x the x terms are 5x and &minus;x.',
+    flip: 'Collecting like terms simplifies; the reverse is splitting a term up.',
+    see: ['term', 'coefficient', 'expression'],
+  },
+
   // ---------- Ratio, proportion ----------
   {
     id: 'ratio', term: 'Ratio', strand: 'r', level: 'F',
@@ -612,6 +669,84 @@ export const GLOSSARY = [
     def: 'Values of sin, cos and tan you should know without a calculator.',
     example: 'sin 30&deg; = {frac:1/2}, cos 60&deg; = {frac:1/2}, tan 45&deg; = 1, sin 60&deg; = {frac:&radic;3/2}.',
     see: ['sine-rule'],
+  },
+
+  {
+    id: 'angle', term: 'Angle', strand: 'g', level: 'F',
+    def: 'A measure of turn between two lines that meet at a point. It is measured in degrees: a full turn is 360&deg;.',
+    example: 'A right angle is 90&deg;. A straight line is 180&deg;.',
+    watch: 'The size of an angle does not depend on how long the lines are drawn.',
+    see: ['right-angle', 'acute-angle', 'obtuse-angle', 'reflex-angle'],
+  },
+  {
+    id: 'acute-angle', term: 'Acute angle', strand: 'g', level: 'F',
+    def: 'An angle that is less than 90&deg;.',
+    example: '35&deg; and 89&deg; are acute.',
+    watch: 'Exactly 90&deg; is a right angle, not acute.',
+    see: ['angle', 'obtuse-angle'],
+  },
+  {
+    id: 'obtuse-angle', term: 'Obtuse angle', strand: 'g', level: 'F',
+    def: 'An angle that is more than 90&deg; and less than 180&deg;.',
+    example: '120&deg; and 179&deg; are obtuse.',
+    see: ['angle', 'acute-angle', 'reflex-angle'],
+  },
+  {
+    id: 'reflex-angle', term: 'Reflex angle', strand: 'g', level: 'F',
+    def: 'An angle that is more than 180&deg; and less than 360&deg;.',
+    example: '270&deg; is reflex. A reflex angle plus the angle on the other side of the same point makes 360&deg;.',
+    see: ['angle', 'obtuse-angle'],
+  },
+  {
+    id: 'vertically-opposite', term: 'Vertically opposite angles', strand: 'g', level: 'F',
+    def: 'The angles that face each other when two straight lines cross (an X shape). They are always equal.',
+    example: 'If one angle is 48&deg;, the angle directly opposite is also 48&deg;, and each of the other two is 132&deg;.',
+    watch: 'These are not the angles <i>next to</i> each other: those add to 180&deg;.',
+    see: ['angle'],
+  },
+  {
+    id: 'alternate-angles', term: 'Alternate angles', strand: 'g', level: 'F',
+    def: 'Angles between two parallel lines, on opposite sides of the line that crosses them, forming a Z shape. Alternate angles are equal.',
+    example: 'If one angle is 70&deg;, the alternate angle is also 70&deg;.',
+    watch: 'Only equal when the two lines are parallel.',
+    see: ['corresponding-angles', 'co-interior-angles', 'parallel'],
+  },
+  {
+    id: 'corresponding-angles', term: 'Corresponding angles', strand: 'g', level: 'F',
+    def: 'Angles in the same position at each of the two crossing points when a line crosses two parallel lines, forming an F shape. Corresponding angles are equal.',
+    example: 'If the top-right angle at one crossing is 70&deg;, the top-right angle at the other is also 70&deg;.',
+    watch: 'Only equal when the two lines are parallel.',
+    see: ['alternate-angles', 'co-interior-angles', 'parallel'],
+  },
+  {
+    id: 'co-interior-angles', term: 'Co-interior angles', strand: 'g', level: 'F',
+    def: 'Angles between two parallel lines, on the same side of the line that crosses them, forming a C shape. Co-interior angles add up to 180&deg;.',
+    example: 'If one angle is 70&deg;, its co-interior angle is 180 &minus; 70 = 110&deg;.',
+    watch: 'Not equal (unless both are 90&deg;): they add to 180&deg;.',
+    see: ['alternate-angles', 'corresponding-angles', 'parallel'],
+  },
+  {
+    id: 'parallel', term: 'Parallel', strand: 'g', level: 'F',
+    def: 'Lines that stay the same distance apart and never meet. They are marked with matching arrows.',
+    example: 'The two long edges of a rectangle are parallel.',
+    watch: 'Two lines that meet are never parallel.',
+    see: ['perpendicular', 'alternate-angles'],
+  },
+  {
+    id: 'polygon', term: 'Polygon', strand: 'g', level: 'F',
+    def: 'A closed flat shape with straight sides. A shape with n sides has interior angles that add up to (n &minus; 2) &times; 180&deg;.',
+    example: 'Triangle (3 sides), quadrilateral (4), pentagon (5), hexagon (6), octagon (8). Interior angles of a pentagon add to 540&deg;.',
+    watch: 'The exterior angles of any convex polygon (one with no dents) add up to 360&deg;.',
+    flip: 'From the number of sides to the angle total, or from an angle back to the number of sides.',
+    see: ['regular-polygon', 'angle'],
+  },
+  {
+    id: 'regular-polygon', term: 'Regular polygon', strand: 'g', level: 'F',
+    def: 'A polygon where all the sides are equal and all the angles are equal.',
+    example: 'A square and an equilateral triangle are regular. Each interior angle of a regular hexagon is 120&deg;.',
+    watch: 'A shape can have equal sides without equal angles (a rhombus), so it is not regular.',
+    flip: 'Each exterior angle is 360 &divide; n, so n = 360 &divide; exterior angle.',
+    see: ['polygon'],
   },
 
   // ---------- Probability and statistics ----------

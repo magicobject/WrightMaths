@@ -1,0 +1,462 @@
+<main class="book strand-number" data-book-page="topic" data-topic="squares-roots">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Number &middot; Foundation and Higher</span>
+      <h1>Squares and square roots</h1>
+      <p class="lead">Squaring and square-rooting as two sides of the same idea: side and area, and a first look at cubes.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Squares and square roots</span></nav>
+    {prereqs}
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Have a go before you read anything. The last three are from Factors and multiples, the layer this stands on.</p>
+    <div class="q" data-answers="49" data-mode="value">
+      <p class="qtext">A square tile has sides of 7 cm. What is its area, in cm&sup2;?</p>
+      <ol class="ladder"><li>Area of a square = side &times; side.</li></ol>
+      <ul class="wrong"><li data-if="28">That is the perimeter (4 &times; 7). Area is side &times; side.</li><li data-if="14">That is 7 + 7. Area multiplies the side by itself.</li></ul>
+      <div class="solution"><p>7 &times; 7 = 49 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Last time: how many factors does 36 have?</p>
+      <ol class="ladder"><li>Factor pairs: 1 &times; 36, 2 &times; 18, 3 &times; 12, 4 &times; 9, and 6 &times; 6.</li></ol>
+      <ul class="wrong"><li data-if="10">6 &times; 6 gives only one factor, 6, not two.</li><li data-if="8">You missed one. 6 is a factor too.</li></ul>
+      <div class="solution"><p>1, 2, 3, 4, 6, 9, 12, 18, 36: nine. (6 is its own partner, so it is counted once.)</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">What is the HCF of 12 and 18?</p>
+      <ol class="ladder"><li>Factors of 12 and 18.</li></ol>
+      <ul class="wrong"><li data-if="36">36 is a common multiple, not a factor.</li></ul>
+      <div class="solution"><p>Common factors: 1, 2, 3, 6. HCF = 6.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Is 49 a multiple of 7? Work out 49 &divide; 7.</p>
+      <ol class="ladder"><li>7 &times; 7 = 49.</li></ol>
+      
+      <div class="solution"><p>49 &divide; 7 = 7, exactly.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Square numbers</h2>
+    <p>To <b>square</b> a number, multiply it by itself. The answer is a {term:square-number}, and it is called that because it is the <b>area of a square</b> with that side length. 4&sup2; = 4 &times; 4 = 16.</p>
+    <p class="sum-line">1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144 &hellip;</p>
+    <div class="key"><p><b>Key idea:</b> learn the squares up to 15&sup2; = 225, because they come up everywhere (Pythagoras, area, algebra). The small 2 means &ldquo;multiply the number by itself&rdquo;. It does not mean &ldquo;times 2&rdquo;: 6&sup2; = 36, not 12.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Work out 1.1&sup2;.</p>
+      <ol class="steps">
+        <li>Ignore the points: 11 &times; 11 = 121.</li>
+        <li>There are 2 decimal places in total (1 + 1), so 1.21.</li>
+      </ol>
+      <p class="muted">Sense check: 1.1 is a bit more than 1, so its square is a bit more than 1.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: squares</h2>
+    <div class="q" data-answers="81" data-mode="value">
+      <p class="qtext">Work out 9&sup2;.</p>
+      <ol class="ladder"><li>9 &times; 9.</li></ol>
+      <ul class="wrong"><li data-if="18">That is 9 &times; 2. Squaring multiplies 9 by itself.</li></ul>
+      <div class="solution"><p>9 &times; 9 = 81.</p></div>
+    </div>
+    <div class="q" data-answers="144" data-mode="value">
+      <p class="qtext">Work out 12&sup2;.</p>
+      <ol class="ladder"><li>12 &times; 12: ten twelves plus two twelves.</li></ol>
+      <ul class="wrong"><li data-if="24">That is 12 &times; 2. Squaring multiplies 12 by itself.</li></ul>
+      <div class="solution"><p>120 + 24 = 144.</p></div>
+    </div>
+    <div class="q" data-answers="225" data-mode="value">
+      <p class="qtext">Work out 15&sup2;.</p>
+      <ol class="ladder"><li>15 &times; 15: 15 &times; 10 = 150, then 15 &times; 5 = 75.</li></ol>
+      <ul class="wrong"><li data-if="30">That is 15 &times; 2.</li><li data-if="150">That is only 15 &times; 10. Add 15 &times; 5 as well.</li></ul>
+      <div class="solution"><p>150 + 75 = 225.</p></div>
+    </div>
+    <div class="q" data-answers="0.25" data-mode="value">
+      <p class="qtext">Work out 0.5&sup2;.</p>
+      <ol class="ladder"><li>5 &times; 5 = 25, then put the point back: two decimal places.</li></ol>
+      <ul class="wrong"><li data-if="2.5">That is 0.5 &times; 5. Squaring multiplies 0.5 by itself.</li><li data-if="1">That is 0.5 &times; 2. Squaring multiplies 0.5 by itself, not by 2.</li></ul>
+      <div class="solution"><p>0.5 &times; 0.5 = 0.25. (Half of a half is a quarter.)</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a square number?</p>
+      <ul class="options">
+        <li data-why="7 &times; 7 = 49 and 8 &times; 8 = 64, so 50 is not a square.">50</li>
+        <li data-correct>64</li>
+        <li data-why="8 &times; 8 = 64 and 9 &times; 9 = 81, so 80 is not a square.">80</li>
+      </ul>
+      <ol class="ladder"><li>Look for a whole number that multiplies by itself.</li></ol>
+      <div class="solution"><p>8 &times; 8 = 64.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Square roots</h2>
+    <p>A {term:square-root} undoes squaring. The square root of 49 is the number that multiplied by itself gives 49. It is written &radic;49 = 7. Think of it as the <b>side length</b> of a square with area 49.</p>
+    <div class="key"><p><b>Key idea:</b> the root sign works like brackets: &radic;(36 + 64) means work out 36 + 64 = 100 first, then &radic;100 = 10. But &radic;36 + &radic;64 = 6 + 8 = 14. These are different!</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Work out &radic;(36 + 64).</p>
+      <ol class="steps">
+        <li>The root sign groups what is under it: 36 + 64 = 100.</li>
+        <li>&radic;100 = 10.</li>
+      </ol>
+      <p class="muted">Trap: &radic;36 + &radic;64 = 14, which is not the same. You cannot split a root over an addition.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: roots</h2>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Work out &radic;81.</p>
+      <ol class="ladder"><li>Which number times itself is 81?</li></ol>
+      <ul class="wrong"><li data-if="40.5">That is 81 &divide; 2. A square root asks &ldquo;what times itself?&rdquo;</li></ul>
+      <div class="solution"><p>9 &times; 9 = 81, so &radic;81 = 9.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">Work out &radic;144.</p>
+      <ol class="ladder"><li>12 &times; 12 = 144.</li></ol>
+      <ul class="wrong"><li data-if="72">That is 144 &divide; 2.</li></ul>
+      <div class="solution"><p>&radic;144 = 12.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">Work out &radic;169.</p>
+      <ol class="ladder"><li>It is a little more than 12, because 12&sup2; = 144.</li></ol>
+      <ul class="wrong"><li data-if="84.5">That is 169 &divide; 2.</li></ul>
+      <div class="solution"><p>13 &times; 13 = 169.</p></div>
+    </div>
+    <div class="q" data-answers="0.5" data-mode="value">
+      <p class="qtext">Work out &radic;0.25.</p>
+      <ol class="ladder"><li>Which decimal times itself is 0.25?</li></ol>
+      <ul class="wrong"><li data-if="0.05">0.05 &times; 0.05 = 0.0025.</li></ul>
+      <div class="solution"><p>0.5 &times; 0.5 = 0.25.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">Work out &radic;(36 + 64).</p>
+      <ol class="ladder"><li>Add under the root first.</li></ol>
+      <ul class="wrong"><li data-if="14">That is &radic;36 + &radic;64. The root sign groups what is under it: add first.</li></ul>
+      <div class="solution"><p>36 + 64 = 100 and &radic;100 = 10.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Roots that are not whole numbers</h2>
+    <p>Most numbers are not perfect squares, so their roots are decimals that go on for ever. You can still <b>estimate</b> them by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
+    <div class="key"><p><b>Key idea:</b> a calculator gives a decimal such as &radic;50 = 7.0710&hellip;. Estimate first so you can tell whether the calculator answer makes sense. If the answer is a root you must leave exactly (a {term:surd}), keep it as &radic;50.</p></div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Estimate &radic;20.</p>
+      <ol class="steps">
+        <li>16 = 4&sup2; and 25 = 5&sup2;, so &radic;20 is between 4 and 5.</li>
+        <li>20 is a bit nearer 16 than 25, so the root is a bit under 4.5: about 4.4 or 4.5. (The calculator says 4.47.)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: estimating roots</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Between which two whole numbers does &radic;50 lie?</p>
+      <ul class="options">
+        <li data-why="6&sup2; = 36 and 7&sup2; = 49, so &radic;50 is above 7.">6 and 7</li>
+        <li data-correct>7 and 8</li>
+        <li data-why="8&sup2; = 64, which is more than 50.">8 and 9</li>
+      </ul>
+      <ol class="ladder"><li>Find the squares either side of 50: 49 and 64.</li></ol>
+      <div class="solution"><p>7&sup2; = 49 and 8&sup2; = 64. 50 is between them, so &radic;50 is between 7 and 8.</p></div>
+    </div>
+    <div class="q" data-answers="5.5" data-mode="value">
+      <p class="qtext">Use a calculator to find &radic;30 to 1 decimal place.</p>
+      <ol class="ladder"><li>It should be between 5 and 6, because 25 &lt; 30 &lt; 36.</li></ol>
+      <ul class="wrong"><li data-if="5.4">The next digit is 7 which rounds up. &radic;30 = 5.477&hellip;</li><li data-if="15">That is 30 &divide; 2.</li></ul>
+      <div class="solution"><p>&radic;30 = 5.477&hellip; = 5.5 (1 d.p.).</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which is closest to &radic;40?</p>
+      <ul class="options">
+        <li data-correct>6.3</li>
+        <li data-why="6.7&sup2; = 44.89, which is too big.">6.7</li>
+        <li data-why="7&sup2; = 49, which is much bigger than 40.">7.0</li>
+      </ul>
+      <ol class="ladder"><li>Square each option and see which is nearest 40.</li></ol>
+      <div class="solution"><p>6.3&sup2; = 39.69, very close to 40.</p></div>
+    </div>
+    <div class="q" data-answers="8.4" data-mode="value">
+      <p class="qtext">Use a calculator to find &radic;70 to 1 decimal place.</p>
+      <ol class="ladder"><li>It is between 8 and 9 because 64 &lt; 70 &lt; 81.</li></ol>
+      <ul class="wrong"><li data-if="8.3">8.366&hellip; rounds up to 8.4 (the digit after is 6).</li><li data-if="35">That is 70 &divide; 2.</li></ul>
+      <div class="solution"><p>&radic;70 = 8.366&hellip; = 8.4 (1 d.p.).</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Cubes and cube roots</h2>
+    <p>To <b>cube</b> a number, multiply it by itself <i>twice</i>. 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64. A {term:cube-number} is the volume of a cube. The {term:cube-root} undoes cubing: &#8731;64 = 4.</p>
+    <div class="key"><p><b>Key idea:</b> cubes grow fast: 2<sup>3</sup> = 8, 3<sup>3</sup> = 27, 4<sup>3</sup> = 64, 5<sup>3</sup> = 125, 10<sup>3</sup> = 1,000. A negative number cubed stays negative: (&minus;2)<sup>3</sup> = &minus;8.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: cubes</h2>
+    <div class="q" data-answers="27" data-mode="value">
+      <p class="qtext">Work out 3<sup>3</sup>.</p>
+      <ol class="ladder"><li>3 &times; 3 &times; 3.</li></ol>
+      <ul class="wrong"><li data-if="9">That is 3&sup2;. Cubing multiplies three 3s.</li><li data-if="6">That is 3 + 3.</li></ul>
+      <div class="solution"><p>9 &times; 3 = 27.</p></div>
+    </div>
+    <div class="q" data-answers="64" data-mode="value">
+      <p class="qtext">Work out 4<sup>3</sup>.</p>
+      <ol class="ladder"><li>4 &times; 4 &times; 4.</li></ol>
+      <ul class="wrong"><li data-if="12">That is 4 &times; 3. Cubing multiplies three 4s.</li></ul>
+      <div class="solution"><p>16 &times; 4 = 64.</p></div>
+    </div>
+    <div class="q" data-answers="1000" data-mode="value">
+      <p class="qtext">Work out 10<sup>3</sup>.</p>
+      <ol class="ladder"><li>10 &times; 10 &times; 10.</li></ol>
+      <ul class="wrong"><li data-if="30">That is 10 &times; 3.</li></ul>
+      <div class="solution"><p>100 &times; 10 = 1,000.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the cube root of 125. (That is, which number cubed gives 125?)</p>
+      <ol class="ladder"><li>5 &times; 5 = 25, and 25 &times; 5 = ?</li></ol>
+      <ul class="wrong"><li data-if="25">5&sup2; = 25, but 125 needs three 5s.</li></ul>
+      <div class="solution"><p>5 &times; 5 &times; 5 = 125.</p></div>
+    </div>
+    <div class="q" data-answers="-8" data-mode="value">
+      <p class="qtext">Work out (&minus;2)<sup>3</sup>.</p>
+      <ol class="ladder"><li>(&minus;2) &times; (&minus;2) = 4, then &times; (&minus;2).</li></ol>
+      <ul class="wrong"><li data-if="8">There are three negative signs, an odd number, so the answer is negative.</li></ul>
+      <div class="solution"><p>4 &times; (&minus;2) = &minus;8. An odd number of negatives gives a negative.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: area and side length</h2>
+    <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>A square has side 9 cm. Its area is 9&sup2; = 81 cm&sup2;.</p><p class="muted">Side to area: square it.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>A square has area 81 cm&sup2;. Its side is &radic;81 = 9 cm.</p><p class="muted">Area to side: square-root it.</p></div>
+    </div>
+    <div class="key"><p><b>Key idea:</b> squaring and square-rooting undo each other, just as multiplying and dividing do. One goes from side to area, the other from area to side.</p></div>
+    <p>There is one more twist when you <b>solve</b> an equation like x&sup2; = 49: both 7 and &minus;7 square to 49, so there are <b>two</b> solutions, x = 7 and x = &minus;7. The &radic; sign itself always means the positive root, &radic;49 = 7.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">A square has an area of 81 cm&sup2;. What is the length of one side, in cm?</p>
+      <ol class="ladder"><li>Undo the squaring.</li></ol>
+      <ul class="wrong"><li data-if="40.5">That is 81 &divide; 2. Take the square root.</li></ul>
+      <div class="solution"><p>&radic;81 = 9 cm.</p></div>
+    </div>
+    <div class="q" data-answers="25" data-mode="value">
+      <p class="qtext">A square has a perimeter of 20 cm. What is its area, in cm&sup2;?</p>
+      <ol class="ladder"><li>Perimeter is 4 sides. Find one side first.</li></ol>
+      <ul class="wrong"><li data-if="5">That is the side length. The question asks for the area.</li><li data-if="400">That squares the perimeter. Find the side first.</li></ul>
+      <div class="solution"><p>Side = 20 &divide; 4 = 5 cm. Area = 5&sup2; = 25 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="49" data-mode="value">
+      <p class="qtext">&radic;x = 7. What is x?</p>
+      <ol class="ladder"><li>Undo the square root by squaring.</li></ol>
+      <ul class="wrong"><li data-if="3.5">That is 7 &divide; 2. Undo a square root by squaring.</li><li data-if="14">That is 7 &times; 2.</li></ul>
+      <div class="solution"><p>7&sup2; = 49. Check: &radic;49 = 7.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">x&sup2; = 169. Write down the positive solution for x.</p>
+      <ol class="ladder"><li>Both 13 and &minus;13 square to 169.</li></ol>
+      <ul class="wrong"><li data-if="84.5">That is 169 &divide; 2. Take the square root.</li></ul>
+      <div class="solution"><p>x = 13 or x = &minus;13. The positive solution is 13.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many different numbers satisfy x&sup2; = 49?</p>
+      <ol class="ladder"><li>7 and another.</li></ol>
+      <ul class="wrong"><li data-if="1">(&minus;7) &times; (&minus;7) = 49 too. A negative squared is positive.</li></ul>
+      <div class="solution"><p>x = 7 and x = &minus;7: two solutions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ian says:</b> &ldquo;6&sup2; = 12.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He doubled the 6. 6&sup2; = 6 &times; 6 = 36.</li>
+        <li data-why="The little 2 says &ldquo;multiply by itself&rdquo;, not &ldquo;times 2&rdquo;.">Nothing: 6 &times; 2 = 12</li>
+        <li data-why="That is 6 + 2.">It should be 8</li>
+      </ul>
+      <ol class="ladder"><li>What does the small 2 stand for?</li></ol>
+      <div class="solution"><p>6&sup2; = 36.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Jen says:</b> &ldquo;&radic;(9 + 16) = &radic;9 + &radic;16 = 7.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>You cannot split a root over addition. &radic;(9 + 16) = &radic;25 = 5.</li>
+        <li data-why="Check: &radic;25 = 5, not 7.">Nothing: it is correct</li>
+        <li data-why="That is 9 + 16. You still need the root.">The answer should be 25</li>
+      </ul>
+      <ol class="ladder"><li>Add first under the root, then square-root.</li></ol>
+      <div class="solution"><p>&radic;25 = 5.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Kit says:</b> &ldquo;&radic;16 = 8.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He halved 16. &radic;16 = 4 because 4 &times; 4 = 16.</li>
+        <li data-why="A square root is not a half.">Nothing: half of 16 is 8</li>
+        <li data-why="256 is 16&sup2;. The root goes the other way.">It should be 256</li>
+      </ul>
+      <ol class="ladder"><li>Which number times itself is 16?</li></ol>
+      <div class="solution"><p>&radic;16 = 4.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="146" data-mode="value">
+      <p class="qtext">Work out 11&sup2; + 5&sup2;.</p>
+      <ol class="ladder"><li>121 + 25.</li></ol>
+      <ul class="wrong"><li data-if="256">That is (11 + 5)&sup2;. Square each separately.</li></ul>
+      <div class="solution"><p>11&sup2; = 121 and 5&sup2; = 25, so 146.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Work out &radic;(100 &minus; 36).</p>
+      <ol class="ladder"><li>Work out under the root first.</li></ol>
+      <ul class="wrong"><li data-if="4">That is &radic;100 &minus; &radic;36 = 10 &minus; 6. Subtract under the root first.</li></ul>
+      <div class="solution"><p>100 &minus; 36 = 64 and &radic;64 = 8.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Work out &radic;(5&sup2; &minus; 3&sup2;).</p>
+      <ol class="ladder"><li>25 &minus; 9 first.</li></ol>
+      <ul class="wrong"><li data-if="2">That is &radic;25 &minus; &radic;9. Subtract under the root first.</li></ul>
+      <div class="solution"><p>25 &minus; 9 = 16 and &radic;16 = 4.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is NOT a square number: 36, 48, 100?</p>
+      <ul class="options">
+        <li data-why="6 &times; 6 = 36.">36</li>
+        <li data-correct>48</li>
+        <li data-why="10 &times; 10 = 100.">100</li>
+      </ul>
+      <ol class="ladder"><li>6&sup2; = 36 and 7&sup2; = 49: where does 48 fit?</li></ol>
+      <div class="solution"><p>48 is between 36 and 49, so it is not a square.</p></div>
+    </div>
+    <div class="q" data-answers="17" data-mode="value">
+      <p class="qtext">Work out 2<sup>3</sup> + 3&sup2;.</p>
+      <ol class="ladder"><li>8 + 9.</li></ol>
+      <ul class="wrong"><li data-if="13">2&sup2; + 3&sup2; would be 13. The 2 here is cubed.</li><li data-if="15">You may have used 2 &times; 3 = 6 for the cube.</li></ul>
+      <div class="solution"><p>2<sup>3</sup> = 8 and 3&sup2; = 9: 17.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">No calculator for (a) and (b).</p>
+    <div class="q" data-answers="48" data-mode="value">
+      <p class="qtext"><b>(a)</b> [2 marks] A square garden has an area of 144 m&sup2;. Work out the perimeter of the garden, in m.</p>
+      <ol class="ladder"><li>Find the side first.</li></ol>
+      <ul class="wrong"><li data-if="12">That is the side. The perimeter is all four sides.</li><li data-if="576">That is 144 &times; 4. Find the side length (square root) first.</li></ul>
+      <div class="solution"><p>&radic;144 = 12 m, so the perimeter is 4 &times; 12 = 48 m.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext"><b>(b)</b> [2 marks] Work out &radic;(5&sup2; &minus; 3&sup2;).</p>
+      <ol class="ladder"><li>25 &minus; 9 under the root.</li></ol>
+      <ul class="wrong"><li data-if="2">Subtract the squares first: &radic;25 &minus; &radic;9 is not the same thing.</li></ul>
+      <div class="solution"><p>25 &minus; 9 = 16 and &radic;16 = 4. (This is a 3, 4, 5 right-angled triangle.)</p></div>
+    </div>
+    <div class="q" data-answers="8.4" data-mode="value">
+      <p class="qtext"><b>(c)</b> [2 marks] Use a calculator to work out &radic;70. Give your answer to 1 decimal place.</p>
+      <ol class="ladder"><li>Estimate first: between 8 and 9.</li></ol>
+      <ul class="wrong"><li data-if="8.3">The digit after the 3 is 6, which rounds up.</li></ul>
+      <div class="solution"><p>8.366&hellip; = 8.4.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Going further</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">What is the smallest whole number you can multiply 12 by to get a square number?</p>
+      <ol class="ladder"><li>12 = 2 &times; 2 &times; 3. A square needs every prime to appear an even number of times.</li></ol>
+      <ul class="wrong"><li data-if="12">12 &times; 12 = 144 is a square, but 3 is smaller.</li><li data-if="2">12 &times; 2 = 24, not a square.</li></ul>
+      <div class="solution"><p>12 &times; 3 = 36 = 6&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">How many square numbers are there between 100 and 200?</p>
+      <ol class="ladder"><li>11&sup2;, 12&sup2;, 13&sup2;, &hellip;</li></ol>
+      <ul class="wrong"><li data-if="5">That counts 100 itself, which is not <i>between</i> 100 and 200.</li><li data-if="3">You missed one: 121, 144, 169 and 196.</li></ul>
+      <div class="solution"><p>121, 144, 169, 196: four square numbers (10&sup2; = 100 and 15&sup2; = 225 are outside).</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>A square number is an area.</b> Squaring takes a side to an area; the square root takes an area back to a side.</li>
+      <li><b>The root sign groups.</b> &radic;(36 + 64) needs the sum first. You cannot split it into &radic;36 + &radic;64.</li>
+      <li><b>Estimating</b> a root by the squares either side tells you whether a calculator answer makes sense.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Doubling instead of squaring (6&sup2; is not 12).</li>
+      <li>Splitting a root over an addition or subtraction.</li>
+      <li>Forgetting that x&sup2; = 49 has two solutions.</li>
+      <li>Halving instead of square-rooting.</li>
+      <li>Confusing square (two lots) and cube (three lots).</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="squares-roots">
+      <li><label><input type="checkbox"> recall the squares up to 15&sup2; and some cubes</label></li>
+      <li><label><input type="checkbox"> find square roots of square numbers and estimate others</label></li>
+      <li><label><input type="checkbox"> use the root sign correctly with brackets</label></li>
+      <li><label><input type="checkbox"> go between side length and area of a square</label></li>
+      <li><label><input type="checkbox"> say why x&sup2; = 49 has two answers</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

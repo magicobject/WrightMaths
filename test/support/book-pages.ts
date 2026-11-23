@@ -8,6 +8,11 @@ export interface BookPage {
 }
 
 export const BOOK_TOPICS: BookPage[] = [
+  { path: '/books/gcse/order-of-operations.html', titleContains: 'Order of operations', heading: /^Order of operations$/ },
+  { path: '/books/gcse/factors-multiples.html', titleContains: 'Factors and multiples', heading: /^Factors and multiples$/ },
+  { path: '/books/gcse/squares-roots.html', titleContains: 'Squares and square roots', heading: /^Squares and square roots$/ },
+  { path: '/books/gcse/shapes-angles.html', titleContains: 'Shapes and angles', heading: /^Shapes and angles$/ },
+  { path: '/books/gcse/algebra-basics.html', titleContains: 'Algebra basics', heading: /^Algebra basics$/ },
   { path: '/books/gcse/place-value.html', titleContains: 'Place value', heading: /^Place value$/ },
   { path: '/books/gcse/four-operations.html', titleContains: 'Add, subtract', heading: /Add, subtract, multiply, divide/ },
   { path: '/books/gcse/negative-numbers.html', titleContains: 'Negative numbers', heading: /^Negative numbers$/ },
