@@ -56,6 +56,28 @@ export const PAGES = [
     active: null,
     robots: 'noindex',
   },
+  // ---- The GCSE book: hidden pilot at /books/gcse/ ----
+  // Not in NAV, not in sitemap.xml, not linked from any other page, and
+  // noindex. Topic pages are generated from src/book/topics.mjs, not listed here.
+  {
+    slug: 'books/gcse/index',
+    book: 'hub',
+    title: 'GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'A colourful, interactive GCSE maths book: every idea from both sides, every term explained, and help whenever you are stuck.',
+    canonicalPath: 'books/gcse/',
+  },
+  {
+    slug: 'books/gcse/glossary',
+    book: 'glossary',
+    title: 'Maths Glossary | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Every mathematical term in the GCSE book, in plain English, with an example, a warning about common traps and the reverse side of the idea.',
+  },
+  {
+    slug: 'books/gcse/raise-your-grade',
+    book: 'grades',
+    title: 'How to Raise Your Grade | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'What changes at each step from grade 1 to grade 9, and the habits that move your results to the right.',
+  },
   {
     slug: '404',
     title: 'Page Not Found | Wright Maths Tuition',

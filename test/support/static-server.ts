@@ -3,7 +3,7 @@
 // exists, otherwise respond with public/404.html and a 404 status
 // (assets.not_found_handling = "404-page").
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import { extname, join, resolve, sep } from 'node:path';
 
 const ROOT = resolve(__dirname, '..', '..', 'public');
@@ -13,6 +13,7 @@ const CONTENT_TYPES: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'application/javascript; charset=utf-8',
+  '.mjs': 'application/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
@@ -37,11 +38,37 @@ function resolveWithinRoot(urlPath: string): string | null {
   return filePath === ROOT || filePath.startsWith(ROOT + sep) ? filePath : null;
 }
 
-const server = createServer(async (req, res) => {
-  const filePath = resolveWithinRoot(req.url ?? '/');
-
+// Like the Cloudflare Workers assets handler (html_handling: auto-trailing-slash):
+// a folder is served from its index.html, and a folder asked for without the
+// trailing slash is redirected to the slashed form (so relative links resolve).
+async function resolveFile(urlPath: string): Promise<{ file: string } | { redirect: string } | null> {
+  const filePath = resolveWithinRoot(urlPath);
+  if (!filePath) return null;
   try {
-    if (!filePath) throw new Error('path escapes public/');
+    if ((await stat(filePath)).isDirectory()) {
+      const pathOnly = urlPath.split('?')[0].split('#')[0];
+      if (!pathOnly.endsWith('/')) {
+        const query = urlPath.includes('?') ? `?${urlPath.split('?')[1].split('#')[0]}` : '';
+        return { redirect: `${pathOnly}/${query}` };
+      }
+      return { file: join(filePath, 'index.html') };
+    }
+  } catch {
+    // not a directory or not found: fall through to the plain file read
+  }
+  return { file: filePath };
+}
+
+const server = createServer(async (req, res) => {
+  try {
+    const resolved = await resolveFile(req.url ?? '/');
+    if (!resolved) throw new Error('path escapes public/');
+    if ('redirect' in resolved) {
+      res.writeHead(307, { Location: resolved.redirect });
+      res.end();
+      return;
+    }
+    const filePath = resolved.file;
     const body = await readFile(filePath);
     const type = CONTENT_TYPES[extname(filePath)] ?? 'application/octet-stream';
     res.writeHead(200, { 'Content-Type': type });

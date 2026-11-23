@@ -1,0 +1,215 @@
+// Pure helpers for building the GCSE book (public/books/gcse/). No file I/O
+// here so test-unit/book-lib.test.mjs can exercise every function directly.
+
+export const STRAND_CLASS = { n: 'number', a: 'algebra', r: 'ratio', g: 'geometry', p: 'probability', s: 'statistics' };
+
+export function escapeAttr(text) {
+  return String(text).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+}
+
+// Entities in a glossary definition (&sup2;, &radic; ...) must reach the page
+// intact, so for the pop-up attribute only quotes and tags are escaped.
+function escapeDefAttr(text) {
+  return String(text).replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+}
+
+// ---------- topic graph ----------
+
+/** Validate the topic list and derive `layer` (depth in the pyramid) and `unlocks`. */
+export function buildGraph(topics, { hasPage = null } = {}) {
+  const byId = new Map();
+  for (const t of topics) {
+    if (byId.has(t.id)) throw new Error(`topics: duplicate id "${t.id}"`);
+    byId.set(t.id, { ...t, unlocks: [], layer: -1 });
+  }
+  for (const t of byId.values()) {
+    for (const need of t.needs) {
+      if (!byId.has(need)) throw new Error(`topics: "${t.id}" needs unknown topic "${need}"`);
+      if (need === t.id) throw new Error(`topics: "${t.id}" needs itself`);
+      byId.get(need).unlocks.push(t.id);
+    }
+    if (hasPage && t.status === 'live' && !hasPage(t.id)) {
+      throw new Error(`topics: "${t.id}" is live but has no page`);
+    }
+    if (hasPage && t.status === 'planned' && hasPage(t.id)) {
+      throw new Error(`topics: "${t.id}" has a page but is marked planned`);
+    }
+  }
+  const state = new Map(); // id -> 'visiting' | 'done'
+  const layerOf = (id, trail = []) => {
+    const t = byId.get(id);
+    if (state.get(id) === 'done') return t.layer;
+    if (state.get(id) === 'visiting') throw new Error(`topics: cycle ${[...trail, id].join(' -> ')}`);
+    state.set(id, 'visiting');
+    t.layer = t.needs.length === 0 ? 0 : 1 + Math.max(...t.needs.map((n) => layerOf(n, [...trail, id])));
+    state.set(id, 'done');
+    return t.layer;
+  };
+  for (const id of byId.keys()) layerOf(id);
+  return byId;
+}
+
+// ---------- shorthand expansion ----------
+
+/** Turn "3/4" into a stacked fraction. Splits at the first "/" that is not part of a closing tag. */
+export function renderFraction(body) {
+  let split = -1;
+  for (let i = 0; i < body.length; i += 1) {
+    if (body[i] === '/' && body[i - 1] !== '<') { split = i; break; }
+  }
+  if (split < 1) throw new Error(`bad fraction shorthand: {frac:${body}}`);
+  const top = body.slice(0, split).trim();
+  const bottom = body.slice(split + 1).trim();
+  return `<span class="frac"><span class="fn">${top}</span><span class="sr"> over </span><span class="fd">${bottom}</span></span>`;
+}
+
+/**
+ * Expand {frac:..} and {term:id|text} in `html`. Terms are looked up in
+ * `glossaryById`; an unknown term throws, so a typo can never ship. When
+ * `usage` is given, each term records which page used it.
+ */
+export function expandInline(html, { glossaryById, usage, page }) {
+  return html
+    .replace(/\{frac:([^}]+)\}/g, (_, body) => renderFraction(body))
+    .replace(/\{term:([a-z0-9-]+)(?:\|([^}]*))?\}/g, (_, id, label) => {
+      const entry = glossaryById.get(id);
+      if (!entry) throw new Error(`unknown glossary term "${id}" used in ${page}`);
+      if (usage && page) {
+        if (!usage.has(id)) usage.set(id, new Set());
+        usage.get(id).add(page);
+      }
+      const text = label ?? entry.term;
+      return `<a class="term" href="glossary.html#${id}" data-def="${escapeDefAttr(entry.def)}">${text}</a>`;
+    });
+}
+
+/** Give every <div class="q" ...> a stable data-qid ("fractions-1", "fractions-2" ...). */
+export function addQuestionIds(html, slug) {
+  let n = 0;
+  return html.replace(/<div class="q"/g, () => {
+    n += 1;
+    return `<div class="q" data-qid="${slug}-${n}"`;
+  });
+}
+
+export function countQuestions(html) {
+  return (html.match(/<div class="q"/g) ?? []).length;
+}
+
+// ---------- generated blocks ----------
+
+const link = (t, graph) => {
+  const topic = graph.get(t);
+  return topic.status === 'live'
+    ? `<a href="${topic.id}.html">${topic.title}</a>`
+    : `${topic.title} <span class="soon">coming soon</span>`;
+};
+
+function chip(topic) {
+  return `<span class="chip chip-${STRAND_CLASS[topic.strand]}">${topic.strandName}</span>`;
+}
+
+export function renderPrereqs(id, graph) {
+  const t = graph.get(id);
+  const items = t.needs.map((n) => {
+    const need = graph.get(n);
+    return `<li class="${need.status}">${link(n, graph)} ${chip(need)}</li>`;
+  }).join('\n      ');
+  return `<aside class="bys" aria-labelledby="bys-title">
+    <h2 id="bys-title">Before you start: what this stands on</h2>
+    <p>Maths is built like a pyramid, each topic standing on the ones below. This topic needs:</p>
+    <ul class="needs">
+      ${items}
+    </ul>
+    <p>The "Last time" questions below are a quick check of that base. If they feel shaky, build the base first.</p>
+  </aside>`;
+}
+
+export function renderUnlocks(id, graph) {
+  const t = graph.get(id);
+  if (t.unlocks.length === 0) return '';
+  const items = t.unlocks.map((u) => {
+    const up = graph.get(u);
+    return `<li class="${up.status}">${link(u, graph)} ${chip(up)}</li>`;
+  }).join('\n      ');
+  return `<aside class="bys unlocks" aria-labelledby="unlocks-title">
+    <h2 id="unlocks-title">What this unlocks</h2>
+    <p>Get this secure and these topics open up:</p>
+    <ul class="needs">
+      ${items}
+    </ul>
+  </aside>`;
+}
+
+export function renderPyramid(graph) {
+  const layers = new Map();
+  for (const t of graph.values()) {
+    if (!layers.has(t.layer)) layers.set(t.layer, []);
+    layers.get(t.layer).push(t);
+  }
+  const top = Math.max(...layers.keys());
+  const rows = [];
+  for (let layer = top; layer >= 0; layer -= 1) {
+    const nodes = (layers.get(layer) ?? []).map((t) => {
+      const needs = t.needs.length
+        ? `<span class="needs-line">builds on ${t.needs.map((n) => graph.get(n).title).join(', ')}</span>`
+        : '<span class="needs-line">the very base</span>';
+      const inner = `<span class="node-title">${t.title}</span>${needs}`;
+      const body = t.status === 'live'
+        ? `<a href="${t.id}.html" data-topic-id="${t.id}">${inner}</a>`
+        : `<span class="planned-node">${inner}<span class="soon">coming soon</span></span>`;
+      const progress = t.status === 'live'
+        ? `<span class="node-progress" data-progress-for="${t.id}" data-total="{qcount:${t.id}}"></span>`
+        : '';
+      return `<li class="pyr-node strand-${STRAND_CLASS[t.strand]} ${t.status}">${body}${progress}</li>`;
+    }).join('\n        ');
+    const label = layer === 0 ? 'Base layer' : `Layer ${layer}`;
+    rows.push(`      <li class="pyr-layer"><h3 class="layer-label">${label}</h3>
+        <ul class="pyr-row">
+        ${nodes}
+        </ul>
+      </li>`);
+  }
+  return `<ol class="pyramid" aria-label="Topic pyramid, highest layer first">
+${rows.join('\n')}
+    </ol>`;
+}
+
+export function renderGlossaryPage(glossary, usage, graph, strands) {
+  const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
+  const byId = new Map(glossary.map((g) => [g.id, g]));
+  const letters = [...new Set(sorted.map((g) => g.term[0].toUpperCase()))];
+  const jump = letters.map((l) => `<a href="#letter-${l}">${l}</a>`).join(' ');
+
+  const entryHtml = (g) => {
+    const used = usage.get(g.id) ? [...usage.get(g.id)].sort() : [];
+    const usedHtml = used.length
+      ? `<p class="g-used"><b>Taught in:</b> ${used.map((s) => `<a href="${s}.html">${graph.get(s)?.title ?? s}</a>`).join(', ')}</p>`
+      : '';
+    const see = (g.see ?? []).filter((s) => byId.has(s))
+      .map((s) => `<a href="#${s}">${byId.get(s).term}</a>`).join(', ');
+    const parts = [
+      `<p class="g-def">${g.def}</p>`,
+      g.example ? `<p class="g-example"><b>Example:</b> ${g.example}</p>` : '',
+      g.watch ? `<p class="g-watch"><b>Watch out:</b> ${g.watch}</p>` : '',
+      g.flip ? `<p class="g-flip"><b>Flip it:</b> ${g.flip}</p>` : '',
+      see ? `<p class="g-see"><b>See also:</b> ${see}</p>` : '',
+      usedHtml,
+    ].filter(Boolean).join('\n          ');
+    const level = g.level === 'H' ? '<span class="chip chip-higher">Higher</span>' : '';
+    return `<article class="g-entry strand-${STRAND_CLASS[g.strand]}" id="${g.id}" data-strand="${STRAND_CLASS[g.strand]}">
+          <h3>${g.term} <span class="chip chip-${STRAND_CLASS[g.strand]}">${strands[g.strand].short}</span> ${level}</h3>
+          ${parts}
+        </article>`;
+  };
+
+  const groups = letters.map((l) => {
+    const entries = sorted.filter((g) => g.term[0].toUpperCase() === l).map(entryHtml).join('\n        ');
+    return `<section class="g-letter" id="letter-${l}" aria-labelledby="letter-${l}-h">
+        <h2 id="letter-${l}-h" class="g-letter-h">${l}</h2>
+        ${entries}
+      </section>`;
+  }).join('\n      ');
+
+  return { jump, groups, count: glossary.length };
+}
