@@ -108,7 +108,7 @@ function duckRung(li, q) {
     chips.append(chip);
   }
   const note = el('p', { class: 'muted duck-note', text: 'The duck only listens. What you type stays on this screen and is not saved or sent anywhere.' });
-  const done = el('button', { type: 'button', class: 'btn-check', text: 'I have explained it: let me try again' });
+  const done = el('button', { type: 'button', class: 'btn-check', text: 'Done: let me try again' });
   done.addEventListener('click', () => {
     area.value = '';
     q.querySelector('.q-input, .mc-option')?.focus();
@@ -427,9 +427,11 @@ function initReadingTools() {
   if (!main) return;
   const prefs = loadRead();
   applyRead(prefs);
+  let sizeLabelNode = null;
   const persist = () => {
     try { window.localStorage.setItem(READ_KEY, JSON.stringify(prefs)); } catch { /* ignore */ }
     applyRead(prefs);
+    if (sizeLabelNode) sizeLabelNode.textContent = `Text size ${prefs.size + 1} of 4`;
   };
 
   const details = el('details', { class: 'read-tools' });
@@ -450,22 +452,57 @@ function initReadingTools() {
     return b;
   };
   row.append(toggle('easy', 'Easy-read font'), toggle('tint', 'Tinted page'), toggle('ruler', 'Reading ruler'));
-  const reset = el('button', { type: 'button', class: 'read-btn', text: 'Reset' });
+  const sizeLabel = el('span', { class: 'read-size', 'aria-live': 'polite', text: `Text size ${prefs.size + 1} of 4` });
+  const reset = el('button', { type: 'button', class: 'read-btn read-reset', text: 'Reset' });
   reset.addEventListener('click', () => {
     Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false });
     row.querySelectorAll('[aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     persist();
   });
-  row.append(reset);
+  row.append(sizeLabel, reset);
+  sizeLabelNode = sizeLabel;
   details.append(row);
   const firstSection = main.querySelector('section');
   if (firstSection) firstSection.after(details); else main.prepend(details);
+  initToc(main, details);
 
   const ruler = el('div', { class: 'read-ruler', 'aria-hidden': 'true' });
   document.body.append(ruler);
   const move = (y) => { ruler.style.top = `${y - ruler.offsetHeight / 2}px`; };
   window.addEventListener('mousemove', (e) => move(e.clientY), { passive: true });
   window.addEventListener('touchmove', (e) => { if (e.touches[0]) move(e.touches[0].clientY); }, { passive: true });
+}
+
+// ---------- on this page, and back to top ----------
+
+function initToc(main, after) {
+  const kind = main.dataset.bookPage;
+  if (kind !== 'topic' && kind !== 'grades') return;
+  const heads = [...main.querySelectorAll('section h2')].filter((h) => !h.closest('.bys, .words-strip, .ckw .q'));
+  if (heads.length < 4) return;
+  const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  const used = new Set([...document.querySelectorAll('[id]')].map((n) => n.id));
+  const list = el('ol');
+  heads.forEach((h, i) => {
+    if (!h.id) {
+      let id = slug(h.textContent) || `part-${i + 1}`;
+      while (used.has(id)) id += '-x';
+      used.add(id);
+      h.id = id;
+    }
+    const li = el('li');
+    li.append(el('a', { href: `#${h.id}`, text: h.textContent.replace(/^\u270E\s*/, '').trim() }));
+    list.append(li);
+  });
+  const toc = el('details', { class: 'toc' });
+  toc.append(el('summary', { text: 'On this page' }), list);
+  after.after(toc);
+
+  const top = el('button', { type: 'button', class: 'to-top', 'aria-label': 'Back to top', text: 'Top \u2191' });
+  top.hidden = true;
+  top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  document.body.append(top);
+  window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; }, { passive: true });
 }
 
 // ---------- listen (the browser's own voice; nothing is sent anywhere) ----------

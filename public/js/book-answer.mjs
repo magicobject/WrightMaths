@@ -7,7 +7,7 @@
 // Non-numeric answers (such as 6x-1) are compared as normalised text.
 
 const MINUS = /[−–—]/g;
-const UNITS = /\s*(cm²|cm\^2|cm2|m²|m\^2|m2|cm|mm|km|kg|m|g|degrees|deg|°)$/;
+const UNITS = /\s*(cm²|cm\^2|cm2|m²|m\^2|m2|cm|mm|km|kg|m|g|degrees|deg|°c|°)$/;
 
 function clean(raw) {
   return String(raw)

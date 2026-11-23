@@ -67,6 +67,19 @@ const questionCounts = new Map(
   liveTopics.map((t) => [t.id, countQuestions(read(`src/pages/books/gcse/${t.id}.html`))]),
 );
 
+// Give every <h2> without an id a stable one ("s-measuring-turns") so "On this page" links work with no script.
+function addHeadingIds(html) {
+  const used = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  return html.replace(/<h2>([\s\S]*?)<\/h2>/g, (whole, inner) => {
+    const text = inner.replace(/<[^>]+>/g, ' ').replace(/\{[^}]*\}/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
+    let id = `s-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}`;
+    if (id === 's-') id = 's-part';
+    while (used.has(id)) id += '-x';
+    used.add(id);
+    return `<h2 id="${id}">${inner}</h2>`;
+  });
+}
+
 function renderBookContent(page, raw) {
   const topic = page.bookTopic ? graph.get(page.bookTopic) : null;
   let html = raw;
@@ -81,6 +94,7 @@ function renderBookContent(page, raw) {
       if (!questionCounts.has(id)) throw new Error(`qcount: "${id}" is not a live topic`);
       return String(questionCounts.get(id));
     });
+  html = addHeadingIds(html);
   html = expandInline(html, { glossaryById, usage: topic ? usage : undefined, page: topic?.id ?? page.slug });
   // Anything still in braces that looks like shorthand is a typo: fail loudly.
   const leftover = html.match(/\{(frac|term|qcount|prereqs|unlocks|pyramid|words|practice-topics)[:}]/);

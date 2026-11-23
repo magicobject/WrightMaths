@@ -272,6 +272,43 @@ html.read-ruler-on .read-ruler{display:block;}
 .words-strip dt{font-weight:700;}
 .words-strip dd{margin:0 0 4px;color:var(--ink);}
 
+/* ---------- display fixes (from the UX review) ---------- */
+/* The site header is sticky on the main site; on book pages it would take a quarter of a phone screen. */
+body .site-header{position:static;}
+body .site-header .wrap{padding-top:8px;padding-bottom:8px;gap:8px;}
+body .header-cta,body .brand{min-height:44px;display:inline-flex;align-items:center;}
+body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
+@media (max-width:700px){
+  nav.mainnav ul{gap:4px 14px;}
+  .brand svg{width:34px;height:34px;}
+}
+.read-tools summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:2px solid var(--navy);border-radius:999px;background:var(--white);color:var(--navy);list-style:none;}
+.read-tools summary::-webkit-details-marker{display:none;}
+.read-tools summary::before{content:"Aa";font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.1rem;}
+.read-tools[open] summary{background:var(--navy);color:var(--white);}
+.read-btn{min-height:44px;}
+.read-btn[aria-pressed="true"]::before{content:"\2713\00a0";}
+.read-btn[aria-pressed="false"]::before{content:"Off:\00a0";font-weight:400;}
+.read-btn[aria-pressed="true"]::before{content:"On:\00a0 \2713\00a0";font-weight:700;}
+.read-size{align-self:center;font-weight:600;color:var(--ink);min-width:7.5em;}
+.read-reset{border-color:transparent;background:none;text-decoration:underline;}
+@media (max-width:560px){.read-row{display:grid;grid-template-columns:1fr 1fr;}}
+.read-ruler{background:rgba(255,224,70,.38);border-top:2px solid rgba(150,105,0,.8);border-bottom:2px solid rgba(150,105,0,.8);mix-blend-mode:multiply;}
+.toc{max-width:800px;margin:0 auto;padding:4px 24px;}
+.toc summary{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);font-weight:700;cursor:pointer;}
+.toc ol{columns:2 260px;column-gap:28px;margin:10px 0 6px;padding-left:1.4em;}
+.toc li{margin-bottom:6px;break-inside:avoid;}
+.toc a{display:inline-block;padding:4px 0;min-height:32px;color:var(--navy);}
+.to-top{position:fixed;right:14px;bottom:14px;z-index:70;min-height:44px;min-width:44px;padding:0 16px;border:2px solid var(--navy);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer;}
+.q-feedback.ok::before{content:"\2713\00a0 ";}
+.q-feedback.oops::before{content:"\2717\00a0 ";}
+.q-feedback.nearly::before{content:"\2248\00a0Nearly: ";font-weight:700;}
+.q-help{margin-top:12px;}
+.duck-note{font-size:.95rem;color:var(--ink);}
+.scale-svg .wlab{font-size:20px;}
+.scale-svg .eq-sign{transform:translateY(16px);}
+.geo-svg .svg-t{font-size:19px;}
+
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
 .g-letter-h{font-size:2.2rem;color:var(--gold);border-bottom:2px solid var(--gold);margin:0 0 10px;}
