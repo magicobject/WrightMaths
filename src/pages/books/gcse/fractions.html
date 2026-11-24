@@ -42,7 +42,7 @@
       <div class="solution"><p>7 &times; 8 = 56.</p></div>
     </div>
     <div class="q" data-answers="6" data-mode="value">
-      <p class="qtext">What is the {term:hcf}, the highest common factor, of 12 and 18?</p>
+      <p class="qtext">What is the {term:hcf|highest common factor} (the biggest number that goes into both) of 12 and 18?</p>
       <ol class="ladder">
         <li>List the {term:factor|factors} of 12: 1, 2, 3, 4, 6, 12. Now list those of 18.</li>
         <li>Which is the biggest number in both lists?</li>
@@ -51,12 +51,12 @@
       <div class="solution"><p>Factors of 18: 1, 2, 3, 6, 9, 18. The biggest in both lists is 6.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
-      <p class="qtext">What is the {term:lcm}, the lowest common multiple, of 4 and 6?</p>
+      <p class="qtext">What is the {term:lcm|lowest common multiple} (the smallest number in both times tables) of 4 and 6?</p>
       <ol class="ladder">
         <li>List {term:multiple|multiples} of 4: 4, 8, 12 &hellip; and of 6: 6, 12 &hellip;</li>
         <li>What is the first number in both lists?</li>
       </ol>
-      <ul class="wrong"><li data-if="24">24 is a common multiple, but not the lowest. Find the first in both lists.</li><li data-if="2">2 is the HCF. The LCM is a multiple, so it is at least as big as both numbers.</li></ul>
+      <ul class="wrong"><li data-if="24">24 is a common multiple, but not the lowest. Find the first in both lists.</li><li data-if="2">2 is the highest common factor. The lowest common multiple is a multiple, so it is at least as big as both numbers.</li></ul>
       <div class="solution"><p>Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. First common: 12.</p></div>
     </div>
     </details>
@@ -69,7 +69,7 @@
     <p>A {term:fraction} describes equal parts of a whole. The bottom number is the {term:denominator}. It says how many equal parts the whole is cut into. The top number is the {term:numerator}. It says how many parts you have.</p>
     <p class="sum-line">{frac:3/8} = 3 parts out of 8 equal parts</p>
     <div class="key">
-      <p><b>Key idea:</b> the denominator names the size of the parts (eighths, quarters, tenths). The numerator counts them. Bigger denominator means smaller pieces.</p>
+      <p><b>Key idea:</b> the denominator names the size of the parts (eighths, quarters, tenths). The numerator counts them. For the same whole, and the same numerator, a bigger denominator means smaller pieces: {frac:1/8} is smaller than {frac:1/4}. (With different numerators you have to compare more carefully: {frac:3/8} is bigger than {frac:1/4}.) The denominator can never be 0, because you cannot cut a whole into 0 parts.</p>
     </div>
     <p><b>Try it:</b> write {frac:1/2} as quarters.</p>
     <p>A fraction line also means divide. {frac:3/4} is the same as 3 &divide; 4. So 1 &divide; 8 = {frac:1/8}.</p>
@@ -361,22 +361,22 @@
     <div class="q" data-type="mc">
       <p class="qtext"><b>Mia says:</b> {frac:1/3} + {frac:1/4} = {frac:2/7}. What went wrong?</p>
       <ul class="options">
-        <li data-correct>She added tops and added bottoms. Pieces must match first.</li>
-        <li data-why="1 + 1 and 3 + 4 are correct. The method is wrong.">She made a slip when adding 3 and 4.</li>
-        <li data-why="The question is fine. The method is the problem.">The sum cannot be worked out at all.</li>
+        <li data-correct>She added the tops and the bottoms.</li>
+        <li data-why="1 + 1 and 3 + 4 are correct. The method is wrong.">She made a slip when adding 3 and 4, and the rest is fine.</li>
+        <li data-why="The question is fine. The method is the problem.">The sum cannot be worked out at all, because the bottoms differ.</li>
       </ul>
       <ol class="ladder"><li>Is {frac:2/7} sensible? {frac:1/3} is about 0.33. {frac:2/7} is about 0.29. A sum cannot be smaller than one part.</li></ol>
-      <div class="solution"><p>Use twelfths: {frac:4/12} + {frac:3/12} = {frac:7/12}.</p></div>
+      <div class="solution"><p>She added the tops and the bottoms. The pieces must match first. Use twelfths: {frac:4/12} + {frac:3/12} = {frac:7/12}.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Sam says:</b> {frac:1/2} &divide; {frac:1/4} = {frac:1/8}. What went wrong?</p>
       <ul class="options">
-        <li data-why="The question is a division, not an addition.">He should have added them instead.</li>
-        <li data-correct>He multiplied the fractions. Dividing asks how many quarters fit in a half.</li>
-        <li data-why="1/4 and 1/2 are right as given. The method is wrong.">He wrote the two fractions the wrong way round.</li>
+        <li data-why="The question is a division, not an addition.">He should have added the two fractions instead of dividing them.</li>
+        <li data-correct>He multiplied them instead.</li>
+        <li data-why="1/4 and 1/2 are right as given. The method is wrong.">He wrote the two fractions the wrong way round in the division.</li>
       </ul>
       <ol class="ladder"><li>How many quarters fit in a half? Think of pizza.</li></ol>
-      <div class="solution"><p>{frac:1/2} &divide; {frac:1/4} = {frac:1/2} &times; {frac:4/1} = 2. There are 2 quarters in a half.</p></div>
+      <div class="solution"><p>He multiplied the fractions. Dividing asks how many quarters fit in a half: {frac:1/2} &divide; {frac:1/4} = {frac:1/2} &times; {frac:4/1} = 2. There are 2 quarters in a half.</p></div>
     </div>
   </div>
 </section>
@@ -494,6 +494,18 @@
       <ol class="ladder"><li>Taking away what you added gives back what you started with.</li></ol>
       <ul class="wrong"><li data-if="4/4">You subtracted tops and bottoms. Subtracting undoes adding.</li></ul>
       <div class="solution"><p>{frac:5/6} &minus; {frac:1/2} = {frac:1/3}. Subtracting undoes adding. You can check it the other way: {frac:1/3} + {frac:1/2} = {frac:5/6}.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">Egyptians wrote fractions as sums of different unit fractions (fractions with 1 on the top). Two different unit fractions add to give {frac:1/6}. Their denominators add up to 25. What is the larger denominator?</p>
+      <ol class="ladder"><li>Each of the two fractions must be smaller than {frac:1/6}. So what is the smallest denominator worth trying?</li><li>Pick a denominator, say 7, 8, 9 &hellip; and take it from {frac:1/6}. Is what is left a unit fraction?</li><li>For example {frac:1/6} &minus; {frac:1/9} = {frac:3/18} &minus; {frac:2/18} = {frac:1/18}, so 9 and 18 work, but 9 + 18 is not 25. Try the next denominators.</li></ol>
+      <ul class="wrong"><li data-if="10">10 is the smaller denominator. The question asks for the larger one.</li><li data-if="18">{frac:1/9} + {frac:1/18} does make {frac:1/6}, but the question asks for the two denominators added together: 9 + 18 = 27, not 25.</li><li data-if="12">{frac:1/12} + {frac:1/12} = {frac:1/6}, but the two fractions must be different.</li></ul>
+      <div class="solution"><p>Try each: {frac:1/6} = {frac:1/7} + {frac:1/42} = {frac:1/8} + {frac:1/24} = {frac:1/9} + {frac:1/18} = {frac:1/10} + {frac:1/15}. Only 10 + 15 makes 25, so the larger denominator is 15. Check: {frac:3/30} + {frac:2/30} = {frac:5/30} = {frac:1/6}.</p></div>
+    </div>
+    <div class="q" data-answers="9/10" data-mode="value">
+      <p class="qtext">Work out {frac:1/(1 &times; 2)} + {frac:1/(2 &times; 3)} + {frac:1/(3 &times; 4)} + &hellip; + {frac:1/(9 &times; 10)}. (Do not add all nine fractions the long way: look for a pattern.)</p>
+      <ol class="ladder"><li>Can you write {frac:1/(1 &times; 2)} as 1 minus a simple fraction?</li><li>{frac:1/(2 &times; 3)} = {frac:1/2} &minus; {frac:1/3}. Write the next few terms the same way.</li><li>The sum becomes (1 &minus; {frac:1/2}) + ({frac:1/2} &minus; {frac:1/3}) + ({frac:1/3} &minus; {frac:1/4}) + &hellip; + ({frac:1/9} &minus; {frac:1/10}). What cancels?</li></ol>
+      <ul class="wrong"><li data-if="1/10">That is the fraction left over at the end. The 1 at the start is left over too.</li><li data-if="1">Nearly: the last fraction taken away is {frac:1/10}, and it does not cancel.</li></ul>
+      <div class="solution"><p>In general {frac:1/n} &minus; {frac:1/(n + 1)} = {frac:(n + 1) &minus; n/n(n + 1)} = {frac:1/n(n + 1)}. So each term is a difference, and in 1 &minus; {frac:1/2} + {frac:1/2} &minus; {frac:1/3} + &hellip; + {frac:1/9} &minus; {frac:1/10} everything cancels except 1 &minus; {frac:1/10} = {frac:9/10}.</p></div>
     </div>
   </div>
 </section>

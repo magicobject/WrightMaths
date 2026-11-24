@@ -123,7 +123,7 @@
         <li>The root sign groups what is under it: 36 + 64 = 100.</li>
         <li>&radic;100 = 10.</li>
       </ol>
-      <p class="muted">Trap: &radic;36 + &radic;64 = 14, which is not the same. You cannot split a root over an addition.</p>
+      <p class="muted">Trap: &radic;36 + &radic;64 = 14, which is not the same. In general you cannot split a root over an addition. (The one exception is when a part is 0: &radic;(0 + 9) = &radic;0 + &radic;9 = 3.)</p>
     </div>
   </div>
 </section>
@@ -168,7 +168,7 @@
 <section>
   <div class="wrap narrow">
     <h2>3. Roots that are not whole numbers</h2>
-    <p>Most numbers are not perfect squares. The root of a whole number that is not a square is {term:irrational|irrational}: its decimal never ends and never repeats. ({frac:1/3} = 0.333&hellip; goes on for ever but it repeats, so it is <b>not</b> irrational.) You can still <b>estimate</b> a root by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
+    <p>Most numbers are not perfect squares. The root of a whole number that is not a square is {term:irrational|irrational}. There are two ways to say what that means: its decimal never ends and never repeats, and it cannot be written as a fraction of two whole numbers. They are two descriptions of the same numbers. ({frac:1/3} = 0.333&hellip; goes on for ever but it repeats, and it is a fraction, so it is <b>not</b> irrational.) You can still <b>estimate</b> a root by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
     <div class="key"><p><b>Key idea:</b> a calculator gives a decimal such as &radic;50 = 7.0710&hellip;, which is only a rounded copy of the real number. Estimate first so you can tell whether the calculator answer makes sense. If the answer must be exact, leave it as a root: a {term:surd} such as &radic;50. The next section shows how to simplify one.</p></div>
     <div class="worked">
       <h3>Worked example</h3>
@@ -223,7 +223,7 @@
 <section>
   <div class="wrap narrow">
     <h2>4. Simplifying a surd <span class="chip chip-higher">Higher</span></h2>
-    <p>You can split a root over a <i>multiplication</i> (but not over an addition or subtraction, in general): &radic;(<i>a</i> &times; <i>b</i>) = &radic;<i>a</i> &times; &radic;<i>b</i>. So pull out the biggest square number that divides into the number under the root.</p>
+    <p>You can split a root over a <i>multiplication</i> (but not over an addition or subtraction, in general): &radic;(<i>a</i> &times; <i>b</i>) = &radic;<i>a</i> &times; &radic;<i>b</i>, which works when <i>a</i> and <i>b</i> are both 0 or more. So pull out the biggest square number that divides into the number under the root.</p>
     <div class="worked">
       <h3>Worked examples</h3>
       <ol class="steps">
@@ -366,32 +366,32 @@
       <p class="qtext"><b>Ian says:</b> &ldquo;6&sup2; = 12.&rdquo; What went wrong?</p>
       <figure class="figure qfig"><svg viewBox="0 0 214 184" role="img" aria-labelledby="sq9-t sq9-d" class="geo-svg"><title id="sq9-t">A square of side 6</title><desc id="sq9-d">A square drawn on a grid of 6 by 6 small squares, each side labelled 6. The number of small squares, the area, is unknown.</desc><rect x="40" y="30" width="144" height="144" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><line x1="64" y1="30" x2="64" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="54" x2="184" y2="54" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="88" y1="30" x2="88" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="78" x2="184" y2="78" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="112" y1="30" x2="112" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="102" x2="184" y2="102" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="136" y1="30" x2="136" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="126" x2="184" y2="126" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="160" y1="30" x2="160" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="150" x2="184" y2="150" stroke="#0f2440" stroke-width="1" opacity=".45"/><text class="svg-t" x="112" y="20" text-anchor="middle" style="font-size:14px">6</text><text class="svg-t" x="32" y="107" text-anchor="end" style="font-size:14px">6</text></svg><figcaption>area = ?</figcaption></figure>
       <ul class="options">
-        <li data-correct>He doubled the 6. 6&sup2; = 6 &times; 6 = 36.</li>
-        <li data-why="The little 2 says &ldquo;multiply by itself&rdquo;, not &ldquo;times 2&rdquo;.">Nothing: 6 &times; 2 = 12</li>
-        <li data-why="That is 6 + 2.">It should be 8</li>
+        <li data-correct>He doubled it: 6&sup2; = 36.</li>
+        <li data-why="The little 2 says &ldquo;multiply by itself&rdquo;, not &ldquo;times 2&rdquo;.">Nothing is wrong: 6 &times; 2 = 12, so he is right</li>
+        <li data-why="That is 6 + 2.">It should be 8, because 6 + 2 = 8</li>
       </ul>
       <ol class="ladder"><li>What does the small 2 stand for?</li></ol>
-      <div class="solution"><p>6&sup2; = 36.</p></div>
+      <div class="solution"><p>He doubled it. 6&sup2; = 6 &times; 6 = 36.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Jen says:</b> &ldquo;&radic;(9 + 16) = &radic;9 + &radic;16 = 7.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>You cannot split a root over addition. &radic;(9 + 16) = &radic;25 = 5.</li>
-        <li data-why="Check: &radic;25 = 5, not 7.">Nothing: it is correct</li>
-        <li data-why="That is 9 + 16. You still need the root.">The answer should be 25</li>
+        <li data-correct>Add first: &radic;(9 + 16) = &radic;25 = 5.</li>
+        <li data-why="Check: &radic;25 = 5, not 7.">Nothing is wrong: a root can be split over an addition, and 3 + 4 = 7</li>
+        <li data-why="That is 9 + 16. You still need the root.">The answer should be 25, with no root left to take</li>
       </ul>
       <ol class="ladder"><li>Add first under the root, then square-root.</li></ol>
-      <div class="solution"><p>&radic;25 = 5.</p></div>
+      <div class="solution"><p>In general a root does not split over an addition. Add first: &radic;(9 + 16) = &radic;25 = 5.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Kit says:</b> &ldquo;&radic;16 = 8.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-correct>He halved 16. &radic;16 = 4 because 4 &times; 4 = 16.</li>
-        <li data-why="A square root is not a half.">Nothing: half of 16 is 8</li>
-        <li data-why="256 is 16&sup2;. The root goes the other way.">It should be 256</li>
+        <li data-correct>He halved it: 4 &times; 4 = 16.</li>
+        <li data-why="A square root is not a half.">Nothing is wrong: the square root of a number is half of it</li>
+        <li data-why="256 is 16&sup2;. The root goes the other way.">It should be 256, because 16 &times; 16 = 256</li>
       </ul>
       <ol class="ladder"><li>Which number times itself is 16?</li></ol>
-      <div class="solution"><p>&radic;16 = 4.</p></div>
+      <div class="solution"><p>He halved it. &radic;16 = 4 because 4 &times; 4 = 16.</p></div>
     </div>
   </div>
 </section>
@@ -481,13 +481,13 @@
     <div class="q" data-type="mc">
       <p class="qtext">A rational number can be written as a fraction of two whole numbers. Which statement about &radic;2 is correct?</p>
       <ul class="options">
-        <li data-correct>It is irrational: it cannot be written as a fraction of two whole numbers.</li>
-        <li data-why="A decimal that goes on for ever can still repeat, like 0.333&hellip; = 1/3. The decimal of &radic;2 never repeats.">It is rational, because its decimal goes on for ever.</li>
-        <li data-why="Close is not exact: 1.4&sup2; = 1.96, not 2. No fraction squares to exactly 2.">It is rational, because 1.4 &times; 1.4 is close to 2.</li>
-        <li data-why="The number itself is irrational, whatever a calculator shows. Its decimal is only ever rounded.">It is rational, because a calculator shows it as a decimal.</li>
+        <li data-correct>It is irrational: no fraction of whole numbers equals it.</li>
+        <li data-why="A decimal that goes on for ever can still repeat, like 0.333&hellip; = 1/3. The decimal of &radic;2 never repeats.">It is rational, because its decimal goes on for ever without stopping.</li>
+        <li data-why="Close is not exact: 1.4&sup2; = 1.96, not 2. No fraction squares to exactly 2.">It is rational, because 1.4 &times; 1.4 = 1.96 is close enough to 2.</li>
+        <li data-why="The number itself is irrational, whatever a calculator shows. Its decimal is only ever rounded.">It is rational, because a calculator shows it as a decimal number.</li>
       </ul>
       <ol class="ladder"><li>What does &ldquo;rational&rdquo; mean?</li><li>Which kinds of decimal can always be written as a fraction?</li></ol>
-      <div class="solution"><p>No fraction of two whole numbers equals &radic;2, so it is irrational. A consequence is that its decimal, 1.41421&hellip;, never ends and never repeats. (Ending and repeating decimals can always be written as fractions.)</p></div>
+      <div class="solution"><p>No fraction of two whole numbers equals &radic;2, so it is irrational. The two descriptions go together: a number that is not a fraction of whole numbers has a decimal that never ends and never repeats, and the other way round. So its decimal, 1.41421&hellip;, never ends and never repeats. (Ending and repeating decimals can always be written as fractions.)</p></div>
     </div>
     <div class="q" data-answers="61" data-mode="value">
       <p class="qtext">Work out 31&sup2; &minus; 30&sup2;.</p>
@@ -505,13 +505,13 @@
     <div class="q" data-type="mc">
       <p class="qtext">Here are four lines from a proof that &radic;2 is irrational. Which line is the contradiction?</p>
       <ul class="options">
-        <li data-correct>So p and q are both even, but we said they have no common factor, which is impossible.</li>
+        <li data-correct>So p and q are both even, which contradicts &ldquo;no common factor&rdquo;.</li>
         <li data-why="This is the assumption we start with. It is not yet a contradiction.">Suppose &radic;2 = p/q, where p and q are whole numbers with no common factor.</li>
-        <li data-why="This is a correct step. It only becomes a contradiction later.">Then p&sup2; = 2q&sup2;, so p&sup2; is even, so p is even.</li>
+        <li data-why="This is a correct step: if p were odd then p&sup2; would be odd, so an even p&sup2; forces p to be even. It only becomes a contradiction later.">Then p&sup2; = 2q&sup2;, so p&sup2; is even, so p is even (an odd number squared is odd).</li>
         <li data-why="This is a correct step. It leads towards the contradiction but is not itself one.">Write p = 2k. Then 4k&sup2; = 2q&sup2;, so q&sup2; = 2k&sup2; and q is even.</li>
       </ul>
       <ol class="ladder"><li>A contradiction is a result that disagrees with something we assumed.</li><li>What did we assume about p and q at the start?</li></ol>
-      <div class="solution"><p>The proof runs in this order: assume &radic;2 = p/q in lowest terms; p&sup2; = 2q&sup2; so p is even; p = 2k gives q even; so p and q are both even. That disagrees with the assumption that they have no common factor, so no such fraction exists.</p></div>
+      <div class="solution"><p>The proof runs in this order: assume &radic;2 = p/q in lowest terms; p&sup2; = 2q&sup2; so p&sup2; is even, so p is even (if p were odd, p&sup2; would be odd too); p = 2k gives q even; so p and q are both even. That disagrees with the assumption that they have no common factor, so no such fraction exists.</p></div>
     </div>
     <div class="q" data-answers="40" data-mode="value">
       <p class="qtext">The expression <i>n</i>&sup2; + <i>n</i> + 41 gives a prime number for every whole number <i>n</i> from 0 to 39. Find the smallest whole number <i>n</i> that shows it does not always give a prime.</p>
@@ -530,6 +530,12 @@
       <ol class="ladder"><li>Call the first number <i>n</i>. What are the next two?</li><li>Add the three and collect like terms.</li></ol>
       <div class="solution"><p><i>n</i> + (<i>n</i> + 1) + (<i>n</i> + 2) = 3<i>n</i> + 3 = 3(<i>n</i> + 1). This has a factor 3 whatever whole number <i>n</i> is, so it is a multiple of 3.</p></div>
     </div>
+    <div class="q" data-answers="131" data-mode="value">
+      <p class="qtext">Work out &radic;(10 &times; 11 &times; 12 &times; 13 + 1). (The number under the root is a perfect square, so the answer is a whole number. Look for a pattern rather than using a calculator.)</p>
+      <ol class="ladder"><li>Four consecutive numbers multiplied, plus 1. What do you get with the smallest case, 1 &times; 2 &times; 3 &times; 4 + 1?</li><li>Try 1 &times; 2 &times; 3 &times; 4 + 1, then 2 &times; 3 &times; 4 &times; 5 + 1, then 3 &times; 4 &times; 5 &times; 6 + 1. Take the square root of each and look at 5, 11, 19.</li><li>If the first number is <i>n</i>, the root is <i>n</i>&sup2; + 3<i>n</i> + 1 (check it gives 5, 11, 19). Now put <i>n</i> = 10.</li></ol>
+      <ul class="wrong"><li data-if="17161">That is the number under the root. You still need its square root.</li><li data-if="130">130 is 10&sup2; + 3 &times; 10, one short. The pattern adds 1: <i>n</i>&sup2; + 3<i>n</i> + 1.</li></ul>
+      <div class="solution"><p>The pattern: &radic;(1 &times; 2 &times; 3 &times; 4 + 1) = &radic;25 = 5, &radic;(2 &times; 3 &times; 4 &times; 5 + 1) = &radic;121 = 11, &radic;(3 &times; 4 &times; 5 &times; 6 + 1) = &radic;361 = 19, and 5, 11, 19 are <i>n</i>&sup2; + 3<i>n</i> + 1. Why: let <i>k</i> = <i>n</i>(<i>n</i> + 3) = <i>n</i>&sup2; + 3<i>n</i>. Then (<i>n</i> + 1)(<i>n</i> + 2) = <i>k</i> + 2, so the product plus 1 is <i>k</i>(<i>k</i> + 2) + 1 = (<i>k</i> + 1)&sup2;. For <i>n</i> = 10, <i>k</i> = 130, so the root is 131. Check: 131&sup2; = 17,161 = 17,160 + 1.</p></div>
+    </div>
   </div>
 </section>
 
@@ -538,7 +544,7 @@
     <h2>Why it works</h2>
     <ul class="tick">
       <li><b>A square number is an area.</b> Squaring takes a side to an area; the square root takes an area back to a side.</li>
-      <li><b>The root sign groups.</b> &radic;(36 + 64) needs the sum first. You cannot split it into &radic;36 + &radic;64.</li>
+      <li><b>The root sign groups.</b> &radic;(36 + 64) needs the sum first. In general you cannot split it into &radic;36 + &radic;64.</li>
       <li><b>Estimating</b> a root by the squares either side tells you whether a calculator answer makes sense.</li>
     </ul>
     <h2>Common traps</h2>

@@ -7,11 +7,15 @@ import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
 const PUBLIC = join(__dirname, '..', 'public');
 
 test.describe('the GCSE book stays hidden', () => {
-  test('no existing page, the sitemap or robots.txt mentions the book', async ({ page }) => {
-    for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
+  test('only the Books page and the 404 page lead to the book; the sitemap and robots.txt never mention it', async ({ page }) => {
+    for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
       await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to the book`).toHaveCount(0);
     }
+    // Greg's decision (24 Nov 2026): the 404 page points at /books/, which points at the GCSE book.
+    await page.goto('/404.html');
+    await expect(page.locator('a[href*="books"]')).toHaveCount(1);
+    await expect(page.locator('a[href="books/"]')).toHaveCount(1);
     for (const file of ['sitemap.xml', 'robots.txt']) {
       expect(readFileSync(join(PUBLIC, file), 'utf8'), file).not.toMatch(/books/i);
     }
@@ -729,5 +733,64 @@ test.describe('stretch papers', () => {
     await expect(page.locator('section.ckw').first()).toBeHidden();
     await expect(page.getByRole('button', { name: 'Show recaps and check sets again' })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByRole('link', { name: 'Jump to exam style' })).toBeVisible();
+  });
+});
+
+test.describe('the Books page', () => {
+  test('/books leads to the GCSE book, and the 404 page leads to /books', async ({ page }) => {
+    await page.goto('/books');
+    await expect(page).toHaveURL(/\/books\/$/);
+    await expect(page).toHaveTitle(/Maths Books/);
+    await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
+    await expect(page).toHaveURL(/\/books\/gcse\/$/);
+    const response = await page.goto('/this-page-does-not-exist.html');
+    expect(response?.status()).toBe(404);
+    await page.getByRole('link', { name: /Go to Books/ }).click();
+    await expect(page).toHaveURL(/\/books\/$/);
+  });
+});
+
+test.describe('round 3 finishing touches', () => {
+  test('a half-finished Find my gaps survives a reload, and is forgotten on finishing', async ({ page }) => {
+    await page.goto('/books/gcse/diagnostic.html');
+    await page.getByLabel('Your answer to question 1', { exact: true }).fill('42');
+    await expect(page.locator('.diag-progress')).toContainText('1 of 11 answered');
+    await page.reload();
+    await expect(page.getByLabel('Your answer to question 1', { exact: true })).toHaveValue('42');
+    await page.getByRole('button', { name: 'Show my results' }).first().click();
+    await page.reload();
+    await expect(page.getByLabel('Your answer to question 1', { exact: true })).toHaveValue('');
+  });
+
+  test('Listen reads what the picture shows as well as the question', async ({ page }) => {
+    await page.addInitScript(() => {
+      const spoken: string[] = [];
+      (window as any).__spoken = spoken;
+      const voice = { name: 'Daniel (Enhanced)', lang: 'en-GB', localService: true };
+      Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { getVoices: () => [voice], speak: (u: any) => spoken.push(u.text), cancel: () => {}, speaking: false, addEventListener: () => {}, onvoiceschanged: null } });
+      (window as any).SpeechSynthesisUtterance = function (t: string) { (this as any).text = t; };
+    });
+    await page.goto('/books/gcse/pythagoras.html');
+    const q = page.locator('.q:has(.qfig)').first();
+    await q.getByRole('button', { name: /Listen to question/ }).click();
+    const said = await page.evaluate(() => (window as any).__spoken.join(' '));
+    expect(said).toContain('The picture shows');
+  });
+
+  test('a timed set shows five questions with no hints, then lets you mark them', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    await expect(page.locator('.q:visible')).toHaveCount(5);
+    await expect(page.locator('.timed-clock')).toContainText('Time left');
+    await expect(page.locator('.q-help:visible')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Finish and mark my answers' }).click();
+    await expect(page.locator('.q:visible .solution:visible').first()).toBeVisible();
+    await expect(page.locator('.timed-status')).toContainText(/Marks so far: 0 of \d+/);
+    await page.locator('.q:visible .mark-box').first().check();
+    await expect(page.locator('.timed-status')).toContainText(/Marks so far: 1 of/);
+    await page.getByRole('button', { name: 'Back to all questions' }).click();
+    await expect(page.locator('.q:visible')).toHaveCount(28);
   });
 });
