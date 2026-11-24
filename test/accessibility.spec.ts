@@ -42,7 +42,7 @@ test.describe('the book in its interactive states', () => {
     const first = page.locator('.q').first();
     await first.getByLabel('Your answer').fill('5/16');
     await first.getByRole('button', { name: 'Check' }).click();
-    await first.getByRole('button', { name: /Help, I'm stuck/ }).click();
+    await first.getByRole('button', { name: /Give me a clue/ }).click();
     await page.locator('a.term').first().click();
     await expect(page.locator('.term-pop')).toBeVisible();
     expect(await violations(page)).toEqual([]);
@@ -55,7 +55,7 @@ test.describe('the book in its interactive states', () => {
   test('with the duck open', async ({ page }) => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
-    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
     await help.click();
     await help.click();

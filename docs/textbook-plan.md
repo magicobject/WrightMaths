@@ -13,7 +13,7 @@ Success looks like a student who can say "I got that one" within two minutes of 
 1. **Success first.** Every topic opens with a question the student can already nearly answer. Early wins, then stretch.
 2. **Two sides of every idea.** Each topic has a "Flip it" section (see 5).
 3. **Words are first-class.** Every mathematical term is highlighted, defined once in plain English, and findable (see 6).
-4. **Never stuck for long.** Every question has a "Help, I'm stuck!" ladder (see 7).
+4. **Never stuck for long.** Every question has a "Give me a clue" ladder (see 7).
 5. **Learning science built in, not bolted on** (see 4).
 6. **Kind to children.** No accounts, no tracking, no data leaves the device (see 9).
 7. **Print-ready from day one.** Content is structured data, not hand-built pages (see 8).
@@ -92,7 +92,7 @@ Each topic's metadata lists its flip partner, so the two are linked in both dire
 - Question wording is kept in exam-board command-word style (*Work out*, *Show that*, *Explain*), with a command words guide.
 - One definition per term, held in one place (single source of truth), so the book, glossary and print index can never disagree.
 
-## 7. "Help, I'm stuck!"
+## 7. "Give me a clue"
 
 A ladder on every question, revealed one rung at a time, so the student always does the final thinking:
 
