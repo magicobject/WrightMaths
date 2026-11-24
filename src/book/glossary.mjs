@@ -73,10 +73,10 @@ export const GLOSSARY = [
   },
   {
     id: 'square-root', term: 'Square root', strand: 'n', level: 'F',
-    def: 'The number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.',
+    def: 'The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.',
     example: '&radic;81 = 9 because 9 &times; 9 = 81.',
     watch: 'Every positive number has two square roots (9 and &minus;9 both square to 81). The &radic; sign means the positive one; solving x&sup2; = 81 gives x = 9 or x = &minus;9.',
-    flip: 'The inverse of squaring.',
+    flip: 'The inverse of squaring, for numbers 0 or more.',
     see: ['square-number', 'surd'],
   },
   {
@@ -105,7 +105,7 @@ export const GLOSSARY = [
   {
     id: 'fraction', term: 'Fraction', strand: 'n', level: 'F',
     def: 'A number that describes equal parts of a whole. It is written with one number over another.',
-    example: '{frac:3/8} means 3 of 8 equal parts. A pizza cut into 8 equal slices, 3 eaten.',
+    example: '{frac:3/8} means 3 of 8 equal parts. 3 pieces of a pizza cut into 8 equal slices.',
     watch: 'The parts must be equal. A shape cut into 3 unequal pieces does not show thirds.',
     see: ['numerator', 'denominator', 'equivalent-fractions'],
   },
@@ -132,7 +132,7 @@ export const GLOSSARY = [
     see: ['simplify-fraction'],
   },
   {
-    id: 'simplify-fraction', term: 'Simplify (a fraction)', strand: 'n', level: 'F',
+    id: 'simplify-fraction', term: 'Simplify a fraction', strand: 'n', level: 'F',
     def: 'Write a fraction in its lowest terms: divide the top and bottom by the same number until nothing else divides both.',
     example: '{frac:12/18}: divide top and bottom by 6 to get {frac:2/3}. {frac:2/3} cannot be simplified further.',
     watch: 'Examiners expect the simplest form unless the question says otherwise. Divide by the HCF to finish in one step.',
@@ -502,18 +502,18 @@ export const GLOSSARY = [
   },
   {
     id: 'expand', term: 'Expand (multiply out)', strand: 'a', level: 'F',
-    def: 'Remove brackets by multiplying every term inside by what is outside.',
-    example: '3(x + 4) = 3x + 12. (x + 2)(x + 5) = x&sup2; + 7x + 10.',
+    def: 'Remove brackets by multiplying every term inside by what is outside. With two brackets, multiply every term in one by every term in the other.',
+    example: ['3(x + 4) {term:identity|&equiv;} 3x + 12', '(x + 2)(x + 5) {term:identity|&equiv;} x&sup2; + 7x + 10'],
     flip: 'Factorising puts the brackets back.',
-    see: ['factorise'],
+    see: ['factorise', 'identity'],
   },
   {
     id: 'factorise', term: 'Factorise', strand: 'a', level: 'F',
     def: 'Write an expression as a product of factors, with brackets. It is expanding in reverse.',
-    example: '6x + 9 = 3(2x + 3). x&sup2; + 7x + 10 = (x + 2)(x + 5).',
+    example: ['6x + 9 {term:identity|&equiv;} 3(2x + 3)', 'x&sup2; + 7x + 10 {term:identity|&equiv;} (x + 2)(x + 5)'],
     watch: 'Check by expanding your answer: you should get the original back.',
     flip: 'The reverse of expand.',
-    see: ['expand'],
+    see: ['expand', 'identity'],
   },
   {
     id: 'consecutive', term: 'Consecutive', strand: 'a', level: 'F',
@@ -607,6 +607,23 @@ export const GLOSSARY = [
     see: ['term', 'coefficient', 'expression'],
   },
 
+  {
+    id: 'identity', term: 'Identity (&equiv;)', strand: 'a', level: 'H',
+    def: 'Two expressions that are equal for every value of the letters. It is written with the symbol &equiv; (three parallel lines), read as "is identically equal to" or "is equivalent to". An equation, written with =, is only true for some values.',
+    example: ['2(x + 3) &equiv; 2x + 6 is true whatever x is', '2x + 6 = 10 is an equation: it is true only when x = 2'],
+    watch: 'Expanding and factorising give identities. A single = is often used in exam answers too, but &equiv; shows you know the two sides are always the same.',
+    flip: 'Expanding and factorising are the two directions of one identity.',
+    see: ['equation', 'expand', 'factorise', 'algebraic-proof'],
+  },
+
+  {
+    id: 'simplify', term: 'Simplify', strand: 'a', level: 'F',
+    def: 'Make an expression shorter or neater without changing its value, for example by collecting like terms.',
+    example: ['5x + 2 &minus; x + 4 simplifies to 4x + 6', 'a &times; a simplifies to a&sup2;'],
+    watch: 'For fractions, simplifying means writing them in lowest terms (see Simplify a fraction).',
+    see: ['like-terms', 'simplify-fraction', 'expression'],
+  },
+
   // ---------- Ratio, proportion ----------
   {
     id: 'ratio', term: 'Ratio', strand: 'r', level: 'F',
@@ -646,7 +663,7 @@ export const GLOSSARY = [
   },
   {
     id: 'perpendicular', term: 'Perpendicular', strand: 'g', level: 'F',
-    def: 'At right angles (90&deg;). Two lines are perpendicular if their gradients multiply to &minus;1.',
+    def: 'At right angles (90&deg;). Two lines that are not horizontal or vertical are perpendicular if their gradients multiply to &minus;1.',
     example: 'Gradients 2 and &minus;{frac:1/2} give 2 &times; (&minus;{frac:1/2}) = &minus;1, so those lines are perpendicular.',
     see: ['right-angle', 'tangent'],
   },
@@ -830,7 +847,7 @@ export const GLOSSARY = [
     id: 'polygon', term: 'Polygon', strand: 'g', level: 'F',
     def: 'A closed flat shape with straight sides. A shape with n sides has interior angles that add up to (n &minus; 2) &times; 180&deg;.',
     example: 'Triangle (3 sides), quadrilateral (4), pentagon (5), hexagon (6), octagon (8). Interior angles of a pentagon add to 540&deg;.',
-    watch: 'The exterior angles of any convex polygon (one with no dents) add up to 360&deg;.',
+    watch: 'The exterior angles of a polygon add up to 360&deg;.',
     flip: 'From the number of sides to the angle total, or from an angle back to the number of sides.',
     see: ['regular-polygon', 'angle'],
   },
@@ -841,6 +858,44 @@ export const GLOSSARY = [
     watch: 'A shape can have equal sides without equal angles (a rhombus), so it is not regular.',
     flip: 'Each exterior angle is 360 &divide; n, so n = 360 &divide; exterior angle.',
     see: ['polygon'],
+  },
+
+  {
+    id: 'interior-angle', term: 'Interior angle', strand: 'g', level: 'F',
+    def: 'An angle inside a shape, at one of its corners.',
+    example: ['A triangle has three interior angles. They add up to 180&deg;.', 'The interior angles of a regular pentagon are each 108&deg;.'],
+    watch: 'Interior means inside. The exterior angle at the same corner is outside.',
+    flip: 'At each corner: interior angle + exterior angle = 180&deg;.',
+    see: ['exterior-angle', 'polygon', 'regular-polygon'],
+  },
+  {
+    id: 'exterior-angle', term: 'Exterior angle', strand: 'g', level: 'F',
+    def: 'An angle outside a shape at a corner, between one side and the next side extended in a straight line.',
+    example: ['A regular hexagon has exterior angles of 360 &divide; 6 = 60&deg;.', 'The exterior angles of a polygon add up to 360&deg;.'],
+    watch: 'It is not the same as the interior angle. The two together make 180&deg;.',
+    flip: 'Number of sides = 360 &divide; exterior angle (for a regular polygon).',
+    see: ['interior-angle', 'polygon', 'regular-polygon'],
+  },
+  {
+    id: 'perimeter', term: 'Perimeter', strand: 'g', level: 'F',
+    def: 'The distance all the way round the edge of a shape.',
+    example: ['A rectangle 5 cm by 3 cm has perimeter 5 + 3 + 5 + 3 = 16 cm.'],
+    watch: 'Perimeter is a length (cm, m). Area is the space inside (cm&sup2;, m&sup2;).',
+    see: ['area'],
+  },
+  {
+    id: 'area', term: 'Area', strand: 'g', level: 'F',
+    def: 'The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.',
+    example: ['A rectangle 5 cm by 3 cm has area 5 &times; 3 = 15 cm&sup2;.', 'A square with side 7 cm has area 7&sup2; = 49 cm&sup2;.'],
+    watch: 'Do not mix it up with perimeter, the distance round the edge.',
+    flip: 'From side length to area: square it. From area to side length: square-root it.',
+    see: ['perimeter', 'square-number'],
+  },
+  {
+    id: 'diagonal', term: 'Diagonal', strand: 'g', level: 'F',
+    def: 'A straight line joining two corners of a shape that are not next to each other.',
+    example: ['The diagonal of a 9 cm by 12 cm rectangle is 15 cm (Pythagoras).'],
+    see: ['hypotenuse', 'polygon'],
   },
 
   // ---------- Probability and statistics ----------

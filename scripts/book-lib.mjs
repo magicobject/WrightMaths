@@ -79,7 +79,7 @@ export function expandInline(html, { glossaryById, usage, page }) {
         usage.get(id).add(page);
       }
       const text = label ?? entry.term;
-      return `<a class="term" href="glossary.html#${id}" data-def="${escapeDefAttr(entry.def)}">${text}</a>`;
+      return `<a class="term" href="glossary.html#${id}" data-term="${id}" data-def="${escapeDefAttr(entry.def)}">${text}</a>`;
     });
 }
 
@@ -181,7 +181,7 @@ ${rows.join('\n')}
     </ol>`;
 }
 
-export function renderGlossaryPage(glossary, usage, graph, strands) {
+export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}) {
   const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
   const byId = new Map(glossary.map((g) => [g.id, g]));
   const letters = [...new Set(sorted.map((g) => g.term[0].toUpperCase()))];
@@ -196,7 +196,8 @@ export function renderGlossaryPage(glossary, usage, graph, strands) {
       .map((s) => `<a href="#${s}">${byId.get(s).term}</a>`).join(', ');
     const parts = [
       `<p class="g-def">${g.def}</p>`,
-      g.example ? `<p class="g-example"><b>Example:</b> ${g.example}</p>` : '',
+      figures[g.id] ? `<div class="g-fig">${figures[g.id]}</div>` : '',
+      g.example ? (Array.isArray(g.example) ? `<p class="g-example"><b>Examples:</b>${g.example.map((line) => `<span class="g-line">${line}</span>`).join('')}</p>` : `<p class="g-example"><b>Example:</b> ${g.example}</p>`) : '',
       g.watch ? `<p class="g-watch"><b>Watch out:</b> ${g.watch}</p>` : '',
       g.flip ? `<p class="g-flip"><b>Flip it:</b> ${g.flip}</p>` : '',
       see ? `<p class="g-see"><b>See also:</b> ${see}</p>` : '',
@@ -249,4 +250,58 @@ export function renderPracticeTopics(graph) {
         ${items}
       </ul>
     </fieldset>`;
+}
+
+// ---------- automatic term links inside questions ----------
+
+// Words that are everywhere in questions or too general to be worth a pop-up on every use.
+const NEVER_AUTO = new Set(['work-out', 'calculate', 'write-down', 'show-that', 'explain-command', 'term', 'round', 'operation', 'proof', 'unknown', 'sum', 'mean']);
+
+function termNames(g) {
+  const plain = String(g.term).replace(/&[a-z]+;/gi, '');
+  const main = plain.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
+  const inParens = [...plain.matchAll(/\(([^)]+)\)/g)].map((m) => m[1].trim());
+  return [main, ...inParens]
+    .filter((n) => n.length >= 3 && !/[.]/.test(n) && /^[A-Za-z' -]+$/.test(n))
+    .map((n) => n.toLowerCase());
+}
+
+/** Build the list of {id, re} patterns, longest names first. */
+export function buildAutoPatterns(glossary) {
+  const out = [];
+  for (const g of glossary) {
+    if (NEVER_AUTO.has(g.id)) continue;
+    for (const name of termNames(g)) {
+      const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+');
+      out.push({ id: g.id, len: name.length, re: new RegExp(`(?<![A-Za-z])(${escaped})(?:s|es)?(?![A-Za-z])`, 'i') });
+    }
+  }
+  return out.sort((a, b) => b.len - a.len);
+}
+
+/**
+ * Link the first use of each glossary term in the question text (<p class="qtext">) as {term:id|text}.
+ * Only plain text is touched: tags, entities and existing {..} shorthands are left alone.
+ */
+export function autoLinkQuestionTerms(html, patterns) {
+  return html.replace(/(<p class="qtext">)([\s\S]*?)(<\/p>)/g, (whole, open, inner, close) => {
+    const already = new Set([...inner.matchAll(/\{term:([a-z0-9-]+)/g)].map((m) => m[1]));
+    let parts = inner.split(/(<[^>]+>|\{[^}]*\}|&[a-z#0-9]+;)/i);
+    for (const { id, re } of patterns) {
+      if (already.has(id)) continue;
+      for (let i = 0; i < parts.length; i += 1) {
+        const piece = parts[i];
+        if (!piece || /^(<|\{|&)/.test(piece)) continue;
+        const m = re.exec(piece);
+        if (!m) continue;
+        const before = piece.slice(0, m.index);
+        const matched = piece.slice(m.index, m.index + m[0].length);
+        const after = piece.slice(m.index + m[0].length);
+        parts.splice(i, 1, before, `{term:${id}|${matched}}`, after);
+        already.add(id);
+        break;
+      }
+    }
+    return open + parts.join('') + close;
+  });
 }

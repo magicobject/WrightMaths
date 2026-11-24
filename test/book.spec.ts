@@ -276,8 +276,8 @@ test.describe('feedback that helps instead of scolds', () => {
 
   test('a typed minus in any style, a pound sign and x= are all accepted', async ({ page }) => {
     await page.goto('/books/gcse/negative-numbers.html');
-    const q = page.locator('.q', { hasText: 'Work out 3 \u00d7 (\u22124)' }).first();
-    await q.getByLabel('Your answer').fill('\u2212 12');
+    const q = page.locator('.q', { hasText: 'Work out \u22124 \u2212 3.' }).first();
+    await q.getByLabel('Your answer').fill('\u2212 7');
     await q.getByRole('button', { name: 'Check' }).click();
     await expect(q).toHaveClass(/q-correct/);
   });
@@ -403,9 +403,196 @@ test.describe('display on a phone', () => {
     await page.goto('/books/gcse/');
     const order = await page.evaluate(() => {
       const a = document.querySelector('#pyramid')!.getBoundingClientRect().top;
-      const b = document.querySelector('.how-grid')!.getBoundingClientRect().top;
+      const b = [...document.querySelectorAll('h2')].find((h) => h.textContent?.includes('Five habits'))!.getBoundingClientRect().top;
       return a < b;
     });
     expect(order).toBe(true);
+  });
+});
+
+test.describe('feedback round 2: hover definitions, Help after answering, human voice, identity sign', () => {
+  test('technical words inside questions are linked automatically and show a definition with a picture on hover', async ({ page }) => {
+    await page.goto('/books/gcse/shapes-angles.html');
+    const term = page.locator('.qtext a.term[data-term="reflex-angle"]').first();
+    await expect(term).toBeVisible();
+    await term.hover();
+    const pop = page.locator('.term-pop');
+    await expect(pop).toBeVisible();
+    await expect(pop).toContainText('more than 180');
+    await expect(pop.locator('svg')).toHaveCount(1);
+    await page.mouse.move(5, 5);
+    await expect(pop).toHaveCount(0);
+  });
+
+  test('Help, I\'m stuck stays available after a right answer, for another way to see it', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    await q.getByLabel('Your answer').fill('1000');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q).toHaveClass(/q-correct/);
+    const help = q.getByRole('button', { name: 'Another way to see it' });
+    await expect(help).toBeEnabled();
+    await help.click();
+    await expect(q.locator('.rungs li')).toHaveCount(1);
+  });
+
+  test('Listen says maths symbols as words and only uses a voice that runs on the device', async ({ page }) => {
+    await page.addInitScript(() => {
+      const spoken: { text: string; voice: string }[] = [];
+      (window as any).__spoken = spoken;
+      const voices = [
+        { name: 'Microsoft David Desktop', lang: 'en-US', localService: true },
+        { name: 'Microsoft Sonia Online (Natural) - English (United Kingdom)', lang: 'en-GB', localService: false },
+        { name: 'Daniel (Enhanced)', lang: 'en-GB', localService: true },
+        { name: 'eSpeak English', lang: 'en', localService: true },
+      ];
+      (window as any).SpeechSynthesisUtterance = function (text: string) { return { text, voice: null, rate: 1, pitch: 1, lang: '' }; };
+      Object.defineProperty(window, 'speechSynthesis', {
+        configurable: true,
+        value: {
+          speaking: false,
+          getVoices: () => voices,
+          cancel() {},
+          speak(u: any) { spoken.push({ text: u.text, voice: u.voice?.name ?? '' }); },
+          addEventListener() {},
+        },
+      });
+    });
+    await page.goto('/books/gcse/negative-numbers.html');
+    await page.locator('.q', { hasText: 'Work out (−5) × (−6).' }).first().locator('.listen').click();
+    const spoken = await page.evaluate(() => (window as any).__spoken as { text: string; voice: string }[]);
+    expect(spoken.length).toBeGreaterThan(0);
+    const all = spoken.map((s) => s.text).join(' ');
+    expect(all).toContain('times');
+    expect(all).toContain('minus');
+    // The best voice that runs on the device: an online voice would send the text away.
+    expect(spoken[0].voice).toBe('Daniel (Enhanced)');
+  });
+
+  test('the identity sign is in the glossary, linked from the examples, each example on its own line', async ({ page }) => {
+    await page.goto('/books/gcse/glossary.html');
+    await expect(page.locator('#identity h3')).toContainText('Identity');
+    await expect(page.locator('#identity')).toContainText('≡');
+    expect(await page.locator('#factorise .g-line').count()).toBe(2);
+    await expect(page.locator('#factorise .g-line a.term').first()).toHaveAttribute('href', /#identity/);
+    await expect(page.locator('#fraction .g-example')).toContainText('3 pieces of a pizza cut into 8 equal slices');
+  });
+});
+
+test.describe('ready to revisit', () => {
+  test('a clean answer is scheduled for tomorrow, and a due question comes back in Give me five', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 10.' }).first();
+    await q.getByLabel('Your answer').fill('100');
+    await q.getByRole('button', { name: 'Check' }).click();
+    const qid = await q.getAttribute('data-qid');
+    const rec = await page.evaluate((id) => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').rq?.[id], qid!);
+    expect(rec.b).toBe(1);
+    expect(rec.due).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    // pretend it was answered long ago, then ask for practice on this topic only
+    await page.evaluate((id) => {
+      const data = JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}');
+      data.rq[id] = { b: 1, due: '2020-01-01', last: '2019-12-31', miss: 0 };
+      window.localStorage.setItem('wm-gcse-v1', JSON.stringify(data));
+    }, qid!);
+    await page.goto('/books/gcse/practice.html');
+    for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
+    await page.locator('input[name="practice-topic"][value="place-value"]').check();
+    await page.getByRole('button', { name: 'Give me five new questions' }).click();
+    await expect(page.locator('[data-practice-status]')).toContainText('ready to revisit');
+    const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
+    expect(ids).toContain(qid);
+  });
+
+  test('a hand-edited or hostile store is ignored, not trusted', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('wm-gcse-v1', JSON.stringify({ done: {}, ticks: {}, rq: { '__proto__': { b: 1 }, 'x y': 1, 'place-value-1': { b: 99 } }, days: 'nope', diag: [{ score: 'a' }] }));
+    });
+    await page.goto('/books/gcse/practice.html');
+    await expect(page.locator('[data-practice-set] .q')).toHaveCount(5);
+  });
+});
+
+test.describe('find your gaps', () => {
+  test('scores in the browser, recommends the lowest topics first, remembers the result, shows a history', async ({ page }) => {
+    await page.goto('/books/gcse/diagnostic.html');
+    const answers: Record<string, string> = { 'place-value': '600', 'four-operations': '282', 'negative-numbers': '5', 'order-of-operations': '17' };
+    for (const d of await page.locator('.dq').all()) {
+      const topic = await d.getAttribute('data-topic');
+      if (topic && answers[topic]) await d.locator('input').fill(answers[topic]);
+    }
+    await page.getByRole('button', { name: 'Show my results' }).click();
+    await expect(page.locator('[data-diag-results]')).toContainText('You already have 3 of 11');
+    const first = page.locator('.diag-start li').first();
+    await expect(first).toContainText('Negative numbers');
+    const stored = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').diag);
+    expect(stored).toHaveLength(1);
+    expect(stored[0].score).toBe(3);
+    await page.reload();
+    await expect(page.locator('[data-diag-history]')).toContainText('3 of 11');
+  });
+
+  test('the hub offers it first', async ({ page }) => {
+    await page.goto('/books/gcse/');
+    await expect(page.getByRole('link', { name: /Find my gaps/ }).first()).toBeVisible();
+  });
+});
+
+test.describe('privacy and keyboard access', () => {
+  for (const bookPage of BOOK_PAGES) {
+    test(`${bookPage.path} makes no request to any other website`, async ({ page }) => {
+      const foreign: string[] = [];
+      page.on('request', (r) => { if (!r.url().startsWith('http://localhost') && !r.url().startsWith('data:')) foreign.push(r.url()); });
+      await page.goto(bookPage.path);
+      await page.waitForLoadState('networkidle');
+      expect(foreign).toEqual([]);
+    });
+  }
+
+  test('there is a skip link first in the tab order, and it lands on the main content', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.keyboard.press('Tab');
+    const skip = page.locator('.skip-link');
+    await expect(skip).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('main#main')).toBeFocused();
+  });
+
+  test('every question and answer box has its own name, and every Listen button is distinct', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    const names = await page.locator('.q-input').evaluateAll((els) => els.map((e) => (document.querySelector(`label[for="${e.id}"]`) as HTMLElement | null)?.textContent));
+    expect(names.length).toBeGreaterThan(10);
+    expect(new Set(names).size).toBe(names.length);
+    const listens = await page.locator('button.listen').evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
+    expect(new Set(listens.filter((l) => l?.startsWith('Listen to question'))).size).toBe(listens.filter((l) => l?.startsWith('Listen to question')).length);
+    expect(await page.locator('.q').first().getAttribute('aria-labelledby')).toBeTruthy();
+  });
+
+  test('a term pop-up can be reached and left with the keyboard', async ({ page }) => {
+    await page.goto('/books/gcse/shapes-angles.html');
+    const term = page.locator('.qtext a.term').first();
+    await term.focus();
+    await expect(page.locator('.term-pop')).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.term-pop-more')).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.term-pop')).toHaveCount(0);
+    await expect(term).toBeFocused();
+  });
+
+  test('asking for hints keeps focus on the Help button, and a very long answer does not freeze the page', async ({ page }) => {
+    await page.goto('/books/gcse/solving-equations.html');
+    const q = page.locator('.q').first();
+    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    await help.click();
+    await expect(help).toBeFocused();
+    const input = q.locator('.q-input');
+    expect(await input.getAttribute('maxlength')).toBe('60');
+  });
+
+  test('the footer headings follow the page headings without skipping a level', async ({ page }) => {
+    await page.goto('/books/gcse/practice.html');
+    const levels = await page.$$eval('h1,h2,h3,h4,h5,h6', (hs) => hs.map((h) => Number(h.tagName[1])));
+    levels.forEach((level, i) => { if (i > 0) expect(level - levels[i - 1]).toBeLessThanOrEqual(1); });
   });
 });

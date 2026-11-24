@@ -86,3 +86,28 @@ axe-core now runs on every page (`test/accessibility.spec.ts`). The main site's 
 ## Privacy
 
 No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored in `localStorage` under `wm-gcse-v1`, on the student's device only. Any feature that would send data goes through `security-architect` and `security-engineer` first.
+
+## Added in round 2 (feedback from student and expert testers)
+
+**Diagrams.** Put a `<figure class="figure qfig">` immediately after a question's `<p class="qtext">`, inside the `.q`. It must have an SVG with `role="img"` and a `<title>` and `<desc>` that describe it without giving the answer; label unknowns with `?` or a letter; say "Not drawn to scale" when proportions are rough; ids must be unique on the page. Keep text inside the `viewBox`. The tests check ids, titles and that every page's figures render without console errors.
+
+**Technical words in questions** are linked automatically at build time (first use per question), from the glossary. They show a definition on hover, focus or tap, plus a small picture if `src/book/term-figures.mjs` has one for that term id. Question words (work out, calculate...) are never auto-linked. To add a picture, add an entry keyed by the glossary id; the build fails if the id is not a glossary term.
+
+**Warm-ups and recaps.** One warm-up question at most; fold recap questions into `<details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>...</details>` so the lesson comes first. A faded example's answer goes in `<details class="check-line"><summary>Check my answer</summary>...</details>` so it is not given away.
+
+**Higher-only sections** carry `<span class="chip chip-higher">Higher</span>` in their heading.
+
+**Glossary examples** may be an array (one line each). Use the identity sign with `{term:identity|&equiv;}` only for Higher-tier notes.
+
+**Spaced revisit.** A question answered right first time with no hint is scheduled to come back (1, 3, 7, 21, 60 days: `public/js/book-queue.mjs`). "Give me five" shows up to three due questions. Everything is in `localStorage`; the queue ignores malformed data.
+
+**Find your gaps** (`diagnostic.html`) holds its own 11 questions (class `dq`, with `data-topic`, `data-layer`, `data-answers`); results are scored in the browser and kept as plain numbers.
+
+## Privacy and accessibility rules (do not loosen)
+
+- **No third-party requests from book pages.** Book pages load no web fonts (system font stack). A test fails if any book page requests another website. Adding a font means self-hosting it and asking Greg first.
+- **Listen uses only voices that run on the device by default.** Some browser voices ("online", Google) send the text away; they are used only if the student picks one, and are labelled (`public/js/book-voice.mjs`).
+- **The duck's text box is never stored or sent.** Answer boxes are limited to 60 characters; the answer checker ignores input over 200 characters so it cannot freeze the tab.
+- **Module imports are not cached for a year** (`public/_headers`): `book-answer.mjs`, `book-queue.mjs`, `book-voice.mjs` are imported without a version query.
+- Every `.q` has an accessible name, every answer box and Listen button a distinct name, hints keep focus on the Help button and are announced politely, the term pop-up works by keyboard (Enter moves into it, Escape closes and returns focus), a skip link is the first Tab stop, and the footer headings follow the heading order.
+

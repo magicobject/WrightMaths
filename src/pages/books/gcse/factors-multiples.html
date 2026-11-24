@@ -21,7 +21,7 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Warm-up: what do you already know?</h2>
-    <p class="intro">Have a go before you read anything. The last three are from Add, subtract, multiply, divide, the layer this stands on.</p>
+    <p class="intro">Have a go before you read anything. The recap below is from Add, subtract, multiply, divide, the layer this stands on.</p>
     <div class="q" data-type="mc">
       <p class="qtext">Is 24 a multiple of 6?</p>
       <ul class="options">
@@ -31,24 +31,23 @@
       <ol class="ladder"><li>Is there a whole number that you can multiply 6 by to get 24?</li></ol>
       <div class="solution"><p>Yes: 6 &times; 4 = 24.</p></div>
     </div>
+    <details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>
     <div class="q" data-answers="56" data-mode="value">
       <p class="qtext">Last time: work out 8 &times; 7.</p>
       <ol class="ladder"><li>Eight sevens.</li></ol>
-      
       <div class="solution"><p>8 &times; 7 = 56.</p></div>
     </div>
     <div class="q" data-answers="8" data-mode="value">
       <p class="qtext">Work out 72 &divide; 9.</p>
       <ol class="ladder"><li>9 &times; 8 = 72.</li></ol>
-      
       <div class="solution"><p>72 &divide; 9 = 8.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Work out 144 &divide; 12.</p>
       <ol class="ladder"><li>12 &times; 12 = 144.</li></ol>
-      
       <div class="solution"><p>144 &divide; 12 = 12.</p></div>
     </div>
+    </details>
   </div>
 </section>
 
@@ -155,6 +154,7 @@
     </div>
     <div class="q" data-answers="3" data-mode="value">
       <p class="qtext">How many factor <i>pairs</i> does 18 have?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 240 130" role="img" aria-labelledby="fm1-t fm1-d" class="geo-svg"><title id="fm1-t">A rectangle with area 18</title><desc id="fm1-d">A rectangle with area 18. Its two side lengths are unknown, each labelled with a question mark. Each pair of whole-number side lengths that multiply to 18 is a factor pair.</desc><rect x="40" y="30" width="160" height="90" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="120" y="80" text-anchor="middle" style="font-size:15px">area = 18</text><text class="svg-t" x="120" y="20" text-anchor="middle" style="font-size:14px">?</text><text class="svg-t" x="30" y="80" text-anchor="end" style="font-size:14px">?</text></svg></figure>
       <ol class="ladder"><li>1 &times; 18, 2 &times; 9, 3 &times; 6.</li></ol>
       <ul class="wrong"><li data-if="6">That counts the factors. Each pair is two of them.</li></ul>
       <div class="solution"><p>Three pairs: 1 &times; 18, 2 &times; 9, 3 &times; 6.</p></div>
@@ -181,9 +181,9 @@
 <section>
   <div class="wrap narrow">
     <h2>3. Prime numbers</h2>
-    <p>A {term:prime-number|prime number} has exactly two factors: 1 and itself. The first few are 2, 3, 5, 7, 11, 13, 17, 19, 23. Every other whole number bigger than 1 is built from primes by multiplying, which is called its {term:prime-factorisation|prime factorisation}.</p>
+    <p>A {term:prime-number|prime number} has exactly two factors: 1 and itself. The first few are 2, 3, 5, 7, 11, 13, 17, 19, 23. Every other whole number bigger than 1 is built from primes by multiplying, which is called its {term:prime-factorisation|prime factorisation}. The product is the same every time, apart from the order of the primes.</p>
     <div class="key"><p><b>Key idea:</b> 1 is not prime (it has only one factor). 2 is the only even prime. Break any number into primes with a <b>factor tree</b>: split it into two factors, keep splitting until every branch ends in a prime.</p></div>
-    <p>To test whether <i>n</i> is prime you only need to try the primes up to &radic;<i>n</i>. Factors come in pairs, and in every pair one factor is at most &radic;<i>n</i>. So if there is no factor up to &radic;<i>n</i>, there is none above it either.</p>
+    <p>To test whether <i>n</i> is prime you only need to try the primes up to &radic;<i>n</i>. Factors come in pairs, and in every pair one factor is at most &radic;<i>n</i>. So if <i>n</i> has no factor other than 1 between 2 and &radic;<i>n</i>, it has no factor other than 1 and itself, and it is prime. Any factor bigger than 1 has a prime factor no bigger than it, so you only need to test primes.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Write 84 as a product of prime factors.</p>
@@ -222,6 +222,7 @@
     </div>
     <div class="q" data-answers="4" data-mode="value">
       <p class="qtext">How many prime numbers are there between 10 and 20?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 72" role="img" aria-labelledby="fm2-t fm2-d" class="geo-svg"><title id="fm2-t">Number line from 10 to 20</title><desc id="fm2-d">A number line with every whole number from 10 to 20 marked and labelled.</desc><line class="ln" x1="12" y1="40" x2="308" y2="40"/><line class="ln" style="stroke-width:2" x1="20" y1="32" x2="20" y2="48"/><text class="svg-t" style="font-size:12px" x="20" y="64" text-anchor="middle">10</text><line class="ln" style="stroke-width:2" x1="48" y1="32" x2="48" y2="48"/><text class="svg-t" style="font-size:12px" x="48" y="64" text-anchor="middle">11</text><line class="ln" style="stroke-width:2" x1="76" y1="32" x2="76" y2="48"/><text class="svg-t" style="font-size:12px" x="76" y="64" text-anchor="middle">12</text><line class="ln" style="stroke-width:2" x1="104" y1="32" x2="104" y2="48"/><text class="svg-t" style="font-size:12px" x="104" y="64" text-anchor="middle">13</text><line class="ln" style="stroke-width:2" x1="132" y1="32" x2="132" y2="48"/><text class="svg-t" style="font-size:12px" x="132" y="64" text-anchor="middle">14</text><line class="ln" style="stroke-width:2" x1="160" y1="32" x2="160" y2="48"/><text class="svg-t" style="font-size:12px" x="160" y="64" text-anchor="middle">15</text><line class="ln" style="stroke-width:2" x1="188" y1="32" x2="188" y2="48"/><text class="svg-t" style="font-size:12px" x="188" y="64" text-anchor="middle">16</text><line class="ln" style="stroke-width:2" x1="216" y1="32" x2="216" y2="48"/><text class="svg-t" style="font-size:12px" x="216" y="64" text-anchor="middle">17</text><line class="ln" style="stroke-width:2" x1="244" y1="32" x2="244" y2="48"/><text class="svg-t" style="font-size:12px" x="244" y="64" text-anchor="middle">18</text><line class="ln" style="stroke-width:2" x1="272" y1="32" x2="272" y2="48"/><text class="svg-t" style="font-size:12px" x="272" y="64" text-anchor="middle">19</text><line class="ln" style="stroke-width:2" x1="300" y1="32" x2="300" y2="48"/><text class="svg-t" style="font-size:12px" x="300" y="64" text-anchor="middle">20</text></svg></figure>
       <ol class="ladder"><li>11, 13, 17, 19. Check 15 (5 &times; 3) and 12, 14, 16, 18 (even).</li></ol>
       <ul class="wrong"><li data-if="5">Check each: 15 = 3 &times; 5, so it is not prime.</li><li data-if="3">You missed one. The primes are 11, 13, 17 and 19.</li></ul>
       <div class="solution"><p>The primes are 11, 13, 17 and 19: four.</p></div>
@@ -276,6 +277,16 @@
         <li>The first in both lists is 24.</li>
       </ol>
     </div>
+    <div class="worked">
+      <h3>Worked example: HCF and LCM from prime factors</h3>
+      <p>Find the HCF and LCM of 36 and 48. Listing works, but for big numbers prime factors are quicker.</p>
+      <ol class="steps">
+        <li>Write each as a product of primes: 36 = 2&sup2; &times; 3&sup2; and 48 = 2<sup>4</sup> &times; 3.</li>
+        <li><b>HCF:</b> take each prime that is in <i>both</i> numbers, at the <i>lowest</i> power. That is 2&sup2; and 3, so HCF = 2&sup2; &times; 3 = 12.</li>
+        <li><b>LCM:</b> take every prime that is in <i>either</i> number, at the <i>highest</i> power. That is 2<sup>4</sup> and 3&sup2;, so LCM = 2<sup>4</sup> &times; 3&sup2; = 16 &times; 9 = 144.</li>
+      </ol>
+      <p class="muted">Check: 12 goes into 36 and 48, and 144 = 36 &times; 4 = 48 &times; 3. &#10003;</p>
+    </div>
   </div>
 </section>
 
@@ -308,15 +319,33 @@
     </div>
     <div class="q" data-answers="35" data-mode="value">
       <p class="qtext">Find the LCM of 5 and 7.</p>
-      <ol class="ladder"><li>They share no factor except 1.</li></ol>
+      <ol class="ladder"><li>They have no common factor except 1.</li></ol>
       <ul class="wrong"><li data-if="12">That is 5 + 7. The LCM is a multiple.</li></ul>
-      <div class="solution"><p>When two numbers share no factors, their LCM is their product: 5 &times; 7 = 35.</p></div>
+      <div class="solution"><p>When two numbers have no common factor except 1, their LCM is their product: 5 &times; 7 = 35.</p></div>
     </div>
     <div class="q" data-answers="1" data-mode="value">
       <p class="qtext">Find the HCF of 15 and 28.</p>
       <ol class="ladder"><li>Factors of 15: 1, 3, 5, 15. Factors of 28: 1, 2, 4, 7, 14, 28.</li></ol>
       <ul class="wrong"><li data-if="420">That is their LCM, a multiple. The HCF is a factor.</li></ul>
       <div class="solution"><p>The only common factor is 1.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">60 = 2&sup2; &times; 3 &times; 5 and 84 = 2&sup2; &times; 3 &times; 7. Use the prime factors to find the HCF of 60 and 84.</p>
+      <ol class="ladder"><li>Which primes are in both numbers?</li><li>Take each shared prime at its lowest power, then multiply.</li></ol>
+      <ul class="wrong"><li data-if="420">420 is the LCM (all the primes). The HCF uses only the shared primes.</li><li data-if="6">Both numbers have 2&sup2;, so use 2 &times; 2, not one 2. 2 &times; 2 &times; 3 = 12.</li></ul>
+      <div class="solution"><p>Shared: 2&sup2; and 3. HCF = 4 &times; 3 = 12. Check: 60 &divide; 12 = 5 and 84 &divide; 12 = 7.</p></div>
+    </div>
+    <div class="q" data-answers="100" data-mode="value">
+      <p class="qtext">20 = 2&sup2; &times; 5 and 50 = 2 &times; 5&sup2;. Use the prime factors to find the LCM of 20 and 50.</p>
+      <ol class="ladder"><li>List every prime that is in either number.</li><li>Take each at its highest power, then multiply.</li></ol>
+      <ul class="wrong"><li data-if="10">10 is the HCF (the shared primes at their lowest power). The LCM takes the highest power.</li><li data-if="1000">That is 20 &times; 50. Shared primes are counted once in the LCM, at their highest power.</li></ul>
+      <div class="solution"><p>Highest powers: 2&sup2; and 5&sup2;. LCM = 4 &times; 25 = 100. Check: 100 = 20 &times; 5 = 50 &times; 2.</p></div>
+    </div>
+    <div class="q" data-answers="72" data-mode="value">
+      <p class="qtext">Write 18 and 24 as products of primes, then find their LCM.</p>
+      <ol class="ladder"><li>18 = 2 &times; 3 &times; 3 and 24 = 2 &times; 2 &times; 2 &times; 3.</li><li>Highest power of 2, highest power of 3.</li></ol>
+      <ul class="wrong"><li data-if="6">6 is the HCF. The LCM takes the highest power of every prime.</li><li data-if="432">That is 18 &times; 24. The shared factors must be counted once only.</li></ul>
+      <div class="solution"><p>18 = 2 &times; 3&sup2; and 24 = 2&sup3; &times; 3. LCM = 2&sup3; &times; 3&sup2; = 8 &times; 9 = 72. Check: 72 = 18 &times; 4 = 24 &times; 3.</p></div>
     </div>
   </div>
 </section>
@@ -395,12 +424,14 @@
     </div>
     <div class="q" data-answers="18" data-mode="value">
       <p class="qtext">Ribbons of 36 cm and 54 cm are cut into equal pieces with no ribbon left over. What is the longest piece possible, in cm?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 290 112" role="img" aria-labelledby="fm4-t fm4-d" class="geo-svg"><title id="fm4-t">Two ribbons to cut into equal pieces</title><desc id="fm4-d">Two bars. The shorter one is a ribbon 36 centimetres long and the longer one is 54 centimetres long. Both are to be cut into equal pieces of an unknown length, labelled with a question mark.</desc><rect x="20" y="26" width="165.6" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="102.8" y="46" text-anchor="middle" style="font-size:14px">36 cm</text><rect x="20" y="70" width="248.39999999999998" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="144.2" y="90" text-anchor="middle" style="font-size:14px">54 cm</text><text class="svg-t" x="160" y="18" text-anchor="middle" style="font-size:13px">cut into equal pieces of ? cm</text></svg></figure>
       <ol class="ladder"><li>&ldquo;Biggest piece that fits both&rdquo;: HCF of 36 and 54.</li></ol>
       <ul class="wrong"><li data-if="108">108 is the LCM. The pieces must fit into both ribbons, so use the HCF.</li><li data-if="9">9 fits both, but a longer piece also does.</li><li data-if="12">12 goes into 36 but not into 54.</li></ul>
       <div class="solution"><p>HCF of 36 and 54 is 18 cm: 36 = 2 &times; 18 and 54 = 3 &times; 18.</p></div>
     </div>
     <div class="q" data-answers="40" data-mode="value">
       <p class="qtext">Pencils are sold in packs of 10 and notebooks in packs of 8. What is the smallest number of notebooks you can buy so that you have exactly the same number of pencils and notebooks?</p>
+      <figure class="figure qfig"><svg viewBox="-24 0 344 100" role="img" aria-labelledby="fm5-t fm5-d" class="geo-svg"><title id="fm5-t">Packs of pencils and notebooks</title><desc id="fm5-d">Two rows of packs. The pencil row shows three packs of 10 and then dots to show it continues. The notebook row shows three packs of 8 and then dots. You need the totals in the two rows to match.</desc><rect x="60" y="10" width="50" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="85" y="30" text-anchor="middle" style="font-size:14px">10</text><rect x="110" y="10" width="50" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="135" y="30" text-anchor="middle" style="font-size:14px">10</text><rect x="160" y="10" width="50" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="185" y="30" text-anchor="middle" style="font-size:14px">10</text><text class="svg-t" x="226" y="32" text-anchor="start" style="font-size:18px">...</text><rect x="60" y="56" width="40" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="80" y="76" text-anchor="middle" style="font-size:14px">8</text><rect x="100" y="56" width="40" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="120" y="76" text-anchor="middle" style="font-size:14px">8</text><rect x="140" y="56" width="40" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="160" y="76" text-anchor="middle" style="font-size:14px">8</text><text class="svg-t" x="196" y="78" text-anchor="start" style="font-size:18px">...</text><text class="svg-t" x="54" y="30" text-anchor="end" style="font-size:12px">pencils</text><text class="svg-t" x="54" y="76" text-anchor="end" style="font-size:12px">notebooks</text></svg></figure>
       <ol class="ladder"><li>The two numbers must match, so it is a common multiple of 10 and 8.</li></ol>
       <ul class="wrong"><li data-if="80">80 works too, but 40 is smaller.</li><li data-if="2">2 is the HCF. The number bought is a multiple.</li><li data-if="24">24 is a multiple of 8 but not of 10.</li></ul>
       <div class="solution"><p>LCM of 8 and 10 is 40. That is 5 packs of notebooks and 4 packs of pencils.</p></div>
@@ -488,11 +519,17 @@
   <div class="wrap narrow">
     <h2>Exam style</h2>
     <p class="muted">Show your working.</p>
-    <div class="q" data-answers="11" data-mode="value">
-      <p class="qtext"><b>(a)</b> [2 marks] Write 28 as a product of prime factors. Then add up the prime factors in your product, counting repeats. Give the total.</p>
-      <ol class="ladder"><li>Start a factor tree: 28 = 2 &times; ?</li></ol>
-      <ul class="wrong"><li data-if="9">That adds 2 and 7 once each. The 2 appears twice, so count it twice.</li><li data-if="3">That counts how many primes there are, not their sum.</li></ul>
-      <div class="solution"><p>28 = 2 &times; 14 = 2 &times; 2 &times; 7. Total: 2 + 2 + 7 = 11.</p></div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>(a)</b> [1 mark] Which line shows 28 written as a product of prime factors?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 240 178" role="img" aria-labelledby="fm3-t fm3-d" class="geo-svg"><title id="fm3-t">Factor tree for 28 with missing numbers</title><desc id="fm3-d">A factor tree. 28 splits into two numbers, both unknown. One of these splits again into two more unknown numbers. All the unknowns are labelled with question marks.</desc><line class="ln" x1="110" y1="38" x2="70" y2="78"/><line class="ln" x1="110" y1="38" x2="150" y2="78"/><line class="ln" x1="150" y1="96" x2="120" y2="136"/><line class="ln" x1="150" y1="96" x2="180" y2="136"/><circle cx="110" cy="22" r="18" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="110" y="27" text-anchor="middle" style="font-size:14px">28</text><circle cx="70" cy="90" r="18" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="70" y="95" text-anchor="middle" style="font-size:14px">?</text><circle cx="150" cy="90" r="18" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="150" y="95" text-anchor="middle" style="font-size:14px">?</text><circle cx="120" cy="150" r="18" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="120" y="155" text-anchor="middle" style="font-size:14px">?</text><circle cx="180" cy="150" r="18" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="180" y="155" text-anchor="middle" style="font-size:14px">?</text></svg></figure>
+      <ul class="options">
+        <li data-correct>2 &times; 2 &times; 7</li>
+        <li data-why="7 is prime but 4 is not: 4 = 2 &times; 2. Split it again.">4 &times; 7</li>
+        <li data-why="2 is prime but 14 is not: 14 = 2 &times; 7. Split it again.">2 &times; 14</li>
+        <li data-why="2 &times; 2 &times; 2 &times; 7 = 56, not 28. Multiply the primes to check.">2 &times; 2 &times; 2 &times; 7</li>
+      </ul>
+      <ol class="ladder"><li>Start a factor tree: 28 = 2 &times; ?</li><li>Every number in the product must be prime, and the product must equal 28.</li></ol>
+      <div class="solution"><p>28 = 2 &times; 14 = 2 &times; 2 &times; 7. All three are prime and 2 &times; 2 &times; 7 = 28.</p></div>
     </div>
     <div class="q" data-answers="14" data-mode="value">
       <p class="qtext"><b>(b)</b> [2 marks] Find the highest common factor (HCF) of 28 and 42.</p>
@@ -525,19 +562,25 @@
       <ul class="wrong"><li data-if="33">That is 3 + 30. Multiply the HCF and the LCM.</li></ul>
       <div class="solution"><p>HCF = 3 and LCM = 30, so 3 &times; 30 = 90. And 6 &times; 15 = 90 as well.</p></div>
     </div>
+    <div class="q" data-answers="40" data-mode="value">
+      <p class="qtext">Test the pattern on a third pair before you trust it. Find the HCF and LCM of 4 and 10, then work out HCF &times; LCM.</p>
+      <ol class="ladder"><li>Common factors of 4 and 10, then common multiples.</li></ol>
+      <ul class="wrong"><li data-if="22">That is 2 + 20. Multiply the HCF and the LCM.</li></ul>
+      <div class="solution"><p>HCF = 2 and LCM = 20, so 2 &times; 20 = 40. And 4 &times; 10 = 40 as well.</p></div>
+    </div>
     <div class="q" data-type="mc">
-      <p class="qtext">What pattern do the last two questions suggest for any two whole numbers?</p>
+      <p class="qtext">What pattern do the last three questions suggest for any <i>two</i> whole numbers?</p>
       <ul class="options">
         <li data-correct>HCF &times; LCM equals the two numbers multiplied together</li>
         <li data-why="Test it with 8 and 12: HCF + LCM = 28, but 8 + 12 = 20.">HCF + LCM equals the two numbers added together</li>
         <li data-why="Test it with 8 and 12: HCF &times; LCM = 96, but 12&sup2; = 144.">HCF &times; LCM equals the bigger number squared</li>
       </ul>
-      <ol class="ladder"><li>Compare your two answers with 8 &times; 12 and 6 &times; 15.</li></ol>
-      <div class="solution"><p>In both cases HCF &times; LCM matched the product of the two numbers. This is true for every pair of whole numbers.</p></div>
+      <ol class="ladder"><li>Compare your three answers with 8 &times; 12, 6 &times; 15 and 4 &times; 10.</li></ol>
+      <div class="solution"><p>In all three cases HCF &times; LCM matched the product of the two numbers. This is true for every pair of whole numbers (it can be proved from prime factors). It is only a rule for <b>two</b> numbers: for 2, 2 and 3 the HCF is 1 and the LCM is 6, so HCF &times; LCM = 6, but the product is 12.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">The HCF of two numbers is 4 and their LCM is 24. One of the numbers is 8. What is the other?</p>
-      <ol class="ladder"><li>Use the pattern you just found.</li></ol>
+      <ol class="ladder"><li>Use the pattern you just found (it works for two numbers).</li></ol>
       <ul class="wrong"><li data-if="24">HCF(8, 24) = 8, not 4.</li><li data-if="4">LCM(8, 4) = 8, not 24.</li></ul>
       <div class="solution"><p>8 &times; ? = 4 &times; 24 = 96, so ? = 12. Check: HCF(8, 12) = 4 and LCM(8, 12) = 24.</p></div>
     </div>
@@ -568,7 +611,7 @@
       <p class="qtext">What is the smallest number with exactly 6 factors?</p>
       <ol class="ladder"><li>Test numbers in order and count their factors.</li></ol>
       <ul class="wrong"><li data-if="18">18 also has 6 factors but is not the smallest.</li><li data-if="32">32 has 6 factors, but a smaller number has too.</li><li data-if="6">6 has only four factors: 1, 2, 3 and 6.</li></ul>
-      <div class="solution"><p>12 = 1, 2, 3, 4, 6, 12. Every smaller number has fewer: 8 has 4 factors, 10 has 4, 6 has 4.</p></div>
+      <div class="solution"><p>12 has six factors: 1, 2, 3, 4, 6, 12. Checking each number from 1 to 11 shows none has 6 factors. Their numbers of factors are: 1 has 1, 2 has 2, 3 has 2, 4 has 3, 5 has 2, 6 has 4, 7 has 2, 8 has 4, 9 has 3, 10 has 4, 11 has 2. So 12 is the smallest.</p></div>
     </div>
   </div>
 </section>
@@ -578,7 +621,7 @@
     <h2>Why it works</h2>
     <ul class="tick">
       <li><b>One fact, two names.</b> 3 &times; 4 = 12 makes 3 and 4 factors of 12 and 12 a multiple of both.</li>
-      <li><b>Primes are the building blocks.</b> Every whole number above 1 is a unique product of primes.</li>
+      <li><b>Primes are the building blocks.</b> Every whole number above 1 is a product of primes, and that product is unique apart from order.</li>
       <li><b>HCF and LCM answer different questions.</b> HCF is the biggest equal piece; LCM is when cycles next line up.</li>
     </ul>
     <h2>Common traps</h2>

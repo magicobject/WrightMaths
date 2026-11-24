@@ -309,6 +309,43 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .scale-svg .eq-sign{transform:translateY(16px);}
 .geo-svg .svg-t{font-size:19px;}
 
+/* ---------- question figures ---------- */
+.qfig{margin:6px 0 12px;text-align:center;}
+.qfig svg{width:100%;max-width:320px;height:auto;}
+.qfig figcaption{font-size:.88rem;color:var(--ink-soft);}
+.qfig .tri{fill:#e1f3e6;stroke:var(--navy);stroke-width:3;}
+.qfig .sq{fill:#e4eefb;stroke:var(--navy);stroke-width:2.5;}
+
+.g-line{display:block;margin-top:3px;}
+.g-line:first-of-type{margin-top:4px;}
+.term-pop-fig{display:block;background:#fff;border-radius:8px;padding:4px;margin:6px 0;}
+.term-pop-fig svg{width:100%;max-width:200px;height:auto;display:block;margin:0 auto;}
+.read-select{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;}
+.read-select select{font:inherit;min-height:44px;padding:0 8px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);color:var(--ink);max-width:220px;}
+.g-fig{max-width:200px;margin:4px 0 8px;background:var(--paper);border-radius:8px;padding:4px;}
+.g-fig svg{width:100%;height:auto;display:block;}
+.geo-svg .hyp{stroke:#ad1f5c;stroke-width:5;}
+.dq{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin:12px 0;}
+.dq .q-input{width:100%;max-width:260px;}
+.diag-results{margin:18px 0;}
+.diag-results h2{font-size:1.3rem;}
+.diag-start{padding-left:1.4em;}
+.diag-start li{margin-bottom:6px;}
+.diag-list{list-style:none;margin:0 0 8px;padding:0;}
+.diag-list li{display:flex;gap:10px;align-items:center;margin:4px 0;color:var(--ink);}
+.diag-list .bar{background:var(--line);}
+.diag-list .bar-fill{background:var(--c-right);}
+.book[data-book-page="practice"] .qnum,.book[data-book-page="diagnostic"] .qnum{background:var(--navy);}
+.skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--navy);color:var(--white);padding:10px 16px;border-radius:8px;font-weight:700;}
+.skip-link:focus{left:8px;}
+body :focus-visible{outline:3px solid #0f2440;outline-offset:2px;}
+.term-pop a:focus-visible{outline-color:#fff;}
+.site-header :focus-visible,footer :focus-visible{outline-color:#e4c886;}
+footer li a{display:inline-block;padding:.45rem .25rem;}
+.g-tools input,.g-tools select{max-width:100%;box-sizing:border-box;}
+.q-feedback.ok::before{content:"\2713\00a0 ";content:"\2713\00a0 " / "";}
+.q-feedback.oops::before{content:"\2717\00a0 ";content:"\2717\00a0 " / "";}
+.q-feedback.nearly::before{content:"\2248\00a0Nearly: ";content:"\2248\00a0Nearly: " / "";}
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
 .g-letter-h{font-size:2.2rem;color:var(--gold);border-bottom:2px solid var(--gold);margin:0 0 10px;}

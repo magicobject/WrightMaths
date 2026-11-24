@@ -73,6 +73,12 @@ export const PAGES = [
     description: 'Every mathematical term in the GCSE book, in plain English, with an example, a warning about common traps and the reverse side of the idea.',
   },
   {
+    slug: 'books/gcse/diagnostic',
+    book: 'diagnostic',
+    title: 'Find Your Gaps | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Eleven quick questions, one for each foundation topic, to show you which GCSE maths topic to start with and how far you have come.',
+  },
+  {
     slug: 'books/gcse/practice',
     book: 'practice',
     title: 'Mixed Practice | GCSE Maths Book (pilot) | Wright Maths Tuition',
