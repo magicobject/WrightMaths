@@ -180,7 +180,7 @@ test.describe('questions', () => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     await expect(q.locator('.solution')).toBeHidden();
-    const help = q.getByRole('button', { name: /Give me a clue|Another clue|Show me the answer/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue|Who could help?|Show me the answer/ });
     await help.click();
     await expect(q.locator('.rungs li')).toHaveCount(1);
     await help.click();
@@ -219,7 +219,7 @@ test.describe('questions', () => {
     await page.goto('/books/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only the final answer counts/ }).click();
-    await expect(q.locator('.q-feedback')).toContainText('Close, but not yet');
+    await expect(q.locator('.q-feedback')).toContainText('Not this one yet');
     await q.getByRole('button', { name: /Method marks/ }).click();
     await expect(q).toHaveClass(/q-correct/);
     await expect(q.locator('.solution')).toBeVisible();
@@ -230,7 +230,7 @@ test.describe('questions', () => {
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/8');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 of');
+    await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 question');
     await page.goto('/books/gcse/');
     await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/^1 of \d+ done$/);
     expect(await page.evaluate(() => Object.keys(window.localStorage))).toEqual(['wm-gcse-v1']);
@@ -530,7 +530,7 @@ test.describe('find your gaps', () => {
       if (topic && answers[topic]) await d.locator('input').fill(answers[topic]);
     }
     await page.getByRole('button', { name: 'Show my results' }).click();
-    await expect(page.locator('[data-diag-results]')).toContainText('You already have 3 of 11');
+    await expect(page.locator('[data-diag-results]')).toContainText('Where to start');
     const first = page.locator('.diag-start li').first();
     await expect(first).toContainText('Negative numbers');
     const stored = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').diag);
@@ -728,10 +728,10 @@ test.describe('stretch papers', () => {
 
   test('topic pages have a fast route that folds away recaps and check sets', async ({ page }) => {
     await page.goto('/books/gcse/fractions.html');
-    const toggle = page.getByRole('button', { name: 'Hide recaps and check sets' });
+    const toggle = page.getByRole('button', { name: 'Show only the harder parts' });
     await toggle.click();
     await expect(page.locator('section.ckw').first()).toBeHidden();
-    await expect(page.getByRole('button', { name: 'Show recaps and check sets again' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('button', { name: 'Show everything again' })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByRole('link', { name: 'Jump to exam style' })).toBeVisible();
   });
 });
@@ -756,7 +756,7 @@ test.describe('round 3 finishing touches', () => {
   test('a half-finished Find my gaps survives a reload, and is forgotten on finishing', async ({ page }) => {
     await page.goto('/books/gcse/diagnostic.html');
     await page.getByLabel('Your answer to question 1', { exact: true }).fill('42');
-    await expect(page.locator('.diag-progress')).toContainText('1 of 11 answered');
+    await expect(page.locator('.diag-progress')).toContainText('Saved while you work');
     await page.reload();
     await expect(page.getByLabel('Your answer to question 1', { exact: true })).toHaveValue('42');
     await page.getByRole('button', { name: 'Show my results' }).first().click();
@@ -793,4 +793,64 @@ test.describe('round 3 finishing touches', () => {
     await page.getByRole('button', { name: 'Back to all questions' }).click();
     await expect(page.locator('.q:visible')).toHaveCount(28);
   });
+});
+
+test.describe('round 4 fixes', () => {
+  test('feedback only says "In the right area" when the answer is near, and never shows a cross', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    const input = q.getByLabel('Your answer', { exact: false }).first();
+    await input.fill('7');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q.locator('.q-feedback')).not.toContainText('Close');
+    await expect(q.locator('.q-feedback')).not.toContainText('right area');
+    const cross = await q.locator('.q-feedback').evaluate((e) => getComputedStyle(e, '::before').content);
+    expect(cross === 'none' || cross === 'normal' || cross === '""').toBe(true);
+    await input.fill('900');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q.locator('.q-feedback')).toContainText('right area');
+  });
+
+  test('the fast route keeps Going further visible and hides the warm-up', async ({ page }) => {
+    await page.goto('/books/gcse/factors-multiples.html');
+    await page.getByRole('button', { name: 'Show only the harder parts' }).click();
+    await expect(page.locator('section.going-further')).toBeVisible();
+    await expect(page.locator('section.warmup-sec')).toBeHidden();
+    await expect(page.getByRole('link', { name: 'Jump to going further' })).toBeVisible();
+  });
+
+  test('Give me five says when you have finished, and offers a kind stop', async ({ page }) => {
+    await page.goto('/books/gcse/practice.html');
+    await expect(page.getByRole('button', { name: 'Stop for today' })).toBeVisible();
+    await page.getByRole('button', { name: 'Stop for today' }).click();
+    await expect(page.locator('[data-practice-status]')).toContainText('Done for today');
+  });
+
+  test('multiple-choice options with fractions show their text, not markup', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const html = await page.locator('main').innerHTML();
+    expect(html).not.toContain('which is bigger.">');
+    expect(html).not.toContain('37.5%, so they are close but not equal.">');
+  });
+
+  test('printing a worksheet hides the worked answers unless "with answers" is chosen', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('.q .solution').first()).toBeHidden();
+    await page.evaluate(() => document.querySelector('main')!.classList.add('print-answers'));
+    await expect(page.locator('.q .solution').first()).toBeVisible();
+  });
+});
+
+test('marks you give yourself are saved on this device and listed on the hub, lowest first', async ({ page }) => {
+  await page.goto('/books/gcse/stretch.html');
+  const q = page.locator('.q[data-type="show"]').first();
+  await q.getByRole('button', { name: /show me the mark scheme/ }).click();
+  await q.locator('.mark-box').first().check();
+  const stored = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').marks);
+  expect(Object.keys(stored).length).toBe(1);
+  await page.goto('/books/gcse/');
+  await expect(page.locator('[data-marks-summary]')).toBeVisible();
+  await expect(page.locator('[data-marks-list] li').first()).toContainText('Stretch papers');
+  await expect(page.locator('[data-marks-list] li').first()).toContainText(/1 of \d+ marks/);
 });

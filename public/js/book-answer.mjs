@@ -61,7 +61,9 @@ export function textKey(raw) {
     .replace(/√\s*\(\s*(\d+)\s*\)/g, '√$1')
     .replace(/\s*\/\s*/g, '/')
     // Two solutions typed as "x = -4 or x = 3": drop the repeated "x =" so it matches "-4 or 3".
-    .replace(/(\bor\b|\band\b|,)\s*[a-z]\s*=\s*/g, '$1 ');
+    .replace(/(\bor\b|\band\b|,)\s*[a-z]\s*=\s*/g, '$1 ')
+    // A pair typed with brackets, "(2,5)", means the same as "2,5".
+    .replace(/^\(([^()]*,[^()]*)\)$/, '$1');
   // Keep one space only in a mixed number such as "1 1/2"; drop all others.
   if (/^-?\d+\s+\d+\/\d+$/.test(s)) return s.replace(/\s+/g, ' ');
   return s.replace(/[\s*·]/g, '');
@@ -108,6 +110,38 @@ export function splitList(attr) {
  *  - right size, wrong sign
  *  - 10, 100, 1000 times too big or too small (a decimal point or a zero slipped)
  */
+/** How near a typed number is to the keyed answer: 'near' (within 2%), 'range' (within 25%), 'far', or null when it is not a number. */
+export function closeness(input, answers) {
+  const n = parseNumber(input);
+  if (n === null) return null;
+  const list = (Array.isArray(answers) ? answers : [answers]).map(parseNumber).filter((x) => x !== null);
+  if (list.length === 0) return null;
+  let best = Infinity;
+  for (const a of list) {
+    const scale = Math.max(Math.abs(a), 1e-9);
+    best = Math.min(best, Math.abs(n - a) / scale);
+  }
+  if (best <= 0.02) return 'near';
+  if (best <= 0.25) return 'range';
+  return 'far';
+}
+
+/** A short, honest nudge for a wrong typed answer, or null to fall back to the generic one. */
+export function feedbackFor(input, answers) {
+  const list = Array.isArray(answers) ? answers : [answers];
+  const numeric = list.length > 0 && list.every((a) => parseNumber(a) !== null);
+  const typed = String(input).trim();
+  if (numeric && parseNumber(typed) === null && !/[0-9]/.test(typed)) return 'This answer is a number. Type digits, like 12.';
+  if (numeric && /%\s*$/.test(typed) && !list.some((a) => /%\s*$/.test(String(a)))) return 'Just the number, without the % sign.';
+  if (/^[a-z]\d+$/i.test(typed) && list.some((a) => String(a).includes('^'))) return 'Write a power with ^, like x^2.';
+  const sign = diagnose(input, answers);
+  if (sign) return sign;
+  const c = closeness(input, answers);
+  if (c === 'near') return 'Very near. Check the rounding or the number of decimal places asked for.';
+  if (c === 'range') return 'In the right area, but not yet. Have another go.';
+  return null;
+}
+
 export function diagnose(input, answers) {
   const n = parseNumber(input);
   if (n === null) return null;

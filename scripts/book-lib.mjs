@@ -243,9 +243,9 @@ export function renderWords(id, graph, glossaryById) {
 /** Topic checkboxes for the mixed-practice page. */
 export function renderPracticeTopics(graph) {
   const live = [...graph.values()].filter((t) => t.status === 'live').sort((a, b) => a.layer - b.layer || a.title.localeCompare(b.title));
-  const items = live.map((t) => `<li><label><input type="checkbox" name="practice-topic" value="${t.id}" checked> ${t.title}</label></li>`).join('\n        ');
+  const items = live.map((t) => `<li><label><input type="checkbox" name="practice-topic" value="${t.id}"${t.layer <= 3 ? ' checked' : ''}> ${t.title}</label></li>`).join('\n        ');
   return `<fieldset class="practice-topics">
-      <legend>Topics to mix</legend>
+      <legend>Topics to mix (the lower layers are ticked: add more when you are ready)</legend>
       <ul>
         ${items}
       </ul>

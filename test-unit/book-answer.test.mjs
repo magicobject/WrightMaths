@@ -115,3 +115,20 @@ test('two solutions typed with a repeated "x =" still match', () => {
   assert.ok(matches('-4, x=3', answers, 'exact'));
   assert.ok(!matches('x=-4 or x=5', answers, 'exact'));
 });
+
+test('feedbackFor is honest about how far off an answer is', async () => {
+  const { feedbackFor, closeness } = await import('../public/js/book-answer.mjs');
+  assert.equal(closeness('7', ['1000']), 'far');
+  assert.equal(closeness('900', ['1000']), 'range');
+  assert.equal(closeness('999', ['1000']), 'near');
+  assert.equal(feedbackFor('7', ['1000']), null);
+  assert.match(feedbackFor('900', ['1000']), /right area/);
+  assert.match(feedbackFor('8.602', ['8.6']), /Very near/);
+  assert.match(feedbackFor('5%', ['5']), /without the % sign/);
+  assert.match(feedbackFor('abc', ['12']), /number/);
+});
+
+test('a pair typed in brackets matches the bare pair', () => {
+  assert.ok(matches('(2,5)', ['2,5'], 'exact'));
+  assert.ok(matches('x=2, y=5', ['2,5'], 'exact'));
+});

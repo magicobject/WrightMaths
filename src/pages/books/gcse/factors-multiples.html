@@ -531,17 +531,29 @@
       <ol class="ladder"><li>Start a factor tree: 28 = 2 &times; ?</li><li>Every number in the product must be prime, and the product must equal 28.</li></ol>
       <div class="solution"><p>28 = 2 &times; 14 = 2 &times; 2 &times; 7. All three are prime and 2 &times; 2 &times; 7 = 28.</p></div>
     </div>
-    <div class="q" data-answers="14" data-mode="value">
+    <div class="q" data-answers="14" data-mode="value" data-marks="2">
       <p class="qtext"><b>(b)</b> [2 marks] Find the highest common factor (HCF) of 28 and 42.</p>
       <ol class="ladder"><li>Factors of 28: 1, 2, 4, 7, 14, 28.</li><li>Factors of 42: 1, 2, 3, 6, 7, 14, 21, 42.</li></ol>
       <ul class="wrong"><li data-if="7">7 is a common factor but 14 is bigger.</li><li data-if="84">84 is the LCM. The HCF is a factor.</li></ul>
-      <div class="solution"><p>The biggest factor in both lists is 14.</p></div>
+      <div class="solution">
+        <p>The biggest factor in both lists is 14.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for listing the factors of 28 and of 42 (or their prime factors)</li>
+          <li><b>A1</b> for 14</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="84" data-mode="value">
+    <div class="q" data-answers="84" data-mode="value" data-marks="2">
       <p class="qtext"><b>(c)</b> [2 marks] One bell rings every 28 seconds and another every 42 seconds. They ring together at noon. After how many seconds do they next ring together?</p>
       <ol class="ladder"><li>LCM of 28 and 42.</li></ol>
       <ul class="wrong"><li data-if="14">14 is the HCF. They next ring together at a common multiple.</li></ul>
-      <div class="solution"><p>Multiples of 28: 28, 56, 84. Multiples of 42: 42, 84. LCM = 84 seconds.</p></div>
+      <div class="solution">
+        <p>Multiples of 28: 28, 56, 84. Multiples of 42: 42, 84. LCM = 84 seconds.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for listing the multiples of 28 and of 42</li>
+          <li><b>A1</b> for 84, the first number in both lists</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -637,6 +649,56 @@
       <ol class="ladder"><li>If a number leaves remainder 1 on dividing by 2, 3, 4, 5 and 6, what must it be 1 more than?</li><li>It is 1 more than a multiple of the LCM of 2, 3, 4, 5 and 6. Find that LCM, and list the numbers 1 more than its multiples.</li><li>The numbers are 61, 121, 181 &hellip; Their remainders when divided by 7 are 5, 2, 6 &hellip; Keep going until you reach a remainder of 0.</li></ol>
       <ul class="wrong"><li data-if="61">61 leaves remainder 1 when divided by 2, 3, 4, 5 and 6, but 61 &divide; 7 = 8 remainder 5. It must also be a multiple of 7.</li><li data-if="60">60 is a multiple of 2, 3, 4, 5 and 6, so it leaves remainder 0. You need 1 more.</li></ul>
       <div class="solution"><p>The LCM of 2, 3, 4, 5 and 6 is 60, so the number is 60<i>k</i> + 1. Testing 61, 121, 181, 241 (remainders 5, 2, 6, 3 on dividing by 7) and then 301 = 7 &times; 43, the first one that is a multiple of 7 is 301. Check: 301 = 60 &times; 5 + 1.</p></div>
+    </div>
+    <div class="q" data-type="show" data-marks="3">
+      <p class="qtext"><span class="qtag qtag-marks">[3 marks]</span> <span class="qtag qtag-calc">Non-calculator</span> <span class="qtag qtag-grade">Grade 8</span> n is a positive whole number. Show that n&sup2; + n is always even.</p>
+      <ol class="ladder"><li>Try n = 3, 4, 5. What do you notice about the two numbers you are adding?</li><li>Can you write n&sup2; + n as a product of two brackets? Look at the two numbers you get.</li><li>If you multiply two whole numbers that are next to each other, what do you know about at least one of them?</li></ol>
+      <div class="solution">
+        <p>n&sup2; + n = n(n + 1).</p>
+        <p>n and n + 1 are consecutive whole numbers, so one of them is even. If n is even, n(n + 1) is even &times; something. If n + 1 is even, n(n + 1) is something &times; even. Even &times; any whole number is even, so n&sup2; + n is always even.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for n&sup2; + n = n(n + 1)</li>
+          <li><b>M1</b> for saying that one of n and n + 1 must be even, because they are consecutive</li>
+          <li><b>C1</b> for concluding that a product with an even factor is even, so n&sup2; + n is always even</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="4">
+      <p class="qtext"><span class="qtag qtag-marks">[4 marks]</span> <span class="qtag qtag-calc">Non-calculator</span> <span class="qtag qtag-grade">Grade 9</span> n is a whole number bigger than 1. Show that n&sup3; &minus; n is always a multiple of 6.</p>
+      <ol class="ladder"><li>Try n = 2, 3, 4. Do the answers look like multiples of 6?</li><li>Factorise n&sup3; &minus; n. First take out n, then look at what is left: it is a difference of two squares.</li><li>You get three whole numbers next to each other. Which of them must be a multiple of 2, and which a multiple of 3?</li></ol>
+      <div class="solution">
+        <p>n&sup3; &minus; n = n(n&sup2; &minus; 1) = (n &minus; 1) &times; n &times; (n + 1), which is the product of three consecutive whole numbers.</p>
+        <p>Among any three consecutive whole numbers, at least one is even, so the product is a multiple of 2. Exactly one of them is a multiple of 3, so the product is a multiple of 3.</p>
+        <p>A number that is a multiple of both 2 and 3 is a multiple of 6 (2 and 3 share no factor except 1). So n&sup3; &minus; n is always a multiple of 6.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for factorising to (n &minus; 1) &times; n &times; (n + 1)</li>
+          <li><b>B1</b> for saying these are three consecutive whole numbers, so one is even</li>
+          <li><b>B1</b> for saying one of them is a multiple of 3</li>
+          <li><b>C1</b> for concluding the product is a multiple of both 2 and 3, so of 6</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The numbers 3, 5 and 7 are all prime, and each is 2 more than the one before. Only one prime p has the property that p, p + 2 and p + 4 are all prime. Find p.</p>
+      <ol class="ladder"><li>Try p = 2, 3, 5, 7, 11, 13. For each, write down p, p + 2 and p + 4. What goes wrong?</li><li>Look at the remainders when p, p + 2 and p + 4 are divided by 3.</li><li>Among p, p + 2 and p + 4, one is always a multiple of 3. When can a multiple of 3 be prime?</li></ol>
+      <ul class="wrong"><li data-if="5">5, 7 and 9: but 9 = 3 &times; 3 is not prime.</li><li data-if="2">2, 4 and 6 are all even, so 4 and 6 are not prime.</li><li data-if="11">11 and 13 are prime but 15 = 3 &times; 5 is not.</li></ul>
+      <div class="solution"><p>p, p + 2 and p + 4 have three different remainders when divided by 3, so exactly one of them is a multiple of 3. A multiple of 3 can be prime only if it is 3 itself. If p = 3 then p + 2 = 5 and p + 4 = 7 are prime. If p = 2, then 4 is not prime. If p is bigger than 3, then whichever of the three is the multiple of 3 is bigger than 3 and so not prime. So p = 3.</p></div>
+    </div>
+    <div class="q" data-answers="45" data-mode="value">
+      <p class="qtext">How many 3-digit numbers have digits that add up to 9? (For example 108 and 333 count. 036 is not a 3-digit number.)</p>
+      <ol class="ladder"><li>What can the hundreds digit be? Could it be 0?</li><li>Pick the hundreds digit first. Then the other two digits must add to what? List them for a hundreds digit of 8.</li><li>Hundreds digit 9 gives 900 only. Hundreds digit 8 gives 801 and 810. Carry on the pattern and add up the counts.</li></ol>
+      <ul class="wrong"><li data-if="55">That includes numbers that start with 0, like 090. They are not 3-digit numbers.</li><li data-if="9">That is the number of choices for the hundreds digit. Each choice can have several matching numbers.</li></ul>
+      <div class="solution"><p>If the hundreds digit is a, the other two digits add to 9 &minus; a, and there are 10 &minus; a ways to do that (the tens digit can be 0 up to 9 &minus; a). a = 1 gives 9 numbers, a = 2 gives 8, and so on down to a = 9, which gives 1. Total = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45. So there are 45 such numbers.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student writes: &ldquo;91 is not divisible by 2, 3 or 5, so 91 is prime.&rdquo; Which sentence names the flaw?</p>
+      <ul class="options">
+        <li data-correct>She did not test 7, and 91 = 7 &times; 13.</li>
+        <li data-why="If 2 does not divide 91, then 4 and 6 cannot divide it either, because they are multiples of 2.">She should have tested 4 and 6 as well.</li>
+        <li data-why="She was right to stop testing at some point: you only need to test the primes up to the square root of the number. 91 is about 9.5 squared, so 2, 3, 5 and 7 are enough. She missed 7.">She should have tested every number up to 91 before deciding.</li>
+      </ul>
+      <ol class="ladder"><li>She tested three numbers. Which primes should she have tried? Start from 2, 3, 5, 7 and 11.</li><li>Try dividing 91 by each prime in order, up to about 9.</li></ol>
+      <div class="solution"><p>She did not test 7, and 91 = 7 &times; 13, so 91 is not prime. Testing 2, 3, 5 and 7 (the primes up to about 9.5) is enough to decide whether a number near 91 is prime.</p></div>
     </div>
   </div>
 </section>
