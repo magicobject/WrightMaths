@@ -233,6 +233,7 @@ test.describe('questions', () => {
     page.once('dialog', (d) => d.accept());
     await page.locator('[data-reset-progress]').click();
     await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/questions$/);
+    expect(await page.evaluate(() => window.localStorage.getItem('wm-gcse-read'))).toBeNull();
   });
 
   test('the question counts on the pyramid match the pages', async ({ page }) => {
@@ -673,4 +674,16 @@ test.describe('phone layout', () => {
       }
     }
   });
+});
+
+test('Listen stays silent when the device has no voice of its own', async ({ page }) => {
+  await page.addInitScript(() => {
+    const spoken: string[] = [];
+    (window as any).__spoken = spoken;
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { getVoices: () => [], speak: (u: any) => spoken.push(u.text), cancel: () => {}, addEventListener: () => {}, onvoiceschanged: null } });
+    (window as any).SpeechSynthesisUtterance = function (t: string) { (this as any).text = t; };
+  });
+  await page.goto('/books/gcse/place-value.html');
+  await page.getByRole('button', { name: /Listen/ }).first().click();
+  expect(await page.evaluate(() => (window as any).__spoken.length)).toBe(0);
 });
