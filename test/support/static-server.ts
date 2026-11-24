@@ -18,6 +18,10 @@ const CONTENT_TYPES: Record<string, string> = {
   '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.ogg': 'audio/ogg',
+  '.mp3': 'audio/mpeg',
+  '.m4a': 'audio/mp4',
+  '.wav': 'audio/wav',
 };
 
 function decodedUrlPath(urlPath: string): string {

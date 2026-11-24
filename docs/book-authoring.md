@@ -131,3 +131,13 @@ A voice says only the words on the page, so a bare number is spoken bare. Write 
 The voice does not read the page as written. `public/js/book-speech.mjs` turns the displayed words into spoken words: numbers become words ("4,872" is "four thousand, eight hundred and seventy-two", "0.643" is "zero point six four three", "045" is "zero four five"), symbols and units are spelled out, money is pounds and pence. Recordings are keyed to that spoken text.
 
 When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence for review.
+
+### Where recorded audio stands (pilot, 24 Nov 2026)
+
+Voice chosen by Greg: Piper `en_GB-alba-medium` (dataset licence CC BY 4.0, credited on the book hub page). The pilot covers two topics, shapes-and-angles and place value (107 sentences, about 6.6 MB as Ogg Vorbis at about 40 kbps). To make more:
+
+1. `npm run book:audio -- todo --pages=<topic>,<topic>` writes the sentences that still need a recording.
+2. `python scripts/piper-batch.py --voice <path to en_GB-alba-medium.onnx>` records them (about 0.3 seconds per sentence once the voice is loaded).
+3. `npm run book:audio -- manifest` updates `public/audio/book/manifest.json`.
+
+If a recorded sentence is edited its recording stops matching and the browser voice reads it until it is recorded again; `npm run book:audio -- status` lists out-of-date recordings.

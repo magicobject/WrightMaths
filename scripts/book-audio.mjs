@@ -27,10 +27,16 @@ function serve() {
   return new Promise((ok) => server.listen(0, '127.0.0.1', () => ok(server)));
 }
 
+// --pages=shapes-angles,place-value limits everything to those book pages (a pilot, or one topic at a time).
+const pageFilter = (process.argv.find((a) => a.startsWith('--pages=')) ?? '').slice(8).split(',').filter(Boolean);
+
 async function collectUnits() {
   const server = await serve();
   const base = `http://127.0.0.1:${server.address().port}`;
-  const pages = readdirSync(join(PUBLIC, 'books', 'gcse')).filter((f) => f.endsWith('.html')).sort();
+  const pages = readdirSync(join(PUBLIC, 'books', 'gcse'))
+    .filter((f) => f.endsWith('.html') && (!pageFilter.length || pageFilter.includes(f.replace(/\.html$/, ''))))
+    .sort();
+  if (pageFilter.length && !pages.length) throw new Error(`no book page matches --pages=${pageFilter.join(',')}`);
   const browser = await chromium.launch();
   const seen = new Map();
   try {
@@ -80,7 +86,7 @@ if (command === 'status') {
 } else if (command === 'make') {
   const template = process.env.WM_TTS_CMD;
   const ext = (process.env.WM_TTS_EXT ?? 'wav').toLowerCase();
-  const limit = Number(args[0] ?? Infinity);
+  const limit = Number(args.find((a) => !a.startsWith('--')) ?? Infinity);
   const units = await collectUnits();
   const todo = missingUnits(units, buildManifest(clipFiles())).slice(0, limit);
   mkdirSync(CLIPS, { recursive: true });
@@ -94,7 +100,7 @@ if (command === 'status') {
   writeManifest();
   console.log(`made ${made} recording(s); manifest updated.`);
 } else if (command === 'import') {
-  const dir = resolve(args[0] ?? '');
+  const dir = resolve(args.find((a) => !a.startsWith('--')) ?? '');
   const sheet = JSON.parse(readFileSync(join(WORK, 'script.json'), 'utf8'));
   mkdirSync(CLIPS, { recursive: true });
   let n = 0;
@@ -118,6 +124,8 @@ if (command === 'status') {
               Example:  WM_TTS_CMD='piper --model voice.onnx --output_file {out}'  WM_TTS_EXT=wav
   import dir  copy recordings named by script number (001.mp3, 002.mp3 ...) into the book
   manifest    rebuild public/audio/book/manifest.json from the files there
+  Add --pages=place-value,shapes-angles to status, todo or make to work on just those pages.
+  Many sentences at once with Piper: python scripts/piper-batch.py --voice <voice.onnx> (reads audio-work/script.json).
 
 Recordings live in public/audio/book/ and are matched to sentences by the text they say, so editing a
 sentence makes its recording stop playing (the browser voice reads it instead) until it is re-recorded.`);
