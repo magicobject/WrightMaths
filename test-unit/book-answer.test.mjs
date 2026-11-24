@@ -194,3 +194,9 @@ test('several letters, bracketed halves, cancelled fractions and surds with brac
   ok('(3+√5)/2', '(3+sqrt5)/2'); ok('(3+sqrt(5))/2', '(3+sqrt5)/2'); ok('(√2)/2', 'sqrt2/2'); ok('3sqrt(2)/2', '3sqrt2/2');
   ok('3sqrt2', '3√2'); ok('3 sqrt(2)', '3√2');
 });
+
+test('2/3x is ambiguous and is not accepted for 2x/3', () => {
+  assert.ok(!matches('2/3x', ['2x/3'], 'exact'));
+  assert.ok(matches('2x/3', ['2x/3'], 'exact'));
+  assert.ok(matches('-1/2a+b', ['-1/2a+b'], 'exact'));
+});

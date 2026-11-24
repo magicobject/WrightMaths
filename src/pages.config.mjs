@@ -107,6 +107,12 @@ export const PAGES = [
     description: 'Real-paper style questions for Higher tier students aiming at grades 7, 8 and 9, with calculator and non-calculator labels and a mark scheme you tick off yourself.',
   },
   {
+    slug: 'books/gcse/route',
+    book: 'route',
+    title: 'Study Routes | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Week-by-week routes through the GCSE maths book: a resit to grade 4, the whole book in 12 weeks, and a grade 7 to 9 top-up.',
+  },
+  {
     slug: 'books/gcse/foundation',
     book: 'foundation',
     title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book (pilot) | Wright Maths Tuition',

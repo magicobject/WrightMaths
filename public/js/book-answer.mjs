@@ -259,6 +259,8 @@ export function sameAlgebra(input, key) {
       if (Math.abs(u - v) > 1e-9 * Math.max(1, Math.abs(v))) return null;
     }
   } catch { return null; }
+  const ambiguous = (t) => /\/\s*[0-9.]+[a-z]/.test(t);
+  if (ambiguous(a) && !ambiguous(b)) return null; // 2/3x could mean 2/(3x): not accepted for 2x/3
   if (/[a-z)]\/|\/[(a-z]/.test(b) && [...a.replace(/\s+/g, '')].sort().join('') !== [...b.replace(/\s+/g, '')].sort().join('')) return a.includes('/') ? 'longer' : null; // an algebraic fraction must be the same pieces, not just equal in value
   const bracketsA = (a.match(/\(/g) ?? []).length;
   const bracketsB = (b.match(/\(/g) ?? []).length;
