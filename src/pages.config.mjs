@@ -91,6 +91,12 @@ export const PAGES = [
     description: 'What work out, calculate, show that, explain and the other exam question words ask you to do, with a short example of each.',
   },
   {
+    slug: 'books/gcse/parents',
+    book: 'parents',
+    title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'How to help your child use the GCSE maths book: where to start, what to say when they are stuck, what is stored on their device, and what the grades mean.',
+  },
+  {
     slug: 'books/gcse/raise-your-grade',
     book: 'grades',
     title: 'How to Raise Your Grade | GCSE Maths Book (pilot) | Wright Maths Tuition',
