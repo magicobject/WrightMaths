@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Bearings. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/bearings.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -155,7 +162,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> a bearing is measured from north, turning clockwise. North itself is 000&deg;, east is 090&deg;, south is 180&deg; and west is 270&deg;.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>A boat sails due south-west. What is its three-figure bearing?</p>
       <ol class="steps">
         <li>South is 180&deg; and west is 270&deg;.</li>
@@ -164,7 +171,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>A walker heads north-west. What is her three-figure bearing?</p>
       <ol class="steps">
         <li>West is ___&deg; and north is 360&deg; (a full turn, the same as 000&deg;).</li>
@@ -217,7 +224,7 @@
     <p>"The bearing of B from A" means start at A. The words after "from" tell you where to start.</p>
     <div class="key"><p><b>Key idea:</b> three rules: from north, clockwise, three figures. If the angle you can see is measured anticlockwise, take it away from 360&deg; to get the bearing.</p></div>
     <div class="worked">
-      <h3>Worked example: clockwise angle</h3>
+      <h3 id="s-worked-example-clockwise-angle">Worked example: clockwise angle</h3>
       <p>Find the bearing of B from A.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be2-t be2-d" class="geo-svg"><title id="be2-t">Finding the bearing of B from A</title><desc id="be2-d">A north line goes up from point A. A line from A goes to point B, to the right of the north line. The angle clockwise from the north line to the line AB is marked 70 degrees.</desc><line x1="160" y1="98" x2="160" y2="36" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="160,35 155.5,45 164.5,45" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="160" y="29" text-anchor="middle">N</text><line x1="160" y1="98" x2="233.3" y2="71.3" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><path d="M 160 68 A 30 30 0 0 1 188.2 87.7" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="187.5" y="62.7" text-anchor="middle">70&deg;</text><circle cx="160" cy="98" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="172" y="116" text-anchor="middle">A</text><circle cx="233.3" cy="71.3" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="247.4" y="70.2" text-anchor="middle">B</text></svg><figcaption>The angle is measured clockwise from north.</figcaption></figure>
       <ol class="steps">
@@ -226,7 +233,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: anticlockwise angle</h3>
+      <h3 id="s-worked-example-anticlockwise-angle">Worked example: anticlockwise angle</h3>
       <p>Find the bearing of B from A.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be4-t be4-d" class="geo-svg"><title id="be4-t">A bearing measured anticlockwise</title><desc id="be4-d">A north line goes up from point A. A line from A goes to point B, to the left of the north line. The angle between the north line and AB is marked 50 degrees, measured anticlockwise from north.</desc><line x1="160" y1="98" x2="160" y2="36" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="160,35 155.5,45 164.5,45" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="160" y="29" text-anchor="middle">N</text><line x1="160" y1="98" x2="100.2" y2="47.9" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><path d="M 160 68 A 30 30 0 0 0 137 78.7" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="140.1" y="59.4" text-anchor="middle">50&deg;</text><circle cx="160" cy="98" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="172" y="116" text-anchor="middle">A</text><circle cx="100.2" cy="47.9" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="88.8" y="42.2" text-anchor="middle">B</text></svg><figcaption>Here 50&deg; is measured anticlockwise.</figcaption></figure>
       <ol class="steps">
@@ -236,7 +243,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Find the bearing of B from A when the angle is measured anticlockwise from north and is 35&deg;.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be3-t be3-d" class="geo-svg"><title id="be3-t">A bearing measured the wrong way round</title><desc id="be3-d">A north line goes up from point A. A line from A goes to point B, to the left of the north line. The angle between the north line and AB is marked 35 degrees, measured anticlockwise from north.</desc><line x1="160" y1="98" x2="160" y2="36" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="160,35 155.5,45 164.5,45" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="160" y="29" text-anchor="middle">N</text><line x1="160" y1="98" x2="115.3" y2="34.1" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><path d="M 160 68 A 30 30 0 0 0 142.8 73.4" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="145.9" y="57.2" text-anchor="middle">35&deg;</text><circle cx="160" cy="98" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="172" y="116" text-anchor="middle">A</text><circle cx="115.3" cy="34.1" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="106.7" y="25.8" text-anchor="middle">B</text></svg><figcaption>Here 35&deg; is measured anticlockwise.</figcaption></figure>
       <ol class="steps">
@@ -297,7 +304,7 @@
     <p>Either way, the answer must end up between 000&deg; and 360&deg;.</p>
     <div class="key"><p><b>Key idea:</b> the back bearing is the bearing plus or minus 180&deg;. Add if you are below 180&deg;, subtract if you are 180&deg; or more, so you stay between 000&deg; and 360&deg;.</p></div>
     <div class="worked">
-      <h3>Worked example: add 180</h3>
+      <h3 id="s-worked-example-add-180">Worked example: add 180</h3>
       <p>The bearing of B from A is 065&deg;. Find the bearing of A from B.</p>
       <ol class="steps">
         <li>65 is less than 180, so add 180.</li>
@@ -306,7 +313,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: subtract 180</h3>
+      <h3 id="s-worked-example-subtract-180">Worked example: subtract 180</h3>
       <p>The bearing of B from A is 285&deg;. Find the bearing of A from B.</p>
       <ol class="steps">
         <li>285 is more than 180, so subtract 180.</li>
@@ -315,7 +322,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>A ship sails on a bearing of 130&deg;. What bearing takes it back?</p>
       <ol class="steps">
         <li>130 is less than 180, so ___ 180.</li>
@@ -369,7 +376,7 @@
     <p>The scale tells you how long to draw each leg. With a scale of 1 cm to 2 km, a 6 km leg is 6 &divide; 2 = 3 cm on the drawing.</p>
     <div class="key"><p><b>Key idea:</b> the scale works both ways. Real distance &divide; scale gives the drawing length. Drawing length &times; scale gives the real distance.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>A walker goes 6 km on a bearing of 040&deg;, then 8 km on a bearing of 130&deg;. Using a scale of 1 cm to 2 km, how long is each leg on the drawing?</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="be8-t be8-d" class="geo-svg"><title id="be8-t">A two-leg journey drawn to scale</title><desc id="be8-d">A path from A to B and then B to C. At A a north line is drawn, and the path to B leaves on a bearing of 040 degrees. At B another north line is drawn, and the path to C leaves on a bearing of 130 degrees. The path from A to B is 3 centimetres long and from B to C is 4 centimetres long.</desc><line x1="49.3" y1="157.9" x2="49.3" y2="123.9" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="49.3,122.9 44.8,132.9 53.8,132.9" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="49.3" y="116.9" text-anchor="middle">N</text><line x1="134.8" y1="56" x2="134.8" y2="22" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="134.8,21 130.3,31 139.3,31" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="134.8" y="15" text-anchor="middle">N</text><line x1="49.3" y1="157.9" x2="134.8" y2="56" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="134.8" y1="56" x2="270.7" y2="170" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><path d="M 49.3 135.9 A 22 22 0 0 1 63.5 141" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="62" y="127.1" text-anchor="middle">040&deg;</text><path d="M 134.8 34 A 22 22 0 0 1 151.7 70.1" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="168.4" y="44.4" text-anchor="middle">130&deg;</text><circle cx="49.3" cy="157.9" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="39.7" y="173.4" text-anchor="middle">A</text><circle cx="134.8" cy="56" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="125.2" y="71.5" text-anchor="middle">B</text><circle cx="270.7" cy="170" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="282.2" y="183.6" text-anchor="middle">C</text><text class="svg-t" style="font-size:12px" x="64.1" y="106.9" text-anchor="middle">3 cm</text><text class="svg-t" style="font-size:12px" x="174.8" y="113" text-anchor="middle">4 cm</text></svg><figcaption>A scale drawing. Scale: 1 cm to 2 km.</figcaption></figure>
       <ol class="steps">
@@ -379,7 +386,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>A boat goes 10 km on a bearing of 090&deg;. Using a scale of 1 cm to 2 km, how long is the leg on the drawing, and in which direction does it go from the north line?</p>
       <ol class="steps">
         <li>Length on the drawing = 10 &divide; 2 = ___ cm.</li>
@@ -439,7 +446,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> from north, cos gives the north distance and sin gives the east distance. Put your calculator in degrees mode, and round only at the end.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>A ship sails 20 km on a bearing of 040&deg;. How far north and how far east has it gone? Give each to 1 decimal place.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be11-t be11-d" class="geo-svg"><title id="be11-t">A journey split into north and east</title><desc id="be11-d">A right-angled triangle. A ship leaves A and sails 20 kilometres to B on a bearing of 040 degrees. A dashed line goes north from A and a dashed line goes east to B, making a right angle.</desc><line x1="70" y1="150" x2="70" y2="104" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="70,103 65.5,113 74.5,113" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="70" y="97" text-anchor="middle">N</text><line x1="70" y1="150" x2="143.9" y2="61.9" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="70" y1="61.9" x2="143.9" y2="61.9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><line x1="70" y1="150" x2="70" y2="61.9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><polyline points="79,61.9 79,70.9 70,70.9" fill="none" stroke="#0f2440" stroke-width="1.6"/><path d="M 70 116 A 34 34 0 0 1 91.9 124" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="90.4" y="108.9" text-anchor="middle">040&deg;</text><circle cx="70" cy="150" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="58" y="166" text-anchor="middle">A</text><circle cx="143.9" cy="61.9" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="156.9" y="56.9" text-anchor="middle">B</text><text class="svg-t" style="font-size:13px" x="131" y="110" text-anchor="start">20 km</text><text class="svg-t" style="font-size:13px" x="62" y="110" text-anchor="end">north</text><text class="svg-t" style="font-size:13px" x="107" y="53.9" text-anchor="middle">east</text></svg><figcaption>Not drawn to scale.</figcaption></figure>
       <ol class="steps">
@@ -449,7 +456,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>A walker goes 10 km on a bearing of 060&deg;. How far east does she go? Give your answer to 1 decimal place.</p>
       <ol class="steps">
         <li>East is opposite the angle, so use sin.</li>
@@ -502,8 +509,8 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>So far you knew the bearing and the distance, and found how far north and east you went. Now go the other way: you know how far north and east you went, and you find the distance and the bearing.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>bearing 040&deg;, distance 20 km, north and east = ?</p><p class="muted">Use cos and sin: 15.3 km north and 12.9 km east.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>6 km north, 8 km east, distance and bearing = ?</p><p class="muted">Use Pythagoras for the distance and tan<sup>&minus;1</sup> for the angle.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>bearing 040&deg;, distance 20 km, north and east = ?</p><p class="muted">Use cos and sin: 15.3 km north and 12.9 km east.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>6 km north, 8 km east, distance and bearing = ?</p><p class="muted">Use Pythagoras for the distance and tan<sup>&minus;1</sup> for the angle.</p></div>
     </div>
     <ul class="tick">
       <li>The distance is the hypotenuse: <b>distance = the square root of (north&sup2; + east&sup2;)</b>.</li>
@@ -512,7 +519,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> to go from distances back to a bearing, use tan<sup>&minus;1</sup>(east &divide; north). Put east on top, because east is opposite the angle from north.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>A walker goes 6 km north and then 8 km east. Find the distance from her start to her finish, and the bearing of the finish from the start. Give the bearing to 1 decimal place.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be13-t be13-d" class="geo-svg"><title id="be13-t">North and east distances for a walk</title><desc id="be13-d">A right-angled triangle. A walker goes 6 kilometres north and then 8 kilometres east. A dashed line goes from the start A straight to the finish B. The distance AB and the bearing angle at A are marked with question marks.</desc><line x1="70" y1="150" x2="70" y2="104" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="70,103 65.5,113 74.5,113" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="70" y="97" text-anchor="middle">N</text><line x1="70" y1="150" x2="162" y2="81" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="70" y1="81" x2="162" y2="81" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><line x1="70" y1="150" x2="70" y2="81" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><polyline points="79,81 79,90 70,90" fill="none" stroke="#0f2440" stroke-width="1.6"/><path d="M 70 116 A 34 34 0 0 1 97.2 129.6" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="95.5" y="111.1" text-anchor="middle">?</text><circle cx="70" cy="150" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="58" y="166" text-anchor="middle">A</text><circle cx="162" cy="81" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="175" y="76" text-anchor="middle">B</text><text class="svg-t" style="font-size:13px" x="140" y="119.5" text-anchor="start">?</text><text class="svg-t" style="font-size:13px" x="62" y="119.5" text-anchor="end">6 km</text><text class="svg-t" style="font-size:13px" x="116" y="73" text-anchor="middle">8 km</text></svg><figcaption>To scale: 6 km north and 8 km east.</figcaption></figure>
       <ol class="steps">
@@ -523,7 +530,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>A hiker goes 5 km north and then 12 km east. Find the distance from her start, and the bearing of the finish from the start, to 1 decimal place.</p>
       <ol class="steps">
         <li>Distance&sup2; = 5&sup2; + 12&sup2; = ___, so the distance is ___ km.</li>
@@ -572,7 +579,7 @@
     <p>In a journey with two legs, back bearings and the angles at each corner often show that the triangle has a right angle. Then you can use Pythagoras and trigonometry.</p>
     <div class="key"><p><b>Key idea:</b> draw the triangle, find the angle inside it (not the bearing itself), then use sin, cos or tan. At the end, turn the angle back into a three-figure bearing.</p></div>
     <div class="worked">
-      <h3>Worked example: a bearing over 090</h3>
+      <h3 id="s-worked-example-a-bearing-over-090">Worked example: a bearing over 090</h3>
       <p>A ship sails 30 km on a bearing of 130&deg;. How far south and how far east has it gone? Give each to 1 decimal place.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="be14-t be14-d" class="geo-svg"><title id="be14-t">A journey on a bearing of 130 degrees</title><desc id="be14-d">A right-angled triangle. A ship leaves A and sails 30 kilometres to B on a bearing of 130 degrees, which is south-east. A dashed line goes south from A and a dashed line goes east to B, making a right angle.</desc><line x1="70" y1="62" x2="70" y2="16" stroke="#0f2440" stroke-width="1.8" stroke-linecap="round"/><polygon points="70,15 65.5,25 74.5,25" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="70" y="9" text-anchor="middle">N</text><line x1="70" y1="62" x2="158.1" y2="135.9" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="70" y1="135.9" x2="158.1" y2="135.9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><line x1="70" y1="62" x2="70" y2="135.9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/><polyline points="79,135.9 79,126.9 70,126.9" fill="none" stroke="#0f2440" stroke-width="1.6"/><path d="M 70 28 A 34 34 0 0 1 96 83.9" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="117.5" y="45.7" text-anchor="middle">130&deg;</text><circle cx="70" cy="62" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="58" y="78" text-anchor="middle">A</text><circle cx="158.1" cy="135.9" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="171.1" y="140.9" text-anchor="middle">B</text><text class="svg-t" style="font-size:13px" x="138" y="103" text-anchor="start">30 km</text><text class="svg-t" style="font-size:13px" x="62" y="103" text-anchor="end">south</text><text class="svg-t" style="font-size:13px" x="114" y="152.9" text-anchor="middle">east</text></svg><figcaption>Not drawn to scale.</figcaption></figure>
       <ol class="steps">
@@ -582,7 +589,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a two-leg journey</h3>
+      <h3 id="s-worked-example-a-two-leg-journey">Worked example: a two-leg journey</h3>
       <p>A boat sails 6 km on a bearing of 040&deg; from A to B. Then it sails 8 km on a bearing of 130&deg; from B to C. Find the distance AC, and the bearing of C from A to 1 decimal place.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 210" role="img" aria-labelledby="be16-t be16-d" class="geo-svg"><title id="be16-t">A two-leg journey with a right angle at B</title><desc id="be16-d">A path from A to B and then B to C. At A a north line is drawn and the path to B leaves on a bearing of 040 degrees. At B another north line is drawn and the path to C leaves on a bearing of 130 degrees. A dashed line joins A to C.</desc><line x1="46" y1="164.2" x2="46" y2="130.2" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="46,129.2 41.5,139.2 50.5,139.2" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="46" y="123.2" text-anchor="middle">N</text><line x1="134.1" y1="59.3" x2="134.1" y2="25.3" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="134.1,24.3 129.6,34.3 138.6,34.3" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="134.1" y="18.3" text-anchor="middle">N</text><line x1="46" y1="164.2" x2="134.1" y2="59.3" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="134.1" y1="59.3" x2="274" y2="176.7" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="46" y1="164.2" x2="274" y2="176.7" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/><path d="M 46 142.2 A 22 22 0 0 1 60.1 147.4" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="58.7" y="133.5" text-anchor="middle">040&deg;</text><path d="M 134.1 37.3 A 22 22 0 0 1 150.9 73.4" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="167.6" y="47.7" text-anchor="middle">130&deg;</text><circle cx="46" cy="164.2" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="36.4" y="179.7" text-anchor="middle">A</text><circle cx="134.1" cy="59.3" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="124.4" y="74.8" text-anchor="middle">B</text><circle cx="274" cy="176.7" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="285.5" y="190.4" text-anchor="middle">C</text><text class="svg-t" style="font-size:12px" x="60" y="111.8" text-anchor="middle">6 km</text><text class="svg-t" style="font-size:12px" x="174" y="118" text-anchor="middle">8 km</text></svg><figcaption>Not drawn to scale.</figcaption></figure>
       <ol class="steps">
@@ -593,7 +600,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3>
       <p>A ship sails 5 km due east (090&deg;) and then 12 km due south (180&deg;). Find the distance from its start, and the bearing of the finish from the start to 1 decimal place.</p>
       <figure class="figure qfig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="be15-t be15-d" class="geo-svg"><title id="be15-t">A journey east then south</title><desc id="be15-d">A path from A east to B and then from B south to C, with a right angle at B. A dashed line joins A to C. The east leg is 5 kilometres and the south leg is 12 kilometres.</desc><line x1="136.3" y1="56" x2="136.3" y2="22" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="136.3,21 131.8,31 140.8,31" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="136.3" y="15" text-anchor="middle">N</text><line x1="183.8" y1="56" x2="183.8" y2="22" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><polygon points="183.8,21 179.3,31 188.3,31" fill="#0f2440"/><text class="svg-t" style="font-size:13px;font-weight:700" x="183.8" y="15" text-anchor="middle">N</text><line x1="136.3" y1="56" x2="183.8" y2="56" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="183.8" y1="56" x2="183.8" y2="170" stroke="#0f2440" stroke-width="2.5" stroke-linecap="round"/><line x1="136.3" y1="56" x2="183.8" y2="170" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/><path d="M 136.3 34 A 22 22 0 0 1 158.3 56" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="162.4" y="33.8" text-anchor="middle">090&deg;</text><path d="M 183.8 34 A 22 22 0 0 1 183.8 78" fill="none" stroke="#ad1f5c" stroke-width="2.2"/><text class="svg-t" style="font-size:13px;fill:#ad1f5c;font-weight:700" x="220.8" y="60" text-anchor="middle">180&deg;</text><circle cx="136.3" cy="56" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="121.3" y="60" text-anchor="middle">A</text><circle cx="183.8" cy="56" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="168.8" y="60" text-anchor="middle">B</text><circle cx="183.8" cy="170" r="4.5" fill="#0f2440" stroke="#fff" stroke-width="1"/><text class="svg-t" style="font-size:13px;font-weight:700" x="183.8" y="189" text-anchor="middle">C</text><text class="svg-t" style="font-size:12px" x="160" y="48" text-anchor="middle">5 km</text><text class="svg-t" style="font-size:12px" x="207.8" y="113" text-anchor="middle">12 km</text></svg><figcaption>Not drawn to scale.</figcaption></figure>
       <ol class="steps">
@@ -874,10 +881,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

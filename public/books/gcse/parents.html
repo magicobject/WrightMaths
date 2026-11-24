@@ -14,10 +14,10 @@
 <meta name="description" content="How to help your child use the GCSE maths book: where to start, what to say when they are stuck, what is stored on their device, and what the grades mean.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/parents.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -92,6 +99,7 @@
       <li><b>The &ldquo;duck&rdquo; box.</b> What your child types to the duck stays on the screen. It is not saved and not sent.</li>
       <li><b>Other websites.</b> The book&rsquo;s pages do not load fonts, scripts, trackers or videos from other websites. Like any website, the host keeps ordinary server records (such as the address a page was requested from) when a page is fetched. The book has no server collecting your child&rsquo;s answers.</li>
       <li><b>Listen.</b> The Listen buttons read the page aloud using a voice built into your device. Some browsers also offer &ldquo;online&rdquo; voices that send the text to the browser maker. The book only uses one of those if your child picks it, and it is labelled. If a device has no voice of its own, Listen stays silent.</li>
+      <li><b>The search box.</b> The box at the top of every page of the book finds topics, maths words, sections and these guides (for example, type &ldquo;circle theorems&rdquo;). It works on the device: the book&rsquo;s list of titles is fetched from this site the first time the box is used, and what your child types is never saved, sent or kept in the address. It does not search the answers.</li>
       <li><b>Links out.</b> Apart from the site designer&rsquo;s credit in the page footer, links that leave the book go to other pages of this site, or open your phone or email app.</li>
     </ul>
 
@@ -163,10 +171,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

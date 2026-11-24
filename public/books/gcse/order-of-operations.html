@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Order of operations. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/order-of-operations.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -162,7 +169,7 @@
     </figure>
     <p><b>Try it:</b> work out 2 + 3 &times; 4.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Work out 20 &minus; 6 &divide; 2.</p>
       <ol class="steps">
         <li>Divide before you subtract: 6 &divide; 2 = 3.</li>
@@ -221,7 +228,7 @@
     <div class="key"><p><b>Key idea:</b> a power belongs only to the number just before it. In 2 &times; 3&sup2; the square belongs to the 3. So 3&sup2; = 9 first, then 2 &times; 9 = 18. To square both numbers, use brackets: (2 &times; 3)&sup2; = 36.</p></div>
     <p><b>Try it:</b> work out 4 + 3&sup2;.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Work out 5 + (6 &minus; 2)&sup2; &times; 3.</p>
       <ol class="steps">
         <li>Brackets: 6 &minus; 2 = 4.</li>
@@ -231,7 +238,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it: a fraction bar</h3>
+      <h3 id="s-now-you-finish-it-a-fraction-bar">Now you finish it: a fraction bar</h3>
       <p>Work out <span class="frac"><span class="fn">12 + 8</span><span class="sr"> over </span><span class="fd">4</span></span>.</p>
       <ol class="steps">
         <li>The fraction line works like brackets. Do the top first: 12 + 8 = 20.</li>
@@ -289,8 +296,8 @@
     <h2 id="s-flip-it-build-it-and-unpick-it">Flip it: build it and unpick it</h2>
     <p>So far you have gone one way. Now run it backwards. Same idea, other direction.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Given 2 + 3 &times; 4, work out the answer: 14.</p><p class="muted">Follow the rules to get an answer.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Given the answer 20 and the numbers 2, 3 and 4, put in brackets to make it work: (2 + 3) &times; 4 = 20.</p><p class="muted">Choose the brackets (or operations) to hit a target.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>Given 2 + 3 &times; 4, work out the answer: 14.</p><p class="muted">Follow the rules to get an answer.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>Given the answer 20 and the numbers 2, 3 and 4, put in brackets to make it work: (2 + 3) &times; 4 = 20.</p><p class="muted">Choose the brackets (or operations) to hit a target.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> you can go forwards (work out the answer). You can go backwards (decide where the brackets go, or find a missing number). Going backwards also checks a calculation.</p></div>
     <p>For a missing number, undo the operations in the opposite order. For 3 &times; (? + 2) = 21: divide 21 by 3, then take 2 away.</p>
@@ -581,10 +588,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

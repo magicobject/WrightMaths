@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Simultaneous equations. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/simultaneous-equations.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -148,7 +155,7 @@
     </div>
     <p><b>Try it:</b> does x = 3, y = 2 make x + y = 5 true? Does it make x &minus; y = 1 true?</p>
     <div class="worked">
-      <h3>Worked example: by trying pairs</h3>
+      <h3 id="s-worked-example-by-trying-pairs">Worked example: by trying pairs</h3>
       <p>Find x and y when x + y = 5 and x &minus; y = 1.</p>
       <ol class="steps">
         <li>List pairs that add to 5: (1, 4), (2, 3), (3, 2), (4, 1).</li>
@@ -211,7 +218,7 @@
     </div>
     <p><b>Try it:</b> to remove y from 2x + 4y = 10 and x + 4y = 6, do you add or subtract?</p>
     <div class="worked">
-      <h3>Worked example: subtract</h3>
+      <h3 id="s-worked-example-subtract">Worked example: subtract</h3>
       <p>Solve (1) 3x + 2y = 16 and (2) x + 2y = 8.</p>
       <ol class="steps">
         <li>Both have +2y, so subtract: (1) &minus; (2).</li>
@@ -221,7 +228,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: add</h3>
+      <h3 id="s-worked-example-add">Worked example: add</h3>
       <p>Solve (1) 2x + 3y = 12 and (2) 4x &minus; 3y = 6.</p>
       <ol class="steps">
         <li>+3y and &minus;3y have different signs, so add: (1) + (2).</li>
@@ -231,7 +238,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Solve (1) 5x + 2y = 21 and (2) 3x &minus; 2y = 3.</p>
       <ol class="steps">
         <li>+2y and &minus;2y have different signs, so add: 5x + 3x = 8x and 21 + 3 = ___.</li>
@@ -299,7 +306,7 @@
       <p><b>Key idea:</b> multiplying a whole equation by a number keeps it true, just as doubling both pans of a balance keeps it level. Do it only to make the coefficients match, then add or subtract as before.</p>
     </div>
     <div class="worked">
-      <h3>Worked example: multiply one equation</h3>
+      <h3 id="s-worked-example-multiply-one-equation">Worked example: multiply one equation</h3>
       <p>Solve (1) 2x + y = 7 and (2) 3x + 2y = 12.</p>
       <ol class="steps">
         <li>Multiply (1) by 2 so both have 2y: (3) 4x + 2y = 14.</li>
@@ -309,7 +316,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: multiply both</h3>
+      <h3 id="s-worked-example-multiply-both">Worked example: multiply both</h3>
       <p>Solve (1) 3x + 2y = 13 and (2) 2x + 5y = 16.</p>
       <ol class="steps">
         <li>To match the x terms, use 6x. Multiply (1) by 2: (3) 6x + 4y = 26. Multiply (2) by 3: (4) 6x + 15y = 48.</li>
@@ -319,7 +326,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Solve (1) 3x + y = 13 and (2) 5x + 2y = 22.</p>
       <ol class="steps">
         <li>Multiply (1) by 2: 6x + 2y = ___.</li>
@@ -388,7 +395,7 @@
       <p><b>Key idea:</b> if y = 2x + 1, then wherever you see y you may write 2x + 1. Keep brackets round it if it is being subtracted or multiplied.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Solve (1) y = 2x + 1 and (2) 3x + y = 16.</p>
       <ol class="steps">
         <li>Replace y in (2) with 2x + 1: 3x + 2x + 1 = 16.</li>
@@ -398,7 +405,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Solve (1) y = x + 3 and (2) 2x + y = 15.</p>
       <ol class="steps">
         <li>Replace y in (2): 2x + (x + 3) = 15.</li>
@@ -469,7 +476,7 @@
       <li>Answer in words, with the unit, and check against the story.</li>
     </ol>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>2 adult tickets and 3 child tickets cost &pound;44. 1 adult ticket and 2 child tickets cost &pound;26. Find the price of each ticket.</p>
       <ol class="steps">
         <li>Let a = the price of an adult ticket and c = the price of a child ticket, in pounds.</li>
@@ -480,7 +487,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>A plumber buys 3 elbow joints and 2 valves for &pound;19, and 1 elbow joint and 2 valves for &pound;13. Find the price of each. (The prices are made up for practice.)</p>
       <ol class="steps">
         <li>Let j = the price of an elbow joint and v = the price of a valve, in pounds.</li>
@@ -595,7 +602,7 @@
       <p><b>Key idea:</b> tidy first. Get every equation into the form ax + by = c, with the letters on the left and the number on the right. Then choose your method.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Solve (1) 2x = 3y + 1 and (2) 3x + 2y = 21.</p>
       <ol class="steps">
         <li>Rearrange (1): take 3y from both sides to get 2x &minus; 3y = 1.</li>
@@ -645,14 +652,14 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>You have been given equations and asked for the answer. Now run it the other way.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Given x + y = 5 and x &minus; y = 1, find x and y.</p><p class="muted">Eliminate or substitute.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Given x = 3 and y = 2, check them in both equations, or build equations they solve.</p><p class="muted">Substitute into each equation.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>Given x + y = 5 and x &minus; y = 1, find x and y.</p><p class="muted">Eliminate or substitute.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>Given x = 3 and y = 2, check them in both equations, or build equations they solve.</p><p class="muted">Substitute into each equation.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> a solution must work in <i>both</i> equations. Checking in only one is not checking. If the pair fails either one, something went wrong.</p>
     </div>
     <div class="worked">
-      <h3>Worked example: check a pair</h3>
+      <h3 id="s-worked-example-check-a-pair">Worked example: check a pair</h3>
       <p>Is x = 3, y = 2 a solution of 2x + y = 8 and x + 3y = 10?</p>
       <ol class="steps">
         <li>In 2x + y = 8: 2 &times; 3 + 2 = 8. It works.</li>
@@ -661,7 +668,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: build a pair</h3>
+      <h3 id="s-worked-example-build-a-pair">Worked example: build a pair</h3>
       <p>Write two equations that have x = 2, y = 5 as their solution.</p>
       <ol class="steps">
         <li>Choose any combination of x and y. For example x + y: 2 + 5 = 7, so x + y = 7.</li>
@@ -988,10 +995,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

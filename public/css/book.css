@@ -526,6 +526,28 @@ footer p{color:#c9d3e0;}
   .q-feedback{border:2px solid var(--ink);padding:6px 10px;}
   .btn-stuck,.listen{border-color:var(--ink);}
 }
+/* ---------- search box in the header (book pages only) ----------
+   Contrast, computed (WCAG relative luminance):
+     typed text   ink #1b2430 on white                 15.65
+     placeholder  ink-soft #4a5568 on white             7.53
+     result title ink on white 15.65, on the highlighted row paper-dim #efe9db 12.93
+     result detail ink-soft on white 7.53, on paper-dim 6.22
+     focus ring   gold-light #e4c886 on the navy header 9.58 (the navy ring used elsewhere would vanish on navy)
+     input edge   white on navy 15.59 */
+.book-search{position:relative;flex:1 0 100%;order:9;max-width:40rem;}
+.book-search input{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--white);border:2px solid var(--white);border-radius:999px;padding:8px 16px;min-height:44px;}
+.book-search input::placeholder{color:var(--ink-soft);opacity:1;}
+.book .book-search input:focus-visible,.site-header .book-search input:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+.book-search-results{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;list-style:none;margin:0;padding:6px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);max-height:min(26rem,70vh);overflow-y:auto;}
+.book-search-results[hidden],.book-search-empty[hidden]{display:none;}
+.book-search-results a{display:block;padding:8px 12px;border-radius:8px;color:var(--ink);text-decoration:none;}
+.book-search-results a:hover,.book-search-results a[aria-selected="true"]{background:var(--paper-dim);outline:2px solid var(--navy);outline-offset:-2px;}
+.book-search-results .bs-title{display:block;font-weight:700;}
+.book-search-results .bs-where,.book-search-results .bs-snippet{display:block;font-size:.88rem;color:var(--ink-soft);line-height:1.4;}
+.book-search-empty{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;margin:0;padding:12px 16px;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);}
+@media (max-width:700px){.book-search{max-width:none;width:100%;}}
+@media print{.book-search{display:none !important;}}
+
 /* Printing a worksheet: only the questions, with room to work, and a line for a name. */
 @media print{
   .print-name{display:block;font-weight:700;margin:0 0 14px;}

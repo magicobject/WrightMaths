@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Quadratic equations. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/quadratic-equations.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -140,10 +147,10 @@
     <h2 id="s-1-expanding-double-brackets">1. Expanding double brackets</h2>
     <p>A <a class="term" href="glossary.html#quadratic" data-term="quadratic" data-def="An expression or equation where the highest power of the unknown is 2.">Quadratic</a> has an x&sup2; in it and no higher power. Before we solve them, we need to build them. To <a class="term" href="glossary.html#expand" data-term="expand" data-def="Remove brackets by multiplying every term inside by what is outside. With two brackets, multiply every term in one by every term in the other.">Expand (multiply out)</a> two brackets, multiply every term in the first bracket by every term in the second.</p>
     <p class="muted">Typing tip: write x squared as x^2, like x^2+5x+6. Where a question wants two answers, it will tell you how to type them.</p>
-    <h3>Start with numbers</h3>
+    <h3 id="s-start-with-numbers">Start with numbers</h3>
     <p>You can already multiply 13 &times; 12 by splitting each number into tens and units. A grid keeps the four pieces tidy.</p>
     <figure class="figure"><svg viewBox="0 0 210 148" role="img" aria-labelledby="qe-l1-t qe-l1-d" class="geo-svg"><title id="qe-l1-t">Grid for 13 times 12</title><desc id="qe-l1-d">A rectangle split into four boxes. The columns are 10 and 3 wide. The rows are 10 and 2 tall. The four boxes hold 100, 30, 20 and 6.</desc><rect x="50" y="30" width="100" height="64" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="67" text-anchor="middle">100</text><rect x="150" y="30" width="46" height="64" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="173" y="67" text-anchor="middle">30</text><text class="svg-t" style="font-size:14px" x="42" y="67" text-anchor="end">10</text><rect x="50" y="94" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="114" text-anchor="middle">20</text><rect x="150" y="94" width="46" height="30" fill="#e1f3e6" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="173" y="114" text-anchor="middle">6</text><text class="svg-t" style="font-size:14px" x="42" y="114" text-anchor="end">2</text><text class="svg-t" style="font-size:14px" x="100" y="20" text-anchor="middle">10</text><text class="svg-t" style="font-size:14px" x="173" y="20" text-anchor="middle">3</text><text class="svg-t" style="font-size:11px" x="50" y="142" text-anchor="start">Not drawn to scale</text></svg><figcaption>13 &times; 12 = (10 + 3)(10 + 2). The four boxes add to 100 + 30 + 20 + 6 = 156.</figcaption></figure>
-    <h3>The same grid with x</h3>
+    <h3 id="s-the-same-grid-with-x">The same grid with x</h3>
     <p>Now let one side be x. A rectangle that is (x + 3) long and (x + 2) wide has an <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">Area</a> we can add up piece by piece.</p>
     <figure class="figure"><svg viewBox="0 0 218 154" role="img" aria-labelledby="qe-l2-t qe-l2-d" class="geo-svg"><title id="qe-l2-t">Grid for (x + 3)(x + 2)</title><desc id="qe-l2-d">A rectangle with columns x and 3 and rows x and 2. The four boxes hold x squared, 3x, 2x and 6.</desc><rect x="50" y="30" width="100" height="64" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="67" text-anchor="middle">x&sup2;</text><rect x="150" y="30" width="54" height="64" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="177" y="67" text-anchor="middle">3x</text><text class="svg-t" style="font-size:14px" x="42" y="67" text-anchor="end">x</text><rect x="50" y="94" width="100" height="36" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="117" text-anchor="middle">2x</text><rect x="150" y="94" width="54" height="36" fill="#e1f3e6" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="177" y="117" text-anchor="middle">6</text><text class="svg-t" style="font-size:14px" x="42" y="117" text-anchor="end">2</text><text class="svg-t" style="font-size:14px" x="100" y="20" text-anchor="middle">x</text><text class="svg-t" style="font-size:14px" x="177" y="20" text-anchor="middle">3</text><text class="svg-t" style="font-size:11px" x="50" y="148" text-anchor="start">Not drawn to scale</text></svg><figcaption>The whole rectangle has area (x + 3)(x + 2). Its four pieces are x&sup2;, 3x, 2x and 6.</figcaption></figure>
     <p class="sum-line">(x + 3)(x + 2) = x&sup2; + 3x + 2x + 6 = x&sup2; + 5x + 6</p>
@@ -152,7 +159,7 @@
     </div>
     <p><b>Try it:</b> use that idea to expand (x + 1)(x + 4) in your head.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Expand and simplify (x + 4)(x + 3).</p>
       <ol class="steps">
         <li>Multiply every pair: x &times; x = x&sup2;, x &times; 3 = 3x, 4 &times; x = 4x, 4 &times; 3 = 12.</li>
@@ -161,7 +168,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Expand and simplify (x + 5)(x + 2).</p>
       <ol class="steps">
         <li>The four pieces: x&sup2;, 2x, 5x and ___.</li>
@@ -223,7 +230,7 @@
     <p>Negative numbers work in the grid too. The rules are the ones you know: a minus times a plus is a minus, and a minus times a minus is a plus.</p>
     <figure class="figure"><svg viewBox="0 0 230 154" role="img" aria-labelledby="qe-l3-t qe-l3-d" class="geo-svg"><title id="qe-l3-t">Grid for (x minus 2)(x + 5)</title><desc id="qe-l3-d">A grid with columns x and 5 and rows x and minus 2. The four boxes hold x squared, 5x, minus 2x and minus 10.</desc><rect x="50" y="30" width="100" height="64" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="67" text-anchor="middle">x&sup2;</text><rect x="150" y="30" width="66" height="64" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="183" y="67" text-anchor="middle">5x</text><text class="svg-t" style="font-size:14px" x="42" y="67" text-anchor="end">x</text><rect x="50" y="94" width="100" height="36" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="100" y="117" text-anchor="middle">&minus;2x</text><rect x="150" y="94" width="66" height="36" fill="#e1f3e6" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="183" y="117" text-anchor="middle">&minus;10</text><text class="svg-t" style="font-size:14px" x="42" y="117" text-anchor="end">&minus;2</text><text class="svg-t" style="font-size:14px" x="100" y="20" text-anchor="middle">x</text><text class="svg-t" style="font-size:14px" x="183" y="20" text-anchor="middle">5</text><text class="svg-t" style="font-size:11px" x="50" y="148" text-anchor="start">Not drawn to scale</text></svg><figcaption>A negative side gives negative boxes. They still add up: x&sup2; + 5x &minus; 2x &minus; 10.</figcaption></figure>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Expand and simplify (x &minus; 2)(x + 5).</p>
       <ol class="steps">
         <li>Four pieces: x &times; x = x&sup2;, x &times; 5 = 5x, (&minus;2) &times; x = &minus;2x, (&minus;2) &times; 5 = &minus;10.</li>
@@ -232,7 +239,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Expand and simplify (x &minus; 4)(x &minus; 3).</p>
       <ol class="steps">
         <li>The four pieces: x&sup2;, &minus;3x, &minus;4x and ___.</li>
@@ -241,9 +248,9 @@
       </ol>
       <details class="check-line"><summary>Check my answer</summary><p>(&minus;4) &times; (&minus;3) = +12 and &minus;3x &minus; 4x = &minus;7x, so x&sup2; &minus; 7x + 12.</p></details>
     </div>
-    <h3>Squaring a bracket</h3>
+    <h3 id="s-squaring-a-bracket">Squaring a bracket</h3>
     <p>(x + 3)&sup2; means (x + 3)(x + 3). It is <i>not</i> x&sup2; + 9. Use the grid: x&sup2; + 3x + 3x + 9 = x&sup2; + 6x + 9. The two middle pieces are the bit people forget.</p>
-    <h3>A special case: the difference of two squares</h3>
+    <h3 id="s-a-special-case-the-difference-of-two-squ">A special case: the difference of two squares</h3>
     <p>Try (x + 5)(x &minus; 5). The pieces are x&sup2;, &minus;5x, +5x and &minus;25. The two middle pieces cancel, so (x + 5)(x &minus; 5) = x&sup2; &minus; 25. This is the <a class="term" href="glossary.html#difference-of-two-squares" data-term="difference-of-two-squares" data-def="An expression with one square taken away from another, such as x&sup2; &minus; 49. It factorises into two brackets that are the same except for the sign.">Difference of two squares</a>: one square minus another square.</p>
     <div class="key">
       <p><b>Key idea:</b> (x + a)(x &minus; a) = x&sup2; &minus; a&sup2;. The middle term disappears because +ax and &minus;ax cancel.</p>
@@ -313,7 +320,7 @@
       <p><b>Key idea:</b> to factorise x&sup2; + bx + c, find two numbers that <b>multiply to c</b> and <b>add to b</b>. Then write (x + first)(x + second).</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Factorise x&sup2; + 7x + 12.</p>
       <ol class="steps">
         <li>Pairs that multiply to 12: 1 and 12, 2 and 6, 3 and 4.</li>
@@ -322,10 +329,10 @@
         <li>Check by expanding: x&sup2; + 4x + 3x + 12 = x&sup2; + 7x + 12. &#10003;</li>
       </ol>
     </div>
-    <h3>When the numbers are negative</h3>
+    <h3 id="s-when-the-numbers-are-negative">When the numbers are negative</h3>
     <p>Look at the signs. If the last number is <i>positive</i>, the two numbers have the same sign as the middle number. If the last number is <i>negative</i>, the two numbers have different signs.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>Factorise x&sup2; + 2x &minus; 15.</p>
       <ol class="steps">
         <li>The last number is &minus;15, so the signs differ. Pairs that multiply to &minus;15: 1 and &minus;15, &minus;1 and 15, 3 and &minus;5, &minus;3 and 5.</li>
@@ -335,7 +342,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Factorise x&sup2; &minus; 8x + 15.</p>
       <ol class="steps">
         <li>The last number is positive and the middle is negative, so both numbers are negative.</li>
@@ -344,7 +351,7 @@
       </ol>
       <details class="check-line"><summary>Check my answer</summary><p>&minus;3 + (&minus;5) = &minus;8 and (&minus;3) &times; (&minus;5) = 15, so x&sup2; &minus; 8x + 15 = (x &minus; 3)(x &minus; 5).</p></details>
     </div>
-    <h3>Difference of two squares, backwards</h3>
+    <h3 id="s-difference-of-two-squares-backwards">Difference of two squares, backwards</h3>
     <p>If there is no middle term and the last number is a square taken away, use the special case: x&sup2; &minus; 49 = (x + 7)(x &minus; 7). Two numbers that multiply to &minus;49 and add to 0 are 7 and &minus;7.</p>
   </div>
 </section>
@@ -416,7 +423,7 @@
       <li>Check them by putting each back in.</li>
     </ol>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x">Worked example</h3>
       <p>Solve x&sup2; + 5x + 6 = 0.</p>
       <ol class="steps">
         <li>One side is already 0. Factorise: (x + 2)(x + 3) = 0.</li>
@@ -426,7 +433,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: rearrange first</h3>
+      <h3 id="s-worked-example-rearrange-first">Worked example: rearrange first</h3>
       <p>Solve x&sup2; = 3x + 10.</p>
       <ol class="steps">
         <li>Get 0 on one side: take 3x and 10 from both sides. x&sup2; &minus; 3x &minus; 10 = 0.</li>
@@ -435,7 +442,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>Solve x&sup2; &minus; 7x + 10 = 0.</p>
       <ol class="steps">
         <li>Two numbers that multiply to 10 and add to &minus;7: ___ and ___.</li>
@@ -444,7 +451,7 @@
       </ol>
       <details class="check-line"><summary>Check my answer</summary><p>(x &minus; 2)(x &minus; 5) = 0, so x = 2 or x = 5. Check: 4 &minus; 14 + 10 = 0 and 25 &minus; 35 + 10 = 0.</p></details>
     </div>
-    <h3>Two things to watch</h3>
+    <h3 id="s-two-things-to-watch">Two things to watch</h3>
     <p>If there is no number term, such as x&sup2; + 3x = 0, take out the common factor: x(x + 3) = 0. So x = 0 or x = &minus;3. Do not divide by x: that loses the answer x = 0.</p>
     <p>The zero idea only works when one side is <i>0</i>. If (x &minus; 2)(x + 3) = 6, you cannot say each bracket is 6. Rearrange so it equals 0 first.</p>
   </div>
@@ -519,7 +526,7 @@
     <p>It matches factorising. x&sup2; &minus; 25 = 0 is (x &minus; 5)(x + 5) = 0, which gives x = 5 or x = &minus;5. That is the difference of two squares again.</p>
     <p>If k is not a square number, the roots do not come out whole. Use your calculator and round as asked: x&sup2; = 20 gives x = &plusmn;4.47&hellip; &asymp; &plusmn;4.5 to 1 decimal place.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x">Worked example</h3>
       <p>Solve 2x&sup2; = 50.</p>
       <ol class="steps">
         <li>Get x&sup2; on its own: divide both sides by 2. x&sup2; = 25.</li>
@@ -527,7 +534,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>Solve 3x&sup2; = 48.</p>
       <ol class="steps">
         <li>Divide both sides by 3: x&sup2; = ___.</li>
@@ -599,7 +606,7 @@
     <h2 id="s-6-checking-your-solutions">6. Checking your solutions</h2>
     <p>A solution is right if it makes the equation true. <a class="term" href="glossary.html#substitute" data-term="substitute" data-def="Replace a letter with a number, then work out the answer.">Substitute</a> it back in and see if you get 0. This takes seconds and catches sign slips.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x-x">Worked example</h3>
       <p>Is x = &minus;2 a solution of x&sup2; &minus; 3x &minus; 10 = 0?</p>
       <ol class="steps">
         <li>Put &minus;2 in for x: (&minus;2)&sup2; &minus; 3 &times; (&minus;2) &minus; 10.</li>
@@ -652,7 +659,7 @@
       <li>Throw out any answer that does not make sense (a negative length).</li>
     </ol>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x-x-x">Worked example</h3>
       <p>A rectangle has width x cm and length (x + 3) cm. Its area is 40 cm&sup2;. Find x.</p>
       <ol class="steps">
         <li>x(x + 3) = 40, so x&sup2; + 3x = 40.</li>
@@ -663,7 +670,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>A rectangle has width x cm and length (x + 5) cm. Its area is 36 cm&sup2;. Find x.</p>
       <ol class="steps">
         <li>x(x + 5) = 36, so x&sup2; + 5x &minus; 36 = 0.</li>
@@ -733,18 +740,18 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>Everything so far goes forwards. Now reverse it. Same idea, other direction.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>(x + 3)(x + 4) = ?</p><p class="muted">Expand: x&sup2; + 7x + 12.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>x&sup2; + 7x + 12 = ( )( )</p><p class="muted">Factorise: (x + 3)(x + 4).</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>(x + 3)(x + 4) = ?</p><p class="muted">Expand: x&sup2; + 7x + 12.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>x&sup2; + 7x + 12 = ( )( )</p><p class="muted">Factorise: (x + 3)(x + 4).</p></div>
     </div>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>(x &minus; 2)(x &minus; 5) = 0, so x = ?</p><p class="muted">Each bracket is 0: x = 2 or x = 5.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>The solutions are 2 and 5. What is the equation?</p><p class="muted">Make the brackets (x &minus; 2)(x &minus; 5) and expand.</p></div>
+      <div class="flip-side"><h3 id="s-forwards-x">Forwards</h3><p>(x &minus; 2)(x &minus; 5) = 0, so x = ?</p><p class="muted">Each bracket is 0: x = 2 or x = 5.</p></div>
+      <div class="flip-side"><h3 id="s-backwards-x">Backwards</h3><p>The solutions are 2 and 5. What is the equation?</p><p class="muted">Make the brackets (x &minus; 2)(x &minus; 5) and expand.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> a solution of x = a comes from the bracket (x &minus; a), so the sign flips. For solutions 2 and 5: (x &minus; 2)(x &minus; 5) = x&sup2; &minus; 7x + 10. The middle number is minus the sum of the solutions (&minus;(2 + 5) = &minus;7) and the last number is their product (2 &times; 5 = 10).</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x-x-x-x">Worked example</h3>
       <p>Write a quadratic equation with solutions x = 3 and x = &minus;4.</p>
       <ol class="steps">
         <li>x = 3 comes from (x &minus; 3). x = &minus;4 comes from (x + 4).</li>
@@ -1033,10 +1040,10 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2 id="s-going-further-higher">Going further <span class="chip chip-higher">Higher</span></h2>
-    <h3>When there is a number in front of x&sup2;</h3>
+    <h3 id="s-when-there-is-a-number-in-front-of-x">When there is a number in front of x&sup2;</h3>
     <p>Factorising 2x&sup2; + 7x + 3 needs one extra step. Multiply the first and last numbers: 2 &times; 3 = 6. Find two numbers that multiply to 6 and add to the middle number 7: they are 1 and 6. Split the middle term with them, then factorise in pairs.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x-x-x-x-x">Worked example</h3>
       <p>Factorise 2x&sup2; + 7x + 3.</p>
       <ol class="steps">
         <li>2 &times; 3 = 6. The numbers 1 and 6 multiply to 6 and add to 7.</li>
@@ -1045,12 +1052,12 @@
         <li>Both parts share (2x + 1): (2x + 1)(x + 3). Check: 2x&sup2; + 6x + x + 3 &#10003;</li>
       </ol>
     </div>
-    <h3>The quadratic formula</h3>
+    <h3 id="s-the-quadratic-formula">The quadratic formula</h3>
     <p>Many quadratics do not factorise neatly. For any equation ax&sup2; + bx + c = 0 (with a not 0), the <a class="term" href="glossary.html#quadratic-formula" data-term="quadratic-formula" data-def="A formula that solves any equation ax&sup2; + bx + c = 0 (with a not 0): x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) &divide; 2a.">Quadratic formula</a> always works:</p>
     <p class="sum-line">x = <span class="frac"><span class="fn">&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)</span><span class="sr"> over </span><span class="fd">2a</span></span></p>
     <p>Write down a, b and c first, with their signs. Careful: if b is negative, then &minus;b is positive. Work out the part under the root, b&sup2; &minus; 4ac, which is called the <a class="term" href="glossary.html#discriminant" data-term="discriminant" data-def="The expression b&sup2; &minus; 4ac from the quadratic formula. Its sign tells you how many real solutions ax&sup2; + bx + c = 0 has.">Discriminant</a>. If it is a perfect square the answers are neat. If it is not, the answers are not whole numbers, so round as the question asks. If it is negative there are no solutions.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x-x-x-x-x-x">Worked example</h3>
       <p>Solve x&sup2; &minus; 6x + 2 = 0 to 2 decimal places.</p>
       <ol class="steps">
         <li>a = 1, b = &minus;6, c = 2.</li>
@@ -1196,10 +1203,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

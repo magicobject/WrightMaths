@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Squares and square roots. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/squares-roots.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -141,7 +148,7 @@
     <p>Factors come in pairs, except for square numbers, which have one factor paired with itself (6 &times; 6 = 36): that is why a square number has an odd number of factors.</p>
     <div class="key"><p><b>Key idea:</b> learn the squares up to 15&sup2; = 225, because they come up everywhere (Pythagoras, area, algebra). The small 2 means &ldquo;multiply the number by itself&rdquo;. It does not mean &ldquo;times 2&rdquo;: 6&sup2; = 36, not 12.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Work out 1.1&sup2;.</p>
       <ol class="steps">
         <li>Ignore the points: 11 &times; 11 = 121.</li>
@@ -199,7 +206,7 @@
     <p>A <a class="term" href="glossary.html#square-root" data-term="square-root" data-def="The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.">Square root</a> undoes squaring. The square root of 49 is the positive number that multiplied by itself gives 49. It is written &radic;49 = 7. Think of it as the <b>side length</b> of a square with area 49.</p>
     <div class="key"><p><b>Key idea:</b> the root sign works like brackets: &radic;(36 + 64) means work out 36 + 64 = 100 first, then &radic;100 = 10. But &radic;36 + &radic;64 = 6 + 8 = 14. These are different!</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Work out &radic;(36 + 64).</p>
       <ol class="steps">
         <li>The root sign groups what is under it: 36 + 64 = 100.</li>
@@ -253,7 +260,7 @@
     <p>Most numbers are not perfect squares. The root of a whole number that is not a square is <a class="term" href="glossary.html#irrational" data-term="irrational" data-def="A number that cannot be written as a fraction. Its decimal never ends and never repeats.">irrational</a>. There are two ways to say what that means: its decimal never ends and never repeats, and it cannot be written as a fraction of two whole numbers. They are two descriptions of the same numbers. (<span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">3</span></span> = 0.333&hellip; goes on for ever but it repeats, and it is a fraction, so it is <b>not</b> irrational.) You can still <b>estimate</b> a root by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
     <div class="key"><p><b>Key idea:</b> a calculator gives a decimal such as &radic;50 = 7.0710&hellip;, which is only a rounded copy of the real number. Estimate first so you can tell whether the calculator answer makes sense. If the answer must be exact, leave it as a root: a <a class="term" href="glossary.html#surd" data-term="surd" data-def="A root that cannot be written as a whole number or a fraction. A surd is an exact answer, so keep it as a root.">Surd</a> such as &radic;50. The next section shows how to simplify one.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Estimate &radic;20 by finding two decimals it lies between.</p>
       <ol class="steps">
         <li>16 = 4&sup2; and 25 = 5&sup2;, so &radic;20 is between 4 and 5.</li>
@@ -307,7 +314,7 @@
     <h2 id="s-4-simplifying-a-surd-higher">4. Simplifying a surd <span class="chip chip-higher">Higher</span></h2>
     <p>You can split a root over a <i>multiplication</i> (but not over an addition or subtraction, in general): &radic;(<i>a</i> &times; <i>b</i>) = &radic;<i>a</i> &times; &radic;<i>b</i>, which works when <i>a</i> and <i>b</i> are both 0 or more. So pull out the biggest square number that divides into the number under the root.</p>
     <div class="worked">
-      <h3>Worked examples</h3>
+      <h3 id="s-worked-examples">Worked examples</h3>
       <ol class="steps">
         <li>&radic;50 = &radic;(25 &times; 2) = &radic;25 &times; &radic;2 = 5&radic;2.</li>
         <li>&radic;18 = &radic;(9 &times; 2) = 3&radic;2.</li>
@@ -395,8 +402,8 @@
     <h2 id="s-flip-it-area-and-side-length">Flip it: area and side length</h2>
     <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>A square has side 9 cm. Its area is 9&sup2; = 81 cm&sup2;.</p><p class="muted">Side to area: square it.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>A square has area 81 cm&sup2;. Its side is &radic;81 = 9 cm.</p><p class="muted">Area to side: square-root it.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>A square has side 9 cm. Its area is 9&sup2; = 81 cm&sup2;.</p><p class="muted">Side to area: square it.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>A square has area 81 cm&sup2;. Its side is &radic;81 = 9 cm.</p><p class="muted">Area to side: square-root it.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> for numbers 0 or more, squaring and square-rooting undo each other, just as multiplying and dividing do. One goes from side to area, the other from area to side.</p></div>
     <p>There is one more twist when you <b>solve</b> an equation like x&sup2; = 49: both 7 and &minus;7 square to 49, so there are <b>two</b> solutions, x = 7 and x = &minus;7. The &radic; sign itself always means the positive root, &radic;49 = 7.</p>
@@ -739,10 +746,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Place value. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/place-value.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -140,7 +147,7 @@
     <div class="key"><p><b>Key idea:</b> the same digit is worth different amounts in different columns. The 8 in 4,082 is worth 80. The 8 in 4,802 is worth 800.</p><p><b>The 0 in 4,082 is a spacer. Take it out and the 4 is only worth 400.</b></p></div>
     <p><b>Try it:</b> what is the value of the 3 in 6,305?</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>What is the value of the 7 in 53,729?</p>
       <ol class="steps">
         <li>Read from the right: units 9, tens 2, hundreds 7.</li>
@@ -205,7 +212,7 @@
     <div class="key"><p><b>Key idea:</b> compare from the left, <i>not</i> by how long the numbers look. <b>Add zeros so they are the same length: 0.40 and 0.35.</b> Now 40 beats 35, so 0.4 is bigger.</p></div>
     <p><b>Try it:</b> which is bigger, 0.6 or 0.58?</p>
     <div class="worked">
-      <h3>Worked example: order from smallest to largest</h3>
+      <h3 id="s-worked-example-order-from-smallest-to-la">Worked example: order from smallest to largest</h3>
       <p>Put 0.4, 0.37 and 0.399 in order.</p>
       <ol class="steps">
         <li>Add zeros to make them the same length: 0.400, 0.370, 0.399.</li>
@@ -265,7 +272,7 @@
     <div class="key"><p><b>Key idea:</b> &times; 10 moves digits left one place. &divide; 10 moves them right one place. 100 is two places. 1,000 is three. Zeros fill the empty columns.</p></div>
     <p><b>Try it:</b> move the 7 in 7 two places left. What number do you get?</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Work out 3.4 &times; 100.</p>
       <ol class="steps">
         <li>100 has two zeros. Move each digit two columns left.</li>
@@ -274,7 +281,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Work out 45 &divide; 10.</p>
       <ol class="steps">
         <li>10 has one zero. Move each digit one column right.</li>
@@ -325,7 +332,7 @@
     <div class="key"><p><b>Key idea:</b> only the digit right after your column decides.</p><p><b>Find your column. Look at the next digit on the right. 5 or more: go up. 4 or less: stay.</b></p><p>Example: 3,468 to the nearest 100. The column holds 4. The next digit is 6, so the 4 goes up to 5. The answer is 3,500.</p></div>
     <p><b>Try it:</b> round 276 to the nearest 10.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Round 3,468 to the nearest 100.</p>
       <ol class="steps">
         <li>The hundreds column holds the 4.</li>
@@ -334,7 +341,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Round 6.749 to 1 decimal place (<a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">d.p.</a>).</p>
       <ol class="steps">
         <li>The tenths column holds the 7.</li>
@@ -399,14 +406,14 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>So far you have gone one way. Now run it backwards. Same idea, other direction.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Read the number 52,684 and say what each digit is worth.</p><p class="muted">From digits to values.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Hear &ldquo;fifty-two thousand, six hundred and eighty-four&rdquo; and write it in digits.</p><p class="muted">From values to digits.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>Read the number 52,684 and say what each digit is worth.</p><p class="muted">From digits to values.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>Hear &ldquo;fifty-two thousand, six hundred and eighty-four&rdquo; and write it in digits.</p><p class="muted">From values to digits.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> going forwards and then backwards through the same columns checks that you follow them.</p></div>
     <p>The other pairs: &times; 10 and &divide; 10 undo each other. Rounding has a reverse too. Ask: which numbers round to this one?</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Round 37 to the nearest 10.</p><p class="muted">Answer: 40.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Which whole numbers round to 40?</p><p class="muted">Answer: 35, 36, &hellip; 44.</p></div>
+      <div class="flip-side"><h3 id="s-forwards-x">Forwards</h3><p>Round 37 to the nearest 10.</p><p class="muted">Answer: 40.</p></div>
+      <div class="flip-side"><h3 id="s-backwards-x">Backwards</h3><p>Which whole numbers round to 40?</p><p class="muted">Answer: 35, 36, &hellip; 44.</p></div>
     </div>
   </div>
 </section>
@@ -649,10 +656,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Pythagoras' theorem. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/pythagoras.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -167,7 +174,7 @@
       <p><b>Key idea:</b> it only works for right-angled triangles, and the <i>c</i> must be the hypotenuse, the side opposite the right angle.</p>
     </div>
     <div class="worked">
-      <h3>Worked example: find the hypotenuse</h3>
+      <h3 id="s-worked-example-find-the-hypotenuse">Worked example: find the hypotenuse</h3>
       <p>A right-angled triangle has shorter sides 6 cm and 8 cm. Find the hypotenuse.</p>
       <ol class="steps">
         <li>a&sup2; + b&sup2; = c&sup2;, so 6&sup2; + 8&sup2; = c&sup2;.</li>
@@ -265,9 +272,9 @@
       </svg>
       <figcaption>Arrangement 2: the same four triangles leave one tilted square of area <i>c</i>&sup2;.</figcaption>
     </figure>
-    <h3>Is the tilted shape really a square?</h3>
+    <h3 id="s-is-the-tilted-shape-really-a-square">Is the tilted shape really a square?</h3>
     <p>All four of its sides are <i>c</i>, because each one is the hypotenuse of one of the four identical triangles. Now check its angles. The three angles of a triangle add to 180&deg; and one of them is 90&deg;, so the two acute angles of each triangle add to 90&deg;. At each corner of the tilted shape, two different acute angles and one angle of the shape sit together on a straight line, which is 180&deg;. So the angle of the shape is 180&deg; &minus; 90&deg; = 90&deg;. Four equal sides and four right angles make a square, so its area is <i>c</i>&sup2;.</p>
-    <h3>The proof in steps</h3>
+    <h3 id="s-the-proof-in-steps">The proof in steps</h3>
     <ol class="steps">
       <li>The big square is the same size in both pictures. Its side is <i>a</i> + <i>b</i>, so its area is (<i>a</i> + <i>b</i>)&sup2;.</li>
       <li>Arrangement 1: big square = <i>a</i>&sup2; + <i>b</i>&sup2; + (four triangles).</li>
@@ -275,7 +282,7 @@
       <li>The big squares are equal and the four triangles are the same in both, so <i>a</i>&sup2; + <i>b</i>&sup2; + (four triangles) = <i>c</i>&sup2; + (four triangles).</li>
       <li>Take away the four triangles from both sides: <b><i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;</b>.</li>
     </ol>
-    <h3>The same proof in algebra</h3>
+    <h3 id="s-the-same-proof-in-algebra">The same proof in algebra</h3>
     <p>The big square has area (<i>a</i> + <i>b</i>)&sup2; = <i>a</i>&sup2; + 2<i>ab</i> + <i>b</i>&sup2;. Each triangle has area <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span><i>ab</i>, so four triangles have area 4 &times; <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span><i>ab</i> = 2<i>ab</i>. Arrangement 2 gives (<i>a</i> + <i>b</i>)&sup2; = <i>c</i>&sup2; + 2<i>ab</i>. So <i>a</i>&sup2; + 2<i>ab</i> + <i>b</i>&sup2; = <i>c</i>&sup2; + 2<i>ab</i>. Take away 2<i>ab</i> from both sides to leave <i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;.</p>
     <div class="key">
       <p><b>Key idea:</b> nothing in the proof depends on the numbers 3 and 4. It works for any right-angled triangle, which is why it is a proof and not just an example.</p>
@@ -328,7 +335,7 @@
       <p><b>Key idea:</b> the hypotenuse is always the longest side. So when you find a short side, your answer must be <i>smaller</i> than the hypotenuse. If it is bigger, you added when you should have subtracted.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>The hypotenuse is 13 cm and one shorter side is 5 cm. Find the other side.</p>
       <ol class="steps">
         <li>a&sup2; + 5&sup2; = 13&sup2;, so a&sup2; = 13&sup2; &minus; 5&sup2;.</li>
@@ -338,7 +345,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>The hypotenuse is 10 cm and one shorter side is 6 cm.</p>
       <ol class="steps">
         <li>a&sup2; = 10&sup2; &minus; 6&sup2; = 100 &minus; 36 = ___.</li>
@@ -388,14 +395,14 @@
     <h2 id="s-flip-it-the-theorem-backwards">Flip it: the theorem backwards</h2>
     <p>So far you have used the rule to <i>find a length</i>. Flip it, and use it to <i>test a triangle</i>.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>"The triangle is right-angled, so a&sup2; + b&sup2; = c&sup2;."</p><p class="muted">Find the missing length.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>"a&sup2; + b&sup2; = c&sup2;, so the triangle is right-angled."</p><p class="muted">Decide whether the angle is 90&deg;.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>"The triangle is right-angled, so a&sup2; + b&sup2; = c&sup2;."</p><p class="muted">Find the missing length.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>"a&sup2; + b&sup2; = c&sup2;, so the triangle is right-angled."</p><p class="muted">Decide whether the angle is 90&deg;.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> the backwards statement is called the <a class="term" href="glossary.html#converse" data-term="converse" data-def="The reverse of a statement: swap &quot;if&quot; and &quot;then&quot;. A converse is not automatically true, but for Pythagoras it is.">Converse</a>. It is not true for every theorem, but it is true for Pythagoras (it is proved later with the <a class="term" href="glossary.html#cosine-rule" data-term="cosine-rule" data-def="For any triangle: a&sup2; = b&sup2; + c&sup2; &minus; 2bc cos A. Use it when you know all three sides, or two sides and the angle between them.">cosine rule</a>). Builders use it: lay out a 3, 4, 5 triangle and the corner is a perfect right angle.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Is a triangle with sides 7, 24 and 25 right-angled?</p>
       <ol class="steps">
         <li>Test the longest side as c: 7&sup2; + 24&sup2; = 49 + 576 = 625.</li>
@@ -403,7 +410,7 @@
       </ol>
       <p class="muted">If the two sides of the test do not match, the triangle is not right-angled.</p>
     </div>
-    <h3>When the sides do not match</h3>
+    <h3 id="s-when-the-sides-do-not-match">When the sides do not match</h3>
     <p>The test also says <i>what kind</i> of triangle you have. In the test, <i>c</i> must be the <b>longest side</b>. Add the squares of the two shorter sides and compare with <i>c</i>&sup2;. (In any triangle the longest side is shorter than the other two added together, which is called the triangle inequality. So sides of 3, 4 and 8 cannot make a triangle at all, because 8 is more than 3 + 4 = 7.)</p>
     <ul class="tick">
       <li>If <i>a</i>&sup2; + <i>b</i>&sup2; = <i>c</i>&sup2;, the triangle is right-angled.</li>
@@ -476,7 +483,7 @@
     <h2 id="s-3-using-it-in-the-real-world">3. Using it in the real world</h2>
     <p>Look for a right angle hiding in the problem. Sketch it, mark the right angle, and decide whether you are finding the hypotenuse or a shorter side.</p>
     <div class="worked">
-      <h3>Worked example: distance on a grid</h3>
+      <h3 id="s-worked-example-distance-on-a-grid">Worked example: distance on a grid</h3>
       <p>Point A is (1, 2) and point B is (5, 5). Find the distance AB.</p>
       <ol class="steps">
         <li>Across: 5 &minus; 1 = 4. Up: 5 &minus; 2 = 3.</li>
@@ -486,7 +493,7 @@
     </div>
     <p>In general, for any two points, <i>d</i>&sup2; = (change in <i>x</i>)&sup2; + (change in <i>y</i>)&sup2;. It does not matter whether a change is positive or negative, because squaring removes the sign.</p>
     <div class="worked">
-      <h3>Worked example: a hidden right angle</h3>
+      <h3 id="s-worked-example-a-hidden-right-angle">Worked example: a hidden right angle</h3>
       <p>An isosceles triangle has two sides of 13 cm and a base of 10 cm. Find its height.</p>
       <ol class="steps">
         <li>The height splits the base in half, so one half is 5 cm.</li>
@@ -532,7 +539,7 @@
       <p><b>Key idea:</b> for a cuboid with sides <i>l</i>, <i>w</i> and <i>h</i>, the base diagonal <i>d</i> has <i>d</i>&sup2; = <i>l</i>&sup2; + <i>w</i>&sup2;. The longest line <i>x</i> has <i>x</i>&sup2; = <i>d</i>&sup2; + <i>h</i>&sup2;, so <i>x</i>&sup2; = <i>l</i>&sup2; + <i>w</i>&sup2; + <i>h</i>&sup2;.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>A cuboid measures 3 cm by 4 cm by 12 cm. Find the longest straight line inside it.</p>
       <ol class="steps">
         <li>Base diagonal: 3&sup2; + 4&sup2; = 25, so the diagonal is 5 cm.</li>
@@ -808,10 +815,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

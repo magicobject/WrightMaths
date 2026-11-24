@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Circles. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/circles.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -138,8 +145,8 @@
     </ul>
     <p class="sum-line">diameter = 2 &times; radius &nbsp;&nbsp; radius = diameter &divide; 2</p>
     <div class="key"><p><b>Key idea:</b> radius and diameter are easy to swap by accident. Before you use any circle formula, ask yourself: is the number I was given the radius or the diameter?</p></div>
-<div class="worked"><h3>Worked example</h3><p>A bike wheel has a diameter of 70 cm. What is its radius?</p><ol class="steps"><li>The radius is half of the diameter.</li><li>70 &divide; 2 = 35.</li><li>The radius is 35 cm.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A pipe has a radius of 1.5 cm. What is its diameter?</p><ol class="steps"><li>The diameter is twice the radius.</li><li>2 &times; ___ = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p>2 &times; 1.5 = 3, so the diameter is 3 cm.</p></details></div>
+<div class="worked"><h3 id="s-worked-example">Worked example</h3><p>A bike wheel has a diameter of 70 cm. What is its radius?</p><ol class="steps"><li>The radius is half of the diameter.</li><li>70 &divide; 2 = 35.</li><li>The radius is 35 cm.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it">Now you finish it</h3><p>A pipe has a radius of 1.5 cm. What is its diameter?</p><ol class="steps"><li>The diameter is twice the radius.</li><li>2 &times; ___ = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p>2 &times; 1.5 = 3, so the diameter is 3 cm.</p></details></div>
 
   </div>
 </section>
@@ -164,9 +171,9 @@
     <p>The two formulas are the same, because d = 2r. Use the first when you have the diameter and the second when you have the radius.</p>
     <div class="key"><p><b>Key idea:</b> a quick check: the circumference is a bit more than 3 times the diameter. If a circle is 10 cm across and your answer is 6 or 60, something has slipped.</p></div>
     <p>For a calculation like this, give your answer to 1 decimal place unless the question says something else. Do not round until the very end.</p>
-<div class="worked"><h3>Worked example: diameter given</h3><p>A circle has a diameter of 10 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>Formula: C = &pi; &times; d.</li><li>Substitute: C = &pi; &times; 10 = 31.4159&hellip;</li><li>To 1 d.p., C = 31.4 cm.</li><li>Check: a bit more than 3 &times; 10 = 30. &#10003;</li></ol></div>
-<div class="worked"><h3>Worked example: radius given</h3><p>A circle has a radius of 4.5 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>Formula: C = 2 &times; &pi; &times; r.</li><li>Substitute: C = 2 &times; &pi; &times; 4.5 = 28.2743&hellip;</li><li>To 1 d.p., C = 28.3 cm.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A circle has a diameter of 7 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>C = &pi; &times; ___.</li><li>On the calculator, &pi; &times; 7 = 21.99&hellip;</li><li>To 1 d.p., C = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p>&pi; &times; 7 = 21.9911&hellip;, which is 22.0 cm to 1 d.p.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-diameter-given">Worked example: diameter given</h3><p>A circle has a diameter of 10 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>Formula: C = &pi; &times; d.</li><li>Substitute: C = &pi; &times; 10 = 31.4159&hellip;</li><li>To 1 d.p., C = 31.4 cm.</li><li>Check: a bit more than 3 &times; 10 = 30. &#10003;</li></ol></div>
+<div class="worked"><h3 id="s-worked-example-radius-given">Worked example: radius given</h3><p>A circle has a radius of 4.5 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>Formula: C = 2 &times; &pi; &times; r.</li><li>Substitute: C = 2 &times; &pi; &times; 4.5 = 28.2743&hellip;</li><li>To 1 d.p., C = 28.3 cm.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x">Now you finish it</h3><p>A circle has a diameter of 7 cm. Find its circumference to 1 decimal place.</p><ol class="steps"><li>C = &pi; &times; ___.</li><li>On the calculator, &pi; &times; 7 = 21.99&hellip;</li><li>To 1 d.p., C = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p>&pi; &times; 7 = 21.9911&hellip;, which is 22.0 cm to 1 d.p.</p></details></div>
 
   </div>
 </section>
@@ -192,9 +199,9 @@
     <p class="sum-line">area A = &pi; &times; r&sup2; &nbsp;&nbsp; where r&sup2; means r &times; r</p>
     <div class="key"><p><b>Key idea:</b> area uses the RADIUS squared. If you are given the diameter, halve it first. And square only the r, not the &pi;: work out r&sup2; first, then multiply by &pi;.</p></div>
     <p>The units of an area are square units, such as cm&sup2; or m&sup2;.</p>
-<div class="worked"><h3>Worked example: radius given</h3><p>A circle has a radius of 6 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>Formula: A = &pi; &times; r&sup2;.</li><li>Substitute: A = &pi; &times; 6&sup2; = &pi; &times; 36 = 113.0973&hellip;</li><li>To 1 d.p., A = 113.1 cm&sup2;.</li></ol></div>
-<div class="worked"><h3>Worked example: diameter given</h3><p>A circle has a diameter of 14 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>The radius is half of the diameter: 14 &divide; 2 = 7.</li><li>A = &pi; &times; 7&sup2; = &pi; &times; 49 = 153.9380&hellip;</li><li>To 1 d.p., A = 153.9 cm&sup2;.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A circle has a radius of 3 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>A = &pi; &times; r&sup2; = &pi; &times; ___&sup2; = &pi; &times; ___.</li><li>On the calculator, A = ___ cm&sup2; to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p>3&sup2; = 9, and &pi; &times; 9 = 28.2743&hellip;, which is 28.3 cm&sup2; to 1 d.p.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-radius-given-x">Worked example: radius given</h3><p>A circle has a radius of 6 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>Formula: A = &pi; &times; r&sup2;.</li><li>Substitute: A = &pi; &times; 6&sup2; = &pi; &times; 36 = 113.0973&hellip;</li><li>To 1 d.p., A = 113.1 cm&sup2;.</li></ol></div>
+<div class="worked"><h3 id="s-worked-example-diameter-given-x">Worked example: diameter given</h3><p>A circle has a diameter of 14 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>The radius is half of the diameter: 14 &divide; 2 = 7.</li><li>A = &pi; &times; 7&sup2; = &pi; &times; 49 = 153.9380&hellip;</li><li>To 1 d.p., A = 153.9 cm&sup2;.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x-x">Now you finish it</h3><p>A circle has a radius of 3 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>A = &pi; &times; r&sup2; = &pi; &times; ___&sup2; = &pi; &times; ___.</li><li>On the calculator, A = ___ cm&sup2; to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p>3&sup2; = 9, and &pi; &times; 9 = 28.2743&hellip;, which is 28.3 cm&sup2; to 1 d.p.</p></details></div>
 
   </div>
 </section>
@@ -221,8 +228,8 @@
       <li><b>Curved edge:</b> semicircle = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; d. Quarter circle = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; 2 &times; &pi; &times; r.</li>
     </ul>
     <div class="key"><p><b>Key idea:</b> the PERIMETER of a semicircle or a quarter circle also includes the straight edges. A semicircle has a straight edge of 1 diameter. A quarter circle has two straight edges of 1 radius each.</p></div>
-<div class="worked"><h3>Worked example: a semicircle</h3><p>A semicircle has a diameter of 10 cm. Find its area and its perimeter to 1 decimal place.</p><ol class="steps"><li>Radius = 10 &divide; 2 = 5 cm.</li><li>Area = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 5&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 25 = 39.2699&hellip; &asymp; 39.3 cm&sup2;.</li><li>Curved edge = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 10 = 15.7080&hellip; cm.</li><li>Perimeter = curved edge + straight edge = 15.7080&hellip; + 10 = 25.7080&hellip; &asymp; 25.7 cm.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A quarter circle has a radius of 4 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>A = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; 4&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; ___.</li><li>On the calculator, A = ___ cm&sup2; to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p><span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; 16 = 12.5664&hellip;, which is 12.6 cm&sup2; to 1 d.p.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-a-semicircle">Worked example: a semicircle</h3><p>A semicircle has a diameter of 10 cm. Find its area and its perimeter to 1 decimal place.</p><ol class="steps"><li>Radius = 10 &divide; 2 = 5 cm.</li><li>Area = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 5&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 25 = 39.2699&hellip; &asymp; 39.3 cm&sup2;.</li><li>Curved edge = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span> &times; &pi; &times; 10 = 15.7080&hellip; cm.</li><li>Perimeter = curved edge + straight edge = 15.7080&hellip; + 10 = 25.7080&hellip; &asymp; 25.7 cm.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3><p>A quarter circle has a radius of 4 cm. Find its area to 1 decimal place.</p><ol class="steps"><li>A = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; 4&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; ___.</li><li>On the calculator, A = ___ cm&sup2; to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p><span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; &pi; &times; 16 = 12.5664&hellip;, which is 12.6 cm&sup2; to 1 d.p.</p></details></div>
 
   </div>
 </section>
@@ -247,7 +254,7 @@
       <li><b>A ring (a circle with a circle taken out):</b> area = big circle &minus; small circle = &pi;R&sup2; &minus; &pi;r&sup2;. This is the cross-section of a pipe.</li>
     </ul>
     <p class="muted">Careful with a ring: work out the two circle areas and subtract. Do not square the difference of the radii.</p>
-<div class="worked"><h3>Worked example: a pipe</h3><p>A pipe has an outer radius of 3 cm and an inner radius of 2 cm. Find the area of its cross-section (the metal) to 1 decimal place.</p><ol class="steps"><li>Outer circle = &pi; &times; 3&sup2; = 28.2743&hellip; cm&sup2;.</li><li>Inner circle (the hole) = &pi; &times; 2&sup2; = 12.5664&hellip; cm&sup2;.</li><li>Metal = 28.2743&hellip; &minus; 12.5664&hellip; = 15.7080&hellip; &asymp; 15.7 cm&sup2;.</li></ol></div>
+<div class="worked"><h3 id="s-worked-example-a-pipe">Worked example: a pipe</h3><p>A pipe has an outer radius of 3 cm and an inner radius of 2 cm. Find the area of its cross-section (the metal) to 1 decimal place.</p><ol class="steps"><li>Outer circle = &pi; &times; 3&sup2; = 28.2743&hellip; cm&sup2;.</li><li>Inner circle (the hole) = &pi; &times; 2&sup2; = 12.5664&hellip; cm&sup2;.</li><li>Metal = 28.2743&hellip; &minus; 12.5664&hellip; = 15.7080&hellip; &asymp; 15.7 cm&sup2;.</li></ol></div>
 
   </div>
 </section>
@@ -266,17 +273,17 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>So far you know the radius or diameter and you find the circumference or area. Now go the other way: you know the circumference or area, and you find the radius or diameter.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>d = 10, C = ?</p><p class="muted">Multiply: C = &pi; &times; 10 = 31.4.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>C = 31.4, d = ?</p><p class="muted">Divide: d = 31.4 &divide; &pi; = 10.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>d = 10, C = ?</p><p class="muted">Multiply: C = &pi; &times; 10 = 31.4.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>C = 31.4, d = ?</p><p class="muted">Divide: d = 31.4 &divide; &pi; = 10.</p></div>
     </div>
     <ul class="tick">
       <li>From the circumference: <b>d = C &divide; &pi;</b> and <b>r = C &divide; (2&pi;)</b>, or halve the diameter.</li>
       <li>From the area: <b>r&sup2; = A &divide; &pi;</b>, then take the square root to get r. Square roots undo squares.</li>
     </ul>
     <div class="key"><p><b>Key idea:</b> when you work backwards from an area, you get r&sup2; first. The last step is the square root. Then check by going forwards.</p></div>
-<div class="worked"><h3>Worked example: from circumference</h3><p>A circle has a circumference of 40 cm. Find its diameter and radius to 1 decimal place.</p><ol class="steps"><li>C = &pi; &times; d, so d = C &divide; &pi;.</li><li>d = 40 &divide; &pi; = 12.7324&hellip; &asymp; 12.7 cm.</li><li>The radius is half of the diameter: 12.7324&hellip; &divide; 2 = 6.3662&hellip; &asymp; 6.4 cm.</li></ol></div>
-<div class="worked"><h3>Worked example: from area</h3><p>A circle has an area of 100 cm&sup2;. Find its radius to 1 decimal place.</p><ol class="steps"><li>A = &pi; &times; r&sup2;, so r&sup2; = A &divide; &pi;.</li><li>r&sup2; = 100 &divide; &pi; = 31.8310&hellip;</li><li>Now take the square root: r = &radic;31.8310&hellip; = 5.6419&hellip; &asymp; 5.6 cm.</li><li>Check forwards: &pi; &times; 5.6&sup2; is about 98.5, close to 100. &#10003;</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A circle has a circumference of 62.8 cm. Find its diameter to 1 decimal place.</p><ol class="steps"><li>d = C &divide; &pi; = 62.8 &divide; &pi;.</li><li>On the calculator, d = ___ cm to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p>62.8 &divide; &pi; = 19.9899&hellip;, which is 20.0 cm to 1 d.p. Check: &pi; &times; 20 = 62.8.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-from-circumference">Worked example: from circumference</h3><p>A circle has a circumference of 40 cm. Find its diameter and radius to 1 decimal place.</p><ol class="steps"><li>C = &pi; &times; d, so d = C &divide; &pi;.</li><li>d = 40 &divide; &pi; = 12.7324&hellip; &asymp; 12.7 cm.</li><li>The radius is half of the diameter: 12.7324&hellip; &divide; 2 = 6.3662&hellip; &asymp; 6.4 cm.</li></ol></div>
+<div class="worked"><h3 id="s-worked-example-from-area">Worked example: from area</h3><p>A circle has an area of 100 cm&sup2;. Find its radius to 1 decimal place.</p><ol class="steps"><li>A = &pi; &times; r&sup2;, so r&sup2; = A &divide; &pi;.</li><li>r&sup2; = 100 &divide; &pi; = 31.8310&hellip;</li><li>Now take the square root: r = &radic;31.8310&hellip; = 5.6419&hellip; &asymp; 5.6 cm.</li><li>Check forwards: &pi; &times; 5.6&sup2; is about 98.5, close to 100. &#10003;</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3><p>A circle has a circumference of 62.8 cm. Find its diameter to 1 decimal place.</p><ol class="steps"><li>d = C &divide; &pi; = 62.8 &divide; &pi;.</li><li>On the calculator, d = ___ cm to 1 d.p.</li></ol><details class="check-line"><summary>Check my answer</summary><p>62.8 &divide; &pi; = 19.9899&hellip;, which is 20.0 cm to 1 d.p. Check: &pi; &times; 20 = 62.8.</p></details></div>
   </div>
 </section>
 
@@ -301,8 +308,8 @@
     <p class="sum-line">arc length = <span class="frac"><span class="fn">&theta;</span><span class="sr"> over </span><span class="fd">360</span></span> &times; 2&pi;r &nbsp;&nbsp; sector area = <span class="frac"><span class="fn">&theta;</span><span class="sr"> over </span><span class="fd">360</span></span> &times; &pi;r&sup2;</p>
     <div class="key"><p><b>Key idea:</b> find the fraction of the circle first, then multiply it by the full circumference (for the arc) or the full area (for the sector).</p></div>
 <figure class="figure qfig"><svg viewBox="0 0 320 150" role="img" aria-labelledby="ci10-t ci10-d" class="geo-svg"><title id="ci10-t">A sector of a circle</title><desc id="ci10-d">A slice of a circle with two straight edges that are radii of 3 cm and a curved edge. The angle at the centre is 60 degrees.</desc><path d="M 60 110 L 140 110 A 80 80 0 0 0 100 40.7 Z" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5" stroke-linejoin="round"/><text class="svg-t" style="font-size:13px" x="82" y="104" text-anchor="start">60&deg;</text><text class="svg-t" style="font-size:13px" x="100" y="128" text-anchor="middle">3 cm</text><text class="svg-t" style="font-size:11px" x="312" y="146" text-anchor="end">Not drawn to scale</text></svg></figure>
-<div class="worked"><h3>Worked example</h3><p>A sector has an angle of 60&deg; and a radius of 3 cm. Find its arc length and area to 1 decimal place.</p><ol class="steps"><li>Fraction of the circle: <span class="frac"><span class="fn">60</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span>.</li><li>Arc = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 2 &times; &pi; &times; 3 = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 18.8496&hellip; = 3.1416&hellip; &asymp; 3.1 cm.</li><li>Area = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; &pi; &times; 3&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 28.2743&hellip; = 4.7124&hellip; &asymp; 4.7 cm&sup2;.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A sector has an angle of 90&deg; and a radius of 5 cm. Find its arc length to 1 decimal place.</p><ol class="steps"><li>Fraction: <span class="frac"><span class="fn">90</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">___</span></span>.</li><li>Arc = ___ &times; 2 &times; &pi; &times; 5 = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p><span class="frac"><span class="fn">90</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span>. Arc = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; 2 &times; &pi; &times; 5 = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; 31.4159&hellip; = 7.8540&hellip; &asymp; 7.9 cm.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-x">Worked example</h3><p>A sector has an angle of 60&deg; and a radius of 3 cm. Find its arc length and area to 1 decimal place.</p><ol class="steps"><li>Fraction of the circle: <span class="frac"><span class="fn">60</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span>.</li><li>Arc = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 2 &times; &pi; &times; 3 = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 18.8496&hellip; = 3.1416&hellip; &asymp; 3.1 cm.</li><li>Area = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; &pi; &times; 3&sup2; = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">6</span></span> &times; 28.2743&hellip; = 4.7124&hellip; &asymp; 4.7 cm&sup2;.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3><p>A sector has an angle of 90&deg; and a radius of 5 cm. Find its arc length to 1 decimal place.</p><ol class="steps"><li>Fraction: <span class="frac"><span class="fn">90</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">___</span></span>.</li><li>Arc = ___ &times; 2 &times; &pi; &times; 5 = ___ cm.</li></ol><details class="check-line"><summary>Check my answer</summary><p><span class="frac"><span class="fn">90</span><span class="sr"> over </span><span class="fd">360</span></span> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span>. Arc = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; 2 &times; &pi; &times; 5 = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4</span></span> &times; 31.4159&hellip; = 7.8540&hellip; &asymp; 7.9 cm.</p></details></div>
 
   </div>
 </section>
@@ -324,13 +331,13 @@
     <p>Sometimes the exam asks for an exact answer &ldquo;in terms of &pi;&rdquo;. Do not use the &pi; button. Leave &pi; as a letter and write it after the number.</p>
     <p>The answer is exact, because rounding &pi; would make it a little wrong. A circle of radius 5 cm has a circumference of 2 &times; &pi; &times; 5 = 10&pi; cm, and an area of &pi; &times; 5&sup2; = 25&pi; cm&sup2;.</p>
     <div class="key"><p><b>Key idea:</b> in terms of &pi;: work out the number part and write &pi; after it, like 25&pi;. Square the radius, but do not square the &pi;.</p></div>
-<div class="worked"><h3>Worked example</h3><p>A circle has a diameter of 14 cm. Give its circumference and area in terms of &pi;.</p><ol class="steps"><li>Circumference = &pi; &times; d = 14&pi; cm.</li><li>The radius is 7 cm, so area = &pi; &times; 7&sup2; = 49&pi; cm&sup2;.</li></ol></div>
+<div class="worked"><h3 id="s-worked-example-x-x">Worked example</h3><p>A circle has a diameter of 14 cm. Give its circumference and area in terms of &pi;.</p><ol class="steps"><li>Circumference = &pi; &times; d = 14&pi; cm.</li><li>The radius is 7 cm, so area = &pi; &times; 7&sup2; = 49&pi; cm&sup2;.</li></ol></div>
     <h2 id="s-7-cylinders">7. Cylinders</h2>
     <p>A <a class="term" href="glossary.html#cylinder" data-term="cylinder" data-def="A solid with two equal circular ends and a curved side, like a tin of beans. It is a prism with a circle for its cross-section.">Cylinder</a> is a prism with a circle for its cross-section. So its volume is the area of the circle times the height (or length).</p>
     <p class="sum-line">cylinder: volume = &pi; &times; r&sup2; &times; h</p>
 <figure class="figure qfig"><svg viewBox="0 0 320 170" role="img" aria-labelledby="ci12-t ci12-d" class="geo-svg"><title id="ci12-t">A cylinder</title><desc id="ci12-d">A cylinder standing on a circular base. The radius of the circular top is labelled 3 cm and the height of the cylinder is labelled 10 cm.</desc><path d="M 70 40 L 70 130 A 50 18 0 0 0 170 130 L 170 40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><ellipse cx="120" cy="40" rx="50" ry="18" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><circle cx="120" cy="40" r="3" fill="#0f2440"/><line x1="120" y1="40" x2="170" y2="40" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:13px" x="145" y="34" text-anchor="middle">3 cm</text><text class="svg-t" style="font-size:14px" x="178" y="90" text-anchor="start">10 cm</text><text class="svg-t" style="font-size:11px" x="312" y="164" text-anchor="end">Not drawn to scale</text></svg></figure>
-<div class="worked"><h3>Worked example</h3><p>A cylinder has a radius of 3 cm and a height of 10 cm. Find its volume to 1 decimal place.</p><ol class="steps"><li>Area of the circle = &pi; &times; 3&sup2; = 28.2743&hellip; cm&sup2;.</li><li>Volume = 28.2743&hellip; &times; 10 = 282.7433&hellip;</li><li>The volume is 282.7 cm&sup3; to 1 d.p.</li></ol></div>
-<div class="worked faded"><h3>Now you finish it</h3><p>A cylinder has a radius of 5 cm and a height of 2 cm. Find its volume to 1 decimal place.</p><ol class="steps"><li>Area of circle = &pi; &times; 5&sup2; = ___.</li><li>Volume = ___ &times; 2 = ___ cm&sup3;.</li></ol><details class="check-line"><summary>Check my answer</summary><p>&pi; &times; 25 = 78.5398&hellip;, and 78.5398&hellip; &times; 2 = 157.0796&hellip; &asymp; 157.1 cm&sup3;.</p></details></div>
+<div class="worked"><h3 id="s-worked-example-x-x-x">Worked example</h3><p>A cylinder has a radius of 3 cm and a height of 10 cm. Find its volume to 1 decimal place.</p><ol class="steps"><li>Area of the circle = &pi; &times; 3&sup2; = 28.2743&hellip; cm&sup2;.</li><li>Volume = 28.2743&hellip; &times; 10 = 282.7433&hellip;</li><li>The volume is 282.7 cm&sup3; to 1 d.p.</li></ol></div>
+<div class="worked faded"><h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3><p>A cylinder has a radius of 5 cm and a height of 2 cm. Find its volume to 1 decimal place.</p><ol class="steps"><li>Area of circle = &pi; &times; 5&sup2; = ___.</li><li>Volume = ___ &times; 2 = ___ cm&sup3;.</li></ol><details class="check-line"><summary>Check my answer</summary><p>&pi; &times; 25 = 78.5398&hellip;, and 78.5398&hellip; &times; 2 = 157.0796&hellip; &asymp; 157.1 cm&sup3;.</p></details></div>
 
   </div>
 </section>
@@ -488,10 +495,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

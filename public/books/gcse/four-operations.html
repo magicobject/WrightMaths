@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Add, subtract, multiply, divide. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/four-operations.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -144,7 +151,7 @@
     <div class="key"><p><b>Key idea:</b> start at the right-hand column. Adding: 10 or more in a column? Carry 1 into the next column. Subtracting: <b>top <a class="term" href="glossary.html#digit" data-term="digit" data-def="One of the ten symbols 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 used to write numbers.">digit</a> too small? Take 1 from the next column. It turns into 10 here.</b> This is called an <b>exchange</b>. Some people say <a class="term" href="glossary.html#carry-borrow" data-term="carry-borrow" data-def="In written addition you &lt;b>carry&lt;/b> a ten into the next column when a column adds to 10 or more. In written subtraction you &lt;b>borrow&lt;/b> a ten from the next column when you cannot take away.">borrow</a>. Keep digits in line. Untidy columns cause most mistakes.</p></div>
     <p><b>Try it:</b> in 38 + 27, what do you write in the units column, and what do you carry?</p>
     <div class="worked">
-      <h3>Worked example: add</h3>
+      <h3 id="s-worked-example-add">Worked example: add</h3>
       <p>Work out 4,578 + 3,964.</p>
       <ol class="steps">
         <li>Units: 8 + 4 = 12. Write 2, carry 1.</li>
@@ -155,7 +162,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it: subtract</h3>
+      <h3 id="s-now-you-finish-it-subtract">Now you finish it: subtract</h3>
       <p>Work out 6,003 &minus; 2,458.</p>
       <ol class="steps">
         <li>Zeros in the way make an exchange messy. Count up instead.</li>
@@ -220,7 +227,7 @@
     <div class="key"><p><b>Key idea:</b> 3.2 &times; 4. Ignore the point: 32 &times; 4 = 128. 3.2 has one digit after the point. So the answer gets one: 12.8.</p></div>
     <p><b>Try it:</b> work out 24 &times; 3 by splitting 24 into 20 + 4.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Work out 36 &times; 24.</p>
       <ol class="steps">
         <li>Split 24 into 20 + 4.</li>
@@ -229,7 +236,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: decimals</h3>
+      <h3 id="s-worked-example-decimals">Worked example: decimals</h3>
       <p>Work out 0.3 &times; 0.4.</p>
       <ol class="steps">
         <li>Ignore the points: 3 &times; 4 = 12.</li>
@@ -286,7 +293,7 @@
     <div class="key"><p><b>Key idea:</b> division asks &ldquo;how many groups fit in?&rdquo; Or it asks you to share equally. To divide by a decimal, make the divisor whole. <b>Multiply both numbers by 10, 100, 1,000 ... until the number you divide by is whole.</b> Example: 3.6 &divide; 0.4 becomes 36 &divide; 4.</p></div>
     <p><b>Try it:</b> how many groups of 5 fit into 35?</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Work out 1,456 &divide; 7.</p>
       <ol class="steps">
         <li>7 into 14 goes 2 times. Write 2 above the 4.</li>
@@ -341,13 +348,13 @@
     <h2 id="s-flip-it-every-operation-has-a-partner-th">Flip it: every operation has a partner that undoes it</h2>
     <p>So far you have gone one way. Now run it backwards. Same idea, other direction.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>342 + 289 = 631</p><p class="muted">Add to build up.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>631 &minus; 289 = 342</p><p class="muted">Subtract to undo it.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>342 + 289 = 631</p><p class="muted">Add to build up.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>631 &minus; 289 = 342</p><p class="muted">Subtract to undo it.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> add and subtract are <a class="term" href="glossary.html#inverse-operation" data-term="inverse-operation" data-def="The operation that undoes another. Adding undoes subtracting, and multiplying undoes dividing.">inverse operations</a>, and so are multiply and divide. Use this to <b>check</b> an answer by reversing it. Use it to <b>find a missing number</b> by undoing the steps.</p></div>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>24 &times; 6 = 144</p><p class="muted">Six groups of 24.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>144 &divide; 6 = 24, and 144 &divide; 24 = 6</p><p class="muted">One multiplication gives you two divisions.</p></div>
+      <div class="flip-side"><h3 id="s-forwards-x">Forwards</h3><p>24 &times; 6 = 144</p><p class="muted">Six groups of 24.</p></div>
+      <div class="flip-side"><h3 id="s-backwards-x">Backwards</h3><p>144 &divide; 6 = 24, and 144 &divide; 24 = 6</p><p class="muted">One multiplication gives you two divisions.</p></div>
     </div>
   </div>
 </section>
@@ -664,10 +671,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

@@ -14,10 +14,10 @@
 <meta name="description" content="A colourful, interactive GCSE maths book: every idea from both sides, every term explained, and help whenever you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -94,17 +101,17 @@
     </div>
     <div class="grid grid-3 how-grid">
       <div class="card how-card">
-        <h3>Not sure where to start?</h3>
+        <h3 id="s-not-sure-where-to-start">Not sure where to start?</h3>
         <p>Answer eleven quick questions. You get a map of your gaps and your first three topics to try. Check again in a month.</p>
         <p><a class="btn btn-navy" href="diagnostic.html">Find my gaps</a></p>
       </div>
       <div class="card how-card">
-        <h3>Two minutes a day</h3>
+        <h3 id="s-two-minutes-a-day">Two minutes a day</h3>
         <p>Five mixed questions at a time. A little each day beats a lot once.</p>
         <p><a class="btn btn-navy" href="practice.html">Give me five</a></p>
       </div>
       <div class="card how-card">
-        <h3>Need a 4, or resitting?</h3>
+        <h3 id="s-need-a-4-or-resitting">Need a 4, or resitting?</h3>
         <p>Start with <a href="diagnostic.html">Find my gaps</a> (10 minutes, no pass mark). It points to the topics to do first. Then follow the 8-week resit route: Foundation topics only, three 20-minute sessions a week.</p>
         <p><a class="btn btn-navy" href="route.html#route-resit">See the resit route</a> <a class="btn btn-ghost" href="raise-your-grade.html">How to raise your grade</a></p>
       </div>
@@ -228,7 +235,7 @@
       <h2 id="s-already-confident-go-straight-to-the-har">Already confident? Go straight to the hard parts</h2>
     </div>
     <p>Every topic page has a &ldquo;Know the basics?&rdquo; bar at the top. It jumps straight to exam style and going further, and can fold away the recaps and check sets. For real-paper practice, try the <a href="stretch.html">Grade 7&ndash;9 stretch papers</a>: single questions worth 3 to 6 marks, labelled calculator or non-calculator, with a mark scheme you tick off yourself.</p>
-    <h3>Not in this book yet</h3>
+    <h3 id="s-not-in-this-book-yet">Not in this book yet</h3>
     <p>Every main area of GCSE maths now has a page, but the book is still a preview and does not yet cover everything in the specification. A few Higher ideas are thin or missing, for example 3D Pythagoras and trigonometry, the equation of a circle, rates of change and the area under a graph, completing the square, and longer proofs. Check the topic list against your own exam board&rsquo;s specification, and tell us if something you need is missing.</p>
   </div>
 </section>
@@ -241,27 +248,27 @@
     </div>
     <div class="grid grid-3 how-grid">
       <div class="card how-card">
-        <h3>Flip it</h3>
+        <h3 id="s-flip-it">Flip it</h3>
         <p>Maths comes in pairs, like multiply and divide. Learn one side, then flip it and run it backwards.</p>
       </div>
       <div class="card how-card">
-        <h3>Words in <span class="term-sample">teal</span></h3>
+        <h3 id="s-words-in-teal">Words in <span class="term-sample">teal</span></h3>
         <p>Tap a teal word to see what it means. The <a href="glossary.html">glossary</a> has examples and common traps.</p>
       </div>
       <div class="card how-card">
-        <h3>Give me a clue</h3>
+        <h3 id="s-give-me-a-clue">Give me a clue</h3>
         <p>Every question has hints, one at a time. Still stuck? <b>Explain the problem to the duck.</b> Saying it out loud often shows you the answer. You always do the last step yourself.</p>
       </div>
       <div class="card how-card">
-        <h3>Check your knowledge</h3>
+        <h3 id="s-check-your-knowledge">Check your knowledge</h3>
         <p>Quick questions after every chunk. Pulling it out of your head makes it stick. Want a mix? Try <a href="practice.html">Mixed practice</a>. Stuck on a question word? See <a href="command-words.html">Question words</a>.</p>
       </div>
       <div class="card how-card">
-        <h3>Build the base</h3>
+        <h3 id="s-build-the-base">Build the base</h3>
         <p>Each topic says what it builds on. A topic feels hard? The gap is usually underneath. The &ldquo;Before you start&rdquo; box shows where to look.</p>
       </div>
       <div class="card how-card">
-        <h3>Private by design</h3>
+        <h3 id="s-private-by-design">Private by design</h3>
         <p>No accounts, no tracking, no adverts. Your progress and reading settings are saved only in this browser, on this device, and the book has no server collecting your answers. Anyone using this browser can see them. The <a href="parents.html">guide for parents and carers</a> has the details.</p>
       </div>
     </div>
@@ -319,10 +326,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

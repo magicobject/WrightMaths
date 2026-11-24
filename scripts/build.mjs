@@ -21,8 +21,9 @@ import {
   renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage, renderWords, renderPracticeTopics,
   buildAutoPatterns, autoLinkQuestionTerms,
   renderAnswerKey,
-  extractKey,
+  extractKey, plainText,
 } from './book-lib.mjs';
+import { buildSearchIndex, renderSearchBox } from './book-search-lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(root, path), 'utf8');
@@ -77,16 +78,16 @@ const questionCounts = new Map(
   liveTopics.map((t) => [t.id, countQuestions(read(`src/pages/books/gcse/${t.id}.html`))]),
 );
 
-// Give every <h2> without an id a stable one ("s-measuring-turns") so "On this page" links work with no script.
+// Give every <h2> and <h3> without an id a stable one ("s-measuring-turns") so "On this page" links work with no script.
 function addHeadingIds(html) {
   const used = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
-  return html.replace(/<h2>([\s\S]*?)<\/h2>/g, (whole, inner) => {
+  return html.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (whole, level, inner) => {
     const text = inner.replace(/<[^>]+>/g, ' ').replace(/\{[^}]*\}/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
     let id = `s-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}`;
     if (id === 's-') id = 's-part';
     while (used.has(id)) id += '-x';
     used.add(id);
-    return `<h2 id="${id}">${inner}</h2>`;
+    return `<h${level} id="${id}">${inner}</h${level}>`;
   });
 }
 
@@ -184,13 +185,28 @@ function renderNextUp(topicId) {
   return `<section class="next-up"><div class="wrap narrow"><h2 id="s-what-next">What next?</h2><p>Next in the 12-week route: <a class="btn btn-gold" href="${next}.html">${t.title}</a> <a href="route.html">See all the routes</a></p></div></section>`;
 }
 
+// Pages that go into the book's search index (answer keys never do: they are all answers).
+const searchPages = [];
+function searchPageFor(page, html) {
+  const topic = page.bookTopic ? graph.get(page.bookTopic) : null;
+  return {
+    href: `${page.slug.replace('books/gcse/', '')}.html`,
+    title: plainText(page.title.split(' | ')[0]),
+    kind: topic ? 'Topic' : 'Page',
+    sub: topic ? topic.strandName : 'Book',
+    snippet: topic ? topic.flip : page.description,
+    aliases: [page.searchWords, ...(topic?.words ?? []).map((id) => glossaryById.get(id)?.term)].filter(Boolean).join(' '),
+    html,
+  };
+}
+
 const bookPageDefaults = {
   base: '../../',
   active: null,
   robots: 'noindex, nofollow',
   extraCss: ['css/book.css'],
   extraBootScripts: ['js/book-boot.js'],
-  extraModuleScripts: ['js/book.mjs'],
+  extraModuleScripts: ['js/book.mjs', 'js/book-search-ui.mjs'],
 };
 
 // Hub, glossary and grade-guide pages are listed in PAGES (flagged with `book`);
@@ -215,7 +231,8 @@ for (const page of ordered) {
   const header = headerTemplate
     .replace('{{NAV_ITEMS}}', () => renderNavItems(merged.active, base))
     .replace('{{CTA_HREF}}', () => withBase(cta.href, base))
-    .replace('{{CTA_TEXT}}', () => cta.text);
+    .replace('{{CTA_TEXT}}', () => cta.text)
+    .replace('{{SEARCH}}', () => (isBook ? renderSearchBox(base) : ''));
 
   let content = merged.keyTopic
     ? renderAnswerKey(graph.get(merged.keyTopic) ?? PAPERS.find((p) => p.id === merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
@@ -231,6 +248,8 @@ for (const page of ordered) {
       if (/\{glossary-/.test(content)) throw new Error('glossary page: unexpanded glossary token');
     }
   }
+
+  if (isBook && !merged.keyTopic) searchPages.push(searchPageFor(merged, content));
 
   let extraHead = '';
   if (merged.robots) extraHead += `<meta name="robots" content="${merged.robots}">\n`;
@@ -276,3 +295,8 @@ for (const page of ordered) {
   writeFileSync(outFile, html);
   console.log(`built public/${merged.slug}.html`);
 }
+
+// The book's own search index: titles, headings, glossary words and short descriptions only (see docs/book-authoring.md).
+const searchIndex = buildSearchIndex({ pages: searchPages, glossary: GLOSSARY, strands: STRANDS, glossaryHref: 'glossary.html' });
+writeFileSync(join(root, 'public/books/gcse/search-index.json'), JSON.stringify(searchIndex));
+console.log(`built public/books/gcse/search-index.json (${searchIndex.length} entries)`);

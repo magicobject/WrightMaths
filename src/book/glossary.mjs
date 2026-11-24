@@ -12,6 +12,7 @@
 //   watch   (optional) the usual trap or everyday-word clash
 //   flip    (optional) the reverse side of this idea
 //   see     (optional) ids of related terms
+//   aka     (optional) other names a student might type into the search box, as an array holding one string of words
 
 export const GLOSSARY = [
   // ---------- Number ----------
@@ -51,14 +52,14 @@ export const GLOSSARY = [
     see: ['factor'],
   },
   {
-    id: 'hcf', term: 'Highest common factor (HCF)', strand: 'n', level: 'F',
+    id: 'hcf', term: 'Highest common factor (HCF)', strand: 'n', level: 'F', aka: ['greatest common divisor'],
     def: 'The biggest number that is a factor of two or more numbers.',
     example: 'Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18. The biggest in both lists is 6, so HCF(12, 18) = 6.',
     flip: 'The HCF is what you divide top and bottom by to simplify a fraction in one go: {frac:12/18} = {frac:2/3}.',
     see: ['factor', 'lcm', 'simplify-fraction'],
   },
   {
-    id: 'lcm', term: 'Lowest common multiple (LCM)', strand: 'n', level: 'F',
+    id: 'lcm', term: 'Lowest common multiple (LCM)', strand: 'n', level: 'F', aka: ['least common multiple'],
     def: 'The smallest number that is a multiple of two or more numbers.',
     example: 'Multiples of 4: 4, 8, 12 &hellip; Multiples of 6: 6, 12 &hellip; The first in both is 12, so LCM(4, 6) = 12.',
     flip: 'The LCM of two denominators is the neatest common denominator for adding fractions.',
@@ -80,7 +81,7 @@ export const GLOSSARY = [
     see: ['square-number', 'surd'],
   },
   {
-    id: 'power', term: 'Power (index)', strand: 'n', level: 'F',
+    id: 'power', term: 'Power (index)', strand: 'n', level: 'F', aka: ['exponent'],
     def: 'A small raised number that says how many times to multiply a number by itself. The plural of index is indices.',
     example: '2<sup>5</sup> = 2 &times; 2 &times; 2 &times; 2 &times; 2 = 32. Here 2 is the base and 5 is the power.',
     watch: '2<sup>5</sup> is not 2 &times; 5.',
@@ -88,14 +89,14 @@ export const GLOSSARY = [
     see: ['indices-laws', 'square-number'],
   },
   {
-    id: 'indices-laws', term: 'Laws of indices', strand: 'n', level: 'H',
+    id: 'indices-laws', term: 'Laws of indices', strand: 'n', level: 'H', aka: ['powers exponents'],
     def: 'Rules for powers of the same base: add the powers when multiplying, subtract when dividing, multiply when raising a power to a power. A negative power means "one over"; a fractional power means a root.',
     example: 'a<sup>m</sup> &times; a<sup>n</sup> = a<sup>m+n</sup>; a<sup>&minus;n</sup> = {frac:1/a<sup>n</sup>}; 9<sup>1/2</sup> = &radic;9 = 3.',
     watch: 'The laws only work when the bases are the same.',
     see: ['power'],
   },
   {
-    id: 'reciprocal', term: 'Reciprocal', strand: 'n', level: 'F',
+    id: 'reciprocal', term: 'Reciprocal', strand: 'n', level: 'F', aka: ['flip'],
     def: 'The number you multiply by to get 1. For a fraction, turn it upside down.',
     example: 'Reciprocal of {frac:3/4} is {frac:4/3}. Reciprocal of 5 is {frac:1/5}. {frac:3/4} &times; {frac:4/3} = 1.',
     watch: '0 has no reciprocal.',
@@ -132,7 +133,7 @@ export const GLOSSARY = [
     see: ['simplify-fraction'],
   },
   {
-    id: 'simplify-fraction', term: 'Simplify a fraction', strand: 'n', level: 'F',
+    id: 'simplify-fraction', term: 'Simplify a fraction', strand: 'n', level: 'F', aka: ['cancel lowest terms'],
     def: 'Write a fraction in its lowest terms: divide the top and bottom by the same number until nothing else divides both.',
     example: '{frac:12/18}: divide top and bottom by 6 to get {frac:2/3}. {frac:2/3} cannot be simplified further.',
     watch: 'Examiners expect the simplest form unless the question says otherwise. Divide by the HCF to finish in one step.',
@@ -161,7 +162,7 @@ export const GLOSSARY = [
     see: ['lcm', 'denominator'],
   },
   {
-    id: 'percentage', term: 'Percentage', strand: 'n', level: 'F',
+    id: 'percentage', term: 'Percentage', strand: 'n', level: 'F', aka: ['percent'],
     def: 'A fraction out of 100. The symbol % means "per hundred".',
     example: '35% = {frac:35/100} = 0.35. 35% of 80 = 0.35 &times; 80 = 28.',
     flip: 'Writing a fraction as a percentage and a percentage as a fraction.',
@@ -298,7 +299,7 @@ export const GLOSSARY = [
   },
 
   {
-    id: 'bidmas', term: 'BIDMAS', strand: 'n', level: 'F',
+    id: 'bidmas', term: 'BIDMAS', strand: 'n', level: 'F', aka: ['bodmas pemdas order of operations'],
     def: 'The agreed order for working out a calculation: Brackets, Indices (powers), Division and Multiplication together, then Addition and Subtraction together. Some people call it BODMAS or PEMDAS.',
     example: '3 + 4 &times; 2 = 3 + 8 = 11 (multiply before adding). (3 + 4) &times; 2 = 14 (brackets first).',
     watch: 'D and M have the same priority, and so do A and S: work left to right. 8 &divide; 2 &times; 4 = 16, not 1. A fraction bar and a root sign act like brackets.',
@@ -592,7 +593,7 @@ export const GLOSSARY = [
     see: ['nth-term'],
   },
   {
-    id: 'simultaneous-equations', term: 'Simultaneous equations', strand: 'a', level: 'F',
+    id: 'simultaneous-equations', term: 'Simultaneous equations', strand: 'a', level: 'F', aka: ['elimination substitution'],
     def: 'Two (or more) equations that are true at the same time. Their solution is where their graphs cross.',
     example: 'x + y = 5 and x &minus; y = 1 are both true when x = 3 and y = 2.',
     see: ['equation'],
@@ -920,7 +921,7 @@ export const GLOSSARY = [
     see: ['tree-diagram'],
   },
   {
-    id: 'mean', term: 'Mean', strand: 's', level: 'F',
+    id: 'mean', term: 'Mean', strand: 's', level: 'F', aka: ['average'],
     def: 'The average found by adding all the values and dividing by how many there are.',
     example: 'Mean of 2, 3, 7: (2 + 3 + 7) &divide; 3 = 4.',
     watch: 'In everyday English "mean" can mean unkind or "to signify". In maths it is the "fair share" average.',
@@ -928,13 +929,13 @@ export const GLOSSARY = [
     see: ['median', 'mode'],
   },
   {
-    id: 'median', term: 'Median', strand: 's', level: 'F',
+    id: 'median', term: 'Median', strand: 's', level: 'F', aka: ['average middle value'],
     def: 'The middle value when the data are in order. With two middle values, take the number halfway between them.',
     example: '2, 3, 7, 8, 20: the median is 7. For 2, 3, 7, 8 the median is 5.',
     see: ['mean', 'mode'],
   },
   {
-    id: 'mode', term: 'Mode', strand: 's', level: 'F',
+    id: 'mode', term: 'Mode', strand: 's', level: 'F', aka: ['average most common'],
     def: 'The value that occurs most often.',
     example: '2, 3, 3, 7: the mode is 3.',
     see: ['mean', 'median'],

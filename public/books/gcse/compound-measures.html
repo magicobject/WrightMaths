@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Speed, density and other compound measures. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/compound-measures.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -150,18 +157,18 @@
     <p>A <a class="term" href="glossary.html#compound-measure" data-term="compound-measure" data-def="A measure made by combining two other measures, written with &ldquo;per&rdquo; or a division. Speed, density and pressure are compound measures.">Compound measure</a> is a measure made from two other measures. <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">Speed</a> is made from distance and time. It tells you how far you go in each unit of time. The word &ldquo;per&rdquo; means &ldquo;divided by&rdquo;: 60 miles per hour means 60 miles divided by 1 hour.</p>
     <p class="sum-line">speed = distance &divide; time &nbsp;&nbsp; or &nbsp;&nbsp; S = D &divide; T</p>
     <p>The units of speed come from the units you put in. Kilometres and hours give km/h. Metres and seconds give m/s. Miles and hours give mph.</p>
-    <h3>Using the triangle</h3>
+    <h3 id="s-using-the-triangle">Using the triangle</h3>
 <figure class="figure qfig"><svg viewBox="0 0 320 150" role="img" aria-labelledby="cm1-t cm1-d" class="geo-svg"><title id="cm1-t">The distance, speed and time triangle</title><desc id="cm1-d">A triangle split into three parts. D is in the top part. S is in the bottom left and T is in the bottom right.</desc><polygon points="160,10 20,140 300,140" fill="#fbe3ee" stroke="#0f2440" stroke-width="2.5" stroke-linejoin="round"/><line x1="90" y1="75" x2="230" y2="75" stroke="#0f2440" stroke-width="2" stroke-linecap="round"/><line x1="160" y1="75" x2="160" y2="140" stroke="#0f2440" stroke-width="2" stroke-linecap="round"/><text class="svg-t" style="font-size:15px" x="160" y="58" text-anchor="middle">D</text><text class="svg-t" style="font-size:15px" x="104" y="114" text-anchor="middle">S</text><text class="svg-t" style="font-size:15px" x="216" y="114" text-anchor="middle">T</text></svg></figure>    <ul class="tick">
       <li>Cover the letter you want to find. What is left tells you what to do.</li>
       <li>Cover D: S and T are side by side, so multiply. D = S &times; T.</li>
       <li>Cover S: D is over T, so divide. S = D &divide; T.</li>
       <li>Cover T: D is over S, so divide. T = D &divide; S.</li>
     </ul>
-    <h3>Or rearrange the formula</h3>
+    <h3 id="s-or-rearrange-the-formula">Or rearrange the formula</h3>
     <p>Start with S = D &divide; T. Multiply both sides by T to get D = S &times; T. Then divide both sides by S to get T = D &divide; S. The triangle is just a short way to remember these three.</p>
     <div class="key"><p><b>Key idea:</b> the units must match. If the speed is in km/h, the time must be in hours. Change minutes to hours by dividing by 60: 30 minutes = 0.5 h, 15 minutes = 0.25 h, 45 minutes = 0.75 h.</p></div>
     <div class="worked">
-      <h3>Worked example: finding speed</h3>
+      <h3 id="s-worked-example-finding-speed">Worked example: finding speed</h3>
       <p>A van travels 150 km in 2.5 hours. Find its average speed.</p>
       <ol class="steps">
         <li>S = D &divide; T = 150 &divide; 2.5 = 60.</li>
@@ -169,7 +176,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding distance</h3>
+      <h3 id="s-worked-example-finding-distance">Worked example: finding distance</h3>
       <p>A cyclist rides at 18 km/h for 2 hours 30 minutes. How far does she go?</p>
       <ol class="steps">
         <li>2 hours 30 minutes = 2.5 hours.</li>
@@ -178,7 +185,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding time</h3>
+      <h3 id="s-worked-example-finding-time">Worked example: finding time</h3>
       <p>A train travels 240 miles at 80 mph. How long does it take? Then find how many minutes it takes to go 40 miles at 60 mph.</p>
       <ol class="steps">
         <li>T = D &divide; S = 240 &divide; 80 = 3 hours.</li>
@@ -187,7 +194,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>A lorry travels 210 km in 3 hours 30 minutes. Find its average speed.</p>
       <ol class="steps">
         <li>3 hours 30 minutes = ___ hours.</li>
@@ -254,7 +261,7 @@
     <p class="sum-line">average speed = total distance &divide; total time</p>
     <div class="key"><p><b>Key idea:</b> do NOT just average the speeds. The time spent at each speed is different, so work out the total distance and the total time first. Include any stops in the total time.</p></div>
     <div class="worked">
-      <h3>Worked example: two parts</h3>
+      <h3 id="s-worked-example-two-parts">Worked example: two parts</h3>
       <p>A van drives 60 km at 30 km/h, then 60 km at 60 km/h. Find the average speed for the whole journey.</p>
       <ol class="steps">
         <li>First part: T = 60 &divide; 30 = 2 hours.</li>
@@ -265,7 +272,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>A cyclist rides 20 km at 10 km/h, then 40 km at 40 km/h. Find the average speed.</p>
       <ol class="steps">
         <li>First part: T = 20 &divide; 10 = ___ hours. Second part: T = 40 &divide; 40 = ___ hour.</li>
@@ -324,7 +331,7 @@
     </ul>
 <figure class="figure qfig"><svg viewBox="0 0 294 256" role="img" aria-labelledby="cm3-t cm3-d" class="geo-svg"><title id="cm3-t">A journey on a distance-time graph</title><desc id="cm3-d">A graph with time in hours along the bottom and distance in kilometres up the side. A line goes up gently, then runs flat, then goes up steeply to its highest point, then comes back down to the bottom axis.</desc><path d="M34 216V18M94 216V18M154 216V18M214 216V18M274 216V18M34 216H274M34 150H274M34 84H274M34 18H274" fill="none" stroke="#d3d9e3" stroke-width="1"/><line x1="34" y1="216" x2="274" y2="216" stroke="#0f2440" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="216" x2="34" y2="18" stroke="#0f2440" stroke-width="2" stroke-linecap="round"/><polygon points="274,216 266,212 266,220" fill="#0f2440"/><polygon points="34,18 30,26 38,26" fill="#0f2440"/><line x1="94" y1="213" x2="94" y2="219" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="94" y="232" text-anchor="middle">1</text><line x1="154" y1="213" x2="154" y2="219" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="154" y="232" text-anchor="middle">2</text><line x1="214" y1="213" x2="214" y2="219" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="214" y="232" text-anchor="middle">3</text><line x1="274" y1="213" x2="274" y2="219" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="274" y="232" text-anchor="middle">4</text><line x1="31" y1="150" x2="37" y2="150" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="28" y="154" text-anchor="end">30</text><line x1="31" y1="84" x2="37" y2="84" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="28" y="88" text-anchor="end">60</text><line x1="31" y1="18" x2="37" y2="18" stroke="#0f2440" stroke-width="1.5" stroke-linecap="round"/><text class="svg-t" style="font-size:12px" x="28" y="22" text-anchor="end">90</text><text class="svg-t" style="font-size:12px" x="26" y="231" text-anchor="middle">0</text><text class="svg-t" style="font-size:14px" x="272" y="208" text-anchor="end"> </text><text class="svg-t" style="font-size:14px" x="43" y="32" text-anchor="start">Distance (km)</text><line x1="34" y1="216" x2="94" y2="150" stroke="#ad1f5c" stroke-width="3" stroke-dasharray="0" stroke-linecap="round"/><line x1="94" y1="150" x2="124" y2="150" stroke="#ad1f5c" stroke-width="3" stroke-dasharray="0" stroke-linecap="round"/><line x1="124" y1="150" x2="184" y2="18" stroke="#ad1f5c" stroke-width="3" stroke-dasharray="0" stroke-linecap="round"/><line x1="184" y1="18" x2="274" y2="216" stroke="#ad1f5c" stroke-width="3" stroke-dasharray="0" stroke-linecap="round"/><text class="svg-t" style="font-size:13px" x="154" y="249" text-anchor="middle">Time (hours)</text><circle cx="94" cy="150" r="4" fill="#0f2440" stroke="#fff" stroke-width="1"/><circle cx="124" cy="150" r="4" fill="#0f2440" stroke="#fff" stroke-width="1"/><circle cx="184" cy="18" r="4" fill="#0f2440" stroke="#fff" stroke-width="1"/></svg></figure>    <div class="key"><p><b>Key idea:</b> speed = distance &divide; time is the gradient. To find a speed, pick the two ends of a straight section: the change in distance divided by the change in time.</p></div>
     <div class="worked">
-      <h3>Worked example: reading the graph</h3>
+      <h3 id="s-worked-example-reading-the-graph">Worked example: reading the graph</h3>
       <p>Look at the graph above. Find the speed in the first hour, and say what happens between 1 hour and 1.5 hours.</p>
       <ol class="steps">
         <li>In the first hour the line goes from 0 km to 30 km, so the distance is 30 km and the time is 1 hour.</li>
@@ -333,7 +340,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Use the same graph. Find the speed between 1.5 hours and 2.5 hours.</p>
       <ol class="steps">
         <li>The distance goes from ___ km to ___ km, so the change is ___ km.</li>
@@ -403,7 +410,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> km/h to m/s: divide by 3.6. m/s to km/h: multiply by 3.6. A quick check: m/s numbers are always smaller than km/h numbers.</p></div>
     <div class="worked">
-      <h3>Worked example: km/h to m/s</h3>
+      <h3 id="s-worked-example-km-h-to-m-s">Worked example: km/h to m/s</h3>
       <p>Change 72 km/h into m/s.</p>
       <ol class="steps">
         <li>72 km = 72 &times; 1000 = 72 000 m, so the speed is 72 000 m per hour.</li>
@@ -412,7 +419,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: m/s to km/h</h3>
+      <h3 id="s-worked-example-m-s-to-km-h">Worked example: m/s to km/h</h3>
       <p>Change 15 m/s into km/h.</p>
       <ol class="steps">
         <li>In 1 second, 15 m. In 1 hour (3600 seconds): 15 &times; 3600 = 54 000 m = 54 km.</li>
@@ -420,7 +427,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>Change 90 km/h into m/s.</p>
       <ol class="steps">
         <li>90 km/h = 90 &times; 1000 &divide; 3600 = ___ m/s.</li>
@@ -486,7 +493,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> water has a density of 1 g/cm&sup3;. Anything with a density less than 1 floats in water. Anything with a density more than 1 sinks.</p></div>
     <div class="worked">
-      <h3>Worked example: finding density</h3>
+      <h3 id="s-worked-example-finding-density">Worked example: finding density</h3>
       <p>A metal block has a mass of 540 g and a volume of 200 cm&sup3;. Find its density.</p>
       <ol class="steps">
         <li>D = M &divide; V = 540 &divide; 200 = 2.7.</li>
@@ -494,7 +501,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding mass</h3>
+      <h3 id="s-worked-example-finding-mass">Worked example: finding mass</h3>
       <p>Concrete has a density of 2.4 g/cm&sup3;. Find the mass of 500 cm&sup3; of it.</p>
       <ol class="steps">
         <li>M = D &times; V = 2.4 &times; 500 = 1200.</li>
@@ -502,7 +509,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding volume</h3>
+      <h3 id="s-worked-example-finding-volume">Worked example: finding volume</h3>
       <p>A cooking oil has a density of 0.9 g/cm&sup3;. What is the volume of 360 g of it?</p>
       <ol class="steps">
         <li>V = M &divide; D = 360 &divide; 0.9 = 400.</li>
@@ -510,7 +517,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>Sand has a density of 1.6 g/cm&sup3;. Find the mass of 2500 cm&sup3; of sand, in grams.</p>
       <ol class="steps">
         <li>M = D &times; V = ___ &times; ___ = ___ g.</li>
@@ -576,7 +583,7 @@
     <p class="sum-line">1 g/cm&sup3; = 1000 kg/m&sup3;</p>
     <p>So to change g/cm&sup3; into kg/m&sup3;, <b>multiply by 1000</b>. To change kg/m&sup3; into g/cm&sup3;, <b>divide by 1000</b>. Water is 1 g/cm&sup3; = 1000 kg/m&sup3;.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Concrete has a density of 2.4 g/cm&sup3;. Give this in kg/m&sup3;. Then find the mass of 1.5 m&sup3; of concrete.</p>
       <ol class="steps">
         <li>g/cm&sup3; to kg/m&sup3;: multiply by 1000. 2.4 &times; 1000 = 2400 kg/m&sup3;.</li>
@@ -584,7 +591,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>A wood has a density of 0.9 g/cm&sup3;. Give this in kg/m&sup3;.</p>
       <ol class="steps">
         <li>0.9 &times; 1000 = ___ kg/m&sup3;.</li>
@@ -636,7 +643,7 @@
       <li>Cover A: F is over P, so divide. A = F &divide; P.</li>
     </ul>
     <div class="worked">
-      <h3>Worked example: finding pressure</h3>
+      <h3 id="s-worked-example-finding-pressure">Worked example: finding pressure</h3>
       <p>A force of 600 N acts on an area of 2 m&sup2;. Find the pressure.</p>
       <ol class="steps">
         <li>P = F &divide; A = 600 &divide; 2 = 300.</li>
@@ -644,7 +651,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding force and area</h3>
+      <h3 id="s-worked-example-finding-force-and-area">Worked example: finding force and area</h3>
       <p>(a) A pressure of 40 N/m&sup2; acts on 3 m&sup2;. Find the force. (b) A force of 900 N gives a pressure of 300 N/m&sup2;. Find the area.</p>
       <ol class="steps">
         <li>(a) F = P &times; A = 40 &times; 3 = 120 N.</li>
@@ -652,7 +659,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3>
       <p>A force of 1200 N acts on an area of 0.4 m&sup2;. Find the pressure.</p>
       <ol class="steps">
         <li>P = F &divide; A = 1200 &divide; ___ = ___ N/m&sup2;.</li>
@@ -715,7 +722,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> to compare prices, work out the unit price of each (the price for one metre, one kilogram or one item), then compare. The lower unit price is the better buy.</p></div>
     <div class="worked">
-      <h3>Worked example: pay</h3>
+      <h3 id="s-worked-example-pay">Worked example: pay</h3>
       <p>An electrician earns &pound;16.50 an hour. How much does she earn for 38 hours?</p>
       <ol class="steps">
         <li>Pay = rate &times; hours = 16.50 &times; 38 = 627.</li>
@@ -723,7 +730,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: unit price</h3>
+      <h3 id="s-worked-example-unit-price">Worked example: unit price</h3>
       <p>5 m of cable costs &pound;8.75. Find the price per metre.</p>
       <ol class="steps">
         <li>Unit price = total price &divide; metres = 8.75 &divide; 5 = 1.75.</li>
@@ -731,7 +738,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding the amount</h3>
+      <h3 id="s-worked-example-finding-the-amount">Worked example: finding the amount</h3>
       <p>A plumber charges &pound;14.40 an hour and is paid &pound;331.20. How many hours did he work?</p>
       <ol class="steps">
         <li>Hours = total &divide; rate = 331.20 &divide; 14.40 = 23.</li>
@@ -739,7 +746,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x-x">Now you finish it</h3>
       <p>A labourer is paid &pound;14.00 an hour. How much does he earn in 25 hours?</p>
       <ol class="steps">
         <li>Pay = rate &times; hours = ___ &times; ___ = &pound;___.</li>
@@ -794,7 +801,7 @@
     <p class="sum-line">energy (kWh) = power (kW) &times; time (hours)</p>
     <div class="key"><p><b>Key idea:</b> change watts to kilowatts by dividing by 1000, and minutes to hours by dividing by 60, BEFORE you multiply. Then cost = number of kWh &times; price per kWh.</p></div>
     <div class="worked">
-      <h3>Worked example: the cost of running a heater</h3>
+      <h3 id="s-worked-example-the-cost-of-running-a-hea">Worked example: the cost of running a heater</h3>
       <p>A 3 kW heater runs for 4 hours. Electricity costs 28p per kWh. Find the cost in pounds.</p>
       <ol class="steps">
         <li>Energy = 3 &times; 4 = 12 kWh.</li>
@@ -803,7 +810,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: changing watts to kilowatts</h3>
+      <h3 id="s-worked-example-changing-watts-to-kilowat">Worked example: changing watts to kilowatts</h3>
       <p>A 500 W drill runs for 2 hours. How many kWh does it use?</p>
       <ol class="steps">
         <li>500 W = 500 &divide; 1000 = 0.5 kW.</li>
@@ -811,7 +818,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: power from energy and time</h3>
+      <h3 id="s-worked-example-power-from-energy-and-tim">Worked example: power from energy and time</h3>
       <p>A lamp uses 7200 joules of energy in 60 seconds. Find its power.</p>
       <ol class="steps">
         <li>P = E &divide; T = 7200 &divide; 60 = 120.</li>
@@ -819,7 +826,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x-x-x">Now you finish it</h3>
       <p>A 2.5 kW heater runs for 6 hours at 28p per kWh. Find the cost in pounds.</p>
       <ol class="steps">
         <li>Energy = 2.5 &times; 6 = ___ kWh.</li>
@@ -883,8 +890,8 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>A compound measure can be used two ways. You can find the <b>rate</b> (speed, density, pressure, price per unit) from a total and an amount. Or you can use the rate to find a <b>distance, mass, force or time</b>.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Finding the rate</h3><p>D = 120 km, T = 2 h, S = ?</p><p class="muted">Divide: S = 120 &divide; 2 = 60 km/h.</p></div>
-      <div class="flip-side"><h3>Using the rate</h3><p>S = 60 km/h, T = 2 h, D = ?</p><p class="muted">Multiply: D = 60 &times; 2 = 120 km.</p></div>
+      <div class="flip-side"><h3 id="s-finding-the-rate">Finding the rate</h3><p>D = 120 km, T = 2 h, S = ?</p><p class="muted">Divide: S = 120 &divide; 2 = 60 km/h.</p></div>
+      <div class="flip-side"><h3 id="s-using-the-rate">Using the rate</h3><p>S = 60 km/h, T = 2 h, D = ?</p><p class="muted">Multiply: D = 60 &times; 2 = 120 km.</p></div>
     </div>
     <ul class="tick">
       <li>To find a rate, <b>divide</b> the total by the amount.</li>
@@ -893,7 +900,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> the triangle gives you all three at once. Cover the one you want. Always check the units match before you work anything out.</p></div>
     <div class="worked">
-      <h3>Worked example: rate, then use it</h3>
+      <h3 id="s-worked-example-rate-then-use-it">Worked example: rate, then use it</h3>
       <p>A pump moves 480 litres in 8 minutes. Find its rate in litres per minute. Then find how long it takes to move 1500 litres.</p>
       <ol class="steps">
         <li>Rate = 480 &divide; 8 = 60 litres per minute.</li>
@@ -902,7 +909,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: finding the time</h3>
+      <h3 id="s-worked-example-finding-the-time">Worked example: finding the time</h3>
       <p>A runner goes at 4 m/s. How long does she take to run 1.2 km?</p>
       <ol class="steps">
         <li>1.2 km = 1200 m, so the units match (metres and m/s).</li>
@@ -911,7 +918,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x-x-x-x">Now you finish it</h3>
       <p>A train travels at 90 km/h. How far does it go in 40 minutes?</p>
       <ol class="steps">
         <li>40 minutes = 40 &divide; 60 = ___ hours (as a fraction, <span class="frac"><span class="fn">2</span><span class="sr"> over </span><span class="fd">3</span></span>).</li>
@@ -1220,10 +1227,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Bounds and error intervals. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/bounds.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -158,7 +165,7 @@
     <p class="sum-line">lower bound = number &minus; half the unit &nbsp;&nbsp; upper bound = number + half the unit</p>
 <figure class="figure qfig"><svg viewBox="0 0 320 74" role="img" aria-labelledby="bd1-t bd1-d" class="geo-svg"><title id="bd1-t">All the values that round to 7</title><desc id="bd1-d">A number line from 6 to 8 marked in halves. A filled circle on 6.5, an open circle on 7.5, and a thick line joining them. Every value on the line rounds to 7 to the nearest whole number.</desc><line class="ln" x1="12" y1="38" x2="308" y2="38"/><line class="ln" style="stroke-width:2" x1="26" y1="32" x2="26" y2="44"/><text class="svg-t" style="font-size:12px" x="26" y="62" text-anchor="middle">6</text><line class="ln" style="stroke-width:2" x1="93" y1="32" x2="93" y2="44"/><text class="svg-t" style="font-size:12px" x="93" y="62" text-anchor="middle">6.5</text><line class="ln" style="stroke-width:2" x1="160" y1="32" x2="160" y2="44"/><text class="svg-t" style="font-size:12px" x="160" y="62" text-anchor="middle">7</text><line class="ln" style="stroke-width:2" x1="227" y1="32" x2="227" y2="44"/><text class="svg-t" style="font-size:12px" x="227" y="62" text-anchor="middle">7.5</text><line class="ln" style="stroke-width:2" x1="294" y1="32" x2="294" y2="44"/><text class="svg-t" style="font-size:12px" x="294" y="62" text-anchor="middle">8</text><line x1="93" y1="38" x2="227" y2="38" stroke="#ad1f5c" stroke-width="5" stroke-linecap="round"/><circle cx="93" cy="38" r="6.5" fill="#ad1f5c" stroke="#0f2440" stroke-width="2.5"/><circle cx="227" cy="38" r="6.5" fill="#fff" stroke="#0f2440" stroke-width="2.5"/></svg></figure>    <p class="muted">Every value from 6.5 (filled: included) up to 7.5 (open: not included) rounds to 7.</p>    <div class="key"><p><b>Key idea:</b> half the rounding unit, below and above. The most common slip is to use the whole unit, or half of the wrong unit.</p></div>
     <div class="worked">
-      <h3>Worked example: decimal places</h3>
+      <h3 id="s-worked-example-decimal-places">Worked example: decimal places</h3>
       <p>A plank is 2.4 m long, to 1 decimal place. Find its lower and upper bounds.</p>
       <ol class="steps">
         <li>The rounding unit is 0.1, so half the unit is 0.05.</li>
@@ -167,7 +174,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: significant figures</h3>
+      <h3 id="s-worked-example-significant-figures">Worked example: significant figures</h3>
       <p>A mass is 530 g to 2 significant figures. Find its bounds.</p>
       <ol class="steps">
         <li>The last significant figure is the 3, in the tens place. The unit is 10, so half the unit is 5.</li>
@@ -176,7 +183,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>A length is 3.7 cm to 1 decimal place. Find its bounds.</p>
       <ol class="steps">
         <li>Half the unit is ___.</li>
@@ -238,7 +245,7 @@
     <p>So the error interval for 7, to the nearest whole number, is 6.5 &le; x &lt; 7.5. The sign on the left has the line under it, and the sign on the right does not.</p>
 <figure class="figure qfig"><svg viewBox="0 0 320 74" role="img" aria-labelledby="bd2-t bd2-d" class="geo-svg"><title id="bd2-t">The error interval 2.35 up to 2.45</title><desc id="bd2-d">A number line from 2.3 to 2.5 marked in steps of 0.05. A filled circle on 2.35, an open circle on 2.45, and a thick line joining them.</desc><line class="ln" x1="12" y1="38" x2="308" y2="38"/><line class="ln" style="stroke-width:2" x1="26" y1="32" x2="26" y2="44"/><text class="svg-t" style="font-size:12px" x="26" y="62" text-anchor="middle">2.3</text><line class="ln" style="stroke-width:2" x1="93" y1="32" x2="93" y2="44"/><text class="svg-t" style="font-size:12px" x="93" y="62" text-anchor="middle">2.35</text><line class="ln" style="stroke-width:2" x1="160" y1="32" x2="160" y2="44"/><text class="svg-t" style="font-size:12px" x="160" y="62" text-anchor="middle">2.4</text><line class="ln" style="stroke-width:2" x1="227" y1="32" x2="227" y2="44"/><text class="svg-t" style="font-size:12px" x="227" y="62" text-anchor="middle">2.45</text><line class="ln" style="stroke-width:2" x1="294" y1="32" x2="294" y2="44"/><text class="svg-t" style="font-size:12px" x="294" y="62" text-anchor="middle">2.5</text><line x1="93" y1="38" x2="227" y2="38" stroke="#ad1f5c" stroke-width="5" stroke-linecap="round"/><circle cx="93" cy="38" r="6.5" fill="#ad1f5c" stroke="#0f2440" stroke-width="2.5"/><circle cx="227" cy="38" r="6.5" fill="#fff" stroke="#0f2440" stroke-width="2.5"/></svg></figure>    <p class="muted">2.35 &le; l &lt; 2.45: a filled circle at the lower bound, an open circle at the upper bound.</p>    <div class="key"><p><b>Key idea:</b> error interval: lower bound &le; x &lt; upper bound. Include the lower bound, leave out the upper bound.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>A mass, m kg, is 2.4 kg to 1 decimal place. Write the error interval for m.</p>
       <ol class="steps">
         <li>Half the unit is 0.05.</li>
@@ -247,7 +254,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>A mass, m g, is 530 g to 2 significant figures. Write the error interval for m.</p>
       <ol class="steps">
         <li>The last digit is in the tens place, so half the unit is ___.</li>
@@ -313,7 +320,7 @@
     <p class="sum-line">4.6 truncated to 1 d.p. &nbsp; &rarr; &nbsp; 4.6 &le; x &lt; 4.7</p>
 <figure class="figure qfig"><svg viewBox="0 0 320 74" role="img" aria-labelledby="bd3-t bd3-d" class="geo-svg"><title id="bd3-t">Numbers that truncate to 4.6</title><desc id="bd3-d">A number line from 4.5 to 4.8 marked in steps of 0.1. A filled circle on 4.6, an open circle on 4.7, and a thick line joining them.</desc><line class="ln" x1="12" y1="38" x2="308" y2="38"/><line class="ln" style="stroke-width:2" x1="26" y1="32" x2="26" y2="44"/><text class="svg-t" style="font-size:12px" x="26" y="62" text-anchor="middle">4.5</text><line class="ln" style="stroke-width:2" x1="115.33" y1="32" x2="115.33" y2="44"/><text class="svg-t" style="font-size:12px" x="115.33" y="62" text-anchor="middle">4.6</text><line class="ln" style="stroke-width:2" x1="204.67" y1="32" x2="204.67" y2="44"/><text class="svg-t" style="font-size:12px" x="204.67" y="62" text-anchor="middle">4.7</text><line class="ln" style="stroke-width:2" x1="294" y1="32" x2="294" y2="44"/><text class="svg-t" style="font-size:12px" x="294" y="62" text-anchor="middle">4.8</text><line x1="115.33" y1="38" x2="204.67" y2="38" stroke="#ad1f5c" stroke-width="5" stroke-linecap="round"/><circle cx="115.33" cy="38" r="6.5" fill="#ad1f5c" stroke="#0f2440" stroke-width="2.5"/><circle cx="204.67" cy="38" r="6.5" fill="#fff" stroke="#0f2440" stroke-width="2.5"/></svg></figure>    <p class="muted">Numbers from 4.6 (included) up to 4.7 (not included) truncate to 4.6.</p>    <div class="key"><p><b>Key idea:</b> truncating cuts digits off, so the true number is at least the truncated number and below one whole unit more. Rounding goes half a unit each way. Truncating goes a whole unit up, and none down.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>A timer shows 4.6 seconds, truncated to 1 decimal place. Write the error interval for the time t.</p>
       <ol class="steps">
         <li>The unit is 0.1, so the upper bound is one whole unit above.</li>
@@ -322,7 +329,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>A number is 23, truncated to a whole number. Write the error interval for the number, n.</p>
       <ol class="steps">
         <li>The lower bound is ___.</li>
@@ -380,7 +387,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> for a &minus; b, to make the answer as big as possible you start with the biggest a and take away the smallest b. To make it as small as possible, take away the biggest b from the smallest a.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>a = 8 and b = 5, both to the nearest whole number. Find the greatest and smallest values of a + b and a &minus; b.</p>
       <ol class="steps">
         <li>a: 7.5 &le; a &lt; 8.5. b: 4.5 &le; b &lt; 5.5.</li>
@@ -389,7 +396,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: lengths</h3>
+      <h3 id="s-worked-example-lengths">Worked example: lengths</h3>
       <p>Two planks are 2.4 m and 1.7 m, each to 1 decimal place. Find the greatest possible difference in length.</p>
       <ol class="steps">
         <li>The longer plank: upper bound 2.45 m. The shorter plank: lower bound 1.65 m.</li>
@@ -397,7 +404,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>A pipe is 3.2 m and a piece 1.5 m is cut off. Both are to 1 decimal place. Find the greatest possible length left.</p>
       <ol class="steps">
         <li>Biggest pipe: upper bound ___.</li>
@@ -461,7 +468,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> to make a division as big as possible, divide the biggest top by the smallest bottom. To make it as small as possible, divide the smallest top by the biggest bottom.</p></div>
     <div class="worked">
-      <h3>Worked example: area</h3>
+      <h3 id="s-worked-example-area">Worked example: area</h3>
       <p>A rectangle is 8 cm by 5 cm, both to the nearest cm. Find the greatest and smallest possible area.</p>
       <ol class="steps">
         <li>Length: 7.5 &le; l &lt; 8.5. Width: 4.5 &le; w &lt; 5.5.</li>
@@ -470,7 +477,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a quotient</h3>
+      <h3 id="s-worked-example-a-quotient">Worked example: a quotient</h3>
       <p>a = 8 and b = 5, both to the nearest whole number. Find the greatest and smallest value of a &divide; b.</p>
       <ol class="steps">
         <li>Greatest: upper a over lower b: 8.5 &divide; 4.5 = 1.888&hellip;.</li>
@@ -478,7 +485,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>A rectangle is 6.4 cm by 3.2 cm, both to 1 decimal place. Find the smallest possible area.</p>
       <ol class="steps">
         <li>Smallest length: ___. Smallest width: ___.</li>
@@ -544,7 +551,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> look at the formula. Anything on the top of a division works in the same direction as the answer. Anything on the bottom works in the opposite direction.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>A car travels 120 m, to the nearest 10 m, in 8.4 s, to 1 decimal place. Find the greatest and smallest possible speed, to 2 decimal places.</p>
       <ol class="steps">
         <li>Distance: 115 &le; d &lt; 125. Time: 8.35 &le; t &lt; 8.45.</li>
@@ -553,7 +560,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>Time = distance &divide; speed. A journey is 150 km, to the nearest 10 km, at 60 km/h, to the nearest 10 km/h. Find the greatest possible time.</p>
       <ol class="steps">
         <li>Greatest time = greatest distance &divide; ___ speed.</li>
@@ -612,7 +619,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> if the upper bound and lower bound round to the same value, the true answer must round to that value too. Any more figures would be a guess.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x">Worked example</h3>
       <p>A car goes 36 m, to the nearest metre, in 4.5 s, to 1 decimal place. Find the speed to a degree of accuracy you can justify.</p>
       <ol class="steps">
         <li>Upper bound of speed = 36.5 &divide; 4.45 = 8.2022&hellip;.</li>
@@ -622,7 +629,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3>
       <p>A drone flies 250 m, to 2 significant figures, in 12 s, to the nearest second. The bounds of the speed are 19.6&hellip; and 22.17&hellip;. Give the speed to a justified accuracy.</p>
       <ol class="steps">
         <li>To 2 s.f. the bounds round to ___ and ___. Are they the same?</li>
@@ -675,8 +682,8 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>So far you start with a rounded number and find its limits. Now go the other way: you are given the limits, and you find the number that was rounded, and how it was rounded.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>7, to the nearest whole number. Limits?</p><p class="muted">Half the unit each way: 6.5 &le; x &lt; 7.5.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>6.5 &le; x &lt; 7.5. What was rounded?</p><p class="muted">Halfway between the bounds: (6.5 + 7.5) &divide; 2 = 7.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>7, to the nearest whole number. Limits?</p><p class="muted">Half the unit each way: 6.5 &le; x &lt; 7.5.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>6.5 &le; x &lt; 7.5. What was rounded?</p><p class="muted">Halfway between the bounds: (6.5 + 7.5) &divide; 2 = 7.</p></div>
     </div>
     <ul class="tick">
       <li>The rounded number is <b>halfway between</b> the lower and upper bounds. Add them and halve, or take away half the unit from the upper bound.</li>
@@ -685,7 +692,7 @@
     </ul>
     <div class="key"><p><b>Key idea:</b> number = the middle of the interval. Rounding unit = upper bound &minus; lower bound.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x">Worked example</h3>
       <p>The error interval for a length is 4.45 &le; l &lt; 4.55. The length was rounded to 1 decimal place. What is the length?</p>
       <ol class="steps">
         <li>Add the bounds and halve: (4.45 + 4.55) &divide; 2 = 4.5.</li>
@@ -694,7 +701,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x-x">Now you finish it</h3>
       <p>The upper bound of a mass is 62.5 kg. It was rounded to the nearest kg. What is the mass?</p>
       <ol class="steps">
         <li>The unit is 1, so half the unit is ___.</li>
@@ -997,10 +1004,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>

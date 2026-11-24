@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Algebra basics. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/algebra-basics.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.043">
-<script src="../../js/book-boot.js?v=2026.11.24.043"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.044">
+<script src="../../js/book-boot.js?v=2026.11.24.044"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.043">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.044">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -149,7 +156,7 @@
     </div>
     <div class="key"><p><b>Key idea:</b> we leave out the &times; sign: 3n means 3 &times; n, and ab means a &times; b. Write the number first: 3n, not n3. This is a convention, an agreed habit, so that everyone reads algebra the same way. And a &times; a is written a&sup2;. The letter is just a placeholder for a number, so everything you know about numbers still works.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Write an expression for &ldquo;double a number, then add 3&rdquo;.</p>
       <ol class="steps">
         <li>Call the number n.</li>
@@ -217,7 +224,7 @@
     <p>To <a class="term" href="glossary.html#substitute" data-term="substitute" data-def="Replace a letter with a number, then work out the answer.">Substitute</a> is to replace each letter with a number and work out the answer. Because a letter stands for a number, you must follow the order of operations (BIDMAS): powers before multiplying, brackets first.</p>
     <div class="key"><p><b>Key idea:</b> write the letter&rsquo;s value in brackets when you substitute, especially for negatives: for x&sup2; with x = &minus;3, write (&minus;3)&sup2; = 9. Without brackets you might compute &minus;3&sup2; = &minus;9, which is not the same.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Work out 2x&sup2; when x = 3.</p>
       <ol class="steps">
         <li>Substitute: 2 &times; 3&sup2;.</li>
@@ -292,7 +299,7 @@
     <p>The <a class="term" href="glossary.html#term" data-term="term" data-def="One part of an expression. Terms are separated by + and &minus; signs, and each term keeps the sign in front of it.">terms</a> of an expression are the parts joined by + and &minus;. <a class="term" href="glossary.html#like-terms" data-term="like-terms" data-def="Terms that have exactly the same letter part, so they can be added or subtracted.">Like terms</a> have exactly the same letter part, so you can add or subtract their <a class="term" href="glossary.html#coefficient" data-term="coefficient" data-def="The number multiplying a letter in a term.">coefficients</a>: 3a + 2a = 5a. You cannot combine a with b, or a with a&sup2;.</p>
     <div class="key"><p><b>Key idea:</b> 3a + 2a = 5a is like &ldquo;3 apples + 2 apples = 5 apples&rdquo;. It works because a is the same number in both terms: 3a + 2a = (3 + 2)a. A letter is a number, not an object. But 3 apples + 2 bananas stays as 3 apples + 2 bananas, and 3a + 2b stays as it is, because a and b can be different numbers. Each term keeps the sign in front of it, so in 5x + 2 &minus; x + 4 the x terms are 5x and &minus;x (which is &minus;1x).</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Simplify 5x + 2 &minus; x + 4.</p>
       <ol class="steps">
         <li>Group the x terms: 5x &minus; x = 4x.</li>
@@ -361,7 +368,7 @@
     <p>For a minus inside the bracket, the same idea holds: 2(a &minus; 5) = 2 &times; a + 2 &times; (&minus;5). A positive times a negative is negative, so 2 &times; (&minus;5) = &minus;10 and 2(a &minus; 5) = 2a &minus; 10.</p>
     <div class="key"><p><b>Key idea:</b> the number outside multiplies <b>both</b> terms. 3(x + 4) = 3x + 12, not 3x + 4. If there is a minus inside, keep the sign: 2(a &minus; 5) = 2a &minus; 10, because 2 &times; (&minus;5) = &minus;10.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>Expand 5(2y + 1).</p>
       <ol class="steps">
         <li>5 &times; 2y = 10y.</li>
@@ -419,7 +426,7 @@
     <p>If you add something to one pan, the scale tips, so to keep it balanced you must do the <b>same amount to the other pan</b> as well. For equations the rule is: <b>do the same amount to both sides</b>. That is the whole idea behind solving equations, and you will use it in <a href="solving-equations.html">Solving equations</a>.</p>
     <figure class="figure"><svg viewBox="0 0 400 240" role="img" aria-labelledby="sc-t2 sc-d2" class="scale-svg"><title id="sc-t2">Kitchen scale balance</title><desc id="sc-d2">A traditional kitchen scale with two pans. On the left: x, x. On the right: 14. The scale is balanced, so both sides are equal.</desc><rect class="base" x="165" y="214" width="70" height="12" rx="4"/><rect class="post" x="195" y="62" width="10" height="154"/><g><line class="beam" x1="70" y1="70" x2="330" y2="70"/><path class="pan" d="M20 172 H120 Q120 200 70 200 Q20 200 20 172 Z"/><line class="cord" x1="70" y1="70" x2="20" y2="172"/><line class="cord" x1="70" y1="70" x2="120" y2="172"/><rect class="wt wt-x" x="38" y="142" width="30" height="30" rx="4"/><text class="wlab" x="54" y="163" text-anchor="middle">x</text><rect class="wt wt-x" x="72" y="142" width="30" height="30" rx="4"/><text class="wlab" x="86" y="163" text-anchor="middle">x</text><path class="pan" d="M280 172 H380 Q380 200 330 200 Q280 200 280 172 Z"/><line class="cord" x1="330" y1="70" x2="280" y2="172"/><line class="cord" x1="330" y1="70" x2="380" y2="172"/><rect class="wt wt-n" x="315" y="142" width="30" height="30" rx="4"/><text class="wlab" x="330" y="163" text-anchor="middle">14</text></g><circle class="pivot" cx="200" cy="70" r="9"/><text class="eq-sign" x="200" y="40" text-anchor="middle">=</text></svg><figcaption>Two equal mystery weights balance 14 g: x + x = 14, or 2x = 14. Each mystery weight is 7 g.</figcaption></figure>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x">Worked example</h3>
       <p>Two equal mystery weights balance a 14 g weight. How heavy is each?</p>
       <ol class="steps">
         <li>The two mystery weights together make 14 g: 2x = 14.</li>
@@ -480,13 +487,13 @@
     <h2 id="s-flip-it-put-numbers-in-or-find-the-numbe">Flip it: put numbers in, or find the number that fits</h2>
     <p>So far you have gone one way. Now run it <i>backwards</i>: this is where much of the real understanding comes from.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Given x = 4, work out 2x + 3: 2 &times; 4 + 3 = 11.</p><p class="muted">Substitute: from the letter to the answer.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Given 2x + 3 = 11, find the x that makes the scale balance: x = 4.</p><p class="muted">Solve: from the answer back to the letter.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><p>Given x = 4, work out 2x + 3: 2 &times; 4 + 3 = 11.</p><p class="muted">Substitute: from the letter to the answer.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><p>Given 2x + 3 = 11, find the x that makes the scale balance: x = 4.</p><p class="muted">Solve: from the answer back to the letter.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> substituting and solving are two directions of the same relationship. In the same way, expanding and factorising are a pair. They are the same statement read in two directions: 3(x + 4) = 3x + 12.</p></div>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><p>Expand: 3(x + 4) = 3x + 12</p><p class="muted">Multiply the bracket out.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>Factorise: 3x + 12 = 3(x + 4)</p><p class="muted">Take the common factor out.</p></div>
+      <div class="flip-side"><h3 id="s-forwards-x">Forwards</h3><p>Expand: 3(x + 4) = 3x + 12</p><p class="muted">Multiply the bracket out.</p></div>
+      <div class="flip-side"><h3 id="s-backwards-x">Backwards</h3><p>Factorise: 3x + 12 = 3(x + 4)</p><p class="muted">Take the common factor out.</p></div>
     </div>
     <p class="muted">Higher tier: because these two sides are equal for every x, mathematicians write 3(x + 4) <a class="term" href="glossary.html#identity" data-term="identity" data-def="Two expressions that are equal for every value of the letters. It is written with the symbol &equiv; (three parallel lines), read as &quot;is identically equal to&quot; or &quot;is equivalent to&quot;. An equation, written with =, is only true for some values.">&equiv;</a> 3x + 12. See Identity in the glossary.</p>
   </div>
@@ -674,7 +681,7 @@
     <h2 id="s-going-further-double-brackets">Going further: double brackets</h2>
     <p>With two brackets, every term in the first bracket multiplies every term in the second. Draw a box for each pair. Two terms times two terms gives four boxes.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x-x">Worked example</h3>
       <p>Expand (x + 2)(x + 3).</p>
       <div class="pairs">
         <div><b>x &times; x = x&sup2;</b><br>first &times; first</div>
@@ -809,10 +816,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.043</span>
+    <span class="build-number">Build 2026.11.24.044</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.043" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.044" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.043"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.044"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.044"></script>
 </body>
 </html>
