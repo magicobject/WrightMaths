@@ -1054,7 +1054,7 @@ test.describe('the calculator, small kindnesses', () => {
     await expect(expr).toHaveText('5');
     await key('Clear').click();
     await key('2').click(); await key('times').click(); await key('minus').click(); await key('3').click();
-    await expect(expr).toHaveText('2 × − 3');
+    await expect(expr).toHaveText('2 × −3');
     await key('equals').click();
     await expect(result).toHaveText('−6');
     await key('Clear').click();
@@ -1106,7 +1106,7 @@ test.describe('the scientific calculator', () => {
     await key('sin, sine').click(); await key('4').click(); await key('0').click(); await key('equals').click();
     await expect(panel.locator('.calc-expr')).toHaveText('sin(40');
     await expect(panel.locator('.calc-result')).toHaveText('0.6427876097');
-    await expect(panel.locator('.calc-tip')).toContainText('Angles are in degrees');
+    await expect(panel.locator('.calc-mode')).toContainText('DEG');
 
     await page.goto('/books/gcse/trigonometry.html');
     for (const text of ['without a calculator', 'exact value of sin 30', 'What is the exact value of tan 60']) {
@@ -1127,6 +1127,19 @@ test.describe('the scientific calculator', () => {
     await key('Clear').click();
     await key('sin, sine').click(); await key('minus').click(); await key('3').click(); await key('0').click(); await key('equals').click();
     await expect(panel.locator('.calc-result')).toHaveText('−0.5');
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(−30');
+  });
+
+  test('on a phone every scientific key is at least 44 pixels wide and tall and nothing sticks out of the page', async ({ page }) => {
+    for (const width of [320, 360]) {
+      await page.setViewportSize({ width, height: 900 });
+      const { q } = await open(page, 'work out sin 40');
+      const small = await q.locator('.calc-key').evaluateAll((keys) => keys
+        .map((k) => { const b = k.getBoundingClientRect(); return { label: k.textContent, w: Math.round(b.width), h: Math.round(b.height), right: Math.round(b.right) }; })
+        .filter((k) => k.w < 44 || k.h < 44));
+      expect(small, `keys under 44px at ${width}px`).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
   });
 
   test('the scientific keypad has no axe violations', async ({ page }) => {

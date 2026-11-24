@@ -422,10 +422,10 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .calc{max-width:340px;margin-top:10px;padding:12px;border:2px solid var(--navy-mid);border-radius:14px;background:var(--paper-dim);}
 .calc[hidden]{display:none;}
 .calc:focus{outline:3px solid var(--navy-mid);outline-offset:2px;}
-.calc-head{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+.calc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;}
 .calc-tip{margin:0;font-size:.9rem;color:var(--ink);}
 .calc-dismiss{align-self:flex-end;font:inherit;font-weight:700;min-height:44px;padding:6px 14px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
-.calc-screen{margin-bottom:10px;padding:8px 12px;border-radius:8px;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);text-align:right;}
+.calc-screen{position:relative;margin-bottom:10px;padding:8px 12px;border-radius:8px;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);text-align:right;}
 .calc-expr{min-height:1.6em;font-size:1.15rem;color:var(--ink);white-space:nowrap;overflow:hidden;}
 .calc-result{display:block;min-height:2.2rem;font-size:1.7rem;font-weight:700;overflow-wrap:anywhere;}
 .calc-pad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
@@ -437,7 +437,15 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .calc-5col{max-width:400px;}
 .calc-pad[data-cols="5"]{grid-template-columns:repeat(5,minmax(0,1fr));}
 .calc-pad[data-cols="5"] .calc-key{padding:0;min-width:0;}
-.calc-fn{background:var(--t-term);font-size:.9rem;}
+.calc-fn,.calc-fnbig{background:var(--t-term);font-size:.9rem;border-radius:22px;}
+.calc-fnbig{font-size:1.35rem;}
+.calc-binary{border-radius:4px;}
+.calc-mode{position:absolute;left:10px;top:6px;font-size:.75rem;font-weight:700;letter-spacing:.05em;color:var(--ink);}
+/* On a phone the keypad uses the whole width of the question card so every key is a comfortable tap. */
+@media (max-width:640px){
+  .calc{max-width:none;margin-left:-20px;margin-right:-20px;padding:8px;}
+  .calc-pad{gap:5px;}
+}
 .calc-equals{background:var(--navy);color:var(--white);}
 .calc-equals:hover{background:var(--navy-dark);}
 /* The floating Top button would cover the right-hand keys on a phone. */

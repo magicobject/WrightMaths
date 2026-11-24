@@ -30,7 +30,7 @@ export function layoutFor(q) {
 
 // say: extra words for a screen reader ('' when the label already says it).
 // A function key: inserts its name and an opening bracket, like sin(.
-const fn = (label, say, text) => ({ label, say, action: 'insert', text, kind: 'fn' });
+const fn = (label, say, text, kind = 'fn') => ({ label, say, action: 'insert', text, kind });
 const digit = (d) => ({ label: d, say: d, action: 'insert', text: d, kind: 'digit' });
 const key = (label, say, action, text, kind) => ({ label, say, action, text, kind });
 
@@ -49,13 +49,13 @@ export const LAYOUTS = {
   scientific: {
     profile: SCIENTIFIC,
     cols: 5,
-    note: 'Angles are in degrees.',
+    mode: 'DEG', // shown beside the display: angles are in degrees
     // What is shown for pieces whose typed form is not pretty.
     show: { 'asin(': 'sin⁻¹(', 'acos(': 'cos⁻¹(', 'atan(': 'tan⁻¹(' },
     rows: [
       [fn('sin', 'sine', 'sin('), fn('cos', 'cosine', 'cos('), fn('tan', 'tangent', 'tan('), fn('log', 'log base 10', 'log('), fn('ln', 'natural log', 'ln(')],
       [fn('sin⁻¹', 'inverse sine', 'asin('), fn('cos⁻¹', 'inverse cosine', 'acos('), fn('tan⁻¹', 'inverse tangent', 'atan('), fn('π', 'pi', 'π'), fn('×10ˣ', 'times ten to the power', '×10^(')],
-      [key('x²', 'squared', 'insert', '²', 'binary'), key('x³', 'cubed', 'insert', '³', 'binary'), fn('√', 'square root', '√('), fn('∛', 'cube root', '∛('), key('^', 'to the power of', 'insert', '^', 'binary')],
+      [key('x²', 'squared', 'insert', '²', 'binary'), key('x³', 'cubed', 'insert', '³', 'binary'), fn('√', 'square root', '√(', 'fnbig'), fn('∛', 'cube root', '∛(', 'fnbig'), key('^', 'to the power of', 'insert', '^', 'binary')],
       [key('(', 'open bracket', 'insert', '(', 'open'), key(')', 'close bracket', 'insert', ')', 'bracket'), key('Ans', 'previous answer', 'insert', 'Ans', 'open'), key('Delete', '', 'del', '', 'control'), key('Clear', '', 'clear', '', 'control')],
       [digit('7'), digit('8'), digit('9'), key('÷', 'divide', 'insert', '÷', 'binary'), key('×', 'times', 'insert', '×', 'binary')],
       [digit('4'), digit('5'), digit('6'), key('+', 'plus', 'insert', '+', 'binary'), key('−', 'minus', 'insert', '−', 'binary')],
@@ -99,15 +99,23 @@ export function createCalculator(layout = LAYOUTS.basic) {
   const expr = el('div', { class: 'calc-expr', 'aria-label': 'Sum so far' });
   const result = el('output', { class: 'calc-result', 'aria-live': 'polite', 'aria-label': 'Result' });
   const pad = el('div', { class: 'calc-pad', 'data-cols': String(layout.cols ?? 4) });
-  const close = el('button', { type: 'button', class: 'calc-dismiss', text: 'Close calculator' });
-  const tip = el('p', { class: 'calc-tip', text: `Work it out here, then type your answer in the answer box. You can type on your keyboard too. Ans is your last answer.${layout.note ? ` ${layout.note}` : ''}` });
-  panel.append(el('div', { class: 'calc-head' }, tip, close), el('div', { class: 'calc-screen' }, expr, result), pad);
+  const close = el('button', { type: 'button', class: 'calc-dismiss', 'aria-label': 'Close calculator', text: 'Close' });
+  const tip = el('p', { class: 'calc-tip', text: 'Then type your answer in the answer box.' });
+  const mode = layout.mode
+    ? el('span', { class: 'calc-mode' }, el('span', { 'aria-hidden': 'true', text: layout.mode }), el('span', { class: 'sr-only', text: 'Angles are in degrees' }))
+    : null;
+  panel.append(el('div', { class: 'calc-head' }, tip, close), el('div', { class: 'calc-screen' }, ...(mode ? [mode] : []), expr, result), pad);
   root.append(toggle, panel);
 
   const show = (text) => { result.textContent = text.replaceAll('-', '−'); };
 
   function render() {
-    expr.textContent = tokens.map((t) => { const shown = layout.show?.[t] ?? t; return OPERATORS.has(t) ? ` ${t} ` : shown; }).join('').replace(/\s+/g, ' ').trim() || ' ';
+    expr.textContent = tokens.map((t, i) => {
+      const shown = layout.show?.[t] ?? t;
+      if (!OPERATORS.has(t)) return shown;
+      // a minus that starts a negative number sits tight against it: sin(−30, not sin( − 30
+      return t === '−' && (i === 0 || isStrong(tokens[i - 1])) ? t : ` ${t} `;
+    }).join('').replace(/\s+/g, ' ').trim() || ' ';
     expr.scrollLeft = expr.scrollWidth; // keep the end of a long sum in view
   }
 
