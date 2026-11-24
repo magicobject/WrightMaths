@@ -740,29 +740,57 @@
     <p class="muted">Use these like a real paper. The marks tell you how much to write.</p>
     <p class="muted">Not sure what a question word means? <a href="command-words.html">Question words explained</a>.</p>
     <p class="muted">Write your working on paper, then type the answer.</p>
-    <div class="q" data-answers="3,5" data-mode="exact">
+    <div class="q" data-answers="3,5" data-mode="exact" data-marks="4">
       <p class="qtext">[4 marks] Solve the simultaneous equations 3x + 2y = 19 and x + 4y = 23. Type x first, then y, like 2,5.</p>
       <ol class="ladder"><li>Label them (1) and (2). Make the y terms match: 2y and 4y.</li><li>Multiply (1) by 2: 6x + 4y = 38.</li><li>Both +4y, so subtract (2) from it.</li></ol>
       <ul class="wrong"><li data-if="5,3">You swapped x and y. Type x first.</li></ul>
-      <div class="solution"><p>M1: multiply (1) by 2: 6x + 4y = 38.<br>M1: subtract (2): 5x = 15.<br>A1: x = 3.<br>A1: 3 + 4y = 23, so y = 5. Check (1): 9 + 10 = 19. Answer: 3,5.</p></div>
+      <div class="solution">
+        <p>Multiply (1) by 2: 6x + 4y = 38. Subtract (2): 5x = 15, so x = 3. Then 3 + 4y = 23, so y = 5. Check (1): 9 + 10 = 19. Answer: 3,5.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for eliminating y: 6x + 4y = 38, then subtracting (2) to get 5x = 15</li>
+          <li><b>A1</b> for x = 3</li>
+          <li><b>M1</b> for substituting x = 3: 3 + 4y = 23</li>
+          <li><b>A1</b> for y = 5</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="9" data-mode="value">
+    <div class="q" data-answers="9" data-mode="value" data-marks="4">
       <p class="qtext">[4 marks] A caf&eacute; sells pizzas and salads. 5 pizzas and 3 salads cost &pound;67. 2 pizzas and 5 salads cost &pound;61. Work out the cost of one salad, in pounds.</p>
       <ol class="ladder"><li>Let p be a pizza and s a salad. Write two equations.</li><li>5p + 3s = 67 and 2p + 5s = 61. Make the p terms match: 10p.</li><li>Multiply the first by 2 and the second by 5, then subtract.</li></ol>
       <ul class="wrong"><li data-if="8">That is the price of a pizza. The question asks for a salad.</li></ul>
-      <div class="solution"><p>B1: 5p + 3s = 67.<br>B1: 2p + 5s = 61.<br>M1: (1) &times; 2 gives 10p + 6s = 134 and (2) &times; 5 gives 10p + 25s = 305. Subtract: 19s = 171.<br>A1: s = 9, so a salad costs &pound;9. Check: p = 8, and 16 + 45 = 61.</p></div>
+      <div class="solution">
+        <p>Write 5p + 3s = 67 and 2p + 5s = 61. Multiply (1) by 2 to get 10p + 6s = 134 and (2) by 5 to get 10p + 25s = 305. Subtract: 19s = 171, so s = 9, and a salad costs &pound;9. Check: p = 8, and 16 + 45 = 61.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for 5p + 3s = 67</li>
+          <li><b>B1</b> for 2p + 5s = 61</li>
+          <li><b>M1</b> for making the p terms match and subtracting: 19s = 171</li>
+          <li><b>A1</b> for s = 9</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="1" data-mode="value">
+    <div class="q" data-answers="1" data-mode="value" data-marks="2">
       <p class="qtext"><b>(a)</b> [2 marks] Hannah says the solution of x + y = 7 and 3x &minus; y = 5 is x = 2, y = 5. Show that Hannah is wrong. Type the value of 3x &minus; y for her numbers.</p>
       <ol class="ladder"><li>Swap in x = 2 and y = 5.</li><li>3 &times; 2 &minus; 5.</li></ol>
       <ul class="wrong"><li data-if="7">That is x + y, the first equation. Work out 3x &minus; y.</li></ul>
-      <div class="solution"><p>M1: 3 &times; 2 &minus; 5 = 1.<br>A1: 1 is not 5, so the pair fails the second equation, even though 2 + 5 = 7 fits the first. Hannah is wrong.</p></div>
+      <div class="solution">
+        <p>3 &times; 2 &minus; 5 = 1. 1 is not 5, so the pair fails the second equation, even though 2 + 5 = 7 fits the first. Hannah is wrong.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for 3 &times; 2 &minus; 5 = 1</li>
+          <li><b>C1</b> for saying 1 is not 5, so the pair fails the second equation</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="3,4" data-mode="exact">
+    <div class="q" data-answers="3,4" data-mode="exact" data-marks="2">
       <p class="qtext"><b>(b)</b> [2 marks] Work out the correct solution of x + y = 7 and 3x &minus; y = 5. Type x first, then y.</p>
       <ol class="ladder"><li>The y terms are +y and &minus;y.</li><li>Add the equations.</li></ol>
       <ul class="wrong"><li data-if="4,3">You swapped x and y. Check: 3 &times; 4 &minus; 3 = 9, not 5.</li></ul>
-      <div class="solution"><p>M1: add the equations: 4x = 12, so x = 3.<br>A1: 3 + y = 7, so y = 4. Check: 9 &minus; 4 = 5. Answer: 3,4.</p></div>
+      <div class="solution">
+        <p>Add the equations: 4x = 12, so x = 3. Then 3 + y = 7, so y = 4. Check: 9 &minus; 4 = 5. Answer: 3,4.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for a valid method to eliminate or substitute, such as adding the equations: 4x = 12</li>
+          <li><b>A1</b> for x = 3 and y = 4 both correct</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -822,6 +850,12 @@
       <ol class="ladder"><li>There is a factorising pattern: x&sup2; &minus; y&sup2; = (x &minus; y)(x + y).</li><li>You are told both brackets.</li></ol>
       <ul class="wrong"><li data-if="14">That is 10 + 4. Multiply the two brackets instead.</li></ul>
       <div class="solution"><p>x&sup2; &minus; y&sup2; = (x &minus; y)(x + y) = 4 &times; 10 = 40. Check with x = 7 and y = 3: 49 &minus; 9 = 40.</p></div>
+    </div>
+    <div class="q" data-answers="29" data-mode="value">
+      <p class="qtext">Two numbers x and y have x + y = 7 and xy = 10. Without finding x and y first, work out x&sup2; + y&sup2;.</p>
+      <ol class="ladder"><li>You know x + y and xy. Which square, made from x and y, mentions both x&sup2; + y&sup2; and xy when you expand it?</li><li>Expand (x + y)&sup2;. You get x&sup2; + y&sup2; plus another term.</li><li>Put 7 in for x + y, and 10 in for xy, then rearrange to find x&sup2; + y&sup2;.</li></ol>
+      <ul class="wrong"><li data-if="49">That is (x + y)&sup2;. It also contains the 2xy from expanding.</li><li data-if="39">That takes xy away once. Expanding (x + y)&sup2; gives 2xy, so take it away twice.</li></ul>
+      <div class="solution"><p>(x + y)&sup2; = x&sup2; + 2xy + y&sup2;, so 7&sup2; = x&sup2; + y&sup2; + 2 &times; 10. That gives 49 = x&sup2; + y&sup2; + 20, so x&sup2; + y&sup2; = 29. Check: the numbers are 2 and 5, and 4 + 25 = 29.</p></div>
     </div>
   </div>
 </section>
