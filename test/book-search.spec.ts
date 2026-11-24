@@ -169,6 +169,29 @@ test.describe('the book search box', () => {
     expect(list!.x + list!.width).toBeLessThanOrEqual(320);
   });
 
+  for (const width of [320, 1280]) {
+    test(`the "N results" line is readable against the dropdown (${width}px wide)`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('/books/gcse/index.html');
+      await box(page).fill('circle');
+      const count = page.locator('.book-search-count');
+      await expect(count).toBeVisible();
+      const [text, background] = await count.evaluate((el) => {
+        const list = el.closest('.book-search-results')!;
+        return [getComputedStyle(el).color, getComputedStyle(list).backgroundColor];
+      });
+      const luminance = (css: string) => {
+        const [r, g, b] = (css.match(/[\d.]+/g) ?? []).slice(0, 3).map((v) => {
+          const c = Number(v) / 255;
+          return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      };
+      const [hi, lo] = [luminance(text), luminance(background)].sort((a, b) => b - a);
+      expect((hi + 0.05) / (lo + 0.05), `${text} on ${background}`).toBeGreaterThanOrEqual(4.5);
+    });
+  }
+
   for (const scheme of ['light', 'dark'] as const) {
     test(`no axe violations with results open (${scheme})`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: scheme });
