@@ -160,7 +160,7 @@ export function renderPyramid(graph) {
       const needs = t.needs.length
         ? `<span class="needs-line">builds on ${t.needs.map((n) => graph.get(n).title).join(', ')}</span>`
         : '<span class="needs-line">the very base</span>';
-      const inner = `<span class="node-title">${t.title}</span>${needs}`;
+      const inner = `<span class="node-title">${t.title}${t.tier === 'H' ? ' <span class="tier-tag">Higher</span>' : ''}</span>${needs}`;
       const body = t.status === 'live'
         ? `<a href="${t.id}.html" data-topic-id="${t.id}">${inner}</a>`
         : `<span class="planned-node">${inner}<span class="soon">coming soon</span></span>`;
@@ -345,6 +345,7 @@ export function extractKey(raw) {
     const type = attr('data-type');
     const marks = Number(attr('data-marks') ?? 0) || 0;
     const qtext = plainText(/<p class="qtext">([\s\S]*?)<\/p>/.exec(part)?.[1] ?? '').replace(/^\[\d+ marks?\]\s*/, '');
+    const figure = plainText(/<figure[^>]*>[\s\S]*?<svg[\s\S]*?<title[^>]*>([\s\S]*?)<\/title>/.exec(part)?.[1] ?? '');
     let answer = '';
     let also = [];
     if (type === 'mc') {
@@ -359,7 +360,7 @@ export function extractKey(raw) {
     const solution = /<div class="solution">([\s\S]*?)<\/div>\s*<\/div>/.exec(part)?.[1] ?? /<div class="solution">([\s\S]*?)<\/div>/.exec(part)?.[1] ?? '';
     const scheme = [...solution.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => plainText(m[1]));
     const working = plainText(solution.replace(/<ul class="markscheme">[\s\S]*?<\/ul>/, ''));
-    return { n: i + 1, type: type ?? 'typed', text: qtext, answer, also, marks, scheme: marks > 0 ? scheme : [], working };
+    return { n: i + 1, type: type ?? 'typed', text: qtext, figure, answer, also, marks, scheme: marks > 0 ? scheme : [], working };
   });
 }
 
@@ -367,11 +368,12 @@ export function extractKey(raw) {
 export function renderAnswerKey(topic, raw) {
   const rows = extractKey(raw);
   const body = rows.map((r) => {
-    const q = r.text.length > 140 ? `${r.text.slice(0, 137)}...` : r.text;
+    const q = r.text + (r.figure ? ` [Figure: ${r.figure}]` : '');
     const also = r.also.length ? ` <span class="muted">(also accept: ${esc(r.also.join(', '))})</span>` : '';
     const marksCell = r.marks ? `${r.marks}` : '';
     const scheme = r.scheme.length ? `<ol class="key-scheme">${r.scheme.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>` : '';
-    return `<tr><th scope="row">${r.n}</th><td>${esc(q)}</td><td><b>${esc(r.answer)}</b>${also}${scheme}</td><td>${marksCell}</td></tr>`;
+    const working = r.working ? `<div class="key-working"><b>Working:</b> ${esc(r.working.length > 700 ? `${r.working.slice(0, 697)}...` : r.working)}</div>` : '';
+    return `<tr id="q${r.n}"><th scope="row">${r.n}</th><td>${esc(q)}</td><td><b>${esc(r.answer)}</b>${also}${scheme}${working}</td><td>${marksCell}</td></tr>`;
   }).join('\n');
   const total = rows.reduce((n, r) => n + r.marks, 0);
   return `<main class="book" data-book-page="key">

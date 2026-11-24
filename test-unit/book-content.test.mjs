@@ -102,3 +102,15 @@ test('the "like ..." example in a question is never the answer itself', () => {
   }
   assert.deepEqual(bad, []);
 });
+
+test('every import between the book scripts carries the ?m= cache tag (a stale cached helper once broke the page)', () => {
+  const jsDir = join(dir, '..', '..', '..', '..', 'public', 'js');
+  const bad = [];
+  for (const file of readdirSync(jsDir).filter((f) => f.startsWith('book') && f.endsWith('.mjs'))) {
+    const src = readFileSync(join(jsDir, file), 'utf8');
+    for (const m of src.matchAll(/from '(\.\/[a-z-]+\.mjs)(\?[^']*)?'/g)) {
+      if (!m[2] || !m[2].startsWith('?m=')) bad.push(`${file}: ${m[1]}`);
+    }
+  }
+  assert.deepEqual(bad, []);
+});

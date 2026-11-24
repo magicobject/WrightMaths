@@ -14,6 +14,7 @@ import { NAV, PAGES } from '../src/pages.config.mjs';
 import { STRANDS, TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
 import { SPEC_REFS, SPEC_STATEMENTS } from '../src/book/spec-refs.mjs';
+import { ROUTES, EXTRA, nextInRoute } from '../src/book/route.mjs';
 import { TERM_FIGURES, figuresFor } from '../src/book/term-figures.mjs';
 import {
   buildGraph, expandInline, addQuestionIds, countQuestions,
@@ -101,11 +102,13 @@ function renderBookContent(page, raw) {
     .replaceAll('{practice-topics}', () => renderPracticeTopics(graph))
     .replaceAll('{teacher-table}', () => renderTeacherTable())
     .replaceAll('{spec-key}', () => renderSpecKey())
+    .replaceAll('{routes}', () => renderRoutes())
     .replace(/\{qcount:([a-z0-9-]+)\}/g, (_, id) => {
       if (!questionCounts.has(id)) throw new Error(`qcount: "${id}" is not a live topic`);
       return String(questionCounts.get(id));
     });
   html = addHeadingIds(html);
+  if (topic) html = html.replace(/<\/main>\s*$/, () => `${renderNextUp(topic.id)}</main>`);
   if (topic || ['practice', 'commands', 'diagnostic'].includes(page.book)) html = autoLinkQuestionTerms(html, autoPatterns);
   html = expandInline(html, { glossaryById, usage: topic ? usage : undefined, page: topic?.id ?? page.slug });
   // Anything still in braces that looks like shorthand is a typo: fail loudly.
@@ -127,7 +130,11 @@ const bookTopicPages = liveTopics.map((t) => ({
 }));
 
 // Teacher answer keys: one printable page per live topic, generated from the same source as the questions.
-const keyPages = liveTopics.map((t) => ({
+const PAPERS = [
+  { id: 'foundation', title: 'Practice papers, grades 4 to 6' },
+  { id: 'stretch', title: 'Grade 7 to 9 stretch papers' },
+];
+const keyPages = [...liveTopics, ...PAPERS].map((t) => ({
   slug: `books/gcse/key/${t.id}`,
   book: 'key',
   keyTopic: t.id,
@@ -142,15 +149,39 @@ function renderTeacherTable() {
     const marked = items.filter((r) => r.marks).length;
     const marks = items.reduce((n, r) => n + r.marks, 0);
     const refs = (SPEC_REFS[t.id] ?? []).join(', ') || '–';
-    return `<tr><th scope="row"><a href="${t.id}.html">${t.title}</a></th><td>${t.tier === 'H' ? 'Higher' : 'Foundation and Higher'}</td><td>${t.strandName}</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${refs}</td><td><a href="key/${t.id}.html">Answer key</a></td></tr>`;
+    return `<tr><th scope="row"><a href="${t.id}.html">${t.title}</a></th><td>${t.tier === 'H' ? 'Higher' : 'Foundation and Higher'}</td><td>${t.strandName}</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${Math.max(1, Math.ceil(items.length / 12))}</td><td>${refs}</td><td><a href="key/${t.id}.html">Answer key</a></td></tr>`;
   });
-  return `<div class="qtable-wide" tabindex="0" role="region" aria-label="Topics table (scroll sideways if it does not fit)"><table class="key-table"><caption>Every topic, with its answer key</caption><thead><tr><th scope="col">Topic</th><th scope="col">Tier</th><th scope="col">Strand</th><th scope="col">Questions</th><th scope="col">Marked questions</th><th scope="col">Curriculum statements (DfE)</th><th scope="col">Key</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+  for (const p of PAPERS) {
+    const items = extractKey(read(`src/pages/books/gcse/${p.id}.html`));
+    const marked = items.filter((r) => r.marks).length;
+    const marks = items.reduce((n, r) => n + r.marks, 0);
+    rows.push(`<tr><th scope="row"><a href="${p.id}.html">${p.title}</a></th><td>${p.id === 'stretch' ? 'Higher' : 'Foundation and Higher'}</td><td>Mixed</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${Math.max(1, Math.ceil(marks / 20))}</td><td>\u2013</td><td><a href="key/${p.id}.html">Answer key</a></td></tr>`);
+  }
+  return `<div class="qtable-wide" tabindex="0" role="region" aria-label="Topics table (scroll sideways if it does not fit)"><table class="key-table"><caption>Every topic, with its answer key</caption><thead><tr><th scope="col">Topic</th><th scope="col">Tier</th><th scope="col">Strand</th><th scope="col">Questions</th><th scope="col">Marked questions</th><th scope="col">About (20-minute sessions)</th><th scope="col">Curriculum statements (DfE)</th><th scope="col">Key</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
 }
 
 function renderSpecKey() {
   const order = (c) => `${'NARGPS'.indexOf(c[0])}${String(Number(c.slice(1))).padStart(3, '0')}`;
   const items = Object.keys(SPEC_STATEMENTS).sort((a, b) => order(a).localeCompare(order(b))).map((c) => `<li><b>${c}</b> ${SPEC_STATEMENTS[c]}</li>`);
   return `<details class="spec-key"><summary>What the codes mean (short paraphrases)</summary><ul>${items.join('')}</ul></details>`;
+}
+
+function renderRoutes() {
+  const link = (id) => {
+    if (id.startsWith('@')) return `<a href="${EXTRA[id].href}">${EXTRA[id].title}</a>`;
+    const t = graph.get(id);
+    if (!t || t.status !== 'live') throw new Error(`route: "${id}" is not a live topic`);
+    return `<a href="${id}.html">${t.title}</a>${t.tier === 'H' ? ' <span class="tier-tag">Higher</span>' : ''}`;
+  };
+  return ROUTES.map((r) => `<section class="route" id="route-${r.id}"><h2>${r.title}</h2><p>${r.blurb}</p><ol class="route-weeks">${r.weeks.map((w, i) => `<li><b>Week ${i + 1}:</b> ${w.map(link).join(', ')}</li>`).join('')}</ol></section>`).join('\n');
+}
+
+function renderNextUp(topicId) {
+  const next = nextInRoute(topicId);
+  if (!next) return '';
+  const t = graph.get(next);
+  if (!t || t.status !== 'live') return '';
+  return `<section class="next-up"><div class="wrap narrow"><h2 id="s-what-next">What next?</h2><p>Next in the 12-week route: <a class="btn btn-gold" href="${next}.html">${t.title}</a> <a href="route.html">See all the routes</a></p></div></section>`;
 }
 
 const bookPageDefaults = {
@@ -187,7 +218,7 @@ for (const page of ordered) {
     .replace('{{CTA_TEXT}}', () => cta.text);
 
   let content = merged.keyTopic
-    ? renderAnswerKey(graph.get(merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
+    ? renderAnswerKey(graph.get(merged.keyTopic) ?? PAPERS.find((p) => p.id === merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
     : read(`src/pages/${merged.slug}.html`).trimEnd();
   if (isBook && !merged.keyTopic) {
     content = renderBookContent(merged, content);

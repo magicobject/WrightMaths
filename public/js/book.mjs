@@ -4,13 +4,13 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
-import { review, isDue, sanitize } from './book-queue.mjs';
-import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
-import { splitSentences } from './book-speech.mjs';
-import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs';
-import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs';
-import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
+import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs?m=39';
+import { review, isDue, sanitize } from './book-queue.mjs?m=39';
+import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
+import { splitSentences } from './book-speech.mjs?m=39';
+import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs?m=39';
+import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
+import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs?m=39';
 
 const REVIEW = isReviewMode(window.location.search);
 
@@ -113,7 +113,7 @@ const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focus
 function duckRung(li, q) {
   li.className = 'duck-rung';
   li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Say it out loud</b> <span class="muted">(optional)</span></p>`
-    + '<p>Tell the duck, a friend, or yourself what the question asks and what you know. Talking often shows the next step.</p></div>';
+    + '<p>Tell a friend, or yourself, what the question asks and what you know. Talking often shows the next step. (Some programmers explain their problem to a toy rubber duck on their desk. It is a famous trick, and the "duck" here just means that.)</p></div>';
   const starts = ['The question asks me to find…', 'I already know…', 'I tried… and then…', 'I got stuck when…'];
   const chips = el('div', { class: 'duck-chips', role: 'group', 'aria-label': 'Sentence starters' });
   const area = el('textarea', {
@@ -258,6 +258,7 @@ export function enhanceQuestion(q, index) {
     say('q-feedback ok', `${CHEERS[hashOf(qid) % CHEERS.length]} The worked solution is below.`);
     showSolution();
     markDone(qid, wrongCount === 0 && rungsShown === 0);
+    setDoneBanner(q);
     // Keep Help available after a right answer, and start the hints again from Hint A.
     hintList.replaceChildren();
     rungsShown = 0;
@@ -291,6 +292,7 @@ export function enhanceQuestion(q, index) {
         if (correct) {
           btn.classList.add('is-right');
           success();
+          group.querySelectorAll('.mc-option').forEach((o) => o.setAttribute('aria-disabled', 'true'));
         } else {
           btn.classList.add('is-wrong');
           btn.setAttribute('aria-disabled', 'true');
@@ -323,8 +325,9 @@ export function enhanceQuestion(q, index) {
     const symbols = el('div', { class: 'sym-row', role: 'group', 'aria-label': 'Symbol keys' });
     const symbolList = [['-', 'minus'], ['/', 'fraction bar'], ['.', 'decimal point'], ['%', 'percent']];
     if (answers.some((a) => a.includes('^'))) symbolList.push(['^', 'power']);
+    if (answers.some((a) => a.includes(':'))) symbolList.push([':', 'colon']);
     for (const [ch, name] of symbolList) {
-      const b = el('button', { type: 'button', class: 'sym-btn', text: ch, 'aria-label': `Type ${name}` });
+      const b = el('button', { type: 'button', class: 'sym-btn', text: ch, 'aria-label': `Type ${name}`, tabindex: '-1' });
       b.addEventListener('mousedown', (e) => e.preventDefault());
       b.addEventListener('click', () => {
         const at = input.selectionStart ?? input.value.length;
@@ -389,7 +392,7 @@ function updateProgress() {
     line.innerHTML = '';
     const bar = el('span', { class: 'bar', role: 'img', 'aria-label': `${got} of ${qs.length} questions finished` });
     bar.append(el('span', { class: 'bar-fill', style: `width:${qs.length ? Math.round((got / qs.length) * 100) : 0}%` }));
-    line.append(bar, el('span', { text: ` You have finished ${got} ${got === 1 ? 'question' : 'questions'} on this page.` }));
+    line.append(bar, el('span', { text: ` You have finished ${got} of ${qs.length} questions on this page.` }));
   }
   for (const node of document.querySelectorAll('[data-progress-for]')) {
     const id = node.dataset.progressFor;
@@ -499,7 +502,8 @@ function enhanceTerms() {
   });
   // Close after a real scroll (not the small nudge that comes from opening it).
   window.addEventListener('scroll', () => {
-    if (open && Math.abs(window.scrollY - open.scrollY) > 120) close();
+    const focusInside = document.activeElement && (document.activeElement === open?.link || document.activeElement.closest?.('.term-pop'));
+    if (open && !focusInside && Math.abs(window.scrollY - open.scrollY) > 120) close();
   }, { passive: true });
   window.addEventListener('resize', () => { if (open && window.innerWidth !== open.width) close(); });
   document.addEventListener('keydown', (event) => {
@@ -680,6 +684,8 @@ function initToc(main, after) {
   });
   document.body.append(top);
   window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; }, { passive: true });
+  document.addEventListener('focusin', (e) => { top.classList.toggle('top-away', Boolean(e.target.matches?.('.q-input, .duck-text, .timed-filter'))); });
+  document.addEventListener('focusout', () => top.classList.remove('top-away'));
 }
 
 // A short bar for students who already know the basics: jump to the hard parts, or fold away the recaps and check sets.
@@ -693,19 +699,29 @@ function addFastRoute(main, after) {
     const h = find(re);
     if (h && h.id) bar.append(el('a', { href: `#${h.id}`, class: 'fast-link', text: label }));
   }
-  const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Show only the harder parts' });
-  toggle.addEventListener('click', () => {
-    const on = main.classList.toggle('fast-route-on');
+  const FAST_KEY = 'wm-gcse-fast';
+  const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Skip the basics' });
+  const setFast = (on) => {
+    main.classList.toggle('fast-route-on', on);
     toggle.setAttribute('aria-pressed', String(on));
-    toggle.textContent = on ? 'Show everything again' : 'Show only the harder parts';
+    toggle.textContent = on ? 'Show everything again' : 'Skip the basics';
+  };
+  toggle.addEventListener('click', () => {
+    const on = !main.classList.contains('fast-route-on');
+    setFast(on);
+    try { window.localStorage.setItem(FAST_KEY, on ? '1' : '0'); } catch { /* storage may be unavailable */ }
   });
+  try { if (window.localStorage.getItem(FAST_KEY) === '1') setFast(true); } catch { /* ignore */ }
   bar.append(toggle);
   // Printing: questions only (a worksheet) or with the worked answers.
-  for (const [label, withAnswers] of [['Print questions only', false], ['Print with answers', true]]) {
+  const nameLine = el('p', { class: 'print-name', text: `Name: ____________________   Date: ____________   ${document.querySelector('h1')?.textContent ?? ''}` });
+  main.prepend(nameLine);
+  for (const [label, withAnswers] of [['Print worksheet (questions only)', false], ['Print with answers', true]]) {
     const btn = el('button', { type: 'button', class: 'fast-toggle', text: label });
     btn.addEventListener('click', () => {
       main.classList.toggle('print-answers', withAnswers);
-      const done = () => { main.classList.remove('print-answers'); window.removeEventListener('afterprint', done); };
+      main.classList.toggle('print-sheet', !withAnswers);
+      const done = () => { main.classList.remove('print-answers', 'print-sheet'); window.removeEventListener('afterprint', done); };
       window.addEventListener('afterprint', done);
       window.print();
     });
@@ -967,23 +983,36 @@ function startTimed() {
   const panel = el('section', { class: 'timed-panel' });
   const wrap = el('div', { class: 'wrap narrow' });
   const startBtn = el('button', { type: 'button', class: 'btn btn-navy', text: 'Start a timed set (5 questions)' });
-  const filter = el('select', { class: 'timed-filter', 'aria-label': 'Which questions' });
+  const filter = el('select', { class: 'timed-filter', 'aria-label': 'Calculator or non-calculator' });
   for (const [value, label] of [['', 'Calculator and non-calculator mixed'], ['Non-calculator', 'Non-calculator questions only'], ['Calculator', 'Calculator questions only']]) filter.append(el('option', { value, text: label }));
+  // A topic picker built from the "Uses:" links on the questions.
+  const topicOf = (q) => q.querySelector('.qtag-from')?.getAttribute('href') ?? '';
+  const topicFilter = el('select', { class: 'timed-filter', 'aria-label': 'Which topic' });
+  topicFilter.append(el('option', { value: '', text: 'Any topic' }));
+  const seen = new Map();
+  for (const q of all) {
+    const link = q.querySelector('.qtag-from');
+    if (link && !seen.has(topicOf(q))) seen.set(topicOf(q), link.textContent.replace(/^Uses:\s*/, ''));
+  }
+  for (const [href, label] of [...seen.entries()].sort((a, b) => a[1].localeCompare(b[1]))) topicFilter.append(el('option', { value: href, text: label }));
   const clock = el('p', { class: 'timed-clock', role: 'timer', 'aria-live': 'off' });
   const clockBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Hide the clock' });
-  clockBtn.hidden = true;
-  clockBtn.addEventListener('click', () => { clock.hidden = !clock.hidden; clockBtn.textContent = clock.hidden ? 'Show the clock' : 'Hide the clock'; });
-  const status = el('p', { class: 'timed-status', role: 'status', 'aria-live': 'polite' });
+  const pauseBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Pause' });
+  const moreBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Add 5 minutes' });
+  const status = el('p', { class: 'timed-status', role: 'status', 'aria-live': 'polite', tabindex: '-1' });
   const finishBtn = el('button', { type: 'button', class: 'btn btn-gold', text: 'Finish and mark my answers' });
   const leaveBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Back to all questions' });
-  finishBtn.hidden = true;
-  leaveBtn.hidden = true;
-  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), filter, startBtn, clock, clockBtn, status, finishBtn, leaveBtn);
+  const running = [clockBtn, pauseBtn, moreBtn, finishBtn, leaveBtn];
+  running.forEach((b) => { b.hidden = true; });
+  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper. You can pause, hide the clock or add time.' }), filter, topicFilter, startBtn, clock, clockBtn, pauseBtn, moreBtn, status, finishBtn, leaveBtn);
   panel.append(wrap);
   main.querySelector('.key')?.closest('section')?.after(panel);
   let timer = null;
   let chosen = [];
+  let left = 0;
+  let paused = false;
   const helpOf = (q, hidden) => q.querySelectorAll('.q-help').forEach((h) => { h.hidden = hidden; });
+  const paint = () => { clock.textContent = `Time left: ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; };
   const tally = () => {
     const earned = chosen.reduce((n, q) => n + q.querySelectorAll('.mark-box:checked').length, 0);
     const total = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
@@ -991,38 +1020,56 @@ function startTimed() {
   };
   const stop = (message) => {
     window.clearInterval(timer);
+    main.classList.remove('timed-running');
     clock.textContent = message;
+    status.textContent = message;
     chosen.forEach((q) => helpOf(q, false));
     finishBtn.hidden = false;
+    pauseBtn.hidden = true;
+    moreBtn.hidden = true;
+  };
+  const tick = () => {
+    if (paused) return;
+    left -= 1;
+    paint();
+    if (left === 300) status.textContent = '5 minutes left.';
+    if (left === 60) status.textContent = '1 minute left.';
+    if (left <= 0) stop('Time is up. Open each mark scheme and tick your marks.');
   };
   startBtn.addEventListener('click', () => {
-    const wanted = filter.value;
-    let pool = all.filter((q) => !wanted || q.querySelector('.qtag-calc')?.textContent.trim() === wanted);
-    if (pool.length < 5) pool = [...all];
-    for (let i = pool.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
+    let pool = all.filter((q) => (!filter.value || q.querySelector('.qtag-calc')?.textContent.trim() === filter.value) && (!topicFilter.value || topicOf(q) === topicFilter.value));
+    let note = '';
+    if (pool.length < 5) { pool = [...all]; note = ' There were fewer than five questions of that kind, so these are mixed.'; }
+    for (let k = pool.length - 1; k > 0; k -= 1) {
+      const m = Math.floor(Math.random() * (k + 1));
+      [pool[k], pool[m]] = [pool[m], pool[k]];
     }
     chosen = pool.slice(0, 5);
     const minutes = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
-    let left = minutes * 60;
+    left = minutes * 60;
+    paused = false;
+    pauseBtn.textContent = 'Pause';
     all.forEach((q) => { q.hidden = !chosen.includes(q); });
     chosen.forEach((q) => helpOf(q, true));
     startBtn.hidden = true;
     filter.hidden = true;
-    leaveBtn.hidden = false;
-    finishBtn.hidden = false;
-    clockBtn.hidden = false;
-    status.textContent = `${chosen.length} questions, ${minutes} minutes. Good luck.`;
-    const paint = () => { clock.textContent = `Time left: ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; };
+    topicFilter.hidden = true;
+    [leaveBtn, finishBtn, clockBtn, pauseBtn, moreBtn].forEach((b) => { b.hidden = false; });
+    main.classList.add('timed-running');
+    status.textContent = `${chosen.length} questions, ${minutes} minutes.${note}`;
     paint();
-    timer = window.setInterval(() => {
-      left -= 1;
-      paint();
-      if (left <= 0) stop('Time is up. Open each mark scheme and tick your marks.');
-    }, 1000);
-    chosen[0].scrollIntoView({ block: 'start' });
+    timer = window.setInterval(tick, 1000);
+    const first = chosen[0];
+    first.scrollIntoView({ block: 'start' });
+    first.querySelector('.q-input, .mc-option, .btn-check')?.focus({ preventScroll: true });
   });
+  clockBtn.addEventListener('click', () => { clock.hidden = !clock.hidden; clockBtn.textContent = clock.hidden ? 'Show the clock' : 'Hide the clock'; });
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Carry on' : 'Pause';
+    status.textContent = paused ? 'Paused. The clock is stopped.' : 'Carrying on.';
+  });
+  moreBtn.addEventListener('click', () => { left += 300; paint(); status.textContent = '5 minutes added.'; });
   finishBtn.addEventListener('click', () => {
     stop('Marking time. Open each mark scheme and tick the marks you earned.');
     chosen.forEach((q) => {
@@ -1031,21 +1078,76 @@ function startTimed() {
     });
     finishBtn.hidden = true;
     tally();
+    status.focus({ preventScroll: false });
   });
   main.addEventListener('change', (e) => { if (chosen.length && e.target.classList?.contains('mark-box')) tally(); });
   leaveBtn.addEventListener('click', () => {
     window.clearInterval(timer);
+    main.classList.remove('timed-running');
     all.forEach((q) => { q.hidden = false; helpOf(q, false); });
     chosen = [];
     clock.textContent = '';
     status.textContent = '';
     startBtn.hidden = false;
     filter.hidden = false;
-    leaveBtn.hidden = true;
-    finishBtn.hidden = true;
-    clockBtn.hidden = true;
+    topicFilter.hidden = false;
+    running.forEach((b) => { b.hidden = true; });
     clock.hidden = false;
+    startBtn.focus();
   });
+}
+
+// "Set complete" under a Check-your-knowledge set once every question in it is done.
+function setDoneBanner(q) {
+  const section = q.closest('section.ckw');
+  if (!section) return;
+  const qs = [...section.querySelectorAll('.q')];
+  if (qs.length === 0 || !qs.every((x) => store.done[x.dataset.qid])) return;
+  if (section.querySelector('.set-done')) return;
+  const wrap = section.querySelector('.wrap') ?? section;
+  const next = section.nextElementSibling?.querySelector('h2');
+  const banner = el('p', { class: 'set-done', role: 'status', text: `Set complete: ${qs.length} of ${qs.length} done. ` });
+  if (next?.id) banner.append(el('a', { href: `#${next.id}`, text: `Next: ${next.textContent.replace(/^\u270E\s*/, '').trim()}` }));
+  wrap.append(banner);
+}
+
+// Anchors on every question (#q12), and ?q=5-12 shows only those questions (a homework link).
+function questionRanges() {
+  const page = document.querySelector('main[data-book-page="topic"]');
+  if (!page) return;
+  const numberOf = (q) => Number((q.dataset.qid ?? '').replace(/^.*-/, ''));
+  for (const q of document.querySelectorAll('.q[data-qid]')) { if (!q.id) q.id = `q${numberOf(q)}`; }
+  const raw = new URLSearchParams(window.location.search).get('q');
+  if (!raw || !/^[0-9,\-]{1,60}$/.test(raw)) return;
+  const wanted = new Set();
+  for (const part of raw.split(',')) {
+    const [a, b] = part.split('-').map(Number);
+    if (Number.isFinite(a)) for (let n = a; n <= (Number.isFinite(b) ? Math.min(b, a + 300) : a); n += 1) wanted.add(n);
+  }
+  if (wanted.size === 0) return;
+  document.querySelectorAll('details.recap').forEach((d) => { d.open = true; });
+  for (const q of document.querySelectorAll('.q[data-qid]')) q.hidden = !wanted.has(numberOf(q));
+  for (const sec of document.querySelectorAll('main section')) {
+    if (sec.querySelector('.q') && ![...sec.querySelectorAll('.q')].some((q) => !q.hidden)) sec.hidden = true;
+  }
+  const first = Math.min(...wanted);
+  const last = Math.max(...wanted);
+  const banner = el('p', { class: 'range-banner', role: 'status', text: `Showing questions ${first === last ? first : `${first} to ${last}`} only. ` });
+  banner.append(el('a', { href: window.location.pathname, text: 'Show the whole page' }));
+  document.querySelector('main')?.prepend(banner);
+}
+
+// Teacher answer key pages: a button to show or hide the worked solutions.
+function keyPageTools() {
+  const main = document.querySelector('main[data-book-page="key"]');
+  if (!main) return;
+  const btn = el('button', { type: 'button', class: 'btn btn-navy', 'aria-pressed': 'false', text: 'Show worked solutions' });
+  btn.addEventListener('click', () => {
+    const on = main.classList.toggle('show-working');
+    btn.setAttribute('aria-pressed', String(on));
+    btn.textContent = on ? 'Hide worked solutions' : 'Show worked solutions';
+  });
+  main.querySelector('.hero-actions')?.prepend(btn);
 }
 
 function start() {
@@ -1056,6 +1158,8 @@ function start() {
   startPractice().catch((e) => console.error('practice failed', e));
   startDiagnostic();
   startTimed();
+  questionRanges();
+  keyPageTools();
   showMarksSummary();
   enhanceChecklists();
   enhanceTerms();
