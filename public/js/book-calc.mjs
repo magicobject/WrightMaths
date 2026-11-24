@@ -8,9 +8,11 @@
 //   3. otherwise no.
 // A "Non-calculator" tag always wins.
 //
-// To add a scientific keypad later: add a layout to LAYOUTS (rows of keys) with
-// profile SCIENTIFIC from book-calc-engine.mjs, and ask for it with data-calc="scientific".
-import { calculate, BASIC } from './book-calc-engine.mjs';
+// Keypads: data-calc="yes" (or a Calculator tag) gives the basic keypad; data-calc="scientific" gives the
+// scientific one (sin, cos, tan and inverses, log, ln, pi, cubes, roots, x10^x, angles in degrees).
+// To add another keypad, add an entry to LAYOUTS: rows of keys, a profile from book-calc-engine.mjs,
+// optional cols, show (how an inserted piece is displayed) and note.
+import { calculate, BASIC, SCIENTIFIC } from './book-calc-engine.mjs';
 
 export function calcAllowed(q) {
   const tag = q.querySelector(':scope > .qtext .qtag-calc')?.textContent.trim().toLowerCase();
@@ -27,6 +29,8 @@ export function layoutFor(q) {
 }
 
 // say: extra words for a screen reader ('' when the label already says it).
+// A function key: inserts its name and an opening bracket, like sin(.
+const fn = (label, say, text, kind = 'fn') => ({ label, say, action: 'insert', text, kind });
 const digit = (d) => ({ label: d, say: d, action: 'insert', text: d, kind: 'digit' });
 const key = (label, say, action, text, kind) => ({ label, say, action, text, kind });
 
@@ -42,10 +46,28 @@ export const LAYOUTS = {
       [key('x²', 'squared', 'insert', '²', 'binary'), key('√', 'square root', 'insert', '√(', 'open'), key('^', 'to the power of', 'insert', '^', 'binary'), key('=', 'equals', 'equals', '', 'equals')],
     ],
   },
+  scientific: {
+    profile: SCIENTIFIC,
+    cols: 5,
+    mode: 'DEG', // shown beside the display: angles are in degrees
+    // What is shown for pieces whose typed form is not pretty.
+    show: { 'asin(': 'sin⁻¹(', 'acos(': 'cos⁻¹(', 'atan(': 'tan⁻¹(' },
+    rows: [
+      [fn('sin', 'sine', 'sin('), fn('cos', 'cosine', 'cos('), fn('tan', 'tangent', 'tan('), fn('log', 'log base 10', 'log('), fn('ln', 'natural log', 'ln(')],
+      [fn('sin⁻¹', 'inverse sine', 'asin('), fn('cos⁻¹', 'inverse cosine', 'acos('), fn('tan⁻¹', 'inverse tangent', 'atan('), fn('π', 'pi', 'π'), fn('×10ˣ', 'times ten to the power', '×10^(', 'times10')],
+      [key('x²', 'squared', 'insert', '²', 'binary'), key('x³', 'cubed', 'insert', '³', 'binary'), fn('√', 'square root', '√(', 'fnbig'), fn('∛', 'cube root', '∛(', 'fnbig'), key('^', 'to the power of', 'insert', '^', 'binary')],
+      [key('(', 'open bracket', 'insert', '(', 'open'), key(')', 'close bracket', 'insert', ')', 'bracket'), key('Ans', 'previous answer', 'insert', 'Ans', 'open'), key('Delete', '', 'del', '', 'control'), key('Clear', '', 'clear', '', 'control')],
+      [digit('7'), digit('8'), digit('9'), key('÷', 'divide', 'insert', '÷', 'binary'), key('×', 'times', 'insert', '×', 'binary')],
+      [digit('4'), digit('5'), digit('6'), key('+', 'plus', 'insert', '+', 'binary'), key('−', 'minus', 'insert', '−', 'binary')],
+      [digit('1'), digit('2'), digit('3'), digit('0'), key('.', 'decimal point', 'insert', '.', 'digit')],
+      [{ ...key('=', 'equals', 'equals', '', 'equals'), span: 5 }],
+    ],
+  },
 };
 
 const OPERATORS = new Set(['+', '−', '×', '÷', '^']);
-const STRONG = new Set(['×', '÷', '^', '(', '√(']); // a minus after these starts a negative number
+// A minus after these (or after any opening bracket such as sin() starts a negative number.
+const isStrong = (t) => ['×', '÷', '^'].includes(t) || (typeof t === 'string' && t.endsWith('('));
 const KEYBOARD = { '*': '×', '/': '÷', '-': '−', x: '×' };
 
 const el = (tag, attrs = {}, ...kids) => {
@@ -73,19 +95,27 @@ export function createCalculator(layout = LAYOUTS.basic) {
   const root = el('div', { class: 'q-calc' });
   const icon = el('span', { class: 'calc-icon', 'aria-hidden': 'true', text: '🧮' });
   const toggle = el('button', { type: 'button', class: 'btn-calc calc-toggle', 'aria-expanded': 'false', 'aria-controls': panelId }, icon, document.createTextNode(' Calculator'));
-  const panel = el('div', { class: 'calc', id: panelId, role: 'group', 'aria-label': 'Calculator', tabindex: '-1', hidden: '' });
+  const panel = el('div', { class: `calc calc-${layout.cols ?? 4}col`, id: panelId, role: 'group', 'aria-label': 'Calculator', tabindex: '-1', hidden: '' });
   const expr = el('div', { class: 'calc-expr', 'aria-label': 'Sum so far' });
   const result = el('output', { class: 'calc-result', 'aria-live': 'polite', 'aria-label': 'Result' });
-  const pad = el('div', { class: 'calc-pad' });
-  const close = el('button', { type: 'button', class: 'calc-dismiss', text: 'Close calculator' });
-  const tip = el('p', { class: 'calc-tip', text: 'Work it out here, then type your answer in the answer box. You can type on your keyboard too. Ans is your last answer.' });
-  panel.append(el('div', { class: 'calc-head' }, tip, close), el('div', { class: 'calc-screen' }, expr, result), pad);
+  const pad = el('div', { class: 'calc-pad', 'data-cols': String(layout.cols ?? 4) });
+  const close = el('button', { type: 'button', class: 'calc-dismiss', 'aria-label': 'Close calculator', text: 'Close' });
+  const tip = el('p', { class: 'calc-tip', text: 'Then type your answer in the answer box.' });
+  const mode = layout.mode
+    ? el('span', { class: 'calc-mode' }, el('span', { 'aria-hidden': 'true', text: layout.mode }), el('span', { class: 'sr-only', text: 'Angles are in degrees' }))
+    : null;
+  panel.append(el('div', { class: 'calc-head' }, tip, close), el('div', { class: 'calc-screen' }, ...(mode ? [mode] : []), expr, result), pad);
   root.append(toggle, panel);
 
   const show = (text) => { result.textContent = text.replaceAll('-', '−'); };
 
   function render() {
-    expr.textContent = tokens.map((t) => (OPERATORS.has(t) ? ` ${t} ` : t)).join('').replace(/\s+/g, ' ').trim() || ' ';
+    expr.textContent = tokens.map((t, i) => {
+      const shown = layout.show?.[t] ?? t;
+      if (!OPERATORS.has(t)) return shown;
+      // a minus that starts a negative number sits tight against it: sin(−30, not sin( − 30
+      return t === '−' && (i === 0 || isStrong(tokens[i - 1])) ? t : ` ${t} `;
+    }).join('').replace(/\s+/g, ' ').trim() || ' ';
     expr.scrollLeft = expr.scrollWidth; // keep the end of a long sum in view
   }
 
@@ -120,7 +150,7 @@ export function createCalculator(layout = LAYOUTS.basic) {
     // insert
     if (errored) startAgain();
     if (fresh) {
-      tokens = k.kind === 'binary' ? ['Ans'] : [];
+      tokens = k.kind === 'binary' || k.kind === 'times10' ? ['Ans'] : [];
       fresh = false;
       show('');
     }
@@ -129,7 +159,7 @@ export function createCalculator(layout = LAYOUTS.basic) {
     if (k.kind === 'digit' && k.text !== '.' && currentNumber() === '0') tokens.pop(); // no leading zero: 05 is 5
     if (k.kind === 'binary' && OPERATORS.has(k.text) && OPERATORS.has(last)) {
       // A second operator replaces the first, except a minus after x, / or ^ (a negative number).
-      if (!(k.text === '−' && STRONG.has(last))) tokens.pop();
+      if (!(k.text === '−' && isStrong(last))) tokens.pop();
     }
     tokens.push(k.text);
     show('');
@@ -140,8 +170,9 @@ export function createCalculator(layout = LAYOUTS.basic) {
     for (const k of row) {
       const btn = el('button', {
         type: 'button', class: `calc-key calc-${k.kind}`, text: k.label,
-        'aria-label': k.say === '' ? k.label : (/[A-Za-z]/.test(k.label) ? `${k.label}, ${k.say}` : k.say),
+        'aria-label': k.say === '' ? k.label : (/\p{L}/u.test(k.label) ? `${k.label}, ${k.say}` : k.say),
       });
+      if (k.span) btn.style.gridColumn = `span ${k.span}`;
       btn.addEventListener('click', () => press(k));
       pad.append(btn);
     }
@@ -164,9 +195,27 @@ export function createCalculator(layout = LAYOUTS.basic) {
   toggle.addEventListener('click', () => (panel.hidden ? open() : shut(false)));
   close.addEventListener('click', () => shut());
 
+  // Typed names: s-i-n presses the sin key, and so on, so typing sin30 is never silently read as 30.
+  let letters = '';
+  let justFunction = false;
+  const NAMES = { sin: 'sin(', cos: 'cos(', tan: 'tan(', log: 'log(', ln: 'ln(', pi: 'π' };
+
   panel.addEventListener('keydown', (event) => {
     if (event.ctrlKey || event.metaKey || event.altKey) return;
     const { key: pressed } = event;
+    const typedLetter = /^[a-z]$/i.test(pressed) && event.target.tagName !== 'BUTTON';
+    if (typedLetter && !(letters === '' && pressed.toLowerCase() === 'x')) {
+      event.preventDefault();
+      letters += pressed.toLowerCase();
+      const name = NAMES[letters];
+      const k = name && byText(name);
+      if (k) { press(k); letters = ''; justFunction = name.endsWith('('); }
+      else if (!Object.keys(NAMES).some((n) => n.startsWith(letters))) letters = '';
+      return;
+    }
+    letters = '';
+    if (pressed === '(' && justFunction) { justFunction = false; event.preventDefault(); return; } // sin( already has its bracket
+    justFunction = false;
     if (pressed === 'Escape') { event.preventDefault(); shut(); return; }
     // Enter on a focused key presses that key; anywhere else it means "equals".
     if (pressed === 'Enter' && event.target.tagName === 'BUTTON') return;

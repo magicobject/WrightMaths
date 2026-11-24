@@ -7,15 +7,15 @@ import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
 const PUBLIC = join(__dirname, '..', 'public');
 
 test.describe('the GCSE book stays hidden', () => {
-  test('only the Books page and the 404 page lead to the book; the sitemap and robots.txt never mention it', async ({ page }) => {
+  test('the main site links only to the Books page (menu and footer), never straight to the GCSE book; the sitemap and robots.txt never mention it', async ({ page }) => {
     for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
-      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to the book`).toHaveCount(0);
+      // Greg's decision (24 Nov 2026): Books is in the main menu (and so the footer); the GCSE book is one click further on.
+      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to more than the Books page`).toHaveCount(['/404.html', '/updates.html'].includes(sitePage.path) ? 3 : 2);
+      if (sitePage.path !== '/books/') {
+        await expect(page.locator('a[href*="gcse"]'), `${sitePage.path} links straight to the book`).toHaveCount(0);
+      }
     }
-    // Greg's decision (24 Nov 2026): the 404 page points at /books/, which points at the GCSE book.
-    await page.goto('/404.html');
-    await expect(page.locator('a[href*="books"]')).toHaveCount(1);
-    await expect(page.locator('a[href="books/"]')).toHaveCount(1);
     for (const file of ['sitemap.xml', 'robots.txt']) {
       expect(readFileSync(join(PUBLIC, file), 'utf8'), file).not.toMatch(/books/i);
     }
@@ -745,6 +745,10 @@ test.describe('the Books page', () => {
     await expect(page).toHaveTitle(/Maths Books/);
     await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
+    const alevel = page.locator('.card', { hasText: 'A Level Maths Book' });
+    await expect(alevel).toContainText('Coming soon');
+    await expect(alevel.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
     await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
     await expect(page).toHaveURL(/\/books\/gcse\/$/);
     const response = await page.goto('/this-page-does-not-exist.html');
@@ -963,12 +967,12 @@ test.describe('the calculator', () => {
         text: (q.querySelector('.qtext')?.textContent ?? '').slice(0, 60),
       })));
       for (const row of rows) {
-        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes';
+        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes' || row.marked === 'scientific';
         expect(row.has, `${bookPage.path}: "${row.text}" (tag "${row.tag}", data-calc "${row.marked}")`).toBe(allowed);
         if (row.has) withCalc += 1;
       }
     }
-    expect(withCalc).toBeGreaterThan(5);
+    expect(withCalc).toBeGreaterThan(50); // basic keypads plus the scientific ones on the trigonometry page
   });
 
   test('the diagnostic, which is no-calculator throughout, has no calculator button', async ({ page }) => {
@@ -1055,7 +1059,7 @@ test.describe('the calculator, small kindnesses', () => {
     await expect(expr).toHaveText('5');
     await key('Clear').click();
     await key('2').click(); await key('times').click(); await key('minus').click(); await key('3').click();
-    await expect(expr).toHaveText('2 × − 3');
+    await expect(expr).toHaveText('2 × −3');
     await key('equals').click();
     await expect(result).toHaveText('−6');
     await key('Clear').click();
@@ -1087,5 +1091,115 @@ test.describe('the calculator, from the tester\'s report', () => {
     await page.keyboard.press('Escape');
     await expect(q.locator('.calc')).toBeHidden();
     await expect(q.locator('.calc-toggle')).toBeFocused();
+  });
+});
+
+test.describe('the scientific calculator', () => {
+  const open = async (page: import('@playwright/test').Page, text: string) => {
+    await page.goto('/books/gcse/trigonometry.html');
+    const q = page.locator('.q', { hasText: text }).first();
+    await q.locator('.calc-toggle').click();
+    return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
+  };
+
+  test('trigonometry questions that need it get sin, cos, tan and the rest; no-calculator ones get nothing', async ({ page }) => {
+    const { panel, key } = await open(page, 'work out sin 40');
+    await expect(panel.locator('.calc-pad')).toHaveAttribute('data-cols', '5');
+    for (const name of ['sin, sine', 'cos, cosine', 'tan, tangent', 'sin⁻¹, inverse sine', 'cos⁻¹, inverse cosine', 'tan⁻¹, inverse tangent', 'π, pi', 'log, log base 10', 'ln, natural log', 'x³, cubed', 'cube root']) {
+      await expect(key(name), name).toBeVisible();
+    }
+    await key('sin, sine').click(); await key('4').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(40');
+    await expect(panel.locator('.calc-result')).toHaveText('0.6427876097');
+    await expect(panel.locator('.calc-mode')).toContainText('DEG');
+
+    await page.goto('/books/gcse/trigonometry.html');
+    for (const text of ['without a calculator', 'exact value of sin 30', 'What is the exact value of tan 60']) {
+      const q = page.locator('.q', { hasText: text }).first();
+      await expect(q, text).toBeVisible();
+      await expect(q.locator('.calc-toggle'), text).toHaveCount(0);
+    }
+  });
+
+  test('inverse keys show as sin⁻¹ and find angles; impossible ones say so; a minus works inside a bracket', async ({ page }) => {
+    const { panel, key } = await open(page, 'sin x = 0.5. Use your calculator');
+    await key('sin⁻¹, inverse sine').click(); await key('0').click(); await key('decimal point').click(); await key('5').click(); await key('equals').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('sin⁻¹(0.5');
+    await expect(panel.locator('.calc-result')).toHaveText('30');
+    await key('Clear').click();
+    await key('sin⁻¹, inverse sine').click(); await key('9').click(); await key('divide').click(); await key('6').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('Cannot work that out');
+    await key('Clear').click();
+    await key('sin, sine').click(); await key('minus').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('−0.5');
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(−30');
+  });
+
+  test('on a phone every scientific key is at least 44 pixels wide and tall and nothing sticks out of the page', async ({ page }) => {
+    for (const width of [320, 360]) {
+      await page.setViewportSize({ width, height: 900 });
+      const { q } = await open(page, 'work out sin 40');
+      const small = await q.locator('.calc-key').evaluateAll((keys) => keys
+        .map((k) => { const b = k.getBoundingClientRect(); return { label: k.textContent, w: Math.round(b.width), h: Math.round(b.height), right: Math.round(b.right) }; })
+        .filter((k) => k.w < 44 || k.h < 44));
+      expect(small, `keys under 44px at ${width}px`).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+  });
+
+  test('the scientific keypad has no axe violations', async ({ page }) => {
+    const { q } = await open(page, 'work out sin 40');
+    await page.keyboard.type('4*5=');
+    const results = await new (await import('@axe-core/playwright')).default({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    expect(results.violations.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
+    await expect(q.locator('.calc')).toBeVisible();
+  });
+});
+
+test.describe('the scientific calculator, from the second tester\'s report', () => {
+  const open = async (page: import('@playwright/test').Page, text: string) => {
+    await page.goto('/books/gcse/trigonometry.html');
+    const q = page.locator('.q', { hasText: text }).first();
+    await q.locator('.calc-toggle').click();
+    return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
+  };
+
+  test('typing a function name on the keyboard presses that key, so sin30 is never read as 30', async ({ page }) => {
+    const { panel } = await open(page, 'work out sin 40');
+    await page.keyboard.type('sin30)=');
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(30)');
+    await expect(panel.locator('.calc-result')).toHaveText('0.5');
+    await page.keyboard.press('Delete');
+    await page.keyboard.type('sin(30)-0.5=');
+    await expect(panel.locator('.calc-result')).toHaveText('0');
+    await page.keyboard.press('Delete');
+    await page.keyboard.type('pi*2=');
+    await expect(panel.locator('.calc-result')).toHaveText('6.283185307');
+  });
+
+  test('x10 continues from the last answer, and Ans can be followed by a function', async ({ page }) => {
+    const { panel, key } = await open(page, 'work out sin 40');
+    await key('2').click(); await key('plus').click(); await key('3').click(); await key('equals').click();
+    await key('×10ˣ, times ten to the power').click(); await key('2').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('Ans×10^(2');
+    await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('500');
+    await key('Clear').click();
+    await key('sin, sine').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await key('Clear').click();
+    await key('Ans, previous answer').click(); await key('sin, sine').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('0.25')  // Ans (0.5) times sin 30 (0.5);
+  });
+
+  test('no scientific key label is clipped at 320px, and multiple-choice questions with a keypad are only the listed ones', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 });
+    const { panel } = await open(page, 'work out sin 40');
+    const clipped = await panel.locator('.calc-key').evaluateAll((keys) => keys.filter((k) => k.scrollWidth > k.clientWidth + 1).map((k) => k.textContent));
+    expect(clipped).toEqual([]);
+    // Multiple-choice questions normally have no keypad. Maya's sin-1(9 / 6) question keeps one on purpose,
+    // so students can try the key and see the calculator's own error.
+    const withPad = await page.evaluate(() => [...document.querySelectorAll('.q[data-type="mc"]')].filter((q) => q.querySelector('.calc-toggle')).map((q) => q.querySelector('.qtext')?.textContent?.slice(0, 30)));
+    expect(withPad).toHaveLength(1);
+    expect(withPad[0]).toContain('Maya types');
   });
 });
