@@ -132,12 +132,15 @@ The voice does not read the page as written. `public/js/book-speech.mjs` turns t
 
 When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence for review.
 
-### Where recorded audio stands (pilot, 24 Nov 2026)
+### Recorded audio (whole book, 24 Nov 2026)
 
-Voice chosen by Greg: Piper `en_GB-alba-medium` (dataset licence CC BY 4.0, credited on the book hub page). The pilot covers two topics, shapes-and-angles and place value (107 sentences, about 6.6 MB as Ogg Vorbis at about 40 kbps). To make more:
+Voice chosen by Greg: Piper `en_GB-alba-medium` (dataset licence CC BY 4.0, credited on the book hub page). Every Listen sentence has a recording in `public/audio/book/` (Ogg Vorbis, about 40 kbps, named by a hash of the spoken text, listed in `manifest.json`).
 
-1. `npm run book:audio -- todo --pages=<topic>,<topic>` writes the sentences that still need a recording.
-2. `python scripts/piper-batch.py --voice <path to en_GB-alba-medium.onnx>` records them (about 0.3 seconds per sentence once the voice is loaded).
-3. `npm run book:audio -- manifest` updates `public/audio/book/manifest.json`.
+**After you edit book text**, the recordings of the sentences you changed stop matching (the browser voice reads those until they are re-recorded). To refresh them:
 
-If a recorded sentence is edited its recording stops matching and the browser voice reads it until it is recorded again; `npm run book:audio -- status` lists out-of-date recordings.
+1. `npm run build`, then `npm run book:audio -- status` (how many sentences have no recording, and how many recordings are out of date).
+2. `npm run book:audio -- todo` writes the sentences that still need a recording to `audio-work/script.json`.
+3. `python scripts/piper-batch.py --voice <path to en_GB-alba-medium.onnx>` records them (about 0.5 seconds a sentence). It needs `pip install piper-tts soundfile` and the voice from `python -m piper.download_voices en_GB-alba-medium`.
+4. `npm run book:audio -- prune` deletes recordings of sentences that no longer exist, then `npm run book:audio -- manifest` (prune does this too).
+
+Add `--pages=topic-a,topic-b` to `status`, `todo` and `make` to work on chosen pages only (not to `prune`).
