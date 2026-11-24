@@ -172,7 +172,8 @@
 .sym-btn{font:inherit;font-weight:700;min-width:44px;min-height:44px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
 .sym-btn:hover{background:var(--paper-dim);}
 .duck-typed summary{cursor:pointer;color:var(--navy);font-weight:700;min-height:44px;display:flex;align-items:center;}
-@media (max-width:640px){.q-live .q-form{position:sticky;bottom:0;background:var(--paper);padding:8px 0;z-index:5;}}
+@media (max-width:640px){.q-live:not(.q-correct) .q-form .sym-row{display:flex;}
+.q-live .q-form{position:sticky;bottom:0;background:var(--paper);padding:8px 0;z-index:5;}}
 .btn-check{background:var(--navy);color:var(--white);border:2px solid var(--navy);border-radius:999px;padding:9px 22px;font-weight:700;}
 .btn-check:hover{background:var(--navy-mid);}
 .btn-stuck{background:var(--white);color:var(--navy);border:2px dashed var(--navy-mid);border-radius:999px;padding:7px 18px;font-weight:700;font-size:.92rem;}
@@ -182,14 +183,14 @@
 .q-feedback.ok{color:var(--c-right);}
 .q-feedback.ok::before{content:"\2713\00a0";}
 .q-feedback.oops{color:var(--c-oops);}
-.q-feedback.oops::before{content:"\2717\00a0";}
+.q-feedback.oops::before{content:none;}
 .mc{display:grid;gap:8px;margin-bottom:6px;}
 .mc-option{text-align:left;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);border-radius:10px;padding:10px 14px;}
 .mc-option:hover{background:var(--paper-dim);}
 .mc-option.is-right{background:var(--t-right);border-color:var(--c-right);}
 .mc-option.is-right::after{content:"  \2713 correct";font-weight:700;color:var(--c-right);}
 .mc-option.is-wrong{background:var(--t-oops);border-color:var(--c-oops);}
-.mc-option.is-wrong::after{content:"  \2717 not this one";font-weight:700;color:var(--c-oops);}
+.mc-option.is-wrong::after{content:"  not this one";font-weight:700;color:var(--c-oops);}
 /* Hints are lettered A, B, C with a clear gap, so a hint that starts with a number is never mistaken for a list number (1. 2 + 5 looks like 1.2). */
 .rungs{margin:12px 0 0;padding:0;list-style:none;counter-reset:hint;color:var(--ink);}
 .rungs li{counter-increment:hint;position:relative;margin-bottom:10px;background:var(--t-term);border-radius:8px;padding:10px 14px 10px 4.6em;}
@@ -267,7 +268,11 @@
 /* ---------- reading options ---------- */
 .read-tools{max-width:800px;margin:0 auto;padding:6px 24px;}
 .read-tools summary{cursor:pointer;font-weight:700;color:var(--navy);padding:6px 0;}
-.read-row{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 10px;}
+.read-tools{box-sizing:border-box;max-width:100%;}
+.read-row{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 10px;max-width:100%;}
+.read-row > *{max-width:100%;}
+.read-row select{max-width:100%;}
+.read-row label{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
 .read-btn{font:inherit;font-size:.92rem;padding:6px 14px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);cursor:pointer;}
 .read-btn:hover{background:var(--paper-dim);}
 .read-btn[aria-pressed="true"]{background:var(--navy);color:var(--white);}
@@ -322,7 +327,7 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .fast-label{font-weight:700;color:var(--navy);}
 .fast-link,.fast-toggle{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;text-decoration:none;cursor:pointer;}
 .fast-toggle[aria-pressed="true"]{background:var(--navy);color:var(--white);}
-.fast-route-on details.recap,.fast-route-on section.ckw{display:none;}
+.fast-route-on details.recap,.fast-route-on section.ckw:not(.going-further),.fast-route-on section.warmup-sec{display:none;}
 .timed-panel{padding:18px 0;background:var(--paper-dim);}
 .timed-clock{font-size:1.6rem;font-weight:800;color:var(--navy);margin:10px 0 2px;}
 .timed-status{font-weight:700;margin:2px 0 10px;}
@@ -338,9 +343,9 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .toc li{margin-bottom:6px;break-inside:avoid;}
 .toc a{display:inline-block;padding:4px 0;min-height:32px;color:var(--navy);}
 .to-top{position:fixed;right:14px;bottom:14px;z-index:70;min-height:44px;min-width:44px;padding:0 16px;border:2px solid var(--navy);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer;}
-@media (max-width:640px){.to-top{bottom:84px;}}
+@media (max-width:640px){.to-top{bottom:150px;}}
 .q-feedback.ok::before{content:"\2713\00a0 ";}
-.q-feedback.oops::before{content:"\2717\00a0 ";}
+.q-feedback.oops::before{content:none;}
 .q-feedback.nearly::before{content:"\2248\00a0Nearly: ";font-weight:700;}
 .q-help{margin-top:12px;}
 .duck-note{font-size:.95rem;color:var(--ink);}
@@ -383,7 +388,7 @@ body :focus-visible{outline:3px solid #0f2440;outline-offset:2px;}
 footer li a{display:inline-block;padding:.45rem .25rem;}
 .g-tools input,.g-tools select{max-width:100%;box-sizing:border-box;}
 .q-feedback.ok::before{content:"\2713\00a0 ";content:"\2713\00a0 " / "";}
-.q-feedback.oops::before{content:"\2717\00a0 ";content:"\2717\00a0 " / "";}
+.q-feedback.oops::before{content:none;}
 .q-feedback.nearly::before{content:"\2248\00a0Nearly: ";content:"\2248\00a0Nearly: " / "";}
 /* ---------- glossary ---------- */
 .glossary .g-letter{padding:0;margin-top:28px;}
@@ -412,7 +417,9 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 /* ---------- print: everything open, no controls ---------- */
 @media print{
   .site-header,footer,.hero-actions,.q-form,.q-help,.btn,.g-tools,[data-reset-progress],.crumbs{display:none !important;}
-  .js .q .ladder,.js .q .solution{display:block !important;}
+  .js .q .ladder,.js .q .solution{display:none !important;}
+  .js .print-answers .q .solution{display:block !important;}
+  .fast-route,.toc,.to-top,.listen,.sym-row,.timed-panel{display:none !important;}
   .book section{padding:14px 0;}
   .q,.worked,.key{box-shadow:none;break-inside:avoid;}
   .term{background:none;}

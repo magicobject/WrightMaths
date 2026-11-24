@@ -40,10 +40,10 @@ export const TOPICS = [
   // What the pilot topics unlock (planned).
   { id: 'percentages', title: 'Percentages', strand: 'n', tier: 'F', status: 'live', needs: ['fractions'], flip: 'Percentage increase, and reverse percentages', words: ['percentage','multiplier','reverse-percentage','decimal'] },
   { id: 'ratio', title: 'Ratio', strand: 'r', tier: 'F', status: 'live', needs: ['fractions'], flip: 'Sharing in a ratio, and finding the total from one share', words: ['ratio','proportion','unitary-method','best-buy'] },
-  { id: 'rearranging-formulae', title: 'Rearranging formulae', strand: 'a', tier: 'F', status: 'live', needs: ['solving-equations'], flip: 'Substituting into a formula, and making a different letter the subject', words: ['formula','subject','substitute','inverse-operation'] },
+  { id: 'rearranging-formulae', title: 'Rearranging formulae', strand: 'a', tier: 'F', status: 'live', needs: ['solving-equations', 'fractions'], flip: 'Substituting into a formula, and making a different letter the subject', words: ['formula','subject','substitute','inverse-operation'] },
   { id: 'simultaneous-equations', title: 'Simultaneous equations', strand: 'a', tier: 'F', status: 'live', needs: ['solving-equations'], flip: 'Solving, and checking the answer in both equations', words: ['simultaneous-equations','elimination','substitute','unknown'] },
   { id: 'quadratic-equations', title: 'Quadratic equations', strand: 'a', tier: 'H', status: 'live', needs: ['solving-equations', 'squares-roots'], flip: 'Factorising and expanding', words: ['quadratic','expand','factorise','root-of-equation'] },
-  { id: 'trigonometry', title: 'Trigonometry', strand: 'g', tier: 'F', status: 'live', needs: ['pythagoras', 'ratio'], flip: 'Finding a side, and finding an angle', words: ['hypotenuse','opposite','adjacent','soh-cah-toa'] },
+  { id: 'trigonometry', title: 'Trigonometry', strand: 'g', tier: 'F', status: 'live', needs: ['pythagoras', 'ratio', 'rearranging-formulae'], flip: 'Finding a side, and finding an angle', words: ['hypotenuse','opposite','adjacent','soh-cah-toa'] },
   { id: 'percentage-change', title: 'Repeated percentage change', strand: 'r', tier: 'H', status: 'live', needs: ['percentages'], flip: 'Growth and depreciation, and working back to the start', words: ['compound-interest','multiplier','depreciation','percentage-change'] },
 
   // Next up (planned): the topics that stand on the ones above.

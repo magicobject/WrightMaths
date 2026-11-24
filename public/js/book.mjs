@@ -4,7 +4,7 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList, diagnose } from './book-answer.mjs';
+import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
 import { review, isDue, sanitize } from './book-queue.mjs';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
 import { toSpoken, splitSentences } from './book-speech.mjs';
@@ -15,9 +15,9 @@ const REVIEW = isReviewMode(window.location.search);
 const STORE_KEY = 'wm-gcse-v1';
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
 const NUDGES = [
-  'Close, but not yet. Have another go.',
+  'Not this one yet. Have another go.',
   'Not yet. A clue is there if you want one.',
-  'Still not there. Try a clue, or say it out loud to the duck: that often shows what is wrong.',
+  'A clue might help, or say it out loud to the duck: that often shows what is wrong.',
 ];
 
 // ---------- saved progress ----------
@@ -27,9 +27,19 @@ function load() {
     const raw = window.localStorage.getItem(STORE_KEY);
     const data = raw ? JSON.parse(raw) : null;
     const plain = (o) => (o && typeof o === 'object' && !Array.isArray(o) ? o : {});
-    if (data && typeof data === 'object') return { done: plain(data.done), ticks: plain(data.ticks), days: Array.isArray(data.days) ? data.days : [], rq: sanitize(data.rq), diag: Array.isArray(data.diag) ? data.diag.filter((r) => r && Number.isFinite(r.score) && Number.isFinite(r.total) && r.total > 0).slice(-20) : [] };
+    if (data && typeof data === 'object') return { done: plain(data.done), ticks: plain(data.ticks), days: Array.isArray(data.days) ? data.days : [], rq: sanitize(data.rq), diag: Array.isArray(data.diag) ? data.diag.filter((r) => r && Number.isFinite(r.score) && Number.isFinite(r.total) && r.total > 0).slice(-20) : [], marks: cleanMarks(data.marks) };
   } catch { /* storage unavailable: carry on without saving */ }
-  return { done: {}, ticks: {}, days: [], rq: {}, diag: [] };
+  return { done: {}, ticks: {}, days: [], rq: {}, diag: [], marks: {} };
+}
+
+// Marks you gave yourself on mark schemes: { questionId: [earned, available] }. Plain numbers only.
+function cleanMarks(raw) {
+  const out = {};
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out;
+  for (const [k, v] of Object.entries(raw)) {
+    if (/^[a-z0-9-]{1,60}$/.test(k) && Array.isArray(v) && v.length === 2 && v.every(Number.isFinite) && v[1] > 0 && v[1] <= 20 && v[0] >= 0 && v[0] <= v[1]) out[k] = [v[0], v[1]];
+  }
+  return out;
 }
 
 let store = load();
@@ -186,7 +196,7 @@ export function enhanceQuestion(q, index) {
       helpBtn.dataset.final = '1';
       if (!solution || solved) helpBtn.disabled = true;
     } else {
-      helpBtn.textContent = 'Another clue';
+      helpBtn.textContent = typeof rungs[rungsShown] === 'string' && rungs[rungsShown].startsWith('Still stuck') ? 'Who could help?' : 'Another clue';
     }
   }
 
@@ -215,6 +225,8 @@ export function enhanceQuestion(q, index) {
     });
     const update = () => {
       const n = boxes.filter((x) => x.checked).length;
+      store.marks[qid] = [n, items.length];
+      save();
       total.textContent = `Marks: ${n} of ${items.length}.${n === items.length ? ' Full marks!' : n >= items.length - 1 ? ' So close: look at the mark you missed.' : ''}`;
       if (n === items.length && !solved) {
         solved = true;
@@ -240,6 +252,7 @@ export function enhanceQuestion(q, index) {
   function success() {
     solved = true;
     q.classList.add('q-correct');
+    q.dispatchEvent(new CustomEvent('wm-solved', { bubbles: true }));
     say('q-feedback ok', `${CHEERS[hashOf(qid) % CHEERS.length]} The worked solution is below.`);
     showSolution();
     markDone(qid, wrongCount === 0 && rungsShown === 0);
@@ -306,7 +319,9 @@ export function enhanceQuestion(q, index) {
       ...(numeric ? { inputmode: 'decimal' } : {}),
     });
     const symbols = el('div', { class: 'sym-row', role: 'group', 'aria-label': 'Symbol keys' });
-    for (const [ch, name] of [['-', 'minus'], ['/', 'fraction bar'], ['.', 'decimal point'], ['%', 'percent']]) {
+    const symbolList = [['-', 'minus'], ['/', 'fraction bar'], ['.', 'decimal point'], ['%', 'percent']];
+    if (answers.some((a) => a.includes('^'))) symbolList.push(['^', 'power']);
+    for (const [ch, name] of symbolList) {
       const b = el('button', { type: 'button', class: 'sym-btn', text: ch, 'aria-label': `Type ${name}` });
       b.addEventListener('mousedown', (e) => e.preventDefault());
       b.addEventListener('click', () => {
@@ -342,7 +357,7 @@ export function enhanceQuestion(q, index) {
       } else if (specific) {
         failure(null, specific.message);
       } else {
-        failure(mode === 'value' ? diagnose(value, answers) : null);
+        failure(feedbackFor(value, answers));
       }
     });
     (q.querySelector(':scope > .qfig') ?? text ?? q).after(form);
@@ -370,7 +385,7 @@ function updateProgress() {
     line.innerHTML = '';
     const bar = el('span', { class: 'bar', role: 'img', 'aria-label': `${got} of ${qs.length} questions finished` });
     bar.append(el('span', { class: 'bar-fill', style: `width:${qs.length ? Math.round((got / qs.length) * 100) : 0}%` }));
-    line.append(bar, el('span', { text: ` You have finished ${got} of ${qs.length} questions on this page. No rush.` }));
+    line.append(bar, el('span', { text: ` You have finished ${got} ${got === 1 ? 'question' : 'questions'} on this page.` }));
   }
   for (const node of document.querySelectorAll('[data-progress-for]')) {
     const id = node.dataset.progressFor;
@@ -666,19 +681,32 @@ function initToc(main, after) {
 // A short bar for students who already know the basics: jump to the hard parts, or fold away the recaps and check sets.
 function addFastRoute(main, after) {
   const find = (re) => [...main.querySelectorAll('section h2')].find((h) => re.test(h.textContent));
+  find(/^Going further/i)?.closest('section')?.classList.add('going-further');
+  find(/^Warm-up/i)?.closest('section')?.classList.add('warmup-sec');
   const bar = el('div', { class: 'fast-route', role: 'group', 'aria-label': 'Fast route for confident students' });
   bar.append(el('span', { class: 'fast-label', text: 'Know the basics?' }));
   for (const [re, label] of [[/^Exam style/i, 'Jump to exam style'], [/^Going further/i, 'Jump to going further'], [/^I can/i, 'Jump to the checklist']]) {
     const h = find(re);
     if (h && h.id) bar.append(el('a', { href: `#${h.id}`, class: 'fast-link', text: label }));
   }
-  const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Hide recaps and check sets' });
+  const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Show only the harder parts' });
   toggle.addEventListener('click', () => {
     const on = main.classList.toggle('fast-route-on');
     toggle.setAttribute('aria-pressed', String(on));
-    toggle.textContent = on ? 'Show recaps and check sets again' : 'Hide recaps and check sets';
+    toggle.textContent = on ? 'Show everything again' : 'Show only the harder parts';
   });
   bar.append(toggle);
+  // Printing: questions only (a worksheet) or with the worked answers.
+  for (const [label, withAnswers] of [['Print questions only', false], ['Print with answers', true]]) {
+    const btn = el('button', { type: 'button', class: 'fast-toggle', text: label });
+    btn.addEventListener('click', () => {
+      main.classList.toggle('print-answers', withAnswers);
+      const done = () => { main.classList.remove('print-answers'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
+    bar.append(btn);
+  }
   after.after(bar);
 }
 
@@ -689,6 +717,15 @@ function addFastRoute(main, after) {
 function spokenText(node) {
   const clone = node.cloneNode(true);
   clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
+  clone.querySelectorAll('.frac').forEach((f) => {
+    const top = f.querySelector('.fn')?.textContent ?? '';
+    const bottom = f.querySelector('.fd')?.textContent ?? '';
+    f.replaceWith(` the fraction ${top} over ${bottom}, `);
+  });
+  clone.querySelectorAll('sup').forEach((s) => {
+    const p = s.textContent.trim();
+    s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
+  });
   return toSpoken(clone.textContent);
 }
 
@@ -772,10 +809,19 @@ async function startPractice() {
       enhanceQuestion(q, i);
     });
     addListenButtons(setBox);
+    stopBtn.hidden = false;
     const n = store.days.length;
     const ready = due.length;
     status.textContent = `Five questions, mixed up. ${ready > 0 ? `${ready} ${ready === 1 ? 'question is' : 'questions are'} ready to revisit, and some are in this set. ` : ''}You have practised on ${n} ${n === 1 ? 'day' : 'days'} so far.`;
   };
+  const stopBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Stop for today' });
+  stopBtn.hidden = true;
+  stopBtn.addEventListener('click', () => { status.textContent = 'Done for today. What you finished is saved on this device. See you next time.'; stopBtn.hidden = true; });
+  status.after(stopBtn);
+  setBox.addEventListener('wm-solved', () => {
+    const all = setBox.querySelectorAll('.q');
+    if (all.length > 0 && setBox.querySelectorAll('.q-correct').length === all.length) status.textContent = 'That is your five. Stop here, or press the button for five more.';
+  });
   root.querySelector('[data-practice-new]')?.addEventListener('click', deal);
   boxes.forEach((b) => b.addEventListener('change', () => { status.textContent = 'Press the button for new questions.'; }));
   await deal();
@@ -805,7 +851,7 @@ function startDiagnostic() {
     const values = items.map((d) => d.querySelector('input').value);
     try { window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(values.map((v) => v.slice(0, 60)))); } catch { /* storage may be unavailable */ }
     const n = values.filter((v) => v.trim() !== '').length;
-    progress.textContent = `${n} of ${items.length} answered. Leave any you do not know: that is how we find your first topics.`;
+    progress.textContent = n === 0 ? 'Answer what you can. Leave any you do not know: that is how we find your first topics.' : 'Saved while you work. Leave any you do not know.';
   };
   const draft = readDraft();
   items.forEach((d, i) => {
@@ -846,18 +892,31 @@ function startDiagnostic() {
     save();
     try { window.sessionStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
     results.replaceChildren();
-    results.append(el('h2', { text: `You already have ${score} of ${items.length} foundations` }));
+    results.append(el('h2', { text: score === items.length ? 'Your foundations look secure' : 'Where to start' }));
     if (wrong.length === 0) {
       results.append(el('p', { text: 'Nothing to fix here. Try the Higher-tier extras or Give me five.' }));
     } else {
       results.append(el('p', { text: 'Start at the top of this list. Lower topics come first because the later ones stand on them.' }));
+      const sorted = wrong.sort((a, b) => a.layer - b.layer);
       const ol = el('ol', { class: 'diag-start' });
-      for (const w of wrong.sort((a, b) => a.layer - b.layer)) {
+      for (const w of sorted.slice(0, 3)) {
         const li = el('li');
         li.append(el('a', { href: `${w.topic}.html`, text: w.title }));
         ol.append(li);
       }
       results.append(ol);
+      if (sorted.length > 3) {
+        const more = el('details', { class: 'diag-more' });
+        more.append(el('summary', { text: 'Other things to look at later' }));
+        const ul2 = el('ul');
+        for (const w of sorted.slice(3)) {
+          const li = el('li');
+          li.append(el('a', { href: `${w.topic}.html`, text: w.title }));
+          ul2.append(li);
+        }
+        more.append(ul2);
+        results.append(more);
+      }
     }
     const details = el('details', { class: 'diag-answers' });
     details.append(el('summary', { text: 'See my answers' }));
@@ -874,6 +933,33 @@ function startDiagnostic() {
   });
 }
 
+// ---------- my marks (hub) ----------
+// A plain list of where the marks you gave yourself were lost, lowest first. Stays on this device.
+
+function showMarksSummary() {
+  const root = document.querySelector('[data-marks-summary]');
+  if (!root) return;
+  const byTopic = new Map();
+  for (const [qid, [earned, total]] of Object.entries(store.marks)) {
+    const topic = qid.replace(/-\d+$/, '');
+    const row = byTopic.get(topic) ?? { earned: 0, total: 0 };
+    row.earned += earned;
+    row.total += total;
+    byTopic.set(topic, row);
+  }
+  if (byTopic.size === 0) return;
+  const list = root.querySelector('[data-marks-list]');
+  const rows = [...byTopic.entries()].sort((a, b) => a[1].earned / a[1].total - b[1].earned / b[1].total);
+  list.replaceChildren();
+  for (const [topic, r] of rows) {
+    const title = document.querySelector(`.pyr-node a[href="${topic}.html"]`)?.textContent?.trim() || (topic === 'stretch' ? 'Stretch papers' : topic);
+    const li = el('li');
+    li.append(el('a', { href: topic === 'stretch' ? 'stretch.html' : `${topic}.html`, text: title }), ` ${r.earned} of ${r.total} marks (${Math.round((r.earned / r.total) * 100)}%)`);
+    list.append(li);
+  }
+  root.hidden = false;
+}
+
 // ---------- start-up ----------
 
 // ---------- timed set (stretch papers) ----------
@@ -887,12 +973,15 @@ function startTimed() {
   const wrap = el('div', { class: 'wrap narrow' });
   const startBtn = el('button', { type: 'button', class: 'btn btn-navy', text: 'Start a timed set (5 questions)' });
   const clock = el('p', { class: 'timed-clock', role: 'timer', 'aria-live': 'off' });
+  const clockBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Hide the clock' });
+  clockBtn.hidden = true;
+  clockBtn.addEventListener('click', () => { clock.hidden = !clock.hidden; clockBtn.textContent = clock.hidden ? 'Show the clock' : 'Hide the clock'; });
   const status = el('p', { class: 'timed-status', role: 'status', 'aria-live': 'polite' });
   const finishBtn = el('button', { type: 'button', class: 'btn btn-gold', text: 'Finish and mark my answers' });
   const leaveBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Back to all questions' });
   finishBtn.hidden = true;
   leaveBtn.hidden = true;
-  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), startBtn, clock, status, finishBtn, leaveBtn);
+  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), startBtn, clock, clockBtn, status, finishBtn, leaveBtn);
   panel.append(wrap);
   main.querySelector('.key')?.closest('section')?.after(panel);
   let timer = null;
@@ -923,6 +1012,7 @@ function startTimed() {
     startBtn.hidden = true;
     leaveBtn.hidden = false;
     finishBtn.hidden = false;
+    clockBtn.hidden = false;
     status.textContent = `${chosen.length} questions, ${minutes} minutes. Good luck.`;
     const paint = () => { clock.textContent = `Time left: ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; };
     paint();
@@ -952,6 +1042,8 @@ function startTimed() {
     startBtn.hidden = false;
     leaveBtn.hidden = true;
     finishBtn.hidden = true;
+    clockBtn.hidden = true;
+    clock.hidden = false;
   });
 }
 
@@ -963,13 +1055,14 @@ function start() {
   startPractice().catch((e) => console.error('practice failed', e));
   startDiagnostic();
   startTimed();
+  showMarksSummary();
   enhanceChecklists();
   enhanceTerms();
   enhanceGlossary();
   updateProgress();
   document.querySelector('[data-reset-progress]')?.addEventListener('click', () => {
     if (window.confirm('Clear all your saved ticks and answers on this device?')) {
-      store = { done: {}, ticks: {}, days: [], rq: {}, diag: [] };
+      store = { done: {}, ticks: {}, days: [], rq: {}, diag: [], marks: {} };
       save();
       try { window.localStorage.removeItem(READ_KEY); } catch { /* storage may be unavailable */ }
       window.location.reload();

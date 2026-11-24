@@ -16,6 +16,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">GCSE Maths Book</a> <span aria-hidden="true">/</span> <span>Quadratic equations</span></nav>
     {prereqs}
     {words}
+    <div class="key"><p>This page teaches expanding brackets and factorising as it goes, so you do not need them first. It does assume you can rearrange an equation and use square roots, which come from the earlier pages.</p></div>
   </div>
 </section>
 
@@ -435,7 +436,7 @@
       <p><b>Key idea:</b> if x&sup2; = k (and k is positive), then x = &radic;k or x = &minus;&radic;k. We write x = &plusmn;&radic;k, which is read &ldquo;plus or minus the square root of k&rdquo;. A square is never negative, so x&sup2; = &minus;9 has no solutions.</p>
     </div>
     <p>It matches factorising. x&sup2; &minus; 25 = 0 is (x &minus; 5)(x + 5) = 0, which gives x = 5 or x = &minus;5. That is the difference of two squares again.</p>
-    <p>If k is not a square number, the roots do not come out whole. Use your calculator and round as asked: x&sup2; = 20 gives x = &plusmn;4.47&hellip; = &plusmn;4.5 to 1 decimal place.</p>
+    <p>If k is not a square number, the roots do not come out whole. Use your calculator and round as asked: x&sup2; = 20 gives x = &plusmn;4.47&hellip; &asymp; &plusmn;4.5 to 1 decimal place.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Solve 2x&sup2; = 50.</p>
@@ -843,43 +844,84 @@
     <p class="muted">Use these like a real paper: no calculator. The marks tell you how much to write.</p>
     <p class="muted">Not sure what a question word means? <a href="command-words.html">Question words explained</a>.</p>
     <p class="muted">Write your working on paper, then type the answer.</p>
-    <div class="q" data-answers="-8 and 6;-8,6;-8 or 6;6 and -8;6,-8;6 or -8" data-mode="exact">
+    <div class="q" data-answers="-8 and 6;-8,6;-8 or 6;6 and -8;6,-8;6 or -8" data-mode="exact" data-marks="3">
       <p class="qtext">[3 marks] Solve x&sup2; + 2x = 48. Type both answers with &ldquo;and&rdquo; between them, smaller first, like &minus;1 and 8.</p>
       <ol class="ladder"><li>The marks tell you the steps: rearrange, factorise, solve.</li><li>Get 0 on one side first.</li><li>Two numbers that multiply to &minus;48 and add to 2.</li></ol>
       <ul class="wrong"><li data-if="-6 and 8;-6,8;-6 or 8;8 and -6;8,-6;8 or -6">You flipped the signs. (x &minus; 6) = 0 gives x = +6.</li><li data-if="6;-8">You found only one solution. A quadratic like this has two.</li></ul>
-      <div class="solution"><p>M1: rearrange to x&sup2; + 2x &minus; 48 = 0. M1: factorise (x + 8)(x &minus; 6) = 0. A1: x = &minus;8 and x = 6. Check: 64 &minus; 16 &minus; 48 = 0 and 36 + 12 &minus; 48 = 0.</p></div>
+      <div class="solution">
+        <p>Rearrange to x&sup2; + 2x &minus; 48 = 0. Factorise (x + 8)(x &minus; 6) = 0. So x = &minus;8 and x = 6. Check: 64 &minus; 16 &minus; 48 = 0 and 36 + 12 &minus; 48 = 0.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for rearranging to x&sup2; + 2x &minus; 48 = 0</li>
+          <li><b>M1</b> for factorising: (x + 8)(x &minus; 6) = 0</li>
+          <li><b>A1</b> for x = &minus;8 and x = 6</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="x^2+5x-14;x&sup2;+5x-14;-14+5x+x^2;-14+5x+x&sup2;" data-mode="exact">
+    <div class="q" data-answers="x^2+5x-14;x&sup2;+5x-14;-14+5x+x^2;-14+5x+x&sup2;" data-mode="exact" data-marks="2">
       <ul class="facts"><li>A rectangular patio has length (x + 7) m and width (x &minus; 2) m.</li><li>The area of the patio is 36 m&sup2;.</li></ul>
       <p class="qtext"><b>(a)</b> [2 marks] Expand and simplify (x + 7)(x &minus; 2). Type it like x^2+3x-10.</p>
       <figure class="figure qfig"><svg viewBox="0 0 236 126" role="img" aria-labelledby="qe9-t qe9-d" class="geo-svg"><title id="qe9-t">A patio x+7 by x&minus;2</title><desc id="qe9-d">A rectangle with length x plus 7 metres and width x minus 2 metres. Its area is 36 square metres.</desc><rect x="56" y="30" width="160" height="70" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" style="font-size:14px" x="136" y="20" text-anchor="middle">x + 7</text><text class="svg-t" style="font-size:14px" x="48" y="70" text-anchor="end">x &minus; 2</text><text class="svg-t" style="font-size:14px" x="136" y="70" text-anchor="middle">36 m&sup2;</text><text class="svg-t" style="font-size:11px" x="56" y="120" text-anchor="start">Not drawn to scale</text></svg></figure>
       <ol class="ladder"><li>Four pieces: x&sup2;, &minus;2x, 7x and &minus;14.</li><li>Join the like terms.</li></ol>
       <ul class="wrong"><li data-if="x^2+9x-14;x&sup2;+9x-14">The x pieces are 7x and &minus;2x. They make 5x.</li><li data-if="x^2+5x+14;x&sup2;+5x+14">7 &times; (&minus;2) = &minus;14. The last term is negative.</li></ul>
-      <div class="solution"><p>M1: four correct pieces x&sup2; &minus; 2x + 7x &minus; 14. A1: x&sup2; + 5x &minus; 14.</p></div>
+      <div class="solution">
+        <p>Four correct pieces: x&sup2; &minus; 2x + 7x &minus; 14. Collect like terms: x&sup2; + 5x &minus; 14.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for four correct pieces: x&sup2; &minus; 2x + 7x &minus; 14</li>
+          <li><b>A1</b> for x&sup2; + 5x &minus; 14</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="5" data-mode="value">
+    <div class="q" data-answers="5" data-mode="value" data-marks="3">
       <p class="qtext"><b>(b)</b> [3 marks] The area is 36 m&sup2;. Use your answer to (a) to find x.</p>
       <ol class="ladder"><li>Set your expression from (a) equal to 36.</li><li>Rearrange to equal 0, factorise, and decide which solution makes sense.</li></ol>
       <ul class="wrong"><li data-if="-10">x = &minus;10 solves the equation but gives a negative width. Use the other solution.</li><li data-if="3">That is the width, x &minus; 2. The question asks for x.</li></ul>
-      <div class="solution"><p>M1: x&sup2; + 5x &minus; 14 = 36, so x&sup2; + 5x &minus; 50 = 0. M1: (x + 10)(x &minus; 5) = 0. A1: x = 5 (x = &minus;10 gives a negative width). Check: 12 &times; 3 = 36.</p></div>
+      <div class="solution">
+        <p>x&sup2; + 5x &minus; 14 = 36, so x&sup2; + 5x &minus; 50 = 0. Then (x + 10)(x &minus; 5) = 0, so x = 5 (x = &minus;10 gives a negative width). Check: 12 &times; 3 = 36.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for x&sup2; + 5x &minus; 14 = 36, rearranged to x&sup2; + 5x &minus; 50 = 0</li>
+          <li><b>M1</b> for factorising: (x + 10)(x &minus; 5) = 0</li>
+          <li><b>A1</b> for x = 5, rejecting x = &minus;10 because a width cannot be negative</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="30" data-mode="value">
+    <div class="q" data-answers="30" data-mode="value" data-marks="2">
       <p class="qtext"><b>(c)</b> [2 marks] Work out the perimeter of the patio, in m.</p>
       <ol class="ladder"><li>Use x = 5 to find the length and the width.</li><li>Perimeter is twice (length + width).</li></ol>
       <ul class="wrong"><li data-if="36">That is the area. The perimeter is the distance round the outside.</li><li data-if="15">That is length + width. The perimeter goes all the way round: double it.</li></ul>
-      <div class="solution"><p>M1: length 5 + 7 = 12, width 5 &minus; 2 = 3. A1: perimeter = 2 &times; (12 + 3) = 30 m.</p></div>
+      <div class="solution">
+        <p>Length 5 + 7 = 12 and width 5 &minus; 2 = 3, so the perimeter = 2 &times; (12 + 3) = 30 m.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for length 5 + 7 = 12 and width 5 &minus; 2 = 3</li>
+          <li><b>A1</b> for 2 &times; (12 + 3) = 30</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="6" data-mode="value">
+    <div class="q" data-answers="6" data-mode="value" data-marks="4">
       <p class="qtext">[4 marks] The sum of the squares of two consecutive positive integers is 85. Find the smaller integer.</p>
       <ol class="ladder"><li>Call the integers n and n + 1.</li><li>Write n&sup2; + (n + 1)&sup2; = 85 and expand the bracket.</li><li>Rearrange to equal 0, then factorise.</li></ol>
       <ul class="wrong"><li data-if="7">That is the larger integer. The question asks for the smaller one.</li><li data-if="-7">The integers must be positive, so use the other solution.</li></ul>
-      <div class="solution"><p>M1: n&sup2; + (n + 1)&sup2; = 85. M1: 2n&sup2; + 2n &minus; 84 = 0, so n&sup2; + n &minus; 42 = 0. M1: (n + 7)(n &minus; 6) = 0. A1: n = 6 (positive), so the integers are 6 and 7. Check: 36 + 49 = 85.</p></div>
+      <div class="solution">
+        <p>n&sup2; + (n + 1)&sup2; = 85. Expand: 2n&sup2; + 2n &minus; 84 = 0, so n&sup2; + n &minus; 42 = 0. Factorise: (n + 7)(n &minus; 6) = 0. So n = 6 (positive), and the integers are 6 and 7. Check: 36 + 49 = 85.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for n&sup2; + (n + 1)&sup2; = 85</li>
+          <li><b>M1</b> for 2n&sup2; + 2n &minus; 84 = 0, so n&sup2; + n &minus; 42 = 0</li>
+          <li><b>M1</b> for factorising: (n + 7)(n &minus; 6) = 0</li>
+          <li><b>A1</b> for n = 6 (positive)</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-answers="4600" data-mode="value">
+    <div class="q" data-answers="4600" data-mode="value" data-marks="3">
       <p class="qtext">[3 marks] Work out 73&sup2; &minus; 27&sup2; without a calculator. Hint: it is a difference of two squares.</p>
       <ol class="ladder"><li>A&sup2; &minus; B&sup2; = (A + B)(A &minus; B).</li><li>Here A = 73 and B = 27.</li></ol>
       <ul class="wrong"><li data-if="46">That is 73 &minus; 27, one of the two brackets. Multiply by the other bracket.</li><li data-if="100">That is 73 + 27, one of the two brackets. Multiply by the other bracket.</li></ul>
-      <div class="solution"><p>M1: 73&sup2; &minus; 27&sup2; = (73 + 27)(73 &minus; 27). M1: 100 &times; 46. A1: 4600.</p></div>
+      <div class="solution">
+        <p>73&sup2; &minus; 27&sup2; = (73 + 27)(73 &minus; 27) = 100 &times; 46 = 4600.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for (73 + 27)(73 &minus; 27)</li>
+          <li><b>M1</b> for 100 &times; 46</li>
+          <li><b>A1</b> for 4600</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -996,6 +1038,22 @@
       <ol class="ladder"><li>The curve is at height 0 where it meets the x-axis. That is where y = 0.</li><li>Factorise x&sup2; &minus; 2x &minus; 8: two numbers that multiply to &minus;8 and add to &minus;2.</li></ol>
       <ul class="wrong"><li data-if="2 and -4;2,-4;2 or -4;-4 and 2;-4,2;-4 or 2">You flipped the signs. (x + 2) = 0 gives x = &minus;2.</li></ul>
       <div class="solution"><p>(x + 2)(x &minus; 4) = 0, so x = &minus;2 or x = 4. Look at the picture: the curve crosses the x-axis once left of the y-axis and once on the right, matching these two answers.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve x<sup>4</sup> &minus; 13x&sup2; + 36 = 0. There are four solutions. What do the positive ones add up to?</p>
+      <ol class="ladder"><li>The equation has x<sup>4</sup> and x&sup2; but nothing in between. Notice that x<sup>4</sup> = (x&sup2;)&sup2;. What would the equation look like if you wrote u in place of x&sup2;?</li><li>Solve the quadratic in u by factorising. Then remember that u stands for x&sup2;, so you must take square roots.</li><li>You should find two values of u. Each gives two values of x, one positive and one negative. Add up only the positive ones.</li></ol>
+      <ul class="wrong"><li data-if="13">That is 4 + 9, the values of u. They are x&sup2; values: take square roots.</li><li data-if="0">That adds all four solutions, so the positive and negative ones cancel. Add only the positive ones.</li></ul>
+      <div class="solution"><p>Let u = x&sup2;. Then u&sup2; &minus; 13u + 36 = 0, so (u &minus; 4)(u &minus; 9) = 0 and u = 4 or u = 9. Then x&sup2; = 4 gives x = 2 or &minus;2, and x&sup2; = 9 gives x = 3 or &minus;3. The positive solutions are 2 and 3, and 2 + 3 = 5. Check x = 2: 16 &minus; 52 + 36 = 0.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student solves x&sup2; &minus; 5x + 6 = 12. Line 1: (x &minus; 2)(x &minus; 3) = 12. Line 2: so x &minus; 2 = 12 or x &minus; 3 = 12. Line 3: x = 14 or x = 15. Which sentence names the flaw?</p>
+      <ul class="options">
+        <li data-correct>Line 2 only works when the product is 0, so 12 must be moved across first.</li>
+        <li data-why="It does: &minus;2 &times; &minus;3 = 6 and &minus;2 + &minus;3 = &minus;5, so (x &minus; 2)(x &minus; 3) = x&sup2; &minus; 5x + 6 is right.">Line 1 is wrong because x&sup2; &minus; 5x + 6 cannot be factorised.</li>
+        <li data-why="Nothing needs both brackets to equal 12, and for a product of 12 the brackets could be 3 and 4, 2 and 6 and so on. The real problem is that the right-hand side is not 0.">Line 3 is wrong because both brackets have to equal 12 at once, not just one of them.</li>
+      </ul>
+      <ol class="ladder"><li>Try x = 14 in the original equation. Does it work?</li><li>Which number on the right-hand side lets you say one of the brackets must be that number?</li></ol>
+      <div class="solution"><p>Line 2 only works when the product is 0, so 12 must be moved across first. Rearranging: x&sup2; &minus; 5x &minus; 6 = 0, so (x &minus; 6)(x + 1) = 0 and x = 6 or x = &minus;1. Check x = 6: 36 &minus; 30 + 6 = 12. Check x = 14: 196 &minus; 70 + 6 = 132, not 12.</p></div>
     </div>
   </div>
 </section>

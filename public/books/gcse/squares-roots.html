@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Squares and square roots. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/squares-roots.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.015">
-<script src="../../js/book-boot.js?v=2026.11.24.015"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.018">
+<script src="../../js/book-boot.js?v=2026.11.24.018"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.015">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.018">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -280,7 +280,7 @@
       <p class="qtext">Use a calculator to find &radic;30 to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>It should be between 5 and 6, because 25 &lt; 30 &lt; 36.</li></ol>
       <ul class="wrong"><li data-if="5.4">The next digit is 7 which rounds up. &radic;30 = 5.477&hellip;</li><li data-if="15">That is 30 &divide; 2.</li></ul>
-      <div class="solution"><p>&radic;30 = 5.477&hellip; = 5.5 (1 d.p.).</p></div>
+      <div class="solution"><p>&radic;30 = 5.477&hellip; &asymp; 5.5 (1 d.p.).</p></div>
     </div>
     <div class="q" data-qid="squares-roots-17" data-type="mc">
       <p class="qtext">Which is closest to &radic;40?</p>
@@ -296,7 +296,7 @@
       <p class="qtext">Use a calculator to find &radic;70 to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>It is between 8 and 9 because 64 &lt; 70 &lt; 81.</li></ol>
       <ul class="wrong"><li data-if="8.3">8.366&hellip; rounds up to 8.4 (the digit after is 6).</li><li data-if="35">That is 70 &divide; 2.</li></ul>
-      <div class="solution"><p>&radic;70 = 8.366&hellip; = 8.4 (1 d.p.).</p></div>
+      <div class="solution"><p>&radic;70 = 8.366&hellip; &asymp; 8.4 (1 d.p.).</p></div>
     </div>
   </div>
 </section>
@@ -521,24 +521,42 @@
   <div class="wrap narrow">
     <h2 id="s-exam-style">Exam style</h2>
     <p class="muted">No calculator for (a) and (b).</p>
-    <div class="q" data-qid="squares-roots-40" data-answers="48" data-mode="value">
+    <div class="q" data-qid="squares-roots-40" data-answers="48" data-mode="value" data-marks="2">
       <p class="qtext"><b>(a)</b> [2 marks] A square garden has an <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">area</a> of 144 m&sup2;. Work out the <a class="term" href="glossary.html#perimeter" data-term="perimeter" data-def="The distance all the way round the edge of a shape.">perimeter</a> of the garden, in m.</p>
       <figure class="figure qfig"><svg viewBox="0 0 230 190" role="img" aria-labelledby="sq10-t sq10-d" class="geo-svg"><title id="sq10-t">A square garden with area 144 square metres</title><desc id="sq10-d">A square garden with area 144 square metres. Each side length is unknown and labelled with a question mark.</desc><rect x="50" y="30" width="130" height="130" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="115" y="20" text-anchor="middle" style="font-size:14px">? m</text><text class="svg-t" x="42" y="100" text-anchor="end" style="font-size:14px">? m</text><text class="svg-t" x="115" y="180" text-anchor="middle" style="font-size:14px">? m</text><text class="svg-t" x="188" y="100" text-anchor="start" style="font-size:14px">? m</text><text class="svg-t" x="115" y="100" text-anchor="middle" style="font-size:15px">area 144 m&sup2;</text></svg></figure>
       <ol class="ladder"><li>Find the side first.</li></ol>
       <ul class="wrong"><li data-if="12">That is the side. The perimeter is all four sides.</li><li data-if="576">That is 144 &times; 4. Find the side length (square root) first.</li></ul>
-      <div class="solution"><p>&radic;144 = 12 m, so the perimeter is 4 &times; 12 = 48 m.</p></div>
+      <div class="solution">
+        <p>&radic;144 = 12 m, so the perimeter is 4 &times; 12 = 48 m.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for &radic;144 = 12</li>
+          <li><b>A1</b> for 4 &times; 12 = 48</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-qid="squares-roots-41" data-answers="4" data-mode="value">
+    <div class="q" data-qid="squares-roots-41" data-answers="4" data-mode="value" data-marks="2">
       <p class="qtext"><b>(b)</b> [2 marks] Work out &radic;(5&sup2; &minus; 3&sup2;).</p>
       <ol class="ladder"><li>25 &minus; 9 under the root.</li></ol>
       <ul class="wrong"><li data-if="2">Subtract the squares first: &radic;25 &minus; &radic;9 is not the same thing.</li></ul>
-      <div class="solution"><p>25 &minus; 9 = 16 and &radic;16 = 4. (This is a 3, 4, 5 right-angled triangle.)</p></div>
+      <div class="solution">
+        <p>25 &minus; 9 = 16 and &radic;16 = 4. (This is a 3, 4, 5 right-angled triangle.)</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for 25 &minus; 9 = 16</li>
+          <li><b>A1</b> for &radic;16 = 4</li>
+        </ul>
+      </div>
     </div>
-    <div class="q" data-qid="squares-roots-42" data-answers="9.5" data-mode="value">
+    <div class="q" data-qid="squares-roots-42" data-answers="9.5" data-mode="value" data-marks="2">
       <p class="qtext"><b>(c)</b> [2 marks] Use a calculator to work out &radic;90. Give your answer to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>Estimate first: between 9 and 10.</li></ol>
       <ul class="wrong"><li data-if="9.4">The digit after the 4 is 8, which rounds up.</li></ul>
-      <div class="solution"><p>9.486&hellip; = 9.5.</p></div>
+      <div class="solution">
+        <p>&radic;90 = 9.486&hellip; &asymp; 9.5 (1 d.p.).</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for &radic;90 = 9.486&hellip; from the calculator</li>
+          <li><b>A1</b> for 9.5, rounded to 1 decimal place</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -616,6 +634,30 @@
       <ol class="ladder"><li>Four consecutive numbers multiplied, plus 1. What do you get with the smallest case, 1 &times; 2 &times; 3 &times; 4 + 1?</li><li>Try 1 &times; 2 &times; 3 &times; 4 + 1, then 2 &times; 3 &times; 4 &times; 5 + 1, then 3 &times; 4 &times; 5 &times; 6 + 1. Take the square root of each and look at 5, 11, 19.</li><li>If the first number is <i>n</i>, the root is <i>n</i>&sup2; + 3<i>n</i> + 1 (check it gives 5, 11, 19). Now put <i>n</i> = 10.</li></ol>
       <ul class="wrong"><li data-if="17161">That is the number under the root. You still need its square root.</li><li data-if="130">130 is 10&sup2; + 3 &times; 10, one short. The pattern adds 1: <i>n</i>&sup2; + 3<i>n</i> + 1.</li></ul>
       <div class="solution"><p>The pattern: &radic;(1 &times; 2 &times; 3 &times; 4 + 1) = &radic;25 = 5, &radic;(2 &times; 3 &times; 4 &times; 5 + 1) = &radic;121 = 11, &radic;(3 &times; 4 &times; 5 &times; 6 + 1) = &radic;361 = 19, and 5, 11, 19 are <i>n</i>&sup2; + 3<i>n</i> + 1. Why: let <i>k</i> = <i>n</i>(<i>n</i> + 3) = <i>n</i>&sup2; + 3<i>n</i>. Then (<i>n</i> + 1)(<i>n</i> + 2) = <i>k</i> + 2, so the product plus 1 is <i>k</i>(<i>k</i> + 2) + 1 = (<i>k</i> + 1)&sup2;. For <i>n</i> = 10, <i>k</i> = 130, so the root is 131. Check: 131&sup2; = 17,161 = 17,160 + 1.</p></div>
+    </div>
+    <div class="q" data-qid="squares-roots-52" data-type="show" data-marks="3">
+      <p class="qtext"><span class="qtag qtag-marks">[3 marks]</span> <span class="qtag qtag-calc">Non-calculator</span> <span class="qtag qtag-grade">Grade 8</span> a and b are any two numbers. Show that a&sup2; + b&sup2; is never less than 2ab. (Try a = 3 and b = 5 first.)</p>
+      <ol class="ladder"><li>Which expression, made from a and b, can never be negative whatever a and b are?</li><li>A number squared is never negative. Try (a &minus; b)&sup2; and see what you get when you expand it.</li><li>Write (a &minus; b)&sup2; &ge; 0, expand the bracket, then move one term to the other side.</li></ol>
+      <div class="solution">
+        <p>A square is never negative, so (a &minus; b)&sup2; &ge; 0 for all a and b.</p>
+        <p>Expanding: a&sup2; &minus; 2ab + b&sup2; &ge; 0.</p>
+        <p>Add 2ab to both sides: a&sup2; + b&sup2; &ge; 2ab. So a&sup2; + b&sup2; is never less than 2ab. (Check with a = 3 and b = 5: 9 + 25 = 34 and 2 &times; 15 = 30, and 34 &ge; 30.)</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for (a &minus; b)&sup2; &ge; 0, because a square cannot be negative</li>
+          <li><b>M1</b> for expanding to a&sup2; &minus; 2ab + b&sup2; &ge; 0</li>
+          <li><b>C1</b> for adding 2ab to both sides and stating a&sup2; + b&sup2; &ge; 2ab</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-qid="squares-roots-53" data-type="mc">
+      <p class="qtext">A student tries to show that (n + 1)&sup2; &minus; n&sup2; = 2n + 1. Line 1: (n + 1)&sup2; &minus; n&sup2; = n&sup2; + 1 &minus; n&sup2;. Line 2: = 1. Line 3: So the <a class="term" href="glossary.html#difference" data-term="difference" data-def="The result of subtracting the smaller number from the larger: how far apart two numbers are.">difference</a> is 1, not 2n + 1. Where is the flaw?</p>
+      <ul class="options">
+        <li data-correct>Line 1: (n + 1)&sup2; is not n&sup2; + 1, because the middle term 2n is missing.</li>
+        <li data-why="n&sup2; &minus; n&sup2; = 0, so the n&sup2; terms cancel. Line 2 follows correctly from line 1. The error is before it.">Line 2: the n&sup2; terms should add together, not cancel.</li>
+        <li data-why="Letters are exactly how you prove something for every n. The flaw is in line 1, where the bracket was not expanded properly.">Line 3: a proof about consecutive squares cannot be done with letters, so a table of examples is needed instead.</li>
+      </ul>
+      <ol class="ladder"><li>Check line 1 with n = 3: is (3 + 1)&sup2; the same as 3&sup2; + 1?</li><li>Expand (n + 1)&sup2; yourself as (n + 1)(n + 1).</li></ol>
+      <div class="solution"><p>Line 1: (n + 1)&sup2; is not n&sup2; + 1, because the middle term 2n is missing. (n + 1)&sup2; = n&sup2; + 2n + 1, so the difference is n&sup2; + 2n + 1 &minus; n&sup2; = 2n + 1, as it should be. Check with n = 3: 16 &minus; 9 = 7 = 2 &times; 3 + 1.</p></div>
     </div>
   </div>
 </section>
@@ -695,10 +737,10 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.015</span>
+    <span class="build-number">Build 2026.11.24.018</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.015" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.018" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.015"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.018"></script>
 </body>
 </html>
