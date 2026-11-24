@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const PORT = 4173;
+// Several Claude sessions can test different worktrees at once: set WM_TEST_PORT to avoid reusing another worktree's server.
+const PORT = Number(process.env.WM_TEST_PORT ?? 4173);
 
 export default defineConfig({
   testDir: './test',

@@ -7,6 +7,9 @@
 import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
 import { review, isDue, sanitize } from './book-queue.mjs';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
+import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
+
+const REVIEW = isReviewMode(window.location.search);
 
 const STORE_KEY = 'wm-gcse-v1';
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
@@ -135,6 +138,11 @@ function duckRung(li, q) {
 // ---------- questions ----------
 
 export function enhanceQuestion(q, index) {
+  // Reviewer mode (?review=1): leave the question as plain markup so every hint and answer shows.
+  if (REVIEW) {
+    annotateForReview(q);
+    return;
+  }
   const qid = q.dataset.qid ?? `${pageKey()}-${index + 1}`;
   q.dataset.qid = qid;
   q.classList.add('q-live');
@@ -1056,6 +1064,7 @@ function startTimed() {
 }
 
 function start() {
+  if (REVIEW) startReviewMode();
   initReadingTools();
   document.querySelectorAll('.q').forEach(enhanceQuestion);
   addListenButtons();

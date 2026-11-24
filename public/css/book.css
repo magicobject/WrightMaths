@@ -211,6 +211,16 @@
 .js .q .ladder,.js .q .wrong,.js .q .options,.js .q .solution{display:none;}
 .js .q .solution.open{display:block;}
 
+/* Reviewer mode (?review=1): everything open, with labels for what each part is. */
+.js.review .q .ladder,.js.review .q .wrong,.js.review .q .options,.js.review .q .solution{display:block;}
+.review .q .wrong::before{content:"If the student types:";display:block;font-weight:700;}
+.review .q .wrong li::before{content:attr(data-if) " \2192 ";font-weight:700;}
+.review .q .options::before{content:"Options (the marked one is correct):";display:block;font-weight:700;}
+.review .q .options li[data-correct]::after{content:" \2714 correct";font-weight:700;}
+.review .q .options li[data-why]::after{content:" \2192 " attr(data-why);color:var(--ink-soft);}
+.review-answer{margin:8px 0;padding:6px 10px;border-left:4px solid var(--navy-mid);background:var(--paper);color:var(--ink);font-weight:700;}
+.review-banner{margin:0 0 16px;padding:10px 14px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--paper);color:var(--ink);font-weight:700;}
+
 /* ---------- kitchen scale and geometry figures ---------- */
 .scale-svg,.geo-svg{width:100%;max-width:420px;height:auto;margin:0 auto;display:block;}
 .scale-svg .base,.scale-svg .post{fill:var(--navy);}
