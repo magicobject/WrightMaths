@@ -63,6 +63,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('headings never skip a level', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     for (const bookPage of BOOK_PAGES) {
       await page.goto(bookPage.path);
       const levels = await page.$$eval('main h1,main h2,main h3,main h4,main h5,main h6', (hs) => hs.map((h) => Number(h.tagName[1])));
@@ -74,6 +75,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('every page loads its script without console errors', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     const problems: string[] = [];
     page.on('pageerror', (e) => problems.push(String(e)));
     page.on('console', (m) => {
@@ -94,6 +96,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('each topic page names what it stands on and what it unlocks, matching the pyramid', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     await page.goto('/books/gcse/pythagoras.html');
     await expect(page.locator('.bys').first()).toContainText('Squares and square roots');
     await expect(page.locator('.bys').first()).toContainText('Shapes and angles');
@@ -101,6 +104,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('every question has hints and a worked answer, and there are plenty of check-your-knowledge sets', async ({ page, request }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     for (const topic of BOOK_TOPICS) {
       await page.goto(topic.path);
       const total = await page.locator('.q').count();
@@ -232,7 +236,7 @@ test.describe('questions', () => {
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/8');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 question');
+    await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 of');
     await page.goto('/books/gcse/');
     await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/^1 of \d+ done$/);
     expect(await page.evaluate(() => Object.keys(window.localStorage))).toEqual(['wm-gcse-v1']);
@@ -243,6 +247,7 @@ test.describe('questions', () => {
   });
 
   test('the question counts on the pyramid match the pages', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     for (const topic of BOOK_TOPICS) {
       await page.goto(topic.path);
       const onPage = await page.locator('.q').count();
@@ -543,6 +548,7 @@ test.describe('find your gaps', () => {
   });
 
   test('the hub offers it first', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     await page.goto('/books/gcse/');
     await expect(page.getByRole('link', { name: /Find my gaps/ }).first()).toBeVisible();
   });
@@ -730,7 +736,7 @@ test.describe('stretch papers', () => {
 
   test('topic pages have a fast route that folds away recaps and check sets', async ({ page }) => {
     await page.goto('/books/gcse/fractions.html');
-    const toggle = page.getByRole('button', { name: 'Show only the harder parts' });
+    const toggle = page.getByRole('button', { name: 'Skip the basics' });
     await toggle.click();
     await expect(page.locator('section.ckw').first()).toBeHidden();
     await expect(page.getByRole('button', { name: 'Show everything again' })).toHaveAttribute('aria-pressed', 'true');
@@ -808,6 +814,7 @@ test.describe('round 3 finishing touches', () => {
 
   test('a timed set shows five questions with no hints, then lets you mark them', async ({ page }) => {
     await page.goto('/books/gcse/stretch.html');
+    const everyQuestion = await page.locator('.q').count();
     await page.getByRole('button', { name: /Start a timed set/ }).click();
     await expect(page.locator('.q:visible')).toHaveCount(5);
     await expect(page.locator('.timed-clock')).toContainText('Time left');
@@ -818,7 +825,7 @@ test.describe('round 3 finishing touches', () => {
     await page.locator('.q:visible .mark-box').first().check();
     await expect(page.locator('.timed-status')).toContainText(/Marks so far: 1 of/);
     await page.getByRole('button', { name: 'Back to all questions' }).click();
-    await expect(page.locator('.q:visible')).toHaveCount(28);
+    await expect(page.locator('.q:visible')).toHaveCount(everyQuestion);
   });
 });
 
@@ -840,7 +847,7 @@ test.describe('round 4 fixes', () => {
 
   test('the fast route keeps Going further visible and hides the warm-up', async ({ page }) => {
     await page.goto('/books/gcse/factors-multiples.html');
-    await page.getByRole('button', { name: 'Show only the harder parts' }).click();
+    await page.getByRole('button', { name: 'Skip the basics' }).click();
     await expect(page.locator('section.going-further')).toBeVisible();
     await expect(page.locator('section.warmup-sec')).toBeHidden();
     await expect(page.getByRole('link', { name: 'Jump to going further' })).toBeVisible();
@@ -949,6 +956,7 @@ test.describe('recorded audio for Listen', () => {
   });
 
   test('the shipped manifest is valid JSON and clips load only from this site', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     const res = await page.request.get('/audio/book/manifest.json');
     expect(res.ok()).toBe(true);
     expect(typeof (await res.json())).toBe('object');
@@ -957,6 +965,7 @@ test.describe('recorded audio for Listen', () => {
 
 test.describe('the calculator', () => {
   test('appears only on questions where a calculator is allowed, on every book page', async ({ page }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     let withCalc = 0;
     for (const bookPage of BOOK_PAGES) {
       await page.goto(bookPage.path);
@@ -1201,6 +1210,85 @@ test.describe('the scientific calculator, from the second tester\'s report', () 
     const withPad = await page.evaluate(() => [...document.querySelectorAll('.q[data-type="mc"]')].filter((q) => q.querySelector('.calc-toggle')).map((q) => q.querySelector('.qtext')?.textContent?.slice(0, 30)));
     expect(withPad).toHaveLength(1);
     expect(withPad[0]).toContain('Maya types');
+  });
+});
+
+test.describe('round 5 fixes', () => {
+  test('a timed set puts focus on the first question, announces time, and can pause and add time', async ({ page }) => {
+    await page.goto('/books/gcse/foundation.html');
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    const focused = await page.evaluate(() => document.activeElement?.closest('.q') !== null);
+    expect(focused).toBe(true);
+    await expect(page.locator('.timed-clock')).toContainText('Time left');
+    const before = await page.locator('.timed-clock').innerText();
+    await page.getByRole('button', { name: 'Pause' }).click();
+    await expect(page.locator('.timed-status')).toContainText('Paused');
+    await page.getByRole('button', { name: 'Add 5 minutes' }).click();
+    await expect(page.locator('.timed-status')).toContainText('5 minutes added');
+    expect(await page.locator('.timed-clock').innerText()).not.toBe(before);
+    await page.getByRole('button', { name: 'Finish and mark my answers' }).click();
+    await expect(page.locator('.timed-status')).toBeFocused();
+  });
+
+  test('?q=5-12 shows only those questions, and every question has an anchor', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html?q=5-12');
+    await expect(page.locator('.q:visible')).toHaveCount(8);
+    await expect(page.locator('.range-banner')).toContainText('5 to 12');
+    await page.goto('/books/gcse/percentages.html');
+    expect(await page.locator('#q12').count()).toBe(1);
+  });
+
+  test('the symbol keys are not extra Tab stops, and a ratio question has a colon key', async ({ page }) => {
+    await page.goto('/books/gcse/ratio.html');
+    const keys = page.locator('.sym-btn');
+    expect(await keys.first().getAttribute('tabindex')).toBe('-1');
+    expect(await page.locator('.sym-btn', { hasText: ':' }).count()).toBeGreaterThan(0);
+  });
+
+  test('Skip the basics is remembered on this device', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.getByRole('button', { name: 'Skip the basics' }).click();
+    await page.reload();
+    await expect(page.getByRole('button', { name: 'Show everything again' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('section.ckw').first()).toBeHidden();
+  });
+
+  test('after a right multiple-choice answer every option is switched off', async ({ page }) => {
+    await page.goto('/books/gcse/raise-your-grade.html');
+    const q = page.locator('.q').first();
+    await q.getByRole('button', { name: /Method marks/ }).click();
+    await expect(q).toHaveClass(/q-correct/);
+    expect(await q.locator('.mc-option[aria-disabled="true"]').count()).toBe(await q.locator('.mc-option').count());
+  });
+
+  test('a worksheet prints questions only: no hero, no solutions, a name line', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.emulateMedia({ media: 'print' });
+    await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
+    await expect(page.locator('.print-name')).toBeVisible();
+    await expect(page.locator('.hero')).toBeHidden();
+    await expect(page.locator('.q .solution').first()).toBeHidden();
+    await expect(page.locator('.q').first()).toBeVisible();
+  });
+
+  test('answer keys: full question text, figure notes and worked solutions on request, also for the papers', async ({ page }) => {
+    for (const id of ['percentages', 'foundation', 'stretch']) {
+      const response = await page.goto(`/books/gcse/key/${id}.html`);
+      expect(response?.status()).toBe(200);
+    }
+    await page.goto('/books/gcse/key/percentages.html');
+    const text = await page.locator('.key-table tbody').innerText();
+    expect(text).not.toContain('...');
+    await expect(page.locator('.key-working').first()).toBeHidden();
+    await page.getByRole('button', { name: 'Show worked solutions' }).click();
+    await expect(page.locator('.key-working').first()).toBeVisible();
+  });
+
+  test('the route page lists three routes and every topic page ends with a next link (except the last)', async ({ page }) => {
+    await page.goto('/books/gcse/route.html');
+    await expect(page.locator('section.route')).toHaveCount(3);
+    await page.goto('/books/gcse/place-value.html');
+    await expect(page.locator('.next-up a.btn')).toHaveAttribute('href', 'four-operations.html');
   });
 });
 

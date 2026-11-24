@@ -481,3 +481,61 @@ body:has(.calc:not([hidden])) .to-top{display:none;}
    same two fixes: see docs/book-authoring.md. */
 footer p{color:#c9d3e0;}
 .book .kicker{color:#7a5a14;}
+
+/* ---- round 5 (fresh-student testing) ---- */
+/* Buttons that sit on a white section, not on the navy hero, need their own colours (they were white on pale). */
+.book section:not(.hero) .btn-ghost{background:var(--white);color:var(--navy);border:2px solid var(--navy-mid);}
+.book section:not(.hero) .btn-ghost:hover{background:var(--paper-dim);}
+/* A question you finished earlier shows it after a reload. */
+.q.q-was-done{border-left:6px solid var(--c-right);}
+.q.q-was-done .qnum::after{content:"\2713";margin-left:2px;}
+.set-done{font-weight:700;color:var(--navy);background:var(--t-right);border-radius:10px;padding:10px 14px;margin:14px 0;}
+.range-banner{max-width:800px;margin:10px auto;padding:10px 24px;background:var(--t-term);font-weight:700;}
+/* Timed set: the clock stays in view while you answer. */
+.timed-running .timed-clock{position:fixed;top:8px;right:8px;z-index:80;margin:0;padding:4px 14px;background:var(--white);border:2px solid var(--navy);border-radius:999px;font-size:1.1rem;box-shadow:var(--shadow);}
+.timed-filter{font:inherit;min-height:44px;margin:4px 8px 4px 0;max-width:100%;}
+.to-top.top-away{display:none;}
+/* Reading options must wrap, never run off a 320px screen. */
+.read-row{flex-wrap:wrap;}
+.read-row > *{min-width:0;max-width:100%;}
+.q,.qtext,.worked,.key{overflow-wrap:anywhere;}
+.fast-route-on .worked{display:none;}
+.qtag-paper{background:var(--t-term);}
+.key-working{display:none;margin-top:6px;font-size:.88rem;color:var(--ink-soft);}
+.show-working .key-working{display:block;}
+.print-name{display:none;}
+.tier-tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);border:1.5px solid var(--navy-mid);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:middle;background:var(--white);}
+.next-up{padding:18px 0;background:var(--t-term);}
+.next-up .btn{margin:0 10px 6px 0;}
+.route{margin:22px 0;}
+.route-weeks li{margin:6px 0;line-height:1.7;}
+/* Windows high-contrast and "more contrast" settings: colour must never be the only signal. */
+@media (forced-colors:active){
+  .q,.worked,.key,.card{border:1px solid CanvasText;}
+  .q-feedback{border:2px solid CanvasText;padding:6px 10px;}
+  .q.q-correct,.q.q-was-done{border:3px solid Highlight;}
+  .mc-option.is-right{border:3px solid Highlight;}
+  .mc-option.is-wrong{border:3px dashed CanvasText;}
+  .term,.listen,.btn-check,.btn-stuck,.sym-btn,.fast-toggle,.fast-link{border:2px solid ButtonText;}
+  svg text,.svg-t{fill:CanvasText;}
+  svg rect,svg path,svg line,svg circle,svg polygon,svg polyline{stroke:CanvasText;}
+  .mark-box,.q-input{forced-color-adjust:auto;}
+}
+@media (prefers-contrast:more){
+  .muted,.crumbs{color:var(--ink);}
+  .q-feedback{border:2px solid var(--ink);padding:6px 10px;}
+  .btn-stuck,.listen{border-color:var(--ink);}
+}
+/* Printing a worksheet: only the questions, with room to work, and a line for a name. */
+@media print{
+  .print-name{display:block;font-weight:700;margin:0 0 14px;}
+  .print-sheet .hero,.print-sheet .toc,.print-sheet .fast-route,.print-sheet .bys,.print-sheet .words-strip,.print-sheet .key,.print-sheet .worked,.print-sheet details,.print-sheet .flip-grid,.print-sheet .set-done,.print-sheet .range-banner,.print-sheet .read-tools,.print-sheet nav{display:none !important;}
+  .print-sheet section:not(:has(.q)){display:none !important;}
+  .print-sheet section .wrap > :not(.q):not(h2),.print-sheet section .wrap .wrap > :not(.q):not(h2){display:none !important;}
+  .print-sheet .q{min-height:7em;padding-bottom:3em;border:1px solid #888;margin:10px 0;break-inside:avoid;}
+  .print-sheet .q .q-help,.print-sheet .q .q-form,.print-sheet .q .solution,.print-sheet .q .q-feedback,.print-sheet .listen,.print-sheet .btn-check{display:none !important;}
+  .print-sheet .mc{display:block;}
+  .print-sheet .mc-option{border:1px solid #888;margin:4px 0;}
+  .print-sheet,.print-sheet *{background:#fff !important;color:#000 !important;}
+  .fast-route{display:none !important;}
+}
