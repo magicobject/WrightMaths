@@ -653,3 +653,24 @@ test.describe('phone-friendly answers', () => {
     expect(text).not.toMatch(/lessons|parent or carer/i);
   });
 });
+
+test.describe('phone layout', () => {
+  test('the Top button never covers the sticky Check button', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto('/books/gcse/fractions.html');
+    await page.locator('.q-input').first().scrollIntoViewIfNeeded();
+    await page.locator('.q-input').first().focus();
+    await page.mouse.wheel(0, 600);
+    await page.waitForTimeout(300);
+    const top = page.locator('.to-top');
+    if (await top.isVisible()) {
+      const t = await top.boundingBox();
+      for (const check of await page.locator('.btn-check:visible').all()) {
+        const c = await check.boundingBox();
+        if (!c || !t) continue;
+        const overlap = c.x < t.x + t.width && c.x + c.width > t.x && c.y < t.y + t.height && c.y + c.height > t.y;
+        expect(overlap, 'Top overlaps a Check button').toBe(false);
+      }
+    }
+  });
+});

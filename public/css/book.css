@@ -313,6 +313,7 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .toc li{margin-bottom:6px;break-inside:avoid;}
 .toc a{display:inline-block;padding:4px 0;min-height:32px;color:var(--navy);}
 .to-top{position:fixed;right:14px;bottom:14px;z-index:70;min-height:44px;min-width:44px;padding:0 16px;border:2px solid var(--navy);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer;}
+@media (max-width:640px){.to-top{bottom:84px;}}
 .q-feedback.ok::before{content:"\2713\00a0 ";}
 .q-feedback.oops::before{content:"\2717\00a0 ";}
 .q-feedback.nearly::before{content:"\2248\00a0Nearly: ";font-weight:700;}
