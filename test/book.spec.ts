@@ -176,7 +176,7 @@ test.describe('questions', () => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     await expect(q.locator('.solution')).toBeHidden();
-    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint|Show me the answer/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue|Show me the answer/ });
     await help.click();
     await expect(q.locator('.rungs li')).toHaveCount(1);
     await help.click();
@@ -185,7 +185,7 @@ test.describe('questions', () => {
     await expect(q.locator('.duck-rung')).toBeVisible();
     await expect(q.locator('.duck-rung')).toContainText('The question asks me to find');
     await help.click(); // a person
-    await expect(q.locator('.rungs li').last()).toContainText('Show this question to your teacher');
+    await expect(q.locator('.rungs li').last()).toContainText('Show a mate');
     await expect(help).toHaveText('Show me the answer');
     await help.click();
     await expect(q.locator('.solution')).toBeVisible();
@@ -196,10 +196,11 @@ test.describe('questions', () => {
     page.on('request', (r) => { if (r.method() !== 'GET') requests.push(r.url()); });
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
-    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
     await help.click();
     await help.click();
+    await q.getByText('Prefer to type it?').click();
     const text = q.getByLabel('Tell the duck what is going on');
     await text.fill('my secret thought about the problem');
     await q.getByRole('button', { name: /Done: let me try again/ }).click();
@@ -214,7 +215,7 @@ test.describe('questions', () => {
     await page.goto('/books/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only the final answer counts/ }).click();
-    await expect(q.locator('.q-feedback')).toContainText('Not quite');
+    await expect(q.locator('.q-feedback')).toContainText('Close, but not yet');
     await q.getByRole('button', { name: /Method marks/ }).click();
     await expect(q).toHaveClass(/q-correct/);
     await expect(q.locator('.solution')).toBeVisible();
@@ -295,7 +296,7 @@ test.describe('feedback that helps instead of scolds', () => {
     await page.goto('/books/gcse/place-value.html');
     const qs = page.locator('.q');
     const oneHint = qs.filter({ hasText: 'Work out 10 \u00d7 10.' }).first();
-    const help = oneHint.getByRole('button', { name: /Help, I'm stuck/ });
+    const help = oneHint.getByRole('button', { name: /Give me a clue/ });
     await help.click();
     await expect(oneHint.locator('.duck-rung')).toHaveCount(0);
   });
@@ -335,7 +336,7 @@ test.describe('mixed practice', () => {
     await expect(qs).toHaveCount(5);
     const before = await qs.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
     expect(new Set(before.map((id) => id!.replace(/-\d+$/, ''))).size).toBeGreaterThan(1);
-    await qs.first().getByRole('button', { name: /Help, I'm stuck/ }).click();
+    await qs.first().getByRole('button', { name: /Give me a clue/ }).click();
     await expect(qs.first().locator('.rungs li')).toHaveCount(1);
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
     await expect(qs).toHaveCount(5);
@@ -430,6 +431,8 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
     await q.getByLabel('Your answer').fill('1000');
     await q.getByRole('button', { name: 'Check' }).click();
     await expect(q).toHaveClass(/q-correct/);
+    await expect(q.locator('.solution')).toBeVisible();
+    await expect(q.locator('.q-feedback')).toContainText('worked solution');
     const help = q.getByRole('button', { name: 'Another way to see it' });
     await expect(help).toBeEnabled();
     await help.click();
@@ -583,7 +586,7 @@ test.describe('privacy and keyboard access', () => {
   test('asking for hints keeps focus on the Help button, and a very long answer does not freeze the page', async ({ page }) => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
-    const help = q.getByRole('button', { name: /Help, I'm stuck|Another hint/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
     await expect(help).toBeFocused();
     const input = q.locator('.q-input');
@@ -601,7 +604,7 @@ test.describe('lettered hints', () => {
   test('hints are lettered A, B, C (not numbered), and start again from A after a right answer', async ({ page }) => {
     await page.goto('/books/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 100.' }).first();
-    const help = q.getByRole('button', { name: /Help, I'm stuck/ });
+    const help = q.getByRole('button', { name: /Give me a clue/ });
     await help.click();
     const label = (n: number) => q.locator('.rungs li').nth(n).evaluate((e) => getComputedStyle(e, '::before').content);
     expect(await label(0)).toContain('upper-alpha');
@@ -610,6 +613,8 @@ test.describe('lettered hints', () => {
     await q.getByRole('button', { name: 'Check' }).click();
     await expect(q).toHaveClass(/q-correct/);
     await expect(q.locator('.rungs li')).toHaveCount(0);
+    await expect(q.locator('.solution')).toBeVisible();
+    await expect(q.locator('.q-feedback')).toContainText('worked solution');
     const again = q.getByRole('button', { name: 'Another way to see it' });
     await again.click();
     expect(await label(0)).toContain('upper-alpha');
@@ -624,5 +629,27 @@ test.describe('lettered hints', () => {
     const content = await page.locator('.q .ladder li').first().evaluate((e) => getComputedStyle(e, '::before').content);
     expect(content).toContain('upper-alpha');
     await context.close();
+  });
+});
+
+test.describe('phone-friendly answers', () => {
+  test('a number answer gets the number pad, and the symbol row types a minus', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    const input = q.getByLabel(/Your answer/);
+    await expect(input).toHaveAttribute('inputmode', 'decimal');
+    await input.focus();
+    await q.getByRole('button', { name: 'Type minus' }).click();
+    await expect(input).toHaveValue('-');
+  });
+
+  test('the ask-a-person step does not mention lessons', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    const help = q.locator('.btn-stuck');
+    for (let i = 0; i < 6; i += 1) { if (await help.isEnabled()) await help.click(); }
+    const text = await q.locator('.rungs').innerText();
+    expect(text).toContain('Still stuck?');
+    expect(text).not.toMatch(/lessons|parent or carer/i);
   });
 });

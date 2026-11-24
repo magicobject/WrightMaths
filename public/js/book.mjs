@@ -11,9 +11,9 @@ import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
 const STORE_KEY = 'wm-gcse-v1';
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
 const NUDGES = [
-  'Not quite. Have another go.',
-  'Not quite yet. Open a hint if you want one.',
-  'Still not there. Try a hint, or explain it to the duck: that often shows what is wrong.',
+  'Close, but not yet. Have another go.',
+  'Not yet. A clue is there if you want one.',
+  'Still not there. Try a clue, or say it out loud to the duck: that often shows what is wrong.',
 ];
 
 // ---------- saved progress ----------
@@ -96,8 +96,8 @@ const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focus
 
 function duckRung(li, q) {
   li.className = 'duck-rung';
-  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Explain it step by step</b> <span class="muted">(optional)</span></p>`
-    + '<p>Putting a problem into words often shows what to do next. Tell it to the duck, a friend, or yourself. Tap a start, or just talk.</p></div>';
+  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Say it out loud</b> <span class="muted">(optional)</span></p>`
+    + '<p>Tell the duck, a friend, or yourself what the question asks and what you know. Talking often shows the next step.</p></div>';
   const starts = ['The question asks me to find…', 'I already know…', 'I tried… and then…', 'I got stuck when…'];
   const chips = el('div', { class: 'duck-chips', role: 'group', 'aria-label': 'Sentence starters' });
   const area = el('textarea', {
@@ -118,7 +118,8 @@ function duckRung(li, q) {
     area.value = '';
     q.querySelector('.q-input, .mc-option')?.focus();
   });
-  li.querySelector('.duck-body-text').append(chips, area, note, done);
+  const typed = el('details', { class: 'duck-typed' }, el('summary', { text: 'Prefer to type it?' }), chips, area, note);
+  li.querySelector('.duck-body-text').append(typed, done);
 }
 
 // ---------- questions ----------
@@ -145,14 +146,14 @@ export function enhanceQuestion(q, index) {
   const feedback = el('div', { class: 'q-feedback', role: 'status', 'aria-live': 'polite' });
   const rungs = ladder ? [...ladder.children].map((li) => li.innerHTML) : [];
   if ((ladder?.children.length ?? 0) > 1) rungs.push({ duck: true });
-  rungs.push('Still stuck? Show this question to your teacher, or ask a parent or carer to get in touch about lessons. A person can often unstick you in a minute.');
+  rungs.push('Still stuck? Show a mate, or take a photo of the question to show your teacher. Everyone gets stuck, and a person can often unstick you in a minute.');
   let rungsShown = 0;
   let wrongCount = 0;
   let solved = false;
 
   const help = el('div', { class: 'q-help' });
   const hintList = el('ol', { class: 'rungs', 'aria-live': 'polite' });
-  const helpBtn = el('button', { type: 'button', class: 'btn-stuck', text: "Help, I'm stuck!" });
+  const helpBtn = el('button', { type: 'button', class: 'btn-stuck', text: 'Give me a clue' });
   help.append(helpBtn, hintList);
 
   function showSolution() {
@@ -176,7 +177,7 @@ export function enhanceQuestion(q, index) {
       helpBtn.dataset.final = '1';
       if (!solution || solved) helpBtn.disabled = true;
     } else {
-      helpBtn.textContent = `Another hint (${rungsShown + 1} of ${rungs.length})`;
+      helpBtn.textContent = 'Another clue';
     }
   }
 
@@ -260,12 +261,29 @@ export function enhanceQuestion(q, index) {
       ? [...wrongBox.children].map((li) => ({ list: splitList(li.dataset.if), message: li.innerHTML }))
       : [];
     const inputId = `ans-${(uid += 1)}`;
+    // Number-only answers get the number pad on a phone; the symbol row below gives minus, fraction bar, point and percent.
+    const numeric = answers.every((a) => /^[0-9.,]+$/.test(a));
     const input = el('input', {
       id: inputId, type: 'text', class: 'q-input', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'done', maxlength: '60',
+      ...(numeric ? { inputmode: 'decimal' } : {}),
+    });
+    const symbols = el('div', { class: 'sym-row', role: 'group', 'aria-label': 'Symbol keys' });
+    for (const [ch, name] of [['-', 'minus'], ['/', 'fraction bar'], ['.', 'decimal point'], ['%', 'percent']]) {
+      const b = el('button', { type: 'button', class: 'sym-btn', text: ch, 'aria-label': `Type ${name}` });
+      b.addEventListener('mousedown', (e) => e.preventDefault());
+      b.addEventListener('click', () => {
+        const at = input.selectionStart ?? input.value.length;
+        input.setRangeText(ch, at, input.selectionEnd ?? at, 'end');
+        input.focus();
+      });
+      symbols.append(b);
+    }
+    input.addEventListener('focus', () => {
+      if (window.matchMedia('(max-width: 640px)').matches) setTimeout(() => input.scrollIntoView({ block: 'center', behavior: 'smooth' }), 250);
     });
     const label = el('label', { class: 'sr-only', for: inputId, text: `Your answer to question ${index + 1}` });
     const check = el('button', { type: 'submit', class: 'btn-check', text: 'Check' });
-    const form = el('form', { class: 'q-form', novalidate: '' }, label, input, check);
+    const form = el('form', { class: 'q-form', novalidate: '' }, label, input, check, symbols);
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       if (solved) return;
@@ -677,7 +695,8 @@ async function startPractice() {
   const loadTopic = async (id) => {
     if (pool.has(id)) return pool.get(id);
     if (!/^[a-z0-9-]+$/.test(id)) return [];
-    const res = await fetch(`${id}.html`);
+    let res;
+    try { res = await fetch(`${id}.html`); } catch { return []; }
     if (!res.ok) return [];
     const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
     const qs = [...doc.querySelectorAll('.q[data-qid]')];
@@ -690,6 +709,7 @@ async function startPractice() {
     status.textContent = 'Getting your questions\u2026';
     let all = [];
     for (const id of chosen) all = all.concat(await loadTopic(id));
+    if (all.length === 0) { status.textContent = 'Could not get questions. Check your connection, then press the button to try again.'; return; }
     shuffle(all);
     const now = today();
     const due = all.filter((q) => isDue(store.rq[q.dataset.qid], now));
