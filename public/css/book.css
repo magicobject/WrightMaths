@@ -308,6 +308,17 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 @media (max-width:560px){.read-row{display:grid;grid-template-columns:1fr 1fr;}}
 .read-ruler{background:rgba(255,224,70,.38);border-top:2px solid rgba(150,105,0,.8);border-bottom:2px solid rgba(150,105,0,.8);mix-blend-mode:multiply;}
 .toc{max-width:800px;margin:0 auto;padding:4px 24px;}
+.fast-route{max-width:800px;margin:6px auto 0;padding:4px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.fast-label{font-weight:700;color:var(--navy);}
+.fast-link,.fast-toggle{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;text-decoration:none;cursor:pointer;}
+.fast-toggle[aria-pressed="true"]{background:var(--navy);color:var(--white);}
+.fast-route-on details.recap,.fast-route-on section.ckw{display:none;}
+.markscheme{list-style:none;padding-left:0;}
+.markscheme li{margin:6px 0;}
+.mark-box{width:22px;height:22px;vertical-align:middle;margin-right:6px;accent-color:var(--navy);}
+.mark-total{font-weight:700;color:var(--navy);margin-top:10px;}
+.qtag{display:inline-block;font-size:.82rem;font-weight:700;padding:1px 9px;border-radius:999px;border:1.5px solid var(--navy-mid);color:var(--navy);background:var(--white);margin-right:4px;vertical-align:middle;}
+.qtag-from{text-decoration:none;}
 .toc summary{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);font-weight:700;cursor:pointer;}
 .toc ol{columns:2 260px;column-gap:28px;margin:10px 0 6px;padding-left:1.4em;}
 .toc li{margin-bottom:6px;break-inside:avoid;}
@@ -349,7 +360,7 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .diag-list li{display:flex;gap:10px;align-items:center;margin:4px 0;color:var(--ink);}
 .diag-list .bar{background:var(--line);}
 .diag-list .bar-fill{background:var(--c-right);}
-.book[data-book-page="practice"] .qnum,.book[data-book-page="diagnostic"] .qnum{background:var(--navy);}
+.book[data-book-page="practice"] .qnum,.book[data-book-page="diagnostic"] .qnum,.book[data-book-page="stretch"] .qnum,.book[data-book-page="parents"] .qnum{background:var(--navy);}
 .skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--navy);color:var(--white);padding:10px 16px;border-radius:8px;font-weight:700;}
 .skip-link:focus{left:8px;}
 body :focus-visible{outline:3px solid #0f2440;outline-offset:2px;}

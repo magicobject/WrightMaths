@@ -34,6 +34,7 @@ export const BOOK_PAGES: BookPage[] = [
   { path: '/books/gcse/diagnostic.html', titleContains: 'Find Your Gaps', heading: /Where should I start/ },
   { path: '/books/gcse/practice.html', titleContains: 'Mixed Practice', heading: /^Give me five$/ },
   { path: '/books/gcse/command-words.html', titleContains: 'Question Words', heading: /What the question is asking you to do/ },
+  { path: '/books/gcse/stretch.html', titleContains: 'Stretch Papers', heading: /^Stretch papers for grades 7, 8 and 9$/ },
   { path: '/books/gcse/parents.html', titleContains: 'Parents and Carers', heading: /guide for parents and carers/i },
   { path: '/books/gcse/raise-your-grade.html', titleContains: 'Raise Your Grade', heading: /shift your results to the right/i },
   ...BOOK_TOPICS,

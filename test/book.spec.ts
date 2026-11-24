@@ -666,9 +666,11 @@ test.describe('phone layout', () => {
     const top = page.locator('.to-top');
     if (await top.isVisible()) {
       const t = await top.boundingBox();
-      for (const check of await page.locator('.btn-check:visible').all()) {
+      for (const check of await page.locator('.q-form .btn-check:visible').all()) {
         const c = await check.boundingBox();
-        if (!c || !t) continue;
+        const f = await check.locator('xpath=ancestor::form').boundingBox();
+        // only the Check button of a form stuck to the bottom of the screen matters here
+        if (!c || !t || !f || Math.abs(f.y + f.height - 812) > 2) continue;
         const overlap = c.x < t.x + t.width && c.x + c.width > t.x && c.y < t.y + t.height && c.y + c.height > t.y;
         expect(overlap, 'Top overlaps a Check button').toBe(false);
       }
@@ -686,4 +688,46 @@ test('Listen stays silent when the device has no voice of its own', async ({ pag
   await page.goto('/books/gcse/place-value.html');
   await page.getByRole('button', { name: /Listen/ }).first().click();
   expect(await page.evaluate(() => (window as any).__spoken.length)).toBe(0);
+});
+
+test.describe('stretch papers', () => {
+  test('a show-that question reveals its mark scheme, and ticking marks counts them on screen only', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    const q = page.locator('.q[data-type="show"]').first();
+    const total = await q.locator('ul.markscheme > li').count();
+    expect(total).toBeGreaterThanOrEqual(3);
+    await expect(q.locator('.solution')).toBeHidden();
+    await q.getByRole('button', { name: /show me the mark scheme/ }).click();
+    await expect(q.locator('.solution')).toBeVisible();
+    const boxes = q.locator('.mark-box');
+    await expect(boxes).toHaveCount(total);
+    await boxes.first().check();
+    await expect(q.locator('.mark-total')).toContainText(`Marks: 1 of ${total}`);
+    for (let i = 1; i < total; i += 1) await boxes.nth(i).check();
+    await expect(q.locator('.mark-total')).toContainText('Full marks');
+    await expect(q).toHaveClass(/q-correct/);
+  });
+
+  test('every stretch question says how many marks, calculator or not, and the mark scheme adds up', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    const qs = page.locator('.q');
+    const n = await qs.count();
+    expect(n).toBeGreaterThanOrEqual(24);
+    for (let i = 0; i < n; i += 1) {
+      const q = qs.nth(i);
+      const marks = Number(await q.getAttribute('data-marks'));
+      expect(await q.locator('.qtext .qtag-marks').innerText()).toContain(`[${marks} mark`);
+      expect(await q.locator('.qtext .qtag-calc').innerText()).toMatch(/^(Non-calculator|Calculator)$/);
+      expect(await q.locator('ul.markscheme > li').count(), `question ${i + 1} mark scheme`).toBe(marks);
+    }
+  });
+
+  test('topic pages have a fast route that folds away recaps and check sets', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    const toggle = page.getByRole('button', { name: 'Hide recaps and check sets' });
+    await toggle.click();
+    await expect(page.locator('section.ckw').first()).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Show recaps and check sets again' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('link', { name: 'Jump to exam style' })).toBeVisible();
+  });
 });
