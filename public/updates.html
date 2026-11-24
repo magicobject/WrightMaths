@@ -83,6 +83,10 @@
         <p>Hidden GCSE book: a scientific calculator for trigonometry. The 41 trigonometry questions that need sin, cos, tan or their inverses now get a 5-column keypad with sin, cos, tan, sin&#8315;&sup1;, cos&#8315;&sup1;, tan&#8315;&sup1;, log, ln, &pi;, x&sup2;, x&sup3;, roots, powers and &times;10&#739;, with angles in degrees. Questions marked &ldquo;without a calculator&rdquo; or asking for exact values still get none. Trig results are cleaned so sin 180&deg; shows 0, not a rounding speck.</p>
       </li>
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.029</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Fix: the Books page (<code>/books/</code>) was showing without its styling and menu links. It asked for its stylesheet and script one folder too deep, so the browser got errors instead of files. It now asks for them in the right place, and a new test checks that every book page&rsquo;s stylesheet and script actually load.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.028</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book: Listen can now play recorded audio (a good neural voice, or Greg&rsquo;s own) before falling back to the browser voice. Recordings are matched to the exact sentence they say, so editing a sentence never plays stale audio. A new <code>npm run book:audio</code> tool lists which of the 1,135 sentences still need a recording, makes them with a speech engine or imports hand-made files. No recordings are added yet, so nothing sounds different today.</p>
       </li>
