@@ -111,3 +111,13 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 - **Module imports are not cached for a year** (`public/_headers`): `book-answer.mjs`, `book-queue.mjs`, `book-voice.mjs` are imported without a version query.
 - Every `.q` has an accessible name, every answer box and Listen button a distinct name, hints keep focus on the Help button and are announced politely, the term pop-up works by keyboard (Enter moves into it, Escape closes and returns focus), a skip link is the first Tab stop, and the footer headings follow the heading order.
 
+
+## Recorded audio for Listen
+
+Listen plays a recording when one exists for the exact sentence, and otherwise falls back to the student's on-device browser voice.
+
+- Recordings are files in `public/audio/book/`, named by a hash of the text they say (`public/js/book-audio.mjs`), and listed in `manifest.json`. Editing a sentence changes its hash, so a stale recording can never play. `npm run book:audio -- status` shows what is covered and which recordings are out of date.
+- `npm run book:audio -- todo` writes a numbered reading script (`audio-work/script.txt`, not committed). Record each line as `001.mp3`, `002.mp3`, ... and run `npm run book:audio -- import <folder>`.
+- Or let a speech engine do it: set `WM_TTS_CMD` to a command that reads the sentence on standard input and writes `{out}` (and `WM_TTS_EXT`), then `npm run book:audio -- make`. Any engine that runs on this machine works; nothing is uploaded unless the engine you choose does that, so prefer a local one.
+- The words a voice reads come from `public/js/book-speech.mjs` (symbols, units, "?" and so on); change a rule there and the hashes of affected sentences change, so they are re-listed for recording.
+- Clips are served from this site only (`default-src 'self'` covers them). Keep each clip small (speech at 32 to 48 kbps is plenty).

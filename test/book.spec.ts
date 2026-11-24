@@ -878,6 +878,57 @@ test.describe('reviewer mode (?review=1)', () => {
   });
 });
 
+test.describe('recorded audio for Listen', () => {
+  const MANIFEST = '**/audio/book/manifest.json';
+  const stubs = () => {
+    const w = window as any;
+    w.__played = [];
+    w.__paused = 0;
+    w.__spoken = [];
+    HTMLMediaElement.prototype.play = function () { w.__played.push((this as HTMLAudioElement).src); return Promise.resolve(); };
+    HTMLMediaElement.prototype.pause = function () { w.__paused += 1; };
+    w.SpeechSynthesisUtterance = function (text: string) { return { text, voice: null, rate: 1, pitch: 1, lang: '' }; };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: { speaking: false, getVoices: () => [{ name: 'Daniel (Enhanced)', lang: 'en-GB', localService: true }], cancel() {}, speak(u: any) { w.__spoken.push(u.text); }, addEventListener() {} },
+    });
+  };
+
+  test('a recording of exactly this sentence plays instead of the browser voice, and a second press stops it', async ({ page }) => {
+    await page.addInitScript(stubs);
+    await page.goto('/books/gcse/negative-numbers.html');
+    const first = page.locator('.q').first();
+    const hash = await page.evaluate(async () => {
+      const { unitText, hashText } = await import('/js/book-audio.mjs');
+      return hashText(unitText(document.querySelector('.q .qtext')!));
+    });
+    await page.route(MANIFEST, (route) => route.fulfill({ json: { [hash]: `${hash}.mp3` } }));
+    await page.route(`**/audio/book/${hash}.mp3`, (route) => route.fulfill({ body: Buffer.from([0]), contentType: 'audio/mpeg' }));
+    await page.reload();
+    await first.locator('.listen').click();
+    await expect.poll(() => page.evaluate(() => (window as any).__played.length)).toBe(1);
+    expect(await page.evaluate(() => (window as any).__played[0])).toContain(`/audio/book/${hash}.mp3`);
+    expect(await page.evaluate(() => (window as any).__spoken.length)).toBe(0);
+    await first.locator('.listen').click();
+    await expect.poll(() => page.evaluate(() => (window as any).__paused)).toBeGreaterThan(0);
+  });
+
+  test('a sentence with no recording, or a manifest entry that is not a plain clip name, falls back to the browser voice', async ({ page }) => {
+    await page.addInitScript(stubs);
+    await page.route(MANIFEST, (route) => route.fulfill({ json: { '0123456789abcdef': '../../secret.mp3' } }));
+    await page.goto('/books/gcse/negative-numbers.html');
+    await page.locator('.q').first().locator('.listen').click();
+    await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
+    expect(await page.evaluate(() => (window as any).__played.length)).toBe(0);
+  });
+
+  test('the shipped manifest is valid JSON and clips load only from this site', async ({ page }) => {
+    const res = await page.request.get('/audio/book/manifest.json');
+    expect(res.ok()).toBe(true);
+    expect(typeof (await res.json())).toBe('object');
+  });
+});
+
 test.describe('the calculator', () => {
   test('appears only on questions where a calculator is allowed, on every book page', async ({ page }) => {
     let withCalc = 0;

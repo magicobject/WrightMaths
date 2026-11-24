@@ -7,7 +7,8 @@
 import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
 import { review, isDue, sanitize } from './book-queue.mjs';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
-import { toSpoken, splitSentences } from './book-speech.mjs';
+import { splitSentences } from './book-speech.mjs';
+import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
 
@@ -716,22 +717,6 @@ function addFastRoute(main, after) {
 // ---------- listen (the browser's own voice; nothing is sent anywhere) ----------
 
 // Only voices that run on this device are used unless the student picks an online one (see book-voice.mjs).
-// Say maths symbols as words, so the voice reads "minus" and "times" instead of skipping them.
-function spokenText(node) {
-  const clone = node.cloneNode(true);
-  clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
-  clone.querySelectorAll('.frac').forEach((f) => {
-    const top = f.querySelector('.fn')?.textContent ?? '';
-    const bottom = f.querySelector('.fd')?.textContent ?? '';
-    f.replaceWith(` the fraction ${top} over ${bottom}, `);
-  });
-  clone.querySelectorAll('sup').forEach((s) => {
-    const p = s.textContent.trim();
-    s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
-  });
-  return toSpoken(clone.textContent);
-}
-
 function speak(text) {
   const synth = window.speechSynthesis;
   synth.cancel();
@@ -753,16 +738,20 @@ function speak(text) {
 
 function addListenButtons(root = document) {
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
+  loadManifest(); // a tiny same-site file, fetched once so a press of Listen starts at once
   for (const node of root.querySelectorAll('.qtext, .key')) {
     if (node.querySelector(':scope > .listen')) continue;
     const number = node.querySelector('.qnum')?.textContent;
     const btn = el('button', { type: 'button', class: 'listen', 'aria-label': number ? `Listen to question ${number}` : 'Listen to this key idea', text: 'Listen' });
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const synth = window.speechSynthesis;
+      // A second press stops whatever is playing: a recording or the browser voice.
+      if (stopClip()) return;
       if (synth.speaking) { synth.cancel(); return; }
-      // When the question has a picture, read what the picture shows too.
-      const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
-      speak(spokenText(node) + (picture ? ` The picture shows: ${toSpoken(picture)}` : ''));
+      const text = unitText(node);
+      // A recording of exactly this text (made by the build tooling, or Greg's own voice) wins; otherwise the browser voice reads it.
+      if (await playClip(text, loadRead().rate)) return;
+      speak(text);
     });
     node.append(btn);
   }
