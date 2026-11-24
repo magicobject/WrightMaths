@@ -7,6 +7,7 @@
 import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
 import { review, isDue, sanitize } from './book-queue.mjs';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
+import { toSpoken, splitSentences } from './book-speech.mjs';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
 
 const REVIEW = isReviewMode(window.location.search);
@@ -725,25 +726,7 @@ function spokenText(node) {
     const p = s.textContent.trim();
     s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
   });
-  return clone.textContent
-    .replace(/\u2212|\u2013/g, ' minus ')
-    .replace(/\u00d7/g, ' times ')
-    .replace(/\u00f7/g, ' divided by ')
-    .replace(/\u2248/g, ' is about ')
-    .replace(/\u2261/g, ' is identically equal to ')
-    .replace(/=/g, ' equals ')
-    .replace(/\u00b2/g, ' squared')
-    .replace(/\u00b3/g, ' cubed')
-    .replace(/\^2/g, ' squared')
-    .replace(/\u221a/g, ' square root of ')
-    .replace(/\u00b0C/g, ' degrees Celsius')
-    .replace(/\u00b0/g, ' degrees')
-    .replace(/\u00a3\s?([\d.,]+)/g, '$1 pounds')
-    .replace(/%/g, ' percent')
-    .replace(/\+/g, ' plus ')
-    .replace(/\?/g, ' question mark. ')
-    .replace(/\s+/g, ' ')
-    .trim();
+  return toSpoken(clone.textContent);
 }
 
 function speak(text) {
@@ -754,12 +737,13 @@ function speak(text) {
   // No on-device voice: say nothing rather than let the browser pick one, which may be an online voice that sends the text away.
   if (!voice) return;
   // Short sentences in turn sound more natural and avoid the browser cutting off long text.
-  for (const sentence of text.split(/(?<=[.?!])\s+/).filter(Boolean)) {
+  for (const { text: sentence, question } of splitSentences(text)) {
     const u = new window.SpeechSynthesisUtterance(sentence);
     u.lang = voice?.lang ?? 'en-GB';
     if (voice) u.voice = voice;
     u.rate = prefs.rate;
-    u.pitch = 1;
+    // A question lifts at the end (voices do this for a "?"); a touch more pitch helps flat voices.
+    u.pitch = question ? 1.1 : 1;
     synth.speak(u);
   }
 }
@@ -775,7 +759,7 @@ function addListenButtons(root = document) {
       if (synth.speaking) { synth.cancel(); return; }
       // When the question has a picture, read what the picture shows too.
       const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
-      speak(spokenText(node) + (picture ? ` The picture shows: ${picture}` : ''));
+      speak(spokenText(node) + (picture ? ` The picture shows: ${toSpoken(picture)}` : ''));
     });
     node.append(btn);
   }
