@@ -56,6 +56,14 @@ export const PAGES = [
     active: null,
     robots: 'noindex',
   },
+  {
+    slug: 'books/index',
+    title: 'Maths Books | Wright Maths Tuition',
+    description: 'Free online maths books written by a tutor, starting with a GCSE maths book built from the ground up.',
+    active: null,
+    robots: 'noindex',
+    canonicalPath: 'books/',
+  },
   // ---- The GCSE book: hidden pilot at /books/gcse/ ----
   // Not in NAV, not in sitemap.xml, not linked from any other page, and
   // noindex. Topic pages are generated from src/book/topics.mjs, not listed here.
