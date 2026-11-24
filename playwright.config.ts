@@ -8,6 +8,8 @@ const PORT = Number(process.env.WM_TEST_PORT ?? folderPort);
 
 export default defineConfig({
   testDir: './test',
+  // The book has grown to over a hundred pages, and a few checks visit all of them: allow for a busy machine.
+  timeout: 90_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

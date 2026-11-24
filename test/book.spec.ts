@@ -1291,3 +1291,27 @@ test.describe('round 5 fixes', () => {
     await expect(page.locator('.next-up a.btn')).toHaveAttribute('href', 'four-operations.html');
   });
 });
+
+test.describe('what the voice reads', () => {
+  test('numbers are spoken as words, and data-say replaces the displayed words for the voice', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const spoken = await page.evaluate(async () => {
+      const { unitText } = await import('/js/book-audio.mjs');
+      const make = (html: string, say?: string) => {
+        const node = document.createElement('p');
+        node.className = 'qtext';
+        node.innerHTML = html;
+        if (say !== undefined) node.setAttribute('data-say', say);
+        return node;
+      };
+      return {
+        plain: unitText(make('What is 4,872 &divide; 24 in a 6 m pole?')),
+        angles: unitText(make('Key idea: a triangle totals 180&deg;.')),
+        override: unitText(make('x&sup2; &minus; 5x', 'x squared minus five x')),
+      };
+    });
+    expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
+    expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
+    expect(spoken.override).toBe('x squared minus five x');
+  });
+});
