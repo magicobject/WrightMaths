@@ -31,17 +31,18 @@ export const BASIC = {
 };
 
 const toRadians = (x) => (x * Math.PI) / 180;
+const clean = (v) => (Math.abs(v) < 1e-12 ? 0 : v); // sin 180 is 0, not 1.2E-16
 const fromRadians = (x) => (x * 180) / Math.PI;
 
 export const SCIENTIFIC = {
   name: 'scientific',
   functions: {
     ...BASIC.functions,
-    sin: (x) => Math.sin(toRadians(x)),
-    cos: (x) => Math.cos(toRadians(x)),
+    sin: (x) => clean(Math.sin(toRadians(x))),
+    cos: (x) => clean(Math.cos(toRadians(x))),
     tan: (x) => {
       if (Math.abs(Math.cos(toRadians(x))) < 1e-12) throw new CalcError('math');
-      return Math.tan(toRadians(x));
+      return clean(Math.tan(toRadians(x)));
     },
     asin: (x) => { if (Math.abs(x) > 1) throw new CalcError('math'); return fromRadians(Math.asin(x)); },
     acos: (x) => { if (Math.abs(x) > 1) throw new CalcError('math'); return fromRadians(Math.acos(x)); },
@@ -49,18 +50,19 @@ export const SCIENTIFIC = {
     log: (x) => { if (x <= 0) throw new CalcError('math'); return Math.log10(x); },
     ln: (x) => { if (x <= 0) throw new CalcError('math'); return Math.log(x); },
     abs: Math.abs,
+    cbrt: Math.cbrt,
   },
   constants: { pi: Math.PI, e: Math.E },
   postfix: { ...BASIC.postfix, '³': (x) => x * x * x, '%': (x) => x / 100 },
 };
 
 const SYMBOLS = {
-  '−': '-', '–': '-', '×': '*', '÷': '/', '√': 'sqrt', 'π': 'pi',
+  '−': '-', '–': '-', '×': '*', '÷': '/', '√': 'sqrt', '∛': 'cbrt', 'π': 'pi',
 };
 
 /** Split text into tokens: numbers, names, operators and brackets. Throws a syntax error on anything else. */
 export function tokenize(text, profile = BASIC) {
-  const src = String(text).replace(/[−–×÷√π]/g, (c) => ` ${SYMBOLS[c]} `);
+  const src = String(text).replace(/[−–×÷√∛π]/g, (c) => ` ${SYMBOLS[c]} `);
   const tokens = [];
   let i = 0;
   while (i < src.length) {

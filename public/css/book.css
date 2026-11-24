@@ -428,12 +428,16 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .calc-screen{margin-bottom:10px;padding:8px 12px;border-radius:8px;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);text-align:right;}
 .calc-expr{min-height:1.6em;font-size:1.15rem;color:var(--ink);white-space:nowrap;overflow:hidden;}
 .calc-result{display:block;min-height:2.2rem;font-size:1.7rem;font-weight:700;overflow-wrap:anywhere;}
-.calc-pad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.calc-pad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
 .calc-key{font:inherit;font-weight:700;font-size:1.1rem;min-height:48px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
 .calc-key:hover{background:var(--paper);}
 .calc-control{background:var(--paper);font-size:.95rem;}
 .calc-binary,.calc-open,.calc-bracket{background:var(--t-term);}
 .calc-binary{font-size:1.4rem;}
+.calc-5col{max-width:400px;}
+.calc-pad[data-cols="5"]{grid-template-columns:repeat(5,minmax(0,1fr));}
+.calc-pad[data-cols="5"] .calc-key{padding:0;min-width:0;}
+.calc-fn{background:var(--t-term);font-size:.9rem;}
 .calc-equals{background:var(--navy);color:var(--white);}
 .calc-equals:hover{background:var(--navy-dark);}
 /* The floating Top button would cover the right-hand keys on a phone. */

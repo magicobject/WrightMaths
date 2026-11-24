@@ -941,12 +941,12 @@ test.describe('the calculator', () => {
         text: (q.querySelector('.qtext')?.textContent ?? '').slice(0, 60),
       })));
       for (const row of rows) {
-        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes';
+        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes' || row.marked === 'scientific';
         expect(row.has, `${bookPage.path}: "${row.text}" (tag "${row.tag}", data-calc "${row.marked}")`).toBe(allowed);
         if (row.has) withCalc += 1;
       }
     }
-    expect(withCalc).toBeGreaterThan(5);
+    expect(withCalc).toBeGreaterThan(50); // basic keypads plus the scientific ones on the trigonometry page
   });
 
   test('the diagnostic, which is no-calculator throughout, has no calculator button', async ({ page }) => {
@@ -1065,5 +1065,54 @@ test.describe('the calculator, from the tester\'s report', () => {
     await page.keyboard.press('Escape');
     await expect(q.locator('.calc')).toBeHidden();
     await expect(q.locator('.calc-toggle')).toBeFocused();
+  });
+});
+
+test.describe('the scientific calculator', () => {
+  const open = async (page: import('@playwright/test').Page, text: string) => {
+    await page.goto('/books/gcse/trigonometry.html');
+    const q = page.locator('.q', { hasText: text }).first();
+    await q.locator('.calc-toggle').click();
+    return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
+  };
+
+  test('trigonometry questions that need it get sin, cos, tan and the rest; no-calculator ones get nothing', async ({ page }) => {
+    const { panel, key } = await open(page, 'work out sin 40');
+    await expect(panel.locator('.calc-pad')).toHaveAttribute('data-cols', '5');
+    for (const name of ['sin, sine', 'cos, cosine', 'tan, tangent', 'sin⁻¹, inverse sine', 'cos⁻¹, inverse cosine', 'tan⁻¹, inverse tangent', 'π, pi', 'log, log base 10', 'ln, natural log', 'x³, cubed', 'cube root']) {
+      await expect(key(name), name).toBeVisible();
+    }
+    await key('sin, sine').click(); await key('4').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(40');
+    await expect(panel.locator('.calc-result')).toHaveText('0.6427876097');
+    await expect(panel.locator('.calc-tip')).toContainText('Angles are in degrees');
+
+    await page.goto('/books/gcse/trigonometry.html');
+    for (const text of ['without a calculator', 'exact value of sin 30', 'What is the exact value of tan 60']) {
+      const q = page.locator('.q', { hasText: text }).first();
+      await expect(q, text).toBeVisible();
+      await expect(q.locator('.calc-toggle'), text).toHaveCount(0);
+    }
+  });
+
+  test('inverse keys show as sin⁻¹ and find angles; impossible ones say so; a minus works inside a bracket', async ({ page }) => {
+    const { panel, key } = await open(page, 'sin x = 0.5. Use your calculator');
+    await key('sin⁻¹, inverse sine').click(); await key('0').click(); await key('decimal point').click(); await key('5').click(); await key('equals').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('sin⁻¹(0.5');
+    await expect(panel.locator('.calc-result')).toHaveText('30');
+    await key('Clear').click();
+    await key('sin⁻¹, inverse sine').click(); await key('9').click(); await key('divide').click(); await key('6').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('Cannot work that out');
+    await key('Clear').click();
+    await key('sin, sine').click(); await key('minus').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('−0.5');
+  });
+
+  test('the scientific keypad has no axe violations', async ({ page }) => {
+    const { q } = await open(page, 'work out sin 40');
+    await page.keyboard.type('4*5=');
+    const results = await new (await import('@axe-core/playwright')).default({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    expect(results.violations.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
+    await expect(q.locator('.calc')).toBeVisible();
   });
 });
