@@ -114,3 +114,48 @@ test('huge, tiny and absurd sums never show NaN or Infinity and never throw', ()
   assert.equal(calculate('('.repeat(20000) + '1').ok, false);
   assert.equal(calculate('-'.repeat(20000) + '1').ok, false);
 });
+
+test('scientific extras: cube root, and trig answers free of floating-point noise', () => {
+  const sci = { profile: SCIENTIFIC };
+  assert.equal(text('∛(27)', sci), '3');
+  assert.equal(text('∛(-8)', sci), '-2');
+  for (const [sum, shown] of [['sin(180)', '0'], ['cos(90)', '0'], ['tan(180)', '0'], ['sin(30)', '0.5'], ['cos(60)', '0.5'], ['sin(90)', '1'], ['tan(45)', '1']]) {
+    assert.equal(text(sum, sci), shown, sum);
+  }
+  assert.equal(text('sin(40)', sci), '0.6427876097');
+  assert.equal(text('tan(50)', sci), '1.191753593');
+  assert.equal(text('asin(0.5)', sci), '30');
+  assert.equal(text('atan(3 ÷ 4)', sci), '36.86989765');
+  assert.equal(text('acos(8 ÷ 13)', sci), '52.02012756');
+  assert.equal(text('asin(9 ÷ 6)', sci), 'Cannot work that out');
+  assert.equal(text('2 × sin(30)', sci), '1');
+  assert.equal(text('4 × sin(70)', sci), '3.758770483');
+  assert.equal(text('3 ×10^(5)', sci), '300000');
+  assert.equal(text('log(100) + ln(1)', sci), '2');
+});
+
+test('every key on the scientific keypad inserts something the engine can read', async () => {
+  const { LAYOUTS } = await import('../public/js/book-calc.mjs');
+  const layout = LAYOUTS.scientific;
+  assert.equal(layout.profile, SCIENTIFIC);
+  for (const key of layout.rows.flat().filter((k) => k.action === 'insert' && k.kind !== 'digit')) {
+    assert.doesNotThrow(() => tokenize(key.text, SCIENTIFIC), `key ${key.label}`);
+  }
+  assert.equal(layout.rows.flat().filter((k) => k.action === 'equals').length, 1);
+  // every row fills the 5 columns exactly
+  for (const row of layout.rows) assert.equal(row.reduce((n, k) => n + (k.span ?? 1), 0), layout.cols);
+});
+
+test('rounding noise: sin(30) - 0.5 and 0.1 + 0.2 - 0.3 are exactly 0, like a real calculator', () => {
+  const sci = { profile: SCIENTIFIC };
+  for (const sum of ['sin(30) − 0.5', 'tan(45) − 1', '2sin(30) − 1', 'cos(60) − 0.5', 'tan(30) × tan(60) − 1']) assert.equal(text(sum, sci), '0', sum);
+  assert.equal(text('0.1 + 0.2 − 0.3'), '0');
+  assert.equal(text('1 ÷ 3 × 3'), '1');
+  assert.equal(text('0.1 × 3'), '0.3');
+});
+
+test('Ans can be followed straight by a function or another Ans', () => {
+  assert.equal(val('Anssin(30)', { profile: SCIENTIFIC, ans: 5 }), 2.5);
+  assert.equal(val('Ans×sin(30)', { profile: SCIENTIFIC, ans: 5 }), 2.5);
+  assert.equal(val('AnsAns', { ans: 3 }), 9);
+});
