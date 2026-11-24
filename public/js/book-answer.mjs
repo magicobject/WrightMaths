@@ -59,7 +59,9 @@ export function textKey(raw) {
     .replaceAll('³', '^3')
     .replace(/sqrt\s*\(?\s*(\d+)\s*\)?/g, '√$1')
     .replace(/√\s*\(\s*(\d+)\s*\)/g, '√$1')
-    .replace(/\s*\/\s*/g, '/');
+    .replace(/\s*\/\s*/g, '/')
+    // Two solutions typed as "x = -4 or x = 3": drop the repeated "x =" so it matches "-4 or 3".
+    .replace(/(\bor\b|\band\b|,)\s*[a-z]\s*=\s*/g, '$1 ');
   // Keep one space only in a mixed number such as "1 1/2"; drop all others.
   if (/^-?\d+\s+\d+\/\d+$/.test(s)) return s.replace(/\s+/g, ' ');
   return s.replace(/[\s*·]/g, '');

@@ -946,4 +946,357 @@ export const GLOSSARY = [
     watch: 'The range is a single number, not "2 to 20".',
     see: ['mean'],
   },
+  {
+    "id": "simple-interest",
+    "term": "Simple interest",
+    "strand": "n",
+    "level": "F",
+    "def": "Interest worked out only on the starting amount, so the same amount is paid every year.",
+    "example": "&pound;600 at 3% simple interest for 4 years. 3% of 600 = &pound;18 a year, so the interest is 4 &times; 18 = &pound;72.",
+    "watch": "Simple interest does not earn interest on the interest. Compound interest does.",
+    "flip": "Find the rate or the time from the interest paid: rate = interest &divide; (amount &times; years).",
+    "see": [
+      "percentage",
+      "compound-interest"
+    ]
+  },
+  {
+    "id": "vat",
+    "term": "VAT",
+    "strand": "n",
+    "level": "F",
+    "def": "Value added tax: a percentage added to the price of most goods and services. The usual UK rate is 20%.",
+    "example": "A bike costs &pound;250 before VAT. With 20% VAT: 250 &times; 1.2 = &pound;300.",
+    "watch": "To take VAT out of a price that includes it, divide by 1.2. Taking 20% off does not work.",
+    "flip": "Price without VAT = price with VAT &divide; 1.2.",
+    "see": [
+      "multiplier",
+      "reverse-percentage"
+    ]
+  },
+  {
+    "id": "percentage-change",
+    "term": "Percentage change",
+    "strand": "n",
+    "level": "F",
+    "def": "How much an amount has changed, written as a percentage of the starting amount: change divided by original, times 100.",
+    "example": "A price goes from &pound;80 to &pound;92. Change = 12. 12 &divide; 80 &times; 100 = 15%, so it is a 15% increase.",
+    "watch": "Always divide by the original amount, not the new one.",
+    "flip": "To go from a percentage change to the new amount, use a multiplier.",
+    "see": [
+      "multiplier",
+      "reverse-percentage"
+    ]
+  },
+  {
+    "id": "equivalent-ratios",
+    "term": "Equivalent ratios",
+    "strand": "r",
+    "level": "F",
+    "def": "Ratios that describe the same split with different numbers. You get one by multiplying or dividing both sides by the same number.",
+    "example": [
+      "2 : 3 = 4 : 6 = 10 : 15.",
+      "Divide 12 : 18 by 6 to get the simplest form, 2 : 3."
+    ],
+    "watch": "Adding the same number to both sides does not work: 2 : 3 is not the same as 4 : 5.",
+    "flip": "Simplifying a ratio, and scaling it up.",
+    "see": [
+      "ratio",
+      "equivalent-fractions"
+    ]
+  },
+  {
+    "id": "unitary-method",
+    "term": "Unitary method",
+    "strand": "r",
+    "level": "F",
+    "def": "Find the value of one unit first, then multiply to get the amount you want.",
+    "example": "5 tiles cost &pound;12.50, so 1 tile costs &pound;2.50 and 8 tiles cost 8 &times; &pound;2.50 = &pound;20.",
+    "flip": "Dividing to find one, then multiplying to find many.",
+    "see": [
+      "proportion",
+      "ratio"
+    ]
+  },
+  {
+    "id": "best-buy",
+    "term": "Best buy",
+    "strand": "r",
+    "level": "F",
+    "def": "The deal that costs least for the same amount. Work out the price per unit (per 100 g, per litre, per item) for each and compare.",
+    "example": "500 g for &pound;1.60 is 32p per 100 g. 750 g for &pound;2.25 is 30p per 100 g, so the 750 g pack is the better buy.",
+    "watch": "A bigger pack is not always cheaper per unit. Always work it out.",
+    "flip": "Price per unit, and how much you get for a pound.",
+    "see": [
+      "unitary-method",
+      "proportion"
+    ]
+  },
+  {
+    "id": "map-scale",
+    "term": "Map scale",
+    "strand": "r",
+    "level": "F",
+    "def": "A ratio that compares a length on a map, plan or model with the real length. The same units are used on both sides.",
+    "example": "A scale of 1 : 50 000 means 1 cm on the map is 50 000 cm (500 m) in real life.",
+    "watch": "Change units at the end: multiply by the scale, then change centimetres to metres or kilometres.",
+    "flip": "Map length to real length, and real length to map length.",
+    "see": [
+      "ratio",
+      "scale-factor"
+    ]
+  },
+  {
+    "id": "subject",
+    "term": "Subject (of a formula)",
+    "strand": "a",
+    "level": "F",
+    "def": "The letter on its own on one side of a formula, usually the left. Making a letter the subject means rearranging the formula so that letter is alone.",
+    "example": [
+      "In v = u + at, the subject is v.",
+      "Make t the subject: take u from both sides, then divide by a, to get t = {frac:v &minus; u/a}."
+    ],
+    "watch": "Use the same step on both sides, and divide the whole of the other side, not just one term.",
+    "flip": "Substituting puts numbers in to find the output. Making a letter the subject builds the formula that finds an input.",
+    "see": [
+      "formula",
+      "inverse-operation",
+      "substitute"
+    ]
+  },
+  {
+    "id": "elimination",
+    "term": "Elimination",
+    "strand": "a",
+    "level": "F",
+    "def": "A way to solve simultaneous equations. Add or subtract the two equations so that one letter disappears, leaving one equation with one unknown. You may need to multiply an equation first so the letter matches.",
+    "example": [
+      "x + y = 7 and x &minus; y = 1. Add the equations: 2x = 8, so x = 4.",
+      "Then 4 + y = 7, so y = 3."
+    ],
+    "watch": "Same signs on the letter you want to remove: subtract. Different signs: add. Multiply every term of an equation, including the number on the right.",
+    "flip": "Check an answer by putting it back into both original equations.",
+    "see": [
+      "simultaneous-equations",
+      "substitute"
+    ]
+  },
+  {
+    "id": "difference-of-two-squares",
+    "term": "Difference of two squares",
+    "strand": "a",
+    "level": "H",
+    "def": "An expression with one square taken away from another, such as x&sup2; &minus; 49. It factorises into two brackets that are the same except for the sign.",
+    "example": [
+      "x&sup2; &minus; 49 = (x + 7)(x &minus; 7)",
+      "73&sup2; &minus; 27&sup2; = (73 + 27)(73 &minus; 27) = 4600"
+    ],
+    "watch": "x&sup2; + 49 does not factorise this way. You need the minus sign.",
+    "flip": "Expanding (x + a)(x &minus; a) gives x&sup2; &minus; a&sup2;: the two middle terms cancel.",
+    "see": [
+      "factorise",
+      "expand",
+      "square-number"
+    ]
+  },
+  {
+    "id": "root-of-equation",
+    "term": "Root (solution) of an equation",
+    "strand": "a",
+    "level": "H",
+    "def": "A value of the unknown that makes the equation true. A quadratic can have two roots. On its graph, the roots are where the curve crosses the x-axis.",
+    "example": "x&sup2; &minus; x &minus; 6 = 0 has roots x = 3 and x = &minus;2.",
+    "flip": "Roots 2 and 5 come from the brackets (x &minus; 2)(x &minus; 5).",
+    "see": [
+      "solve",
+      "quadratic",
+      "parabola"
+    ]
+  },
+  {
+    "id": "parabola",
+    "term": "Parabola",
+    "strand": "a",
+    "level": "H",
+    "def": "The U-shaped curve that is the graph of a quadratic. If the x&sup2; term is negative, it is an upside-down U.",
+    "example": "y = x&sup2; &minus; x &minus; 6 is a parabola that crosses the x-axis at x = &minus;2 and x = 3.",
+    "see": [
+      "quadratic",
+      "turning-point",
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "quadratic-formula",
+    "term": "Quadratic formula",
+    "strand": "a",
+    "level": "H",
+    "def": "A formula that solves any equation ax&sup2; + bx + c = 0 (with a not 0): x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) &divide; 2a.",
+    "example": "x&sup2; &minus; 6x + 2 = 0 has a = 1, b = &minus;6, c = 2. So x = (6 &plusmn; &radic;28) &divide; 2 = 5.65 or 0.35 to 2 d.p.",
+    "watch": "If b is negative, then &minus;b is positive. Take care with the signs.",
+    "see": [
+      "discriminant",
+      "quadratic",
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "opposite",
+    "term": "Opposite (side)",
+    "strand": "g",
+    "level": "F",
+    "def": "In a right-angled triangle, the side across from the angle you are using. It does not touch that angle.",
+    "example": "If the angle is at the bottom right of a triangle with its right angle at the bottom left, the opposite side is the upright one.",
+    "watch": "It changes if you pick the other angle. The hypotenuse never changes.",
+    "flip": "Naming the sides from an angle, and choosing the angle from the sides.",
+    "see": [
+      "adjacent",
+      "hypotenuse",
+      "soh-cah-toa"
+    ]
+  },
+  {
+    "id": "adjacent",
+    "term": "Adjacent (side)",
+    "strand": "g",
+    "level": "F",
+    "def": "In a right-angled triangle, the side next to the angle you are using that is not the hypotenuse.",
+    "example": "For a ladder against a wall, the ground is adjacent to the angle between the ladder and the ground.",
+    "watch": "Two sides touch the angle. One is the hypotenuse, so adjacent is the other one.",
+    "flip": "Naming the sides from an angle, and choosing the angle from the sides.",
+    "see": [
+      "opposite",
+      "hypotenuse",
+      "soh-cah-toa"
+    ]
+  },
+  {
+    "id": "sine",
+    "term": "Sine (sin)",
+    "strand": "g",
+    "level": "F",
+    "def": "For an angle in a right-angled triangle, sine is the opposite side divided by the hypotenuse.",
+    "example": [
+      "If the opposite is 3 and the hypotenuse is 5, sin x = {frac:3/5}.",
+      "sin 30&deg; = 0.5."
+    ],
+    "watch": "Make sure your calculator is in degrees. In a right-angled triangle, sine is never more than 1.",
+    "flip": "Finding a side with sin, and finding the angle with sin<sup>&minus;1</sup>.",
+    "see": [
+      "soh-cah-toa",
+      "cosine",
+      "inverse-trig"
+    ]
+  },
+  {
+    "id": "cosine",
+    "term": "Cosine (cos)",
+    "strand": "g",
+    "level": "F",
+    "def": "For an angle in a right-angled triangle, cosine is the adjacent side divided by the hypotenuse.",
+    "example": [
+      "If the adjacent is 4 and the hypotenuse is 5, cos x = {frac:4/5}.",
+      "cos 60&deg; = 0.5."
+    ],
+    "watch": "Make sure your calculator is in degrees. In a right-angled triangle, cosine is never more than 1.",
+    "flip": "Finding a side with cos, and finding the angle with cos<sup>&minus;1</sup>.",
+    "see": [
+      "soh-cah-toa",
+      "sine",
+      "inverse-trig"
+    ]
+  },
+  {
+    "id": "tan-ratio",
+    "term": "Tan (the trig ratio)",
+    "strand": "g",
+    "level": "F",
+    "def": "For an angle in a right-angled triangle, tan is the opposite side divided by the adjacent side. It is not the same as a tangent line to a circle.",
+    "example": [
+      "If the opposite is 3 and the adjacent is 4, tan x = {frac:3/4}.",
+      "tan 45&deg; = 1."
+    ],
+    "watch": "Tan can be bigger than 1. It does not use the hypotenuse.",
+    "flip": "Finding a side with tan, and finding the angle with tan<sup>&minus;1</sup>.",
+    "see": [
+      "soh-cah-toa",
+      "sine",
+      "cosine",
+      "inverse-trig"
+    ]
+  },
+  {
+    "id": "soh-cah-toa",
+    "term": "SOH CAH TOA",
+    "strand": "g",
+    "level": "F",
+    "def": "A memory aid for the three trig ratios: Sin = Opposite / Hypotenuse, Cos = Adjacent / Hypotenuse, Tan = Opposite / Adjacent.",
+    "example": "You know the adjacent side and want the hypotenuse. Adjacent and Hypotenuse is CAH, so use cos.",
+    "flip": "Choosing the ratio from the sides, and naming the sides from the ratio.",
+    "see": [
+      "sine",
+      "cosine",
+      "tan-ratio",
+      "opposite",
+      "adjacent",
+      "hypotenuse"
+    ]
+  },
+  {
+    "id": "inverse-trig",
+    "term": "Inverse trig functions",
+    "strand": "g",
+    "level": "F",
+    "def": "Calculator buttons (sin<sup>&minus;1</sup>, cos<sup>&minus;1</sup>, tan<sup>&minus;1</sup>) that turn a ratio back into an angle.",
+    "example": "sin x = 0.5, so x = sin<sup>&minus;1</sup>(0.5) = 30&deg;.",
+    "watch": "You usually press SHIFT or 2nd first. The sin<sup>&minus;1</sup> button is not 1 &divide; sin.",
+    "flip": "Angle to ratio (sin), and ratio to angle (sin<sup>&minus;1</sup>).",
+    "see": [
+      "sine",
+      "cosine",
+      "tan-ratio"
+    ]
+  },
+  {
+    "id": "angle-of-elevation",
+    "term": "Angle of elevation",
+    "strand": "g",
+    "level": "F",
+    "def": "The angle measured up from the horizontal when you look up at something.",
+    "example": "You stand 30 m from a tower and look up at the top. The angle between the horizontal and your line of sight is the angle of elevation.",
+    "flip": "The angle of elevation from B up to A equals the angle of depression from A down to B.",
+    "see": [
+      "angle-of-depression",
+      "tan-ratio"
+    ]
+  },
+  {
+    "id": "angle-of-depression",
+    "term": "Angle of depression",
+    "strand": "g",
+    "level": "F",
+    "def": "The angle measured down from the horizontal when you look down at something.",
+    "example": "From a cliff top you look down at a boat. The angle between the horizontal and your line of sight is the angle of depression.",
+    "watch": "It is measured from the horizontal, not from the cliff or the vertical.",
+    "flip": "The angle of depression from A down to B equals the angle of elevation from B up to A.",
+    "see": [
+      "angle-of-elevation",
+      "tan-ratio"
+    ]
+  },
+  {
+    "id": "compound-interest",
+    "term": "Compound interest",
+    "strand": "n",
+    "level": "H",
+    "def": "Interest that is added to the account each year, so later interest is worked out on the interest as well.",
+    "example": "&pound;1000 at 5% a year for 3 years: 1000 &times; 1.05<sup>3</sup> = &pound;1157.63 (to the nearest penny).",
+    "watch": "Three years at 5% is not 15%. You multiply by 1.05 three times.",
+    "flip": "To find the starting amount, divide by the multiplier to the power n.",
+    "see": [
+      "multiplier",
+      "simple-interest",
+      "depreciation"
+    ]
+  },
 ];

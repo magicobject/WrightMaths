@@ -19,6 +19,13 @@ export const BOOK_TOPICS: BookPage[] = [
   { path: '/books/gcse/fractions.html', titleContains: 'Fractions', heading: /^Fractions$/ },
   { path: '/books/gcse/solving-equations.html', titleContains: 'Solving equations', heading: /^Solving equations$/ },
   { path: '/books/gcse/pythagoras.html', titleContains: 'Pythagoras', heading: /Pythagoras/ },
+  { path: '/books/gcse/percentages.html', titleContains: 'Percentages', heading: /^Percentages$/ },
+  { path: '/books/gcse/ratio.html', titleContains: 'Ratio', heading: /^Ratio$/ },
+  { path: '/books/gcse/rearranging-formulae.html', titleContains: 'Rearranging formulae', heading: /^Rearranging formulae$/ },
+  { path: '/books/gcse/simultaneous-equations.html', titleContains: 'Simultaneous equations', heading: /^Simultaneous equations$/ },
+  { path: '/books/gcse/quadratic-equations.html', titleContains: 'Quadratic equations', heading: /^Quadratic equations$/ },
+  { path: '/books/gcse/trigonometry.html', titleContains: 'Trigonometry', heading: /^Trigonometry$/ },
+  { path: '/books/gcse/percentage-change.html', titleContains: 'Repeated percentage change', heading: /^Repeated percentage change$/ },
 ];
 
 export const BOOK_PAGES: BookPage[] = [
