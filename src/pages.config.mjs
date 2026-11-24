@@ -107,6 +107,18 @@ export const PAGES = [
     description: 'Real-paper style questions for Higher tier students aiming at grades 7, 8 and 9, with calculator and non-calculator labels and a mark scheme you tick off yourself.',
   },
   {
+    slug: 'books/gcse/foundation',
+    book: 'foundation',
+    title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Real-paper style questions for grades 4, 5 and 6, with calculator and non-calculator labels, a mark scheme you tick off yourself and a timed set.',
+  },
+  {
+    slug: 'books/gcse/teachers',
+    book: 'teachers',
+    title: 'For Teachers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'How to use the GCSE maths book in a classroom: printable worksheets, a teacher answer key for every topic, mark schemes, and what is stored.',
+  },
+  {
     slug: 'books/gcse/parents',
     book: 'parents',
     title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',

@@ -54,12 +54,48 @@ export function parseNumber(raw) {
 const close = (a, b) => Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b));
 
 /** A text key for non-numeric / exact comparison: spaces and multiplication signs ignored, roots and powers unified. */
+/** Inequalities written another way: "4>x>=-1" is "-1<=x<4"; "x>=-1 and x<4" is "-1<=x<4"; "6.50<=x" is "6.5<=x". */
+function normaliseInequality(text) {
+  let t = text
+    .replace(/≤/g, '<=').replace(/≥/g, '>=')
+    .replace(/=</g, '<=').replace(/=>/g, '>=')
+    .replace(/\.$/, '')
+    .replace(/(\d\.\d*?)0+(?!\d)/g, '$1').replace(/(\d)\.(?!\d)/g, '$1');
+  if (!/[<>]/.test(t)) return t;
+  const flip = { '<': '>', '>': '<', '<=': '>=', '>=': '<=' };
+  const oneWay = (seg) => {
+    const m = /^\s*(-?[\d.]+)\s*(<=|>=|<|>)\s*([a-z])\s*$/.exec(seg);
+    return m ? `${m[3]}${flip[m[2]]}${m[1]}` : seg.trim();
+  };
+  const chain = (seg) => {
+    const parts = seg.split(/(<=|>=|<|>)/).map((x) => x.trim());
+    if (parts.length === 5 && parts[1][0] === '>' && parts[3][0] === '>') return `${parts[4]}${flip[parts[3]]}${parts[2]}${flip[parts[1]]}${parts[0]}`;
+    return seg.trim();
+  };
+  const join = (a, b) => {
+    // "x>=-1 and x<4" as one chain: lower bound first
+    const ma = /^([a-z])(>=|>)(-?[\d.]+)$/.exec(a);
+    const mb = /^([a-z])(<=|<)(-?[\d.]+)$/.exec(b);
+    if (ma && mb && ma[1] === mb[1]) return `${ma[3]}${flip[ma[2]]}${ma[1]}${mb[2]}${mb[3]}`;
+    const na = /^([a-z])(<=|<)(-?[\d.]+)$/.exec(a);
+    const nb = /^([a-z])(>=|>)(-?[\d.]+)$/.exec(b);
+    if (na && nb && na[1] === nb[1]) return `${nb[3]}${flip[nb[2]]}${nb[1]}${na[2]}${na[3]}`;
+    return `${a} and ${b}`;
+  };
+  const ors = t.split(/\s*(?:\bor\b|;)\s*/).map((seg) => {
+    const ands = seg.split(/\s*(?:\band\b|,)\s*/).map((x) => chain(oneWay(x)));
+    return ands.length === 2 ? join(ands[0], ands[1]) : ands.join(' and ');
+  });
+  return ors.join(' or ');
+}
+
 export function textKey(raw) {
   let s = clean(raw)
     .replaceAll('²', '^2')
     .replaceAll('³', '^3')
-    .replace(/sqrt\s*\(?\s*(\d+)\s*\)?/g, '√$1')
+    .replace(/sqrt\s*(?:\(\s*(\d+)\s*\)|(\d+))/g, (_, a, b) => `√${a ?? b}`)
     .replace(/√\s*\(\s*(\d+)\s*\)/g, '√$1')
+    .replace(/\((\d*√\d+)\)/g, '$1') // (3√2) means 3√2
     .replace(/\s*\/\s*/g, '/')
     // Standard form needs its multiplication sign: "4.6x10^6" and "4.6*10^6" match, "4.610^6" does not.
     .replace(/\s*[x*·]\s*(?=10\s*\^)/g, 'x')
@@ -69,7 +105,9 @@ export function textKey(raw) {
     .replace(/(\bor\b|\band\b|,)\s*[a-z]\s*=\s*/g, '$1 ')
     // A pair typed with brackets, "(2,5)", means the same as "2,5".
     .replace(/^\(([^()]*,[^()]*)\)$/, '$1')
-    .replace(/^(-?\d+(?:\.\d+)?)[\s;]+(-?\d+(?:\.\d+)?)$/, '$1,$2');
+    .replace(/^\{(.*)\}$/, '$1')
+    .replace(/^(-?\d+(?:\.\d+)?(?:[\s;]+-?\d+(?:\.\d+)?)+)$/, (m) => m.trim().split(/[\s;]+/).join(','));
+  if (/[<>≤≥]/.test(s)) s = normaliseInequality(s);
   // Keep one space only in a mixed number such as "1 1/2"; drop all others.
   if (/^-?\d+\s+\d+\/\d+$/.test(s)) return s.replace(/\s+/g, ' ');
   return s.replace(/[\s*·]/g, '');
@@ -102,7 +140,7 @@ export function matches(input, answers, mode = 'value') {
 
 const ALG_OK = /^[0-9a-z.+\-*/^()\s]+$/;
 
-function algEval(src, x) {
+function algEval(src, vars) {
   const s = src.replace(/\s+/g, '');
   let i = 0;
   const peek = () => s[i];
@@ -126,8 +164,9 @@ function algEval(src, x) {
       return v;
     }
     if (/[a-z]/.test(peek() ?? '')) {
+      const ch = peek();
       i += 1;
-      return x;
+      return vars[ch];
     }
     throw new Error('unexpected');
   }
@@ -187,23 +226,43 @@ const topTerms = (src) => {
 
 /** 'same' when typed and key are the same algebra in an acceptable form; 'longer' when equal but not simplified; otherwise null. */
 export function sameAlgebra(input, key) {
-  const a = clean(input).replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*');
-  const b = clean(key).replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*');
+  const tidy = (t) => t.replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*').replace(/\((\d+(?:\.\d+)?|[a-z])\)/g, '$1').replace(/\((\d+\/\d+)\)/g, '$1'); // (2) means 2, (1/2) means 1/2
+  const unwrap = (t) => {
+    let u = t.replace(/\+\(-([a-z0-9.]+)\)/g, '-$1');
+    while (u.startsWith('(') && u.endsWith(')')) {
+      let depth = 0;
+      let whole = true;
+      for (let k = 0; k < u.length - 1; k += 1) {
+        if (u[k] === '(') depth += 1;
+        else if (u[k] === ')') depth -= 1;
+        if (depth === 0) { whole = false; break; }
+      }
+      if (!whole) break;
+      u = u.slice(1, -1);
+    }
+    return u;
+  };
+  const a = unwrap(tidy(clean(input)));
+  const b = unwrap(tidy(clean(key)));
   if (!ALG_OK.test(a) || !ALG_OK.test(b)) return null;
   if (/10\s*\^/.test(a) || /10\s*\^/.test(b)) return null; // standard form is matched by its written form, not as algebra
-  const letters = new Set([...(a + b).replace(/[^a-z]/g, '')]);
-  if (letters.size !== 1) return null; // exactly one letter, the same in both
+  const letters = [...new Set([...(a + b).replace(/[^a-z]/g, '')])].sort();
+  if (letters.length < 1 || letters.length > 3) return null; // one to three letters, the same in both
   if (!/[a-z]/.test(a) || !/[a-z]/.test(b)) return null;
   try {
-    for (const x of [2, 3, 5, 7, -1, 0.5, 11]) {
-      const u = algEval(a, x);
-      const v = algEval(b, x);
+    const samples = [[2, 3, 5], [3, 5, 7], [5, 7, 2], [7, 2, 3], [-1, 4, 6], [0.5, 1.5, -3], [11, 13, 17]];
+    for (const sample of samples) {
+      const vars = Object.fromEntries(letters.map((ch, k) => [ch, sample[k]]));
+      const u = algEval(a, vars);
+      const v = algEval(b, vars);
       if (!Number.isFinite(u) || !Number.isFinite(v)) continue;
       if (Math.abs(u - v) > 1e-9 * Math.max(1, Math.abs(v))) return null;
     }
   } catch { return null; }
+  if (/[a-z)]\/|\/[(a-z]/.test(b) && [...a.replace(/\s+/g, '')].sort().join('') !== [...b.replace(/\s+/g, '')].sort().join('')) return a.includes('/') ? 'longer' : null; // an algebraic fraction must be the same pieces, not just equal in value
   const bracketsA = (a.match(/\(/g) ?? []).length;
   const bracketsB = (b.match(/\(/g) ?? []).length;
+  if (bracketsA > bracketsB) return 'longer'; // more bracketed than the key: for example a fraction that could still be cancelled
   if (bracketsB === 0 && bracketsA > 0) return 'longer';
   if (bracketsB > 0 && bracketsA === 0) return 'longer';
   return topTerms(a) <= topTerms(b) ? 'same' : 'longer';
