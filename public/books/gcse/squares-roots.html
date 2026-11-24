@@ -14,13 +14,10 @@
 <meta name="description" content="GCSE maths: Squares and square roots. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/squares-roots.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.23.007">
-<script src="../../js/book-boot.js?v=2026.11.23.007"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.001">
+<script src="../../js/book-boot.js?v=2026.11.24.001"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.23.007">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.001">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,6 +40,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to the content</a>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="../../index.html">
@@ -63,7 +61,7 @@
   </div>
 </header>
 
-<main class="book strand-number" data-book-page="topic" data-topic="squares-roots">
+<main id="main" tabindex="-1" class="book strand-number" data-book-page="topic" data-topic="squares-roots">
 <section class="hero book-hero">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
@@ -90,12 +88,12 @@
     <h2 id="words-title">Words you need</h2>
     <p class="muted">Tap a teal word anywhere on the page to see this again.</p>
     <dl>
-      <dt><a class="term" href="glossary.html#square-number" data-def="The answer when a whole number is multiplied by itself.">Square number</a></dt><dd>The answer when a whole number is multiplied by itself.</dd>
-      <dt><a class="term" href="glossary.html#square-root" data-def="The number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.">Square root</a></dt><dd>The number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.</dd>
-      <dt><a class="term" href="glossary.html#cube-number" data-def="The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.">Cube number</a></dt><dd>The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.</dd>
-      <dt><a class="term" href="glossary.html#cube-root" data-def="The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.">Cube root</a></dt><dd>The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.</dd>
-      <dt><a class="term" href="glossary.html#power" data-def="A small raised number that says how many times to multiply a number by itself. The plural of index is indices.">Power (index)</a></dt><dd>A small raised number that says how many times to multiply a number by itself. The plural of index is indices.</dd>
-      <dt><a class="term" href="glossary.html#irrational" data-def="A number that cannot be written as a fraction. Its decimal never ends and never repeats.">Irrational number</a></dt><dd>A number that cannot be written as a fraction. Its decimal never ends and never repeats.</dd>
+      <dt><a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">Square number</a></dt><dd>The answer when a whole number is multiplied by itself.</dd>
+      <dt><a class="term" href="glossary.html#square-root" data-term="square-root" data-def="The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.">Square root</a></dt><dd>The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.</dd>
+      <dt><a class="term" href="glossary.html#cube-number" data-term="cube-number" data-def="The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.">Cube number</a></dt><dd>The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.</dd>
+      <dt><a class="term" href="glossary.html#cube-root" data-term="cube-root" data-def="The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.">Cube root</a></dt><dd>The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.</dd>
+      <dt><a class="term" href="glossary.html#power" data-term="power" data-def="A small raised number that says how many times to multiply a number by itself. The plural of index is indices.">Power (index)</a></dt><dd>A small raised number that says how many times to multiply a number by itself. The plural of index is indices.</dd>
+      <dt><a class="term" href="glossary.html#irrational" data-term="irrational" data-def="A number that cannot be written as a fraction. Its decimal never ends and never repeats.">Irrational number</a></dt><dd>A number that cannot be written as a fraction. Its decimal never ends and never repeats.</dd>
     </dl>
   </aside>
   </div>
@@ -104,38 +102,40 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2 id="s-warm-up-what-do-you-already-know">Warm-up: what do you already know?</h2>
-    <p class="intro">Have a go before you read anything. The last three are from Factors and multiples, the layer this stands on.</p>
+    <p class="intro">Have a go before you read anything. The recap below is from Factors and multiples, the layer this stands on.</p>
     <div class="q" data-qid="squares-roots-1" data-answers="49" data-mode="value">
-      <p class="qtext">A square tile has sides of 7 cm. What is its area, in cm&sup2;?</p>
+      <p class="qtext">A square tile has sides of 7 cm. What is its <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">area</a>, in cm&sup2;?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 238 208" role="img" aria-labelledby="sq1-t sq1-d" class="geo-svg"><title id="sq1-t">A square tile 7 cm by 7 cm</title><desc id="sq1-d">A square tile drawn on a grid of 7 by 7 small squares. Each side is labelled 7 centimetres. The area is unknown.</desc><rect x="40" y="30" width="168" height="168" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><line x1="64" y1="30" x2="64" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="54" x2="208" y2="54" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="88" y1="30" x2="88" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="78" x2="208" y2="78" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="112" y1="30" x2="112" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="102" x2="208" y2="102" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="136" y1="30" x2="136" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="126" x2="208" y2="126" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="160" y1="30" x2="160" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="150" x2="208" y2="150" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="184" y1="30" x2="184" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="174" x2="208" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><text class="svg-t" x="124" y="20" text-anchor="middle" style="font-size:14px">7 cm</text><text class="svg-t" x="32" y="119" text-anchor="end" style="font-size:14px">7 cm</text></svg><figcaption>Area = ? cm&sup2;</figcaption></figure>
       <ol class="ladder"><li>Area of a square = side &times; side.</li></ol>
       <ul class="wrong"><li data-if="28">That is the perimeter (4 &times; 7). Area is side &times; side.</li><li data-if="14">That is 7 + 7. Area multiplies the side by itself.</li></ul>
       <div class="solution"><p>7 &times; 7 = 49 cm&sup2;.</p></div>
     </div>
+    <details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>
     <div class="q" data-qid="squares-roots-2" data-answers="9" data-mode="value">
-      <p class="qtext">Last time: how many factors does 36 have?</p>
+      <p class="qtext">Last time: how many <a class="term" href="glossary.html#factor" data-term="factor" data-def="A whole number that divides exactly into another number, with nothing left over.">factors</a> does 36 have?</p>
       <ol class="ladder"><li>Factor pairs: 1 &times; 36, 2 &times; 18, 3 &times; 12, 4 &times; 9, and 6 &times; 6.</li></ol>
       <ul class="wrong"><li data-if="10">6 &times; 6 gives only one factor, 6, not two.</li><li data-if="8">You missed one. 6 is a factor too.</li></ul>
       <div class="solution"><p>1, 2, 3, 4, 6, 9, 12, 18, 36: nine. (6 is its own partner, so it is counted once.)</p></div>
     </div>
     <div class="q" data-qid="squares-roots-3" data-answers="6" data-mode="value">
-      <p class="qtext">What is the HCF of 12 and 18?</p>
+      <p class="qtext">What is the <a class="term" href="glossary.html#hcf" data-term="hcf" data-def="The biggest number that is a factor of two or more numbers.">HCF</a> of 12 and 18?</p>
       <ol class="ladder"><li>Factors of 12 and 18.</li></ol>
       <ul class="wrong"><li data-if="36">36 is a common multiple, not a factor.</li></ul>
       <div class="solution"><p>Common factors: 1, 2, 3, 6. HCF = 6.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-4" data-answers="7" data-mode="value">
-      <p class="qtext">Is 49 a multiple of 7? Work out 49 &divide; 7.</p>
+      <p class="qtext">Work out 49 &divide; 7.</p>
       <ol class="ladder"><li>7 &times; 7 = 49.</li></ol>
-      
-      <div class="solution"><p>49 &divide; 7 = 7, exactly.</p></div>
+      <div class="solution"><p>49 &divide; 7 = 7, exactly. So 49 is a multiple of 7.</p></div>
     </div>
+    </details>
   </div>
 </section>
 
 <section>
   <div class="wrap narrow">
     <h2 id="s-1-square-numbers">1. Square numbers</h2>
-    <p>To <b>square</b> a number, multiply it by itself. The answer is a <a class="term" href="glossary.html#square-number" data-def="The answer when a whole number is multiplied by itself.">Square number</a>, and it is called that because it is the <b>area of a square</b> with that side length. 4&sup2; = 4 &times; 4 = 16.</p>
+    <p>To <b>square</b> a number, multiply it by itself. The answer is a <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">Square number</a>, and it is called that because it is the <b>area of a square</b> with that side length. 4&sup2; = 4 &times; 4 = 16.</p>
     <p class="sum-line">1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144 &hellip;</p>
     <p>Factors come in pairs, except for square numbers, which have one factor paired with itself (6 &times; 6 = 36): that is why a square number has an odd number of factors.</p>
     <div class="key"><p><b>Key idea:</b> learn the squares up to 15&sup2; = 225, because they come up everywhere (Pythagoras, area, algebra). The small 2 means &ldquo;multiply the number by itself&rdquo;. It does not mean &ldquo;times 2&rdquo;: 6&sup2; = 36, not 12.</p></div>
@@ -156,6 +156,7 @@
     <h2 id="s-check-your-knowledge-squares">Check your knowledge: squares</h2>
     <div class="q" data-qid="squares-roots-5" data-answers="81" data-mode="value">
       <p class="qtext">Work out 9&sup2;.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 259 229" role="img" aria-labelledby="sq2-t sq2-d" class="geo-svg"><title id="sq2-t">A square of side 9</title><desc id="sq2-d">A square drawn on a grid of 9 by 9 small squares, with each side labelled 9. The total number of small squares, the area, is unknown.</desc><rect x="40" y="30" width="189" height="189" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><line x1="61" y1="30" x2="61" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="51" x2="229" y2="51" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="82" y1="30" x2="82" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="72" x2="229" y2="72" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="103" y1="30" x2="103" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="93" x2="229" y2="93" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="124" y1="30" x2="124" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="114" x2="229" y2="114" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="145" y1="30" x2="145" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="135" x2="229" y2="135" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="166" y1="30" x2="166" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="156" x2="229" y2="156" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="187" y1="30" x2="187" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="177" x2="229" y2="177" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="208" y1="30" x2="208" y2="219" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="198" x2="229" y2="198" stroke="#0f2440" stroke-width="1" opacity=".45"/><text class="svg-t" x="134.5" y="20" text-anchor="middle" style="font-size:14px">9</text><text class="svg-t" x="32" y="129.5" text-anchor="end" style="font-size:14px">9</text></svg><figcaption>9&sup2; = area = ?</figcaption></figure>
       <ol class="ladder"><li>9 &times; 9.</li></ol>
       <ul class="wrong"><li data-if="18">That is 9 &times; 2. Squaring multiplies 9 by itself.</li></ul>
       <div class="solution"><p>9 &times; 9 = 81.</p></div>
@@ -179,7 +180,7 @@
       <div class="solution"><p>0.5 &times; 0.5 = 0.25. (Half of a half is a quarter.)</p></div>
     </div>
     <div class="q" data-qid="squares-roots-9" data-type="mc">
-      <p class="qtext">Which of these is a square number?</p>
+      <p class="qtext">Which of these is a <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">square number</a>?</p>
       <ul class="options">
         <li data-why="7 &times; 7 = 49 and 8 &times; 8 = 64, so 50 is not a square.">50</li>
         <li data-correct>64</li>
@@ -194,7 +195,7 @@
 <section>
   <div class="wrap narrow">
     <h2 id="s-2-square-roots">2. Square roots</h2>
-    <p>A <a class="term" href="glossary.html#square-root" data-def="The number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.">Square root</a> undoes squaring. The square root of 49 is the number that multiplied by itself gives 49. It is written &radic;49 = 7. Think of it as the <b>side length</b> of a square with area 49.</p>
+    <p>A <a class="term" href="glossary.html#square-root" data-term="square-root" data-def="The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.">Square root</a> undoes squaring. The square root of 49 is the positive number that multiplied by itself gives 49. It is written &radic;49 = 7. Think of it as the <b>side length</b> of a square with area 49.</p>
     <div class="key"><p><b>Key idea:</b> the root sign works like brackets: &radic;(36 + 64) means work out 36 + 64 = 100 first, then &radic;100 = 10. But &radic;36 + &radic;64 = 6 + 8 = 14. These are different!</p></div>
     <div class="worked">
       <h3>Worked example</h3>
@@ -213,6 +214,7 @@
     <h2 id="s-check-your-knowledge-roots">Check your knowledge: roots</h2>
     <div class="q" data-qid="squares-roots-10" data-answers="9" data-mode="value">
       <p class="qtext">Work out &radic;81.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 230 190" role="img" aria-labelledby="sq3-t sq3-d" class="geo-svg"><title id="sq3-t">A square with area 81</title><desc id="sq3-d">A square with area 81 square units. Each side length is unknown and labelled with a question mark.</desc><rect x="50" y="30" width="130" height="130" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="115" y="20" text-anchor="middle" style="font-size:14px">?</text><text class="svg-t" x="42" y="100" text-anchor="end" style="font-size:14px">?</text><text class="svg-t" x="115" y="180" text-anchor="middle" style="font-size:14px">?</text><text class="svg-t" x="188" y="100" text-anchor="start" style="font-size:14px">?</text><text class="svg-t" x="115" y="100" text-anchor="middle" style="font-size:15px">area 81</text></svg></figure>
       <ol class="ladder"><li>Which number times itself is 81?</li></ol>
       <ul class="wrong"><li data-if="40.5">That is 81 &divide; 2. A square root asks &ldquo;what times itself?&rdquo;</li></ul>
       <div class="solution"><p>9 &times; 9 = 81, so &radic;81 = 9.</p></div>
@@ -247,8 +249,8 @@
 <section>
   <div class="wrap narrow">
     <h2 id="s-3-roots-that-are-not-whole-numbers">3. Roots that are not whole numbers</h2>
-    <p>Most numbers are not perfect squares. The root of a whole number that is not a square is <a class="term" href="glossary.html#irrational" data-def="A number that cannot be written as a fraction. Its decimal never ends and never repeats.">irrational</a>: its decimal never ends and never repeats. (<span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">3</span></span> = 0.333&hellip; goes on for ever but it repeats, so it is <b>not</b> irrational.) You can still <b>estimate</b> a root by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
-    <div class="key"><p><b>Key idea:</b> a calculator gives a decimal such as &radic;50 = 7.0710&hellip;, which is only a rounded copy of the real number. Estimate first so you can tell whether the calculator answer makes sense. If the answer must be exact, leave it as a root: a <a class="term" href="glossary.html#surd" data-def="A root that cannot be written as a whole number or a fraction. A surd is an exact answer, so keep it as a root.">Surd</a> such as &radic;50. The next section shows how to simplify one.</p></div>
+    <p>Most numbers are not perfect squares. The root of a whole number that is not a square is <a class="term" href="glossary.html#irrational" data-term="irrational" data-def="A number that cannot be written as a fraction. Its decimal never ends and never repeats.">irrational</a>: its decimal never ends and never repeats. (<span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">3</span></span> = 0.333&hellip; goes on for ever but it repeats, so it is <b>not</b> irrational.) You can still <b>estimate</b> a root by finding the two square numbers either side. &radic;50 is between &radic;49 = 7 and &radic;64 = 8, and very close to 7 because 50 is very close to 49.</p>
+    <div class="key"><p><b>Key idea:</b> a calculator gives a decimal such as &radic;50 = 7.0710&hellip;, which is only a rounded copy of the real number. Estimate first so you can tell whether the calculator answer makes sense. If the answer must be exact, leave it as a root: a <a class="term" href="glossary.html#surd" data-term="surd" data-def="A root that cannot be written as a whole number or a fraction. A surd is an exact answer, so keep it as a root.">Surd</a> such as &radic;50. The next section shows how to simplify one.</p></div>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Estimate &radic;20 by finding two decimals it lies between.</p>
@@ -275,7 +277,7 @@
       <div class="solution"><p>7&sup2; = 49 and 8&sup2; = 64. 50 is between them, so &radic;50 is between 7 and 8.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-16" data-answers="5.5" data-mode="value">
-      <p class="qtext">Use a calculator to find &radic;30 to 1 decimal place.</p>
+      <p class="qtext">Use a calculator to find &radic;30 to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>It should be between 5 and 6, because 25 &lt; 30 &lt; 36.</li></ol>
       <ul class="wrong"><li data-if="5.4">The next digit is 7 which rounds up. &radic;30 = 5.477&hellip;</li><li data-if="15">That is 30 &divide; 2.</li></ul>
       <div class="solution"><p>&radic;30 = 5.477&hellip; = 5.5 (1 d.p.).</p></div>
@@ -291,7 +293,7 @@
       <div class="solution"><p>6.3&sup2; = 39.69, very close to 40.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-18" data-answers="8.4" data-mode="value">
-      <p class="qtext">Use a calculator to find &radic;70 to 1 decimal place.</p>
+      <p class="qtext">Use a calculator to find &radic;70 to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>It is between 8 and 9 because 64 &lt; 70 &lt; 81.</li></ol>
       <ul class="wrong"><li data-if="8.3">8.366&hellip; rounds up to 8.4 (the digit after is 6).</li><li data-if="35">That is 70 &divide; 2.</li></ul>
       <div class="solution"><p>&radic;70 = 8.366&hellip; = 8.4 (1 d.p.).</p></div>
@@ -301,8 +303,8 @@
 
 <section>
   <div class="wrap narrow">
-    <h2 id="s-4-simplifying-a-surd">4. Simplifying a surd</h2>
-    <p>You can split a root over a <i>multiplication</i> (but never over an addition): &radic;(<i>a</i> &times; <i>b</i>) = &radic;<i>a</i> &times; &radic;<i>b</i>. So pull out the biggest square number that divides into the number under the root.</p>
+    <h2 id="s-4-simplifying-a-surd-higher">4. Simplifying a surd <span class="chip chip-higher">Higher</span></h2>
+    <p>You can split a root over a <i>multiplication</i> (but not over an addition or subtraction, in general): &radic;(<i>a</i> &times; <i>b</i>) = &radic;<i>a</i> &times; &radic;<i>b</i>. So pull out the biggest square number that divides into the number under the root.</p>
     <div class="worked">
       <h3>Worked examples</h3>
       <ol class="steps">
@@ -318,7 +320,7 @@
 
 <section class="ckw">
   <div class="wrap narrow">
-    <h2 id="s-check-your-knowledge-surds">Check your knowledge: surds</h2>
+    <h2 id="s-check-your-knowledge-surds-higher">Check your knowledge: surds <span class="chip chip-higher">Higher</span></h2>
     <div class="q" data-qid="squares-roots-19" data-answers="3√5;3sqrt5;3sqrt(5)" data-mode="exact">
       <p class="qtext">Write &radic;45 in the form <i>a</i>&radic;<i>b</i>, with <i>b</i> as small as possible. (Type it like 3√5 or 3sqrt5.)</p>
       <ol class="ladder"><li>Which square number divides into 45?</li><li>Write 45 as that square number times another number.</li></ol>
@@ -343,7 +345,7 @@
 <section>
   <div class="wrap narrow">
     <h2 id="s-5-cubes-and-cube-roots">5. Cubes and cube roots</h2>
-    <p>To <b>cube</b> a number, multiply it by itself <i>twice</i>. 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64. A <a class="term" href="glossary.html#cube-number" data-def="The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.">Cube number</a> is the volume of a cube. The <a class="term" href="glossary.html#cube-root" data-def="The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.">Cube root</a> undoes cubing: &#8731;64 = 4.</p>
+    <p>To <b>cube</b> a number, multiply it by itself <i>twice</i>. 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64. A <a class="term" href="glossary.html#cube-number" data-term="cube-number" data-def="The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.">Cube number</a> is the volume of a cube. The <a class="term" href="glossary.html#cube-root" data-term="cube-root" data-def="The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.">Cube root</a> undoes cubing: &#8731;64 = 4.</p>
     <div class="key"><p><b>Key idea:</b> cubes grow fast: 2<sup>3</sup> = 8, 3<sup>3</sup> = 27, 4<sup>3</sup> = 64, 5<sup>3</sup> = 125, 10<sup>3</sup> = 1,000. A negative number cubed stays negative: (&minus;2)<sup>3</sup> = &minus;8.</p></div>
   </div>
 </section>
@@ -353,12 +355,14 @@
     <h2 id="s-check-your-knowledge-cubes">Check your knowledge: cubes</h2>
     <div class="q" data-qid="squares-roots-22" data-answers="27" data-mode="value">
       <p class="qtext">Work out 3<sup>3</sup>.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 200 182" role="img" aria-labelledby="sq4-t sq4-d" class="geo-svg"><title id="sq4-t">A cube with edge 3</title><desc id="sq4-d">A cube drawn in 3D with each edge 3 units long. Its volume is unknown.</desc><polygon points="20,50 60,10 160,10 120,50" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><polygon points="120,50 160,10 160,110 120,150" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><rect x="20" y="50" width="100" height="100" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="70" y="170" text-anchor="middle" style="font-size:14px">3</text></svg><figcaption>Volume = 3<sup>3</sup> = ?</figcaption></figure>
       <ol class="ladder"><li>3 &times; 3 &times; 3.</li></ol>
       <ul class="wrong"><li data-if="9">That is 3&sup2;. Cubing multiplies three 3s.</li><li data-if="6">That is 3 + 3.</li></ul>
       <div class="solution"><p>9 &times; 3 = 27.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-23" data-answers="64" data-mode="value">
       <p class="qtext">Work out 4<sup>3</sup>.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 200 182" role="img" aria-labelledby="sq5-t sq5-d" class="geo-svg"><title id="sq5-t">A cube with edge 4</title><desc id="sq5-d">A cube drawn in 3D with each edge 4 units long. Its volume is unknown.</desc><polygon points="20,50 60,10 160,10 120,50" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><polygon points="120,50 160,10 160,110 120,150" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><rect x="20" y="50" width="100" height="100" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="70" y="170" text-anchor="middle" style="font-size:14px">4</text></svg><figcaption>Volume = 4<sup>3</sup> = ?</figcaption></figure>
       <ol class="ladder"><li>4 &times; 4 &times; 4.</li></ol>
       <ul class="wrong"><li data-if="12">That is 4 &times; 3. Cubing multiplies three 4s.</li></ul>
       <div class="solution"><p>16 &times; 4 = 64.</p></div>
@@ -370,7 +374,8 @@
       <div class="solution"><p>100 &times; 10 = 1,000.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-25" data-answers="5" data-mode="value">
-      <p class="qtext">Find the cube root of 125. (That is, which number cubed gives 125?)</p>
+      <p class="qtext">Find the <a class="term" href="glossary.html#cube-root" data-term="cube-root" data-def="The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.">cube root</a> of 125. (That is, which number cubed gives 125?)</p>
+      <figure class="figure qfig"><svg viewBox="0 0 200 182" role="img" aria-labelledby="sq6-t sq6-d" class="geo-svg"><title id="sq6-t">A cube with volume 125</title><desc id="sq6-d">A cube drawn in 3D with volume 125 cubic units. Its edge length is unknown and labelled with a question mark.</desc><polygon points="20,50 60,10 160,10 120,50" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><polygon points="120,50 160,10 160,110 120,150" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><rect x="20" y="50" width="100" height="100" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="70" y="170" text-anchor="middle" style="font-size:14px">?</text></svg><figcaption>Volume = 125</figcaption></figure>
       <ol class="ladder"><li>5 &times; 5 = 25, and 25 &times; 5 = ?</li></ol>
       <ul class="wrong"><li data-if="25">5&sup2; = 25, but 125 needs three 5s.</li></ul>
       <div class="solution"><p>5 &times; 5 &times; 5 = 125.</p></div>
@@ -392,7 +397,7 @@
       <div class="flip-side"><h3>Forwards</h3><p>A square has side 9 cm. Its area is 9&sup2; = 81 cm&sup2;.</p><p class="muted">Side to area: square it.</p></div>
       <div class="flip-side"><h3>Backwards</h3><p>A square has area 81 cm&sup2;. Its side is &radic;81 = 9 cm.</p><p class="muted">Area to side: square-root it.</p></div>
     </div>
-    <div class="key"><p><b>Key idea:</b> squaring and square-rooting undo each other, just as multiplying and dividing do. One goes from side to area, the other from area to side.</p></div>
+    <div class="key"><p><b>Key idea:</b> for numbers 0 or more, squaring and square-rooting undo each other, just as multiplying and dividing do. One goes from side to area, the other from area to side.</p></div>
     <p>There is one more twist when you <b>solve</b> an equation like x&sup2; = 49: both 7 and &minus;7 square to 49, so there are <b>two</b> solutions, x = 7 and x = &minus;7. The &radic; sign itself always means the positive root, &radic;49 = 7.</p>
   </div>
 </section>
@@ -401,13 +406,15 @@
   <div class="wrap narrow">
     <h2 id="s-check-your-knowledge-flip-it">Check your knowledge: flip it</h2>
     <div class="q" data-qid="squares-roots-27" data-answers="9" data-mode="value">
-      <p class="qtext">A square has an area of 81 cm&sup2;. What is the length of one side, in cm?</p>
+      <p class="qtext">A square has an <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">area</a> of 81 cm&sup2;. What is the length of one side, in cm?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 230 190" role="img" aria-labelledby="sq7-t sq7-d" class="geo-svg"><title id="sq7-t">A square with area 81 square centimetres</title><desc id="sq7-d">A square with area 81 square centimetres. Each side length is unknown and labelled with a question mark.</desc><rect x="50" y="30" width="130" height="130" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="115" y="20" text-anchor="middle" style="font-size:14px">? cm</text><text class="svg-t" x="42" y="100" text-anchor="end" style="font-size:14px">? cm</text><text class="svg-t" x="115" y="180" text-anchor="middle" style="font-size:14px">? cm</text><text class="svg-t" x="188" y="100" text-anchor="start" style="font-size:14px">? cm</text><text class="svg-t" x="115" y="100" text-anchor="middle" style="font-size:15px">area 81 cm&sup2;</text></svg></figure>
       <ol class="ladder"><li>Undo the squaring.</li></ol>
       <ul class="wrong"><li data-if="40.5">That is 81 &divide; 2. Take the square root.</li></ul>
       <div class="solution"><p>&radic;81 = 9 cm.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-28" data-answers="25" data-mode="value">
-      <p class="qtext">A square has a perimeter of 20 cm. What is its area, in cm&sup2;?</p>
+      <p class="qtext">A square has a <a class="term" href="glossary.html#perimeter" data-term="perimeter" data-def="The distance all the way round the edge of a shape.">perimeter</a> of 20 cm. What is its <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">area</a>, in cm&sup2;?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 230 190" role="img" aria-labelledby="sq8-t sq8-d" class="geo-svg"><title id="sq8-t">A square with perimeter 20 centimetres</title><desc id="sq8-d">A square whose distance all the way round, the perimeter, is 20 centimetres. Each side length is unknown and labelled with a question mark.</desc><rect x="50" y="30" width="130" height="130" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="115" y="20" text-anchor="middle" style="font-size:14px">? cm</text><text class="svg-t" x="42" y="100" text-anchor="end" style="font-size:14px">? cm</text><text class="svg-t" x="115" y="180" text-anchor="middle" style="font-size:14px">? cm</text><text class="svg-t" x="188" y="100" text-anchor="start" style="font-size:14px">? cm</text><text class="svg-t" x="115" y="100" text-anchor="middle" style="font-size:15px">perimeter 20 cm</text></svg></figure>
       <ol class="ladder"><li>Perimeter is 4 sides. Find one side first.</li></ol>
       <ul class="wrong"><li data-if="5">That is the side length. The question asks for the area.</li><li data-if="400">That squares the perimeter. Find the side first.</li></ul>
       <div class="solution"><p>Side = 20 &divide; 4 = 5 cm. Area = 5&sup2; = 25 cm&sup2;.</p></div>
@@ -438,6 +445,7 @@
     <h2 id="s-spot-the-mistake">Spot the mistake</h2>
     <div class="q" data-qid="squares-roots-32" data-type="mc">
       <p class="qtext"><b>Ian says:</b> &ldquo;6&sup2; = 12.&rdquo; What went wrong?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 214 184" role="img" aria-labelledby="sq9-t sq9-d" class="geo-svg"><title id="sq9-t">A square of side 6</title><desc id="sq9-d">A square drawn on a grid of 6 by 6 small squares, each side labelled 6. The number of small squares, the area, is unknown.</desc><rect x="40" y="30" width="144" height="144" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><line x1="64" y1="30" x2="64" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="54" x2="184" y2="54" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="88" y1="30" x2="88" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="78" x2="184" y2="78" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="112" y1="30" x2="112" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="102" x2="184" y2="102" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="136" y1="30" x2="136" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="126" x2="184" y2="126" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="160" y1="30" x2="160" y2="174" stroke="#0f2440" stroke-width="1" opacity=".45"/><line x1="40" y1="150" x2="184" y2="150" stroke="#0f2440" stroke-width="1" opacity=".45"/><text class="svg-t" x="112" y="20" text-anchor="middle" style="font-size:14px">6</text><text class="svg-t" x="32" y="107" text-anchor="end" style="font-size:14px">6</text></svg><figcaption>area = ?</figcaption></figure>
       <ul class="options">
         <li data-correct>He doubled the 6. 6&sup2; = 6 &times; 6 = 36.</li>
         <li data-why="The little 2 says &ldquo;multiply by itself&rdquo;, not &ldquo;times 2&rdquo;.">Nothing: 6 &times; 2 = 12</li>
@@ -491,7 +499,7 @@
       <div class="solution"><p>169 &minus; 25 = 144 and &radic;144 = 12.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-38" data-type="mc">
-      <p class="qtext">Which of these is NOT a square number: 36, 48, 100?</p>
+      <p class="qtext">Which of these is NOT a <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">square number</a>: 36, 48, 100?</p>
       <ul class="options">
         <li data-why="6 &times; 6 = 36.">36</li>
         <li data-correct>48</li>
@@ -514,7 +522,8 @@
     <h2 id="s-exam-style">Exam style</h2>
     <p class="muted">No calculator for (a) and (b).</p>
     <div class="q" data-qid="squares-roots-40" data-answers="48" data-mode="value">
-      <p class="qtext"><b>(a)</b> [2 marks] A square garden has an area of 144 m&sup2;. Work out the perimeter of the garden, in m.</p>
+      <p class="qtext"><b>(a)</b> [2 marks] A square garden has an <a class="term" href="glossary.html#area" data-term="area" data-def="The amount of flat space inside a shape. It is measured in square units such as cm&sup2;.">area</a> of 144 m&sup2;. Work out the <a class="term" href="glossary.html#perimeter" data-term="perimeter" data-def="The distance all the way round the edge of a shape.">perimeter</a> of the garden, in m.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 230 190" role="img" aria-labelledby="sq10-t sq10-d" class="geo-svg"><title id="sq10-t">A square garden with area 144 square metres</title><desc id="sq10-d">A square garden with area 144 square metres. Each side length is unknown and labelled with a question mark.</desc><rect x="50" y="30" width="130" height="130" fill="#e1f3e6" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="115" y="20" text-anchor="middle" style="font-size:14px">? m</text><text class="svg-t" x="42" y="100" text-anchor="end" style="font-size:14px">? m</text><text class="svg-t" x="115" y="180" text-anchor="middle" style="font-size:14px">? m</text><text class="svg-t" x="188" y="100" text-anchor="start" style="font-size:14px">? m</text><text class="svg-t" x="115" y="100" text-anchor="middle" style="font-size:15px">area 144 m&sup2;</text></svg></figure>
       <ol class="ladder"><li>Find the side first.</li></ol>
       <ul class="wrong"><li data-if="12">That is the side. The perimeter is all four sides.</li><li data-if="576">That is 144 &times; 4. Find the side length (square root) first.</li></ul>
       <div class="solution"><p>&radic;144 = 12 m, so the perimeter is 4 &times; 12 = 48 m.</p></div>
@@ -526,7 +535,7 @@
       <div class="solution"><p>25 &minus; 9 = 16 and &radic;16 = 4. (This is a 3, 4, 5 right-angled triangle.)</p></div>
     </div>
     <div class="q" data-qid="squares-roots-42" data-answers="9.5" data-mode="value">
-      <p class="qtext"><b>(c)</b> [2 marks] Use a calculator to work out &radic;90. Give your answer to 1 decimal place.</p>
+      <p class="qtext"><b>(c)</b> [2 marks] Use a calculator to work out &radic;90. Give your answer to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>.</p>
       <ol class="ladder"><li>Estimate first: between 9 and 10.</li></ol>
       <ul class="wrong"><li data-if="9.4">The digit after the 4 is 8, which rounds up.</li></ul>
       <div class="solution"><p>9.486&hellip; = 9.5.</p></div>
@@ -538,38 +547,69 @@
   <div class="wrap narrow">
     <h2 id="s-going-further">Going further</h2>
     <div class="q" data-qid="squares-roots-43" data-answers="3" data-mode="value">
-      <p class="qtext">What is the smallest whole number you can multiply 12 by to get a square number?</p>
+      <p class="qtext">What is the smallest whole number you can multiply 12 by to get a <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">square number</a>?</p>
       <ol class="ladder"><li>Write 12 as a product of primes.</li><li>Think about how many times each prime must appear in a square number.</li></ol>
       <ul class="wrong"><li data-if="12">12 &times; 12 = 144 is a square, but 3 is smaller.</li><li data-if="2">12 &times; 2 = 24, not a square.</li></ul>
       <div class="solution"><p>12 &times; 3 = 36 = 6&sup2;.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-44" data-answers="4" data-mode="value">
-      <p class="qtext">How many square numbers are there between 100 and 200?</p>
+      <p class="qtext">How many <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">square numbers</a> are there between 100 and 200?</p>
       <ol class="ladder"><li>Find the first whole number whose square is more than 100.</li><li>Keep going until the square is more than 200.</li></ol>
       <ul class="wrong"><li data-if="5">That counts 100 itself, which is not <i>between</i> 100 and 200.</li><li data-if="3">You missed one. Check every square from 11&sup2; to 14&sup2;.</li></ul>
       <div class="solution"><p>121, 144, 169, 196: four square numbers (10&sup2; = 100 and 15&sup2; = 225 are outside).</p></div>
     </div>
+    <p class="muted">Higher tier: the next question.</p>
     <div class="q" data-qid="squares-roots-45" data-type="mc">
-      <p class="qtext">A rational number can be written as a fraction of two whole numbers. Is &radic;2 rational?</p>
+      <p class="qtext">A rational number can be written as a <a class="term" href="glossary.html#fraction" data-term="fraction" data-def="A number that describes equal parts of a whole. It is written with one number over another.">fraction</a> of two whole numbers. Which statement about &radic;2 is correct?</p>
       <ul class="options">
-        <li data-correct>No, because its decimal never ends and never repeats</li>
-        <li data-why="A decimal that goes on for ever can still repeat, like 0.333&hellip; = 1/3. The decimal of &radic;2 never repeats.">Yes, because its decimal goes on for ever</li>
-        <li data-why="Close is not exact: 1.4&sup2; = 1.96, not 2. No decimal that ends or repeats squares to exactly 2.">Yes, because 1.4 &times; 1.4 is close to 2</li>
+        <li data-correct>It is irrational: it cannot be written as a fraction of two whole numbers.</li>
+        <li data-why="A decimal that goes on for ever can still repeat, like 0.333&hellip; = 1/3. The decimal of &radic;2 never repeats.">It is rational, because its decimal goes on for ever.</li>
+        <li data-why="Close is not exact: 1.4&sup2; = 1.96, not 2. No fraction squares to exactly 2.">It is rational, because 1.4 &times; 1.4 is close to 2.</li>
+        <li data-why="The number itself is irrational, whatever a calculator shows. Its decimal is only ever rounded.">It is rational, because a calculator shows it as a decimal.</li>
       </ul>
-      <ol class="ladder"><li>Which kinds of decimal can always be written as a fraction?</li></ol>
-      <div class="solution"><p>&radic;2 = 1.41421&hellip; never ends and never repeats, so it is irrational: it cannot be written as a fraction of two whole numbers.</p></div>
+      <ol class="ladder"><li>What does &ldquo;rational&rdquo; mean?</li><li>Which kinds of decimal can always be written as a fraction?</li></ol>
+      <div class="solution"><p>No fraction of two whole numbers equals &radic;2, so it is irrational. A consequence is that its decimal, 1.41421&hellip;, never ends and never repeats. (Ending and repeating decimals can always be written as fractions.)</p></div>
     </div>
     <div class="q" data-qid="squares-roots-46" data-answers="61" data-mode="value">
       <p class="qtext">Work out 31&sup2; &minus; 30&sup2;.</p>
       <ol class="ladder"><li>Square each number first.</li><li>Try smaller cases to spot a pattern: 2&sup2; &minus; 1&sup2;, 3&sup2; &minus; 2&sup2;, 4&sup2; &minus; 3&sup2;.</li></ol>
-      <ul class="wrong"><li data-if="1">That is 31 &minus; 30. Square each number before you subtract.</li><li data-if="62">That is 2 &times; 31. The gap is 2 &times; 30 + 1: use the smaller number.</li></ul>
+      <ul class="wrong"><li data-if="1">That is 31 &minus; 30. Square each number before you subtract.</li><li data-if="62">That is 2 &times; 31. The gap is 2 &times; 30 + 1: use the smaller number.</li><li data-if="60">That is 2 &times; 30. The gap is 2<i>n</i> + 1, so add the 1.</li></ul>
       <div class="solution"><p>961 &minus; 900 = 61. In general, <i>n</i>&sup2; and (<i>n</i> + 1)&sup2; differ by 2<i>n</i> + 1. Here <i>n</i> = 30, so 2 &times; 30 + 1 = 61.</p></div>
     </div>
     <div class="q" data-qid="squares-roots-47" data-answers="49" data-mode="value">
-      <p class="qtext">The difference between two consecutive square numbers is always odd. Use the pattern to work out 25&sup2; &minus; 24&sup2; without squaring either number.</p>
+      <p class="qtext">The <a class="term" href="glossary.html#difference" data-term="difference" data-def="The result of subtracting the smaller number from the larger: how far apart two numbers are.">difference</a> between two <a class="term" href="glossary.html#consecutive" data-term="consecutive" data-def="Following one after another with no gaps.">consecutive</a> <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">square numbers</a> is always odd. Use the pattern to work out 25&sup2; &minus; 24&sup2; without squaring either number.</p>
       <ol class="ladder"><li>What did you find for the gap between <i>n</i>&sup2; and (<i>n</i> + 1)&sup2;?</li></ol>
-      <ul class="wrong"><li data-if="50">That is 2 &times; 25. Use the smaller number: 2 &times; 24 + 1.</li><li data-if="1">That is 25 &minus; 24. The gap between squares grows as the numbers grow.</li></ul>
+      <ul class="wrong"><li data-if="50">That is 2 &times; 25. Use the smaller number: 2 &times; 24 + 1.</li><li data-if="48">That is 2 &times; 24. The gap is 2<i>n</i> + 1, so add the 1.</li><li data-if="1">That is 25 &minus; 24. The gap between squares grows as the numbers grow.</li></ul>
       <div class="solution"><p>2 &times; 24 + 1 = 49. Check: 625 &minus; 576 = 49. &#10003;</p></div>
+    </div>
+    <p class="muted">Higher tier: proof and reasoning.</p>
+    <div class="q" data-qid="squares-roots-48" data-type="mc">
+      <p class="qtext">Here are four lines from a proof that &radic;2 is irrational. Which line is the contradiction?</p>
+      <ul class="options">
+        <li data-correct>So p and q are both even, but we said they have no common factor, which is impossible.</li>
+        <li data-why="This is the assumption we start with. It is not yet a contradiction.">Suppose &radic;2 = p/q, where p and q are whole numbers with no common factor.</li>
+        <li data-why="This is a correct step. It only becomes a contradiction later.">Then p&sup2; = 2q&sup2;, so p&sup2; is even, so p is even.</li>
+        <li data-why="This is a correct step. It leads towards the contradiction but is not itself one.">Write p = 2k. Then 4k&sup2; = 2q&sup2;, so q&sup2; = 2k&sup2; and q is even.</li>
+      </ul>
+      <ol class="ladder"><li>A contradiction is a result that disagrees with something we assumed.</li><li>What did we assume about p and q at the start?</li></ol>
+      <div class="solution"><p>The proof runs in this order: assume &radic;2 = p/q in lowest terms; p&sup2; = 2q&sup2; so p is even; p = 2k gives q even; so p and q are both even. That disagrees with the assumption that they have no common factor, so no such fraction exists.</p></div>
+    </div>
+    <div class="q" data-qid="squares-roots-49" data-answers="40" data-mode="value">
+      <p class="qtext">The <a class="term" href="glossary.html#expression" data-term="expression" data-def="Letters and numbers combined with operations, with no equals sign. You can simplify an expression but you cannot solve it.">expression</a> <i>n</i>&sup2; + <i>n</i> + 41 gives a <a class="term" href="glossary.html#prime-number" data-term="prime-number" data-def="A number with exactly two factors: 1 and itself.">prime number</a> for every whole number <i>n</i> from 0 to 39. Find the smallest whole number <i>n</i> that shows it does not always give a prime.</p>
+      <ol class="ladder"><li>You need a value where the answer has a factor other than 1 and itself.</li><li>Try <i>n</i> = 40 and look at 40&sup2; + 40 + 41.</li></ol>
+      <ul class="wrong"><li data-if="41">41 also works (it gives 41 &times; 43), but 40 is smaller.</li><li data-if="39">39 gives 1601, which is prime.</li></ul>
+      <div class="solution"><p>When <i>n</i> = 40: 1600 + 40 + 41 = 1681 = 41 &times; 41, which is not prime. One counter-example is enough to show a claim is false. (Forty examples in a row were all primes, which is why examples alone are not a proof.)</p></div>
+    </div>
+    <div class="q" data-qid="squares-roots-50" data-type="mc">
+      <p class="qtext">Which line is a correct <a class="term" href="glossary.html#algebraic-proof" data-term="algebraic-proof" data-def="Showing something is true for every number by using letters to stand for any number. A few examples are not a proof.">algebraic proof</a> that the sum of three <a class="term" href="glossary.html#consecutive" data-term="consecutive" data-def="Following one after another with no gaps.">consecutive</a> whole numbers is always a <a class="term" href="glossary.html#multiple" data-term="multiple" data-def="A number in the times table of another number: what you get by multiplying it by a whole number.">multiple</a> of 3?</p>
+      <ul class="options">
+        <li data-correct><i>n</i> + (<i>n</i> + 1) + (<i>n</i> + 2) = 3<i>n</i> + 3 = 3(<i>n</i> + 1), a multiple of 3.</li>
+        <li data-why="Examples can support a claim but never prove it for every number.">3 + 4 + 5 = 12 and 6 + 7 + 8 = 21 are both multiples of 3, so it is always true.</li>
+        <li data-why="Three consecutive numbers are not all equal to n. They are n, n + 1 and n + 2.">The numbers are <i>n</i> + <i>n</i> + <i>n</i> = 3<i>n</i>, a multiple of 3.</li>
+        <li data-why="Adding the numbers gives 3n + 3, not 3n + 2, and 3n + 2 is not a multiple of 3.">The sum is 3<i>n</i> + 2, which is a multiple of 3.</li>
+      </ul>
+      <ol class="ladder"><li>Call the first number <i>n</i>. What are the next two?</li><li>Add the three and collect like terms.</li></ol>
+      <div class="solution"><p><i>n</i> + (<i>n</i> + 1) + (<i>n</i> + 2) = 3<i>n</i> + 3 = 3(<i>n</i> + 1). This has a factor 3 whatever whole number <i>n</i> is, so it is a multiple of 3.</p></div>
     </div>
   </div>
 </section>
@@ -616,15 +656,16 @@
   </div>
 </section>
 </main>
+<div hidden data-term-figures><figure data-term-figure="square-number"><svg viewBox="0 0 160 100" class="geo-svg term-svg" role="img" aria-label="A square number is the area of a square: 3 times 3 is 9"><rect x="35" y="12" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="61" y="12" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="87" y="12" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="35" y="38" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="61" y="38" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="87" y="38" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="35" y="64" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="61" y="64" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><rect x="87" y="64" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="125.0" y="52.0" text-anchor="middle">3&sup2; = 9</text></svg></figure><figure data-term-figure="cube-number"><svg viewBox="0 0 160 100" class="geo-svg term-svg" role="img" aria-label="A cube number is the volume of a cube: 2 times 2 times 2 is 8"><polygon class="sq" points="40.0,40.0 90.0,40.0 90.0,90.0 40.0,90.0"/><polygon class="sq" points="40.0,40.0 60.0,20.0 110.0,20.0 90.0,40.0"/><polygon class="sq" points="90.0,40.0 110.0,20.0 110.0,70.0 90.0,90.0"/><text class="svg-t" style="font-size:13px" x="135.0" y="60.0" text-anchor="middle">2&sup3; = 8</text></svg></figure><figure data-term-figure="area"><svg viewBox="0 0 160 100" class="geo-svg term-svg" role="img" aria-label="Area is the space inside a shape"><rect x="30" y="20" width="100" height="60" fill="#fbeadb" stroke="#0f2440" stroke-width="3"/><text class="svg-t" style="font-size:12px" x="80.0" y="56.0" text-anchor="middle">space inside</text></svg></figure><figure data-term-figure="perimeter"><svg viewBox="0 0 160 100" class="geo-svg term-svg" role="img" aria-label="The perimeter is the distance all the way round"><rect x="30" y="20" width="100" height="60" fill="#e1f3e6" stroke="#ad1f5c" stroke-width="5"/><text class="svg-t" style="font-size:12px" x="80.0" y="56.0" text-anchor="middle">round the edge</text></svg></figure><figure data-term-figure="fraction"><svg viewBox="0 0 160 100" class="geo-svg term-svg" role="img" aria-label="A fraction shows parts of a whole"><circle cx="55" cy="50" r="40" fill="#fff" stroke="#0f2440" stroke-width="3"/><path d="M55 50 L55.0 10.0 A40 40 0 0 0 83.3 21.7 Z" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><path d="M55 50 L83.3 21.7 A40 40 0 0 0 95.0 50.0 Z" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><path d="M55 50 L95.0 50.0 A40 40 0 0 0 83.3 78.3 Z" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><line class="ln" x1="55.0" y1="50.0" x2="83.3" y2="78.3"/><line class="ln" x1="55.0" y1="50.0" x2="55.0" y2="90.0"/><line class="ln" x1="55.0" y1="50.0" x2="26.7" y2="78.3"/><line class="ln" x1="55.0" y1="50.0" x2="15.0" y2="50.0"/><line class="ln" x1="55.0" y1="50.0" x2="26.7" y2="21.7"/><text class="svg-t" style="font-size:15px" x="125.0" y="46.0" text-anchor="middle">3 of 8</text><text class="svg-t" style="font-size:11px" x="125.0" y="64.0" text-anchor="middle">equal parts</text></svg></figure></div>
 
 <footer>
   <div class="wrap">
     <div class="fcol">
-      <h4>Wright Maths Tuition</h4>
+      <h2 class="fhead">Wright Maths Tuition</h2>
       <p style="max-width:32ch;">Enhanced-DBS-checked maths tuition around Leominster and online — GCSE, A Level, IB and beyond.</p>
     </div>
     <div class="fcol">
-      <h4>Explore</h4>
+      <h2 class="fhead">Explore</h2>
       <ul>
         <li><a href="../../index.html">Home</a></li>
         <li><a href="../../about.html">About</a></li>
@@ -635,7 +676,7 @@
       </ul>
     </div>
     <div class="fcol">
-      <h4>Get in touch</h4>
+      <h2 class="fhead">Get in touch</h2>
       <ul>
         <li><a href="tel:+447449301083">07449 301083</a></li>
         <li><a href="mailto:info@wrightmaths.uk">info@wrightmaths.uk</a></li>
@@ -645,10 +686,10 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.23.007</span>
+    <span class="build-number">Build 2026.11.24.001</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.23.007" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.001" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.23.007"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.001"></script>
 </body>
 </html>

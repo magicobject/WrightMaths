@@ -78,11 +78,12 @@ test.describe('the book in its interactive states', () => {
     expect(await violations(page)).toEqual([]);
   });
 
-  test('dark mode is not offered, but a high-zoom 320px phone width still has no violations', async ({ page }) => {
-    await page.setViewportSize({ width: 320, height: 640 });
-    for (const bookPage of BOOK_PAGES) {
+  // One test per page (each gets its own time budget): a 320px phone width, as a high-zoom user would see it.
+  for (const bookPage of BOOK_PAGES) {
+    test(`${bookPage.path} has no axe violations at 320px wide`, async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 640 });
       await page.goto(bookPage.path);
       expect(await violations(page), bookPage.path).toEqual([]);
-    }
-  });
+    });
+  }
 });

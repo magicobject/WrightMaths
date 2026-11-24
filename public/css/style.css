@@ -151,7 +151,7 @@ footer{background:var(--navy-dark);color:#aab6c6;padding:42px 0 28px;font-size:.
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
 footer a{color:#cfd8e4;}
 footer a:hover{color:var(--gold-light);}
-footer .fcol h4{color:var(--white);font-family:"Fraunces",serif;font-size:1rem;margin-bottom:10px;}
+footer .fcol h4,footer .fcol h2.fhead{color:var(--white);font-family:"Fraunces",serif;font-size:1rem;margin-bottom:10px;}
 footer .fcol ul{list-style:none;margin:0;padding:0;}
 footer .fcol li{margin-bottom:6px;}
 .legal{margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);font-size:.82rem;color:#7c8aa0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}

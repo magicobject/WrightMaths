@@ -5,6 +5,8 @@
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
 import { matches, rightValueWrongForm, splitList, diagnose } from './book-answer.mjs';
+import { review, isDue, sanitize } from './book-queue.mjs';
+import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
 
 const STORE_KEY = 'wm-gcse-v1';
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
@@ -20,9 +22,10 @@ function load() {
   try {
     const raw = window.localStorage.getItem(STORE_KEY);
     const data = raw ? JSON.parse(raw) : null;
-    if (data && typeof data === 'object') return { done: data.done ?? {}, ticks: data.ticks ?? {}, days: Array.isArray(data.days) ? data.days : [] };
+    const plain = (o) => (o && typeof o === 'object' && !Array.isArray(o) ? o : {});
+    if (data && typeof data === 'object') return { done: plain(data.done), ticks: plain(data.ticks), days: Array.isArray(data.days) ? data.days : [], rq: sanitize(data.rq), diag: Array.isArray(data.diag) ? data.diag.filter((r) => r && Number.isFinite(r.score) && Number.isFinite(r.total) && r.total > 0).slice(-20) : [] };
   } catch { /* storage unavailable: carry on without saving */ }
-  return { done: {}, ticks: {}, days: [] };
+  return { done: {}, ticks: {}, days: [], rq: {}, diag: [] };
 }
 
 let store = load();
@@ -65,8 +68,10 @@ function today() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-function markDone(qid) {
+function markDone(qid, clean = false) {
   let changed = false;
+  store.rq[qid] = review(store.rq[qid], clean, today());
+  changed = true;
   if (!store.done[qid]) {
     store.done[qid] = 1;
     changed = true;
@@ -91,8 +96,8 @@ const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focus
 
 function duckRung(li, q) {
   li.className = 'duck-rung';
-  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Tell the duck</b> <span class="muted">(optional)</span></p>`
-    + '<p>Saying a problem out loud often makes it clear. The duck will not judge. It is a duck. Tap a start, or just talk.</p></div>';
+  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Explain it step by step</b> <span class="muted">(optional)</span></p>`
+    + '<p>Putting a problem into words often shows what to do next. Tell it to the duck, a friend, or yourself. Tap a start, or just talk.</p></div>';
   const starts = ['The question asks me to find…', 'I already know…', 'I tried… and then…', 'I got stuck when…'];
   const chips = el('div', { class: 'duck-chips', role: 'group', 'aria-label': 'Sentence starters' });
   const area = el('textarea', {
@@ -123,6 +128,11 @@ export function enhanceQuestion(q, index) {
   q.dataset.qid = qid;
   q.classList.add('q-live');
   q.setAttribute('role', 'group');
+  const qtextNode = q.querySelector(':scope > .qtext');
+  if (qtextNode) {
+    qtextNode.id = qtextNode.id || `qt-${(uid += 1)}`;
+    q.setAttribute('aria-labelledby', qtextNode.id);
+  }
 
   const ladder = q.querySelector(':scope > ol.ladder');
   const solution = q.querySelector(':scope > .solution');
@@ -141,7 +151,7 @@ export function enhanceQuestion(q, index) {
   let solved = false;
 
   const help = el('div', { class: 'q-help' });
-  const hintList = el('ol', { class: 'rungs' });
+  const hintList = el('ol', { class: 'rungs', 'aria-live': 'polite' });
   const helpBtn = el('button', { type: 'button', class: 'btn-stuck', text: "Help, I'm stuck!" });
   help.append(helpBtn, hintList);
 
@@ -157,13 +167,11 @@ export function enhanceQuestion(q, index) {
       else li.innerHTML = rung;
       hintList.append(li);
       rungsShown += 1;
-      li.setAttribute('tabindex', '-1');
-      li.focus({ preventScroll: false });
     }
     if (rungsShown >= rungs.length) {
-      helpBtn.textContent = solution ? 'Show me the answer' : 'No more hints';
+      helpBtn.textContent = solution && !solved ? 'Show me the answer' : 'No more hints';
       helpBtn.dataset.final = '1';
-      if (!solution) helpBtn.disabled = true;
+      if (!solution || solved) helpBtn.disabled = true;
     } else {
       helpBtn.textContent = `Another hint (${rungsShown + 1} of ${rungs.length})`;
     }
@@ -173,38 +181,51 @@ export function enhanceQuestion(q, index) {
     if (helpBtn.dataset.final) {
       showSolution();
       helpBtn.disabled = true;
+      if (solution) {
+        solution.setAttribute('tabindex', '-1');
+        solution.focus({ preventScroll: false });
+      }
       return;
     }
     revealRung();
   });
 
+  // Clear then set, so a screen reader announces the same message again if the student repeats a slip.
+  function say(cls, text, html) {
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+    setTimeout(() => {
+      feedback.className = cls;
+      if (html) feedback.innerHTML = html;
+      else feedback.textContent = text;
+    }, 40);
+  }
+
   function success() {
     solved = true;
     q.classList.add('q-correct');
-    feedback.className = 'q-feedback ok';
-    feedback.textContent = `${CHEERS[hashOf(qid) % CHEERS.length]} `;
+    say('q-feedback ok', `${CHEERS[hashOf(qid) % CHEERS.length]} The worked solution is below.`);
     showSolution();
-    markDone(qid);
-    helpBtn.disabled = true;
+    markDone(qid, wrongCount === 0 && rungsShown === 0);
+    // Keep Help available: hints, the duck and another way to see it are still useful after a right answer.
+    if (rungsShown === 0) helpBtn.textContent = 'Another way to see it';
   }
 
-  function failure(message) {
+  function failure(message, html) {
     wrongCount += 1;
     q.classList.add('q-tried');
-    feedback.className = 'q-feedback oops';
-    feedback.textContent = message ?? NUDGES[Math.min(wrongCount - 1, NUDGES.length - 1)];
+    say('q-feedback oops', message ?? NUDGES[Math.min(wrongCount - 1, NUDGES.length - 1)], html);
   }
 
   // The value is right but the form is not what was asked for: not a mistake, so no cross.
   function nearly(messageHtml) {
     q.classList.add('q-tried');
-    feedback.className = 'q-feedback nearly';
-    feedback.innerHTML = messageHtml;
+    say('q-feedback nearly', '', messageHtml);
   }
 
   if (q.dataset.type === 'mc' && optionList) {
     const items = shuffle([...optionList.children]);
-    const group = el('div', { class: 'mc', role: 'group', 'aria-label': 'Choose one answer' });
+    const group = el('div', { class: 'mc', role: 'group', 'aria-label': `Choose one answer for question ${index + 1}` });
     for (const li of items) {
       const correct = li.hasAttribute('data-correct');
       const why = li.dataset.why;
@@ -233,9 +254,9 @@ export function enhanceQuestion(q, index) {
       : [];
     const inputId = `ans-${(uid += 1)}`;
     const input = el('input', {
-      id: inputId, type: 'text', class: 'q-input', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'done',
+      id: inputId, type: 'text', class: 'q-input', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'done', maxlength: '60',
     });
-    const label = el('label', { class: 'sr-only', for: inputId, text: 'Your answer' });
+    const label = el('label', { class: 'sr-only', for: inputId, text: `Your answer to question ${index + 1}` });
     const check = el('button', { type: 'submit', class: 'btn-check', text: 'Check' });
     const form = el('form', { class: 'q-form', novalidate: '' }, label, input, check);
     form.addEventListener('submit', (event) => {
@@ -243,8 +264,7 @@ export function enhanceQuestion(q, index) {
       if (solved) return;
       const value = input.value;
       if (value.trim() === '') {
-        feedback.className = 'q-feedback oops';
-        feedback.textContent = 'Type an answer first.';
+        say('q-feedback oops', 'Type an answer first.');
         return;
       }
       if (matches(value, answers, mode)) {
@@ -257,13 +277,12 @@ export function enhanceQuestion(q, index) {
       if (rightValue) {
         nearly(specific ? specific.message : 'Right value! The question wants it in a different form (for example, fully simplified). One more step.');
       } else if (specific) {
-        failure(null);
-        feedback.innerHTML = specific.message;
+        failure(null, specific.message);
       } else {
         failure(mode === 'value' ? diagnose(value, answers) : null);
       }
     });
-    (text ?? q).after(form);
+    (q.querySelector(':scope > .qfig') ?? text ?? q).after(form);
     form.after(feedback);
   }
 
@@ -320,14 +339,69 @@ function enhanceChecklists() {
 
 function enhanceTerms() {
   let open = null;
+  let hideTimer = null;
   const close = () => {
+    clearTimeout(hideTimer);
     if (open) {
       open.pop.remove();
-      open.link.setAttribute('aria-expanded', 'false');
       open.link.removeAttribute('aria-describedby');
       open = null;
     }
   };
+  const scheduleHide = () => {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(close, 250);
+  };
+  const show = (link, moveFocus) => {
+    clearTimeout(hideTimer);
+    if (open && open.link === link) {
+      if (moveFocus) open.pop.querySelector('.term-pop-more')?.focus({ preventScroll: true });
+      return;
+    }
+    close();
+    const id = `pop-${(uid += 1)}`;
+    const pop = el('span', { class: 'term-pop', id, role: 'note' });
+    const def = el('span', { class: 'term-pop-def' });
+    def.innerHTML = link.dataset.def ?? '';
+    pop.append(def);
+    const fig = link.dataset.term ? document.querySelector(`[data-term-figure="${link.dataset.term}"]`) : null;
+    if (fig) {
+      const box = el('span', { class: 'term-pop-fig' });
+      box.innerHTML = fig.innerHTML;
+      pop.append(box);
+    }
+    const more = el('a', { class: 'term-pop-more', href: link.getAttribute('href'), text: 'Full entry in the glossary \u2192' });
+    pop.append(more);
+    pop.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+    pop.addEventListener('mouseleave', scheduleHide);
+    document.body.append(pop);
+    const rect = link.getBoundingClientRect();
+    const width = Math.min(pop.offsetWidth, window.innerWidth - 16);
+    const left = Math.max(8, Math.min(rect.left, window.innerWidth - width - 8));
+    pop.style.left = `${left + window.scrollX}px`;
+    pop.style.top = `${rect.bottom + window.scrollY + 6}px`;
+    link.setAttribute('aria-describedby', id);
+    if (moveFocus) more.focus({ preventScroll: true });
+    open = { link, pop, scrollY: window.scrollY, width: window.innerWidth };
+  };
+
+  const canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  if (canHover) {
+    document.addEventListener('mouseover', (event) => {
+      const link = event.target instanceof Element ? event.target.closest('a.term') : null;
+      if (link) show(link, false);
+    });
+    document.addEventListener('mouseout', (event) => {
+      const link = event.target instanceof Element ? event.target.closest('a.term') : null;
+      if (link) scheduleHide();
+    });
+  }
+  let quiet = false; // true while focus is handed back after Escape, so the pop-up does not reopen
+  document.addEventListener('focusin', (event) => {
+    if (quiet) return;
+    const link = event.target instanceof Element ? event.target.closest('a.term') : null;
+    if (link) show(link, false);
+  });
   document.addEventListener('click', (event) => {
     const link = event.target instanceof Element ? event.target.closest('a.term') : null;
     if (!link) {
@@ -335,26 +409,10 @@ function enhanceTerms() {
       return;
     }
     event.preventDefault();
-    if (open && open.link === link) { close(); return; }
-    close();
-    const id = `pop-${(uid += 1)}`;
-    const href = link.getAttribute('href');
-    const pop = el('span', { class: 'term-pop', id, role: 'note' });
-    const def = el('span', { class: 'term-pop-def' });
-    def.innerHTML = link.dataset.def ?? '';
-    const more = el('a', { class: 'term-pop-more', href, text: 'Full entry in the glossary →' });
-    pop.append(def, more);
-    document.body.append(pop);
-    // Place it under the word, kept inside the screen.
-    const rect = link.getBoundingClientRect();
-    const width = Math.min(pop.offsetWidth, window.innerWidth - 16);
-    const left = Math.max(8, Math.min(rect.left, window.innerWidth - width - 8));
-    pop.style.left = `${left + window.scrollX}px`;
-    pop.style.top = `${rect.bottom + window.scrollY + 6}px`;
-    link.setAttribute('aria-expanded', 'true');
-    link.setAttribute('aria-describedby', id);
-    more.focus({ preventScroll: true });
-    open = { link, pop, scrollY: window.scrollY, width: window.innerWidth };
+    // A mouse or touch click on an open pop-up closes it; the keyboard (Enter) moves into it instead.
+    if (event.detail !== 0 && open && open.link === link && open.moved) { close(); return; }
+    show(link, true);
+    if (open) open.moved = true;
   });
   // Close after a real scroll (not the small nudge that comes from opening it).
   window.addEventListener('scroll', () => {
@@ -365,7 +423,9 @@ function enhanceTerms() {
     if (event.key === 'Escape' && open) {
       const { link } = open;
       close();
+      quiet = true;
       link.focus();
+      quiet = false;
     }
   });
 }
@@ -409,8 +469,11 @@ function loadRead() {
   try {
     const raw = window.localStorage.getItem(READ_KEY);
     const d = raw ? JSON.parse(raw) : {};
-    return { size: Math.min(3, Math.max(0, Number(d.size) || 0)), easy: Boolean(d.easy), tint: Boolean(d.tint), ruler: Boolean(d.ruler) };
-  } catch { return { size: 0, easy: false, tint: false, ruler: false }; }
+    return {
+      size: Math.min(3, Math.max(0, Number(d.size) || 0)), easy: Boolean(d.easy), tint: Boolean(d.tint), ruler: Boolean(d.ruler),
+      voice: typeof d.voice === 'string' ? d.voice : '', rate: [0.8, 0.92, 1.05].includes(Number(d.rate)) ? Number(d.rate) : 0.92,
+    };
+  } catch { return { size: 0, easy: false, tint: false, ruler: false, voice: '', rate: 0.92 }; }
 }
 
 function applyRead(prefs) {
@@ -437,8 +500,8 @@ function initReadingTools() {
   const details = el('details', { class: 'read-tools' });
   details.append(el('summary', { text: 'Reading options' }));
   const row = el('div', { class: 'read-row' });
-  const smaller = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'Smaller text', text: 'A\u2212' });
-  const bigger = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'Bigger text', text: 'A+' });
+  const smaller = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'A\u2212, smaller text', text: 'A\u2212' });
+  const bigger = el('button', { type: 'button', class: 'read-btn', 'aria-label': 'A+, bigger text', text: 'A+' });
   smaller.addEventListener('click', () => { prefs.size = Math.max(0, prefs.size - 1); persist(); });
   bigger.addEventListener('click', () => { prefs.size = Math.min(3, prefs.size + 1); persist(); });
   row.append(smaller, bigger);
@@ -455,10 +518,36 @@ function initReadingTools() {
   const sizeLabel = el('span', { class: 'read-size', 'aria-live': 'polite', text: `Text size ${prefs.size + 1} of 4` });
   const reset = el('button', { type: 'button', class: 'read-btn read-reset', text: 'Reset' });
   reset.addEventListener('click', () => {
-    Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false });
+    Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false, voice: '', rate: 0.92 });
     row.querySelectorAll('[aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     persist();
   });
+  if ('speechSynthesis' in window) {
+    const voiceField = el('label', { class: 'read-select', text: 'Voice ' });
+    const voiceSelect = el('select', { 'aria-label': 'Voice for Listen' });
+    const fillVoices = () => {
+      const voices = window.speechSynthesis.getVoices().filter((v) => rankVoice(v) >= 0).sort((a, b) => rankVoice(b) - rankVoice(a));
+      voiceSelect.replaceChildren(el('option', { value: '', text: 'Best on this device' }), ...voices.map((v) => {
+        const o = el('option', { value: v.name, text: voiceLabel(v) });
+        if (v.name === prefs.voice) o.selected = true;
+        return o;
+      }));
+    };
+    fillVoices();
+    window.speechSynthesis.addEventListener?.('voiceschanged', fillVoices);
+    voiceSelect.addEventListener('change', () => { prefs.voice = voiceSelect.value; persist(); });
+    voiceField.append(voiceSelect);
+    const rateLabel = el('label', { class: 'read-select', text: 'Speed ' });
+    const rateSelect = el('select', { 'aria-label': 'Speed for Listen' });
+    for (const [value, label] of [[0.8, 'Slow'], [0.92, 'Normal'], [1.05, 'Fast']]) {
+      const o = el('option', { value: String(value), text: label });
+      if (value === prefs.rate) o.selected = true;
+      rateSelect.append(o);
+    }
+    rateSelect.addEventListener('change', () => { prefs.rate = Number(rateSelect.value); persist(); });
+    rateLabel.append(rateSelect);
+    row.append(voiceField, rateLabel);
+  }
   row.append(sizeLabel, reset);
   sizeLabelNode = sizeLabel;
   details.append(row);
@@ -500,30 +589,69 @@ function initToc(main, after) {
 
   const top = el('button', { type: 'button', class: 'to-top', 'aria-label': 'Back to top', text: 'Top \u2191' });
   top.hidden = true;
-  top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  top.addEventListener('click', () => {
+    const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+    document.querySelector('main')?.focus({ preventScroll: true });
+  });
   document.body.append(top);
   window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; }, { passive: true });
 }
 
 // ---------- listen (the browser's own voice; nothing is sent anywhere) ----------
 
+// Only voices that run on this device are used unless the student picks an online one (see book-voice.mjs).
+// Say maths symbols as words, so the voice reads "minus" and "times" instead of skipping them.
 function spokenText(node) {
   const clone = node.cloneNode(true);
   clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
-  return clone.textContent.replace(/\s+/g, ' ').trim();
+  return clone.textContent
+    .replace(/\u2212|\u2013/g, ' minus ')
+    .replace(/\u00d7/g, ' times ')
+    .replace(/\u00f7/g, ' divided by ')
+    .replace(/\u2248/g, ' is about ')
+    .replace(/\u2261/g, ' is identically equal to ')
+    .replace(/=/g, ' equals ')
+    .replace(/\u00b2/g, ' squared')
+    .replace(/\u00b3/g, ' cubed')
+    .replace(/\^2/g, ' squared')
+    .replace(/\u221a/g, ' square root of ')
+    .replace(/\u00b0C/g, ' degrees Celsius')
+    .replace(/\u00b0/g, ' degrees')
+    .replace(/\u00a3\s?([\d.,]+)/g, '$1 pounds')
+    .replace(/%/g, ' percent')
+    .replace(/\+/g, ' plus ')
+    .replace(/\?/g, ' question mark. ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function speak(text) {
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  const prefs = loadRead();
+  const voice = bestVoice(window.speechSynthesis.getVoices(), prefs.voice);
+  // Short sentences in turn sound more natural and avoid the browser cutting off long text.
+  for (const sentence of text.split(/(?<=[.?!])\s+/).filter(Boolean)) {
+    const u = new window.SpeechSynthesisUtterance(sentence);
+    u.lang = voice?.lang ?? 'en-GB';
+    if (voice) u.voice = voice;
+    u.rate = prefs.rate;
+    u.pitch = 1;
+    synth.speak(u);
+  }
 }
 
 function addListenButtons(root = document) {
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
   for (const node of root.querySelectorAll('.qtext, .key')) {
     if (node.querySelector(':scope > .listen')) continue;
-    const btn = el('button', { type: 'button', class: 'listen', 'aria-label': 'Listen to this', text: 'Listen' });
+    const number = node.querySelector('.qnum')?.textContent;
+    const btn = el('button', { type: 'button', class: 'listen', 'aria-label': number ? `Listen to question ${number}` : 'Listen to this key idea', text: 'Listen' });
     btn.addEventListener('click', () => {
       const synth = window.speechSynthesis;
       if (synth.speaking) { synth.cancel(); return; }
-      const u = new window.SpeechSynthesisUtterance(spokenText(node));
-      u.lang = 'en-GB';
-      synth.speak(u);
+      speak(spokenText(node));
     });
     node.append(btn);
   }
@@ -541,7 +669,9 @@ async function startPractice() {
   const pool = new Map(); // topic id -> array of .q nodes
   const loadTopic = async (id) => {
     if (pool.has(id)) return pool.get(id);
+    if (!/^[a-z0-9-]+$/.test(id)) return [];
     const res = await fetch(`${id}.html`);
+    if (!res.ok) return [];
     const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
     const qs = [...doc.querySelectorAll('.q[data-qid]')];
     pool.set(id, qs);
@@ -554,8 +684,14 @@ async function startPractice() {
     let all = [];
     for (const id of chosen) all = all.concat(await loadTopic(id));
     shuffle(all);
-    all.sort((a, b) => (store.done[a.dataset.qid] ? 1 : 0) - (store.done[b.dataset.qid] ? 1 : 0));
-    const five = shuffle(all.slice(0, Math.min(10, all.length))).slice(0, 5);
+    const now = today();
+    const due = all.filter((q) => isDue(store.rq[q.dataset.qid], now));
+    const rest = all.filter((q) => !due.includes(q));
+    // Ready-to-revisit questions first (never more than three, so a backlog never feels like a debt),
+    // then ones not finished yet, then anything else.
+    rest.sort((a, b) => (store.done[a.dataset.qid] ? 1 : 0) - (store.done[b.dataset.qid] ? 1 : 0));
+    const dueChosen = due.slice(0, 3);
+    const five = shuffle([...dueChosen, ...rest.slice(0, 5 - dueChosen.length)]);
     setBox.replaceChildren();
     five.forEach((src, i) => {
       const q = document.importNode(src, true);
@@ -564,11 +700,86 @@ async function startPractice() {
     });
     addListenButtons(setBox);
     const n = store.days.length;
-    status.textContent = `Five questions, mixed up. You have practised on ${n} ${n === 1 ? 'day' : 'days'} so far.`;
+    const ready = due.length;
+    status.textContent = `Five questions, mixed up. ${ready > 0 ? `${ready} ${ready === 1 ? 'question is' : 'questions are'} ready to revisit, and some are in this set. ` : ''}You have practised on ${n} ${n === 1 ? 'day' : 'days'} so far.`;
   };
   root.querySelector('[data-practice-new]')?.addEventListener('click', deal);
   boxes.forEach((b) => b.addEventListener('change', () => { status.textContent = 'Press the button for new questions.'; }));
   await deal();
+}
+
+
+// ---------- find your gaps (diagnostic) ----------
+// Eleven questions scored in the browser. Results live in localStorage as plain numbers: nothing is sent anywhere.
+
+function startDiagnostic() {
+  const root = document.querySelector('[data-diagnostic]');
+  if (!root) return;
+  const items = [...root.querySelectorAll('.dq')];
+  items.forEach((d, i) => {
+    const id = `dq-${i + 1}`;
+    const text = d.querySelector('.qtext');
+    text.prepend(el('span', { class: 'qnum', 'aria-hidden': 'true', text: String(i + 1) }));
+    const input = el('input', { id, type: 'text', class: 'q-input', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', maxlength: '60' });
+    d.append(el('label', { class: 'sr-only', for: id, text: `Your answer to question ${i + 1}` }), input);
+  });
+  const results = root.querySelector('[data-diag-results]');
+  const historyBox = root.querySelector('[data-diag-history]');
+  const showHistory = () => {
+    historyBox.replaceChildren();
+    if (store.diag.length === 0) return;
+    historyBox.append(el('h2', { text: 'Your earlier checks' }));
+    const list = el('ul', { class: 'diag-list' });
+    for (const r of store.diag.slice(-8)) {
+      const li = el('li');
+      const bar = el('span', { class: 'bar', role: 'img', 'aria-label': `${r.score} of ${r.total}` });
+      bar.append(el('span', { class: 'bar-fill', style: `width:${Math.round((r.score / r.total) * 100)}%` }));
+      li.append(el('span', { text: `${r.date}: ${r.score} of ${r.total} ` }), bar);
+      list.append(li);
+    }
+    historyBox.append(list, el('p', { class: 'muted', text: 'Come back in about a month and check again.' }));
+  };
+  showHistory();
+  root.querySelector('[data-diag-finish]').addEventListener('click', () => {
+    const wrong = [];
+    const rows = [];
+    items.forEach((d, i) => {
+      const input = d.querySelector('input');
+      const ok = matches(input.value, splitList(d.dataset.answers), d.dataset.mode === 'exact' ? 'exact' : 'value');
+      rows.push({ n: i + 1, ok, typed: input.value.trim(), answer: splitList(d.dataset.answers)[0] });
+      if (!ok) wrong.push({ topic: d.dataset.topic, title: d.dataset.title, layer: Number(d.dataset.layer) });
+    });
+    const score = items.length - wrong.length;
+    store.diag.push({ date: today(), score, total: items.length, wrong: wrong.map((w) => w.topic) });
+    store.diag = store.diag.slice(-20);
+    save();
+    results.replaceChildren();
+    results.append(el('h2', { text: `You already have ${score} of ${items.length} foundations` }));
+    if (wrong.length === 0) {
+      results.append(el('p', { text: 'Nothing to fix here. Try the Higher-tier extras or Give me five.' }));
+    } else {
+      results.append(el('p', { text: 'Start at the top of this list. Lower topics come first because the later ones stand on them.' }));
+      const ol = el('ol', { class: 'diag-start' });
+      for (const w of wrong.sort((a, b) => a.layer - b.layer)) {
+        const li = el('li');
+        li.append(el('a', { href: `${w.topic}.html`, text: w.title }));
+        ol.append(li);
+      }
+      results.append(ol);
+    }
+    const details = el('details', { class: 'diag-answers' });
+    details.append(el('summary', { text: 'See my answers' }));
+    const ul = el('ul');
+    for (const r of rows) ul.append(el('li', { text: `${r.n}. ${r.ok ? 'Right' : 'Not yet'}. You typed: ${r.typed || '(nothing)'}. Answer: ${r.answer}.` }));
+    details.append(ul);
+    results.append(details);
+    const summary = `GCSE maths gaps check ${today()}: ${score} of ${items.length}. Start with: ${wrong.map((w) => w.title).join(', ') || 'nothing, all secure'}.`;
+    const box = el('textarea', { class: 'duck-text', readonly: '', rows: '2', 'aria-label': 'Results you can copy for your teacher' });
+    box.value = summary;
+    results.append(el('p', { class: 'muted', text: 'To show your teacher, copy this line:' }), box);
+    showHistory();
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 // ---------- start-up ----------
@@ -578,13 +789,14 @@ function start() {
   document.querySelectorAll('.q').forEach(enhanceQuestion);
   addListenButtons();
   startPractice().catch((e) => console.error('practice failed', e));
+  startDiagnostic();
   enhanceChecklists();
   enhanceTerms();
   enhanceGlossary();
   updateProgress();
   document.querySelector('[data-reset-progress]')?.addEventListener('click', () => {
     if (window.confirm('Clear all your saved ticks and answers on this device?')) {
-      store = { done: {}, ticks: {}, days: [] };
+      store = { done: {}, ticks: {}, days: [], rq: {}, diag: [] };
       save();
       window.location.reload();
     }

@@ -13,9 +13,11 @@ import { dirname, join } from 'node:path';
 import { NAV, PAGES } from '../src/pages.config.mjs';
 import { STRANDS, TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
+import { TERM_FIGURES, figuresFor } from '../src/book/term-figures.mjs';
 import {
   buildGraph, expandInline, addQuestionIds, countQuestions,
   renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage, renderWords, renderPracticeTopics,
+  buildAutoPatterns, autoLinkQuestionTerms,
 } from './book-lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -61,6 +63,10 @@ for (const g of GLOSSARY) {
 }
 
 const liveTopics = [...graph.values()].filter((t) => t.status === 'live');
+const autoPatterns = buildAutoPatterns(GLOSSARY);
+for (const id of Object.keys(TERM_FIGURES)) {
+  if (!glossaryById.has(id)) throw new Error(`term-figures: "${id}" is not a glossary term`);
+}
 const usage = new Map(); // term id -> Set of topic ids that use it
 
 const questionCounts = new Map(
@@ -95,8 +101,13 @@ function renderBookContent(page, raw) {
       return String(questionCounts.get(id));
     });
   html = addHeadingIds(html);
+  if (topic || ['practice', 'commands', 'diagnostic'].includes(page.book)) html = autoLinkQuestionTerms(html, autoPatterns);
   html = expandInline(html, { glossaryById, usage: topic ? usage : undefined, page: topic?.id ?? page.slug });
   // Anything still in braces that looks like shorthand is a typo: fail loudly.
+  // Hidden pictures for the hover pop-ups of the terms used on this page.
+  const usedTerms = [...html.matchAll(/data-term="([a-z0-9-]+)"/g)].map((m) => m[1]);
+  const figs = figuresFor(usedTerms);
+  if (figs.length) html += `\n<div hidden data-term-figures>${figs.map(([id, svg]) => `<figure data-term-figure="${id}">${svg}</figure>`).join('')}</div>`;
   const leftover = html.match(/\{(frac|term|qcount|prereqs|unlocks|pyramid|words|practice-topics)[:}]/);
   if (leftover) throw new Error(`${page.slug}: unexpanded shorthand ${leftover[0]}`);
   return html;
@@ -147,7 +158,7 @@ for (const page of ordered) {
   if (isBook) {
     content = renderBookContent(merged, content);
     if (merged.book === 'glossary') {
-      const { jump, groups, count } = renderGlossaryPage(GLOSSARY, usage, graph, STRANDS);
+      const { jump, groups, count } = renderGlossaryPage(GLOSSARY, usage, graph, STRANDS, TERM_FIGURES);
       content = content
         .replace('{glossary-jump}', () => jump)
         .replace('{glossary-entries}', () => expandInline(groups, { glossaryById, page: 'glossary' }))
@@ -172,7 +183,19 @@ for (const page of ordered) {
     .map((js) => `\n<script type="module" src="${base}${js}?v={{BUILD_NUMBER}}"></script>`)
     .join('');
 
+  // Book pages load no third-party fonts: a child's IP address must not go to Google. They use the system font stack.
+  const fonts = isBook ? '' : [
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">',
+    '',
+  ].join('\n');
+  const skip = isBook ? '<a class="skip-link" href="#main">Skip to the content</a>\n' : '';
+  if (isBook) content = content.replace('<main class="book', '<main id="main" tabindex="-1" class="book');
+
   const html = pageTemplate
+    .replace('{{FONTS}}', () => fonts)
+    .replace('{{SKIP}}', () => skip)
     .replace('{{TITLE}}', () => merged.title)
     .replace('{{DESCRIPTION}}', () => merged.description)
     .replace('{{EXTRA_HEAD}}', () => extraHead)

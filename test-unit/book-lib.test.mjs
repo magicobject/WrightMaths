@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildGraph, renderFraction, expandInline, addQuestionIds, countQuestions } from '../scripts/book-lib.mjs';
+import { buildGraph, renderFraction, expandInline, addQuestionIds, countQuestions, buildAutoPatterns, autoLinkQuestionTerms } from '../scripts/book-lib.mjs';
 import { TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
 
@@ -48,7 +48,7 @@ test('expandInline links terms and records where they are used', () => {
   const glossaryById = new Map([['hcf', { id: 'hcf', term: 'Highest common factor', def: 'The "biggest" shared factor.' }]]);
   const usage = new Map();
   const out = expandInline('The {term:hcf} of {frac:12/18} and {term:hcf|HCF}.', { glossaryById, usage, page: 'fractions' });
-  assert.match(out, /<a class="term" href="glossary.html#hcf" data-def="The &quot;biggest&quot; shared factor.">Highest common factor<\/a>/);
+  assert.match(out, /<a class="term" href="glossary.html#hcf" data-term="hcf" data-def="The &quot;biggest&quot; shared factor.">Highest common factor<\/a>/);
   assert.match(out, />HCF<\/a>/);
   assert.deepEqual([...usage.get('hcf')], ['fractions']);
 });
@@ -80,4 +80,26 @@ test('glossary: ids are unique, lowercase-hyphenated, and every "see" points at 
     for (const s of g.see ?? []) assert.ok(ids.includes(s), `${g.id} sees unknown "${s}"`);
     assert.doesNotMatch(g.def, /[{}]/, `${g.id}: the pop-up definition must be plain text`);
   }
+});
+
+test('autoLinkQuestionTerms links the first use of a term in the question text only, and leaves tags and entities alone', () => {
+  const patterns = buildAutoPatterns([
+    { id: 'interior-angle', term: 'Interior angle' },
+    { id: 'hcf', term: 'Highest common factor (HCF)' },
+    { id: 'work-out', term: 'Work out' },
+  ]);
+  const html = '<p class="qtext">Work out the <b>interior angle</b> of a pentagon. Is each interior angle 108&deg;? Find the HCF.</p><p>An interior angle elsewhere.</p>';
+  const out = autoLinkQuestionTerms(html, patterns);
+  assert.equal((out.match(/\{term:interior-angle\|/g) ?? []).length, 1);
+  assert.match(out, /\{term:hcf\|HCF\}/);
+  assert.doesNotMatch(out, /work-out/); // question words are never auto-linked
+  assert.match(out, /<p>An interior angle elsewhere\.<\/p>/); // only the question text is touched
+  assert.match(out, /108&deg;/);
+});
+
+test('every term picture belongs to a real glossary term', async () => {
+  const { TERM_FIGURES } = await import('../src/book/term-figures.mjs');
+  const ids = new Set(GLOSSARY.map((g) => g.id));
+  for (const id of Object.keys(TERM_FIGURES)) assert.ok(ids.has(id), `${id} has a picture but is not in the glossary`);
+  for (const svg of Object.values(TERM_FIGURES)) assert.match(svg, /role="img" aria-label="[^"]+"/);
 });

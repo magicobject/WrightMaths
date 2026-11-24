@@ -10,6 +10,10 @@ import { test as base, expect } from '@playwright/test';
 export const test = base.extend({
   page: async ({ page }, use) => {
     await page.route(/^https?:\/\/(?!localhost)/, (route) => route.abort());
+    // Recap questions sit in a closed <details> so the lesson comes first; tests open them so they can reach those questions.
+    await page.addInitScript(() => {
+      document.addEventListener('DOMContentLoaded', () => document.querySelectorAll('details.recap').forEach((d) => { (d as HTMLDetailsElement).open = true; }));
+    });
     await use(page);
   },
 });

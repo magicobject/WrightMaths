@@ -24,6 +24,7 @@
     <p class="intro">Have a go before you read anything. Wrong answers are welcome: they show where to look.</p>
     <div class="q" data-answers="7" data-mode="value">
       <p class="qtext">I think of a number, double it, then add 3. My answer is 17. What was my number?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 76" role="img" aria-labelledby="se1-t se1-d" class="geo-svg"><title id="se1-t">Number puzzle flow chart</title><desc id="se1-d">A flow chart. The starting number is unknown. It is doubled, then 3 is added, and the result is 17.</desc><rect x="8" y="26" width="62" height="40" rx="6" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="39" y="52" text-anchor="middle" >?</text><text class="svg-t" style="font-size:12px" x="39" y="18" text-anchor="middle" >input</text><line x1="73" y1="46" x2="79.66666666666667" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="85.66666666666667,46 77.66666666666667,41 77.66666666666667,51" fill="#0f2440"/><rect x="88.66666666666667" y="26" width="62" height="40" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="119.66666666666667" y="52" text-anchor="middle" >&#215; 2</text><line x1="153.66666666666669" y1="46" x2="160.33333333333334" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="166.33333333333334,46 158.33333333333334,41 158.33333333333334,51" fill="#0f2440"/><rect x="169.33333333333334" y="26" width="62" height="40" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="200.33333333333334" y="52" text-anchor="middle" >+ 3</text><line x1="234.33333333333334" y1="46" x2="241" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="247,46 239,41 239,51" fill="#0f2440"/><rect x="250" y="26" width="62" height="40" rx="6" fill="#e1f3e6" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="281" y="52" text-anchor="middle" >17</text><text class="svg-t" style="font-size:12px" x="281" y="18" text-anchor="middle" >output</text></svg></figure>
       <ol class="ladder">
         <li>Work backwards from 17. What was the last thing I did?</li>
         <li>Undo it: take 3 away. Then undo the doubling.</li>
@@ -31,12 +32,14 @@
       <ul class="wrong"><li data-if="14">That is 17 &minus; 3. I also doubled my number at the start, so there is one more step to undo.</li><li data-if="10">You added 3 instead of taking it away. Working backwards means doing the opposite.</li></ul>
       <div class="solution"><p>17 &minus; 3 = 14, then 14 &divide; 2 = 7. You just solved 2x + 3 = 17.</p></div>
     </div>
+    <details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>
     <div class="q" data-answers="2" data-mode="value">
       <p class="qtext">Work out &minus;3 + 5.</p>
       <ol class="ladder"><li>Start at &minus;3 on a number line and move 5 to the right.</li></ol>
       <ul class="wrong"><li data-if="-8">That is &minus;3 &minus; 5. Adding 5 moves you up the number line.</li><li data-if="8">That is 3 + 5. The start is &minus;3, not 3.</li></ul>
       <div class="solution"><p>&minus;3 + 5 = 2.</p></div>
     </div>
+    </details>
   </div>
 </section>
 
@@ -48,9 +51,9 @@
     <p>The best picture is a <b>traditional kitchen scale</b>: a pan on each side that only balances when both hold the same amount. The unknown is the mystery weight. <b>Putting the right value for the unknown in is what makes both sides of the = the same.</b></p>
     <figure class="figure"><svg viewBox="0 0 400 240" role="img" aria-labelledby="sc-t1 sc-d1" class="scale-svg"><title id="sc-t1">Kitchen scale balance</title><desc id="sc-d1">A traditional kitchen scale with two pans. On the left: x, 7. On the right: 12. The scale is balanced, so both sides are equal.</desc><rect class="base" x="165" y="214" width="70" height="12" rx="4"/><rect class="post" x="195" y="62" width="10" height="154"/><g><line class="beam" x1="70" y1="70" x2="330" y2="70"/><path class="pan" d="M20 172 H120 Q120 200 70 200 Q20 200 20 172 Z"/><line class="cord" x1="70" y1="70" x2="20" y2="172"/><line class="cord" x1="70" y1="70" x2="120" y2="172"/><rect class="wt wt-x" x="38" y="142" width="30" height="30" rx="4"/><text class="wlab" x="54" y="163" text-anchor="middle">x</text><rect class="wt wt-n" x="72" y="142" width="30" height="30" rx="4"/><text class="wlab" x="86" y="163" text-anchor="middle">7</text><path class="pan" d="M280 172 H380 Q380 200 330 200 Q280 200 280 172 Z"/><line class="cord" x1="330" y1="70" x2="280" y2="172"/><line class="cord" x1="330" y1="70" x2="380" y2="172"/><rect class="wt wt-n" x="315" y="142" width="30" height="30" rx="4"/><text class="wlab" x="330" y="163" text-anchor="middle">12</text></g><circle class="pivot" cx="200" cy="70" r="9"/><text class="eq-sign" x="200" y="40" text-anchor="middle">=</text></svg><figcaption>A mystery weight x and a 7 g weight on the left balance a 12 g weight on the right: x + 7 = 12.</figcaption></figure>
     <div class="key">
-      <p><b>Key idea:</b> whatever you do to one side you must do to the other, so the kitchen scale stays balanced. To find x, use the {term:inverse-operation|inverse operation}: the one that undoes what was done to x.</p>
+      <p><b>Key idea:</b> do the same amount to both sides, so the kitchen scale stays balanced. For example, take 7 from both sides, or divide both sides by 2. To find x, use the {term:inverse-operation|inverse operation}: the one that undoes what was done to x.</p>
     </div>
-    <p><b>Where the scale stops:</b> weights cannot be negative, so for negative answers and minus terms use the rule: do the same to both sides. The idea that both sides must stay equal never changes.</p>
+    <p><b>Where the scale stops:</b> weights cannot be negative, so for negative answers and minus terms use the same rule: do the same amount to both sides. The idea that both sides must stay equal never changes.</p>
     <div class="pairs">
       <div><b>+</b> undoes <b>&minus;</b></div>
       <div><b>&minus;</b> undoes <b>+</b></div>
@@ -87,9 +90,15 @@
     </div>
     <div class="q" data-answers="7" data-mode="value">
       <p class="qtext">Solve 3x = 21.</p>
-      <ol class="ladder"><li>3x means 3 &times; x. What undoes multiplying by 3?</li></ol>
+      <ol class="ladder"><li>3x means 3 &times; x. What undoes multiplying by 3? Divide both sides by 3.</li></ol>
       <ul class="wrong"><li data-if="18">You subtracted 3. 3x is multiplication, so divide.</li><li data-if="63">You multiplied. Undo a multiplication by dividing.</li></ul>
       <div class="solution"><p>x = 21 &divide; 3 = 7.</p></div>
+    </div>
+    <div class="q" data-answers="0.4" data-mode="value">
+      <p class="qtext">Solve 5x = 2. Give x as a decimal.</p>
+      <ol class="ladder"><li>Divide both sides by 5.</li><li>2 &divide; 5 is less than 1. Not every answer is a whole number.</li></ol>
+      <ul class="wrong"><li data-if="10">That is 5 &times; 2. To undo "&times; 5", divide both sides by 5.</li><li data-if="2.5">That is 5 &divide; 2, the wrong way round. Divide the 2 by 5.</li></ul>
+      <div class="solution"><p>Divide both sides by 5: x = 2 &divide; 5 = 0.4. Check: 5 &times; 0.4 = 2 &#10003;</p></div>
     </div>
     <div class="q" data-answers="20" data-mode="value">
       <p class="qtext">Solve {frac:x/4} = 5.</p>
@@ -123,14 +132,15 @@
         <li>Take 3 from both sides: {frac:x/2} = 5.</li>
         <li>Multiply both sides by 2: x = ___.</li>
       </ol>
-      <p class="muted">x = 10. Check: 10 &divide; 2 + 3 = 8 &#10003;</p>
+      <details class="check-line"><summary>Check my answer</summary><p>x = 10. Check: 10 &divide; 2 + 3 = 8 &#10003;</p></details>
     </div>
   </div>
 </section>
 
 <section class="ckw">
   <div class="wrap narrow">
-    <h2>Quick recap (no marks): negative numbers</h2>
+    <h2>Check your knowledge: two-step equations</h2>
+    <details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>
     <p class="intro">Some answers below are negative. Two quick reminders first.</p>
     <div class="q" data-answers="-8" data-mode="value">
       <p class="qtext">Work out 2 &times; (&minus;4).</p>
@@ -144,23 +154,30 @@
       <ul class="wrong"><li data-if="6">The size is right but not the sign. Positive divided by negative is negative.</li></ul>
       <div class="solution"><p>18 &divide; 3 = 6, and with one negative the answer is &minus;6.</p></div>
     </div>
-  </div>
-</section>
-
-<section class="ckw">
-  <div class="wrap narrow">
-    <h2>Check your knowledge: two-step equations</h2>
+    </details>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">Solve 4x + 1 = 21.</p>
       <ol class="ladder"><li>Undo the "+ 1" first.</li><li>You get 4x = 20. Now undo the "&times; 4".</li></ol>
       <ul class="wrong"><li data-if="20">That is 4x. One more step: divide by 4.</li><li data-if="5.25">That is 21 &divide; 4. Take away the 1 first, then divide.</li><li data-if="4.25">You divided 21 by 4 but not the 1. Take away the 1 first.</li></ul>
       <div class="solution"><p>4x = 20, so x = 5. Check: 4 &times; 5 + 1 = 21 &#10003;</p></div>
     </div>
+    <div class="q" data-answers="2.5" data-mode="value">
+      <p class="qtext">Solve 2x + 1 = 6. Give x as a decimal.</p>
+      <ol class="ladder"><li>Take 1 from both sides: 2x = 5.</li><li>Divide both sides by 2. The answer is not a whole number.</li></ol>
+      <ul class="wrong"><li data-if="5">That is 2x. Divide both sides by 2 to finish.</li><li data-if="3.5">That adds 1: 6 + 1 = 7, then 7 &divide; 2 = 3.5. To undo "+ 1", take 1 from both sides.</li><li data-if="2">You divided only the 6 by 2, then took 1. Take 1 from both sides first (2x = 5), then divide both sides by 2.</li></ul>
+      <div class="solution"><p>2x = 5, so x = 2.5. Check: 2 &times; 2.5 + 1 = 6 &#10003;</p></div>
+    </div>
     <div class="q" data-answers="3" data-mode="value">
       <p class="qtext">Solve 7x &minus; 3 = 18.</p>
       <ol class="ladder"><li>Undo the "&minus; 3" by adding 3 to both sides.</li></ol>
       <ul class="wrong"><li data-if="15">You subtracted 3 again. To undo a minus, add.</li><li data-if="21">That is 7x. Divide by 7 to finish.</li><li data-if="2.14">You subtracted 3. To undo &minus; 3 you add 3.</li><li data-if="2.143">You subtracted 3. To undo &minus; 3 you add 3.</li></ul>
       <div class="solution"><p>7x = 21, so x = 3.</p></div>
+    </div>
+    <div class="q" data-answers="1.5" data-mode="value">
+      <p class="qtext">Solve 4x &minus; 3 = 3. Give x as a decimal.</p>
+      <ol class="ladder"><li>Add 3 to both sides: 4x = 6.</li><li>Divide both sides by 4.</li></ol>
+      <ul class="wrong"><li data-if="6">That is 4x. Divide both sides by 4 to finish.</li><li data-if="0">That takes 3 away: 3 &minus; 3 = 0. To undo "&minus; 3", add 3 to both sides.</li><li data-if="0.75">You divided only the 3 on the right by 4. Add 3 to both sides first (4x = 6), then divide.</li></ul>
+      <div class="solution"><p>4x = 6, so x = 1.5. Check: 4 &times; 1.5 &minus; 3 = 3 &#10003;</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Solve {frac:x/3} + 2 = 6.</p>
@@ -172,10 +189,11 @@
       <p class="qtext">Solve 12 &minus; 2x = 4.</p>
       <ol class="ladder">
         <li>Be careful: x has a minus in front of it. Take 12 from both sides to get &minus;2x = &minus;8.</li>
+        <li>Then divide both sides by &minus;2. A negative divided by a negative is positive, so x is positive.</li>
         <li>Or, add 2x to both sides to make the x positive: 12 = 4 + 2x.</li>
       </ol>
-      <ul class="wrong"><li data-if="-4">Check the signs: &minus;8 &divide; (&minus;2) is +4, not &minus;4.</li><li data-if="8">That is 12 &minus; 4, which is 2x. Divide by 2 to finish.</li></ul>
-      <div class="solution"><p>12 &minus; 2x = 4 gives &minus;2x = &minus;8, so x = 4. Check: 12 &minus; 2 &times; 4 = 4 &#10003;</p></div>
+      <ul class="wrong"><li data-if="-4">Check the signs: &minus;8 &divide; (&minus;2) is +4, because a negative divided by a negative is positive.</li><li data-if="8">That is 12 &minus; 4, which is 2x. Divide by 2 to finish.</li></ul>
+      <div class="solution"><p>12 &minus; 2x = 4 gives &minus;2x = &minus;8. A negative divided by a negative is positive, so x = &minus;8 &divide; (&minus;2) = 4. Check: 12 &minus; 2 &times; 4 = 4 &#10003;</p></div>
     </div>
     <div class="q" data-answers="-2" data-mode="value">
       <p class="qtext">Solve 3x + 10 = 4. The answer is negative.</p>
@@ -210,7 +228,7 @@
       </ol>
     </div>
     <div class="key">
-      <p><b>Key idea:</b> the bigger x-term is the safer one to keep, so you end up with a positive number of x.</p>
+      <p><b>Key idea:</b> take away the smaller x-term from both sides, so you are left with a positive number of x. The other way also works, but then you divide by a negative.</p>
     </div>
   </div>
 </section>
@@ -233,13 +251,13 @@
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">Solve 7x &minus; 4 = 3x + 16.</p>
       <ol class="ladder"><li>Take 3x from both sides.</li><li>Now you have 4x &minus; 4 = 16. Add 4, then divide.</li></ol>
-      <ul class="wrong"><li data-if="20">That is 4x. One more step: divide by 4.</li><li data-if="12">Check the signs when moving the numbers: 4x &minus; 4 = 16 means 4x = 20.</li></ul>
+      <ul class="wrong"><li data-if="20">That is 4x. One more step: divide by 4.</li><li data-if="3">You took 4 from both sides and got 4x = 12. To undo "&minus; 4", add 4 to both sides: 4x = 20.</li></ul>
       <div class="solution"><p>4x = 20, so x = 5. Check: left 7 &times; 5 &minus; 4 = 31, right 3 &times; 5 + 16 = 31 &#10003;</p></div>
     </div>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">Solve 2(3x &minus; 1) = 4x + 8.</p>
       <ol class="ladder"><li>Expand the bracket: 6x &minus; 2.</li><li>Collect: 6x &minus; 4x = 8 + 2.</li></ol>
-      <ul class="wrong"><li data-if="3">Check: 8 + 2 = 10, not 6. Add 2 to both sides.</li><li data-if="-5">Both numbers went negative. Moving &minus;2 across gives +2: 2x = 8 + 2.</li><li data-if="4.5">That has 6x &minus; 1. The 2 multiplies the &minus;1 too: 6x &minus; 2.</li></ul>
+      <ul class="wrong"><li data-if="3">Check: 8 + 2 = 10, not 6. Add 2 to both sides.</li><li data-if="-5">Both numbers went negative. Add 2 to both sides: 2x = 8 + 2.</li><li data-if="4.5">That has 6x &minus; 1. The 2 multiplies the &minus;1 too: 6x &minus; 2.</li></ul>
       <div class="solution"><p>6x &minus; 2 = 4x + 8, so 2x = 10, x = 5. Check: 2(15 &minus; 1) = 28 and 20 + 8 = 28 &#10003;</p></div>
     </div>
   </div>
@@ -336,18 +354,21 @@
     </div>
     <div class="q" data-answers="7" data-mode="value">
       <p class="qtext">I think of a number, multiply by 4, then subtract 6. The answer is 22. What is my number?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 76" role="img" aria-labelledby="se2-t se2-d" class="geo-svg"><title id="se2-t">Number puzzle flow chart</title><desc id="se2-d">A flow chart. The starting number is unknown. It is multiplied by 4, then 6 is subtracted, and the result is 22.</desc><rect x="8" y="26" width="62" height="40" rx="6" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="39" y="52" text-anchor="middle" >?</text><text class="svg-t" style="font-size:12px" x="39" y="18" text-anchor="middle" >input</text><line x1="73" y1="46" x2="79.66666666666667" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="85.66666666666667,46 77.66666666666667,41 77.66666666666667,51" fill="#0f2440"/><rect x="88.66666666666667" y="26" width="62" height="40" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="119.66666666666667" y="52" text-anchor="middle" >&#215; 4</text><line x1="153.66666666666669" y1="46" x2="160.33333333333334" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="166.33333333333334,46 158.33333333333334,41 158.33333333333334,51" fill="#0f2440"/><rect x="169.33333333333334" y="26" width="62" height="40" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="200.33333333333334" y="52" text-anchor="middle" >&#8722; 6</text><line x1="234.33333333333334" y1="46" x2="241" y2="46" stroke="#0f2440" stroke-width="2.5"/><polygon points="247,46 239,41 239,51" fill="#0f2440"/><rect x="250" y="26" width="62" height="40" rx="6" fill="#e1f3e6" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:15px" x="281" y="52" text-anchor="middle" >22</text><text class="svg-t" style="font-size:12px" x="281" y="18" text-anchor="middle" >output</text></svg></figure>
       <ol class="ladder"><li>Call the number x and write the equation: 4x &minus; 6 = 22.</li><li>Undo in reverse: add 6, then divide by 4.</li></ol>
       <ul class="wrong"><li data-if="4">You subtracted 6, but the puzzle subtracted 6 from 4x, so undo it by adding: 22 + 6 = 28, then divide by 4.</li></ul>
       <div class="solution"><p>4x &minus; 6 = 22 &rArr; 4x = 28 &rArr; x = 7. Check: 4 &times; 7 &minus; 6 = 22 &#10003;</p></div>
     </div>
     <div class="q" data-answers="2" data-mode="value">
       <p class="qtext">A pen costs &pound;x. Four pens and a &pound;2 ruler cost &pound;10 altogether. Form an equation and find x (in pounds).</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 70" role="img" aria-labelledby="se3-t se3-d" class="geo-svg"><title id="se3-t">Bar model for pens and a ruler</title><desc id="se3-d">A bar made of four equal parts, each the price x of a pen, and one smaller part of &#163;2 for the ruler. The whole bar is &#163;10.</desc><path d="M10 24 V18 H236 V24" fill="none" stroke="#0f2440" stroke-width="1.5"/><text class="svg-t" style="font-size:13px" x="123" y="13" text-anchor="middle" >&#163;10 altogether</text><rect x="10" y="30" width="48" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="34" y="50" text-anchor="middle" >x</text><rect x="58" y="30" width="48" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="82" y="50" text-anchor="middle" >x</text><rect x="106" y="30" width="48" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="130" y="50" text-anchor="middle" >x</text><rect x="154" y="30" width="48" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="178" y="50" text-anchor="middle" >x</text><rect x="202" y="30" width="34" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="219" y="50" text-anchor="middle" >&#163;2</text></svg><figcaption>Not drawn to scale.</figcaption></figure>
       <ol class="ladder"><li>Four pens cost 4x. Add the ruler: 4x + 2 = 10.</li></ol>
       <ul class="wrong"><li data-if="3">That adds 2: 10 + 2 = 12. Undo "+ 2" by taking 2 away.</li><li data-if="8">That is 4x. The question asks for the price of one pen.</li></ul>
       <div class="solution"><p>4x + 2 = 10, so 4x = 8 and x = 2. A pen costs &pound;2.</p></div>
     </div>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">Tom is x years old. His sister is 3 years older. Their ages add up to 25. How old is Tom?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 82" role="img" aria-labelledby="se4-t se4-d" class="geo-svg"><title id="se4-t">Bar model for the two ages</title><desc id="se4-d">Two bars. Tom's bar is x. His sister's bar is x with 3 more added. Together the two bars make 25.</desc><text class="svg-t" style="font-size:14px" x="58" y="29" text-anchor="end" >Tom</text><rect x="66" y="6" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="116" y="26" text-anchor="middle" >x</text><text class="svg-t" style="font-size:14px" x="58" y="65" text-anchor="end" >Sister</text><rect x="66" y="42" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="116" y="62" text-anchor="middle" >x</text><rect x="166" y="42" width="40" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="186" y="62" text-anchor="middle" >3</text></svg><figcaption>Together the two bars make 25.</figcaption></figure>
       <ol class="ladder"><li>Sister is x + 3. The sum is x + (x + 3) = 25.</li></ol>
       <ul class="wrong"><li data-if="22">That is 2x. Divide by 2 to finish.</li><li data-if="12.5">You split 25 equally, but the ages are not equal: sister is 3 years older.</li><li data-if="14">That is the sister's age. The question asks for Tom.</li></ul>
       <div class="solution"><p>2x + 3 = 25, so 2x = 22 and x = 11. Tom is 11, his sister is 14 and 11 + 14 = 25 &#10003;</p></div>
@@ -411,6 +432,7 @@
     </div>
     <div class="q" data-answers="15" data-mode="value">
       <p class="qtext">The sum of three consecutive whole numbers is 48. What is the smallest of them?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 118" role="img" aria-labelledby="se5-t se5-d" class="geo-svg"><title id="se5-t">Bar model for three consecutive numbers</title><desc id="se5-d">Three bars. The first is n. The second is n with 1 added. The third is n with 2 added. Together the three bars make 48.</desc><text class="svg-t" style="font-size:14px" x="58" y="29" text-anchor="end" >1st</text><rect x="66" y="6" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="116" y="26" text-anchor="middle" >n</text><text class="svg-t" style="font-size:14px" x="58" y="65" text-anchor="end" >2nd</text><rect x="66" y="42" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="116" y="62" text-anchor="middle" >n</text><rect x="166" y="42" width="24" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="178" y="62" text-anchor="middle" >1</text><text class="svg-t" style="font-size:14px" x="58" y="101" text-anchor="end" >3rd</text><rect x="66" y="78" width="100" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="116" y="98" text-anchor="middle" >n</text><rect x="166" y="78" width="48" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="190" y="98" text-anchor="middle" >2</text></svg><figcaption>Together the three bars make 48.</figcaption></figure>
       <ol class="ladder"><li>Call the smallest n. The others are n + 1 and n + 2.</li><li>n + (n + 1) + (n + 2) = 48.</li></ol>
       <ul class="wrong"><li data-if="16">That is the middle number (48 &divide; 3). The smallest is one less.</li></ul>
       <div class="solution"><p>3n + 3 = 48, so n = 15. The numbers are 15, 16, 17: 15 + 16 + 17 = 48 &#10003;</p></div>
@@ -427,14 +449,15 @@
     <p class="muted">A triangle has sides of length x cm, (2x + 1) cm and (3x &minus; 2) cm. Its perimeter is 29 cm.</p>
     <div class="q" data-answers="6x-1;-1+6x" data-mode="exact">
       <p class="qtext"><b>(a)</b> [2 marks] {term:write-down|Write down} a simplified expression for the perimeter in terms of x. (Type it like 6x-1.)</p>
+      <figure class="figure qfig"><svg viewBox="0 0 340 176" role="img" aria-labelledby="se6-t se6-d" class="geo-svg"><title id="se6-t">Triangle with sides in terms of x</title><desc id="se6-d">A triangle. The left side is (2x + 1) cm, the right side is (3x &#8722; 2) cm and the base is x cm, the shortest side. The perimeter is 29 cm.</desc><polygon points="97,42 120,150 170,150" fill="#e1f3e6" stroke="#0f2440" stroke-width="3"/><text class="svg-t" style="font-size:14px" x="100" y="100" text-anchor="end" >(2x + 1) cm</text><text class="svg-t" style="font-size:14px" x="146" y="100" text-anchor="start" >(3x &#8722; 2) cm</text><text class="svg-t" style="font-size:14px" x="145" y="170" text-anchor="middle" >x cm</text></svg><figcaption>Perimeter = 29 cm. Not drawn to scale.</figcaption></figure>
       <ol class="ladder"><li>Add the three sides: x + (2x + 1) + (3x &minus; 2).</li><li>Collect the x terms (x + 2x + 3x) and then the numbers (+1 &minus; 2).</li></ol>
-      <ul class="wrong"><li data-if="6x+1">Check the numbers: +1 and &minus;2 make &minus;1.</li><li data-if="6x-3">+1 and &minus;2 make &minus;1, not &minus;3.</li><li data-if="x+2x+3x-1">Collect the x terms: x + 2x + 3x = 6x.</li><li data-if="1-6x">Write the x term first. 6x &minus; 1 is not the same as 1 &minus; 6x.</li></ul>
+      <ul class="wrong"><li data-if="6x+1">Check the numbers: +1 and &minus;2 make &minus;1.</li><li data-if="6x-3">+1 and &minus;2 make &minus;1, not &minus;3.</li><li data-if="x+2x+3x-1">Collect the x terms: x + 2x + 3x = 6x.</li></ul>
       <div class="solution"><p>x + 2x + 3x = 6x and 1 &minus; 2 = &minus;1, so the perimeter is 6x &minus; 1.</p></div>
     </div>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext"><b>(b)</b> [2 marks] Use the perimeter to form an equation and find x.</p>
       <ol class="ladder"><li>6x &minus; 1 = 29.</li></ol>
-      <ul class="wrong"><li data-if="30">That is 6x. One more step: divide both sides by 6.</li><li data-if="4.67">That is 28 &divide; 6. Check: 6x = 30, not 28.</li><li data-if="4.6">That is 28 &divide; 6. Check: 6x = 30, not 28.</li></ul>
+      <ul class="wrong"><li data-if="30">That is 6x. One more step: divide both sides by 6.</li><li data-if="4.67">That is 28 &divide; 6. Check: 6x = 30, not 28.</li></ul>
       <div class="solution"><p>6x = 30, so x = 5.</p></div>
     </div>
     <div class="q" data-answers="13" data-mode="value">
@@ -473,6 +496,7 @@
     <p class="muted">A rectangle has length (2x + 3) cm and width (x &minus; 1) cm. Its perimeter is 34 cm.</p>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext"><b>(a)</b> [3 marks] Form an equation using the perimeter, then {term:work-out|work out} x.</p>
+      <figure class="figure qfig"><svg viewBox="0 0 330 122" role="img" aria-labelledby="se7-t se7-d" class="geo-svg"><title id="se7-t">Rectangle with sides in terms of x</title><desc id="se7-d">A rectangle. The length along the top is (2x + 3) cm and the width down the side is (x &#8722; 1) cm. The perimeter is 34 cm.</desc><rect x="40" y="26" width="180" height="84" fill="#e4eefb" stroke="#0f2440" stroke-width="3"/><text class="svg-t" style="font-size:14px" x="130" y="18" text-anchor="middle" >(2x + 3) cm</text><text class="svg-t" style="font-size:14px" x="228" y="73" text-anchor="start" >(x &#8722; 1) cm</text></svg><figcaption>Perimeter = 34 cm. Not drawn to scale.</figcaption></figure>
       <ol class="ladder"><li>The perimeter is 2 lengths and 2 widths: 2(2x + 3) + 2(x &minus; 1) = 34.</li><li>Expand both brackets, collect like terms, then solve.</li></ol>
       <ul class="wrong"><li data-if="10.67">You counted each side once. A rectangle has two lengths and two widths.</li><li data-if="4.83">2(x &minus; 1) is 2x &minus; 2, not 2x &minus; 1. Multiply both terms.</li><li data-if="5.5">2(2x + 3) is 4x + 6, not 4x + 3. Multiply both terms.</li><li data-if="30">That is 6x. Divide by 6 to finish.</li></ul>
       <div class="solution"><p>4x + 6 + 2x &minus; 2 = 34, so 6x + 4 = 34 and 6x = 30. Then x = 5.</p></div>
@@ -488,6 +512,7 @@
     <p class="muted">A plumber charges &pound;25 for a call-out and then &pound;18 for each hour of work. Jo&rsquo;s bill is &pound;97.</p>
     <div class="q" data-answers="4" data-mode="value">
       <p class="qtext">[3 marks] Form an equation, with h for the number of hours, and solve it. How many hours did the plumber work?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 320 70" role="img" aria-labelledby="se8-t se8-d" class="geo-svg"><title id="se8-t">Bar model for the plumber bill</title><desc id="se8-d">A bar for the &#163;97 bill. It starts with the &#163;25 call-out, then has a &#163;18 part for each hour worked. The number of hours is unknown, so the last part is dashed.</desc><path d="M10 24 V18 H290 V24" fill="none" stroke="#0f2440" stroke-width="1.5"/><text class="svg-t" style="font-size:13px" x="150" y="13" text-anchor="middle" >&#163;97 altogether</text><rect x="10" y="30" width="70" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="45" y="50" text-anchor="middle" >&#163;25</text><rect x="80" y="30" width="60" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="110" y="50" text-anchor="middle" >&#163;18</text><rect x="140" y="30" width="60" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:14px" x="170" y="50" text-anchor="middle" >&#163;18</text><rect x="200" y="30" width="90" height="30" fill="#fff" stroke="#0f2440" stroke-width="2" stroke-dasharray="5 3"/><text class="svg-t" style="font-size:14px" x="245" y="50" text-anchor="middle" >&#8230;</text></svg></figure>
       <ol class="ladder"><li>The bill is 25 + 18h, so 25 + 18h = 97.</li><li>Take 25 from both sides, then divide by 18.</li></ol>
       <ul class="wrong"><li data-if="72">That is 18h. Divide by 18 to finish.</li><li data-if="5.39">That ignores the &pound;25 call-out. Take 25 from 97 first.</li><li data-if="6.78">That adds 25. Undo "+ 25" by taking 25 away.</li></ul>
       <div class="solution"><p>25 + 18h = 97, so 18h = 72 and h = 4. Check: 25 + 18 &times; 4 = 97 &#10003;</p></div>
@@ -507,7 +532,7 @@
     <ul class="tick traps">
       <li>Doing the operation to only one side.</li>
       <li>Using the same operation instead of the inverse (adding when you should take away).</li>
-      <li>Dividing before undoing the plus or minus.</li>
+      <li>Dividing only one term instead of every term.</li>
       <li>Forgetting that a bracket multiplies <i>everything</i> inside.</li>
       <li>Losing a minus sign, especially with "12 &minus; 2x".</li>
     </ul>

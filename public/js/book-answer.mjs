@@ -10,7 +10,8 @@ const MINUS = /[−–—]/g;
 const UNITS = /\s*(cm²|cm\^2|cm2|m²|m\^2|m2|cm|mm|km|kg|m|g|degrees|deg|°c|°)$/;
 
 function clean(raw) {
-  return String(raw)
+  // A student cannot need more than 200 characters; longer input is junk and must not freeze the tab.
+  return String(raw).slice(0, 200)
     .trim()
     .toLowerCase()
     .replace(MINUS, '-')
@@ -66,6 +67,7 @@ export function textKey(raw) {
 
 /** True when `input` matches any of `answers` under `mode`. */
 export function matches(input, answers, mode = 'value') {
+  if (String(input).length > 200) return false;
   const list = Array.isArray(answers) ? answers : [answers];
   if (String(input).trim() === '') return false;
   if (mode === 'value') {

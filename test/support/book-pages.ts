@@ -24,6 +24,7 @@ export const BOOK_TOPICS: BookPage[] = [
 export const BOOK_PAGES: BookPage[] = [
   { path: '/books/gcse/', titleContains: 'GCSE Maths Book', heading: /built from the ground up/i },
   { path: '/books/gcse/glossary.html', titleContains: 'Glossary', heading: /language of maths/i },
+  { path: '/books/gcse/diagnostic.html', titleContains: 'Find Your Gaps', heading: /Where should I start/ },
   { path: '/books/gcse/practice.html', titleContains: 'Mixed Practice', heading: /^Give me five$/ },
   { path: '/books/gcse/command-words.html', titleContains: 'Question Words', heading: /What the question is asking you to do/ },
   { path: '/books/gcse/raise-your-grade.html', titleContains: 'Raise Your Grade', heading: /shift your results to the right/i },
