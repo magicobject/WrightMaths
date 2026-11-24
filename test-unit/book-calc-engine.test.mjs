@@ -48,11 +48,13 @@ test('typing slips are syntax errors, impossible sums are math errors', () => {
   for (const bad of ['', '2 +', '× 3', '1.2.3', '2 3', '()', '2 ++', 'abc', '2 $ 3']) {
     assert.throws(() => val(bad), (e) => e instanceof CalcError && e.kind === 'syntax', bad);
   }
-  for (const bad of ['1 ÷ 0', '√(-4)', '0 ^ -1']) {
+  assert.throws(() => val('1 ÷ 0'), (e) => e.kind === 'divzero');
+  for (const bad of ['√(-4)', '0 ^ -1']) {
     assert.throws(() => val(bad), (e) => e instanceof CalcError && e.kind === 'math', bad);
   }
-  assert.equal(text('1 ÷ 0'), 'Math error');
-  assert.equal(text('2 +'), 'Syntax error');
+  assert.equal(text('1 ÷ 0'), 'Cannot divide by zero');
+  assert.equal(text('√(-4)'), 'Cannot work that out');
+  assert.equal(text('2 +'), 'Check your sum');
   assert.equal(calculate('2 +').ok, false);
 });
 
@@ -66,7 +68,7 @@ test('answers show 10 significant figures like a real calculator', () => {
   assert.equal(text('1.5 × 10 ^ 12'), '1.5E12');
   assert.equal(text('1 ÷ 10 ^ 10'), '1E-10');
   assert.equal(text('0'), '0');
-  assert.equal(formatNumber(Infinity), 'Math error');
+  assert.equal(formatNumber(Infinity), 'Cannot work that out');
   assert.equal(formatNumber(-0.5), '-0.5');
 });
 

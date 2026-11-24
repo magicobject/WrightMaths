@@ -368,7 +368,7 @@ export function enhanceQuestion(q, index) {
   feedback.after(help);
   if (solution) help.after(solution);
   // A calculator only where the question allows one (its tag, or data-calc); non-calculator questions never get the button.
-  if (calcAllowed(q)) help.after(createCalculator(layoutFor(q)).root);
+  if (calcAllowed(q)) feedback.after(createCalculator(layoutFor(q)).root);
   addSelfMarking();
   ladder?.remove();
   wrongBox?.remove();

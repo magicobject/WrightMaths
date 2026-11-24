@@ -26,6 +26,7 @@ export function layoutFor(q) {
   return LAYOUTS[mark] ?? LAYOUTS.basic;
 }
 
+// say: extra words for a screen reader ('' when the label already says it).
 const digit = (d) => ({ label: d, say: d, action: 'insert', text: d, kind: 'digit' });
 const key = (label, say, action, text, kind) => ({ label, say, action, text, kind });
 
@@ -33,7 +34,7 @@ export const LAYOUTS = {
   basic: {
     profile: BASIC,
     rows: [
-      [key('AC', 'clear all', 'clear', '', 'control'), key('DEL', 'delete', 'del', '', 'control'), key('(', 'open bracket', 'insert', '(', 'open'), key(')', 'close bracket', 'insert', ')', 'bracket')],
+      [key('Clear', '', 'clear', '', 'control'), key('Delete', '', 'del', '', 'control'), key('(', 'open bracket', 'insert', '(', 'open'), key(')', 'close bracket', 'insert', ')', 'bracket')],
       [digit('7'), digit('8'), digit('9'), key('÷', 'divide', 'insert', '÷', 'binary')],
       [digit('4'), digit('5'), digit('6'), key('×', 'times', 'insert', '×', 'binary')],
       [digit('1'), digit('2'), digit('3'), key('−', 'minus', 'insert', '−', 'binary')],
@@ -44,6 +45,7 @@ export const LAYOUTS = {
 };
 
 const OPERATORS = new Set(['+', '−', '×', '÷', '^']);
+const STRONG = new Set(['×', '÷', '^', '(', '√(']); // a minus after these starts a negative number
 const KEYBOARD = { '*': '×', '/': '÷', '-': '−', x: '×' };
 
 const el = (tag, attrs = {}, ...kids) => {
@@ -66,61 +68,80 @@ export function createCalculator(layout = LAYOUTS.basic) {
   let tokens = [];
   let ans = 0;
   let fresh = false; // true right after "=": the next key starts a new sum (or continues from Ans)
+  let errored = false; // true after an error: the next key starts a new sum
 
   const root = el('div', { class: 'q-calc' });
-  const toggle = el('button', { type: 'button', class: 'btn-calc calc-toggle', 'aria-expanded': 'false', 'aria-controls': panelId, text: 'Calculator' });
+  const icon = el('span', { class: 'calc-icon', 'aria-hidden': 'true', text: '🧮' });
+  const toggle = el('button', { type: 'button', class: 'btn-calc calc-toggle', 'aria-expanded': 'false', 'aria-controls': panelId }, icon, document.createTextNode(' Calculator'));
   const panel = el('div', { class: 'calc', id: panelId, role: 'group', 'aria-label': 'Calculator', tabindex: '-1', hidden: '' });
   const expr = el('div', { class: 'calc-expr', 'aria-label': 'Sum so far' });
-  const result = el('output', { class: 'calc-result', 'aria-live': 'polite', 'aria-label': 'Result', text: '0' });
+  const result = el('output', { class: 'calc-result', 'aria-live': 'polite', 'aria-label': 'Result' });
   const pad = el('div', { class: 'calc-pad' });
-  const close = el('button', { type: 'button', class: 'calc-dismiss', 'aria-label': 'Close calculator', text: 'Close' });
-  panel.append(el('div', { class: 'calc-screen' }, expr, result), pad, close);
+  const close = el('button', { type: 'button', class: 'calc-dismiss', text: 'Close calculator' });
+  const tip = el('p', { class: 'calc-tip', text: 'Work it out here, then type your answer in the answer box. You can type on your keyboard too. Ans is your last answer.' });
+  panel.append(el('div', { class: 'calc-head' }, tip, close), el('div', { class: 'calc-screen' }, expr, result), pad);
   root.append(toggle, panel);
 
+  const show = (text) => { result.textContent = text.replaceAll('-', '−'); };
+
   function render() {
-    expr.textContent = tokens.map((t) => (OPERATORS.has(t) ? ` ${t} ` : t)).join('').trim() || ' ';
+    expr.textContent = tokens.map((t) => (OPERATORS.has(t) ? ` ${t} ` : t)).join('').replace(/\s+/g, ' ').trim() || ' ';
+    expr.scrollLeft = expr.scrollWidth; // keep the end of a long sum in view
   }
 
   function startAgain() {
     tokens = [];
     fresh = false;
-    result.textContent = '0';
+    errored = false;
+    show('');
   }
+
+  // The number being typed at the end of the sum, as a string ("" when the last token is not a digit or point).
+  const currentNumber = () => {
+    let i = tokens.length;
+    while (i > 0 && /^[0-9.]$/.test(tokens[i - 1])) i -= 1;
+    return tokens.slice(i).join('');
+  };
 
   function press(k) {
     if (k.action === 'clear') { startAgain(); render(); return; }
     if (k.action === 'del') {
-      if (fresh) startAgain(); else tokens.pop();
-      if (!tokens.length) result.textContent = '0';
+      if (fresh) startAgain(); else { tokens.pop(); errored = false; show(''); }
       render();
       return;
     }
     if (k.action === 'equals') {
       if (!tokens.length) return;
       const out = calculate(tokens.join(''), { profile: layout.profile, ans });
-      result.textContent = out.text;
-      if (out.ok) { ans = out.value; fresh = true; }
+      show(out.text);
+      if (out.ok) { ans = out.value; fresh = true; errored = false; } else errored = true;
       return;
     }
     // insert
+    if (errored) startAgain();
     if (fresh) {
-      const continuing = k.kind === 'binary';
-      tokens = continuing ? ['Ans'] : [];
+      tokens = k.kind === 'binary' ? ['Ans'] : [];
       fresh = false;
+      show('');
     }
-    if (k.text === '.') {
-      // one decimal point per number
-      let i = tokens.length - 1;
-      while (i >= 0 && /^[0-9.]$/.test(tokens[i])) { if (tokens[i] === '.') return; i -= 1; }
+    const last = tokens[tokens.length - 1];
+    if (k.text === '.' && currentNumber().includes('.')) return; // one decimal point per number
+    if (k.kind === 'digit' && k.text !== '.' && currentNumber() === '0') tokens.pop(); // no leading zero: 05 is 5
+    if (k.kind === 'binary' && OPERATORS.has(k.text) && OPERATORS.has(last)) {
+      // A second operator replaces the first, except a minus after x, / or ^ (a negative number).
+      if (!(k.text === '−' && STRONG.has(last))) tokens.pop();
     }
     tokens.push(k.text);
-    result.textContent = '0';
+    show('');
     render();
   }
 
   for (const row of layout.rows) {
     for (const k of row) {
-      const btn = el('button', { type: 'button', class: `calc-key calc-${k.kind}`, 'aria-label': /[A-Za-z]/.test(k.label) ? `${k.label}, ${k.say}` : k.say, text: k.label });
+      const btn = el('button', {
+        type: 'button', class: `calc-key calc-${k.kind}`, text: k.label,
+        'aria-label': k.say === '' ? k.label : (/[A-Za-z]/.test(k.label) ? `${k.label}, ${k.say}` : k.say),
+      });
       btn.addEventListener('click', () => press(k));
       pad.append(btn);
     }

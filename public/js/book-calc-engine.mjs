@@ -14,7 +14,7 @@
 export class CalcError extends Error {
   constructor(kind) {
     super(kind);
-    this.kind = kind; // 'syntax' | 'math'
+    this.kind = kind; // 'syntax' | 'math' | 'divzero'
   }
 }
 
@@ -114,7 +114,7 @@ export function evaluate(text, { profile = BASIC, ans = 0 } = {}) {
       if (next && (next.t === '*' || next.t === '/')) {
         take();
         const right = unary();
-        if (next.t === '/' && right === 0) throw new CalcError('math');
+        if (next.t === '/' && right === 0) throw new CalcError('divzero');
         left = next.t === '*' ? left * right : left / right;
       } else if (startsOperand(next)) {
         left *= unary(); // implicit multiplication: 2(3+4), 3 sqrt(4)
@@ -175,9 +175,15 @@ export function evaluate(text, { profile = BASIC, ans = 0 } = {}) {
   return mathCheck(value);
 }
 
+export const MESSAGES = {
+  syntax: 'Check your sum',
+  math: 'Cannot work that out',
+  divzero: 'Cannot divide by zero',
+};
+
 /** What the display shows: 10 significant figures, trailing zeros dropped, E notation for very big or small. */
 export function formatNumber(x) {
-  if (!Number.isFinite(x)) return 'Math error';
+  if (!Number.isFinite(x)) return MESSAGES.math;
   if (x === 0) return '0';
   const rounded = Number(x.toPrecision(10));
   const abs = Math.abs(rounded);
@@ -194,7 +200,7 @@ export function calculate(text, options = {}) {
     const value = evaluate(text, options);
     return { ok: true, value, text: formatNumber(value) };
   } catch (error) {
-    if (error instanceof CalcError) return { ok: false, text: error.kind === 'math' ? 'Math error' : 'Syntax error' };
+    if (error instanceof CalcError) return { ok: false, text: MESSAGES[error.kind] ?? MESSAGES.syntax };
     throw error;
   }
 }

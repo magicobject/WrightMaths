@@ -920,19 +920,19 @@ test.describe('the calculator', () => {
     await expect(panel.locator('.calc-expr')).toHaveText('Ans + 1');
     await expect(result).toHaveText('57');
 
-    await key('AC, clear all').click();
+    await key('Clear').click();
     await key('1').click(); await key('decimal point').click(); await key('5').click(); await key('decimal point').click(); await key('2').click();
     await expect(panel.locator('.calc-expr')).toHaveText('1.52');
-    await key('DEL, delete').click();
+    await key('Delete').click();
     await expect(panel.locator('.calc-expr')).toHaveText('1.5');
 
-    await key('AC, clear all').click();
+    await key('Clear').click();
     await key('square root').click(); await key('3').click(); await key('0').click(); await key('equals').click();
     await expect(result).toHaveText('5.477225575');
 
-    await key('AC, clear all').click();
+    await key('Clear').click();
     await key('1').click(); await key('divide').click(); await key('0').click(); await key('equals').click();
-    await expect(result).toHaveText('Math error');
+    await expect(result).toHaveText('Cannot divide by zero');
   });
 
   test('the keyboard works inside the calculator, Escape closes it and focus returns to its button', async ({ page }) => {
@@ -960,5 +960,42 @@ test.describe('the calculator', () => {
     await expect(q.locator('.q-input')).toHaveValue('45');
     const keys = await page.evaluate(() => Object.keys(window.localStorage));
     expect(keys.filter((k) => !k.startsWith('wm-gcse'))).toEqual([]);
+  });
+});
+
+test.describe('the calculator, small kindnesses', () => {
+  test('result stays blank until equals; a second operator replaces the first; no leading zero; an error clears on the next digit', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    const panel = q.locator('.calc');
+    const key = (name: string) => panel.getByRole('button', { name, exact: true });
+    const expr = panel.locator('.calc-expr');
+    const result = panel.locator('.calc-result');
+
+    await key('3').click(); await key('plus').click(); await key('times').click(); await key('5').click();
+    await expect(expr).toHaveText('3 × 5');
+    await expect(result).toHaveText('');
+    await key('Clear').click();
+    await key('0').click(); await key('5').click();
+    await expect(expr).toHaveText('5');
+    await key('Clear').click();
+    await key('2').click(); await key('times').click(); await key('minus').click(); await key('3').click();
+    await expect(expr).toHaveText('2 × − 3');
+    await key('equals').click();
+    await expect(result).toHaveText('−6');
+    await key('Clear').click();
+    await key('1').click(); await key('divide').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('Cannot divide by zero');
+    await key('4').click();
+    await expect(expr).toHaveText('4');
+    await expect(result).toHaveText('');
+  });
+
+  test('the Calculator button sits straight under the answer area, before the clue button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    const order = await q.evaluate((node) => [...node.children].map((c) => c.className.split(' ')[0]).filter((c) => ['q-form', 'q-feedback', 'q-calc', 'q-help'].includes(c)));
+    expect(order).toEqual(['q-form', 'q-feedback', 'q-calc', 'q-help']);
   });
 });
