@@ -728,7 +728,9 @@ function addListenButtons(root = document) {
     btn.addEventListener('click', () => {
       const synth = window.speechSynthesis;
       if (synth.speaking) { synth.cancel(); return; }
-      speak(spokenText(node));
+      // When the question has a picture, read what the picture shows too.
+      const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
+      speak(spokenText(node) + (picture ? ` The picture shows: ${picture}` : ''));
     });
     node.append(btn);
   }
@@ -802,6 +804,24 @@ function startDiagnostic() {
     const input = el('input', { id, type: 'text', class: 'q-input', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', maxlength: '60' });
     d.append(el('label', { class: 'sr-only', for: id, text: `Your answer to question ${i + 1}` }), input);
   });
+  // A half-finished check is kept only until the tab is closed (sessionStorage), so a reload does not lose it.
+  const DRAFT_KEY = 'wm-gcse-diag-draft';
+  const readDraft = () => { try { const v = JSON.parse(window.sessionStorage.getItem(DRAFT_KEY) ?? '[]'); return Array.isArray(v) ? v : []; } catch { return []; } };
+  const progress = el('p', { class: 'diag-progress', role: 'status', 'aria-live': 'polite' });
+  root.querySelector('[data-diag-finish]').before(progress);
+  const updateProgress = () => {
+    const values = items.map((d) => d.querySelector('input').value);
+    try { window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(values.map((v) => v.slice(0, 60)))); } catch { /* storage may be unavailable */ }
+    const n = values.filter((v) => v.trim() !== '').length;
+    progress.textContent = `${n} of ${items.length} answered. Leave any you do not know: that is how we find your first topics.`;
+  };
+  const draft = readDraft();
+  items.forEach((d, i) => {
+    const input = d.querySelector('input');
+    if (typeof draft[i] === 'string') input.value = draft[i].slice(0, 60);
+    input.addEventListener('input', updateProgress);
+  });
+  updateProgress();
   const results = root.querySelector('[data-diag-results]');
   const historyBox = root.querySelector('[data-diag-history]');
   const showHistory = () => {
@@ -832,6 +852,7 @@ function startDiagnostic() {
     store.diag.push({ date: today(), score, total: items.length, wrong: wrong.map((w) => w.topic) });
     store.diag = store.diag.slice(-20);
     save();
+    try { window.sessionStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
     results.replaceChildren();
     results.append(el('h2', { text: `You already have ${score} of ${items.length} foundations` }));
     if (wrong.length === 0) {
@@ -863,12 +884,92 @@ function startDiagnostic() {
 
 // ---------- start-up ----------
 
+// ---------- timed set (stretch papers) ----------
+// Five questions, one minute per mark, hints hidden until time is up. The clock and the marks live on screen only.
+
+function startTimed() {
+  const main = document.querySelector('main[data-book-page="stretch"]');
+  if (!main) return;
+  const all = [...main.querySelectorAll('.q')];
+  const panel = el('section', { class: 'timed-panel' });
+  const wrap = el('div', { class: 'wrap narrow' });
+  const startBtn = el('button', { type: 'button', class: 'btn btn-navy', text: 'Start a timed set (5 questions)' });
+  const clock = el('p', { class: 'timed-clock', role: 'timer', 'aria-live': 'off' });
+  const status = el('p', { class: 'timed-status', role: 'status', 'aria-live': 'polite' });
+  const finishBtn = el('button', { type: 'button', class: 'btn btn-gold', text: 'Finish and mark my answers' });
+  const leaveBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Back to all questions' });
+  finishBtn.hidden = true;
+  leaveBtn.hidden = true;
+  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), startBtn, clock, status, finishBtn, leaveBtn);
+  panel.append(wrap);
+  main.querySelector('.key')?.closest('section')?.after(panel);
+  let timer = null;
+  let chosen = [];
+  const helpOf = (q, hidden) => q.querySelectorAll('.q-help').forEach((h) => { h.hidden = hidden; });
+  const tally = () => {
+    const earned = chosen.reduce((n, q) => n + q.querySelectorAll('.mark-box:checked').length, 0);
+    const total = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
+    status.textContent = `Marks so far: ${earned} of ${total}.`;
+  };
+  const stop = (message) => {
+    window.clearInterval(timer);
+    clock.textContent = message;
+    chosen.forEach((q) => helpOf(q, false));
+    finishBtn.hidden = false;
+  };
+  startBtn.addEventListener('click', () => {
+    const pool = [...all];
+    for (let i = pool.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    chosen = pool.slice(0, 5);
+    const minutes = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
+    let left = minutes * 60;
+    all.forEach((q) => { q.hidden = !chosen.includes(q); });
+    chosen.forEach((q) => helpOf(q, true));
+    startBtn.hidden = true;
+    leaveBtn.hidden = false;
+    finishBtn.hidden = false;
+    status.textContent = `${chosen.length} questions, ${minutes} minutes. Good luck.`;
+    const paint = () => { clock.textContent = `Time left: ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; };
+    paint();
+    timer = window.setInterval(() => {
+      left -= 1;
+      paint();
+      if (left <= 0) stop('Time is up. Open each mark scheme and tick your marks.');
+    }, 1000);
+    chosen[0].scrollIntoView({ block: 'start' });
+  });
+  finishBtn.addEventListener('click', () => {
+    stop('Marking time. Open each mark scheme and tick the marks you earned.');
+    chosen.forEach((q) => {
+      q.querySelectorAll('.btn-check').forEach((b) => { if (!b.disabled && /mark scheme/.test(b.textContent)) b.click(); });
+      q.querySelector('.solution')?.classList.add('open');
+    });
+    finishBtn.hidden = true;
+    tally();
+  });
+  main.addEventListener('change', (e) => { if (chosen.length && e.target.classList?.contains('mark-box')) tally(); });
+  leaveBtn.addEventListener('click', () => {
+    window.clearInterval(timer);
+    all.forEach((q) => { q.hidden = false; helpOf(q, false); });
+    chosen = [];
+    clock.textContent = '';
+    status.textContent = '';
+    startBtn.hidden = false;
+    leaveBtn.hidden = true;
+    finishBtn.hidden = true;
+  });
+}
+
 function start() {
   initReadingTools();
   document.querySelectorAll('.q').forEach(enhanceQuestion);
   addListenButtons();
   startPractice().catch((e) => console.error('practice failed', e));
   startDiagnostic();
+  startTimed();
   enhanceChecklists();
   enhanceTerms();
   enhanceGlossary();

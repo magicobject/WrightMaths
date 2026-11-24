@@ -313,6 +313,10 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .fast-link,.fast-toggle{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid var(--navy-mid);border-radius:999px;background:var(--white);color:var(--navy);font:inherit;font-weight:700;text-decoration:none;cursor:pointer;}
 .fast-toggle[aria-pressed="true"]{background:var(--navy);color:var(--white);}
 .fast-route-on details.recap,.fast-route-on section.ckw{display:none;}
+.timed-panel{padding:18px 0;background:var(--paper-dim);}
+.timed-clock{font-size:1.6rem;font-weight:800;color:var(--navy);margin:10px 0 2px;}
+.timed-status{font-weight:700;margin:2px 0 10px;}
+.diag-progress{font-weight:700;color:var(--navy);margin:12px 0 4px;}
 .markscheme{list-style:none;padding-left:0;}
 .markscheme li{margin:6px 0;}
 .mark-box{width:22px;height:22px;vertical-align:middle;margin-right:6px;accent-color:var(--navy);}

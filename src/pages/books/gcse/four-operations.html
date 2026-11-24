@@ -4,7 +4,8 @@
     <div>
       <span class="eyebrow">Number &middot; Foundation and Higher</span>
       <h1>Add, subtract, multiply, divide</h1>
-      <p class="lead">The four operations with whole numbers and decimals, how each one undoes another, and how to choose the right one in a real problem.</p>
+      <p class="lead">Add, subtract, multiply and divide with whole numbers and decimals. See how each one undoes another, and how to pick the right one.</p>
+      <p class="lead">Where you will use this: shop bills, change, game scores, and working out how many buses or boxes you need.</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
   </div>
@@ -56,8 +57,9 @@
 <section>
   <div class="wrap narrow">
     <h2>1. Adding and subtracting</h2>
-    <p>The {term:sum|sum} of two numbers is what you get by adding them. The {term:difference|difference} is what you get by subtracting the smaller from the larger. Both written methods use columns. Line up the {term:place-value|place values}: units under units, tens under tens. Put the decimal points under each other.</p>
-    <div class="key"><p><b>Key idea:</b> start at the right-hand column. Adding: if a column makes 10 or more, carry 1 into the next one. Subtracting: if the top {term:digit|digit} is too small, <b>exchange</b>. Take one ten (or one hundred) from the next column and exchange it for ten ones. Some people call this {term:carry-borrow|borrowing}. Keep digits in line. Most mistakes come from untidy columns.</p></div>
+    <p><b>Sum = the answer to an add. Difference = how far apart. Product = the answer to a times.</b> The {term:sum|sum} of 4 and 9 is 13. The {term:difference|difference} between them is 5.</p>
+    <p>Both written methods use columns. Line up the {term:place-value|place values}: units under units, tens under tens. Put the decimal points under each other.</p>
+    <div class="key"><p><b>Key idea:</b> start at the right-hand column. Adding: 10 or more in a column? Carry 1 into the next column. Subtracting: <b>top {term:digit|digit} too small? Take 1 from the next column. It turns into 10 here.</b> This is called an <b>exchange</b>. Some people say {term:carry-borrow|borrow}. Keep digits in line. Untidy columns cause most mistakes.</p></div>
     <p><b>Try it:</b> in 38 + 27, what do you write in the units column, and what do you carry?</p>
     <div class="worked">
       <h3>Worked example: add</h3>
@@ -74,14 +76,13 @@
       <h3>Now you finish it: subtract</h3>
       <p>Work out 6,003 &minus; 2,458.</p>
       <ol class="steps">
-        <li>Units: 3 &minus; 8 cannot be done.</li>
-        <li>The tens and hundreds are 0, so exchange from the thousands: one thousand becomes ten hundreds, then ten tens, then ten units.</li>
-        <li>6,003 becomes 5 thousands, 9 hundreds, 9 tens and 13 units.</li>
-        <li>13 &minus; 8 = 5, 9 &minus; 5 = 4, 9 &minus; 4 = 5, 5 &minus; 2 = 3.</li>
-        <li>So the answer is ___.</li>
+        <li>Zeros in the way make an exchange messy. Count up instead.</li>
+        <li>Start at 2,458. Go up to 2,500. That is 42.</li>
+        <li>Go from 2,500 up to 6,000. That is 3,500.</li>
+        <li>Go from 6,000 up to 6,003. That is 3.</li>
+        <li>Add the jumps: 42 + 3,500 + 3 = ___.</li>
       </ol>
-      <p><b>Easier way:</b> count up from 2,458 to 6,003. 2,458 to 2,500 is 42. 2,500 to 6,000 is 3,500. 6,000 to 6,003 is 3. 42 + 3,500 + 3 = ___.</p>
-      <details class="check-line"><summary>Check my answer</summary><p>3,545 both ways. Check by adding: 3,545 + 2,458 = 6,003.</p></details>
+      <details class="check-line"><summary>Check my answer</summary><p>3,545. Check by adding: 3,545 + 2,458 = 6,003.</p></details>
     </div>
   </div>
 </section>
@@ -133,8 +134,8 @@
 <section>
   <div class="wrap narrow">
     <h2>2. Multiplying</h2>
-    <p>The {term:product|product} of two numbers is the answer when you multiply them. For bigger numbers, split one number into easy pieces. This is {term:partitioning|partitioning}. Multiply each piece, then add.</p>
-    <div class="key"><p><b>Key idea:</b> 3.2 &times; 4: ignore the point, 32 &times; 4 = 128. 3.2 had one digit after the point, so the answer gets one: 12.8.</p></div>
+    <p>The {term:product|product} is the answer when you multiply. For bigger numbers, split one number into easy pieces. This is {term:partitioning|partitioning}. Multiply each piece, then add.</p>
+    <div class="key"><p><b>Key idea:</b> 3.2 &times; 4. Ignore the point: 32 &times; 4 = 128. 3.2 has one digit after the point. So the answer gets one: 12.8.</p></div>
     <p><b>Try it:</b> work out 24 &times; 3 by splitting 24 into 20 + 4.</p>
     <div class="worked">
       <h3>Worked example</h3>
@@ -163,13 +164,14 @@
     <h2>Check your knowledge: multiply</h2>
     <div class="q" data-answers="282" data-mode="value">
       <p class="qtext">Six gamers each collect 47 coins. How many coins is that altogether? Work out 47 &times; 6.</p>
-      <ol class="ladder"><li>40 &times; 6 and 7 &times; 6.</li></ol>
+      <ol class="ladder"><li>What is each part? How many parts are there?</li><li>40 &times; 6 and 7 &times; 6.</li></ol>
       <ul class="wrong"><li data-if="252">7 &times; 6 = 42, not 12. Then 240 + 42.</li></ul>
       <div class="solution"><p>240 + 42 = 282.</p></div>
     </div>
     <div class="q" data-answers="620" data-mode="value">
       <p class="qtext">A track on a playlist lasts 124 seconds. You play it 5 times. How many seconds is that?</p>
-      <ol class="ladder"><li>Half of 124 &times; 10.</li></ol>
+      <figure class="figure qfig"><svg viewBox="0 0 320 88" role="img" aria-labelledby="fo13-t fo13-d" class="geo-svg"><title id="fo13-t">Bar model: 5 plays of a 124 second track</title><desc id="fo13-d">A bar split into 5 equal parts, each part labelled 124 seconds. The whole bar, the total time, is labelled with a question mark.</desc><path d="M10 32 V24 H310 V32" fill="none" stroke="#0f2440" stroke-width="2"/><text class="svg-t" x="160" y="16" text-anchor="middle" style="font-size:14px">total = ?</text><rect x="10" y="36" width="60" height="40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="40" y="62" text-anchor="middle" style="font-size:14px">124</text><rect x="70" y="36" width="60" height="40" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="100" y="62" text-anchor="middle" style="font-size:14px">124</text><rect x="130" y="36" width="60" height="40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="160" y="62" text-anchor="middle" style="font-size:14px">124</text><rect x="190" y="36" width="60" height="40" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="220" y="62" text-anchor="middle" style="font-size:14px">124</text><rect x="250" y="36" width="60" height="40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="280" y="62" text-anchor="middle" style="font-size:14px">124</text></svg></figure>
+      <ol class="ladder"><li>Look at the bar. What is each part? How many parts are there?</li><li>Half of 124 &times; 10.</li></ol>
       <ul class="wrong"><li data-if="600">You left out 4 &times; 5 = 20. It is 500 + 100 + 20.</li></ul>
       <div class="solution"><p>124 &times; 10 = 1,240, and half of that is 620.</p></div>
     </div>
@@ -199,14 +201,15 @@
   <div class="wrap narrow">
     <h2>3. Dividing</h2>
     <p>In 12 &divide; 4, the {term:dividend|dividend} is 12 (the number being divided). The {term:divisor|divisor} is 4 (the number you divide by). If a number does not divide exactly, what is left over is the {term:remainder|remainder}. Use short division and set out each step.</p>
-    <div class="key"><p><b>Key idea:</b> division asks &ldquo;how many groups of this fit in?&rdquo; Or it asks you to share equally. To divide by a decimal, make the divisor whole. Multiply <i>both</i> numbers by 10 (or 100). Example: 3.6 &divide; 0.4 = 36 &divide; 4.</p></div>
+    <div class="key"><p><b>Key idea:</b> division asks &ldquo;how many groups fit in?&rdquo; Or it asks you to share equally. To divide by a decimal, make the divisor whole. <b>Multiply both numbers by 10, 100, 1,000 ... until the number you divide by is whole.</b> Example: 3.6 &divide; 0.4 becomes 36 &divide; 4.</p></div>
     <p><b>Try it:</b> how many groups of 5 fit into 35?</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Work out 1,456 &divide; 7.</p>
       <ol class="steps">
-        <li>7 into 14 goes 2 times. Put the 2 above the 4.</li>
-        <li>7 into 5 does not go: write 0 and carry the 5 to make 56.</li>
+        <li>7 into 14 goes 2 times. Write 2 above the 4.</li>
+        <li>7 into 5? It does not go. Write 0.</li>
+        <li>Carry the 5 to make 56.</li>
         <li>7 into 56 goes 8 times. Write 8.</li>
         <li>1,456 &divide; 7 = 208.</li>
       </ol>
@@ -315,8 +318,15 @@
 <section>
   <div class="wrap narrow">
     <h2>4. Using it in real situations</h2>
-    <p>First decide which {term:operation|operation} to use. Words can give clues. &ldquo;Altogether&rdquo; often means add. &ldquo;Change&rdquo; (the money you get back) means subtract. &ldquo;Shared equally&rdquo; means divide. But clues can mislead: &ldquo;each&rdquo; can mean multiply or divide. Picture what is happening. Then make an {term:estimate|estimate} to check the size of your answer.</p>
-    <div class="key"><p><b>Key idea:</b> if the answer counts whole things, a remainder usually means <b>one more</b>. 70 students, with 16 in each minibus (a small bus). You need 5 minibuses, not 4.375.</p></div>
+    <p><b>First decide which {term:operation|operation} to use.</b> Words give clues:</p>
+    <ul>
+      <li>&ldquo;Altogether&rdquo; often means add.</li>
+      <li>&ldquo;Change&rdquo; (money you get back) means subtract.</li>
+      <li>&ldquo;Shared equally&rdquo; means divide.</li>
+      <li>&ldquo;Each&rdquo; can mean multiply or divide.</li>
+    </ul>
+    <p>Clues can mislead, so picture what is happening. Then make an {term:estimate|estimate} to check the size of your answer.</p>
+    <div class="key"><p><b>Key idea:</b> counting whole things? A remainder usually means <b>one more</b>. 70 students, 16 in each minibus (a small bus). You need 5 minibuses, not 4.375.</p></div>
     <p><b>Try it:</b> 25 people, 4 in each car. How many cars?</p>
   </div>
 </section>
@@ -348,7 +358,8 @@
     </div>
     <div class="q" data-answers="6" data-mode="value">
       <p class="qtext">A bag holds 1.5 kg of flour. How many 250 g portions can you make? (1 kg = 1,000 g.)</p>
-      <ol class="ladder"><li>Use grams first: 1.5 kg = 1,500 g.</li></ol>
+      <figure class="figure qfig"><svg viewBox="0 0 320 88" role="img" aria-labelledby="fo14-t fo14-d" class="geo-svg"><title id="fo14-t">Bar model: 1.5 kg of flour in 250 g portions</title><desc id="fo14-d">A single bar for 1.5 kg of flour. Inside the bar are the words 250 g in each portion and a question mark for the number of portions.</desc><path d="M10 32 V24 H310 V32" fill="none" stroke="#0f2440" stroke-width="2"/><text class="svg-t" x="160" y="16" text-anchor="middle" style="font-size:14px">1.5 kg of flour</text><rect x="10.0" y="36" width="300" height="40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="160" y="53" text-anchor="middle" style="font-size:14px">250 g in each portion</text><text class="svg-t" x="160" y="70" text-anchor="middle" style="font-size:14px">? portions</text></svg></figure>
+      <ol class="ladder"><li>Look at the bar. What is each part? What is the whole? Are the units the same?</li><li>Use grams first: 1.5 kg = 1,500 g.</li></ol>
       <ul class="wrong"><li data-if="0.006">That divides 1.5 by 250. Use the same unit: 1,500 &divide; 250.</li><li data-if="375">That multiplies. How many 250 g portions fit? Divide.</li></ul>
       <div class="solution"><p>1,500 &divide; 250 = 6.</p></div>
     </div>
@@ -410,13 +421,14 @@
     </div>
     <div class="q" data-answers="36" data-mode="value">
       <p class="qtext">A music app has 432 songs. They are split into playlists of 12 songs each. How many playlists is that?</p>
-      <ol class="ladder"><li>12 &times; 30 = 360, then how many more 12s?</li></ol>
+      <ol class="ladder"><li>What is each part? 12 songs. How many of those parts fit in 432?</li><li>12 &times; 30 = 360, then how many more 12s?</li></ol>
       <ul class="wrong"><li data-if="360">That is only the first part. 432 &minus; 360 = 72, and 72 &divide; 12 = 6 more.</li></ul>
       <div class="solution"><p>12 &times; 36 = 432.</p></div>
     </div>
     <div class="q" data-answers="9" data-mode="value">
       <p class="qtext">A box holds 12 eggs. How many boxes are needed for 100 eggs?</p>
-      <ol class="ladder"><li>100 &divide; 12 = 8 remainder 4.</li></ol>
+      <figure class="figure qfig"><svg viewBox="0 0 320 88" role="img" aria-labelledby="fo15-t fo15-d" class="geo-svg"><title id="fo15-t">Bar model: 100 eggs in boxes of 12</title><desc id="fo15-d">A single bar for 100 eggs. Inside the bar are the words 12 in each box and a question mark for the number of boxes.</desc><path d="M10 32 V24 H310 V32" fill="none" stroke="#0f2440" stroke-width="2"/><text class="svg-t" x="160" y="16" text-anchor="middle" style="font-size:14px">100 eggs</text><rect x="10.0" y="36" width="300" height="40" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="160" y="53" text-anchor="middle" style="font-size:14px">12 in each box</text><text class="svg-t" x="160" y="70" text-anchor="middle" style="font-size:14px">? boxes</text></svg></figure>
+      <ol class="ladder"><li>Look at the bar. What is each part? Can you buy part of a box?</li><li>100 &divide; 12 = 8 remainder 4.</li></ol>
       <ul class="wrong"><li data-if="8">8 boxes hold only 96 eggs.</li><li data-if="8.33">You cannot buy part of a box.</li></ul>
       <div class="solution"><p>8 boxes hold 96 eggs. 4 eggs are left over, so you need 9 boxes.</p></div>
     </div>
@@ -476,7 +488,7 @@
     <h2>Why it works</h2>
     <ul class="tick">
       <li><b>Carrying and exchanging</b> are just place value: ten units become one ten, and one ten becomes ten units.</li>
-      <li><b>Partitioning</b> works because multiplication spreads over addition: 36 &times; 24 = 36 &times; 20 + 36 &times; 4.</li>
+      <li><b>Partitioning</b> works because 24 is 20 + 4. So 24 lots of 36 is 20 lots plus 4 lots: 36 &times; 24 = 36 &times; 20 + 36 &times; 4.</li>
       <li><b>Inverse operations</b> undo each other, so every answer can be checked by running it backwards.</li>
     </ul>
     <h2>Common traps</h2>

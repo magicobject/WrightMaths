@@ -751,3 +751,46 @@ test.describe('the Books page', () => {
     await expect(page).toHaveURL(/\/books\/$/);
   });
 });
+
+test.describe('round 3 finishing touches', () => {
+  test('a half-finished Find my gaps survives a reload, and is forgotten on finishing', async ({ page }) => {
+    await page.goto('/books/gcse/diagnostic.html');
+    await page.getByLabel('Your answer to question 1', { exact: true }).fill('42');
+    await expect(page.locator('.diag-progress')).toContainText('1 of 11 answered');
+    await page.reload();
+    await expect(page.getByLabel('Your answer to question 1', { exact: true })).toHaveValue('42');
+    await page.getByRole('button', { name: 'Show my results' }).first().click();
+    await page.reload();
+    await expect(page.getByLabel('Your answer to question 1', { exact: true })).toHaveValue('');
+  });
+
+  test('Listen reads what the picture shows as well as the question', async ({ page }) => {
+    await page.addInitScript(() => {
+      const spoken: string[] = [];
+      (window as any).__spoken = spoken;
+      const voice = { name: 'Daniel (Enhanced)', lang: 'en-GB', localService: true };
+      Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { getVoices: () => [voice], speak: (u: any) => spoken.push(u.text), cancel: () => {}, speaking: false, addEventListener: () => {}, onvoiceschanged: null } });
+      (window as any).SpeechSynthesisUtterance = function (t: string) { (this as any).text = t; };
+    });
+    await page.goto('/books/gcse/pythagoras.html');
+    const q = page.locator('.q:has(.qfig)').first();
+    await q.getByRole('button', { name: /Listen to question/ }).click();
+    const said = await page.evaluate(() => (window as any).__spoken.join(' '));
+    expect(said).toContain('The picture shows');
+  });
+
+  test('a timed set shows five questions with no hints, then lets you mark them', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    await expect(page.locator('.q:visible')).toHaveCount(5);
+    await expect(page.locator('.timed-clock')).toContainText('Time left');
+    await expect(page.locator('.q-help:visible')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Finish and mark my answers' }).click();
+    await expect(page.locator('.q:visible .solution:visible').first()).toBeVisible();
+    await expect(page.locator('.timed-status')).toContainText(/Marks so far: 0 of \d+/);
+    await page.locator('.q:visible .mark-box').first().check();
+    await expect(page.locator('.timed-status')).toContainText(/Marks so far: 1 of/);
+    await page.getByRole('button', { name: 'Back to all questions' }).click();
+    await expect(page.locator('.q:visible')).toHaveCount(28);
+  });
+});
