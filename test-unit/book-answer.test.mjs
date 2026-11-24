@@ -132,3 +132,37 @@ test('a pair typed in brackets matches the bare pair', () => {
   assert.ok(matches('(2,5)', ['2,5'], 'exact'));
   assert.ok(matches('x=2, y=5', ['2,5'], 'exact'));
 });
+
+test('cubic and small area units are ignored in a typed answer', () => {
+  for (const typed of ['72 cm³', '72cm3', '72 cm^3', '72 litres', '72 l', '72 ml', '9503.3 mm²', '9503.3 mm2']) {
+    const key = typed.startsWith('9503') ? '9503.3' : '72';
+    assert.ok(matches(typed, [key], 'value'), typed);
+  }
+  assert.ok(!matches('73 cm³', ['72'], 'value'));
+});
+
+test('standard form needs its multiplication sign, and bracketed whole-number indices are tolerated', async () => {
+  const { feedbackFor } = await import('../public/js/book-answer.mjs');
+  const key = ['4.6x10^6'];
+  for (const ok of ['4.6x10^6', '4.6*10^6', '4.6 x 10^6', '4.6×10^6', '4.6X10^6']) assert.ok(matches(ok, key, 'exact'), ok);
+  for (const bad of ['4.610^6', '4.6 10^6', '46x10^5']) assert.ok(!matches(bad, key, 'exact'), bad);
+  assert.ok(matches('a^(8)', ['a^8'], 'exact'));
+  assert.ok(matches('7^(-2)', ['7^-2'], 'exact'));
+  assert.match(feedbackFor('4.6E6', key), /x10\^6/);
+});
+
+test('the same algebra written another way is accepted, but only in an acceptable form', async () => {
+  const { sameAlgebra, feedbackFor } = await import('../public/js/book-answer.mjs');
+  const ok = (typed, key) => assert.ok(matches(typed, [key], 'exact'), `${typed} should match ${key}`);
+  const no = (typed, key) => assert.ok(!matches(typed, [key], 'exact'), `${typed} should not match ${key}`);
+  ok('n*3+1', '3n+1'); ok('1+3n', '3n+1'); ok('+3n+1', '3n+1'); ok('11-n*2', '11-2n'); ok('-n*2+11', '11-2n');
+  ok('y=x*3-2', '3x-2'); ok('y=.5x+7', '0.5x+7'); ok('y=7+x/2', '0.5x+7');
+  ok('n*n+n', 'n^2+n'); ok('n^2*2+3', '2n^2+3'); ok('(x+4)(x+3)', '(x+3)(x+4)');
+  no('2(x+1)', '2x+2');            // not expanded
+  no('x^2+7x-2x-14', 'x^2+5x-14'); // not simplified
+  no('x^2+7x+12', '(x+3)(x+4)');   // not factorised
+  no('3n+2', '3n+1');
+  assert.equal(sameAlgebra('x^2+7x-2x-14', 'x^2+5x-14'), 'longer');
+  assert.match(feedbackFor('x^2+7x-2x-14', ['x^2+5x-14']), /form asked for/);
+  ok('yes.', 'yes'); ok('3 4', '3,4'); ok('16;10', '16,10');
+});

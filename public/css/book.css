@@ -414,12 +414,37 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .g-jump a{display:inline-block;padding:2px 8px;font-weight:700;}
 [hidden]{display:none !important;}
 
+/* ---------- calculator (only inside questions where one is allowed) ---------- */
+.q-calc{margin:10px 0;}
+.btn-calc{font:inherit;font-weight:700;min-height:44px;padding:8px 16px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--t-term);color:var(--navy);cursor:pointer;}
+.btn-calc:hover{background:var(--paper-dim);}
+.btn-calc[aria-expanded="true"]{background:var(--navy);color:var(--white);}
+.calc{max-width:340px;margin-top:10px;padding:12px;border:2px solid var(--navy-mid);border-radius:14px;background:var(--paper-dim);}
+.calc[hidden]{display:none;}
+.calc:focus{outline:3px solid var(--navy-mid);outline-offset:2px;}
+.calc-head{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+.calc-tip{margin:0;font-size:.9rem;color:var(--ink);}
+.calc-dismiss{align-self:flex-end;font:inherit;font-weight:700;min-height:44px;padding:6px 14px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
+.calc-screen{margin-bottom:10px;padding:8px 12px;border-radius:8px;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);text-align:right;}
+.calc-expr{min-height:1.6em;font-size:1.15rem;color:var(--ink);white-space:nowrap;overflow:hidden;}
+.calc-result{display:block;min-height:2.2rem;font-size:1.7rem;font-weight:700;overflow-wrap:anywhere;}
+.calc-pad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.calc-key{font:inherit;font-weight:700;font-size:1.1rem;min-height:48px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
+.calc-key:hover{background:var(--paper);}
+.calc-control{background:var(--paper);font-size:.95rem;}
+.calc-binary,.calc-open,.calc-bracket{background:var(--t-term);}
+.calc-binary{font-size:1.4rem;}
+.calc-equals{background:var(--navy);color:var(--white);}
+.calc-equals:hover{background:var(--navy-dark);}
+/* The floating Top button would cover the right-hand keys on a phone. */
+body:has(.calc:not([hidden])) .to-top{display:none;}
+
 /* ---------- print: everything open, no controls ---------- */
 @media print{
   .site-header,footer,.hero-actions,.q-form,.q-help,.btn,.g-tools,[data-reset-progress],.crumbs{display:none !important;}
   .js .q .ladder,.js .q .solution{display:none !important;}
   .js .print-answers .q .solution{display:block !important;}
-  .fast-route,.toc,.to-top,.listen,.sym-row,.timed-panel{display:none !important;}
+  .fast-route,.toc,.to-top,.listen,.sym-row,.timed-panel,.q-calc{display:none !important;}
   .book section{padding:14px 0;}
   .q,.worked,.key{box-shadow:none;break-inside:avoid;}
   .term{background:none;}

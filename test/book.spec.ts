@@ -41,6 +41,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('every internal link and every #anchor on every book page resolves', async ({ page, request }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     const checked = new Set<string>();
     for (const bookPage of BOOK_PAGES) {
       await page.goto(bookPage.path);
@@ -627,10 +628,10 @@ test.describe('lettered hints', () => {
     await expect(q.locator('.rungs li')).toHaveCount(2);
   });
 
-  test('the static hint list (no script) is lettered too', async ({ browser }) => {
-    const context = await browser.newContext({ javaScriptEnabled: false });
+  test('the static hint list (no script) is lettered too', async ({ browser, baseURL }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
     const page = await context.newPage();
-    await page.goto('http://localhost:4173/books/gcse/place-value.html');
+    await page.goto('/books/gcse/place-value.html');
     const content = await page.locator('.q .ladder li').first().evaluate((e) => getComputedStyle(e, '::before').content);
     expect(content).toContain('upper-alpha');
     await context.close();
@@ -925,5 +926,144 @@ test.describe('recorded audio for Listen', () => {
     const res = await page.request.get('/audio/book/manifest.json');
     expect(res.ok()).toBe(true);
     expect(typeof (await res.json())).toBe('object');
+  });
+});
+
+test.describe('the calculator', () => {
+  test('appears only on questions where a calculator is allowed, on every book page', async ({ page }) => {
+    let withCalc = 0;
+    for (const bookPage of BOOK_PAGES) {
+      await page.goto(bookPage.path);
+      const rows = await page.evaluate(() => [...document.querySelectorAll('.q')].map((q) => ({
+        tag: q.querySelector(':scope > .qtext .qtag-calc')?.textContent?.trim() ?? '',
+        marked: q.closest('[data-calc]')?.getAttribute('data-calc') ?? '',
+        has: q.querySelector('.calc-toggle') !== null,
+        text: (q.querySelector('.qtext')?.textContent ?? '').slice(0, 60),
+      })));
+      for (const row of rows) {
+        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes';
+        expect(row.has, `${bookPage.path}: "${row.text}" (tag "${row.tag}", data-calc "${row.marked}")`).toBe(allowed);
+        if (row.has) withCalc += 1;
+      }
+    }
+    expect(withCalc).toBeGreaterThan(5);
+  });
+
+  test('the diagnostic, which is no-calculator throughout, has no calculator button', async ({ page }) => {
+    await page.goto('/books/gcse/diagnostic.html');
+    await expect(page.locator('.calc-toggle')).toHaveCount(0);
+  });
+
+  test('the keypad does sums, keeps Ans, refuses a second decimal point and reports errors', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    const toggle = q.locator('.calc-toggle');
+    const panel = q.locator('.calc');
+    await expect(panel).toBeHidden();
+    await toggle.click();
+    await expect(panel).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    const key = (name: string) => panel.getByRole('button', { name, exact: true });
+    const result = panel.locator('.calc-result');
+
+    await key('7').click(); await key('times').click(); await key('8').click(); await key('equals').click();
+    await expect(result).toHaveText('56');
+    await key('plus').click(); await key('1').click(); await key('equals').click(); // continues from Ans
+    await expect(panel.locator('.calc-expr')).toHaveText('Ans + 1');
+    await expect(result).toHaveText('57');
+
+    await key('Clear').click();
+    await key('1').click(); await key('decimal point').click(); await key('5').click(); await key('decimal point').click(); await key('2').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('1.52');
+    await key('Delete').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('1.5');
+
+    await key('Clear').click();
+    await key('square root').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('5.477225575');
+
+    await key('Clear').click();
+    await key('1').click(); await key('divide').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('Cannot divide by zero');
+  });
+
+  test('the keyboard works inside the calculator, Escape closes it and focus returns to its button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    await expect(q.locator('.calc')).toBeFocused();
+    await page.keyboard.type('12/4=');
+    await expect(q.locator('.calc-result')).toHaveText('3');
+    await page.keyboard.type('*5');
+    await page.keyboard.press('Enter');
+    await expect(q.locator('.calc-result')).toHaveText('15');
+    await page.keyboard.press('Backspace');
+    await page.keyboard.press('Escape');
+    await expect(q.locator('.calc')).toBeHidden();
+    await expect(q.locator('.calc-toggle')).toBeFocused();
+  });
+
+  test('typing in the answer box never drives the calculator, and the calculator stores nothing', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    await page.keyboard.type('99=');
+    await q.locator('.q-input').fill('45');
+    await expect(q.locator('.q-input')).toHaveValue('45');
+    const keys = await page.evaluate(() => Object.keys(window.localStorage));
+    expect(keys.filter((k) => !k.startsWith('wm-gcse'))).toEqual([]);
+  });
+});
+
+test.describe('the calculator, small kindnesses', () => {
+  test('result stays blank until equals; a second operator replaces the first; no leading zero; an error clears on the next digit', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    const panel = q.locator('.calc');
+    const key = (name: string) => panel.getByRole('button', { name, exact: true });
+    const expr = panel.locator('.calc-expr');
+    const result = panel.locator('.calc-result');
+
+    await key('3').click(); await key('plus').click(); await key('times').click(); await key('5').click();
+    await expect(expr).toHaveText('3 × 5');
+    await expect(result).toHaveText('');
+    await key('Clear').click();
+    await key('0').click(); await key('5').click();
+    await expect(expr).toHaveText('5');
+    await key('Clear').click();
+    await key('2').click(); await key('times').click(); await key('minus').click(); await key('3').click();
+    await expect(expr).toHaveText('2 × − 3');
+    await key('equals').click();
+    await expect(result).toHaveText('−6');
+    await key('Clear').click();
+    await key('1').click(); await key('divide').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('Cannot divide by zero');
+    await key('4').click();
+    await expect(expr).toHaveText('4');
+    await expect(result).toHaveText('');
+  });
+
+  test('the Calculator button sits straight under the answer area, before the clue button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    const order = await q.evaluate((node) => [...node.children].map((c) => c.className.split(' ')[0]).filter((c) => ['q-form', 'q-feedback', 'q-calc', 'q-help'].includes(c)));
+    expect(order).toEqual(['q-form', 'q-feedback', 'q-calc', 'q-help']);
+  });
+});
+
+test.describe('the calculator, from the tester\'s report', () => {
+  test('a typed square-root sign presses the root key, and Escape from a key returns focus to the button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    // Playwright's typing inserts text without a key event for this symbol, so send the key event itself.
+    await q.locator('.calc').evaluate((node) => node.dispatchEvent(new KeyboardEvent('keydown', { key: '√', bubbles: true })));
+    await page.keyboard.type('30=');
+    await expect(q.locator('.calc-result')).toHaveText('5.477225575');
+    await q.locator('.calc').getByRole('button', { name: 'plus', exact: true }).focus();
+    await page.keyboard.press('Escape');
+    await expect(q.locator('.calc')).toBeHidden();
+    await expect(q.locator('.calc-toggle')).toBeFocused();
   });
 });

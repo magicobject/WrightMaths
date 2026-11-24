@@ -26,6 +26,13 @@ export const BOOK_TOPICS: BookPage[] = [
   { path: '/books/gcse/quadratic-equations.html', titleContains: 'Quadratic equations', heading: /^Quadratic equations$/ },
   { path: '/books/gcse/trigonometry.html', titleContains: 'Trigonometry', heading: /^Trigonometry$/ },
   { path: '/books/gcse/percentage-change.html', titleContains: 'Repeated percentage change', heading: /^Repeated percentage change$/ },
+  { path: '/books/gcse/area-perimeter.html', titleContains: 'Area and perimeter', heading: /^Area and perimeter$/ },
+  { path: '/books/gcse/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
+  { path: '/books/gcse/probability-basics.html', titleContains: 'Probability', heading: /^Probability$/ },
+  { path: '/books/gcse/averages.html', titleContains: 'Averages and spread', heading: /^Averages and spread$/ },
+  { path: '/books/gcse/sequences.html', titleContains: 'Sequences', heading: /^Sequences$/ },
+  { path: '/books/gcse/coordinates-graphs.html', titleContains: 'Coordinates and straight-line graphs', heading: /^Coordinates and straight-line graphs$/ },
+  { path: '/books/gcse/indices.html', titleContains: 'Powers and indices', heading: /^Powers and indices$/ },
 ];
 
 export const BOOK_PAGES: BookPage[] = [
