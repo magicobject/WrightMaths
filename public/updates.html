@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.24.026">
+<link rel="stylesheet" href="css/style.css?v=2026.11.24.027">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,8 +79,32 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.027</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Calculator branch brought up to date with the seven new topics. No change to how anything behaves.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.026</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book (still unlinked): seven new topics. Powers and indices (with standard form), area and perimeter (with volume and surface area), circles (arcs, sectors and cylinders), probability (with trees and Venn diagrams), averages and spread (with charts and scatter graphs), sequences and coordinates and straight-line graphs: about 560 new questions with tickable mark schemes, trade questions and 80 diagrams. The answer checker now accepts the same algebra written another way (such as n*3+1 for 3n+1) but not an unsimplified or unexpanded form, tells you when a right answer needs collecting like terms, takes more units (cm&sup3;, mm&sup2;, litres), needs the multiplication sign in standard form and points out E notation. Give me five no longer lets an older press overwrite a newer one. Six more topics are shown as planned on the pyramid.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.025</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Test fix: one check for lettered hints had the test port written into it, which broke when each checkout started choosing its own port. It now uses the port the tests were started on.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.024</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book: calculator fixes from an independent test pass. Enormous answers now say &ldquo;Cannot work that out&rdquo; instead of showing nonsense, very small answers use one tidy E notation, absurdly long sums are refused instead of crashing the keypad, and a typed square-root sign now presses the root key.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.023</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book: calculator tidy-up after an independent design review. The button now sits straight under the answer box, the display stays blank until you press equals, errors say what is wrong in plain words (&ldquo;Cannot divide by zero&rdquo;) and clear on the next key, a second operator replaces the first, 05 becomes 5, and the keys are labelled Clear and Delete. Tests now pick a port from each checkout&rsquo;s folder, so several sessions can no longer test each other&rsquo;s files by accident.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.022</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Housekeeping: removed two scratch files from the calculator change that should never have been committed.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.021</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book: an on-page calculator. Questions tagged &ldquo;Calculator&rdquo; (and five more that say you may use one: percentages and square roots) get a Calculator button under the answer box that opens a keypad with brackets, powers, squares, square roots and an Ans key. Questions tagged &ldquo;Non-calculator&rdquo;, and every untagged question, never show it. The keypad runs on a separate maths engine with a scientific profile ready for sin, cos, tan and logs.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.018</span><span class="changelog-date">24 November 2026</span></div>
@@ -302,9 +326,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.026</span>
+    <span class="build-number">Build 2026.11.24.027</span>
   </div>
-  <script src="js/main.js?v=2026.11.24.026" defer></script>
+  <script src="js/main.js?v=2026.11.24.027" defer></script>
 </footer>
 </body>
 </html>

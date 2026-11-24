@@ -89,3 +89,11 @@ test.describe('the book in its interactive states', () => {
     });
   }
 });
+
+test('the calculator, open with a result showing, has no axe violations', async ({ page }) => {
+  await page.goto('/books/gcse/percentages.html');
+  const q = page.locator('.q:has(.calc-toggle)').first();
+  await q.locator('.calc-toggle').click();
+  await page.keyboard.type('6*7=');
+  expect(await violations(page)).toEqual([]);
+});
