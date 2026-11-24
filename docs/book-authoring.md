@@ -93,7 +93,7 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 
 **Technical words in questions** are linked automatically at build time (first use per question), from the glossary. They show a definition on hover, focus or tap, plus a small picture if `src/book/term-figures.mjs` has one for that term id. Question words (work out, calculate...) are never auto-linked. To add a picture, add an entry keyed by the glossary id; the build fails if the id is not a glossary term.
 
-**Warm-ups and recaps.** One warm-up question at most; fold recap questions into `<details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>...</details>` so the lesson comes first. A faded example's answer goes in `<details class="check-line"><summary>Check my answer</summary>...</details>` so it is not given away.
+**Warm-ups and recaps.** One warm-up question at most; fold recap questions into `<details class="recap"><summary>Quick recap of earlier topics (skip if you are happy)</summary>...</details>` so the lesson comes first. A faded example's answer goes in `<details class="check-line"><summary>Check my answer</summary>...</details>` so it is not given away.
 
 **Higher-only sections** carry `<span class="chip chip-higher">Higher</span>` in their heading.
 

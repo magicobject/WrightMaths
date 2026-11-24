@@ -656,6 +656,8 @@ function speak(text) {
   synth.cancel();
   const prefs = loadRead();
   const voice = bestVoice(window.speechSynthesis.getVoices(), prefs.voice);
+  // No on-device voice: say nothing rather than let the browser pick one, which may be an online voice that sends the text away.
+  if (!voice) return;
   // Short sentences in turn sound more natural and avoid the browser cutting off long text.
   for (const sentence of text.split(/(?<=[.?!])\s+/).filter(Boolean)) {
     const u = new window.SpeechSynthesisUtterance(sentence);
@@ -825,6 +827,7 @@ function start() {
     if (window.confirm('Clear all your saved ticks and answers on this device?')) {
       store = { done: {}, ticks: {}, days: [], rq: {}, diag: [] };
       save();
+      try { window.localStorage.removeItem(READ_KEY); } catch { /* storage may be unavailable */ }
       window.location.reload();
     }
   });
