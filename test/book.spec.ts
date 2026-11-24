@@ -751,6 +751,27 @@ test.describe('the Books page', () => {
     await page.getByRole('link', { name: /Go to Books/ }).click();
     await expect(page).toHaveURL(/\/books\/$/);
   });
+
+  test('the Books page and every book page load their own stylesheet and script, and the nav goes to the real site', async ({ page }) => {
+    for (const path of ['/books/', ...BOOK_PAGES.map((b) => b.path)]) {
+      await page.goto(path);
+      const urls = await page.evaluate(() => [
+        ...[...document.querySelectorAll('link[rel="stylesheet"]')].map((l) => ({ url: (l as HTMLLinkElement).href, kind: 'css' })),
+        ...[...document.querySelectorAll('script[src]')].map((s) => ({ url: (s as HTMLScriptElement).src, kind: 'js' })),
+      ]);
+      expect(urls.length, path).toBeGreaterThan(1);
+      for (const { url, kind } of urls) {
+        if (!url.startsWith(page.url().split('/').slice(0, 3).join('/'))) continue; // same-site files only (fonts are checked elsewhere)
+        const res = await page.request.get(url);
+        expect(res.status(), `${path} -> ${url}`).toBe(200);
+        expect(res.headers()['content-type'], `${path} -> ${url}`).toMatch(kind === 'css' ? /text\/css/ : /javascript/);
+      }
+    }
+    await page.goto('/books/');
+    await page.locator('nav.mainnav').getByRole('link', { name: 'Home', exact: true }).click();
+    await expect(page).toHaveURL(/\/(index\.html)?$/);
+    await expect(page).not.toHaveURL(/books/);
+  });
 });
 
 test.describe('round 3 finishing touches', () => {
