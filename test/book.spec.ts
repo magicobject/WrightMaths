@@ -627,10 +627,10 @@ test.describe('lettered hints', () => {
     await expect(q.locator('.rungs li')).toHaveCount(2);
   });
 
-  test('the static hint list (no script) is lettered too', async ({ browser }) => {
-    const context = await browser.newContext({ javaScriptEnabled: false });
+  test('the static hint list (no script) is lettered too', async ({ browser, baseURL }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
     const page = await context.newPage();
-    await page.goto('http://localhost:4173/books/gcse/place-value.html');
+    await page.goto('/books/gcse/place-value.html');
     const content = await page.locator('.q .ladder li').first().evaluate((e) => getComputedStyle(e, '::before').content);
     expect(content).toContain('upper-alpha');
     await context.close();
