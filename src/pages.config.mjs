@@ -63,6 +63,7 @@ export const PAGES = [
     active: null,
     robots: 'noindex',
     canonicalPath: 'books/',
+    base: '../', // this page lives one folder down, so its stylesheet and script are one level up
   },
   // ---- The GCSE book: hidden pilot at /books/gcse/ ----
   // Not in NAV, not in sitemap.xml, not linked from any other page, and
