@@ -437,9 +437,10 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .calc-5col{max-width:400px;}
 .calc-pad[data-cols="5"]{grid-template-columns:repeat(5,minmax(0,1fr));}
 .calc-pad[data-cols="5"] .calc-key{padding:0;min-width:0;}
-.calc-fn,.calc-fnbig{background:var(--t-term);font-size:.9rem;border-radius:22px;}
+.calc-fn,.calc-fnbig,.calc-times10{background:var(--t-term);font-size:.9rem;border-radius:22px;}
 .calc-fnbig{font-size:1.35rem;}
 .calc-binary{border-radius:4px;}
+.calc-pad[data-cols="5"] .calc-control{font-size:.78rem;}
 .calc-mode{position:absolute;left:10px;top:6px;font-size:.75rem;font-weight:700;letter-spacing:.05em;color:var(--ink);}
 /* On a phone the keypad uses the whole width of the question card so every key is a comfortable tap. */
 @media (max-width:640px){

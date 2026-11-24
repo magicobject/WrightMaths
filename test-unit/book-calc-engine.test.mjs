@@ -145,3 +145,17 @@ test('every key on the scientific keypad inserts something the engine can read',
   // every row fills the 5 columns exactly
   for (const row of layout.rows) assert.equal(row.reduce((n, k) => n + (k.span ?? 1), 0), layout.cols);
 });
+
+test('rounding noise: sin(30) - 0.5 and 0.1 + 0.2 - 0.3 are exactly 0, like a real calculator', () => {
+  const sci = { profile: SCIENTIFIC };
+  for (const sum of ['sin(30) − 0.5', 'tan(45) − 1', '2sin(30) − 1', 'cos(60) − 0.5', 'tan(30) × tan(60) − 1']) assert.equal(text(sum, sci), '0', sum);
+  assert.equal(text('0.1 + 0.2 − 0.3'), '0');
+  assert.equal(text('1 ÷ 3 × 3'), '1');
+  assert.equal(text('0.1 × 3'), '0.3');
+});
+
+test('Ans can be followed straight by a function or another Ans', () => {
+  assert.equal(val('Anssin(30)', { profile: SCIENTIFIC, ans: 5 }), 2.5);
+  assert.equal(val('Ans×sin(30)', { profile: SCIENTIFIC, ans: 5 }), 2.5);
+  assert.equal(val('AnsAns', { ans: 3 }), 9);
+});

@@ -18,9 +18,13 @@ export class CalcError extends Error {
   }
 }
 
+// Real calculators work to about 15 digits and show 10, so 0.1 + 0.2 - 0.3 and sin(30) - 0.5 give exactly 0,
+// not 5.5E-17. Every result is rounded to 15 significant figures to match.
+const r15 = (x) => (Number.isFinite(x) && x !== 0 ? Number(x.toPrecision(15)) : x);
+
 const mathCheck = (x) => {
   if (!Number.isFinite(x)) throw new CalcError('math');
-  return x;
+  return r15(x);
 };
 
 export const BASIC = {
@@ -70,6 +74,7 @@ export function tokenize(text, profile = BASIC) {
     if (/\s/.test(c)) { i += 1; continue; }
     const num = /^(\d+\.?\d*|\.\d+)/.exec(src.slice(i));
     if (num) { tokens.push({ t: 'num', v: Number(num[1]) }); i += num[1].length; continue; }
+    if (/^ans/i.test(src.slice(i))) { tokens.push({ t: 'ans' }); i += 3; continue; }
     const name = /^[a-z]+/i.exec(src.slice(i));
     if (name) {
       const id = name[0].toLowerCase();
@@ -105,7 +110,7 @@ export function evaluate(text, { profile = BASIC, ans = 0 } = {}) {
     while (peek() && (peek().t === '+' || peek().t === '-')) {
       const op = take().t;
       const right = term();
-      left = op === '+' ? left + right : left - right;
+      left = r15(op === '+' ? left + right : left - right);
     }
     return left;
   }
@@ -118,9 +123,9 @@ export function evaluate(text, { profile = BASIC, ans = 0 } = {}) {
         take();
         const right = unary();
         if (next.t === '/' && right === 0) throw new CalcError('divzero');
-        left = next.t === '*' ? left * right : left / right;
+        left = r15(next.t === '*' ? left * right : left / right);
       } else if (startsOperand(next)) {
-        left *= unary(); // implicit multiplication: 2(3+4), 3 sqrt(4)
+        left = r15(left * unary()); // implicit multiplication: 2(3+4), 3 sqrt(4)
       } else return left;
     }
   }

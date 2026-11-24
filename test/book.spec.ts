@@ -1150,3 +1150,51 @@ test.describe('the scientific calculator', () => {
     await expect(q.locator('.calc')).toBeVisible();
   });
 });
+
+test.describe('the scientific calculator, from the second tester\'s report', () => {
+  const open = async (page: import('@playwright/test').Page, text: string) => {
+    await page.goto('/books/gcse/trigonometry.html');
+    const q = page.locator('.q', { hasText: text }).first();
+    await q.locator('.calc-toggle').click();
+    return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
+  };
+
+  test('typing a function name on the keyboard presses that key, so sin30 is never read as 30', async ({ page }) => {
+    const { panel } = await open(page, 'work out sin 40');
+    await page.keyboard.type('sin30)=');
+    await expect(panel.locator('.calc-expr')).toHaveText('sin(30)');
+    await expect(panel.locator('.calc-result')).toHaveText('0.5');
+    await page.keyboard.press('Delete');
+    await page.keyboard.type('sin(30)-0.5=');
+    await expect(panel.locator('.calc-result')).toHaveText('0');
+    await page.keyboard.press('Delete');
+    await page.keyboard.type('pi*2=');
+    await expect(panel.locator('.calc-result')).toHaveText('6.283185307');
+  });
+
+  test('x10 continues from the last answer, and Ans can be followed by a function', async ({ page }) => {
+    const { panel, key } = await open(page, 'work out sin 40');
+    await key('2').click(); await key('plus').click(); await key('3').click(); await key('equals').click();
+    await key('×10ˣ, times ten to the power').click(); await key('2').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('Ans×10^(2');
+    await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('500');
+    await key('Clear').click();
+    await key('sin, sine').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await key('Clear').click();
+    await key('Ans, previous answer').click(); await key('sin, sine').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(panel.locator('.calc-result')).toHaveText('0.25')  // Ans (0.5) times sin 30 (0.5);
+  });
+
+  test('no scientific key label is clipped at 320px, and multiple-choice questions with a keypad are only the listed ones', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 });
+    const { panel } = await open(page, 'work out sin 40');
+    const clipped = await panel.locator('.calc-key').evaluateAll((keys) => keys.filter((k) => k.scrollWidth > k.clientWidth + 1).map((k) => k.textContent));
+    expect(clipped).toEqual([]);
+    // Multiple-choice questions normally have no keypad. Maya's sin-1(9 / 6) question keeps one on purpose,
+    // so students can try the key and see the calculator's own error.
+    const withPad = await page.evaluate(() => [...document.querySelectorAll('.q[data-type="mc"]')].filter((q) => q.querySelector('.calc-toggle')).map((q) => q.querySelector('.qtext')?.textContent?.slice(0, 30)));
+    expect(withPad).toHaveLength(1);
+    expect(withPad[0]).toContain('Maya types');
+  });
+});

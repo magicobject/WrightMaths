@@ -54,7 +54,7 @@ export const LAYOUTS = {
     show: { 'asin(': 'sin⁻¹(', 'acos(': 'cos⁻¹(', 'atan(': 'tan⁻¹(' },
     rows: [
       [fn('sin', 'sine', 'sin('), fn('cos', 'cosine', 'cos('), fn('tan', 'tangent', 'tan('), fn('log', 'log base 10', 'log('), fn('ln', 'natural log', 'ln(')],
-      [fn('sin⁻¹', 'inverse sine', 'asin('), fn('cos⁻¹', 'inverse cosine', 'acos('), fn('tan⁻¹', 'inverse tangent', 'atan('), fn('π', 'pi', 'π'), fn('×10ˣ', 'times ten to the power', '×10^(')],
+      [fn('sin⁻¹', 'inverse sine', 'asin('), fn('cos⁻¹', 'inverse cosine', 'acos('), fn('tan⁻¹', 'inverse tangent', 'atan('), fn('π', 'pi', 'π'), fn('×10ˣ', 'times ten to the power', '×10^(', 'times10')],
       [key('x²', 'squared', 'insert', '²', 'binary'), key('x³', 'cubed', 'insert', '³', 'binary'), fn('√', 'square root', '√(', 'fnbig'), fn('∛', 'cube root', '∛(', 'fnbig'), key('^', 'to the power of', 'insert', '^', 'binary')],
       [key('(', 'open bracket', 'insert', '(', 'open'), key(')', 'close bracket', 'insert', ')', 'bracket'), key('Ans', 'previous answer', 'insert', 'Ans', 'open'), key('Delete', '', 'del', '', 'control'), key('Clear', '', 'clear', '', 'control')],
       [digit('7'), digit('8'), digit('9'), key('÷', 'divide', 'insert', '÷', 'binary'), key('×', 'times', 'insert', '×', 'binary')],
@@ -150,7 +150,7 @@ export function createCalculator(layout = LAYOUTS.basic) {
     // insert
     if (errored) startAgain();
     if (fresh) {
-      tokens = k.kind === 'binary' ? ['Ans'] : [];
+      tokens = k.kind === 'binary' || k.kind === 'times10' ? ['Ans'] : [];
       fresh = false;
       show('');
     }
@@ -195,9 +195,27 @@ export function createCalculator(layout = LAYOUTS.basic) {
   toggle.addEventListener('click', () => (panel.hidden ? open() : shut(false)));
   close.addEventListener('click', () => shut());
 
+  // Typed names: s-i-n presses the sin key, and so on, so typing sin30 is never silently read as 30.
+  let letters = '';
+  let justFunction = false;
+  const NAMES = { sin: 'sin(', cos: 'cos(', tan: 'tan(', log: 'log(', ln: 'ln(', pi: 'π' };
+
   panel.addEventListener('keydown', (event) => {
     if (event.ctrlKey || event.metaKey || event.altKey) return;
     const { key: pressed } = event;
+    const typedLetter = /^[a-z]$/i.test(pressed) && event.target.tagName !== 'BUTTON';
+    if (typedLetter && !(letters === '' && pressed.toLowerCase() === 'x')) {
+      event.preventDefault();
+      letters += pressed.toLowerCase();
+      const name = NAMES[letters];
+      const k = name && byText(name);
+      if (k) { press(k); letters = ''; justFunction = name.endsWith('('); }
+      else if (!Object.keys(NAMES).some((n) => n.startsWith(letters))) letters = '';
+      return;
+    }
+    letters = '';
+    if (pressed === '(' && justFunction) { justFunction = false; event.preventDefault(); return; } // sin( already has its bracket
+    justFunction = false;
     if (pressed === 'Escape') { event.preventDefault(); shut(); return; }
     // Enter on a focused key presses that key; anywhere else it means "equals".
     if (pressed === 'Enter' && event.target.tagName === 'BUTTON') return;
