@@ -794,3 +794,26 @@ test.describe('round 3 finishing touches', () => {
     await expect(page.locator('.q:visible')).toHaveCount(28);
   });
 });
+
+test.describe('reviewer mode (?review=1)', () => {
+  test('opens every hint, wrong-answer message, answer and solution, and saves nothing', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html?review=1');
+    await expect(page.locator('.review-banner')).toContainText('Reviewer mode');
+    const first = page.locator('.q').first();
+    await expect(first.locator('ol.ladder')).toBeVisible();
+    await expect(first.locator('ul.wrong')).toBeVisible();
+    await expect(first.locator('.solution')).toBeVisible();
+    await expect(first.locator('.review-answer')).toHaveText(/Keyed answer: 80/);
+    await expect(page.locator('.q ul.options').first()).toBeVisible();
+    await expect(page.locator('.q .q-form')).toHaveCount(0);
+    const stored = await page.evaluate(() => window.localStorage.getItem('wm-gcse-v1'));
+    expect(stored).toBeNull();
+  });
+
+  test('without ?review=1 the student view is unchanged: hints wait to be asked for', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    await expect(page.locator('.review-banner')).toHaveCount(0);
+    await expect(page.locator('.q').first().locator('.q-form')).toBeVisible();
+    await expect(page.locator('.q').first().locator('.solution')).toBeHidden();
+  });
+});
