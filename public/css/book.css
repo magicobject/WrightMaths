@@ -561,3 +561,29 @@ footer p{color:#c9d3e0;}
   .print-sheet,.print-sheet *{background:#fff !important;color:#000 !important;}
   .fast-route{display:none !important;}
 }
+
+/* ---------- "Flip it" pictures (every flip-side box) ----------
+   Text on white: ink #1b2430 (12.9+), soft labels ink-soft #4a5568 on white 7.5.
+   Strokes are navy #0f2440 on white (16+). The unknown is a pale yellow fill with ink text. */
+.flipfig{margin:6px 0 4px;text-align:center;}
+.flipfig svg{width:100%;max-width:340px;height:auto;margin:0 auto;display:block;}
+.flipfig .svg-t{font-size:inherit;}
+.flipfig .fl-soft{fill:var(--ink-soft);font-weight:600;}
+.flipfig .fl-box{fill:var(--tint);stroke:var(--navy);stroke-width:2.5;}
+.flipfig .fl-unk{fill:#fff3c4;stroke:var(--navy);stroke-width:2.5;stroke-dasharray:6 4;}
+.flipfig .fl-alt{fill:#fbeadb;}
+.flipfig .fl-arr{stroke:var(--navy);stroke-width:4;stroke-linecap:round;fill:none;}
+.flipfig .fl-head{fill:var(--navy);}
+.flipfig .fl-c{fill:var(--t-number);stroke:var(--navy);stroke-width:2;}
+.flipfig .fl-red{fill:var(--c-probability);stroke:var(--navy);stroke-width:2;}
+.flipfig .fl-dot{fill:var(--c-probability);stroke:var(--navy);stroke-width:1.5;}
+.flipfig .fl-ghost{fill:#fff3c4;stroke:var(--navy);stroke-width:2.5;stroke-dasharray:6 4;}
+.flipfig .fl-curve{fill:none;stroke:var(--c-algebra);stroke-width:4;stroke-linejoin:round;}
+.flipfig .fl-jump{fill:none;stroke:var(--c-number);stroke-width:3.5;}
+.flipfig .fl-grid{stroke:#c9c3b4;stroke-width:1;}
+.flipfig .fl-ven{fill:var(--t-number);fill-opacity:.7;stroke:var(--navy);stroke-width:2;}
+.flipfig .fl-ven2{fill:var(--t-ratio);}
+.flipfig .fl-ring{fill:none;stroke:var(--c-probability);stroke-width:5;}
+.flipfig .fl-q{fill:#fff3c4;stroke:var(--navy);stroke-width:2;}
+.flipfig .hyp-b{stroke:var(--c-ratio);}
+@media (forced-colors:active){.flipfig .fl-box,.flipfig .fl-unk,.flipfig .fl-ghost{fill:Canvas;}.flipfig .fl-head{fill:CanvasText;}}
