@@ -107,3 +107,11 @@ test('a temperature typed with the unit is accepted', () => {
   assert.ok(matches('\u22125 \u00b0C', ['-5']));
   assert.ok(matches('-5\u00b0', ['-5']));
 });
+
+test('two solutions typed with a repeated "x =" still match', () => {
+  const answers = ['-4 and 3', '3 and -4', '-4,3', '-4 or 3'];
+  assert.ok(matches('x=-4 or x=3', answers, 'exact'));
+  assert.ok(matches('x = -4 and x = 3', answers, 'exact'));
+  assert.ok(matches('-4, x=3', answers, 'exact'));
+  assert.ok(!matches('x=-4 or x=5', answers, 'exact'));
+});
