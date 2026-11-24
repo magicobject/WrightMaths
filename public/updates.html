@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.24.015">
+<link rel="stylesheet" href="css/style.css?v=2026.11.24.016">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -78,6 +78,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.016</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book: Listen can now play recorded audio (a good neural voice, or Greg&rsquo;s own) before falling back to the browser voice. Recordings are matched to the exact sentence they say, so editing a sentence never plays stale audio. A new <code>npm run book:audio</code> tool lists which of the 1,135 sentences still need a recording, makes them with a speech engine or imports hand-made files. No recordings are added yet, so nothing sounds different today.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.015</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book: Listen no longer says &ldquo;question mark&rdquo;. A &ldquo;?&rdquo; now lifts the voice instead, symbols and units (3/4, cm&sup2;, &ge;, BIDMAS) are read naturally, and the same speech rules are in one tested file ready for recorded audio. Try it on any topic page, for example <code>books/gcse/place-value.html</code>.</p>
@@ -290,9 +294,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.015</span>
+    <span class="build-number">Build 2026.11.24.016</span>
   </div>
-  <script src="js/main.js?v=2026.11.24.015" defer></script>
+  <script src="js/main.js?v=2026.11.24.016" defer></script>
 </footer>
 </body>
 </html>

@@ -38,3 +38,4 @@ blob-report/
 # Zip bundles / backups you might drop in this folder while working
 *.zip
 *.bak
+audio-work/
