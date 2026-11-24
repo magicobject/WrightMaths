@@ -91,6 +91,12 @@ export const PAGES = [
     description: 'What work out, calculate, show that, explain and the other exam question words ask you to do, with a short example of each.',
   },
   {
+    slug: 'books/gcse/stretch',
+    book: 'stretch',
+    title: 'Grade 7 to 9 Stretch Papers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Real-paper style questions for Higher tier students aiming at grades 7, 8 and 9, with calculator and non-calculator labels and a mark scheme you tick off yourself.',
+  },
+  {
     slug: 'books/gcse/parents',
     book: 'parents',
     title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',

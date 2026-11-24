@@ -194,6 +194,29 @@ export function enhanceQuestion(q, index) {
     revealRung();
   });
 
+  // Mark scheme with tick boxes: the student ticks each mark they earned. Counted on screen only.
+  function addSelfMarking() {
+    const items = [...(solution?.querySelectorAll('ul.markscheme > li') ?? [])];
+    if (items.length === 0) return;
+    const total = el('p', { class: 'mark-total', role: 'status', 'aria-live': 'polite', text: `Tick each mark you earned. Marks: 0 of ${items.length}.` });
+    const boxes = items.map((li, i) => {
+      const box = el('input', { type: 'checkbox', class: 'mark-box', 'aria-label': `I earned mark ${i + 1} of ${items.length}` });
+      li.prepend(box, ' ');
+      return box;
+    });
+    const update = () => {
+      const n = boxes.filter((x) => x.checked).length;
+      total.textContent = `Marks: ${n} of ${items.length}.${n === items.length ? ' Full marks!' : n >= items.length - 1 ? ' So close: look at the mark you missed.' : ''}`;
+      if (n === items.length && !solved) {
+        solved = true;
+        q.classList.add('q-correct');
+        markDone(qid, wrongCount === 0 && rungsShown === 0);
+      }
+    };
+    boxes.forEach((x) => x.addEventListener('change', update));
+    solution.append(total);
+  }
+
   // Clear then set, so a screen reader announces the same message again if the student repeats a slip.
   function say(cls, text, html) {
     feedback.className = 'q-feedback';
@@ -254,6 +277,12 @@ export function enhanceQuestion(q, index) {
     }
     optionList.after(group);
     group.after(feedback);
+  } else if (q.dataset.type === 'show') {
+    // "Show that" / explain questions: written on paper, then marked against the mark scheme. Nothing typed, nothing stored.
+    const reveal = el('button', { type: 'button', class: 'btn-check', text: 'I have written my answer: show me the mark scheme' });
+    reveal.addEventListener('click', () => { showSolution(); reveal.disabled = true; });
+    (q.querySelector(':scope > .qfig') ?? text ?? q).after(reveal);
+    reveal.after(feedback);
   } else {
     const answers = splitList(q.dataset.answers);
     const mode = q.dataset.mode === 'exact' ? 'exact' : 'value';
@@ -313,6 +342,7 @@ export function enhanceQuestion(q, index) {
 
   feedback.after(help);
   if (solution) help.after(solution);
+  addSelfMarking();
   ladder?.remove();
   wrongBox?.remove();
   optionList?.remove();
@@ -611,6 +641,7 @@ function initToc(main, after) {
   const toc = el('details', { class: 'toc' });
   toc.append(el('summary', { text: 'On this page' }), list);
   after.after(toc);
+  if (kind === 'topic') addFastRoute(main, toc);
 
   const top = el('button', { type: 'button', class: 'to-top', 'aria-label': 'Back to top', text: 'Top \u2191' });
   top.hidden = true;
@@ -621,6 +652,25 @@ function initToc(main, after) {
   });
   document.body.append(top);
   window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; }, { passive: true });
+}
+
+// A short bar for students who already know the basics: jump to the hard parts, or fold away the recaps and check sets.
+function addFastRoute(main, after) {
+  const find = (re) => [...main.querySelectorAll('section h2')].find((h) => re.test(h.textContent));
+  const bar = el('div', { class: 'fast-route', role: 'group', 'aria-label': 'Fast route for confident students' });
+  bar.append(el('span', { class: 'fast-label', text: 'Know the basics?' }));
+  for (const [re, label] of [[/^Exam style/i, 'Jump to exam style'], [/^Going further/i, 'Jump to going further'], [/^I can/i, 'Jump to the checklist']]) {
+    const h = find(re);
+    if (h && h.id) bar.append(el('a', { href: `#${h.id}`, class: 'fast-link', text: label }));
+  }
+  const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Hide recaps and check sets' });
+  toggle.addEventListener('click', () => {
+    const on = main.classList.toggle('fast-route-on');
+    toggle.setAttribute('aria-pressed', String(on));
+    toggle.textContent = on ? 'Show recaps and check sets again' : 'Hide recaps and check sets';
+  });
+  bar.append(toggle);
+  after.after(bar);
 }
 
 // ---------- listen (the browser's own voice; nothing is sent anywhere) ----------
