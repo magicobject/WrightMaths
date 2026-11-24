@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Bounds and error intervals. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/bounds.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
-<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.051">
+<script src="../../js/book-boot.js?v=2026.11.24.051"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.051">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,9 +59,9 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
-    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
-      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
-      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+    <form class="book-search" role="search" aria-label="Search the whole book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search the whole book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the whole book" maxlength="60" spellcheck="false">
       <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
       <p class="book-search-empty" id="book-search-empty" hidden></p>
       <p class="sr-only" id="book-search-status" role="status"></p>
@@ -225,7 +225,7 @@
 <div class="q" data-qid="bounds-9" data-answers="4250" data-mode="value">
   <p class="qtext">A distance is 4300 m, to 2 <a class="term" href="glossary.html#significant-figure" data-term="significant-figure" data-def="The digits of a number that matter, counting from the first digit that is not zero. &quot;To 2 s.f.&quot; keeps the first two of them.">significant figures</a>. What is its <a class="term" href="glossary.html#lower-bound" data-term="lower-bound" data-def="The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.">lower bound</a>, in m?</p>
   <ol class="ladder"><li>Which place is the last significant figure in? That gives the rounding unit.</li><li>The 3 is in the hundreds place, so the unit is 100. Take away half of it.</li></ol>
-  <ul class="wrong"><li data-if="4200">That takes away the whole 100. Take away half of it.</li><li data-if="4295">That uses half of 10. The last significant figure is in the hundreds place, so the unit is 100.</li></ul>
+  <ul class="wrong"><li data-if="4200">That takes away the whole 100. Take away half of it.</li><li data-if="4295">That uses half of 10. The last significant figure is in the hundreds place, so the unit is 100.</li><li data-if="4350">That is the upper bound, because you added half of 100. The lower bound takes it away.</li><li data-if="4299;4299.5">That treats 4300 as if it was rounded to the nearest 1. It is rounded to 2 significant figures, so the unit is 100.</li></ul>
   <div class="solution"><p>The last significant figure is the 3, in the hundreds place. The unit is 100, so half the unit is 50. The lower bound is 4300 &minus; 50 = 4250 m.</p></div>
 </div>
 <div class="q" data-qid="bounds-10" data-type="mc">
@@ -645,25 +645,25 @@
   <div class="wrap narrow">
     <h2 id="s-check-your-knowledge-justifying-the-accu">Check your knowledge: justifying the accuracy</h2>
 <div class="q" data-qid="bounds-39" data-answers="20" data-mode="value">
-  <p class="qtext">A bike travels 320 m, to the nearest metre, in 16.0 s, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. The bounds of its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a> are 19.906&hellip; and 20.094&hellip; m/s. What is the speed to a degree of accuracy you can justify, in m/s?</p>
+  <p class="qtext">A bike travels 320 m, to the nearest metre, in 16.0 s, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. The bounds of its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a> are 19.906&hellip; and 20.094&hellip; m/s. What is the speed to a degree of accuracy you can <a class="term" href="glossary.html#justify" data-term="justify" data-def="A question word: give the reasons that show your answer or choice is right. Use numbers and a maths fact.">justify</a>, in m/s?</p>
   <ol class="ladder"><li>Round both bounds to 1 s.f. and to 2 s.f. Do they agree?</li><li>Go up one significant figure at a time. Stop when they stop agreeing.</li></ol>
   <ul class="wrong"><li data-if="19.9">That is the lower bound to 3 s.f. The two bounds differ at 3 s.f., so give 2 s.f.</li><li data-if="20.1">That is the upper bound to 3 s.f. The two bounds differ at 3 s.f., so give 2 s.f.</li></ul>
   <div class="solution"><p>To 2 s.f. both bounds round to 20 (19.9&hellip; &asymp; 20 and 20.09&hellip; &asymp; 20). To 3 s.f. they are 19.9 and 20.1, which differ. So the speed is 20 m/s to 2 s.f.</p></div>
 </div>
 <div class="q" data-qid="bounds-40" data-answers="24" data-mode="value">
-  <p class="qtext">A drone flies 300 m, to the nearest metre, in 12.5 s, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. Work out the upper and <a class="term" href="glossary.html#lower-bound" data-term="lower-bound" data-def="The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.">lower bounds</a> of its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a>, then give the speed to a degree of accuracy you can justify, in m/s.</p>
+  <p class="qtext">A drone flies 300 m, to the nearest metre, in 12.5 s, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. Work out the upper and <a class="term" href="glossary.html#lower-bound" data-term="lower-bound" data-def="The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.">lower bounds</a> of its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a>, then give the speed to a degree of accuracy you can <a class="term" href="glossary.html#justify" data-term="justify" data-def="A question word: give the reasons that show your answer or choice is right. Use numbers and a maths fact.">justify</a>, in m/s.</p>
   <ol class="ladder"><li>Upper bound: the biggest distance over the smallest time. Lower bound: the smallest distance over the biggest time.</li><li>Upper bound is 300.5 &divide; 12.45. Lower bound is 299.5 &divide; 12.55.</li><li>Round both to 1, 2, 3 s.f. and see where they stop agreeing.</li></ol>
   <ul class="wrong"><li data-if="24.1">That is the upper bound to 3 s.f. The two bounds differ at 3 s.f., so give 2 s.f.</li><li data-if="23.9">That is the lower bound to 3 s.f. The two bounds differ at 3 s.f., so give 2 s.f.</li></ul>
   <div class="solution"><p>Upper bound = 300.5 &divide; 12.45 = 24.1365&hellip;. Lower bound = 299.5 &divide; 12.55 = 23.8645&hellip;. To 3 s.f. they are 24.1 and 23.9, which differ. To 2 s.f. both are 24. So the speed is 24 m/s to 2 s.f.</p></div>
 </div>
 <div class="q" data-qid="bounds-41" data-answers="5" data-mode="value">
-  <p class="qtext">A delivery robot moves 24 m, to the nearest metre, in 4.8 minutes, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. Its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a> is 24 &divide; 4.8 = 5 m/min. The upper and <a class="term" href="glossary.html#lower-bound" data-term="lower-bound" data-def="The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.">lower bounds</a> are 5.158&hellip; and 4.845&hellip; m/min. What speed can you justify? Answer to the number of <a class="term" href="glossary.html#significant-figure" data-term="significant-figure" data-def="The digits of a number that matter, counting from the first digit that is not zero. &quot;To 2 s.f.&quot; keeps the first two of them.">significant figures</a> the bounds allow.</p>
+  <p class="qtext">A delivery robot moves 24 m, to the nearest metre, in 4.8 minutes, to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>. Its <a class="term" href="glossary.html#speed" data-term="speed" data-def="How far something travels in each unit of time. Speed = distance &divide; time.">speed</a> is 24 &divide; 4.8 = 5 m/min. The upper and <a class="term" href="glossary.html#lower-bound" data-term="lower-bound" data-def="The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.">lower bounds</a> are 5.158&hellip; and 4.845&hellip; m/min. What speed can you <a class="term" href="glossary.html#justify" data-term="justify" data-def="A question word: give the reasons that show your answer or choice is right. Use numbers and a maths fact.">justify</a>? Answer to the number of <a class="term" href="glossary.html#significant-figure" data-term="significant-figure" data-def="The digits of a number that matter, counting from the first digit that is not zero. &quot;To 2 s.f.&quot; keeps the first two of them.">significant figures</a> the bounds allow.</p>
   <ol class="ladder"><li>Round both bounds to 2 s.f. Do they match?</li><li>Then try 1 s.f.</li></ol>
   <ul class="wrong"><li data-if="5.2">That is the upper bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li><li data-if="4.8">That is the lower bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li></ul>
   <div class="solution"><p>To 2 s.f. the bounds are 5.2 and 4.8, which differ. To 1 s.f. both are 5. So the speed is 5 m/min to 1 s.f.</p></div>
 </div>
 <div class="q" data-qid="bounds-42" data-answers="8" data-mode="value">
-  <p class="qtext">A metal block has mass 480 g, to the nearest 10 g, and <a class="term" href="glossary.html#volume" data-term="volume" data-def="The amount of space inside a solid. It is measured in cubic units such as cm&sup3; and m&sup3;.">volume</a> 60 cm&sup3;, to the nearest cm&sup3;. The bounds of its <a class="term" href="glossary.html#density" data-term="density" data-def="How much mass there is in each unit of volume. Density = mass &divide; volume.">density</a> are 7.85&hellip; and 8.15&hellip; g/cm&sup3;. What density can you justify?</p>
+  <p class="qtext">A metal block has mass 480 g, to the nearest 10 g, and <a class="term" href="glossary.html#volume" data-term="volume" data-def="The amount of space inside a solid. It is measured in cubic units such as cm&sup3; and m&sup3;.">volume</a> 60 cm&sup3;, to the nearest cm&sup3;. The bounds of its <a class="term" href="glossary.html#density" data-term="density" data-def="How much mass there is in each unit of volume. Density = mass &divide; volume.">density</a> are 7.85&hellip; and 8.15&hellip; g/cm&sup3;. What density can you <a class="term" href="glossary.html#justify" data-term="justify" data-def="A question word: give the reasons that show your answer or choice is right. Use numbers and a maths fact.">justify</a>?</p>
   <ol class="ladder"><li>Round both bounds to 2 s.f. Do they match?</li><li>Then try 1 s.f.</li></ol>
   <ul class="wrong"><li data-if="7.9">That is the lower bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li><li data-if="8.2">That is the upper bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li></ul>
   <div class="solution"><p>To 2 s.f. the bounds are 7.9 and 8.2, which differ. To 1 s.f. both are 8. So the density is 8 g/cm&sup3; to 1 s.f.</p></div>
@@ -944,7 +944,7 @@
   <p class="qtext">[4 marks] The current in a circuit is I = V &divide; R. The voltage V is 230 V, to the nearest 10 V, and the resistance R is 46 ohms, to the nearest ohm. Work out the current to a degree of accuracy that is justified, in amps.</p>
   <ol class="ladder"><li>Greatest current: greatest voltage over least resistance. Smallest current: least voltage over greatest resistance.</li><li>Work out both bounds, then round both to 2 s.f. and to 1 s.f.</li><li>Give the answer at the most significant figures where both bounds agree.</li></ol>
   <ul class="wrong"><li data-if="5.2">That is the upper bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li><li data-if="4.8">That is the lower bound to 2 s.f. The upper bound is 5.2 to 2 s.f., so 2 s.f. is not justified.</li></ul>
-  <div class="solution"><p>Upper bound = 235 &divide; 45.5 = 5.1648&hellip;. Lower bound = 225 &divide; 46.5 = 4.8387&hellip;. To 2 s.f.: 5.2 and 4.8, which differ. To 1 s.f.: both 5. So the current is 5 A to 1 s.f.</p><ul class="markscheme"><li><b>M1</b> for 235 &divide; 45.5 (the upper bound of the current)</li><li><b>M1</b> for 225 &divide; 46.5 (the lower bound of the current)</li><li><b>A1</b> for 5.16&hellip; and 4.83&hellip;</li><li><b>C1</b> for both bounds rounding to 5 at 1 s.f., so 5 A</li></ul></div>
+  <div class="solution"><p>Upper bound = 235 &divide; 45.5 = 5.1648&hellip;. Lower bound = 225 &divide; 46.5 = 4.8387&hellip;. To 2 s.f.: 5.2 and 4.8, which differ. To 1 s.f.: both 5. So the current is 5 A to 1 s.f.</p><ul class="markscheme"><li><b>M1</b> for 235 &divide; 45.5 (the upper bound of the current)</li><li><b>M1</b> for 225 &divide; 46.5 (the lower bound of the current)</li><li><b>A1</b> for 5.16 and 4.84 (to 2 decimal places)</li><li><b>C1</b> for both bounds rounding to 5 at 1 s.f., so 5 A</li></ul></div>
 </div>
 <div class="q" data-qid="bounds-73" data-answers="13.5" data-mode="value" data-marks="3">
   <p class="qtext">[3 marks] A plumber fills a tank of 150 litres, to the nearest 10 litres, using a pump that delivers 12 litres per minute, to the nearest litre per minute. What is the greatest possible time to fill the tank? Give your answer to 1 <a class="term" href="glossary.html#decimal-place" data-term="decimal-place" data-def="The position of a digit after the decimal point. &quot;To 1 d.p.&quot; means one digit after the point.">decimal place</a>, in minutes.</p>
@@ -1004,11 +1004,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.049</span>
+    <span class="build-number">Build 2026.11.24.051</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.051" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
-<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.051"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.051"></script>
 </body>
 </html>

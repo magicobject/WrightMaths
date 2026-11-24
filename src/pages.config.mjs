@@ -118,7 +118,7 @@ export const PAGES = [
     searchWords: 'plan timetable weeks revision schedule',
     book: 'route',
     title: 'Study Routes | GCSE Maths Book (pilot) | Wright Maths Tuition',
-    description: 'Week-by-week routes through the GCSE maths book: a resit to grade 4, the whole book in 12 weeks, and a grade 7 to 9 top-up.',
+    description: 'Week-by-week routes through the GCSE maths book: a resit to grade 4, the whole book in 12 weeks, a short route for a few weak topics, and a grade 7 to 9 top-up.',
   },
   {
     slug: 'books/gcse/foundation',
@@ -141,6 +141,13 @@ export const PAGES = [
     book: 'parents',
     title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',
     description: 'How to help your child use the GCSE maths book: where to start, what to say when they are stuck, what is stored on their device, and what the grades mean.',
+  },
+  {
+    slug: 'books/gcse/how-to-use',
+    searchWords: 'help listen accessibility dyslexia screen reader typing sqrt pi print homework words',
+    book: 'how-to-use',
+    title: 'How to Use This Book | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    description: 'Plain-English help for the GCSE maths book: the Listen button and reading options, how to type answers, getting clues, timed sets, printing and the everyday words in questions.',
   },
   {
     slug: 'books/gcse/raise-your-grade',

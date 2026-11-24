@@ -182,26 +182,26 @@ test.describe('questions', () => {
     await expect(q.locator('.q-feedback')).toContainText('Right value');
   });
 
-  test('"Help, I\'m stuck!" reveals hints one at a time, then the duck, then a person, then the answer', async ({ page }) => {
+  test('"Help, I\'m stuck!" reveals clues one at a time, then a think-it-through step, then a person, then the answer', async ({ page }) => {
     await page.goto('/books/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     await expect(q.locator('.solution')).toBeHidden();
-    const help = q.getByRole('button', { name: /Give me a clue|Another clue|Who could help?|Show me the answer/ });
+    const help = q.getByRole('button', { name: /Give me a clue|Another clue|Show me the answer/ });
     await help.click();
     await expect(q.locator('.rungs li')).toHaveCount(1);
     await help.click();
     await expect(q.locator('.rungs li')).toHaveCount(2);
-    await help.click(); // the duck
+    await help.click(); // think it through
     await expect(q.locator('.duck-rung')).toBeVisible();
     await expect(q.locator('.duck-rung')).toContainText('The question asks me to find');
     await help.click(); // a person
-    await expect(q.locator('.rungs li').last()).toContainText('Show a mate');
+    await expect(q.locator('.rungs li').last()).toContainText('Show a friend');
     await expect(help).toHaveText('Show me the answer');
     await help.click();
     await expect(q.locator('.solution')).toBeVisible();
   });
 
-  test('the duck listens but nothing typed to it is stored or sent anywhere', async ({ page }) => {
+  test('what is typed in the think-it-through step is never stored or sent anywhere', async ({ page }) => {
     const requests: string[] = [];
     page.on('request', (r) => { if (r.method() !== 'GET') requests.push(r.url()); });
     await page.goto('/books/gcse/solving-equations.html');
@@ -210,8 +210,8 @@ test.describe('questions', () => {
     await help.click();
     await help.click();
     await help.click();
-    await q.getByText('Prefer to type it?').click();
-    const text = q.getByLabel('Tell the duck what is going on');
+    await q.getByText('Type it here').click();
+    const text = q.getByLabel('What you know so far');
     await text.fill('my secret thought about the problem');
     await q.getByRole('button', { name: /Done: let me try again/ }).click();
     await expect(text).toHaveValue('');
@@ -304,7 +304,7 @@ test.describe('feedback that helps instead of scolds', () => {
     expect(orders.size).toBeGreaterThan(1);
   });
 
-  test('a question with several hints offers the duck; a one-hint question skips it', async ({ page }) => {
+  test('a question with several clues offers the think-it-through step; a one-clue question skips it', async ({ page }) => {
     await page.goto('/books/gcse/place-value.html');
     const qs = page.locator('.q');
     const oneHint = qs.filter({ hasText: 'Work out 10 \u00d7 10.' }).first();
@@ -477,6 +477,7 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
     });
     await page.goto('/books/gcse/negative-numbers.html');
     await page.locator('.q', { hasText: 'Work out (−5) × (−6).' }).first().locator('.listen').click();
+    await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
     const spoken = await page.evaluate(() => (window as any).__spoken as { text: string; voice: string }[]);
     expect(spoken.length).toBeGreaterThan(0);
     const all = spoken.map((s) => s.text).join(' ');
@@ -812,6 +813,7 @@ test.describe('round 3 finishing touches', () => {
     await page.goto('/books/gcse/pythagoras.html');
     const q = page.locator('.q:has(.qfig)').first();
     await q.getByRole('button', { name: /Listen to question/ }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
     const said = await page.evaluate(() => (window as any).__spoken.join(' '));
     expect(said).toContain('The picture shows');
   });
@@ -834,19 +836,19 @@ test.describe('round 3 finishing touches', () => {
 });
 
 test.describe('round 4 fixes', () => {
-  test('feedback only says "In the right area" when the answer is near, and never shows a cross', async ({ page }) => {
+  test('feedback only says "Close, but not yet" when the answer is near, and never shows a cross', async ({ page }) => {
     await page.goto('/books/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     const input = q.getByLabel('Your answer', { exact: false }).first();
     await input.fill('7');
     await q.getByRole('button', { name: 'Check' }).click();
     await expect(q.locator('.q-feedback')).not.toContainText('Close');
-    await expect(q.locator('.q-feedback')).not.toContainText('right area');
+    await expect(q.locator('.q-feedback')).not.toContainText('Close, but not yet');
     const cross = await q.locator('.q-feedback').evaluate((e) => getComputedStyle(e, '::before').content);
     expect(cross === 'none' || cross === 'normal' || cross === '""').toBe(true);
     await input.fill('900');
     await q.getByRole('button', { name: 'Check' }).click();
-    await expect(q.locator('.q-feedback')).toContainText('right area');
+    await expect(q.locator('.q-feedback')).toContainText('Close, but not yet');
   });
 
   test('the fast route keeps Going further visible and hides the warm-up', async ({ page }) => {
@@ -922,8 +924,14 @@ test.describe('recorded audio for Listen', () => {
     w.__played = [];
     w.__paused = 0;
     w.__spoken = [];
-    HTMLMediaElement.prototype.play = function () { w.__played.push((this as HTMLAudioElement).src); return Promise.resolve(); };
-    HTMLMediaElement.prototype.pause = function () { w.__paused += 1; };
+    // A stand-in for the audio element: the one-byte test clip would fail to decode, which now (rightly) ends the Listen state.
+    w.Audio = function (src: string) {
+      const clip: any = new EventTarget();
+      clip.src = src;
+      clip.play = () => { w.__played.push(src); return Promise.resolve(); };
+      clip.pause = () => { w.__paused += 1; };
+      return clip;
+    };
     w.SpeechSynthesisUtterance = function (text: string) { return { text, voice: null, rate: 1, pitch: 1, lang: '' }; };
     Object.defineProperty(window, 'speechSynthesis', {
       configurable: true,
@@ -1221,8 +1229,8 @@ test.describe('round 5 fixes', () => {
   test('a timed set puts focus on the first question, announces time, and can pause and add time', async ({ page }) => {
     await page.goto('/books/gcse/foundation.html');
     await page.getByRole('button', { name: /Start a timed set/ }).click();
-    const focused = await page.evaluate(() => document.activeElement?.closest('.q') !== null);
-    expect(focused).toBe(true);
+    // The announcement of the set comes first; focus follows a moment later.
+    await expect.poll(() => page.evaluate(() => document.activeElement?.closest('.q') !== null), { timeout: 6000 }).toBe(true);
     await expect(page.locator('.timed-clock')).toContainText('Time left');
     const before = await page.locator('.timed-clock').innerText();
     await page.getByRole('button', { name: 'Pause' }).click();
@@ -1237,7 +1245,7 @@ test.describe('round 5 fixes', () => {
   test('?q=5-12 shows only those questions, and every question has an anchor', async ({ page }) => {
     await page.goto('/books/gcse/percentages.html?q=5-12');
     await expect(page.locator('.q:visible')).toHaveCount(8);
-    await expect(page.locator('.range-banner')).toContainText('5 to 12');
+    await expect(page.locator('.range-banner')).toContainText('5-12');
     await page.goto('/books/gcse/percentages.html');
     expect(await page.locator('#q12').count()).toBe(1);
   });
@@ -1288,9 +1296,9 @@ test.describe('round 5 fixes', () => {
     await expect(page.locator('.key-working').first()).toBeVisible();
   });
 
-  test('the route page lists three routes and every topic page ends with a next link (except the last)', async ({ page }) => {
+  test('the route page lists four routes and every topic page ends with a next link (except the last)', async ({ page }) => {
     await page.goto('/books/gcse/route.html');
-    await expect(page.locator('section.route')).toHaveCount(3);
+    await expect(page.locator('section.route')).toHaveCount(4);
     await page.goto('/books/gcse/place-value.html');
     await expect(page.locator('.next-up a.btn')).toHaveAttribute('href', 'four-operations.html');
   });
@@ -1317,5 +1325,299 @@ test.describe('what the voice reads', () => {
     expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');
+  });
+});
+
+test.describe('round 6 engine and look', () => {
+  test('the first press on Give me a clue after a wrong answer works (the button must not move between mouse down and mouse up)', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    await q.getByLabel(/Your answer/).fill('7');
+    await q.getByRole('button', { name: 'Check' }).click();
+    const clue = q.locator('.btn-stuck');
+    await clue.scrollIntoViewIfNeeded();
+    const before = await clue.boundingBox();
+    await page.mouse.move(before!.x + before!.width / 2, before!.y + before!.height / 2);
+    await page.mouse.down();
+    const during = await clue.boundingBox();
+    await page.mouse.up();
+    expect(during!.y).toBeCloseTo(before!.y, 0);
+    await expect(q.locator('.rungs li')).toHaveCount(1);
+  });
+
+  test('clues are named "Clue A" for a screen reader, and the think-it-through step has no duck in it', async ({ page }) => {
+    await page.goto('/books/gcse/solving-equations.html');
+    const q = page.locator('.q').first();
+    const help = q.locator('.btn-stuck');
+    await help.click();
+    await expect(q.locator('.rungs li .sr-only').first()).toHaveText('Clue A: ');
+    await help.click();
+    await help.click();
+    await expect(q.locator('.duck-rung')).toBeVisible();
+    await expect(q.locator('.duck-rung .sr-only').first()).toHaveText('Clue C: ');
+    expect(await q.locator('.rungs').innerText()).not.toMatch(/duck|programmer/i);
+    expect(await q.locator('.duck-rung').innerText()).toContain('Type what you know so far');
+    expect(await q.locator('.duck-rung').innerText()).toContain('Write it on paper');
+    expect(await q.locator('.rungs li').first().evaluate((e) => getComputedStyle(e, '::before').content)).toContain('Clue');
+  });
+
+  test('the easy-read font puts the clue label on its own line, so it never touches the words', async ({ page }) => {
+    await page.goto('/books/gcse/solving-equations.html');
+    await page.evaluate(() => document.documentElement.classList.add('read-easy'));
+    const q = page.locator('.q').first();
+    await q.locator('.btn-stuck').click();
+    expect(await q.locator('.rungs li').first().evaluate((e) => getComputedStyle(e, '::before').position)).toBe('static');
+  });
+
+  test('wrong-answer messages are never empty', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
+    await q.getByLabel(/Your answer/).fill('banana');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q.locator('.q-feedback.oops')).toHaveText(/\S/);
+  });
+
+  test('a wrong multiple-choice option says "incorrect" in words, not only by colour', async ({ page }) => {
+    await page.goto('/books/gcse/raise-your-grade.html');
+    const q = page.locator('.q').first();
+    await q.getByRole('button', { name: /Nothing: only/ }).click();
+    await expect(q.locator('.mc-option.is-wrong .sr-only')).toHaveText(/incorrect/);
+  });
+
+  test('a "show that" question moves focus to the mark scheme and says what to do', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    const q = page.locator('.q[data-type="show"]').first();
+    await q.getByRole('button', { name: /show me the mark scheme/ }).click();
+    await expect(q.locator('.solution')).toBeFocused();
+    await expect(q.locator('.q-feedback')).toHaveText('Mark scheme shown. Tick each mark you earned.');
+  });
+
+  test('?q= ranges: several ranges are listed as written, and nonsense is ignored instead of guessed at', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html?q=1-3,40-42');
+    await expect(page.locator('.range-banner')).toContainText('Showing questions 1-3 and 40-42 only.');
+    await expect(page.locator('.q:visible')).toHaveCount(6);
+    await page.goto('/books/gcse/percentages.html?q=5+to+8');
+    await expect(page.locator('.range-banner')).toContainText('Showing questions 5-8 only.');
+    await page.goto('/books/gcse/percentages.html?q=7');
+    await expect(page.locator('.range-banner')).toContainText('Showing question 7 only.');
+    const total = await page.locator('.q').count();
+    for (const bad of ['-5', '12-5', '5-', 'abc', '9999']) {
+      await page.goto(`/books/gcse/percentages.html?q=${bad}`);
+      await expect(page.locator('.range-banner')).toHaveCount(0);
+      await expect(page.locator('.q:visible')).toHaveCount(total);
+    }
+    await page.goto('/books/gcse/percentages.html?q=3-5,12-5,9999');
+    await expect(page.locator('.range-banner')).toContainText('Showing questions 3-5 only.');
+  });
+
+  test('Skip the basics says what it did, folds away the starting parts and lands on Exam style', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await page.getByRole('button', { name: 'Skip the basics' }).click();
+    await expect(page.locator('.fast-route [role="status"]')).toHaveText('Showing only the harder parts.');
+    await expect(page.locator('.bys:not(.unlocks)')).toBeHidden();
+    await expect(page.getByRole('heading', { name: 'Exam style' })).toBeFocused();
+    await page.getByRole('button', { name: 'Show everything again' }).click();
+    await expect(page.locator('.fast-route [role="status"]')).toHaveText('Showing everything.');
+    await expect(page.locator('.bys:not(.unlocks)')).toBeVisible();
+  });
+
+  test('the Top button fades while it would sit on a clue (phone)', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('/books/gcse/fractions.html');
+    const q = page.locator('.q').nth(3);
+    await q.locator('.btn-stuck').scrollIntoViewIfNeeded();
+    await q.locator('.btn-stuck').click();
+    await page.evaluate(() => {
+      const li = document.querySelector('.rungs li')!;
+      window.scrollTo(0, li.getBoundingClientRect().top + window.scrollY - (window.innerHeight - 190));
+    });
+    await expect(page.locator('.to-top')).toHaveClass(/top-fade/);
+  });
+
+  test('the Listen buttons can be hidden, and that is remembered', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    await expect(page.locator('.qtext .listen').first()).toBeVisible();
+    await page.locator('.read-tools summary').click();
+    await page.getByRole('button', { name: 'Hide the Listen buttons' }).click();
+    await expect(page.locator('.qtext .listen').first()).toBeHidden();
+    await page.reload();
+    await expect(page.locator('.qtext .listen').first()).toBeHidden();
+  });
+
+  test('a worksheet prints multiple choice in the written order with letters, and leaves out "Type it like"', async ({ page }) => {
+    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.emulateMedia({ media: 'print' });
+    await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
+    const options = await page.locator('.q').first().locator('.mc-option').evaluateAll((nodes) => nodes.map((n) => ({
+      letter: (n as HTMLElement).dataset.letter, order: getComputedStyle(n).order, label: getComputedStyle(n, '::before').content,
+    })));
+    expect(options.length).toBeGreaterThanOrEqual(3);
+    const inPrintOrder = [...options].sort((a, b) => Number(a.order) - Number(b.order)).map((o) => o.letter);
+    expect(inPrintOrder).toEqual(['A', 'B', 'C', 'D'].slice(0, options.length));
+    for (const o of options) expect(o.label).toContain(`${o.letter})`);
+    await page.goto('/books/gcse/inequalities.html');
+    await page.emulateMedia({ media: 'print' });
+    await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
+    const hint = page.locator('.type-hint').first();
+    expect(await hint.textContent()).toMatch(/^Type it like/);
+    expect(await hint.evaluate((e) => getComputedStyle(e).display)).toBe('none');
+  });
+
+  test('the hero line "Where you will use this" is readable on the navy (4.5:1 or better)', async ({ page }) => {
+    await page.goto('/books/gcse/surds.html');
+    const colour = await page.locator('.where-use').evaluate((e) => getComputedStyle(e).color);
+    const [r, g, b] = colour.match(/\d+/g)!.map(Number);
+    const lin = (v: number) => { const c = v / 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+    const lum = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+    const navy = 0.2126 * lin(0x0f) + 0.7152 * lin(0x24) + 0.0722 * lin(0x40); // the lightest end of the hero gradient
+    expect((lum + 0.05) / (navy + 0.05)).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+test.describe('round 6 engine: Listen', () => {
+  const MANIFEST = '**/audio/book/manifest.json';
+  const stubs = () => {
+    const w = window as any;
+    w.__played = [];
+    w.__paused = 0;
+    // A stand-in for the audio element: the one-byte test clips would fail to decode and end at once.
+    w.Audio = function (src: string) {
+      const clip: any = new EventTarget();
+      clip.src = src;
+      clip.play = () => { w.__played.push(src); return Promise.resolve(); };
+      clip.pause = () => { w.__paused += 1; };
+      return clip;
+    };
+    w.SpeechSynthesisUtterance = function (text: string) { return { text, voice: null, rate: 1, pitch: 1, lang: '' }; };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: { speaking: false, getVoices: () => [{ name: 'Daniel (Enhanced)', lang: 'en-GB', localService: true }], cancel() {}, speak() {}, addEventListener() {} },
+    });
+  };
+
+  test('the list of recordings is fetched on the first press, not on page load', async ({ page }) => {
+    await page.addInitScript(stubs);
+    const asked: string[] = [];
+    page.on('request', (r) => { if (r.url().endsWith('/audio/book/manifest.json')) asked.push(r.url()); });
+    await page.goto('/books/gcse/negative-numbers.html');
+    await page.waitForLoadState('networkidle');
+    expect(asked).toEqual([]);
+    await page.locator('.q').first().locator('.listen').click();
+    await expect.poll(() => asked.length).toBe(1);
+  });
+
+  test('three quick presses give one clip; another question switches in one press; the button says Stop while playing', async ({ page }) => {
+    await page.addInitScript(stubs);
+    await page.goto('/books/gcse/negative-numbers.html');
+    const hashes = await page.evaluate(async () => {
+      const { unitText, hashText } = await import('/js/book-audio.mjs');
+      return [...document.querySelectorAll('.q .qtext')].slice(0, 2).map((n) => hashText(unitText(n)));
+    });
+    const manifest = Object.fromEntries(hashes.map((h) => [h, `${h}.mp3`]));
+    await page.route(MANIFEST, async (route) => { await new Promise((r) => setTimeout(r, 700)); await route.fulfill({ json: manifest }); });
+    for (const h of hashes) await page.route(`**/audio/book/${h}.mp3`, (route) => route.fulfill({ body: Buffer.from([0]), contentType: 'audio/mpeg' }));
+    await page.reload();
+    const first = page.locator('.q').nth(0).locator('.listen');
+    const second = page.locator('.q').nth(1).locator('.listen');
+    await first.click();
+    await expect(first).toHaveAttribute('aria-busy', 'true');
+    await expect(first).toHaveText(/Loading voice/);
+    await first.dispatchEvent('click');
+    await first.dispatchEvent('click');
+    await expect(first).toHaveText('Stop');
+    await expect(first).toHaveAttribute('aria-pressed', 'true');
+    expect(await page.evaluate(() => (window as any).__played.length)).toBe(1);
+    await second.click();
+    await expect(second).toHaveText('Stop');
+    await expect(first).toHaveText('Listen');
+    await expect(first).toHaveAttribute('aria-pressed', 'false');
+    expect(await page.evaluate(() => (window as any).__played.length)).toBe(2);
+    await second.click();
+    await expect(second).toHaveText('Listen');
+    expect(await page.evaluate(() => (window as any).__played.length)).toBe(2);
+  });
+});
+
+test.describe('round 6 engine: timed set', () => {
+  test('No clock mode: no clock, no pause, no extra minutes, but marking and ticking still work', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    await page.getByLabel(/No clock/).check();
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    await expect(page.locator('.timed-status')).toContainText('no clock');
+    await expect(page.locator('.timed-clock')).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Pause' })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Add 5 minutes' })).toBeHidden();
+    await page.getByRole('button', { name: 'Finish and mark my answers' }).click();
+    await page.locator('.q:visible .mark-box').first().check();
+    await expect(page.locator('.timed-status')).toContainText(/Marks so far: 1 of/);
+  });
+
+  test('extra time adds a quarter, and adding minutes says how much time is left', async ({ page }) => {
+    // the five questions are drawn at random and their marks set the time, so fix the draw
+    await page.addInitScript(() => { Math.random = () => 0.5; });
+    await page.goto('/books/gcse/stretch.html');
+    const clockSeconds = async () => {
+      const [m, s] = (await page.locator('.timed-clock').innerText()).replace('Time left: ', '').split(':').map(Number);
+      return m * 60 + s;
+    };
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    const plain = await clockSeconds();
+    await page.getByRole('button', { name: 'Add 5 minutes' }).click();
+    await expect(page.locator('.timed-status')).toContainText(/5 minutes added\. Time left: \d+:\d\d/);
+    await page.getByRole('button', { name: 'Back to all questions' }).click();
+    await page.getByLabel(/Extra time/).check();
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    const withExtra = await clockSeconds();
+    expect(withExtra).toBeGreaterThan(plain * 1.1);
+    expect(withExtra).toBeLessThan(plain * 1.4);
+  });
+
+  test('the set is announced before focus moves, a topic and calculator choice returns only matching questions, and empty headings are hidden', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    const all = await page.locator('.q').evaluateAll((nodes) => nodes.map((n) => ({
+      calc: n.querySelector('.qtag-calc')?.textContent?.trim() ?? '', topic: n.querySelector('.qtag-from')?.getAttribute('href') ?? '',
+    })));
+    // A topic with fewer than five non-calculator questions: every question in the set must match both choices.
+    const counts = new Map<string, number>();
+    for (const q of all) if (q.calc === 'Non-calculator') counts.set(q.topic, (counts.get(q.topic) ?? 0) + 1);
+    const [topic, n] = [...counts.entries()].find(([, c]) => c >= 1 && c < 5)!;
+    await page.locator('select[aria-label="Calculator or non-calculator"]').selectOption('Non-calculator');
+    await page.locator('select[aria-label="Which topic"]').selectOption(topic);
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    await expect(page.locator('.timed-status')).toContainText(/\d questions?, \d+ minutes?/);
+    expect(await page.evaluate(() => document.activeElement?.closest('.q') ?? null)).toBeNull();
+    await expect(page.locator('.q:visible')).toHaveCount(n);
+    for (const shown of await page.locator('.q:visible').all()) {
+      await expect(shown.locator('.qtag-calc')).toHaveText('Non-calculator');
+      await expect(shown.locator('.qtag-from').first()).toHaveAttribute('href', topic);
+    }
+    const emptyHeadings = await page.evaluate(() => [...document.querySelectorAll('main section')].filter((s) => !s.hasAttribute('hidden') && s.querySelector('.q') && ![...s.querySelectorAll('.q')].some((q) => !(q as HTMLElement).hidden)).length);
+    expect(emptyHeadings).toBe(0);
+    await expect.poll(() => page.evaluate(() => document.activeElement?.closest('.q') !== null), { timeout: 6000 }).toBe(true);
+    await page.getByRole('button', { name: 'Back to all questions' }).click();
+    expect(await page.locator('main section[hidden]').count()).toBe(0);
+  });
+
+  test('a wrong typed answer in a timed set gets a message', async ({ page }) => {
+    await page.goto('/books/gcse/stretch.html');
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    const typed = page.locator('.q:visible:has(.q-input)').first();
+    await typed.locator('.q-input').fill('123456.789');
+    await typed.getByRole('button', { name: 'Check' }).click();
+    await expect(typed.locator('.q-feedback.oops')).toHaveText(/\S/);
+  });
+
+  test('on a 360px phone the clock row does not sit on the "Uses:" tag', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('/books/gcse/stretch.html');
+    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    await page.waitForTimeout(400);
+    const clock = await page.locator('.timed-clock').boundingBox();
+    for (const tag of await page.locator('.q:visible .qtag-from').all()) {
+      const t = await tag.boundingBox();
+      if (!t || !clock) continue;
+      const overlap = t.x < clock.x + clock.width && t.x + t.width > clock.x && t.y < clock.y + clock.height && t.y + t.height > clock.y;
+      expect(overlap, 'the clock covers a Uses tag').toBe(false);
+    }
   });
 });

@@ -50,6 +50,27 @@ const short = (text, max = 110) => {
 // Plain text only: HTML entities (&pi;) are decoded, so what is searched and shown is what a student sees.
 const compact = (entry) => Object.fromEntries(Object.entries(entry).filter(([, v]) => v).map(([k, v]) => [k, k === 'u' || k === 'k' ? v : plainText(v)]));
 
+// Everyday words a student types that no title uses, added as everyday names (`y`) of the page that answers them (page link -> words).
+// A page that is not in this build is simply skipped, so a listed page can be added later without touching this.
+export const SEARCH_SYNONYMS = {
+  'percentages.html': 'percent per cent vat discount sale reduction reduced increase decrease interest tax tip profit loss off',
+  'percentage-change.html': 'percent per cent vat interest compound simple growth decay depreciation increase decrease sale discount',
+  'four-operations.html': 'multiplication multiplying times table tables long division short division bus stop addition subtraction plus minus',
+  'factors-multiples.html': 'times table tables',
+  'fractions.html': 'fractions of an amount fraction of a quantity',
+  'rearranging-formulae.html': 'rearrange rearranged rearranging change the subject make the subject transpose',
+  'squares-roots.html': 'sqrt root roots square root radical',
+  'surds.html': 'sqrt root roots radical',
+  'probability-basics.html': 'dice die coin coins spinner',
+  'histograms-cumulative-frequency.html': 'quartile quartiles upper quartile lower quartile interquartile range box plot',
+  'averages.html': 'quartile quartiles interquartile range',
+  'diagnostic.html': 'get started getting started start beginning begin',
+  'command-words.html': 'hence deduce justify evaluate sketch prove proof describe estimate explain',
+  'teachers.html': 'set homework homework worksheet print printing printable link links class students',
+  'parents.html': 'daughter son child children help my child helping parent mum dad carer',
+  'how-to-use.html': 'listen audio read aloud voice dyslexia dyslexic screen reader accessible accessibility easy read font ruler tint print printing worksheet help keyboard shortcuts',
+};
+
 /**
  * pages: [{ href, title, kind, sub, snippet, aliases?, html }]   (href relative to the book folder)
  * glossary: the terms (id, term, strand, def, optional aka: ['other name', ...])
@@ -66,7 +87,7 @@ export function buildSearchIndex({ pages, glossary, strands, glossaryHref, gener
 
   const index = [];
   pages.forEach((page, i) => {
-    index.push(compact({ t: page.title, u: page.href, k: page.kind, s: page.sub, d: page.snippet && short(page.snippet), a: page.aliases }));
+    index.push(compact({ t: page.title, u: page.href, k: page.kind, s: page.sub, d: page.snippet && short(page.snippet), a: page.aliases, y: SEARCH_SYNONYMS[page.href] }));
     const seen = new Set();
     for (const h of headingsOf[i]) {
       const key = h.text.toLowerCase();
@@ -87,9 +108,9 @@ export function buildSearchIndex({ pages, glossary, strands, glossaryHref, gener
  */
 export function renderSearchBox(base) {
   return `
-    <form class="book-search" role="search" aria-label="Search this book" data-index="${base}books/gcse/search-index.json" autocomplete="off" hidden>
-      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
-      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+    <form class="book-search" role="search" aria-label="Search the whole book" data-index="${base}books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search the whole book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the whole book" maxlength="60" spellcheck="false">
       <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
       <p class="book-search-empty" id="book-search-empty" hidden></p>
       <p class="sr-only" id="book-search-status" role="status"></p>

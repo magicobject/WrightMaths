@@ -166,13 +166,15 @@
 .q-input{flex:1 1 180px;min-width:0;font:inherit;font-size:1.05rem;padding:10px 12px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);color:var(--ink);}
 .q-input:read-only{background:var(--t-right);border-color:var(--c-right);}
 .btn-check,.btn-stuck,.mc-option{font:inherit;cursor:pointer;min-height:44px;}
-.sym-row{display:none;gap:6px;width:100%;}
-.q-form:focus-within .sym-row{display:flex;}
+/* The symbol row always takes its room and is only shown while you are typing. If it came and went with focus, pressing
+   "Give me a clue" (which takes focus away from the box) moved the button 54px between mouse-down and mouse-up, so the first press was lost. */
+.sym-row{display:flex;visibility:hidden;gap:6px;width:100%;}
+.q-form:focus-within .sym-row{visibility:visible;}
 .q-correct .sym-row{display:none !important;}
 .sym-btn{font:inherit;font-weight:700;min-width:44px;min-height:44px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
 .sym-btn:hover{background:var(--paper-dim);}
 .duck-typed summary{cursor:pointer;color:var(--navy);font-weight:700;min-height:44px;display:flex;align-items:center;}
-@media (max-width:640px){.q-live:not(.q-correct) .q-form .sym-row{display:flex;}
+@media (max-width:640px){.q-live:not(.q-correct) .q-form .sym-row{display:flex;visibility:visible;}
 .q-live .q-form{position:sticky;bottom:0;background:var(--paper);padding:8px 0;z-index:5;}}
 .btn-check{background:var(--navy);color:var(--white);border:2px solid var(--navy);border-radius:999px;padding:9px 22px;font-weight:700;}
 .btn-check:hover{background:var(--navy-mid);}
@@ -193,17 +195,22 @@
 .mc-option.is-wrong::after{content:"  not this one";font-weight:700;color:var(--c-oops);}
 /* Hints are lettered A, B, C with a clear gap, so a hint that starts with a number is never mistaken for a list number (1. 2 + 5 looks like 1.2). */
 .rungs{margin:12px 0 0;padding:0;list-style:none;counter-reset:hint;color:var(--ink);}
-.rungs li{counter-increment:hint;position:relative;margin-bottom:10px;background:var(--t-term);border-radius:8px;padding:10px 14px 10px 4.6em;}
-.rungs li::before{content:"Hint " counter(hint, upper-alpha);position:absolute;left:14px;top:10px;font-weight:700;color:var(--c-term);}
-.rungs li.duck-rung::before,.rungs li.ask-rung::before{content:none;}
+.rungs li{counter-increment:hint;position:relative;margin-bottom:10px;background:var(--t-term);border-radius:8px;padding:10px 14px 10px 6.2em;}
+/* The clue letter is drawn here for sighted readers (empty alt text after the slash) and written in words by the script, so a screen reader says "Clue A" once. */
+.rungs li::before{content:"Clue " counter(hint, upper-alpha);content:"Clue " counter(hint, upper-alpha) / "";position:absolute;left:14px;top:10px;font-weight:700;color:var(--c-term);white-space:nowrap;}
+/* Where there is little room (a phone, or the wider easy-read font) the label sits on its own line, so it can never touch the words. */
+@media (max-width:480px){.rungs li,.q .ladder li{padding-left:14px;}.rungs li::before,.q .ladder li::before{position:static;display:block;margin-bottom:2px;}}
+html.read-easy .rungs li,html.read-easy .q .ladder li{padding-left:14px;}
+html.read-easy .rungs li::before,html.read-easy .q .ladder li::before{position:static;display:block;margin-bottom:2px;}
+.rungs li.ask-rung::before{content:none;}
 .rungs li.ask-rung{padding-left:14px;counter-increment:none;}
 .q .solution{border-top:2px dashed var(--line);margin-top:12px;padding-top:6px;}
 .q .solution::before{content:"Why:";font-weight:700;color:var(--strand);display:block;}
 .q .solution p{color:var(--ink);margin-bottom:.5em;}
 .q .ladder{padding:0;list-style:none;counter-reset:hint;color:var(--ink);}
-.q .ladder::before{content:"Hints";display:block;font-weight:700;margin-bottom:4px;color:var(--c-term);}
-.q .ladder li{counter-increment:hint;position:relative;margin-bottom:8px;padding-left:4.6em;}
-.q .ladder li::before{content:"Hint " counter(hint, upper-alpha);position:absolute;left:0;font-weight:700;color:var(--c-term);}
+.q .ladder::before{content:"Clues";display:block;font-weight:700;margin-bottom:4px;color:var(--c-term);}
+.q .ladder li{counter-increment:hint;position:relative;margin-bottom:8px;padding-left:5.6em;}
+.q .ladder li::before{content:"Clue " counter(hint, upper-alpha);position:absolute;left:0;font-weight:700;color:var(--c-term);white-space:nowrap;}
 .q .wrong{padding-left:1.3em;color:var(--c-oops);}
 .q .options{padding-left:1.3em;color:var(--ink);}
 
@@ -239,20 +246,15 @@
 .geo-svg .arrow{fill:none;stroke:var(--navy);stroke-width:2.5;}
 .geo-svg .svg-t{font:700 17px "Source Sans 3",sans-serif;fill:var(--ink);}
 
-/* ---------- the rubber duck ---------- */
-.duck-rung{display:flex;gap:14px;align-items:flex-start;background:#fff7d6 !important;border:2px dashed var(--c-statistics);border-radius:10px;padding:12px 14px !important;list-style:none !important;}
-.duck{flex:none;width:84px;height:auto;}
-.duck-body{fill:#f6c83c;stroke:#7a5800;stroke-width:2;}
-.duck-wing{fill:#e9b21a;stroke:#7a5800;stroke-width:1.5;}
-.duck-beak{fill:#ee8a1c;stroke:#7a5800;stroke-width:1.5;}
-.duck-eye{fill:#1b2430;}
-.duck-water{fill:none;stroke:var(--c-number);stroke-width:3;stroke-linecap:round;}
+/* ---------- the "think it through" clue ---------- */
+/* Contrast: ink #1b2430 on #fff7d6 14.55; clue label teal #0a6a6a on #fff7d6 5.95. */
+.rungs li.duck-rung{background:#fff7d6;border:2px dashed var(--c-statistics);}
 .duck-body-text{flex:1;min-width:0;}
 .duck-body-text p{color:var(--ink);margin-bottom:.5em;}
 .duck-prompts{margin:.2em 0 .8em;padding-left:1.3em;color:var(--ink);}
 .duck-text{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);color:var(--ink);resize:vertical;}
 .duck-note{font-size:.88rem;}
-@media (max-width:560px){.duck-rung{flex-direction:column;}}
+
 
 /* ---------- feedback: nearly (right value, different form), facts lists, listen ---------- */
 .q-feedback.nearly{color:#7a4a00;}
@@ -492,7 +494,6 @@ footer p{color:#c9d3e0;}
 .set-done{font-weight:700;color:var(--navy);background:var(--t-right);border-radius:10px;padding:10px 14px;margin:14px 0;}
 .range-banner{max-width:800px;margin:10px auto;padding:10px 24px;background:var(--t-term);font-weight:700;}
 /* Timed set: the clock stays in view while you answer. */
-.timed-running .timed-clock{position:fixed;top:8px;right:8px;z-index:80;margin:0;padding:4px 14px;background:var(--white);border:2px solid var(--navy);border-radius:999px;font-size:1.1rem;box-shadow:var(--shadow);}
 .timed-filter{font:inherit;min-height:44px;margin:4px 8px 4px 0;max-width:100%;}
 .to-top.top-away{display:none;}
 /* Reading options must wrap, never run off a 320px screen. */
@@ -535,7 +536,7 @@ footer p{color:#c9d3e0;}
      focus ring   gold-light #e4c886 on the navy header 9.58 (the navy ring used elsewhere would vanish on navy)
      input edge   white on navy 15.59
      badges       Topic white on navy 15.59; Word meaning teal #0a6a6a on #dff1f1 5.48; others ink on paper-dim 12.93
-     result count ink-soft on white 7.53 */
+     result count (screen-reader only, not drawn) */
 .book-search{position:relative;flex:1 0 100%;order:9;max-width:40rem;}
 .book-search input{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--white);border:2px solid var(--white);border-radius:999px;padding:8px 16px;min-height:44px;}
 .book-search input::placeholder{color:var(--ink-soft);opacity:1;}
@@ -549,7 +550,8 @@ footer p{color:#c9d3e0;}
 .book-search-results .bs-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;border-radius:999px;padding:1px 9px;margin-bottom:3px;background:var(--paper-dim);color:var(--ink);}
 .book-search-results .bs-badge-topic{background:var(--navy);color:var(--white);}
 .book-search-results .bs-badge-term{background:var(--t-term);color:var(--c-term);}
-.book-search-results .bs-count{padding:2px 12px 6px;font-size:.85rem;color:var(--ink-soft);}
+/* The "6 results" line is for screen readers only: it was white-on-white (inherited from the header) and showed as a blank gap on phones. */
+.book-search-results .book-search-count{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .book-search-empty a{color:var(--navy-mid);font-weight:700;}
 @media (max-width:700px){.book-search-results .bs-snippet{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}.site-header:has(.book-search) nav.mainnav ul{gap:4px 12px;}}
 .book-search-empty{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;margin:0;padding:12px 16px;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);}
@@ -595,3 +597,38 @@ footer p{color:#c9d3e0;}
 .flipfig .fl-q{fill:#fff3c4;stroke:var(--navy);stroke-width:2;}
 .flipfig .hyp-b{stroke:var(--c-ratio);}
 @media (forced-colors:active){.flipfig .fl-box,.flipfig .fl-unk,.flipfig .fl-ghost{fill:Canvas;}.flipfig .fl-head{fill:CanvasText;}}
+
+/* ---- round 6 (engine and look) ---- */
+/* "Where you will use this" sits on the navy hero. It inherited the grey body colour (#4a5568 on #0f2440 = 2.07, a fail).
+   Computed: #d9e0ea on #0f2440 = 11.73, on the darker end of the gradient #081627 = 13.69. */
+.hero .where-use{color:#d9e0ea;}
+.hero .where-use b{color:var(--white);}
+/* Listen: loading, playing and hidden states. */
+.listen[aria-busy="true"]{cursor:progress;color:var(--ink-soft);}
+.listen.is-playing{background:var(--navy);color:var(--white);}
+.read-nolisten .listen{display:none;}
+/* Timed set: choices before starting, and the clock. It sticks to the top of the page in its own row,
+   so it never sits on top of a question's "Uses:" tag or the Back button (it used to float over them on a phone). */
+.timed-options{display:grid;gap:4px;margin:8px 0 12px;}
+.timed-tick{display:flex;gap:8px;align-items:flex-start;color:var(--ink);min-height:44px;padding:6px 0;}
+.timed-tick input{width:22px;height:22px;flex:none;margin:0;accent-color:var(--navy);}
+main > .timed-clock{position:sticky;top:0;z-index:80;width:fit-content;max-width:calc(100% - 16px);margin:0 8px 6px auto;padding:4px 14px;background:var(--white);border:2px solid var(--navy);border-radius:999px;font-size:1.1rem;box-shadow:var(--shadow);}
+main > .timed-clock[hidden]{display:none;}
+.timed-running .q{scroll-margin-top:64px;}
+section[hidden]{display:none !important;}
+/* The Top button fades while it would sit on a clue or a message (a phone), so it never hides any words. */
+.to-top.top-fade{opacity:0;pointer-events:none;}
+.to-top.top-fade:focus-visible{opacity:1;pointer-events:auto;}
+/* Skipping the basics also folds away "Before you start" and "Words you need". */
+.fast-route-on .bys:not(.unlocks),.fast-route-on .words-strip{display:none;}
+/* The search box's result count is for screen readers (it was a visible line that left a gap above the first result on a phone). */
+.book-search-results .book-search-count{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* A worksheet: multiple choice in the written order, lettered, with room to work; no typing instructions. */
+@media print{
+  .print-sheet .type-hint{display:none !important;}
+  .print-sheet .mc{display:flex;flex-direction:column;}
+  .print-sheet .mc-option{order:var(--src,0);}
+  .print-sheet .mc-option::before{content:attr(data-letter) ")\00a0";font-weight:700;}
+  .print-sheet .mc-option.is-right::after,.print-sheet .mc-option.is-wrong::after{content:none;}
+  .print-sheet .q{min-height:12em;padding-bottom:5em;}
+}

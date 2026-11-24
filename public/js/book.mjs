@@ -4,12 +4,13 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs?m=39';
+import { matches, rightValueWrongForm, splitList, diagnose, feedbackOrDefault, decimalCommaTip } from './book-answer.mjs?m=39';
 import { review, isDue, sanitize } from './book-queue.mjs?m=39';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
 import { splitSentences } from './book-speech.mjs?m=39';
-import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs?m=39';
+import { unitText, playClip, stopClip } from './book-audio.mjs?m=39';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
+import { parseRanges, rangeBanner } from './book-ranges.mjs?m=39';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs?m=39';
 
 const REVIEW = isReviewMode(window.location.search);
@@ -19,7 +20,7 @@ const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Ri
 const NUDGES = [
   'Not this one yet. Have another go.',
   'Not yet. A clue is there if you want one.',
-  'A clue might help, or say it out loud to the duck: that often shows what is wrong.',
+  'A clue might help. Or write down what you know so far: that often shows what is wrong.',
 ];
 
 // ---------- saved progress ----------
@@ -100,41 +101,36 @@ function markDone(qid, clean = false) {
   updateProgress();
 }
 
-// ---------- the rubber duck ----------
-// Explaining a problem to someone else (even a rubber duck) often unsticks you.
+// ---------- the "think it through" clue ----------
+// Putting a problem into words (typed, written or said quietly) often unsticks you.
 // What is typed here stays on screen: it is never stored or sent anywhere.
-
-const DUCK_SVG = '<svg class="duck" viewBox="0 0 90 72" aria-hidden="true" focusable="false">'
-  + '<path class="duck-water" d="M2 62 Q12 56 22 62 T42 62 T62 62 T82 62" />'
-  + '<ellipse class="duck-body" cx="38" cy="46" rx="27" ry="16"/><path class="duck-wing" d="M26 44 Q38 34 50 46 Q38 54 26 44Z"/>'
-  + '<circle class="duck-body" cx="62" cy="24" r="14"/><path class="duck-beak" d="M74 24 L88 29 L74 33Z"/>'
-  + '<circle class="duck-eye" cx="66" cy="20" r="2.6"/></svg>';
 
 function duckRung(li, q) {
   li.className = 'duck-rung';
-  li.innerHTML = `${DUCK_SVG}<div class="duck-body-text"><p class="duck-title"><b>Say it out loud</b> <span class="muted">(optional)</span></p>`
-    + '<p>Tell a friend, or yourself, what the question asks and what you know. Talking often shows the next step. (Some programmers explain their problem to a toy rubber duck on their desk. It is a famous trick, and the "duck" here just means that.)</p></div>';
-  const starts = ['The question asks me to find…', 'I already know…', 'I tried… and then…', 'I got stuck when…'];
+  li.innerHTML = '<div class="duck-body-text"><p class="duck-title"><b>Think it through</b> <span class="muted">(optional)</span></p>'
+    + '<p>Type what you know so far, even half an answer.</p>'
+    + '<p>Write it on paper (or say it quietly in your head). Putting it into words often shows the next step.</p></div>';
+  const starts = ['The question asks me to find\u2026', 'I already know\u2026', 'I tried\u2026 and then\u2026', 'I got stuck when\u2026'];
   const chips = el('div', { class: 'duck-chips', role: 'group', 'aria-label': 'Sentence starters' });
   const area = el('textarea', {
-    class: 'duck-text', rows: '3', maxlength: '600', 'aria-label': 'Tell the duck what is going on', placeholder: 'Type it, or just say it out loud',
+    class: 'duck-text', rows: '3', maxlength: '600', 'aria-label': 'What you know so far', placeholder: 'Type what you know so far, even half an answer',
   });
   for (const start of starts) {
     const chip = el('button', { type: 'button', class: 'duck-chip', text: start });
     chip.addEventListener('click', () => {
       const lineBreak = String.fromCharCode(10);
-      area.value += (area.value && !area.value.endsWith(lineBreak) ? lineBreak : '') + start.replace('…', ' ');
+      area.value += (area.value && !area.value.endsWith(lineBreak) ? lineBreak : '') + start.replace('\u2026', ' ');
       area.focus();
     });
     chips.append(chip);
   }
-  const note = el('p', { class: 'muted duck-note', text: 'The duck only listens. What you type stays on this screen and is not saved or sent anywhere.' });
+  const note = el('p', { class: 'muted duck-note', text: 'What you type stays on this screen. It is not saved or sent anywhere.' });
   const done = el('button', { type: 'button', class: 'btn-check', text: 'Done: let me try again' });
   done.addEventListener('click', () => {
     area.value = '';
     q.querySelector('.q-input, .mc-option')?.focus();
   });
-  const typed = el('details', { class: 'duck-typed' }, el('summary', { text: 'Prefer to type it?' }), chips, area, note);
+  const typed = el('details', { class: 'duck-typed' }, el('summary', { text: 'Type it here' }), chips, area, note);
   li.querySelector('.duck-body-text').append(typed, done);
 }
 
@@ -161,13 +157,19 @@ export function enhanceQuestion(q, index) {
   const wrongBox = q.querySelector(':scope > ul.wrong');
   const optionList = q.querySelector(':scope > ul.options');
   const text = q.querySelector(':scope > .qtext');
+  // "Type it like ..." tells a screen user how to enter the answer; on paper it is only noise, so it is marked to be left out of a worksheet.
+  if (text && !text.querySelector('.type-hint')) {
+    const html = text.innerHTML;
+    const marked = html.replace(/Type it like [^<]*?\.(?=\s|$|<)/, (hint) => `<span class="type-hint">${hint}</span>`);
+    if (marked !== html) text.innerHTML = marked;
+  }
   const number = el('span', { class: 'qnum', 'aria-hidden': 'true', text: String(index + 1) });
   text?.prepend(number);
 
   const feedback = el('div', { class: 'q-feedback', role: 'status', 'aria-live': 'polite' });
   const rungs = ladder ? [...ladder.children].map((li) => li.innerHTML) : [];
   if ((ladder?.children.length ?? 0) > 1) rungs.push({ duck: true });
-  rungs.push('Still stuck? Show a mate, or take a photo of the question to show your teacher. Everyone gets stuck, and a person can often unstick you in a minute.');
+  rungs.push('Still stuck? Show a friend, or take a photo of the question to show your teacher. Everyone gets stuck, and a person can often unstick you in a minute.');
   let rungsShown = 0;
   let wrongCount = 0;
   let solved = false;
@@ -185,11 +187,14 @@ export function enhanceQuestion(q, index) {
     if (rungsShown < rungs.length) {
       const li = el('li');
       const rung = rungs[rungsShown];
+      const asking = typeof rung === 'string' && rung.startsWith('Still stuck?');
       if (typeof rung === 'object') duckRung(li, q);
       else {
         li.innerHTML = rung;
-        if (rung.startsWith('Still stuck?')) li.className = 'ask-rung';
+        if (asking) li.className = 'ask-rung';
       }
+      // The letter is drawn by CSS for sighted readers; this is the same words for a screen reader ("Clue A").
+      if (!asking) li.prepend(el('span', { class: 'sr-only', text: `Clue ${String.fromCharCode(65 + rungsShown)}: ` }));
       hintList.append(li);
       rungsShown += 1;
     }
@@ -198,7 +203,7 @@ export function enhanceQuestion(q, index) {
       helpBtn.dataset.final = '1';
       if (!solution || solved) helpBtn.disabled = true;
     } else {
-      helpBtn.textContent = typeof rungs[rungsShown] === 'string' && rungs[rungsShown].startsWith('Still stuck') ? 'Who could help?' : 'Another clue';
+      helpBtn.textContent = 'Another clue';
     }
   }
 
@@ -270,7 +275,8 @@ export function enhanceQuestion(q, index) {
   function failure(message, html) {
     wrongCount += 1;
     q.classList.add('q-tried');
-    say('q-feedback oops', message ?? NUDGES[Math.min(wrongCount - 1, NUDGES.length - 1)], html);
+    // An empty message (nothing specific to say) still gets a nudge, so a wrong answer is never met with silence.
+    say('q-feedback oops', message || NUDGES[Math.min(wrongCount - 1, NUDGES.length - 1)], html);
   }
 
   // The value is right but the form is not what was asked for: not a mistake, so no cross.
@@ -280,13 +286,18 @@ export function enhanceQuestion(q, index) {
   }
 
   if (q.dataset.type === 'mc' && optionList) {
-    const items = shuffle([...optionList.children]);
+    const source = [...optionList.children];
+    const items = shuffle([...source]);
     const group = el('div', { class: 'mc', role: 'group', 'aria-label': `Choose one answer for question ${index + 1}` });
     for (const li of items) {
       const correct = li.hasAttribute('data-correct');
       const why = li.dataset.why;
       const btn = el('button', { type: 'button', class: 'mc-option' });
       btn.innerHTML = li.innerHTML;
+      // On screen the options are shuffled; a printed worksheet lists them in the written order, lettered A, B, C, D.
+      const at = source.indexOf(li);
+      btn.dataset.letter = String.fromCharCode(65 + at);
+      btn.style.setProperty('--src', String(at));
       btn.addEventListener('click', () => {
         if (solved) return;
         if (correct) {
@@ -296,6 +307,7 @@ export function enhanceQuestion(q, index) {
         } else {
           btn.classList.add('is-wrong');
           btn.setAttribute('aria-disabled', 'true');
+          btn.append(el('span', { class: 'sr-only', text: ' (incorrect)' }));
           failure(why ?? NUDGES[Math.min(wrongCount, NUDGES.length - 1)]);
         }
       });
@@ -306,7 +318,16 @@ export function enhanceQuestion(q, index) {
   } else if (q.dataset.type === 'show') {
     // "Show that" / explain questions: written on paper, then marked against the mark scheme. Nothing typed, nothing stored.
     const reveal = el('button', { type: 'button', class: 'btn-check', text: 'I have written my answer: show me the mark scheme' });
-    reveal.addEventListener('click', () => { showSolution(); reveal.disabled = true; });
+    reveal.addEventListener('click', (event) => {
+      showSolution();
+      reveal.disabled = true;
+      // A real press (not the timed set marking everything at once): move to the mark scheme and say what to do.
+      if (event.isTrusted && solution) {
+        solution.setAttribute('tabindex', '-1');
+        solution.focus({ preventScroll: false });
+        say('q-feedback', 'Mark scheme shown. Tick each mark you earned.');
+      }
+    });
     (q.querySelector(':scope > .qfig') ?? text ?? q).after(reveal);
     reveal.after(feedback);
   } else {
@@ -350,9 +371,13 @@ export function enhanceQuestion(q, index) {
         say('q-feedback oops', 'Type an answer first.');
         return;
       }
-      if (matches(value, answers, mode)) {
+      // The question and its worked solution tell the checker which units are sensible (a typed "60 km" is not right for metres).
+      const unitContext = `${text?.textContent ?? ''} ${solution?.textContent ?? ''}`;
+      if (matches(value, answers, mode, unitContext)) {
         input.readOnly = true;
         success();
+        const commaTip = decimalCommaTip(value, answers);
+        if (commaTip) feedback.append(` ${commaTip}`);
         return;
       }
       const specific = wrongs.find((w) => matches(value, w.list, mode));
@@ -362,7 +387,7 @@ export function enhanceQuestion(q, index) {
       } else if (specific) {
         failure(null, specific.message);
       } else {
-        failure(feedbackFor(value, answers));
+        failure(feedbackOrDefault(value, answers, unitContext));
       }
     });
     (q.querySelector(':scope > .qfig') ?? text ?? q).after(form);
@@ -525,13 +550,27 @@ function enhanceGlossary() {
   const status = document.querySelector('[data-glossary-status]');
   if (!filter || !search) return;
   const entries = [...document.querySelectorAll('.g-entry')];
+  // The two boxes on this page do different jobs, so they are named differently (the header box searches the whole book).
+  const label = document.querySelector(`label[for="${search.id}"]`);
+  if (label) label.textContent = 'Find a word in this glossary';
+  // The same forgiving matching as the header search (typos, plurals, other names), loaded the first time it is needed.
+  const terms = entries.map((e) => ({ t: e.querySelector('h3').firstChild.textContent.trim(), u: e.id, k: 'Term' }));
+  let find = null;
+  let finderRequested = false;
+  const loadFinder = () => {
+    if (finderRequested) return;
+    finderRequested = true;
+    import('./book-search.mjs?m=2').then((m) => { find = m.searchIndex; apply(); }, () => {});
+  };
   const apply = () => {
     const strand = filter.value;
     const query = search.value.trim().toLowerCase();
+    if (query) loadFinder();
+    const similar = find && query ? new Set(find(query, terms, terms.length).map((t) => t.u)) : null;
     let shown = 0;
     for (const entry of entries) {
       const okStrand = strand === 'all' || entry.dataset.strand === strand;
-      const okText = query === '' || entry.textContent.toLowerCase().includes(query);
+      const okText = query === '' || entry.textContent.toLowerCase().includes(query) || (similar?.has(entry.id) ?? false);
       const visible = okStrand && okText;
       entry.hidden = !visible;
       if (visible) shown += 1;
@@ -543,6 +582,7 @@ function enhanceGlossary() {
   };
   filter.addEventListener('change', apply);
   search.addEventListener('input', apply);
+  search.addEventListener('focus', loadFinder, { once: true });
   apply();
 }
 
@@ -557,10 +597,10 @@ function loadRead() {
     const raw = window.localStorage.getItem(READ_KEY);
     const d = raw ? JSON.parse(raw) : {};
     return {
-      size: Math.min(3, Math.max(0, Number(d.size) || 0)), easy: Boolean(d.easy), tint: Boolean(d.tint), ruler: Boolean(d.ruler),
+      size: Math.min(3, Math.max(0, Number(d.size) || 0)), easy: Boolean(d.easy), tint: Boolean(d.tint), ruler: Boolean(d.ruler), nolisten: Boolean(d.nolisten),
       voice: typeof d.voice === 'string' ? d.voice : '', rate: [0.8, 0.92, 1.05].includes(Number(d.rate)) ? Number(d.rate) : 0.92,
     };
-  } catch { return { size: 0, easy: false, tint: false, ruler: false, voice: '', rate: 0.92 }; }
+  } catch { return { size: 0, easy: false, tint: false, ruler: false, nolisten: false, voice: '', rate: 0.92 }; }
 }
 
 function applyRead(prefs) {
@@ -570,6 +610,7 @@ function applyRead(prefs) {
   c.toggle('read-easy', prefs.easy);
   c.toggle('read-tint', prefs.tint);
   c.toggle('read-ruler-on', prefs.ruler);
+  c.toggle('read-nolisten', prefs.nolisten);
 }
 
 function initReadingTools() {
@@ -602,10 +643,16 @@ function initReadingTools() {
     return b;
   };
   row.append(toggle('easy', 'Easy-read font'), toggle('tint', 'Tinted page'), toggle('ruler', 'Reading ruler'));
+  // For anyone who never uses Listen, or finds the buttons a distraction: hide them everywhere.
+  if ('speechSynthesis' in window) {
+    const hideListen = toggle('nolisten', 'Hide the Listen buttons');
+    hideListen.addEventListener('click', () => { if (prefs.nolisten) stopListening(); });
+    row.append(hideListen);
+  }
   const sizeLabel = el('span', { class: 'read-size', 'aria-live': 'polite', text: `Text size ${prefs.size + 1} of 4` });
   const reset = el('button', { type: 'button', class: 'read-btn read-reset', text: 'Reset' });
   reset.addEventListener('click', () => {
-    Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false, voice: '', rate: 0.92 });
+    Object.assign(prefs, { size: 0, easy: false, tint: false, ruler: false, nolisten: false, voice: '', rate: 0.92 });
     row.querySelectorAll('[aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     persist();
   });
@@ -683,7 +730,20 @@ function initToc(main, after) {
     document.querySelector('main')?.focus({ preventScroll: true });
   });
   document.body.append(top);
-  window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; }, { passive: true });
+  // On a phone, fade the button while it would sit on top of a clue or a message, so no text is ever hidden by it.
+  const dodge = () => {
+    if (top.hidden || !window.matchMedia('(max-width: 640px)').matches) { top.classList.remove('top-fade'); return; }
+    const t = top.getBoundingClientRect();
+    const covers = [...document.querySelectorAll('.rungs li, .q-feedback.oops, .q-feedback.nearly')].some((n) => {
+      const r = n.getBoundingClientRect();
+      return r.width > 0 && r.bottom > t.top && r.top < t.bottom && r.right > t.left && r.left < t.right;
+    });
+    top.classList.toggle('top-fade', covers);
+  };
+  let dodgeQueued = false;
+  const queueDodge = () => { if (!dodgeQueued) { dodgeQueued = true; window.requestAnimationFrame(() => { dodgeQueued = false; dodge(); }); } };
+  window.addEventListener('scroll', () => { top.hidden = window.scrollY < 1200; queueDodge(); }, { passive: true });
+  document.addEventListener('click', () => setTimeout(queueDodge, 60));
   document.addEventListener('focusin', (e) => { top.classList.toggle('top-away', Boolean(e.target.matches?.('.q-input, .duck-text, .timed-filter'))); });
   document.addEventListener('focusout', () => top.classList.remove('top-away'));
 }
@@ -706,13 +766,23 @@ function addFastRoute(main, after) {
     toggle.setAttribute('aria-pressed', String(on));
     toggle.textContent = on ? 'Show everything again' : 'Skip the basics';
   };
+  const announce = el('span', { class: 'sr-only', role: 'status', 'aria-live': 'polite' });
   toggle.addEventListener('click', () => {
     const on = !main.classList.contains('fast-route-on');
     setFast(on);
     try { window.localStorage.setItem(FAST_KEY, on ? '1' : '0'); } catch { /* storage may be unavailable */ }
+    announce.textContent = on ? 'Showing only the harder parts.' : 'Showing everything.';
+    // Skipping the basics lands you on the exam-style questions, so the page does not just go quiet under your feet.
+    const exam = find(/^Exam style/i);
+    if (on && exam) {
+      const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      exam.setAttribute('tabindex', '-1');
+      exam.scrollIntoView({ block: 'start', behavior: calm ? 'auto' : 'smooth' });
+      exam.focus({ preventScroll: true });
+    }
   });
   try { if (window.localStorage.getItem(FAST_KEY) === '1') setFast(true); } catch { /* ignore */ }
-  bar.append(toggle);
+  bar.append(toggle, announce);
   // Printing: questions only (a worksheet) or with the worked answers.
   const nameLine = el('p', { class: 'print-name', text: `Name: ____________________   Date: ____________   ${document.querySelector('h1')?.textContent ?? ''}` });
   main.prepend(nameLine);
@@ -733,41 +803,81 @@ function addFastRoute(main, after) {
 // ---------- listen (the browser's own voice; nothing is sent anywhere) ----------
 
 // Only voices that run on this device are used unless the student picks an online one (see book-voice.mjs).
-function speak(text) {
+// Returns true when the browser voice started; `onEnd` runs when it finishes (or fails).
+function speak(text, onEnd = () => {}) {
   const synth = window.speechSynthesis;
   synth.cancel();
   const prefs = loadRead();
   const voice = bestVoice(window.speechSynthesis.getVoices(), prefs.voice);
   // No on-device voice: say nothing rather than let the browser pick one, which may be an online voice that sends the text away.
-  if (!voice) return;
+  if (!voice) return false;
   // Short sentences in turn sound more natural and avoid the browser cutting off long text.
-  for (const { text: sentence, question } of splitSentences(text)) {
+  const sentences = splitSentences(text);
+  sentences.forEach(({ text: sentence, question }, i) => {
     const u = new window.SpeechSynthesisUtterance(sentence);
     u.lang = voice?.lang ?? 'en-GB';
     if (voice) u.voice = voice;
     u.rate = prefs.rate;
     // A question lifts at the end (voices do this for a "?"); a touch more pitch helps flat voices.
     u.pitch = question ? 1.1 : 1;
+    if (i === sentences.length - 1) { u.onend = onEnd; u.onerror = onEnd; }
     synth.speak(u);
-  }
+  });
+  return sentences.length > 0;
+}
+
+// One Listen button at a time: { btn, id } for the one that is loading or playing, so presses never overlap.
+let listening = null;
+let listenCounter = 0;
+
+function listenState(btn, state) {
+  const label = btn.dataset.label;
+  btn.classList.toggle('is-playing', state === 'playing');
+  btn.setAttribute('aria-pressed', String(state === 'playing'));
+  if (state === 'loading') { btn.setAttribute('aria-busy', 'true'); btn.setAttribute('aria-disabled', 'true'); } else { btn.removeAttribute('aria-busy'); btn.removeAttribute('aria-disabled'); }
+  if (state === 'loading') { btn.textContent = 'Loading voice\u2026'; btn.setAttribute('aria-label', `Loading voice for ${label}`); }
+  else if (state === 'playing') { btn.textContent = 'Stop'; btn.setAttribute('aria-label', `Stop listening to ${label}`); }
+  else { btn.textContent = 'Listen'; btn.setAttribute('aria-label', `Listen to ${label}`); }
+}
+
+function stopListening() {
+  const was = listening;
+  listening = null;
+  stopClip();
+  if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+  if (was) listenState(was.btn, 'idle');
 }
 
 function addListenButtons(root = document) {
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
-  loadManifest(); // a tiny same-site file, fetched once so a press of Listen starts at once
+  // The list of recordings is fetched on the first press of Listen, not on every page.
   for (const node of root.querySelectorAll('.qtext, .key')) {
     if (node.querySelector(':scope > .listen')) continue;
     const number = node.querySelector('.qnum')?.textContent;
-    const btn = el('button', { type: 'button', class: 'listen', 'aria-label': number ? `Listen to question ${number}` : 'Listen to this key idea', text: 'Listen' });
+    const btn = el('button', { type: 'button', class: 'listen', 'aria-pressed': 'false', 'data-label': number ? `question ${number}` : 'this key idea', text: 'Listen' });
+    btn.setAttribute('aria-label', `Listen to ${btn.dataset.label}`);
     btn.addEventListener('click', async () => {
-      const synth = window.speechSynthesis;
-      // A second press stops whatever is playing: a recording or the browser voice.
-      if (stopClip()) return;
-      if (synth.speaking) { synth.cancel(); return; }
+      // A press while a voice is loading is ignored, so three quick presses never give three overlapping clips.
+      if (btn.getAttribute('aria-busy') === 'true' || document.querySelector('.listen[aria-busy="true"]')) return;
+      // A press on the one that is playing stops it; a press on another one stops that and starts this one.
+      if (listening?.btn === btn) { stopListening(); return; }
+      stopListening();
+      listenCounter += 1;
+      const id = listenCounter;
+      listening = { btn, id };
+      const end = () => {
+        if (listening?.id !== id) return;
+        listening = null;
+        listenState(btn, 'idle');
+      };
+      listenState(btn, 'loading');
       const text = unitText(node);
       // A recording of exactly this text (made by the build tooling, or Greg's own voice) wins; otherwise the browser voice reads it.
-      if (await playClip(text, loadRead().rate)) return;
-      speak(text);
+      const played = await playClip(text, loadRead().rate, end);
+      if (listening?.id !== id) return; // it ended while loading
+      if (played) { listenState(btn, 'playing'); return; }
+      if (speak(text, end)) listenState(btn, 'playing');
+      else end();
     });
     node.append(btn);
   }
@@ -987,6 +1097,7 @@ function startTimed() {
   for (const [value, label] of [['', 'Calculator and non-calculator mixed'], ['Non-calculator', 'Non-calculator questions only'], ['Calculator', 'Calculator questions only']]) filter.append(el('option', { value, text: label }));
   // A topic picker built from the "Uses:" links on the questions.
   const topicOf = (q) => q.querySelector('.qtag-from')?.getAttribute('href') ?? '';
+  const calcOf = (q) => q.querySelector('.qtag-calc')?.textContent.trim() ?? '';
   const topicFilter = el('select', { class: 'timed-filter', 'aria-label': 'Which topic' });
   topicFilter.append(el('option', { value: '', text: 'Any topic' }));
   const seen = new Map();
@@ -995,6 +1106,19 @@ function startTimed() {
     if (link && !seen.has(topicOf(q))) seen.set(topicOf(q), link.textContent.replace(/^Uses:\s*/, ''));
   }
   for (const [href, label] of [...seen.entries()].sort((a, b) => a[1].localeCompare(b[1]))) topicFilter.append(el('option', { value: href, text: label }));
+  // Choices made before starting: no clock at all, extra time (+25%), or a clock that starts out hidden.
+  const tickBox = (label) => {
+    const box = el('input', { type: 'checkbox' });
+    return { box, label: el('label', { class: 'timed-tick' }, box, ` ${label}`) };
+  };
+  const noClockTick = tickBox('No clock: practise without time (you still mark your answers and tick your marks)');
+  const extraTick = tickBox('Extra time (+25%)');
+  const hideClockTick = tickBox('Hide the clock (you can show it again any time)');
+  const options = el('div', { class: 'timed-options', role: 'group', 'aria-label': 'Options for the timed set' }, noClockTick.label, extraTick.label, hideClockTick.label);
+  noClockTick.box.addEventListener('change', () => {
+    extraTick.box.disabled = noClockTick.box.checked;
+    hideClockTick.box.disabled = noClockTick.box.checked;
+  });
   const clock = el('p', { class: 'timed-clock', role: 'timer', 'aria-live': 'off' });
   const clockBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Hide the clock' });
   const pauseBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Pause' });
@@ -1004,15 +1128,18 @@ function startTimed() {
   const leaveBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Back to all questions' });
   const running = [clockBtn, pauseBtn, moreBtn, finishBtn, leaveBtn];
   running.forEach((b) => { b.hidden = true; });
-  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper. You can pause, hide the clock or add time.' }), filter, topicFilter, startBtn, clock, clockBtn, pauseBtn, moreBtn, status, finishBtn, leaveBtn);
+  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper. You can pause, hide the clock or add time, or practise with no clock at all.' }), filter, topicFilter, options, startBtn, clockBtn, pauseBtn, moreBtn, status, finishBtn, leaveBtn, clock);
   panel.append(wrap);
   main.querySelector('.key')?.closest('section')?.after(panel);
   let timer = null;
+  let focusTimer = null;
   let chosen = [];
   let left = 0;
   let paused = false;
+  let hiddenSections = [];
   const helpOf = (q, hidden) => q.querySelectorAll('.q-help').forEach((h) => { h.hidden = hidden; });
-  const paint = () => { clock.textContent = `Time left: ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; };
+  const timeLeft = () => `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
+  const paint = () => { clock.textContent = `Time left: ${timeLeft()}`; };
   const tally = () => {
     const earned = chosen.reduce((n, q) => n + q.querySelectorAll('.mark-box:checked').length, 0);
     const total = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
@@ -1036,32 +1163,66 @@ function startTimed() {
     if (left === 60) status.textContent = '1 minute left.';
     if (left <= 0) stop('Time is up. Open each mark scheme and tick your marks.');
   };
+  // A section whose questions are all hidden would show nothing but its heading, so it is hidden too (and shown again afterwards).
+  const hideEmptySections = () => {
+    hiddenSections = [...main.querySelectorAll('section')].filter((sec) => {
+      const qs = [...sec.querySelectorAll('.q')];
+      return qs.length > 0 && qs.every((q) => q.hidden);
+    });
+    hiddenSections.forEach((sec) => { sec.hidden = true; });
+  };
+  const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
   startBtn.addEventListener('click', () => {
-    let pool = all.filter((q) => (!filter.value || q.querySelector('.qtag-calc')?.textContent.trim() === filter.value) && (!topicFilter.value || topicOf(q) === topicFilter.value));
+    const wantCalc = (q) => !filter.value || calcOf(q) === filter.value;
+    const wantTopic = (q) => !topicFilter.value || topicOf(q) === topicFilter.value;
+    let pool = all.filter((q) => wantCalc(q) && wantTopic(q));
     let note = '';
-    if (pool.length < 5) { pool = [...all]; note = ' There were fewer than five questions of that kind, so these are mixed.'; }
+    if (pool.length === 0) {
+      // Nothing of that exact kind: keep the calculator choice (it changes which skills you practise) and drop the topic.
+      pool = all.filter(wantCalc);
+      note = ' No questions matched both choices, so the topic was dropped.';
+      if (pool.length === 0) pool = [...all];
+    } else if (pool.length < 5) {
+      note = ` Only ${plural(pool.length, 'question')} matched your choices, so this set is shorter.`;
+    }
     for (let k = pool.length - 1; k > 0; k -= 1) {
       const m = Math.floor(Math.random() * (k + 1));
       [pool[k], pool[m]] = [pool[m], pool[k]];
     }
     chosen = pool.slice(0, 5);
+    const noClock = noClockTick.box.checked;
     const minutes = chosen.reduce((n, q) => n + Number(q.dataset.marks || 0), 0);
-    left = minutes * 60;
+    const extra = extraTick.box.checked && !noClock;
+    left = Math.ceil(minutes * 60 * (extra ? 1.25 : 1));
     paused = false;
     pauseBtn.textContent = 'Pause';
     all.forEach((q) => { q.hidden = !chosen.includes(q); });
+    hideEmptySections();
     chosen.forEach((q) => helpOf(q, true));
     startBtn.hidden = true;
     filter.hidden = true;
     topicFilter.hidden = true;
-    [leaveBtn, finishBtn, clockBtn, pauseBtn, moreBtn].forEach((b) => { b.hidden = false; });
+    options.hidden = true;
+    [leaveBtn, finishBtn].forEach((b) => { b.hidden = false; });
+    if (!noClock) [clockBtn, pauseBtn, moreBtn].forEach((b) => { b.hidden = false; });
     main.classList.add('timed-running');
-    status.textContent = `${chosen.length} questions, ${minutes} minutes.${note}`;
-    paint();
-    timer = window.setInterval(tick, 1000);
+    // The clock sits at the top of the page and sticks there, taking its own room so it never covers a question.
+    main.prepend(clock);
+    clock.hidden = noClock || hideClockTick.box.checked;
+    clockBtn.textContent = clock.hidden ? 'Show the clock' : 'Hide the clock';
+    window.clearTimeout(focusTimer);
+    if (noClock) {
+      status.textContent = `${plural(chosen.length, 'question')}, no clock. Press Finish when you are ready.${note}`;
+    } else {
+      const shown = Math.ceil(left / 60);
+      status.textContent = `${plural(chosen.length, 'question')}, ${plural(shown, 'minute')}${extra ? ' (with 25% extra time)' : ''}.${note}`;
+      paint();
+      timer = window.setInterval(tick, 1000);
+    }
     const first = chosen[0];
     first.scrollIntoView({ block: 'start' });
-    first.querySelector('.q-input, .mc-option, .btn-check')?.focus({ preventScroll: true });
+    // Say what the set is first: moving focus straight away would cut that announcement off.
+    focusTimer = window.setTimeout(() => first.querySelector('.q-input, .mc-option, .btn-check')?.focus({ preventScroll: true }), 2500);
   });
   clockBtn.addEventListener('click', () => { clock.hidden = !clock.hidden; clockBtn.textContent = clock.hidden ? 'Show the clock' : 'Hide the clock'; });
   pauseBtn.addEventListener('click', () => {
@@ -1069,8 +1230,9 @@ function startTimed() {
     pauseBtn.textContent = paused ? 'Carry on' : 'Pause';
     status.textContent = paused ? 'Paused. The clock is stopped.' : 'Carrying on.';
   });
-  moreBtn.addEventListener('click', () => { left += 300; paint(); status.textContent = '5 minutes added.'; });
+  moreBtn.addEventListener('click', () => { left += 300; paint(); status.textContent = `5 minutes added. Time left: ${timeLeft()}.`; });
   finishBtn.addEventListener('click', () => {
+    window.clearTimeout(focusTimer);
     stop('Marking time. Open each mark scheme and tick the marks you earned.');
     chosen.forEach((q) => {
       q.querySelectorAll('.btn-check').forEach((b) => { if (!b.disabled && /mark scheme/.test(b.textContent)) b.click(); });
@@ -1083,16 +1245,21 @@ function startTimed() {
   main.addEventListener('change', (e) => { if (chosen.length && e.target.classList?.contains('mark-box')) tally(); });
   leaveBtn.addEventListener('click', () => {
     window.clearInterval(timer);
+    window.clearTimeout(focusTimer);
     main.classList.remove('timed-running');
     all.forEach((q) => { q.hidden = false; helpOf(q, false); });
+    hiddenSections.forEach((sec) => { sec.hidden = false; });
+    hiddenSections = [];
     chosen = [];
     clock.textContent = '';
+    clock.hidden = false;
+    wrap.append(clock);
     status.textContent = '';
     startBtn.hidden = false;
     filter.hidden = false;
     topicFilter.hidden = false;
+    options.hidden = false;
     running.forEach((b) => { b.hidden = true; });
-    clock.hidden = false;
     startBtn.focus();
   });
 }
@@ -1117,22 +1284,17 @@ function questionRanges() {
   if (!page) return;
   const numberOf = (q) => Number((q.dataset.qid ?? '').replace(/^.*-/, ''));
   for (const q of document.querySelectorAll('.q[data-qid]')) { if (!q.id) q.id = `q${numberOf(q)}`; }
-  const raw = new URLSearchParams(window.location.search).get('q');
-  if (!raw || !/^[0-9,\-]{1,60}$/.test(raw)) return;
-  const wanted = new Set();
-  for (const part of raw.split(',')) {
-    const [a, b] = part.split('-').map(Number);
-    if (Number.isFinite(a)) for (let n = a; n <= (Number.isFinite(b) ? Math.min(b, a + 300) : a); n += 1) wanted.add(n);
-  }
+  const asked = parseRanges(new URLSearchParams(window.location.search).get('q'));
+  // Only questions this page really has: a link that asks for 1-500 must not claim to show 1-500.
+  const have = new Set([...document.querySelectorAll('.q[data-qid]')].map(numberOf));
+  const wanted = new Set(asked.filter((n) => have.has(n)));
   if (wanted.size === 0) return;
   document.querySelectorAll('details.recap').forEach((d) => { d.open = true; });
   for (const q of document.querySelectorAll('.q[data-qid]')) q.hidden = !wanted.has(numberOf(q));
   for (const sec of document.querySelectorAll('main section')) {
     if (sec.querySelector('.q') && ![...sec.querySelectorAll('.q')].some((q) => !q.hidden)) sec.hidden = true;
   }
-  const first = Math.min(...wanted);
-  const last = Math.max(...wanted);
-  const banner = el('p', { class: 'range-banner', role: 'status', text: `Showing questions ${first === last ? first : `${first} to ${last}`} only. ` });
+  const banner = el('p', { class: 'range-banner', role: 'status', text: `${rangeBanner([...wanted].sort((x, y) => x - y))} ` });
   banner.append(el('a', { href: window.location.pathname, text: 'Show the whole page' }));
   document.querySelector('main')?.prepend(banner);
 }

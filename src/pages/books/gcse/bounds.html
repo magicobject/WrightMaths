@@ -136,7 +136,7 @@
 <div class="q" data-answers="4250" data-mode="value">
   <p class="qtext">A distance is 4300 m, to 2 significant figures. What is its lower bound, in m?</p>
   <ol class="ladder"><li>Which place is the last significant figure in? That gives the rounding unit.</li><li>The 3 is in the hundreds place, so the unit is 100. Take away half of it.</li></ol>
-  <ul class="wrong"><li data-if="4200">That takes away the whole 100. Take away half of it.</li><li data-if="4295">That uses half of 10. The last significant figure is in the hundreds place, so the unit is 100.</li></ul>
+  <ul class="wrong"><li data-if="4200">That takes away the whole 100. Take away half of it.</li><li data-if="4295">That uses half of 10. The last significant figure is in the hundreds place, so the unit is 100.</li><li data-if="4350">That is the upper bound, because you added half of 100. The lower bound takes it away.</li><li data-if="4299;4299.5">That treats 4300 as if it was rounded to the nearest 1. It is rounded to 2 significant figures, so the unit is 100.</li></ul>
   <div class="solution"><p>The last significant figure is the 3, in the hundreds place. The unit is 100, so half the unit is 50. The lower bound is 4300 &minus; 50 = 4250 m.</p></div>
 </div>
 <div class="q" data-type="mc">
@@ -855,7 +855,7 @@
   <p class="qtext">[4 marks] The current in a circuit is I = V &divide; R. The voltage V is 230 V, to the nearest 10 V, and the resistance R is 46 ohms, to the nearest ohm. Work out the current to a degree of accuracy that is justified, in amps.</p>
   <ol class="ladder"><li>Greatest current: greatest voltage over least resistance. Smallest current: least voltage over greatest resistance.</li><li>Work out both bounds, then round both to 2 s.f. and to 1 s.f.</li><li>Give the answer at the most significant figures where both bounds agree.</li></ol>
   <ul class="wrong"><li data-if="5.2">That is the upper bound to 2 s.f. The bounds differ at 2 s.f., so give 1 s.f.</li><li data-if="4.8">That is the lower bound to 2 s.f. The upper bound is 5.2 to 2 s.f., so 2 s.f. is not justified.</li></ul>
-  <div class="solution"><p>Upper bound = 235 &divide; 45.5 = 5.1648&hellip;. Lower bound = 225 &divide; 46.5 = 4.8387&hellip;. To 2 s.f.: 5.2 and 4.8, which differ. To 1 s.f.: both 5. So the current is 5 A to 1 s.f.</p><ul class="markscheme"><li><b>M1</b> for 235 &divide; 45.5 (the upper bound of the current)</li><li><b>M1</b> for 225 &divide; 46.5 (the lower bound of the current)</li><li><b>A1</b> for 5.16&hellip; and 4.83&hellip;</li><li><b>C1</b> for both bounds rounding to 5 at 1 s.f., so 5 A</li></ul></div>
+  <div class="solution"><p>Upper bound = 235 &divide; 45.5 = 5.1648&hellip;. Lower bound = 225 &divide; 46.5 = 4.8387&hellip;. To 2 s.f.: 5.2 and 4.8, which differ. To 1 s.f.: both 5. So the current is 5 A to 1 s.f.</p><ul class="markscheme"><li><b>M1</b> for 235 &divide; 45.5 (the upper bound of the current)</li><li><b>M1</b> for 225 &divide; 46.5 (the lower bound of the current)</li><li><b>A1</b> for 5.16 and 4.84 (to 2 decimal places)</li><li><b>C1</b> for both bounds rounding to 5 at 1 s.f., so 5 A</li></ul></div>
 </div>
 <div class="q" data-answers="13.5" data-mode="value" data-marks="3">
   <p class="qtext">[3 marks] A plumber fills a tank of 150 litres, to the nearest 10 litres, using a pump that delivers 12 litres per minute, to the nearest litre per minute. What is the greatest possible time to fill the tank? Give your answer to 1 decimal place, in minutes.</p>
