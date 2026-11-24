@@ -876,3 +876,89 @@ test.describe('reviewer mode (?review=1)', () => {
     await expect(page.locator('.q').first().locator('.solution')).toBeHidden();
   });
 });
+
+test.describe('the calculator', () => {
+  test('appears only on questions where a calculator is allowed, on every book page', async ({ page }) => {
+    let withCalc = 0;
+    for (const bookPage of BOOK_PAGES) {
+      await page.goto(bookPage.path);
+      const rows = await page.evaluate(() => [...document.querySelectorAll('.q')].map((q) => ({
+        tag: q.querySelector(':scope > .qtext .qtag-calc')?.textContent?.trim() ?? '',
+        marked: q.closest('[data-calc]')?.getAttribute('data-calc') ?? '',
+        has: q.querySelector('.calc-toggle') !== null,
+        text: (q.querySelector('.qtext')?.textContent ?? '').slice(0, 60),
+      })));
+      for (const row of rows) {
+        const allowed = row.tag.toLowerCase() === 'non-calculator' ? false : row.tag.toLowerCase() === 'calculator' || row.marked === 'yes';
+        expect(row.has, `${bookPage.path}: "${row.text}" (tag "${row.tag}", data-calc "${row.marked}")`).toBe(allowed);
+        if (row.has) withCalc += 1;
+      }
+    }
+    expect(withCalc).toBeGreaterThan(5);
+  });
+
+  test('the diagnostic, which is no-calculator throughout, has no calculator button', async ({ page }) => {
+    await page.goto('/books/gcse/diagnostic.html');
+    await expect(page.locator('.calc-toggle')).toHaveCount(0);
+  });
+
+  test('the keypad does sums, keeps Ans, refuses a second decimal point and reports errors', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    const toggle = q.locator('.calc-toggle');
+    const panel = q.locator('.calc');
+    await expect(panel).toBeHidden();
+    await toggle.click();
+    await expect(panel).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    const key = (name: string) => panel.getByRole('button', { name, exact: true });
+    const result = panel.locator('.calc-result');
+
+    await key('7').click(); await key('times').click(); await key('8').click(); await key('equals').click();
+    await expect(result).toHaveText('56');
+    await key('plus').click(); await key('1').click(); await key('equals').click(); // continues from Ans
+    await expect(panel.locator('.calc-expr')).toHaveText('Ans + 1');
+    await expect(result).toHaveText('57');
+
+    await key('AC, clear all').click();
+    await key('1').click(); await key('decimal point').click(); await key('5').click(); await key('decimal point').click(); await key('2').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('1.52');
+    await key('DEL, delete').click();
+    await expect(panel.locator('.calc-expr')).toHaveText('1.5');
+
+    await key('AC, clear all').click();
+    await key('square root').click(); await key('3').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('5.477225575');
+
+    await key('AC, clear all').click();
+    await key('1').click(); await key('divide').click(); await key('0').click(); await key('equals').click();
+    await expect(result).toHaveText('Math error');
+  });
+
+  test('the keyboard works inside the calculator, Escape closes it and focus returns to its button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    await expect(q.locator('.calc')).toBeFocused();
+    await page.keyboard.type('12/4=');
+    await expect(q.locator('.calc-result')).toHaveText('3');
+    await page.keyboard.type('*5');
+    await page.keyboard.press('Enter');
+    await expect(q.locator('.calc-result')).toHaveText('15');
+    await page.keyboard.press('Backspace');
+    await page.keyboard.press('Escape');
+    await expect(q.locator('.calc')).toBeHidden();
+    await expect(q.locator('.calc-toggle')).toBeFocused();
+  });
+
+  test('typing in the answer box never drives the calculator, and the calculator stores nothing', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    await page.keyboard.type('99=');
+    await q.locator('.q-input').fill('45');
+    await expect(q.locator('.q-input')).toHaveValue('45');
+    const keys = await page.evaluate(() => Object.keys(window.localStorage));
+    expect(keys.filter((k) => !k.startsWith('wm-gcse'))).toEqual([]);
+  });
+});

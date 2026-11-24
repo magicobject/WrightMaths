@@ -1,0 +1,2269 @@
+0001  A traditional kitchen scale balances. On the left pan there is a mystery weight and a 3 grams weight. On the right pan there is a 10 grams weight. How heavy is the mystery weight, in grams? The picture shows: A kitchen scale that balances. Left pan: a mystery weight (?) and a 3 grams weight. Right pan: a 10 grams weight.
+
+0002  Last time: work out 3 plus 4 times 2.
+
+0003  Work out minus 2 plus 5.
+
+0004  Work out 2 times (3 plus 4).
+
+0005  Key idea: we leave out the times sign: 3n means 3 times n, and ab means a times b. Write the number first: 3n, not n3. This is a convention, an agreed habit, so that everyone reads algebra the same way. And a times a is written a squared. The letter is just a placeholder for a number, so everything you know about numbers still works.
+
+0006  If n equals 4, what is n plus 7? The picture shows: A function machine. The input is 4. The machine adds 7. The output is unknown.
+
+0007  If n equals 5, what is 3n?
+
+0008  If n equals 10, what is n over 2?
+
+0009  Which expression means “5 less than n”?
+
+0010  Which expression means “double n, then add 3”?
+
+0011  A tube of blue paint costs £b. Zara buys 3 tubes and a 2 pounds brush. Write an expression for the total cost in pounds. (Type it like 3b plus 2.)
+
+0012  Key idea: write the letter’s value in brackets when you substitute, especially for negatives: for x squared with x equals minus 3, write ( minus 3) squared equals 9. Without brackets you might compute minus 3 squared equals minus 9, which is not the same.
+
+0013  Work out 2x plus 3 when x equals 4. The picture shows: A function machine. The input x is 4. The machine multiplies by 2, then adds 3. The output is unknown.
+
+0014  Work out 5a minus 2 when a equals 3. The picture shows: A function machine. The input a is 3. The machine multiplies by 5, then subtracts 2. The output is unknown.
+
+0015  Work out x squared when x equals minus 3. The picture shows: A function machine. The input x is minus 3. The machine squares it, which means multiplying it by itself. The output is unknown.
+
+0016  Work out 3(y plus 2) when y equals 1.
+
+0017  Work out a plus b when a equals 2 and b equals minus 5.
+
+0018  Work out 2x squared when x equals 3.
+
+0019  A tube of blue paint costs £b. Zara buys 3 tubes and a 2 pounds brush, so the cost is 3b plus 2 pounds. Work out the cost when b equals 4.
+
+0020  A playlist has a 3-minute intro and then 4 songs of s minutes each. It lasts 4s plus 3 minutes. Work out how long it lasts when s equals 3.5.
+
+0021  Key idea: 3a plus 2a equals 5a is like “3 apples plus 2 apples equals 5 apples”. It works because a is the same number in both terms: 3a plus 2a equals (3 plus 2)a. A letter is a number, not an object. But 3 apples plus 2 bananas stays as 3 apples plus 2 bananas, and 3a plus 2b stays as it is, because a and b can be different numbers. Each term keeps the sign in front of it, so in 5x plus 2 minus x plus 4 the x terms are 5x and minus x (which is minus 1x).
+
+0022  Simplify 3a plus 2a. The picture shows: Three pink tiles each labelled a, standing for 3a, next to two blue tiles each labelled a, standing for 2a.
+
+0023  Simplify 7x minus 3x.
+
+0024  Simplify 4a plus 3b plus 2a. (Type it like 6a plus 3b.)
+
+0025  Simplify 5x plus 2 minus x plus 4. (Type it like 4x plus 6.)
+
+0026  Write a times a as simply as possible. (Type it like a squared.)
+
+0027  Write 3 times a times b as simply as possible. (Type it like 3ab.)
+
+0028  Tiles are laid in a row: 3 pink tiles and 2 blue tiles, each a cm long, and 4 gold tiles, each 1 centimetres long. Write the total length in cm in its simplest form. (Type it like 5a plus 4.) The picture shows: A row of tiles. Three pink tiles and two blue tiles are each a centimetres long. Four small gold tiles are each 1 centimetre long.
+
+0029  Key idea: the number outside multiplies both terms. 3(x plus 4) equals 3x plus 12, not 3x plus 4. If there is a minus inside, keep the sign: 2(a minus 5) equals 2a minus 10, because 2 times ( minus 5) equals minus 10.
+
+0030  A sketchbook cover is 3 centimetres tall and (x plus 4) cm wide. Expand 3(x plus 4) to write its area. (Type it like 3x plus 12.) The picture shows: A rectangle of height 3 and width x plus 4, cut into a piece of width x and a piece of width 4. The area of each piece is unknown.
+
+0031  The sketchbook cover's area is 3(x plus 4) equals 3x plus 12 centimetres squared. Work out the area when x equals 5, in cm squared.
+
+0032  Expand 2(a minus 5). (Type it like 2a-10.)
+
+0033  Expand 5(2y plus 1). (Type it like 10y plus 5.) The picture shows: A rectangle of height 5 and width 2y plus 1, cut into a piece of width 2y and a piece of width 1. The area of each piece is unknown.
+
+0034  Expand 4(m plus 3) and then work out its value when m equals 2.
+
+0035  Key idea: putting the right value for the unknown is what makes both sides of the equals the same. That value is the solution. For x plus 3 equals 10 the right value is x equals 7, because 7 plus 3 equals 10 and the scale balances.
+
+0036  x plus 3 equals 10. What value of x makes both sides equal?
+
+0037  x plus 7 equals 12. Does x equals 5 make the scale balance? The picture shows: A kitchen scale. Left pan: a weight x and a 7 grams weight. Right pan: a 12 grams weight.
+
+0038  2x equals 14. What value of x makes both sides equal?
+
+0039  x minus 4 equals 9. What value of x makes both sides equal?
+
+0040  You put 5 grams more in the left pan. What keeps the scale balanced?
+
+0041  Key idea: substituting and solving are two directions of the same relationship. In the same way, expanding and factorising are a pair. They are the same statement read in two directions: 3(x plus 4) equals 3x plus 12.
+
+0042  2x plus 3 equals 11. Find the value of x that makes both sides equal. The picture shows: A kitchen scale. Left pan: two equal weights x and a 3 grams weight. Right pan: an 11 grams weight.
+
+0043  3x plus 12 equals 3(? ). Fill in the bracket. (Type it like x plus 4.)
+
+0044  6x plus 9 equals 3(? ). Fill in the bracket. (Type it like 2x plus 3.)
+
+0045  A rule: multiply n by 3, then add 1. When n equals 1, 2, 3 the answers are 4, 7, 10. What is the answer when n equals 10?
+
+0046  A different rule is 3n plus 2. When the answer is 17, what was n? The picture shows: An inverse function machine, run backwards from the answer. The start is 17. The first step subtracts 2. The second step divides by 3. The finish is the unknown n.
+
+0047  Pat says: “3a plus 2b equals 5ab.” What went wrong?
+
+0048  Quin says: “2(x plus 3) equals 2x plus 3.” What went wrong?
+
+0049  Rae says: “When x equals 4, 3x equals 34.” What went wrong?
+
+0050  Work out 5x minus x squared when x equals 2.
+
+0051  Simplify 8x minus 3x plus 2x. (Type it like 7x.)
+
+0052  Expand 4(x minus 2). (Type it like 4x-8.)
+
+0053  Work out 3n plus 10 when n equals minus 2. The picture shows: A function machine. The input n is minus 2. The machine multiplies by 3, then adds 10. The output is unknown.
+
+0054  Which is NOT a like term with 3a: 5a, a squared or 7a?
+
+0055  (a) [2 marks] Work out the value of 2x squared minus 3x when x equals minus 2.
+
+0056  (b) [2 marks] Simplify 4x plus 3 minus x plus 5. (Type it like 3x plus 8.)
+
+0057  (c) [3 marks] Expand and simplify 2(x plus 3) plus 3(x minus 1). (Type it like 5x plus 3.)
+
+0058  Work out x squared plus 3x when x equals minus 2.
+
+0059  Simplify 2(3x plus 1) minus 4x. (Type it like 2x plus 2.)
+
+0060  Expand (x plus 1)(x plus 4). (Type it like x squared plus 5x plus 4.) The picture shows: A grid with x and 4 across the top and x and 1 down the side. The four cell areas are unknown.
+
+0061  Expand (x plus 5)(x plus 2). (Type it like x squared plus 7x plus 10.) The picture shows: A grid with x and 2 across the top and x and 5 down the side. The four cell areas are unknown.
+
+0062  Expand (x plus 3)(x minus 1). (Type it like x squared plus 2x-3.)
+
+0063  A plumber works out a quote with C equals 45 plus 38h, where C is the cost in pounds, 45 is the call-out fee and h is the number of hours. Find C when h equals 3.5. Give your answer in pounds.
+
+0064  A quote is C equals 60 plus 42h plus m, where h is the hours of labour and m is the cost of parts in pounds. Find C when h equals 2.5 and m equals 86.40. Type it like 42.75.
+
+0065  The number of 0.5 metres square tiles needed for a floor is n equals 4lw, where l is the length and w is the width of the floor, both in metres. Find n when l equals 3.5 and w equals 2.5. The picture shows: A rectangle made of a grid of square tiles, 7 tiles along the length and 5 tiles across the width. The length is labelled 3.5 metres and the width is labelled 2.5 metres. Each tile is 0.5 metres by 0.5 metres.
+
+0066  [3 marks] A quote with VAT is C equals 1.2(45 plus 38h plus m), where h is the hours of labour and m is the cost of parts in pounds. Find C when h equals 2 and m equals 54.50. Type it like 42.75.
+
+0067  The volume of water in a round pipe is V equals 3.14r2h, where r is the radius and h is the length, both in cm. Find V when r equals 2 and h equals 10, in cm3.
+
+0068  Key idea: the number of marks tells you how much to write. One mark is a short answer. Three or four marks need working. Always show your working when there are two or more marks.
+
+0069  The question says Write down the next number in 2, 4, 6, 8. What should you do?
+
+0070  The question says Show that the answer is 12. What do the marks reward?
+
+0071  You are asked to explain why the angles in a triangle cannot be 60 degrees, 70 degrees and 40 degrees. Which answer earns the mark?
+
+0072  The question says Estimate 48.7 times 19.8. What do you write?
+
+0073  How it works: answer what you can. Leave a box empty if you do not know. No hints and no calculator. Where the answer is a fraction, type it like 1 over 4. At the end you get a map of your gaps and your first three topics to try. Come back in a month to see how far you have come. Your answers are checked in this browser and never sent anywhere. A half-finished check is kept only until you close the tab. Your finished results are saved only in this browser, on this device.
+
+0074  What is the value of the digit 6 in 3,640?
+
+0075  Work out 47 times 6.
+
+0076  Work out minus 3 minus 4.
+
+0077  Work out 2 plus 3 times 5.
+
+0078  What is the highest common factor (HCF) of 12 and 18?
+
+0079  Work out square root of 49 plus 3 squared.
+
+0080  Angles on a straight line are 65 degrees and x. Find x, in degrees.
+
+0081  Work out 1 over 2 plus 1 over 3. Give a fraction (type it like 1 over 4).
+
+0082  Work out 3x plus 5 when x equals 4.
+
+0083  Solve 3x plus 5 equals 20. Give the value of x.
+
+0084  The shorter sides of a right-angled triangle are 6 centimetres and 8 centimetres. Find the hypotenuse, in cm.
+
+0085  Is 24 a multiple of 6?
+
+0086  Last time: work out 8 times 7.
+
+0087  Work out 72 divided by 9.
+
+0088  Work out 144 divided by 12.
+
+0089  Key idea: multiples go on for ever, and the 5th multiple of 8 is 5 times 8 equals 40. To test whether a number is a multiple, divide: it is a multiple of 7 if it divides by 7 with no remainder.
+
+0090  What is the 5th multiple of 8?
+
+0091  Which of these is a multiple of 9?
+
+0092  What is the first multiple of 12 that is bigger than 100?
+
+0093  Is 119 a multiple of 7?
+
+0094  The 3rd multiple of a number is 21. What is the number?
+
+0095  Key idea: start at 1 and test each whole number in order. Stop when the numbers you are testing meet the partners you have already found. Each factor goes with its partner, so factors are multiples seen from the other side: 3 is a factor of 12, and 12 is a multiple of 3.
+
+0096  Why the tests for 3 and 9 work: 10 leaves remainder 1 when you divide by 9, so 100 and 1000 do too (99 and 999 are multiples of 9). So a number is its digit sum plus a multiple of 9. For example 4,563 equals 4 times 999 plus 5 times 99 plus 6 times 9 plus (4 plus 5 plus 6 plus 3). The first three parts divide by 9, so only the digit sum, 18, decides. Since 3 divides 9, the same test works for 3.
+
+0097  How many factors does 50 have?
+
+0098  Which of these is NOT a factor of 30?
+
+0099  How many factor pairs does 18 have? The picture shows: A rectangle with area 18. Its two side lengths are unknown, each labelled with a question mark. Each pair of whole-number side lengths that multiply to 18 is a factor pair.
+
+0100  What is the biggest factor of 45 that is smaller than 45?
+
+0101  Is 4,563 divisible by 3?
+
+0102  Key idea: 1 is not prime (it has only one factor). 2 is the only even prime. Break any number into primes with a factor tree: split it into two factors, keep splitting until every branch ends in a prime.
+
+0103  Which of these is a prime number: 21, 23 or 27?
+
+0104  Is 1 a prime number?
+
+0105  How many prime numbers are there between 10 and 20? The picture shows: A number line with every whole number from 10 to 20 marked and labelled.
+
+0106  What is the smallest prime number?
+
+0107  150 equals 2 times 3 times 5 times 5. What is the largest prime factor of 150?
+
+0108  To decide whether 89 is prime, you only need to test primes up to square root of 89. What is the largest prime you need to test?
+
+0109  How many prime factors does 36 have, counting repeats? (36 equals 2 times 2 times 3 times 3)
+
+0110  Key idea: HCF answers “what is the biggest piece size that fits both exactly?” LCM answers “when do the two cycles line up next?” The HCF is never bigger than the smaller number; the LCM is never smaller than the bigger.
+
+0111  Find the HCF of 12 and 18.
+
+0112  Find the LCM of 4 and 6.
+
+0113  Find the HCF of 40 and 56.
+
+0114  Find the LCM of 10 and 15.
+
+0115  Find the LCM of 5 and 7.
+
+0116  Find the HCF of 15 and 28.
+
+0117  60 equals 2 squared times 3 times 5 and 84 equals 2 squared times 3 times 7. Use the prime factors to find the HCF of 60 and 84.
+
+0118  20 equals 2 squared times 5 and 50 equals 2 times 5 squared. Use the prime factors to find the LCM of 20 and 50.
+
+0119  Write 18 and 24 as products of primes, then find their LCM.
+
+0120  Key idea: one multiplication fact gives you four statements. 3 times 4 equals 12 means 3 and 4 are factors of 12, and 12 is a multiple of both 3 and 4. Prime factorisation also goes both ways: break a number into primes, or multiply primes together to rebuild it.
+
+0121  7 is a factor of 56. So 56 is a ___ of 7.
+
+0122  What is the product of the prime factors 2 times 3 times 3 times 5?
+
+0123  I am a multiple of 8 and a factor of 48. I am bigger than 8. What is the smallest number I could be?
+
+0124  A number has exactly the factors 1, 2, 4 and 8. What is it?
+
+0125  I am a prime number between 30 and 40. What could I be? (Either answer is fine.)
+
+0126  One bus leaves a station every 12 minutes and another leaves every 18 minutes. They both leave at 9:00. After how many minutes do they next leave together?
+
+0127  Ribbons of 36 centimetres and 54 centimetres are cut into equal pieces with no ribbon left over. What is the longest piece possible, in cm? The picture shows: Two bars. The shorter one is a ribbon 36 centimetres long and the longer one is 54 centimetres long. Both are to be cut into equal pieces of an unknown length, labelled with a question mark.
+
+0128  Pencils are sold in packs of 10 and notebooks in packs of 8. What is the smallest number of notebooks you can buy so that you have exactly the same number of pencils and notebooks? The picture shows: Two rows of packs. The pencil row shows three packs of 10 and then dots to show it continues. The notebook row shows three packs of 8 and then dots. You need the totals in the two rows to match.
+
+0129  Sam says: “1 is a prime number because you can only divide it by itself.” What went wrong?
+
+0130  Lia says: “The LCM of 6 and 9 is 3.” What went wrong?
+
+0131  Max says: “The factors of 12 are 1, 2, 3, 4 and 6.” What went wrong?
+
+0132  Write all the factors of 40 and count them. How many factors does 40 have?
+
+0133  What is the 9th multiple of 6?
+
+0134  Find the HCF of 30 and 45.
+
+0135  Find the LCM of 9 and 12.
+
+0136  Which of these numbers is a prime number: 51, 57 or 59?
+
+0137  (a) [1 mark] Which line shows 28 written as a product of prime factors? The picture shows: A factor tree. 28 splits into two numbers, both unknown. One of these splits again into two more unknown numbers. All the unknowns are labelled with question marks.
+
+0138  (b) [2 marks] Find the highest common factor (HCF) of 28 and 42.
+
+0139  (c) [2 marks] One bell rings every 28 seconds and another every 42 seconds. They ring together at noon. After how many seconds do they next ring together?
+
+0140  Find the HCF of 8 and 12 and the LCM of 8 and 12. Multiply them together. What do you get?
+
+0141  Do the same for 6 and 15: work out HCF times LCM.
+
+0142  Test the pattern on a third pair before you trust it. Find the HCF and LCM of 4 and 10, then work out HCF times LCM.
+
+0143  What pattern do the last three questions suggest for any two whole numbers?
+
+0144  The HCF of two numbers is 4 and their LCM is 24. One of the numbers is 8. What is the other?
+
+0145  How many numbers from 1 to 50 have an odd number of factors?
+
+0146  Why do the square numbers have an odd number of factors?
+
+0147  Two whole numbers have HCF 6 and LCM 180. How many different pairs (smaller number, larger number) are possible?
+
+0148  What is the smallest number with exactly 6 factors?
+
+0149  There are 100 lockers in a row, all closed. Student 1 changes every locker (closed becomes open). Student 2 changes every 2nd locker (open becomes closed, closed becomes open). Student 3 changes every 3rd locker, and so on, up to student 100, who changes only locker 100. How many lockers are open at the end?
+
+0150  25! (said “25 factorial”) means 25 times 24 times 23 times, times 2 times 1. It is a huge number. How many zeros does it end with?
+
+0151  What is the last digit of 72025? (You cannot use a calculator for a number this big. Look for a pattern in the last digits of 7, 7 squared, 7 cubed, )
+
+0152  Find the smallest number that leaves remainder 1 when divided by 2, by 3, by 4, by 5 and by 6, and that is also a multiple of 7.
+
+0153  A pack has 24 cards. How many cards are in 6 packs? The picture shows: A bar split into 6 equal parts, each part labelled 24 cards. The whole bar, the total number of cards, is labelled with a question mark.
+
+0154  What is the value of the 4 in 3,412?
+
+0155  Round 4,862 to the nearest 100.
+
+0156  Work out 3.4 times 10.
+
+0157  Key idea: start at the right-hand column. Adding: 10 or more in a column? Carry 1 into the next column. Subtracting: top digit too small? Take 1 from the next column. It turns into 10 here. This is called an exchange. Some people say borrow. Keep digits in line. Untidy columns cause most mistakes.
+
+0158  Work out 4,578 plus 3,964.
+
+0159  Work out 6,003 minus 2,458.
+
+0160  Work out 63 minus 28.
+
+0161  A paint mix uses 12.7 litres of white paint and 8.45 litres of blue paint. How many litres is that altogether?
+
+0162  Work out 50 minus 17.38. The picture shows: A bar for the number 50 split into two parts. The first part is 17.38. The second part, what is left, is labelled with a question mark.
+
+0163  What is the Difference between 83 and 127? The picture shows: A bar for the number 127 split into two parts. The first part is 83. The second part, the difference, is labelled with a question mark.
+
+0164  Key idea: 3.2 times 4. Ignore the point: 32 times 4 equals 128. 3.2 has one digit after the point. So the answer gets one: 12.8.
+
+0165  Six gamers each collect 47 coins. How many coins is that altogether? Work out 47 times 6.
+
+0166  A track on a playlist lasts 124 seconds. You play it 5 times. How many seconds is that? The picture shows: A bar split into 5 equal parts, each part labelled 124 seconds. The whole bar, the total time, is labelled with a question mark.
+
+0167  Work out 36 times 24. The picture shows: A rectangle 36 wide and 24 tall, split into four smaller rectangles. The width is split into 30 and 6, the height into 20 and 4. Each small rectangle is labelled with a question mark for its area.
+
+0168  Work out 3.2 times 4.
+
+0169  Work out 0.3 times 0.4.
+
+0170  Key idea: division asks “how many groups fit in?” Or it asks you to share equally. To divide by a decimal, make the divisor whole. Multiply both numbers by 10, 100, 1,000, until the number you divide by is whole. Example: 3.6 divided by 0.4 becomes 36 divided by 4.
+
+0171  A school raises 252 pounds for its football club. The money is shared equally between 6 teams. How many pounds does each team get?
+
+0172  Work out 1,456 divided by 7.
+
+0173  What is the remainder when 95 is divided by 4?
+
+0174  Write 95 divided by 4 as a decimal.
+
+0175  Work out 3.6 divided by 0.4.
+
+0176  Key idea: add and subtract are inverse operations, and so are multiply and divide. Use this to check an answer by reversing it. Use it to find a missing number by undoing the steps.
+
+0177  You know 342 plus 289 equals 631. What is 631 minus 289?
+
+0178  I think of a number, multiply it by 7 and get 91. What is my number? The picture shows: A bar for the number 91 split into 7 equal parts. Each part is the unknown number, labelled with a question mark.
+
+0179  46 times? equals 1,196. Find the missing number.
+
+0180  ? minus 138 equals 267. Find the missing number. The picture shows: A bar whose whole length is the unknown number, labelled with a question mark. It is made of two parts: 138 and 267.
+
+0181  ? divided by 8 equals 15. Find the missing number. The picture shows: A bar split into 8 equal parts, each labelled 15. The whole bar is the unknown number, labelled with a question mark.
+
+0182  You know 24 times 6 equals 144. Write the answer to 144 divided by 24.
+
+0183  Key idea: counting whole things? A remainder usually means one more. 70 students, 16 in each minibus (a small bus). You need 5 minibuses, not 4.375.
+
+0184  What is the total cost in pounds? The picture shows: A bar made of four equal parts, each 8 pounds 50 for a ticket, and one smaller part of 3 pounds for the booking fee. The whole bar, the total cost, is labelled with a question mark.
+
+0185  156 pencils are shared equally between 12 children. How many pencils does each child get? The picture shows: A bar for 156 pencils split into 12 equal parts, one for each child. Each part is labelled with a question mark.
+
+0186  70 students go on a trip. Each minibus (a small bus) holds 16 students. How many minibuses are needed? The picture shows: A single bar for 70 students. Inside the bar are the words 16 in each minibus and a question mark for the number of minibuses.
+
+0187  A bag holds 1.5 kilograms of flour. How many 250 grams portions can you make? (1 kilograms equals 1,000 grams.) The picture shows: A single bar for 1.5 kilograms of flour. Inside the bar are the words 250 grams in each portion and a question mark for the number of portions.
+
+0188  Jo saves 12.50 pounds each week. How many weeks does it take her to save at least 100 pounds?
+
+0189  Mia says: “6,003 minus 2,458 equals 4,455.” (She did each column by taking the smaller digit from the bigger.) What went wrong?
+
+0190  Tom says: “3.5 times 0.2 equals 7.” What went wrong?
+
+0191  A game character has 52 health points, takes 17 damage and then heals 8. How many health points does it have now?
+
+0192  Ava has 3.2 metres of ribbon and buys 0.85 metres more. How many metres of ribbon does she have?
+
+0193  Work out 125 times 8.
+
+0194  A music app has 432 songs. They are split into playlists of 12 songs each. How many playlists is that?
+
+0195  A box holds 12 eggs. How many boxes are needed for 100 eggs? The picture shows: A single bar for 100 eggs. Inside the bar are the words 12 in each box and a question mark for the number of boxes.
+
+0196  (a) [3 marks] Work out the total cost, in pounds. The picture shows: A bar made of five parts. Two parts, shown in blue, are adult tickets of 12 pounds 50 each. Three parts, shown in orange, are child tickets of 7 pounds 25 each. The whole bar, the total cost, is labelled with a question mark.
+
+0197  (b) [2 marks] They pay with a 50 pounds note. How much change (the money they get back) do they get, in pounds?
+
+0198  (c) [3 marks] How many people are there altogether? The picture shows: A bar made of five parts. Four equal parts of 52 people, shown in blue, are the full coaches. A fifth part of 37 people, shown in orange, is the last coach. The whole bar, the total number of people, is labelled with a question mark.
+
+0199  Use the digits 2, 3 and 4 once each to make a two-digit number multiplied by a one-digit number. What is the largest product you can make?
+
+0200  You know 4,872 divided by 24 equals 203. What is 203 times 24?
+
+0201  What fraction of the pizza has gone? The picture shows: A pizza cut into 8 equal slices. Three slices are shaded pink for what you ate and two slices are shaded blue for what your friend ate. Three slices are untouched.
+
+0202  Work out 7 times 8.
+
+0203  What is the highest common factor (the biggest number that goes into both) of 12 and 18?
+
+0204  What is the lowest common multiple (the smallest number in both times tables) of 4 and 6?
+
+0205  Key idea: the denominator names the size of the parts (eighths, quarters, tenths). The numerator counts them. For the same whole, and the same numerator, a bigger denominator means smaller pieces: 1 over 8 is smaller than 1 over 4. (With different numerators you have to compare more carefully: 3 over 8 is bigger than 1 over 4.) The denominator can never be 0, because you cannot cut a whole into 0 parts.
+
+0206  What is the Denominator of 5 over 8?
+
+0207  Fill the gap: 2 over 3 equals? over 12. What number goes where the? is? The picture shows: Two bars of equal length. The first is split into 3 equal parts with 2 shaded. The second is split into 12 equal parts with none shaded. The question asks how many twelfths match two thirds.
+
+0208  Simplify 12 over 18 fully. Give your answer as a fraction.
+
+0209  Which is bigger: 3 over 5 or 4 over 7? The picture shows: Two bars of equal length. The first is split into 5 equal parts with 3 shaded. The second is split into 7 equal parts with 4 shaded.
+
+0210  Key idea: change the pieces to the same size, then add the counts. The size (denominator) never gets added.
+
+0211  Work out 1 over 5 plus 3 over 5.
+
+0212  Work out 1 over 2 plus 1 over 3. The picture shows: Three bars of equal length. One is split into halves with one half shaded. One is split into thirds with one third shaded. One is split into sixths with none shaded, to show a common size of piece.
+
+0213  Work out 3 over 4 minus 1 over 6. The picture shows: Three bars of equal length. One is split into quarters with 3 shaded. One is split into sixths with 1 shaded. One is split into twelfths with none shaded, to show a common size of piece.
+
+0214  Work out 2 over 3 plus 3 over 4. Either an improper fraction or a mixed number is fine.
+
+0215  Key idea: every whole holds 2 halves, so dividing by 1 over 2 gives twice as many: it is the same as times 2. The number 2 over 1 is the Reciprocal of 1 over 2. Dividing by a fraction is the same as multiplying by its reciprocal, and now you can see why.
+
+0216  Work out 2 over 3 times 3 over 5. Give your answer in its simplest form.
+
+0217  Work out 3 over 4 divided by 1 over 2. Give your answer in its simplest form, as a fraction or a mixed number (not a decimal).
+
+0218  Work out 2 over 3 divided by 1 over 2. Give your answer in its simplest form, as a fraction or a mixed number (not a decimal).
+
+0219  Work out 3 over 4 times 8 over 9. Cancel first if you can. Give your answer in its simplest form.
+
+0220  A striker scored 3 over 8 of the team's 24 goals. How many goals did the striker score?
+
+0221  Work out 1 1 over 2 times 2 over 3.
+
+0222  A playlist lasts 40 minutes. 3 over 5 of it is hip-hop. How many minutes of hip-hop is that? The picture shows: A bar standing for 40, split into 5 equal parts, with 3 parts shaded.
+
+0223  Key idea: “3 over 5 of a number is 24” means three fifths equal 24. So one fifth is 24 divided by 3 equals 8. The whole is five fifths: 8 times 5 equals 40. Use the two operations in the opposite order.
+
+0224  3 over 4 of a number is 18. What is the number? The picture shows: A bar split into 4 equal parts. Three parts are shaded and together they are 18. The whole bar, all four parts, is the unknown number.
+
+0225  What fraction must you add to 2 over 5 to make 1? The picture shows: A bar split into 5 equal parts with 2 shaded. The unshaded part is the unknown. The whole bar is 1.
+
+0226  Write 0.6 as a fraction in its simplest form.
+
+0227  Write 0.375 as a fraction in its simplest form.
+
+0228  Write 1 divided by 8 as a fraction.
+
+0229  Mia says: 1 over 3 plus 1 over 4 equals 2 over 7. What went wrong?
+
+0230  Sam says: 1 over 2 divided by 1 over 4 equals 1 over 8. What went wrong?
+
+0231  Which of these is the biggest: 2 over 3, 3 over 5 or 5 over 8? The picture shows: Three bars of equal length. One is split into 3 parts with 2 shaded. One is split into 5 parts with 3 shaded. One is split into 8 parts with 5 shaded.
+
+0232  A playlist has 24 songs. 3 over 4 of them are by UK artists. How many songs is that?
+
+0233  Ava trained on the basketball court for 5 over 6 of an hour. Mo trained for 1 over 3 of an hour. How much longer did Ava train? Give the answer in hours, in its simplest form.
+
+0234  Write 2 1 over 4 as an improper fraction. The picture shows: Three bars, each split into quarters. The first two are completely shaded, one whole each. The third has one quarter shaded.
+
+0235  In a box of pencils, 2 over 5 are red and 1 over 4 are green. What fraction are neither red nor green? The picture shows: Three bars of equal length for the whole box. One is split into fifths with 2 shaded for red. One is split into quarters with 1 shaded for green. One is split into twentieths with none shaded, to show a common size of piece.
+
+0236  A striker scored 3 over 8 of the team's goals this season. That is 15 goals. How many goals did the team score?
+
+0237  Work out 1 over 2 divided by 3. Give your answer as a fraction in its simplest form. The picture shows: A bar split into 2 equal halves. One half is shaded and cut by dashed lines into 3 equal pieces. The question asks what fraction of the whole bar each piece is.
+
+0238  A ribbon is 2 metres long. Zoe cuts off 3 over 4 metres. Then she cuts a third of what is left for a bow. How many metres of ribbon are left now? Give your answer as a fraction in its simplest form.
+
+0239  (a) [2 marks] How much does she spend altogether? Answer in pounds. The picture shows: Two bars each standing for 60. pounds The first is split into thirds with one third shaded for the game. The second is split into quarters with one quarter shaded for lunch.
+
+0240  (b) [2 marks] What fraction of Jo's money is left?
+
+0241  You know 1 over 2 plus 1 over 3 equals 5 over 6. Without starting a fresh calculation, what is 5 over 6 minus 1 over 2?
+
+0242  Egyptians wrote fractions as sums of different unit fractions (fractions with 1 on the top). Two different unit fractions add to give 1 over 6. Their denominators add up to 25. What is the larger denominator?
+
+0243  Work out 1 over (1 times 2) plus 1 over (2 times 3) plus 1 over (3 times 4) plus, plus 1 over (9 times 10). (Do not add all nine fractions the long way: look for a pattern.)
+
+0244  How to use it: terms are in alphabetical order. Entries marked Higher are for Higher tier only. Filter by strand to see just one area, or jump to a letter.
+
+0245  The temperature is minus 4 degrees Celsius and rises by 9 degrees. What is the new temperature in degrees Celsius? The picture shows: A vertical thermometer scale from minus 10 to 10 degrees with the starting temperature of minus 4 degrees marked. The temperature then rises by 9 degrees.
+
+0246  Work out 7 times 9.
+
+0247  Key idea: bigger numbers are further to the right. So minus 2 is bigger than minus 10, even though 10 looks bigger than 2. A debt (money you owe) of 2 pounds is better than a debt of 10. pounds (£ means pounds, the UK money.)
+
+0248  Which is the biggest: minus 7, minus 2 or minus 10? The picture shows: A number line from minus 10 to 0 with the three numbers minus 10, minus 7 and minus 2 marked.
+
+0249  Which is the smaller number: minus 8 or minus 3?
+
+0250  What number is halfway between minus 6 and 2? The picture shows: A number line from minus 8 to 4 with minus 6 and 2 marked. The number halfway between them is not marked.
+
+0251  How far is minus 3 from 4 on the number line? The picture shows: A number line from minus 5 to 6 with minus 3 and 4 marked. The distance between them is the question.
+
+0252  What is 3 more than minus 5?
+
+0253  Key idea: start at the first number, then move. minus 3 plus 5: start at minus 3, go up 5, land on 2. minus 4 minus 3: start at minus 4, go down 3, land on minus 7.
+
+0254  Work out minus 3 plus 5. The picture shows: A number line from minus 6 to 6 with the starting point minus 3 marked. Adding 5 means moving 5 steps to the right.
+
+0255  Work out minus 4 minus 3. The picture shows: A number line from minus 10 to 2 with the starting point minus 4 marked. Subtracting 3 means moving 3 steps to the left.
+
+0256  Work out 2 minus 7. The picture shows: A number line from minus 8 to 4 with the starting point 2 marked. Subtracting 7 means moving 7 steps to the left, past zero.
+
+0257  Work out minus 6 plus 10.
+
+0258  The temperature is 3 degrees Celsius and falls by 8 degrees. What is the new temperature in degrees Celsius? The picture shows: A vertical thermometer scale from minus 10 to 10 degrees with the starting temperature of 3 degrees marked. The temperature then falls by 8 degrees.
+
+0259  Key idea: subtracting a debt makes you richer. If someone takes away a 3 pounds debt of yours, you are 3 pounds better off. So 5 minus ( minus 3) is 5 plus 3.
+
+0260  Work out 5 minus ( minus 3).
+
+0261  Work out minus 2 minus ( minus 6).
+
+0262  A player has 3 points. A trap adds minus 5 points. What is the score now?
+
+0263  Work out minus 4 minus ( minus 4).
+
+0264  Work out 7 minus ( minus 2) plus ( minus 3).
+
+0265  Key idea: ( minus 5) times ( minus 6): same signs, so positive: 30. 3 times ( minus 4): different signs, so negative: minus 12. Division undoes multiplication, so it follows the same rule (for non-zero numbers; you cannot divide by 0).
+
+0266  A quiz game takes away 4 points for each wrong answer. Zara gets 3 answers wrong. What is the change in her score?
+
+0267  Work out ( minus 5) times ( minus 6).
+
+0268  Work out minus 24 divided by 6.
+
+0269  Work out minus 20 divided by ( minus 4).
+
+0270  Work out ( minus 2) times 5 times ( minus 3).
+
+0271  Work out ( minus 3) times ( minus 3).
+
+0272  Key idea: to find a missing number, undo what was done to it. Adding undoes subtracting. Multiplying undoes dividing. The signs look strange, but the method is the same.
+
+0273  minus 7 plus? equals 3. Find the missing number.
+
+0274  ? minus ( minus 4) equals 9. Find the missing number.
+
+0275  ( minus 3) times? equals 18. Find the missing number.
+
+0276  The temperature rises from minus 5 degrees Celsius to 8 degrees Celsius. By how many degrees did it rise? The picture shows: A vertical thermometer scale from minus 6 to 10 degrees with minus 5 degrees and 8 degrees marked. The size of the rise between them is the question.
+
+0277  ? divided by ( minus 2) equals 6. Find the missing number.
+
+0278  Key idea: the difference between two values is the higher one minus the lower one. From minus 30 metres to 150 metres is 150 minus ( minus 30) equals 180 metres.
+
+0279  What is the balance in pounds? The picture shows: A vertical scale from minus 60 to 140 pounds. The starting balance of minus 45 pounds, which is overdrawn, is marked. Then 120 pounds is paid in.
+
+0280  A shipwreck is 30 metres below sea level ( minus 30 metres). A cliff is 150 metres above sea level. How many metres higher is the cliff than the wreck? The picture shows: A vertical scale in metres with sea level at 0. A shipwreck is marked at minus 30 metres and the top of a cliff at 150 metres. The height difference between them is the question.
+
+0281  Find the next number in the sequence minus 8, minus 5, minus 2,,
+
+0282  A lift (elevator) goes from floor minus 2 (a basement, below the ground) to floor 5. How many floors does it travel? The picture shows: A vertical scale of floors from minus 3 to 6 with floor minus 2 (the basement) and floor 5 marked. The number of floors between them is the question.
+
+0283  The temperatures one day were minus 3, 4, minus 8 and 0 degrees. What is the range (highest minus lowest)? The picture shows: A vertical scale from minus 10 to 6 degrees with the four temperatures minus 3, 4, minus 8 and 0 marked.
+
+0284  Ben says: “ minus 3 minus 4 equals 1.” What went wrong?
+
+0285  Cara says: “( minus 2) times ( minus 5) equals minus 10.” What went wrong?
+
+0286  Dan says: “5 minus ( minus 2) equals 3.” What went wrong?
+
+0287  A football team has a goal difference of minus 8. After a win, it goes up by 3. What is the goal difference now?
+
+0288  Work out 6 minus ( minus 6).
+
+0289  Work out ( minus 2) times ( minus 2) times ( minus 2).
+
+0290  Which is the biggest: minus 0.5, minus 0.05 or minus 5?
+
+0291  Work out minus 12 divided by ( minus 3) times ( minus 2).
+
+0292  (a) [1 mark] By how many degrees did the temperature rise from Monday to Tuesday? The picture shows: A vertical scale from minus 6 to 6 degrees with Monday at minus 3 degrees and Tuesday at 4 degrees marked.
+
+0293  (b) [2 marks] Work out the range of the five minimum temperatures. The picture shows: A vertical scale from minus 8 to 6 degrees with the five temperatures minus 6, minus 2, 3, 1 and minus 4 marked.
+
+0294  (c) [2 marks] A submarine at minus 120 metres rises 45 metres. What is its new depth, as a number in metres (use a minus sign)? The picture shows: A vertical scale in metres with sea level at 0. A submarine is marked at minus 120 metres. It then rises 45 metres.
+
+0295  Work out ( minus 2)3.
+
+0296  Two numbers multiply to give minus 12 and add to give 1. What is the larger of the two?
+
+0297  In this magic square every row, every column and both long diagonals add up to the same total (you are not told it). Find the number x in the bottom-left corner. The picture shows: A grid of three rows and three columns. Top row: minus 3, blank, 1. Middle row: blank, 0, blank. Bottom row: x, minus 2, 3. Every row, column and long diagonal has the same total.
+
+0298  A gamer starts with 5 coins and wins 2 coins on each of 6 levels. The total is 5 plus 2 times 6. How many coins is that?
+
+0299  Work out 6 times 7.
+
+0300  Work out 56 minus 19.
+
+0301  Work out 90 divided by 6.
+
+0302  Key idea: times and divided by are equal. plus and minus are equal. Equal? Go left to right.
+
+0303  Work out 7 plus 2 times 4.
+
+0304  Work out 20 minus 6 divided by 2.
+
+0305  A player has 10 lives, loses 2 and then wins 3 back. Work out 10 minus 2 plus 3.
+
+0306  Work out 8 divided by 2 times 4.
+
+0307  A playlist has 5 songs. You add 6 albums of 3 songs each, then delete 4 songs. Work out 5 plus 6 times 3 minus 4.
+
+0308  Key idea: a power belongs only to the number just before it. In 2 times 3 squared the square belongs to the 3. So 3 squared equals 9 first, then 2 times 9 equals 18. To square both numbers, use brackets: (2 times 3) squared equals 36.
+
+0309  Zoe mixes 2 batches of paint. Each batch has 5 millilitres of red and 3 millilitres of blue. Work out 2 times (5 plus 3), the total ml of paint.
+
+0310  Work out (12 minus 4) divided by 2.
+
+0311  Work out 3 plus 2 squared.
+
+0312  Work out (3 plus 2) squared.
+
+0313  Work out 2 times 3 squared.
+
+0314  Work out 12 plus 8 over 4.
+
+0315  Key idea: you can go forwards (work out the answer). You can go backwards (decide where the brackets go, or find a missing number). Going backwards also checks a calculation.
+
+0316  Where must the brackets go to make 2 plus 3 times 4 equals 20?
+
+0317  Which operation makes 6? 2 plus 3 equals 6 true?
+
+0318  3 times (? plus 2) equals 21. Find the missing number.
+
+0319  ? divided by 4 plus 1 equals 6. Find the missing number.
+
+0320  Leo works out the total for a relay kit as 9 plus 18 divided by 3 and gets 9. What should the answer be?
+
+0321  Ali says: “6 plus 4 times 2 equals 20.” What went wrong?
+
+0322  Bea says: “12 divided by 3 times 2 equals 2.” What went wrong?
+
+0323  Cal says: “3 squared equals 6.” What went wrong?
+
+0324  Work out 7 plus 3 times (8 minus 2).
+
+0325  Work out 50 minus 3 squared times 2.
+
+0326  Work out 2 squared plus 3 squared.
+
+0327  Work out (10 minus 4) squared divided by 3.
+
+0328  Work out 36 divided by (2 plus 4) times 3.
+
+0329  (a) [1 mark] Work out 3 plus 4 times 5 squared.
+
+0330  (b) [2 marks] Work out (12 minus 3) squared divided by 3.
+
+0331  (c) [2 marks] Sam works out 6 plus 18 divided by 3 and gets 8. What is the correct answer?
+
+0332  Work out 2 plus 10 over 3 plus 4 times 2.
+
+0333  Work out 2 times 3 squared divided by 6 plus ( minus 1).
+
+0334  A classic puzzle: use four 4s, once each, with the usual operations and brackets, to make a target number. For example, 4 times 4 plus 4 divided by 4 equals 17. Which sign goes in the square brackets to make 4 times 4 [ ] (4 divided by 4) equals 15?
+
+0335  Work out minus 3 squared, using the standard order of operations.
+
+0336  Work out minus 2 squared plus ( minus 2) squared.
+
+0337  When x equals 6, work out the value of (1 over 2)x (half of x).
+
+0338  “What is it asking? What do you know? Tell me out loud.”
+
+0339  Increase 200 pounds by 5 percent. Answer in pounds.
+
+0340  What multiplier increases an amount by 12 percent? Give it as a decimal.
+
+0341  After a 20 percent discount a coat costs 48. pounds What was the original price? Answer in pounds.
+
+0342  A price rises from 40 pounds to 46. pounds What is the percentage increase? Give your answer like 12 percent.
+
+0343  Key idea: n changes of the same percentage means multipliern. It does NOT mean multiplying the percentage by n. Three rises of 4 percent is not a 12 percent rise: it is 1.043 equals 1.124864, a rise of 12.4864 percent.
+
+0344  1000 pounds grows by 5 percent each year. Which calculation gives the amount after 3 years?
+
+0345  1000 pounds is invested at 5 percent compound interest for 2 years. How much is it worth? Give your answer in pounds, like 4.50. The picture shows: Three boxes joined by two arrows. The first box says 1000 pounds. Each arrow says multiply by 1.05. The other two boxes show a question mark.
+
+0346  800 pounds is invested at 3 percent compound interest for 3 years. How much is it worth? Give your answer in pounds to the nearest penny, like 123.45.
+
+0347  Zara invests 500 pounds at 4 percent compound interest for 2 years. How much interest does she earn altogether? Give your answer in pounds, like 4.50.
+
+0348  A town of 12000 people grows by 2 percent each year. How many people live there after 5 years? Give your answer to the nearest whole number.
+
+0349  A game starts with 5000 players. The number of players grows by 10 percent every week. How many players are there after 3 weeks?
+
+0350  2000 pounds is saved at 5 percent for 2 years. How many pounds more interest does compound interest give than simple interest? Give your answer in pounds.
+
+0351  Key idea: a multiplier above 1 is an increase and below 1 is a decrease. 1.32 is a 32 percent increase. 0.85 is a 15 percent decrease. To find the percentage change, take 1 away (or take the multiplier away from 1).
+
+0352  A phone’s battery life goes from 250 minutes to 290 minutes. What is the percentage increase? Give your answer like 12.5 percent.
+
+0353  A coat is reduced from 400 pounds to 340. pounds What is the percentage decrease? Give your answer like 12 percent.
+
+0354  The population of a village goes from 2400 to 3000. What is the percentage increase? Give your answer like 12 percent.
+
+0355  A rent rises by 10 percent and then, a year later, by another 20 percent. What is the overall percentage increase? Give your answer like 12 percent.
+
+0356  A price rises by 20 percent and then falls by 20 percent. What is the overall change?
+
+0357  Show that a price that rises by 10 percent each year for 2 years has risen by 21 percent overall. Type the overall percentage increase you find, like 12 percent.
+
+0358  A price rises by 4 percent and then falls by 2 percent. What is the overall percentage change, to 2 decimal places? Give your answer like 1.25 percent.
+
+0359  Key idea: a loss of 10 percent a year does NOT mean a loss of 20 percent after 2 years. Each year you lose 10 percent of what is left, which is a little less each time. Use 0.9n.
+
+0360  A 1000 pounds scooter loses 10 percent of its value each year. What is it worth after 2 years? Answer in pounds. The picture shows: Three boxes joined by two arrows. The first box says 1000 pounds. Each arrow says multiply by 0.9. The other two boxes show a question mark.
+
+0361  What multiplier shows a loss of 8 percent each year? Give it as a decimal.
+
+0362  A van is worth 5000. pounds It loses 20 percent of its value each year. What is it worth after 2 years? Answer in pounds.
+
+0363  A laptop is worth 900. pounds It loses 30 percent of its value in year 1, and then 10 percent of its value in year 2. What is it worth after 2 years? Answer in pounds.
+
+0364  A guitar worth 450 pounds depreciates by 6 percent each year. What is it worth after 4 years? Give your answer in pounds to the nearest penny, like 123.45.
+
+0365  A 1000 pounds tablet loses 10 percent of its value each year. After how many whole years is it first worth less than 700 pounds?
+
+0366  A car loses 10 percent of its value each year. After 2 years, how much of its original value has it lost?
+
+0367  Key idea: to undo n changes, divide by multipliern. To find the rate when you know the start, the end and the number of years n, find the multiplier first: it is the n-th root of (end divided by start).
+
+0368  After 2 years at 10 percent compound interest, an account holds 1815. pounds How much was paid in? Answer in pounds. The picture shows: Three boxes joined by two arrows. The first two boxes show a question mark. The last box says 1815 pounds. Each arrow says multiply by 1.1.
+
+0369  A van is worth 6400 pounds after 2 years of 20 percent depreciation each year. What was its value when new? Answer in pounds.
+
+0370  After 3 years of 10 percent growth each year, a town has 13310 people. How many people lived there at the start?
+
+0371  800 pounds grows to 882 pounds in 2 years at the same compound rate each year. What is the yearly rate? Give your answer like 3 percent.
+
+0372  A boat is worth 10000 pounds and, 2 years later, 8100. pounds It lost the same percentage of its value each year. What is that percentage? Give your answer like 3 percent.
+
+0373  3000 pounds grows to 3993 pounds in 3 years at the same compound rate each year. What is the yearly rate? Give your answer like 3 percent.
+
+0374  1000 pounds is invested at 8 percent compound interest a year. After how many whole years is it first worth more than 1500 pounds?
+
+0375  An account paid 4 percent compound interest each year for 3 years and now holds a known amount. How do you find the amount paid in?
+
+0376  Zoe says: 2000 pounds at 5 percent compound interest for 3 years is 2000 times 1.15 equals 2300. pounds What went wrong?
+
+0377  Leo says: a van loses 20 percent of its value in each of two years, so it has lost 40 percent of its value. What went wrong?
+
+0378  Increase 250 pounds by 12 percent. Answer in pounds.
+
+0379  400 pounds is invested at 3 percent compound interest for 2 years. What is it worth? Give your answer in pounds, like 123.45.
+
+0380  A jacket costs 72 pounds in a 20 percent sale. What was the price before the sale? Answer in pounds.
+
+0381  A price goes from 80 pounds to 68. pounds What is the percentage decrease? Give your answer like 12 percent.
+
+0382  Write 0.045 as a percentage. Give your answer like 12.5 percent.
+
+0383  A car costs 15000 pounds new. It loses 18 percent of its value in the first year. What is it worth after the first year? Answer in pounds.
+
+0384  (a) [3 marks] Work out the value of Dev’s investment after 3 years. Give your answer in pounds to the nearest penny, like 123.45.
+
+0385  (b) [1 mark] How much interest has Dev earned in the 3 years? Give your answer in pounds, like 123.45.
+
+0386  [4 marks] Work out the value of the car after 3 years. Give your answer in pounds, like 123.45.
+
+0387  [3 marks] A price rises by 5 percent and then falls by 10 percent. It is now 113.40. pounds Work out the original price. Answer in pounds.
+
+0388  A price rises by 10 percent. By what percentage must it then fall to return to the original? Give your answer to 1 decimal place, like 12.5 percent.
+
+0389  Account A pays 6 percent simple interest a year on 1000. pounds Account B pays 5 percent compound interest a year on 1000. pounds After how many whole years is account B first worth more than account A?
+
+0390  A price p rises by x percent and then falls by x percent. Which expression gives the final price?
+
+0391  After a price rises by x percent and then falls by x percent, the overall multiplier is 1 minus x2 over 10000. Use x equals 30. What is the overall multiplier? Give it as a decimal.
+
+0392  Units and money 100 pence equals 1, pounds so 85p equals 0.85 pounds and 1.20 pounds equals 120p. Round money to 2 decimal places: 28.857 pounds becomes 28.86. pounds Do not mix pounds and pence in one calculation. Pick one. VAT is 20 percent: add it by times 1.2, take it off again by divided by 1.2.
+
+0393  Simplify 25 over 100. Give your answer as a fraction, like 3 over 5.
+
+0394  Work out 1 over 5 of 60.
+
+0395  Write 0.35 as a fraction in its simplest form, like 3 over 5.
+
+0396  Fill the gap: 3 over 5 equals? over 100. What number goes where the? is?
+
+0397  Key idea: the percent sign is just a way of writing “divided by 100”. To go from a percentage to a decimal, divide by 100. To go back, multiply by 100.
+
+0398  The whole bar is 100 percent. It is cut into equal parts and some are shaded. What percentage is shaded? Give your answer like 12 percent. The picture shows: A bar cut into 10 equal parts. The first 7 parts are shaded pink and the last 3 are white. The whole bar stands for 100 percent.
+
+0399  Write 0.6 as a percentage. Give your answer like 12 percent.
+
+0400  Write 35 percent as a decimal.
+
+0401  Write 35 percent as a fraction in its simplest form, like 3 over 5.
+
+0402  Write 3 over 8 as a percentage. Give your answer like 12.5 percent.
+
+0403  In a survey, 9 out of 25 gamers chose a blue controller. What percentage chose blue? Give your answer like 12 percent.
+
+0404  Which is the biggest: 0.6, 55 percent or 5 over 8?
+
+0405  Key idea: percentages add up. 35 percent equals 10 percent plus 10 percent plus 10 percent plus 5 percent. Work out the 10 percent once, then build the rest from it.
+
+0406  What is 10 percent of 80 pounds?
+
+0407  What is 25 percent of 64 kilograms? Give your answer in kg.
+
+0408  The bar stands for 150 pounds and is cut into 10 equal parts. Four parts are shaded. How much money do the shaded parts stand for? Answer in pounds. The picture shows: A bar standing for 150 pounds, cut into 10 equal parts. The first 4 parts are shaded pink.
+
+0409  A game has 250 levels. Kai has finished 18 percent of them. How many levels is that? You can use a calculator.
+
+0410  A plumber’s materials cost 480. pounds The copper pipe is 35 percent of the cost. How much does the pipe cost? Answer in pounds.
+
+0411  Use a calculator to work out 7.5 percent of 64. pounds Give your answer in pounds, like 4.50.
+
+0412  Which calculation finds 12 percent of 350?
+
+0413  Key idea: the whole always goes on the bottom, and both amounts must be in the same units. 60 centimetres out of 3 metres needs a change to 60 centimetres out of 300 centimetres first.
+
+0414  A team won 6 of their 8 matches. What percentage did they win? Give your answer like 12.5 percent.
+
+0415  A cake mix weighs 500 grams. 75 grams of it is cocoa. What percentage of the mix is cocoa? Give your answer like 12 percent.
+
+0416  Sam earns 150 pounds a week and saves 18. pounds What percentage of the wage does Sam save? Give your answer like 12 percent.
+
+0417  A cable is 3 metres long. A piece 60 centimetres long is cut off. What percentage of the cable is cut off? Give your answer like 12 percent.
+
+0418  In one quiz Maya got 33 out of 40. What percentage is that? Give your answer like 12.5 percent.
+
+0419  Who did best? Ali scored 17 out of 20. Bea scored 33 out of 40. Cat scored 41 out of 50.
+
+0420  Key idea: a percentage change is one multiplication. The multiplier is the percentage you END with, written as a decimal.
+
+0421  What single number do you multiply by to increase an amount by 8 percent? Give it as a decimal, like 1.25.
+
+0422  What single number do you multiply by to decrease an amount by 30 percent? Give it as a decimal.
+
+0423  Increase 50 pounds by 10 percent. Answer in pounds.
+
+0424  A bike costs 250 pounds before VAT. VAT is 20 percent. What is the price with VAT? Answer in pounds.
+
+0425  A 84 pounds hoodie is 25 percent off in a sale. What is the sale price? Answer in pounds. The picture shows: A bar standing for 84 pounds cut into 4 equal parts. One part is shaded and marked as the 25 percent taken off.
+
+0426  A game has 1200 players. The number of players falls by 5 percent. How many players are there now?
+
+0427  Which single multiplier decreases an amount by 12 percent?
+
+0428  Mia puts 600 pounds in an account that pays 3 percent simple interest a year. How much interest does she earn in 4 years? Answer in pounds.
+
+0429  Key idea: after a percentage change, the new amount is a percentage of the ORIGINAL. Undo it by dividing by the multiplier. Never take the percentage off the new amount: it was not taken from there.
+
+0430  Trainers cost 63 pounds in a 25 percent sale. What was the price before the sale? Answer in pounds. The picture shows: A bar cut into 4 equal parts. The original price is the whole bar and is not known. Three parts are shaded and together are the 63 pound sale price. The white part is the 25 percent taken off.
+
+0431  A boiler costs 540 pounds with 20 percent VAT included. What is the price without VAT? Answer in pounds.
+
+0432  A rent is now 1248 pounds after a 4 percent rise. What was the rent before the rise? Answer in pounds.
+
+0433  A cereal packet says “20 percent extra free” and now holds 600 grams. How many grams did the normal packet hold?
+
+0434  A game had 800 players last month and 1000 players this month. What is the percentage increase? Give your answer like 12.5 percent.
+
+0435  An amplifier used to cost 250. pounds It now costs 200. pounds What is the percentage decrease? Give your answer like 12 percent.
+
+0436  A cafe’s daily takings fell from 640 pounds to 560. pounds What is the percentage decrease? Give your answer like 8 percent.
+
+0437  A shop takes 30 percent off its prices. You know a sale price. How do you find the original price?
+
+0438  Tom says: a coat costs 48 pounds after 20 percent off, so the original price was 48 pounds plus 20 percent equals 57.60. pounds What went wrong?
+
+0439  Priya says: if a price goes up by 10 percent and then comes down by 10 percent, you are back where you started. What is wrong with that?
+
+0440  Which is smaller: 3 over 8 or 40 percent?
+
+0441  Write 0.04 as a percentage. Give your answer like 12 percent.
+
+0442  Without a calculator, work out 17.5 percent of 80. pounds Answer in pounds.
+
+0443  A train fare is 36. pounds It rises by 5 percent. What is the new fare? Give your answer in pounds, like 4.50.
+
+0444  A TV costs 340 pounds in a 15 percent sale. What was the price before the sale? Answer in pounds.
+
+0445  In a music class, 18 of the 24 students play guitar. What percentage play guitar? Give your answer like 12 percent.
+
+0446  A recipe uses 240 grams of butter. For a big batch you need 150 percent of that amount. How many grams of butter is that?
+
+0447  [3 marks] Work out the sale price. Answer in pounds.
+
+0448  (a) [3 marks] Work out the original price of the bike. Answer in pounds.
+
+0449  (b) [2 marks] The shop paid 240 pounds for the bike. What is the shop’s percentage profit on that cost when it sells the bike to Tia for 255 pounds? Give your answer like 12.5 percent.
+
+0450  [2 marks] A price of 100 pounds goes up by 20 percent and then goes down by 20 percent. Work out the final price. Answer in pounds.
+
+0451  A price rises by 25 percent. By what percentage must the new price fall to get back to the start? Give your answer like 12.5 percent. (Try starting with 100. pounds)
+
+0452  Without a calculator, find 4 percent of 75. Here is a trick: 4 percent of 75 is the same as 75 percent of 4.
+
+0453  Why is a percent of b always the same as b percent of a? For example, 8 percent of 25 equals 25 percent of 8 equals 2.
+
+0454  A radio costs 96 pounds with 20 percent VAT included. How many pounds of the 96 pounds is VAT?
+
+0455  A boiler pressure valve costs 84.50 pounds before VAT. VAT is 20 percent. How much does it cost including VAT, in pounds? Type it like 42.75.
+
+0456  A merchant gives a plumber 15 percent trade discount on a basin listed at 132. pounds What does the plumber pay, in pounds? Type it like 42.75.
+
+0457  [3 marks] A plumber buys a tap for 18.50. pounds She adds a 30 percent markup, and then 20 percent VAT is added to her selling price. How much does the customer pay, in pounds? Type it like 42.75.
+
+0458  A plumber sells a shower valve for 126.50 pounds after adding a 15 percent markup to what she paid. What did she pay, in pounds? Type it like 42.75.
+
+0459  [3 marks] A boiler service costs 95 pounds plus VAT at 20 percent. A landlord gets 10 percent off the price before VAT. How much does the landlord pay in total, in pounds? Type it like 42.75.
+
+0460  A gamer scores 4,082 points. What is the value of the digit 8 in that score? The picture shows: The number 4,082 written in columns. From the left the columns are thousands, hundreds, tens and units, holding the digits 4, 0, 8 and 2.
+
+0461  What is 1 more than 3,099?
+
+0462  Work out 10 times 10.
+
+0463  Work out 10 times 100.
+
+0464  Key idea: the same digit is worth different amounts in different columns. The 8 in 4,082 is worth 80. The 8 in 4,802 is worth 800.The 0 in 4,082 is a spacer. Take it out and the 4 is only worth 400.
+
+0465  What is the value of the 7 in 3,725? The picture shows: The number 3,725 written in columns. From the left the columns are thousands, hundreds, tens and units, holding the digits 3, 7, 2 and 5.
+
+0466  A song's stream count is 4 thousands, 0 hundreds, 3 tens and 5 units. Write the number of streams. The picture shows: Four empty place value columns, from the left thousands, hundreds, tens and units. Each holds a question mark for the digit you need to write.
+
+0467  A fitness band shows “four thousand and thirty” steps. Write the number of steps in digits. The picture shows: Four empty place value columns, from the left thousands, hundreds, tens and units. Each holds a question mark for the digit you need to write.
+
+0468  How many tens are there in 560? The picture shows: A bar for the number 560. Inside the bar are the words each part is 10 and a question mark for the number of parts.
+
+0469  Which is bigger: 9,099 or 9,101? The picture shows: Two numbers written one above the other in the same four columns: thousands, hundreds, tens and units. The top row is 9,099. The bottom row is 9,101.
+
+0470  Key idea: compare from the left, not by how long the numbers look. Add zeros so they are the same length: 0.40 and 0.35. Now 40 beats 35, so 0.4 is bigger.
+
+0471  What is the value of the 5 in 3.254? The picture shows: The number 3.254 in columns: a units column, then after the decimal point three more columns. Each column holds one digit.
+
+0472  Write 0.7 as a fraction.
+
+0473  How many hundredths are there in 0.6? The picture shows: The number 0.6 in columns: a units column holding 0, then after the decimal point two more columns. Each column holds one digit.
+
+0474  Write 3 plus 2 over 10 plus 5 over 100 as a decimal.
+
+0475  Which of these is the biggest: 0.4, 0.37 or 0.399?
+
+0476  Key idea: times 10 moves digits left one place. divided by 10 moves them right one place. 100 is two places. 1,000 is three. Zeros fill the empty columns.
+
+0477  Work out 3.4 times 100. The picture shows: The number 3.4 in columns: units 3 and tenths 4, with the hundreds and tens columns empty to its left. Multiplying by 100 moves each digit 2 columns to the left.
+
+0478  A fan page has 5,600 likes shared evenly across 100 posts. Work out 5,600 divided by 100, the likes per post. The picture shows: The number 5,600 in columns: thousands 5, hundreds 6, tens 0, units 0. Dividing by 100 moves each digit 2 columns to the right.
+
+0479  A game gives you 0.07 coins for every click. You click 1,000 times. How many coins do you get?
+
+0480  Work out 2.5 divided by 1000. The picture shows: The number 2.5 in columns: units 2 and tenths 5, with hundredths and thousandths empty. Dividing by 1000 moves each digit 3 columns to the right.
+
+0481  Key idea: only the digit right after your column decides.Find your column. Look at the next digit on the right. 5 or more: go up. 4 or less: stay.Example: 3,468 to the nearest 100. The column holds 4. The next digit is 6, so the 4 goes up to 5. The answer is 3,500.
+
+0482  Round 4,862 to the nearest 100. The picture shows: A number line with 4,800 at the left end and 4,900 at the right end, and a small tick halfway between. A dot marks 4,862.
+
+0483  Round 6.749 to 1 decimal place. The picture shows: A number line with 6.7 at the left end and 6.8 at the right end, and a small tick halfway at 6.75. A dot marks 6.749.
+
+0484  A song has 15,650 streams. Round the streams to the nearest 1,000. The picture shows: A number line with 15,000 at the left end and 16,000 at the right end, and a small tick halfway. A dot marks 15,650.
+
+0485  Round 0.0527 to 1 significant figure.
+
+0486  Round 3.996 to 2 decimal places. The picture shows: A number line with 3.99 at the left end and 4.00 at the right end, and a small tick halfway at 3.995. A dot marks 3.996.
+
+0487  Round 7,350 to the nearest 100. The picture shows: A number line with 7,300 at the left end and 7,400 at the right end. A dot marks 7,350.
+
+0488  Key idea: going forwards and then backwards through the same columns checks that you follow them.
+
+0489  A number multiplied by 10 gives 340. What is the number?
+
+0490  A number divided by 100 gives 0.56. What is the number?
+
+0491  What is the smallest whole number that rounds to 40 when rounded to the nearest 10? The picture shows: A number line with 30, 40 and 50 labelled.
+
+0492  What is the largest whole number that rounds to 40 to the nearest 10? The picture shows: A number line with 30, 40 and 50 labelled.
+
+0493  A number rounded to 1 decimal place is 2.5. Which of these could be the original number?
+
+0494  Ravi says: “3.45 is bigger than 3.5, because 45 is bigger than 5.” What went wrong?
+
+0495  Zoe says: “6.07 times 10 equals 6.70.” What went wrong?
+
+0496  Round 52,684 to the nearest 1,000. The picture shows: A number line with 52,000 at the left end and 53,000 at the right end, and a small tick halfway. A dot marks 52,684.
+
+0497  What is the value of the 5 in 52,684? The picture shows: The number 52,684 written in five columns, with a column name above each digit.
+
+0498  Work out 0.0048 times 1000.
+
+0499  Which is the smallest of 0.5, 0.05, 0.505 and 0.55? Type the number.
+
+0500  Which of these is closest to 1,000?
+
+0501  (a) [1 mark] Write the number of people to the nearest thousand.
+
+0502  (b) [1 mark] Write down the value of the digit 6 in 52,684. The picture shows: The number 52,684 written in five columns, with a column name above each digit.
+
+0503  (c) [2 marks] Estimate 48.7 times 19.8 by rounding each number to 1 significant figure.
+
+0504  Round 0.04567 to 2 significant figures.
+
+0505  A number rounds to 3,400 to the nearest 100. What is the largest whole number it could be? The picture shows: A number line with 3,300, 3,400 and 3,500 labelled.
+
+0506  Why mixed? Picking the method is half the skill, and a few minutes a day beats a long session once.
+
+0507  A 5 metres ladder leans against a vertical wall. Its foot is 3 metres from the wall. How high up the wall does the ladder reach, in metres? (Hint: it is a nice whole number.) The picture shows: A ladder leans against a vertical wall on the left. The ladder is 5 metres long. Its foot is on level ground 3 metres from the wall. The height the ladder reaches up the wall is marked with a question mark.
+
+0508  Work out 7 squared.
+
+0509  Work out 12 squared.
+
+0510  Work out square root of 81.
+
+0511  Work out square root of 169.
+
+0512  Key idea: it only works for right-angled triangles, and the c must be the hypotenuse, the side opposite the right angle.
+
+0513  Triangle PQR has a right angle at Q. Which side is the hypotenuse? The picture shows: A right-angled triangle. The corner Q is at the bottom left and has the right angle marked. P is at the top and R is at the bottom right. No side lengths are given.
+
+0514  Find the hypotenuse of a right-angled triangle with shorter sides 5 centimetres and 12 centimetres. Answer in cm. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 12 centimetres and the vertical shorter side is 5 centimetres. The hypotenuse is marked with a question mark.
+
+0515  Find the hypotenuse when the shorter sides are 8 centimetres and 15 centimetres. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 15 centimetres and the vertical shorter side is 8 centimetres. The hypotenuse is marked with a question mark.
+
+0516  Find the hypotenuse when the shorter sides are 4 centimetres and 6 centimetres. Give your answer to 1 decimal place. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 6 centimetres and the vertical shorter side is 4 centimetres. The hypotenuse is marked with a question mark.
+
+0517  Find the hypotenuse when the shorter sides are 5 centimetres and 7 centimetres, to 1 d.p. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 7 centimetres and the vertical shorter side is 5 centimetres. The hypotenuse is marked with a question mark.
+
+0518  Key idea: nothing in the proof depends on the numbers 3 and 4. It works for any right-angled triangle, which is why it is a proof and not just an example.
+
+0519  A big square has side 7 centimetres. Four right-angled triangles with short sides 3 centimetres and 4 centimetres sit inside it, leaving a tilted square in the middle. Find the area of the tilted square, in cm squared. The picture shows: A big square of side 7 centimetres. Each side is split into a 3 centimetre part and a 4 centimetre part. Four right-angled triangles with short sides 3 and 4 sit in the corners, leaving a tilted square in the middle. The tilted square is marked as the area to find.
+
+0520  What is the side length of the tilted square in the last question, in cm? The picture shows: A big square of side 7 centimetres. Each side is split into a 3 centimetre part and a 4 centimetre part. Four right-angled triangles with short sides 3 and 4 sit in the corners, leaving a tilted square in the middle. The side of the tilted square is the length to find.
+
+0521  Which statement is the key reason that a squared plus b squared equals c squared for every right-angled triangle?
+
+0522  Four triangles with short sides 5 centimetres and 12 centimetres sit inside a big square of side 17 centimetres, leaving a tilted square. Find the area of the tilted square, in cm squared. The picture shows: A big square of side 17 centimetres. Each side is split into a 5 centimetre part and a 12 centimetre part. Four right-angled triangles with short sides 5 and 12 sit in the corners, leaving a tilted square in the middle. The tilted square is marked as the area to find.
+
+0523  Key idea: the hypotenuse is always the longest side. So when you find a short side, your answer must be smaller than the hypotenuse. If it is bigger, you added when you should have subtracted.
+
+0524  The hypotenuse is 17 centimetres and one shorter side is 8 centimetres. Find the other side. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 8 centimetres. The vertical shorter side is marked with a question mark. The hypotenuse, the longest side opposite the right angle, is 17 centimetres.
+
+0525  The hypotenuse is 25 centimetres and one shorter side is 7 centimetres. Find the other side. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 7 centimetres. The vertical shorter side is marked with a question mark. The hypotenuse is 25 centimetres.
+
+0526  The hypotenuse is 9 centimetres and one shorter side is 5 centimetres. Find the other side to 1 decimal place. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 5 centimetres. The vertical shorter side is marked with a question mark. The hypotenuse is 9 centimetres.
+
+0527  The hypotenuse is 12 centimetres and one shorter side is 7 centimetres. Find the other side to 1 d.p. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 7 centimetres. The vertical shorter side is marked with a question mark. The hypotenuse is 12 centimetres.
+
+0528  Key idea: the backwards statement is called the Converse. It is not true for every theorem, but it is true for Pythagoras (it is proved later with the cosine rule). Builders use it: lay out a 3, 4, 5 triangle and the corner is a perfect right angle.
+
+0529  A triangle has sides 5 centimetres, 6 centimetres and 8 centimetres. Is it right-angled?
+
+0530  A triangle has sides 9 centimetres, 12 centimetres and 15 centimetres. Is it right-angled?
+
+0531  A triangle has sides 4 centimetres, 5 centimetres and 6 centimetres. What type of triangle is it?
+
+0532  A triangle has sides 2 centimetres, 3 centimetres and 4 centimetres. What type of triangle is it?
+
+0533  3, 4, 5 and 6, 8, ___ are both triples (and the second is the first doubled). What is the missing number?
+
+0534  One more triple: 5, ___, 13. Find the missing shorter side. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 5. The vertical shorter side is marked with a question mark. The hypotenuse is 13.
+
+0535  Find the distance between (0, 0) and (3, 4). The picture shows: A coordinate grid. One point is at the origin (0, 0) and the other at (3, 4). The straight line joining them is marked with a question mark. A right-angled triangle is drawn under the line with a dashed horizontal side of 3 squares and a dashed vertical side of 4 squares.
+
+0536  A rectangle is 9 centimetres by 12 centimetres. How long is its diagonal, in cm? The picture shows: A rectangle 12 centimetres wide and 9 centimetres tall with one diagonal drawn as a dashed line from the bottom left corner to the top right corner. The diagonal is marked with a question mark.
+
+0537  A 6.5 metres ladder leans against a vertical wall with its foot 2.5 metres from the wall. How high up the wall does it reach, in m? The picture shows: A ladder leans against a vertical wall on the left. The ladder is 6.5 metres long and its foot is on level ground 2.5 metres from the wall. The height reached up the wall is marked with a question mark.
+
+0538  Key idea: for a cuboid with sides l, w and h, the base diagonal d has d squared equals l squared plus w squared. The longest line x has x squared equals d squared plus h squared, so x squared equals l squared plus w squared plus h squared.
+
+0539  A cuboid measures 2 centimetres by 3 centimetres by 6 centimetres. Find the length of the longest straight line inside it, in cm. The picture shows: A cuboid drawn in perspective. The front face is 3 centimetres wide and 6 centimetres tall, and the cuboid is 2 centimetres deep. A thick line joins the bottom front left corner to the top back right corner and is marked with a question mark.
+
+0540  A cuboid measures 4 centimetres by 5 centimetres by 7 centimetres. Find the length of the longest straight line inside it, to 1 decimal place. The picture shows: A cuboid drawn in perspective. The front face is 4 centimetres wide and 7 centimetres tall, and the cuboid is 5 centimetres deep. A thick line joins the bottom front left corner to the top back right corner and is marked with a question mark.
+
+0541  A room is 4 metres long, 5 metres wide and 3 metres high. What is the longest straight pole that fits inside it, in m, to 1 decimal place? The picture shows: A cuboid drawn in perspective. The front face is 4 metres wide and 3 metres tall, and the cuboid is 5 metres deep. It represents a room. A thick line joins the bottom front left corner to the top back right corner and is marked with a question mark.
+
+0542  The base of a cuboid has a diagonal of 10 centimetres. The cuboid is 24 centimetres high. Find the longest line inside it, in cm. The picture shows: A cuboid drawn in perspective and 24 centimetres tall. A dashed line across the base, from the front left corner to the back right corner, is 10 centimetres. A thick line from the bottom front left corner to the top back right corner is marked with a question mark.
+
+0543  Dev says: "The shorter sides are 6 and 8, so the hypotenuse is 6 plus 8 equals 14." What went wrong? The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 8 and the vertical shorter side is 6. The hypotenuse is marked with a question mark.
+
+0544  Eve says: "6 squared plus 8 squared equals 100, so the hypotenuse is 100." What went wrong? The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 8 and the vertical shorter side is 6. The hypotenuse is marked with a question mark.
+
+0545  The shorter sides of a right-angled triangle are 20 centimetres and 21 centimetres. How long is the hypotenuse, in cm? The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 21 centimetres and the vertical shorter side is 20 centimetres. The hypotenuse is marked with a question mark.
+
+0546  The hypotenuse is 15 centimetres and one shorter side is 9 centimetres. Find the other side, in cm. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 9 centimetres. The vertical shorter side is marked with a question mark. The hypotenuse is 15 centimetres.
+
+0547  Which of these is a Pythagorean triple?
+
+0548  The shorter sides of a right-angled triangle are 1.5 metres and 2 metres. Find the hypotenuse, in m. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal shorter side is 2 metres and the vertical shorter side is 1.5 metres. The hypotenuse is marked with a question mark.
+
+0549  The two shorter sides of a right-angled triangle are in the ratio 3: 4, and the longer of them is 12 centimetres. Find the hypotenuse, in cm.
+
+0550  (a) [3 marks] A television screen is 40 centimetres wide and 30 centimetres tall. Work out the length of its diagonal, in cm. The picture shows: A rectangle representing a television screen, 40 centimetres wide and 30 centimetres tall, with a dashed diagonal from the bottom left to the top right marked with a question mark.
+
+0551  (b) [3 marks] A flagpole is held upright by a wire 13 metres long from the top to a point on the ground 5 metres from the base of the pole. How tall is the pole, in m? The picture shows: A vertical flagpole stands on level ground. A wire 13 metres long runs from the top of the pole to a point on the ground 5 metres from the base of the pole. The height of the pole is marked with a question mark.
+
+0552  (c) [3 marks] Work out the area of the right-angled triangle formed by the pole, the ground and the wire, in m squared. The picture shows: A vertical flagpole stands on level ground with a right angle at its base. A wire 13 metres long runs from the top of the pole to the ground 5 metres from the base. The triangle formed by the pole, the ground and the wire is shaded.
+
+0553  A right-angled triangle has two shorter sides, both 3 centimetres. Find the exact length of the hypotenuse as a Surd. (Type it like 3 square root of 2 or 3sqrt2.) The picture shows: A right-angled triangle with the right angle at the bottom left. Both shorter sides are 3 centimetres. The hypotenuse is marked with a question mark.
+
+0554  A square has sides of 5 centimetres. Find the exact length of its diagonal. (Type it like 5 square root of 2 or 5sqrt2.) The picture shows: A square with sides of 5 centimetres. A dashed diagonal joins the bottom left corner to the top right corner and is marked with a question mark.
+
+0555  To check that a corner of a room is square, a fitter marks a point 60 centimetres along one wall and a point 80 centimetres along the other wall. For the corner to be a right angle, how far apart, in centimetres, should the two marks be? The picture shows: A right-angled triangle for the corner of a room. The two short sides run along the walls and are labelled 60 centimetres and 80 centimetres. The long side joins the two marks and is labelled with a question mark.
+
+0556  A pipe has to run diagonally across a rectangular floor, from one corner to the opposite corner. The floor is 2.4 metres long and 1.8 metres wide. How long is the diagonal pipe, in metres?
+
+0557  A 4 metres ladder leans against a vertical wall. Its foot is 1.2 metres from the wall. How high up the wall does it reach? Give your answer in metres, to 2 decimal places.
+
+0558  [3 marks] A copper pipe runs along a wall, then goes diagonally to a higher run, then carries on along the wall. The diagonal piece goes 320 millimetres along and 240 millimetres up. Copper pipe costs 4.50 pounds per metre. How much does the diagonal piece cost, in pounds? Type it like 42.75. The picture shows: A pipe runs along a lower level, then climbs diagonally to a higher level and carries on. The sideways distance of the diagonal piece is labelled 320 millimetres and the height gained is labelled 240 millimetres. The length of the diagonal piece is labelled with a question mark.
+
+0559  A shed roof has a rafter that runs from the top of the wall up to the ridge. It goes 3.6 metres across and rises 2.7 metres. How long is the rafter, in metres?
+
+0560  Solve 3x plus 4 equals 19.
+
+0561  What is 13 squared?
+
+0562  What is the positive square root of 225?
+
+0563  Expand 4(x minus 3). Type your answer like 5x-6.
+
+0564  Key idea: the two middle pieces are Like terms, so they join: 3x plus 2x equals 5x. In (x plus a)(x plus b) the middle number is a plus b (the numbers added) and the last number is a times b (the numbers multiplied).
+
+0565  Use the grid to work out 14 times 12. Split each number into tens and units. The picture shows: A rectangle with columns 10 and 4 and rows 10 and 2. The four boxes are empty question marks to fill in.
+
+0566  The rectangle in the picture has sides (x plus 4) and (x plus 1). Write its area as an expanded expression. Type it like x squared plus 3x plus 2. The picture shows: A rectangle with columns x and 4 and rows x and 1. The four boxes are empty question marks to fill in.
+
+0567  Expand and simplify (x plus 7)(x plus 2). Type it like x squared plus 3x plus 2.
+
+0568  Which of these is (x plus 6)(x plus 3) expanded?
+
+0569  Expand (x plus 3)(x plus 1). Then work out the area of the deck, in m squared, when x equals 5. The picture shows: A rectangle whose length is x plus 3 metres and whose width is x plus 1 metres.
+
+0570  Key idea: (x plus a)(x minus a) equals x squared minus a squared. The middle term disappears because plus ax and minus ax cancel.
+
+0571  Expand and simplify (x minus 1)(x plus 6). Type it like x squared plus 3x-2.
+
+0572  Expand and simplify (x minus 5)(x minus 2). Type it like x squared-3x plus 2.
+
+0573  Expand and simplify (x plus 4)(x minus 4). Type it like x squared-9.
+
+0574  Expand and simplify (x plus 5) squared. Type it like x squared plus 6x plus 9.
+
+0575  Which of these is the same as x squared minus 49?
+
+0576  Expand and simplify (x plus 3)(x minus 3) plus 9. Type it like x squared plus 1.
+
+0577  Write an expression, in m squared, for how much more area the larger rug has. Simplify it. Type it like 3x plus 5. The picture shows: A small square with side x sits in the middle of a larger square with side x plus 2.
+
+0578  Key idea: to factorise x squared plus bx plus c, find two numbers that multiply to c and add to b. Then write (x plus first)(x plus second).
+
+0579  Factorise x squared plus 5x plus 6. Type it like (x plus 1)(x plus 4).
+
+0580  Factorise x squared minus 7x plus 12. Type it like (x-1)(x-4).
+
+0581  Factorise x squared plus x minus 12. Type it like (x-1)(x plus 4).
+
+0582  Factorise x squared minus 81. Type it like (x-5)(x plus 5).
+
+0583  Find the length of the lawn, in m. Type it like x plus 5. The picture shows: A rectangle. Its width is x plus 2 metres. Its length is not known. Its area is x squared plus 9x plus 14 square metres.
+
+0584  Which two numbers do you use to factorise x squared minus 3x minus 10?
+
+0585  Key idea (the zero idea): if two things multiply to 0, then at least one of them is 0. So if (x minus 2)(x plus 3) equals 0, then x minus 2 equals 0 or x plus 3 equals 0.
+
+0586  Two numbers multiply to make 0. One of them is 7. What is the other?
+
+0587  Solve (x minus 3)(x plus 4) equals 0. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0588  Solve x squared plus 7x plus 12 equals 0. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0589  Solve x squared minus 2x minus 15 equals 0. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0590  Solve x squared plus 6x equals 0. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0591  Solve x squared equals x plus 12. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0592  The character is on the ground when h equals 0. Solve 6t minus t squared equals 0 to find both times. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0593  Why does (x minus 2)(x plus 3) equals 0 have two solutions?
+
+0594  Key idea: if x squared equals k (and k is positive), then x equals square root of k or x equals minus square root of k. We write x equals ± square root of k, which is read “plus or minus the square root of k”. A square is never negative, so x squared equals minus 9 has no solutions.
+
+0595  Solve x squared equals 36. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0596  Solve 3x squared equals 75. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0597  Solve x squared plus 3 equals 52. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0598  Solve x squared equals 30. Give both answers to 1 decimal place. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0599  The side of the patio is x m, so x squared equals 64. How long is each side, in m? The picture shows: A square with each side labelled x metres. Its area is 64 square metres.
+
+0600  Find the side length of the tile, in cm, to 1 decimal place.
+
+0601  How many solutions does x squared equals minus 9 have?
+
+0602  Which of these is a solution of x squared minus x minus 6 equals 0?
+
+0603  A student says the solutions of x squared plus x minus 6 equals 0 are 2 and 3. Work out x squared plus x minus 6 when x equals 3. Is it 0?
+
+0604  Which value of x can be the length of the panel? Type the number.
+
+0605  Find the width of the room, in m. The picture shows: A rectangle with width x metres and length x plus 2 metres. Its area is 15 square metres.
+
+0606  Find the width of the shed floor, in m.
+
+0607  Find the width of the bed, in m.
+
+0608  The area of a triangle is half base times height. Find x. The picture shows: A right-angled triangle with base x plus 4 and height x. Its area is 30 square centimetres.
+
+0609  Solve the equation and give the width of the rectangle, in cm.
+
+0610  The equation x squared plus 3x minus 28 equals 0 gives x equals minus 7 or x equals 4. Why is x not minus 7 when x is a width?
+
+0611  Key idea: a solution of x equals a comes from the bracket (x minus a), so the sign flips. For solutions 2 and 5: (x minus 2)(x minus 5) equals x squared minus 7x plus 10. The middle number is minus the sum of the solutions ( minus (2 plus 5) equals minus 7) and the last number is their product (2 times 5 equals 10).
+
+0612  A quadratic equation has solutions x equals 2 and x equals 7. Write the quadratic expression that equals 0. Type it like x squared plus 3x-10.
+
+0613  A quadratic equation has solutions x equals minus 3 and x equals 5. Write the quadratic expression that equals 0. Type it like x squared plus 3x-10.
+
+0614  A quadratic equation has solutions x equals 0 and x equals 6. Write the quadratic expression that equals 0. Type it like x squared plus 3x.
+
+0615  Two numbers add to 8 and multiply to 15. Which equation has them as its solutions?
+
+0616  x squared plus bx plus c equals 0 has solutions x equals 6 and x equals minus 2. Find the number b.
+
+0617  x squared plus 9x plus 20 equals (x plus a)(x plus b). Find a and b. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0618  Ravi says: (x plus 3) squared equals x squared plus 9. What went wrong?
+
+0619  Ella says: (x minus 2)(x plus 3) equals 0, so x equals 2 and x equals 3. What went wrong?
+
+0620  Tom says: x squared equals 25, so x equals 5. What went wrong?
+
+0621  Priya says: x squared equals 4x, so I can divide both sides by x and get x equals 4. What went wrong?
+
+0622  Leo says: (x minus 1)(x plus 4) equals 6, so x minus 1 equals 6 or x plus 4 equals 6. What went wrong?
+
+0623  Expand and simplify (x minus 6)(x plus 2). Type it like x squared plus 3x-10.
+
+0624  Factorise x squared minus 10x plus 24. Type it like (x-1)(x-2).
+
+0625  Solve x squared minus x equals 20. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0626  Solve x squared equals 121. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0627  Which equation has the solutions x equals 3 and x equals minus 3?
+
+0628  Find x.
+
+0629  Expand and simplify (x plus 9) squared. Type it like x squared plus 6x plus 9.
+
+0630  Factorise x squared minus 144. Type it like (x-5)(x plus 5).
+
+0631  [3 marks] Solve x squared plus 2x equals 48. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0632  (a) [2 marks] Expand and simplify (x plus 7)(x minus 2). Type it like x squared plus 3x-10. The picture shows: A rectangle with length x plus 7 metres and width x minus 2 metres. Its area is 36 square metres.
+
+0633  (b) [3 marks] The area is 36 metres squared. Use your answer to (a) to find x.
+
+0634  (c) [2 marks] Work out the perimeter of the patio, in m.
+
+0635  [4 marks] The sum of the squares of two consecutive positive integers is 85. Find the smaller integer.
+
+0636  [3 marks] Work out 73 squared minus 27 squared without a calculator. Hint: it is a difference of two squares.
+
+0637  Factorise 2x squared plus 7x plus 3. Type it like (2x-1)(x plus 5).
+
+0638  Factorise 3x squared minus 10x plus 8. Type it like (2x-1)(x-5).
+
+0639  Solve 2x squared plus 5x minus 3 equals 0. Give any fraction as a decimal or like 1 over 2. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0640  Use the quadratic formula to solve x squared minus 4x minus 3 equals 0. Give both answers to 1 decimal place. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0641  For 2x squared plus 3x minus 2 equals 0, work out the part under the square root, b squared minus 4ac. Is it a perfect square, so that the answers are neat?
+
+0642  For x squared plus 4x plus 7 equals 0, work out b squared minus 4ac. What does that tell you about the solutions?
+
+0643  Two numbers add up to 10 and multiply to 21. Find them. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0644  Two consecutive integers have squares that add to 61. There are two pairs. Type the smaller integer from each pair. Type both answers with “and” between them, smaller first, like minus 1 and 8.
+
+0645  Expand and simplify (n plus 1) squared minus (n minus 1) squared. Type it like 3n. This proves that the difference between the squares of two integers that are 2 apart is always a multiple of 4.
+
+0646  The curve y equals x squared minus 2x minus 8 is drawn. It crosses the x-axis where y equals 0. Solve x squared minus 2x minus 8 equals 0 by factorising to find the two places. Type both answers with “and” between them, smaller first, like minus 1 and 8. The picture shows: A U-shaped curve with its lowest point well below the x-axis. It crosses the x-axis twice, once on each side of the y-axis.
+
+0647  The big idea: almost nobody jumps three grades by working three times harder at the same things. Each step is a change in what you do: a new habit, or a gap underneath filled in. That is why this book is built as a pyramid.
+
+0648  You get to the end of a 4-mark question and your final answer is wrong, but you wrote clear working. What can you still earn?
+
+0649  Which revision method is usually the most effective for making facts stick?
+
+0650  What is the best use of a mistake log?
+
+0651  The question says Show that the answer is 12. What should you do?
+
+0652  You finish a topic. When is the best time to test yourself on it again?
+
+0653  What fraction of the counters are red? Give your answer as a fraction, like 3 over 5.
+
+0654  Simplify 12 over 30 fully. Give your answer as a fraction, like 3 over 4.
+
+0655  What is 3 over 5 of 40?
+
+0656  Key idea: a ratio says “for every”. For every 2 scoops of cement there are 6 scoops of sand. The order matters: cement: sand equals 2: 6 is not the same as sand: cement equals 6: 2.
+
+0657  Cement and sand are mixed in the ratio 2: 6. Write this ratio in its simplest form, like 2:5.
+
+0658  A pancake recipe uses 250 grams of flour and 100 grams of sugar. Write the ratio of flour to sugar in its simplest form, like 3:4.
+
+0659  Which ratio is equivalent to 3: 4?
+
+0660  Fill the gap: 3: 5 equals 12:?. What number goes where the? is?
+
+0661  A plank is 40 centimetres long and a pipe is 2 metres long. Write the ratio of the plank to the pipe in its simplest form, like 1:2.
+
+0662  Ravi has won 18 matches and lost 12 matches on his console game. Write the ratio of wins to losses in its simplest form, like 3:4.
+
+0663  Key idea: add the parts, divide the total by the number of parts to get one part, then multiply to get each share. Check that the shares add back to the total.
+
+0664  Share 40 pounds in the ratio 1: 3. How much is the smaller share, in pounds? The picture shows: A bar of 4 equal parts. The first part is one colour and the last 3 parts are another. The whole bar is labelled 40.
+
+0665  Mia and Tom share a 72 pounds prize in the ratio 4: 5. How much does Tom get, in pounds? The picture shows: A bar of 9 equal parts. The first 4 parts are for Mia and the last 5 parts are for Tom. The whole bar is labelled 72.
+
+0666  A bricklayer mixes cement, sand and gravel in the ratio 1: 2: 3 to make 90 kilograms of mix. How many kilograms of sand are in it? The picture shows: A bar of 6 equal parts. One part is cement, two parts are sand and three parts are gravel. The whole bar is labelled 90 kilograms.
+
+0667  A band shares 350 pounds from a gig between the guitarist, the drummer and the singer in the ratio 2: 2: 3. How much does the singer get, in pounds?
+
+0668  Share 30 sweets in the ratio 2: 3. Which pair of shares is right?
+
+0669  A plumber mixes cleaning concentrate with water in the ratio 1: 4 to make 35 litres of solution. How many litres of concentrate does she need?
+
+0670  Key idea: in a ratio a: b, the first share is the fraction a over a plus b of the total. The bottom of the fraction is the total parts, not the other number in the ratio.
+
+0671  The ratio of cats to dogs on a street is 3: 7. What fraction of the pets are dogs? Give your answer as a fraction, like 3 over 10.
+
+0672  3 over 8 of a rugby team's kicks are successful. Write the ratio of successful to unsuccessful kicks in its simplest form, like 3:4.
+
+0673  Three friends share money in the ratio 1: 2: 3. What fraction does the biggest share get?
+
+0674  In a paint mix the ratio of red to white is 2: 5. What fraction of the mix is red? Give your answer as a fraction, like 3 over 10.
+
+0675  A drawing has the scale 1: 100. A line on the drawing is 5 centimetres long. How long is the real thing, in metres?
+
+0676  A map has the scale 1: 50 000. A footpath is 3 centimetres long on the map. How long is it in real life, in kilometres?
+
+0677  A model railway has the scale 1: 76. A real locomotive is 15.2 metres long. How long is the model, in centimetres?
+
+0678  A recipe for 6 pancakes uses 300 millilitres of milk. How many millilitres of milk do you need for 15 pancakes? The picture shows: Two number lines. The top line shows 6 pancakes and 15 pancakes. The bottom line shows 300 millilitres of milk matched to 6 pancakes and a question mark matched to 15 pancakes.
+
+0679  On a 1: 20 plan, a kitchen worktop is 15 centimetres long. How long is the real worktop, in metres?
+
+0680  A plumber has a 2.4 metres length of pipe. She cuts it into pieces that are each 30 centimetres long. How many pieces can she cut?
+
+0681  The exchange rate is 1 pounds equals €1.15. How many euros do you get for 80 pounds?
+
+0682  Key idea: one first, then scale. Divide to find one, multiply to find many. A double number line shows both steps.
+
+0683  4 pens cost 3.20. pounds How much do 7 pens cost, in pounds? Type it like 5.60 or 5.6.
+
+0684  A train travels 150 miles in 2 hours at a steady speed. How far does it go in 3.5 hours?
+
+0685  In a game you earn 120 points every 5 minutes, at a steady rate. How many points do you earn in 12 minutes?
+
+0686  Which of these is in direct proportion?
+
+0687  3 metres of copper pipe costs 12.60. pounds How much does 5 metres cost, in pounds?
+
+0688  40 litres of diesel cost 62. pounds How much do 25 litres cost, in pounds? Type it like 38.75.
+
+0689  4 pencils cost 88p. How many pence does one pencil cost?
+
+0690  Which pack is the best value?
+
+0691  A 2.5 litre tin of paint costs 18. pounds A 5 litre tin costs 32.50. pounds How much cheaper per litre, in pounds, is the larger tin? Type it like 0.55.
+
+0692  A multipack of 6 cans costs 2.70. pounds A pack of 10 cans costs 4.80. pounds What is the price per can, in pence, of the cheaper deal?
+
+0693  Key idea: a known share tells you the value of one part. If 2 parts are 24, pounds one part is 12. pounds Then the total is 5 parts: 5 times 12 equals 60. pounds
+
+0694  Two friends share money in the ratio 2: 3. The smaller share is 14. pounds What was the total, in pounds? The picture shows: A bar of 5 equal parts. The first 2 parts are the smaller share and are labelled 14 pounds. The last 3 parts are the larger share. The whole bar is the unknown total.
+
+0695  In a bag of counters the ratio of red to blue is 3: 4. There are 15 red counters. How many blue counters are there?
+
+0696  Mortar is made with sand and cement in the ratio 4: 1. A builder uses 28 buckets of sand. How many buckets of mortar mix is that altogether?
+
+0697  Two shares are in the ratio 3: 7. The difference between the shares is 48. pounds How much is the larger share, in pounds?
+
+0698  Two sisters share money in the ratio 5: 3. The older sister gets 18 pounds more than the younger. How much money did they share in total, in pounds?
+
+0699  Two shares are in the ratio 2: 5. The larger share is 35. What is the total?
+
+0700  Zoe has 24 stickers and Ben has 40. Write the ratio of Zoe's stickers to Ben's in its simplest form, like 2:3.
+
+0701  Dev says: To share 35 pounds in the ratio 2: 5, I do 35 divided by 2 equals 17.5 and 35 divided by 5 equals 7. What went wrong?
+
+0702  Ana says: 3: 5 is the same as 6: 8, because I added 3 to both sides. What went wrong?
+
+0703  Lee says: The ratio 1: 4 means 1 over 4 of the total is the first share. What went wrong?
+
+0704  Simplify 45: 60 fully, like 2:3.
+
+0705  Share 90 in the ratio 4: 5. What is the larger share?
+
+0706  3 over 8 of a class are girls. Write the ratio of girls to boys in its simplest form, like 2:3.
+
+0707  A cyclist rides 24 kilometres in 90 minutes at a steady speed. How far does she ride in 2 hours?
+
+0708  A site plan has the scale 1: 500. A building is 8.4 centimetres long on the plan. How long is the real building, in metres?
+
+0709  Which is the better buy: 4 tomatoes for 1.60 pounds or 6 tomatoes for 2.52 pounds?
+
+0710  Two shares are in the ratio 5: 2. The larger share is 45. What is the total?
+
+0711  Write the ratio 750 millilitres: 1.5 litres in its simplest form, like 1:3.
+
+0712  [3 marks] Sofia mixes white paint and blue paint in the ratio 5: 2. She needs 14 litres of mixed paint. How many litres of blue paint does she use? The picture shows: A bar of 7 equal parts. The first 5 parts are white and the last 2 parts are blue. The whole bar is labelled 14 litres.
+
+0713  [4 marks] A recipe for 8 portions uses 600 grams of flour. Mia wants to make 20 portions and has 1.2 kilograms of flour. How many more grams of flour does she need?
+
+0714  [3 marks] There are 28 pupils in a class and 12 of them are boys. Show that the ratio of boys to girls is 3: 4. Type the ratio in its simplest form, like 2:3.
+
+0715  a: b equals 2: 3 and b: c equals 4: 5. Write a: b: c using whole numbers, like 2:3:4.
+
+0716  A bottle holds 10 litres of squash mix, made from concentrate and water in the ratio 1: 4. How many litres of water must be added to change the ratio to 1: 9?
+
+0717  Ali and Bea's ages are in the ratio 2: 3. In 10 years the ratio will be 3: 4. How old is Ali now?
+
+0718  A map has the scale 1: 1000. A field has an area of 6 centimetres squared on the map. What is the real area, in m squared? (1 metres squared equals 10 000 centimetres squared.)
+
+0719  Two people share a total T in the ratio a: b. Which expression gives the first share?
+
+0720  A soldering cleaner is made by mixing flux and spirit in the ratio 3: 7. A fitter makes 2 litres of it. How many millilitres of flux does she need?
+
+0721  A pipework plan is drawn to a scale of 1: 50. A pipe run measures 18.4 centimetres on the plan. How long is the real pipe run, in metres?
+
+0722  A 4.5 metres length of pipe is cut into two pieces in the ratio 2: 3. How long is the longer piece, in centimetres? The picture shows: A bar of 5 equal parts. The first 2 parts are one colour and the last 3 parts are another. The whole bar is labelled 4.5 metres.
+
+0723  [3 marks] Solder wire is sold on a 500 grams reel for 21.00 pounds or a 250 grams reel for 11.40. pounds How much cheaper per 100 grams, in pence, is the bigger reel? Type it like 12.
+
+0724  A heating system holds 140 litres of water. The label says to add 250 millilitres of inhibitor for every 50 litres of water. How many litres of inhibitor does the system need? Type it like 0.35.
+
+0725  I think of a number, double it, then take away 3. My answer is 11. What was my number? The picture shows: A flow chart. The starting number is unknown. It is doubled, then 3 is taken away, and the result is 11.
+
+0726  Solve 5x equals 40.
+
+0727  Solve x minus 6 equals 10.
+
+0728  Work out 4 plus 3 times 5.
+
+0729  Key idea: a formula is a recipe. Put the numbers in the right places, follow the order of operations (multiply before you add), and write the unit.
+
+0730  Speed s equals d divided by t, where d is the distance and t is the time. A train goes 150 kilometres in 3 hours. What is its speed in km/h?
+
+0731  The area of a rectangle is A equals lw. Find A in cm squared when l equals 8 centimetres and w equals 5 centimetres. The picture shows: A rectangle. The top edge is labelled 8 centimetres and the right edge is labelled 5 centimetres. The area inside is marked with a question mark.
+
+0732  An electrician uses V equals IR, where V is the voltage in volts, I is the current in amps and R is the resistance in ohms. Find V when I equals 4 and R equals 6.
+
+0733  The distance round a circle is C equals 2 pi r. To keep the sums simple, use pi equals 3. Find C when r equals 5.
+
+0734  T equals 5 minus 2n. Find T when n equals 4.
+
+0735  A cook roasts a joint of beef for T equals 40w plus 20 minutes, where w is its weight in kg. How many minutes does a 2.5 kilograms joint need?
+
+0736  Key idea: a formula is a balance. Whatever you do to one side, do to the other. Pick the operation that undoes what was done to the letter you want.
+
+0737  p equals q minus 4. Make q the subject. Type your answer starting q equals. The picture shows: A long bar labelled q. Below it a shorter bar labelled p, followed by a dashed gap labelled 4 for the amount taken away. Not drawn to scale.
+
+0738  A equals lw. Make w the subject. Type your answer like w equals A/l.
+
+0739  An oven uses energy E equals Pt, where P is its power and t is the time it is on. Make P the subject. Type your answer like P equals E/t.
+
+0740  F equals ma (force equals mass times acceleration). Which is the formula with a as the subject?
+
+0741  y equals x over 4. Make x the subject. Type your answer like x equals 3y.
+
+0742  s equals d over t (speed equals distance divided by time). Make d the subject. Type your answer like d equals ab.
+
+0743  Key idea: a fraction line works like brackets. y minus 2 over 3 means (y minus 2) divided by 3, so the whole top line is divided, not just the last bit.
+
+0744  y equals 2x plus 1. Make x the subject. Type your answer like x equals (y-5)/3, with brackets. The picture shows: A flow chart. Start with x. Multiply by 2, then add 1, to get y.
+
+0745  A skip costs C equals 30 plus 12d pounds to hire for d days. Make d the subject.
+
+0746  p equals 4q minus 3. Make q the subject.
+
+0747  You have the formula x equals (y minus 1) divided by 2. Find x when y equals 9.
+
+0748  A scaffold tower costs C equals 55 plus 20d pounds for d days. Ali pays 215. pounds For how many days did he hire it?
+
+0749  y equals x over 3 plus 2. Make x the subject. Use brackets if you need them.
+
+0750  P equals 2r plus 6. Which is the formula with r as the subject?
+
+0751  Key idea: undo in reverse order again. Get the squared letter on its own first, then take the square root of both sides.
+
+0752  The area of a square with side s is A equals s squared. Make s the subject.
+
+0753  y equals x squared plus 3. Make x the subject.
+
+0754  A circular pond has area A equals pi r squared. Use pi equals 3.14. The area is 78.5 metres squared. Find r in metres.
+
+0755  A moving object has kinetic energy E equals 1 over 2mv squared. Make v the subject.
+
+0756  Key idea: substituting asks “what comes out?”. Rearranging asks “what must go in?”. If you will need the answer many times with different numbers, rearrange once, then substitute each time.
+
+0757  Distance d equals vt, where v is speed and t is time. A cyclist rides 36 kilometres at 12 kilometres/h. How many hours does it take?
+
+0758  An electrician uses V equals IR. A heater has V equals 230 volts and R equals 46 ohms. Find the current I in amps.
+
+0759  A rectangular patio has area 24 metres squared and is 6 metres long. How wide is it, in metres? The picture shows: A rectangle for a patio. The top edge is 6 metres. The side is marked with a question mark. The area inside is 24 square metres. Not drawn to scale.
+
+0760  The distance round a circle is C equals 2 pi r. Use pi equals 3. A circle has C equals 36. Find r. The picture shows: A circle with a line from the centre to the edge for the radius, which is marked with a question mark. A note says the distance round the circle is 36 and to use 3 for pi.
+
+0761  v equals u plus at. Make u the subject. Type your answer like u equals v-at.
+
+0762  v equals u plus at. Make t the subject. Use brackets where you need them.
+
+0763  A plumber charges C equals 45 plus 30h pounds for h hours. A bill is 165. pounds How many hours was the job?
+
+0764  Ben says: if y equals 3x plus 2, then x equals y over 3 minus 2. What went wrong?
+
+0765  Priya says: if d equals vt, then t equals v over d. What went wrong?
+
+0766  Ali says: if P equals 2l plus 2w, then l equals P over 2 minus 2w. What went wrong?
+
+0767  Temperatures: F equals 1.8C plus 32 turns Celsius into Fahrenheit. A summer day is 20 degrees Celsius. What is that in degreesF?
+
+0768  Make C the subject of F equals 1.8C plus 32. Use brackets where you need them.
+
+0769  Use C equals (F minus 32) divided by 1.8 to change 86 degreesF to degrees Celsius.
+
+0770  A cake recipe uses f equals 75s plus 50 grams of flour for s servings. You have 500 grams of flour. How many servings can you make?
+
+0771  In a game, you need P equals 150L minus 50 points to finish level L. Zed has 700 points. What level is that?
+
+0772  The area of a triangle is A equals 1 over 2bh. Which formula has h as the subject? The picture shows: A triangle with a horizontal base labelled b. A dashed line from the top corner straight down to the base is labelled h. The area is labelled A.
+
+0773  A runner holds 4 metres/s over 600 metres. Using t equals d divided by s, how many seconds does she run?
+
+0774  2y plus 3x equals 12. Make y the subject. Use brackets where you need them.
+
+0775  (a) [2 marks] Work out the charge for a job of 3 hours. Answer in pounds.
+
+0776  (b) [3 marks] Make h the subject of C equals 35 plus 28h. Use brackets where you need them.
+
+0777  (c) [2 marks] A customer pays 175. pounds For how many hours did the plumber work?
+
+0778  [3 marks] Ali says: if y equals 4x minus 6, then x equals (y plus 6) divided by 4. Show that Ali is right when y equals 14. Type the value of x you get.
+
+0779  [4 marks] Work out m, the monthly price, in pounds.
+
+0780  F equals 1.8C plus 32 changes Celsius to Fahrenheit. At one temperature the number on both scales is the same. What is that temperature?
+
+0781  ax plus b equals cx plus d. Make x the subject. Assume a is not equal to c. Use brackets where you need them.
+
+0782  y equals 2x plus 1 and x equals (y minus 1) divided by 2 say the same thing. Put x equals (y minus 1) divided by 2 into 2x plus 1 and simplify. What do you get?
+
+0783  n is any whole number and R equals 2n plus 7. Is R always odd? Explain why.
+
+0784  Speed, distance and time are linked by s equals d divided by t. Rearrange it to make t the subject, then find how long a fitter takes to drive 78 miles at an average speed of 52 mph. Give your answer in minutes.
+
+0785  The area of the inside of a round pipe is A equals 3.14r2, where r is the radius in mm. A pipe has A equals 314 mm2. Rearrange the formula and find r, in mm.
+
+0786  A quote is worked out with C equals a plus bn, where a is the call-out fee, b is the price per hour and n is the number of hours. Which is the formula made with n as the subject?
+
+0787  [3 marks] A quote is C equals 65 plus 48h, where C is the cost in pounds and h is the hours of work. A customer can spend at most 300. pounds Rearrange the formula to make h the subject, then find the number of hours, to 1 decimal place.
+
+0788  Using C equals a plus bn, make b the subject. Then find b when C equals 117, a equals 45 and n equals 6. Give b in pounds per hour.
+
+0789  Two angles sit side by side on a straight line. One is 110 degrees. How big is the other, in degrees? The picture shows: A straight horizontal line with a second line rising from it and leaning to the right. The wide angle on the left of the second line is marked 110 degrees. The narrow angle on the right is marked with a question mark.
+
+0790  Work out 180 minus 74.
+
+0791  Work out 360 divided by 5.
+
+0792  Work out 3 times 60.
+
+0793  Key idea: 180 degrees is a straight line. 360 degrees is a full turn. Say the type of an angle first. That gives you an estimate to check your answer against.
+
+0794  An angle of 135 degrees is,
+
+0795  Which of these is a reflex angle?
+
+0796  How many degrees are there in a full turn?
+
+0797  How many degrees are there in a right angle?
+
+0798  Key idea: to find a missing angle, pick the fact that fits. Write the total (180 or 360). Then subtract the angles you know. Give the reason too, for example “angles on a straight line add up to 180 degrees”. The reason earns marks in exams.
+
+0799  Angles on a straight line are 65 degrees and x. Find x. The picture shows: A straight horizontal line with a second line rising from it. The angle on the right of the second line is 65 degrees. The angle on its left is marked x.
+
+0800  Angles around a point are 90 degrees, 120 degrees, 100 degrees and x. Find x. The picture shows: Four lines meet at a point, splitting the space around it into four angles marked 90 degrees, 120 degrees, 100 degrees and x.
+
+0801  Two straight lines cross. One of the angles is 48 degrees. How big is the angle directly opposite it? The picture shows: Two straight lines cross. The angle between the right-hand part of the horizontal line and the upper part of the other line is 48 degrees. The angle directly opposite it, at the lower left, is marked with a question mark.
+
+0802  Two angles on a straight line are x and 2x. Find x. The picture shows: A straight horizontal line with a second line rising from it leaning to the left. The smaller angle on the left is marked x. The larger angle on the right is marked 2x.
+
+0803  A right angle is split into two angles. One is 35 degrees. Find the other. The picture shows: A right angle with a line drawn inside it from the corner. The lower angle, next to the horizontal arm, is 35 degrees. The upper angle, next to the vertical arm, is marked with a question mark. The corner is marked as a right angle.
+
+0804  Key idea: a triangle totals 180. A quadrilateral totals 360. A full turn totals 360. Pick the total that fits the shape, then subtract.
+
+0805  Two angles of a triangle are 50 degrees and 70 degrees. Find the third angle. The picture shows: A triangle. The angle at the bottom left is 50 degrees and the angle at the bottom right is 70 degrees. The angle at the top is marked with a question mark.
+
+0806  An isosceles triangle has a 40 degrees angle between its two equal sides. Find each base angle. The picture shows: A tall thin isosceles triangle. The two sloping sides are marked as equal with matching tick marks. The angle at the top, between the equal sides, is 40 degrees. Each of the two base angles is marked with a question mark.
+
+0807  A right-angled triangle has one other angle of 35 degrees. Find the third angle. The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 35 degrees. The angle at the top is marked with a question mark.
+
+0808  What is each angle of an equilateral triangle? The picture shows: A triangle with all three sides marked as equal using matching tick marks. Each of the three angles is marked with a question mark.
+
+0809  The angles of a triangle are x, 2x and 3x. Find x. The picture shows: A triangle whose three angles are marked x, 2x and 3x. The angle 3x is at the bottom left, x is at the bottom right and 2x is at the top.
+
+0810  Key idea: the exterior angles of any polygon always add up to 360 degrees. The interior angles add up to (n minus 2) times 180 degrees.
+
+0811  Three angles of a quadrilateral are 90 degrees, 110 degrees and 70 degrees. Find the fourth. The picture shows: A four-sided shape, a trapezium leaning to the right. The bottom left corner is a right angle, the bottom right is 110 degrees and the top right is 70 degrees. The top left angle is marked with a question mark.
+
+0812  Work out the sum of the interior angles of a pentagon. The picture shows: A pentagon with five straight sides, with a small arc marked inside each of its corners to show the interior angles.
+
+0813  Work out the sum of the interior angles of a hexagon. The picture shows: A hexagon with six straight sides, with a small arc marked inside each of its corners to show the interior angles.
+
+0814  Find each exterior angle (turn) of a regular octagon. The picture shows: A regular octagon with one side extended in a dashed line beyond a corner. The angle between the extension and the next side, outside the shape, is marked with a question mark.
+
+0815  Find each interior angle of a regular hexagon. The picture shows: A regular hexagon with all six sides marked as equal. One interior angle is marked with a question mark.
+
+0816  Key idea: when you use one of these facts, name it: “alternate angles are equal”. The name is the reason. The reason earns the mark. Z, F and C are memory aids, not reasons: write the full name. Vertically opposite angles and angles on a straight line can help you reach the angle you need.
+
+0817  Two parallel lines are crossed by a third. One angle is 70 degrees. What is the alternate angle? The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. At the top crossing, the angle below the top line on the left of the sloping line is 70 degrees. At the bottom crossing, the angle above the bottom line on the right of the sloping line is marked with a question mark.
+
+0818  Parallel lines: one angle is 70 degrees. Find the co-interior angle. The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. Between the lines on the right of the sloping line, the angle at the bottom crossing is 70 degrees and the angle at the top crossing is marked with a question mark.
+
+0819  Parallel lines: one angle is 70 degrees. Find the corresponding angle. The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. At the top crossing, the angle above the line on the right of the sloping line is 70 degrees. At the bottom crossing, the angle in the same position is marked with a question mark.
+
+0820  Which pair of angles adds up to 180 degrees when the lines are parallel?
+
+0821  Parallel lines are crossed by a third line. The angle marked x is 70 degrees, the same as the angle marked 70 degrees. Which reason earns the mark? The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. At the top crossing, the angle below the top line on the left of the sloping line is 70 degrees. At the bottom crossing, the angle above the bottom line on the right of the sloping line is marked x.
+
+0822  Parallel lines are crossed by a third line. One angle is 70 degrees. The angle marked x is 110 degrees. Which reason earns the mark? The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. Between the lines on the right of the sloping line, the angle at the bottom crossing is 70 degrees and the angle at the top crossing is marked x.
+
+0823  Parallel lines are crossed by a third line. The angle marked x is 70 degrees, the same as the angle marked 70 degrees. Which reason earns the mark? The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. At the top crossing, the angle above the line on the right of the sloping line is 70 degrees. At the bottom crossing, the angle in the same position is marked x.
+
+0824  Key idea: angle facts work both ways. Use them to find a missing angle. Or use angles to check that a shape can exist.
+
+0825  A regular polygon has exterior angles of 36 degrees. How many sides does it have? The picture shows: Part of a regular polygon: two equal sides meet at a corner. The first side is extended past the corner with a dashed line. The angle between the dashed extension and the second side is 36 degrees.
+
+0826  Each interior angle of a regular polygon is 150 degrees. How many sides does it have? The picture shows: Part of a regular polygon: two equal sides meet at a corner. The angle inside the shape, between the two sides, is 150 degrees. A dashed line extends the first side past the corner.
+
+0827  Could a triangle have angles 50 degrees, 60 degrees and 80 degrees?
+
+0828  Could a quadrilateral have angles 100 degrees, 80 degrees, 90 degrees and 90 degrees?
+
+0829  A triangle has angles 3x, 4x and 5x. Find the largest angle. The picture shows: A triangle whose three angles are marked 3x at the bottom left, 4x at the bottom right and 5x at the top.
+
+0830  Ravi says: “The angles in a triangle are 60 degrees, 70 degrees and 40 degrees, which add up to 170 degrees, so it must be fine.” What went wrong?
+
+0831  Tia says: “A regular pentagon has interior angles of 5 times 180 equals 900 degrees, so each is 180 degrees.” What went wrong?
+
+0832  Uma says: “Co-interior angles are equal.” What went wrong?
+
+0833  An isosceles triangle has a top angle of 48 degrees. Find a base angle. The picture shows: An isosceles triangle with its two sloping sides marked as equal. The top angle is 48 degrees. The base angles are marked with question marks.
+
+0834  Find each interior angle of a regular pentagon. The picture shows: A regular pentagon with all five sides marked as equal. One interior angle is marked with a question mark.
+
+0835  Angles on a straight line are 2x and x plus 30. Find x. (Uses solving equations.) The picture shows: A straight horizontal line with a second line rising from it. The angle on the right is marked 2x and the angle on the left is marked x plus 30.
+
+0836  Parallel lines: two co-interior angles are x and 2x. Find x. The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. Between the lines on the right of the sloping line, the angle at the bottom crossing is marked x and the angle at the top crossing is marked 2x.
+
+0837  What is the sum of the interior angles of a 15-sided shape?
+
+0838  (a) [3 marks] Triangle ABC is isosceles with AB equals AC. Angle A equals 48 degrees. Work out angle B. The picture shows: A triangle with its top corner labelled A and its bottom corners labelled B on the left and C on the right. The sides AB and AC are marked as equal. The angle at A is 48 degrees. The angle at B is marked with a question mark.
+
+0839  (b) [2 marks] Work out the size of one interior angle of a regular pentagon. The picture shows: A regular pentagon with all five sides marked as equal. One interior angle is marked with a question mark.
+
+0840  (c) [2 marks] Two parallel lines are crossed by a third. One angle is 65 degrees. Find the co-interior angle to it. The picture shows: Two parallel horizontal lines, shown with matching arrows, are crossed by a sloping line. Between the lines on the right of the sloping line, the angle at the bottom crossing is 65 degrees and the co-interior angle at the top crossing is marked with a question mark.
+
+0841  Work out the sum of the interior angles of a 12-sided polygon.
+
+0842  Each interior angle of a regular polygon is 140 degrees. How many sides does it have? The picture shows: Part of a regular polygon: two equal sides meet at a corner. The angle inside the shape, between the two sides, is 140 degrees. A dashed line extends the first side past the corner.
+
+0843  A pipe offset uses two 45 degrees bends. At the first bend the pipe turns through 45 degrees. Angle x is the angle inside the bend, between the straight piece before it and the sloping piece. Find angle x, in degrees. The picture shows: A pipe runs along a lower level, bends upwards at 45 degrees, then bends back to run along a higher level. A dotted line continues the first straight piece past the first bend and the turn is labelled 45 degrees. The angle x is inside the first bend, between the first straight piece and the sloping piece.
+
+0844  Four brackets are fixed round a flue pipe where it passes through a wall. Looking at the flue end-on, the angles between neighbouring brackets are 82 degrees, 104 degrees, 97 degrees and x. Find x, in degrees.
+
+0845  A roof truss is an isosceles triangle. The angle at the top is 110 degrees. Find one of the two equal base angles, x, in degrees. The picture shows: An isosceles triangle for a roof truss. The base is the tie beam. The angle at the top is labelled 110 degrees and the two equal base angles are each labelled x.
+
+0846  [3 marks] A pipe loops round a pillar and ends up pointing the way it started. It turns the same way at every bend, through 90 degrees, 45 degrees, 75 degrees, 60 degrees, 50 degrees and x. A full loop is a turn of 360 degrees. Find x, in degrees.
+
+0847  A symmetrical roof truss has two base angles of 38 degrees. A vertical post goes straight down from the top to the middle of the tie beam. What angle does the post make with each sloping rafter, in degrees?
+
+0848  Two numbers add up to 11. The bigger number is 3 more than the smaller number. What are the two numbers? Type the bigger first, then the smaller, with a comma and no brackets, like 9,2. The picture shows: Two bars. The top bar is labelled bigger and the bottom bar is labelled smaller. A dashed piece labelled 3 shows how much more the bigger number is. A note says the two numbers together make 11. Not drawn to scale.
+
+0849  Solve 2x plus 5 equals 17.
+
+0850  Solve x minus 7 equals minus 2.
+
+0851  Work out 3x plus 2y when x equals 4 and y equals minus 1.
+
+0852  Key idea: a solution has to work in both equations. A pair that fits only one is not a solution.
+
+0853  Which pair makes both x plus y equals 8 and x minus y equals 2 true?
+
+0854  How many pairs of positive whole numbers make x plus y equals 5 true? (1, 4) and (4, 1) count as different pairs.
+
+0855  x plus y equals 12 and x minus y equals 4. Find x and y by trying pairs that add to 12. Type x first, then y, like 9,3.
+
+0856  Why is one equation, such as x plus y equals 5, not enough to find x and y?
+
+0857  Key idea: same signs, subtract. Different signs, add. This is about the letter you want to remove: plus 2y and plus 2y have the same sign, so subtract. plus 3y and minus 3y have different signs, so add.
+
+0858  Solve x plus y equals 7 and x minus y equals 1.
+
+0859  Solve (1) 2x plus y equals 12 and (2) x plus y equals 7.
+
+0860  Solve (1) 2x plus 3y equals 15 and (2) 2x minus 3y equals 9.
+
+0861  Solve (1) x plus 5y equals 16 and (2) 3x plus 5y equals 18.
+
+0862  To remove y from 4x plus y equals 9 and 2x plus y equals 5, what should you do?
+
+0863  Solve (1) 3x plus y equals 5 and (2) x plus y equals 9. One of the answers is negative: type it like minus 2,5.
+
+0864  Key idea: multiplying a whole equation by a number keeps it true, just as doubling both pans of a balance keeps it level. Do it only to make the coefficients match, then add or subtract as before.
+
+0865  Solve (1) x plus 2y equals 9 and (2) 3x plus y equals 7.
+
+0866  Solve (1) 2x plus y equals 7 and (2) 3x plus 2y equals 11.
+
+0867  Solve (1) 2x plus 3y equals 13 and (2) 3x plus 2y equals 12.
+
+0868  Solve (1) 3x plus 2y equals 4 and (2) x minus y equals 3. Type your answer like 5,-2.
+
+0869  You have (1) 4x plus 3y equals 22 and (2) 2x plus y equals 10. What should you do first to remove x?
+
+0870  (1) 4x plus 3y equals 17 and (2) 4x plus y equals 11. Find y only.
+
+0871  Key idea: if y equals 2x plus 1, then wherever you see y you may write 2x plus 1. Keep brackets round it if it is being subtracted or multiplied.
+
+0872  Solve (1) y equals x plus 4 and (2) 2x plus y equals 22.
+
+0873  Solve (1) x equals 3y and (2) x plus y equals 20.
+
+0874  Solve (1) y equals 2x minus 3 and (2) 5x plus y equals 25.
+
+0875  Solve (1) x plus y equals 10 and (2) 3x minus y equals 6. Rearrange (1) to get y on its own first.
+
+0876  You have y equals 3x minus 2 and 2x plus y equals 13. Which method is quickest to start?
+
+0877  Use y equals 3x minus 2 and 2x plus y equals 13 to find x.
+
+0878  A band sells T-shirts and posters. 2 T-shirts and 1 poster cost 35. pounds 1 T-shirt and 1 poster cost 22. pounds How much is one T-shirt, in pounds? The picture shows: Two bars. The top bar is two T-shirts and one poster and is worth 35 pounds. The bottom bar is one T-shirt and one poster and is worth 22 pounds. A T-shirt block is wider than a poster block.
+
+0879  At a café, 2 cakes and 3 teas cost 17. pounds 4 cakes and 1 tea cost 19. pounds How much is one tea, in pounds?
+
+0880  In a game, 4 coins and 2 gems score 26 points. 3 coins and 5 gems score 37 points. How many points is each coin and each gem worth? Type the coin first, then the gem, like 2,9.
+
+0881  A builder pays 47 pounds for 3 bags of sand and 2 bags of cement. She pays 48 pounds for 5 bags of sand and 1 bag of cement. How much is one bag of cement, in pounds? (The prices are made up for practice.)
+
+0882  A minibus carries 16 people. Adults pay 4 pounds each and children pay 2 pounds each. The total paid is 44. pounds How many children are on the minibus?
+
+0883  The sum of two numbers is 30. The larger number is 6 more than twice the smaller number. What is the larger number?
+
+0884  2 pens and 1 notebook cost 7. pounds 1 pen and 3 notebooks cost 11. pounds Let p be the price of a pen and n the price of a notebook, in pounds. Which pair of equations matches the story?
+
+0885  Key idea: the lines are two clues drawn as pictures, and the crossing point is the answer to both. Algebra finds that point exactly, without drawing.
+
+0886  The diagram shows the lines x plus y equals 5 and x minus y equals 1. Read off where they cross. Type x first, then y, like 1,4. The picture shows: A grid with numbered axes. A solid line for x plus y equals 5 slopes down from the top left. A dashed line for x minus y equals 1 slopes up to the top right. The two lines cross.
+
+0887  The point (1, 4) is on the line x plus y equals 5. Work out the value of x minus y at (1, 4). Is (1, 4) also on the line x minus y equals 1?
+
+0888  Two straight lines cross at one point. What does that point tell you about their two equations?
+
+0889  Key idea: tidy first. Get every equation into the form ax plus by equals c, with the letters on the left and the number on the right. Then choose your method.
+
+0890  Solve (1) 3x equals 2y plus 8 and (2) x plus y equals 6.
+
+0891  Solve (1) 2x minus 3y equals 13 and (2) 5x plus 2y equals 4. Type your answer like 5,-1.
+
+0892  Solve (1) 4x plus y equals 4 and (2) 2x plus 3y equals 7.
+
+0893  A rectangle has a perimeter of 34 centimetres. Its length is 3 centimetres more than its width. How long is the rectangle, in cm? The picture shows: A rectangle. The longer top edge is labelled l and the side edge is labelled w. Not drawn to scale.
+
+0894  Key idea: a solution must work in both equations. Checking in only one is not checking. If the pair fails either one, something went wrong.
+
+0895  A student says x equals 4, y equals 1 solves both 3x minus y equals 11 and x plus 2y equals 7. Is the student right?
+
+0896  The pair x equals 4, y equals 1 solves x plus y equals 5 and also ax minus y equals 7. Find the number a.
+
+0897  Which pair of equations has x equals 2, y equals 3 as its solution?
+
+0898  x plus y equals 10 and x minus y equals 4. Add the two equations. You get 2x equals a number. What is the number?
+
+0899  Solve x plus y equals 12 and x minus y equals 2, then check your answer in both equations. Type x first, then y.
+
+0900  Tia says x equals 5, y equals 1 solves 3x plus 2y equals 17 and 2x plus y equals 9. Work out 2x plus y for her numbers. Is she right?
+
+0901  The pair x equals 2, y equals 3 solves x plus y equals 5. It also solves 2x plus y equals c. Find c.
+
+0902  Leo says: for 3x plus 2y equals 11 and x plus 2y equals 5, add the equations to get 4x plus 4y equals 16. What went wrong?
+
+0903  Zara says: for 2x plus y equals 9 and x minus y equals 3, adding gives 3x equals 12, so x equals 4. Then she writes y equals 3 plus 4 equals 7. What went wrong?
+
+0904  Ravi says: x equals 4, y equals 1 solves x plus y equals 5, so it must solve x plus y equals 5 and 2x minus y equals 6. What went wrong?
+
+0905  Solve 4x minus 5 equals 19.
+
+0906  Solve x plus y equals 15 and x minus y equals 5.
+
+0907  Solve (1) 6x plus y equals 20 and (2) 2x plus y equals 8.
+
+0908  A plumber buys 3 lengths of 15 millimetres pipe and 2 lengths of 22 millimetres pipe for 37. pounds She buys 2 lengths of 15 millimetres pipe and 1 length of 22 millimetres pipe for 21. pounds How much is one length of 22 millimetres pipe, in pounds? (The prices are made up for practice.)
+
+0909  Solve y equals 3x and x plus y equals 20.
+
+0910  A shop hires out bikes for a day. 2 mountain bikes and 3 road bikes cost 96. pounds 1 mountain bike and 2 road bikes cost 58. pounds How much is one mountain bike for the day, in pounds? (The prices are made up for practice.)
+
+0911  Work out 5x minus 2y when x equals 3 and y equals minus 2.
+
+0912  [4 marks] Solve the simultaneous equations 3x plus 2y equals 19 and x plus 4y equals 23. Type x first, then y, like 2,5.
+
+0913  [4 marks] A café sells pizzas and salads. 5 pizzas and 3 salads cost 67. pounds 2 pizzas and 5 salads cost 61. pounds Work out the cost of one salad, in pounds.
+
+0914  (a) [2 marks] Hannah says the solution of x plus y equals 7 and 3x minus y equals 5 is x equals 2, y equals 5. Show that Hannah is wrong. Type the value of 3x minus y for her numbers.
+
+0915  (b) [2 marks] Work out the correct solution of x plus y equals 7 and 3x minus y equals 5. Type x first, then y.
+
+0916  Look at the two lines x plus y equals 5 and x plus y equals 7. How many pairs of numbers make both equations true? The picture shows: A grid. A solid line for x plus y equals 5 and a dashed line for x plus y equals 7 both slope down from top left to bottom right. They are the same distance apart all the way and never meet.
+
+0917  Look at x plus y equals 5 and 2x plus 2y equals 10. How many pairs of numbers make both equations true?
+
+0918  Two numbers x and y have sum S and difference D, so x plus y equals S and x minus y equals D. Make x the subject of a formula using S and D. Use brackets where you need them.
+
+0919  x plus y equals 10 and x minus y equals 4. Without finding x or y, work out x squared minus y squared. Higher
+
+0920  I think of a number, double it, then add 3. My answer is 17. What was my number? The picture shows: A flow chart. The starting number is unknown. It is doubled, then 3 is added, and the result is 17.
+
+0921  Work out minus 3 plus 5.
+
+0922  Key idea: do the same amount to both sides, so the kitchen scale stays balanced. For example, take 7 from both sides, or divide both sides by 2. To find x, use the inverse operation: the one that undoes what was done to x.
+
+0923  Solve x plus 7 equals 12. Give x.
+
+0924  Solve x minus 4 equals 9.
+
+0925  Solve 3x equals 21.
+
+0926  Solve 5x equals 2. Give x as a decimal.
+
+0927  Solve x over 4 equals 5.
+
+0928  Key idea: in 3x plus 5 equals 20, x was first multiplied by 3, then 5 was added. So undo the " plus 5" first, then the " times 3".
+
+0929  Work out 2 times ( minus 4).
+
+0930  Work out 18 divided by ( minus 3).
+
+0931  Solve 4x plus 1 equals 21.
+
+0932  Solve 2x plus 1 equals 6. Give x as a decimal.
+
+0933  Solve 7x minus 3 equals 18.
+
+0934  Solve 4x minus 3 equals 3. Give x as a decimal.
+
+0935  Solve x over 3 plus 2 equals 6.
+
+0936  Solve 12 minus 2x equals 4.
+
+0937  Solve 3x plus 10 equals 4. The answer is negative.
+
+0938  Key idea: take away the smaller x-term from both sides, so you are left with a positive number of x. The other way also works, but then you divide by a negative.
+
+0939  Solve 2(x plus 3) equals 14.
+
+0940  Solve 4(x minus 1) equals 20.
+
+0941  Solve 7x minus 4 equals 3x plus 16.
+
+0942  Solve 2(3x minus 1) equals 4x plus 8.
+
+0943  Key idea: multiply every term on both sides. Put brackets around a top line such as x plus 1.
+
+0944  Solve x plus 2 over 3 equals 5.
+
+0945  Solve 2x over 5 equals 6.
+
+0946  Solve x minus 1 over 4 equals 3.
+
+0947  Solve x plus 1 over 2 equals x plus 4 over 5.
+
+0948  Key idea: a number puzzle is an equation told in words. Call the number x and write each step in order: 3x minus 4 equals 11. To solve it, undo the steps in reverse: 11 plus 4 equals 15, then 15 divided by 3 equals 5.
+
+0949  Is x equals 3 a solution of 4x minus 3 equals 10?
+
+0950  Which equation has the solution x equals 6?
+
+0951  I think of a number, multiply by 4, then subtract 6. The answer is 22. What is my number? The picture shows: A flow chart. The starting number is unknown. It is multiplied by 4, then 6 is subtracted, and the result is 22.
+
+0952  A pen costs £x. Four pens and a 2 pounds ruler cost 10 pounds altogether. Form an equation and find x (in pounds). The picture shows: A bar made of four equal parts, each the price x of a pen, and one smaller part of 2 pounds for the ruler. The whole bar is 10. pounds
+
+0953  Tom is x years old. His sister is 3 years older. Their ages add up to 25. How old is Tom? The picture shows: Two bars. Tom's bar is x. His sister's bar is x with 3 more added. Together the two bars make 25.
+
+0954  Ali says: "3x plus 5 equals 20, so 3x equals 25." What went wrong?
+
+0955  Bea says: "2(x plus 3) equals 10, so 2x plus 3 equals 10." What went wrong?
+
+0956  Solve 5x minus 3 equals 22.
+
+0957  Solve 3(2x plus 1) equals 27.
+
+0958  Solve x over 5 minus 2 equals 1.
+
+0959  Solve 9x minus 4 equals 5x plus 12.
+
+0960  The sum of three consecutive whole numbers is 48. What is the smallest of them? The picture shows: Three bars. The first is n. The second is n with 1 added. The third is n with 2 added. Together the three bars make 48.
+
+0961  (a) [2 marks] Write down a simplified expression for the perimeter in terms of x. (Type it like 6x-1.) The picture shows: A triangle. The left side is (2x plus 1) cm, the right side is (3x minus 2) cm and the base is x cm, the shortest side. The perimeter is 29 centimetres.
+
+0962  (b) [2 marks] Use the perimeter to form an equation and find x.
+
+0963  (c) [1 mark] What is the length of the longest side, in cm?
+
+0964  (a) [1 mark] When x equals 4, what is the value of the left side, 3(x plus 2)?
+
+0965  (b) [1 mark] When x equals 4, what is the value of the right side, 5x minus 2?
+
+0966  (c) [1 mark] What does this show?
+
+0967  (a) [3 marks] Form an equation using the perimeter, then work out x. The picture shows: A rectangle. The length along the top is (2x plus 3) cm and the width down the side is (x minus 1) cm. The perimeter is 34 centimetres.
+
+0968  (b) [1 mark] What is the width of the rectangle, in cm?
+
+0969  [3 marks] Form an equation, with h for the number of hours, and solve it. How many hours did the plumber work? The picture shows: A bar for the 97 pounds bill. It starts with the 25 pounds call-out, then has a 18 pounds part for each hour worked. The number of hours is unknown, so the last part is dashed.
+
+0970  Solve 2x plus 1 over 3 equals x plus 5 over 2.
+
+0971  Solve 5 minus 2x equals 3x minus 10.
+
+0972  A plumber charges a 45 pounds call-out fee plus 38 pounds for every hour of work. A job costs 159. pounds How many hours did the job take?
+
+0973  Plumber A charges a 30 pounds call-out fee plus 44 pounds an hour. Plumber B has no call-out fee and charges 52 pounds an hour. After how many hours do they cost the same? Type it like 2.5.
+
+0974  [3 marks] A quote is 60 pounds call-out, plus 4.5 hours of labour at £x an hour, plus 86.40 pounds of parts. The total is 362.40. pounds Form an equation and find x, in pounds per hour.
+
+0975  A fitter buys 8 lengths of pipe at £x each and pays 15 pounds for delivery. The total is 65. pounds Form an equation and find x, in pounds. Type it like 4.50.
+
+0976  A plumber cuts one third off a length of pipe, then cuts a further 25 centimetres off. 85 centimetres is left. How long was the pipe to start with, in centimetres? Call the starting length x.
+
+0977  A square tile has sides of 7 centimetres. What is its area, in cm squared? The picture shows: A square tile drawn on a grid of 7 by 7 small squares. Each side is labelled 7 centimetres. The area is unknown.
+
+0978  Last time: how many factors does 36 have?
+
+0979  What is the HCF of 12 and 18?
+
+0980  Work out 49 divided by 7.
+
+0981  Key idea: learn the squares up to 15 squared equals 225, because they come up everywhere (Pythagoras, area, algebra). The small 2 means “multiply the number by itself”. It does not mean “times 2”: 6 squared equals 36, not 12.
+
+0982  Work out 9 squared. The picture shows: A square drawn on a grid of 9 by 9 small squares, with each side labelled 9. The total number of small squares, the area, is unknown.
+
+0983  Work out 15 squared.
+
+0984  Work out 0.5 squared.
+
+0985  Which of these is a square number?
+
+0986  Key idea: the root sign works like brackets: square root of (36 plus 64) means work out 36 plus 64 equals 100 first, then square root of 100 equals 10. But square root of 36 plus square root of 64 equals 6 plus 8 equals 14. These are different!
+
+0987  Work out square root of 81. The picture shows: A square with area 81 square units. Each side length is unknown and labelled with a question mark.
+
+0988  Work out square root of 144.
+
+0989  Work out square root of 0.25.
+
+0990  Work out square root of (225 plus 64).
+
+0991  Key idea: a calculator gives a decimal such as square root of 50 equals 7.0710,, which is only a rounded copy of the real number. Estimate first so you can tell whether the calculator answer makes sense. If the answer must be exact, leave it as a root: a Surd such as square root of 50. The next section shows how to simplify one.
+
+0992  Between which two whole numbers does square root of 50 lie?
+
+0993  Use a calculator to find square root of 30 to 1 decimal place.
+
+0994  Which is closest to square root of 40?
+
+0995  Use a calculator to find square root of 70 to 1 decimal place.
+
+0996  Key idea: use the biggest square factor, so the number left under the root has no square factor. square root of 50 equals square root of (25 times 2) gives 5 square root of 2, which is the exact form.
+
+0997  Write square root of 45 in the form a square root of b, with b as small as possible. (Type it like 3 square root of 5 or 3sqrt5.)
+
+0998  Write square root of 75 in its simplest form. (Type it like 5 square root of 3 or 5sqrt3.)
+
+0999  Write square root of 72 in its simplest form. (Type it like 6 square root of 2 or 6sqrt2.)
+
+1000  Key idea: cubes grow fast: 23 equals 8, 33 equals 27, 43 equals 64, 53 equals 125, 103 equals 1,000. A negative number cubed stays negative: ( minus 2)3 equals minus 8.
+
+1001  Work out 33. The picture shows: A cube drawn in 3D with each edge 3 units long. Its volume is unknown.
+
+1002  Work out 43. The picture shows: A cube drawn in 3D with each edge 4 units long. Its volume is unknown.
+
+1003  Work out 103.
+
+1004  Find the cube root of 125. (That is, which number cubed gives 125?) The picture shows: A cube drawn in 3D with volume 125 cubic units. Its edge length is unknown and labelled with a question mark.
+
+1005  Key idea: for numbers 0 or more, squaring and square-rooting undo each other, just as multiplying and dividing do. One goes from side to area, the other from area to side.
+
+1006  A square has an area of 81 centimetres squared. What is the length of one side, in cm? The picture shows: A square with area 81 square centimetres. Each side length is unknown and labelled with a question mark.
+
+1007  A square has a perimeter of 20 centimetres. What is its area, in cm squared? The picture shows: A square whose distance all the way round, the perimeter, is 20 centimetres. Each side length is unknown and labelled with a question mark.
+
+1008  square root of x equals 7. What is x?
+
+1009  x squared equals 169. Write down the positive solution for x.
+
+1010  How many different numbers satisfy x squared equals 49?
+
+1011  Ian says: “6 squared equals 12.” What went wrong? The picture shows: A square drawn on a grid of 6 by 6 small squares, each side labelled 6. The number of small squares, the area, is unknown.
+
+1012  Jen says: “ square root of (9 plus 16) equals square root of 9 plus square root of 16 equals 7.” What went wrong?
+
+1013  Kit says: “ square root of 16 equals 8.” What went wrong?
+
+1014  Work out 11 squared plus 5 squared.
+
+1015  Work out square root of (100 minus 36).
+
+1016  Work out square root of (13 squared minus 5 squared).
+
+1017  Which of these is NOT a square number: 36, 48, 100?
+
+1018  Work out 23 plus 3 squared.
+
+1019  (a) [2 marks] A square garden has an area of 144 metres squared. Work out the perimeter of the garden, in m. The picture shows: A square garden with area 144 square metres. Each side length is unknown and labelled with a question mark.
+
+1020  (b) [2 marks] Work out square root of (5 squared minus 3 squared).
+
+1021  (c) [2 marks] Use a calculator to work out square root of 90. Give your answer to 1 decimal place.
+
+1022  What is the smallest whole number you can multiply 12 by to get a square number?
+
+1023  How many square numbers are there between 100 and 200?
+
+1024  A rational number can be written as a fraction of two whole numbers. Which statement about square root of 2 is correct?
+
+1025  Work out 31 squared minus 30 squared.
+
+1026  The difference between two consecutive square numbers is always odd. Use the pattern to work out 25 squared minus 24 squared without squaring either number.
+
+1027  Here are four lines from a proof that square root of 2 is irrational. Which line is the contradiction?
+
+1028  The expression n squared plus n plus 41 gives a prime number for every whole number n from 0 to 39. Find the smallest whole number n that shows it does not always give a prime.
+
+1029  Which line is a correct algebraic proof that the sum of three consecutive whole numbers is always a multiple of 3?
+
+1030  Work out square root of (10 times 11 times 12 times 13 plus 1). (The number under the root is a perfect square, so the answer is a whole number. Look for a pattern rather than using a calculator.)
+
+1031  How it works: read the question, write your answer on paper, then press the button to see the mark scheme. Tick every mark you earned. M marks are for a correct method, A marks for an accurate answer, B marks stand on their own, and C marks are for explaining clearly. A hint is there if you are stuck, but real exams do not give one, so try first. The ticks are counted on screen only.
+
+1032  [3 marks] Non-calculator Grade 7 A plumber has a length of copper pipe that is 3 3 over 8 metres long. She cuts 5 pieces from it, each 5 over 8 metres long. Show that the piece left over is 1 over 4 metres long. Uses: Fractions The picture shows: A long bar representing a copper pipe of 3 and three eighths metres. Five equal pieces, each five eighths of a metre, are marked off from the left. A short piece is left over at the right end. Drawn roughly to scale.
+
+1033  [4 marks] Non-calculator Grade 9 Prove that the sum of the squares of any two consecutive odd numbers is always 2 more than a multiple of 8. Uses: Algebra basics Uses: Squares and roots
+
+1034  [3 marks] Non-calculator Grade 8 The highest common factor of two numbers is 6. Their lowest common multiple is 180. One of the numbers is 36. Find the other number. Uses: Factors and multiples
+
+1035  [4 marks] Non-calculator Grade 9 n is a positive whole number. Prove that n plus 1 over n plus 2 is always greater than n over n plus 1. Uses: Fractions Uses: Algebra basics
+
+1036  [4 marks] Calculator Grade 7 An electrician's bill is 714 pounds including VAT at 20 percent. The bill is for parts that cost 130 pounds before VAT, plus labour at 62 pounds an hour. VAT is charged on the whole bill. How many hours did the job take? Uses: Percentage change Uses: Percentages
+
+1037  [3 marks] Calculator Grade 7 A new van loses 15 percent of its value in its first year. In its second year it loses 10 percent of its value at the start of that year. After two years it is worth 11 pounds 475. Show that the van cost 15 pounds 000 when it was new. Uses: Percentage change
+
+1038  [4 marks] Calculator Grade 8 4000 pounds is put into a savings account that pays compound interest at a fixed rate of r percent a year. After 2 years the account holds 4410. pounds Work out the value of r. Give a number only, with no percent sign. Uses: Percentage change
+
+1039  [4 marks] Non-calculator Grade 9 The price of a games console is increased by 20 percent. A week later the new price is reduced by x percent so that the console costs its original price again. Find the exact value of x. Give your answer as a mixed number. Uses: Percentage change Uses: Fractions
+
+1040  [4 marks] Non-calculator Grade 8 Sam and Tia share some sweets in the ratio 3: 5. Sam then gives 12 of his sweets to Tia. Now Sam and Tia have sweets in the ratio 1: 3. How many sweets are there altogether? Uses: Ratio Uses: Solving equations
+
+1041  [4 marks] Non-calculator Grade 8 A decorator mixes paint. Paint A is blue and white in the ratio 2: 3. Paint B is blue and white in the ratio 3: 1. He mixes 10 litres of paint A with 20 litres of paint B. Find the ratio of blue paint to white paint in the mixture. Give your answer in its simplest form. Uses: Ratio
+
+1042  [4 marks] Calculator Grade 7 A builder makes concrete from cement, sand and gravel in the ratio 1: 2: 4 by volume. He needs 2.8 metres cubed of concrete. Cement costs 120 pounds per m cubed, sand costs 36 pounds per m cubed and gravel costs 28 pounds per m cubed. Work out the total cost of the cement, sand and gravel. Give your answer in pounds, with the pence as a decimal, for example 121.6 for 121.60. pounds Uses: Ratio
+
+1043  [3 marks] Non-calculator Grade 7 3 over 7 of the students in a school are girls. One third of the girls walk to school. One quarter of the boys walk to school. Show that 2 over 7 of all the students walk to school. Uses: Fractions
+
+1044  [3 marks] Non-calculator Grade 7 Work out 2 1 over 4 divided by (1 1 over 2 minus 5 over 6). Give your answer as an improper fraction in its simplest form. Uses: Fractions Uses: Order of operations
+
+1045  [3 marks] Non-calculator Grade 8 n is the smallest positive whole number for which 360 times n is a square number. Find n. Uses: Factors and multiples Uses: Squares and roots
+
+1046  [3 marks] Non-calculator Grade 7 Prove that the difference between the squares of any two consecutive integers is always an odd number. Uses: Algebra basics
+
+1047  [4 marks] Non-calculator Grade 8 Prove that the sum of any four consecutive integers is never a multiple of 4. Uses: Algebra basics
+
+1048  [4 marks] Non-calculator Grade 7 Plumber A charges a call-out fee of 45 pounds plus 28 pounds for each hour of work. Plumber B charges a call-out fee of 15 pounds plus 33 pounds for each hour of work. For how many hours of work do the two plumbers charge the same total? Type the number of hours. Uses: Solving equations
+
+1049  [4 marks] Non-calculator Grade 9 y equals 2x plus 1 over x minus 3. Make x the subject of the formula. Uses: Rearranging formulae
+
+1050  [4 marks] Calculator Grade 7 A decorator buys 4 tins of paint and 3 rollers for 70.75. pounds A week later she buys 2 tins of paint and 5 rollers for 50.25. pounds All prices include VAT. Work out the cost of one tin of paint. Type your answer in pounds, such as 3.20. Uses: Simultaneous equations
+
+1051  [4 marks] Non-calculator Grade 8 Show that the straight line y equals 4x minus 4 touches the curve y equals x squared at exactly one point, and write down the coordinates of that point. Uses: Quadratic equations Uses: Simultaneous equations
+
+1052  [5 marks] Non-calculator Grade 9 A rectangular garden is 12 metres long and 9 metres wide. A border of the same width, x metres, is dug all the way round the inside edge. The rectangular lawn that is left has an area of 70 metres squared. Work out x. Type your answer in metres. Uses: Quadratic equations The picture shows: A rectangular garden 12 metres long and 9 metres wide. A border of equal width x metres runs round the inside edge. The lawn in the middle is shaded and has an area of 70 square metres. Not drawn to scale.
+
+1053  [4 marks] Calculator Grade 8 A roofer throws a roof tile up to a workmate on a scaffold. The height of the tile above the ground, h metres, after t seconds is given by h equals 1.8 plus 9t minus 5t squared. The workmate misses it and it falls to the ground. How many seconds after it is thrown does the tile hit the ground? Give your answer to 2 decimal places. Uses: Quadratic equations
+
+1054  [4 marks] Non-calculator Grade 7 In triangle ABC, angle A equals (2x plus 10) degrees, angle B equals (3x minus 20) degrees and angle C equals (x plus 10) degrees. Show that triangle ABC is isosceles. Uses: Shapes and angles Uses: Solving equations
+
+1055  [5 marks] Non-calculator Grade 8 A landscaper is laying a straight path across a rectangular lawn, from one corner to the opposite corner. The lawn is 24 metres long and 10 metres wide. He charges 35 pounds for each metre of path, and then adds VAT at 20 percent to the total. Work out the total cost of the path including VAT. Type your answer in pounds, without the £ sign. Uses: Pythagoras Uses: Percentages The picture shows: A rectangular lawn 24 metres long and 10 metres wide. A dashed path runs from the bottom left corner to the top right corner. The length of the path is marked with a question mark.
+
+1056  [4 marks] Non-calculator Grade 8 A triangular sign has two sides of 13 centimetres and a base of 10 centimetres. Show that the area of the sign is 60 centimetres squared. Uses: Pythagoras The picture shows: An isosceles triangle with two equal sides of 13 centimetres and a base of 10 centimetres. Not drawn to scale.
+
+1057  [5 marks] Calculator Grade 9 A surveyor measures the angle of elevation of the top of a chimney from point A as 28 degrees. She walks 30 metres directly towards the chimney, to point B, and measures the angle of elevation again as 41 degrees. Points A and B and the base of the chimney are on level ground in a straight line. Work out the height of the chimney, in metres, to 1 decimal place. Uses: Trigonometry Uses: Rearranging formulae The picture shows: A tall vertical chimney on level ground. Point A is further from the chimney than point B. From A the angle of elevation of the top is 28 degrees. From B, 30 metres closer to the chimney, the angle of elevation is 41 degrees. The height of the chimney is marked with a question mark. Not drawn to scale.
+
+1058  [4 marks] Calculator Grade 8 A builder's company has a rule: a ramp must make an angle of less than 5 degrees with the ground. A ramp rises 0.45 metres and its sloping surface is 4.8 metres long. Show that the ramp breaks the rule. Uses: Trigonometry The picture shows: A right-angled triangle side view of a ramp. The sloping surface is 4.8 metres long. The vertical rise is 0.45 metres. The angle between the ramp and the ground is marked with a question mark. Not drawn to scale.
+
+1059  [3 marks] Calculator Grade 7 A carpenter is making the frame of a roof. The two sloping rafters are equal in length. They meet at the top, each makes an angle of 35 degrees with the horizontal, and the width across the bottom of the frame is 7.2 metres. Work out the length of one rafter, in metres, to 2 decimal places. Uses: Trigonometry The picture shows: An isosceles triangle showing a roof frame. The horizontal base is 7.2 metres wide. Each sloping rafter makes an angle of 35 degrees with the base. The length of the left rafter is marked with a question mark. Not drawn to scale.
+
+1060  A right-angled triangle has short sides of 6 centimetres and 8 centimetres. How long is the longest side, in centimetres? The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal side is 8 centimetres and the vertical side is 6 centimetres. The longest side is marked with a question mark.
+
+1061  Simplify the ratio 12: 18, like 3:4.
+
+1062  Fill the gap: 3: 4 equals 9:?. What number goes where the? is?
+
+1063  Round 7.456 to 1 decimal place.
+
+1064  Solve 20 divided by x equals 4.
+
+1065  Key idea: the names depend on the angle you pick. The hypotenuse never changes. But opposite and adjacent swap if you pick the other angle.
+
+1066  Triangle ABC has a right angle at B. Which side is the hypotenuse? Type two letters, like PQ. The picture shows: A right-angled triangle. B is at the bottom left with the right angle. A is at the top and C is at the bottom right. An angle x is marked at C.
+
+1067  Same triangle, with the angle x at C. Which side is opposite x? Type two letters, like PQ. The picture shows: A right-angled triangle with the right angle at B at the bottom left, A at the top and C at the bottom right. An angle x is marked at C.
+
+1068  Same triangle, with the angle x at C. Which side is adjacent to x? Type two letters, like PQ. The picture shows: A right-angled triangle with the right angle at B at the bottom left, A at the top and C at the bottom right. An angle x is marked at C.
+
+1069  Triangle ABC again, but this time the angle y is at A. Which side is opposite y? Type two letters, like PQ. The picture shows: A right-angled triangle with the right angle at B at the bottom right, A at the top right and C at the bottom left. An angle y is marked at A.
+
+1070  A ladder leans against a wall. The angle x is between the ladder and the ground. Which side is opposite x? The picture shows: A right-angled triangle. The vertical side is the wall, the horizontal side is the ground and the sloping side is the ladder. The angle x is where the ladder meets the ground.
+
+1071  Key idea: the ratio is fixed by the angle. Your calculator knows these ratios, so sin 30 degrees is always 0.5, however big the triangle is.
+
+1072  In a right-angled triangle, what is the sine of an angle?
+
+1073  Use the triangle to find sin x. Give your answer as a fraction, like 2 over 3. The picture shows: A right-angled triangle with the right angle at the bottom left. The vertical side is 3, the horizontal side is 4 and the sloping side is 5. The angle x is at the bottom right.
+
+1074  Use the same triangle to find cos x. Give your answer as a fraction, like 2 over 3. The picture shows: A right-angled triangle with the right angle at the bottom left. The vertical side is 3, the horizontal side is 4 and the sloping side is 5. The angle x is at the bottom right.
+
+1075  Use the same triangle to find tan x. Give your answer as a fraction, like 2 over 3. The picture shows: A right-angled triangle with the right angle at the bottom left. The vertical side is 3, the horizontal side is 4 and the sloping side is 5. The angle x is at the bottom right.
+
+1076  Use your calculator to work out sin 40 degrees. Give your answer to 3 decimal places.
+
+1077  Use your calculator to work out tan 50 degrees. Give your answer to 3 decimal places.
+
+1078  Your calculator says cos 60 equals minus 0.952. You know cos 60 degrees should be 0.5. What is wrong?
+
+1079  Find x. The angle is 30 degrees and the hypotenuse is 10 metres. Give your answer in metres. The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 30 degrees. The sloping side is 10 metres. The vertical side is marked x.
+
+1080  Find x to 1 decimal place. The angle is 20 degrees and the adjacent side is 15 metres. The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 20 degrees. The horizontal side is 15 metres. The vertical side is marked x.
+
+1081  Find x to 1 decimal place. The angle is 62 degrees and the hypotenuse is 9.5 centimetres. The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 62 degrees. The sloping side is 9.5 centimetres. The horizontal side is marked x.
+
+1082  Find x to 1 decimal place. The angle is 28 degrees and the opposite side is 7 centimetres. The side x is the hypotenuse. The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 28 degrees. The vertical side is 7 centimetres. The sloping side is marked x.
+
+1083  The hypotenuse is 15 and the angle is 40 degrees. The side x is adjacent to the angle. Which equation finds x? The picture shows: A right-angled triangle with the right angle at the bottom left. The angle at the bottom right is 40 degrees. The sloping side is 15. The horizontal side is marked x.
+
+1084  A 4 metres ladder leans against a wall. It makes an angle of 70 degrees with the ground. How high up the wall does it reach? Give your answer in metres, to 1 decimal place. The picture shows: A right-angled triangle. The vertical side is the wall with the height marked h. The horizontal side is the ground. The sloping side is the 4 metre ladder. The angle between the ladder and the ground is 70 degrees.
+
+1085  Key idea: if sin x equals 0.5, then x equals sin minus 1(0.5) equals 30 degrees. The inverse button takes a ratio and gives back the angle.
+
+1086  sin x equals 0.5. Use your calculator to find the angle x, in degrees.
+
+1087  Find the angle x to 1 decimal place. The opposite side is 3 and the adjacent side is 4. The picture shows: A right-angled triangle with the right angle at the bottom left. The vertical side is 3 and the horizontal side is 4. The angle x is at the bottom right.
+
+1088  A wheelchair ramp is 6 metres long (the sloping surface) and rises 0.5 metres. What angle does it make with the ground? Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle. The sloping side is the ramp, 6 metres long. The vertical side is the rise, 0.5 metres. The angle x is between the ramp and the ground. Not drawn to scale.
+
+1089  Find the angle x to the nearest degree. The adjacent side is 8 centimetres and the hypotenuse is 13 centimetres. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal side is 8 centimetres and the sloping side is 13 centimetres. The angle x is at the bottom right.
+
+1090  Maya types sin minus 1(9 divided by 6) into her calculator and gets an error. Why?
+
+1091  A roof rises 2.1 metres over a horizontal distance of 4.5 metres. What is the angle of the roof (its pitch) to the horizontal? Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle. The horizontal side is 4.5 metres and the vertical side is 2.1 metres. The sloping side is the roof. The pitch angle x is at the bottom right, where the roof meets the horizontal.
+
+1092  Key idea: draw the horizontal line first. Then make a right-angled triangle that uses it. The angle of depression from A down to B is the same size as the angle of elevation from B up to A (they are alternate angles).
+
+1093  From the top of a cliff you look down at a boat. The angle of depression of the boat is 20 degrees. Which angle is also 20 degrees?
+
+1094  Sam stands 20 metres from a tree. The angle of elevation of the top of the tree is 40 degrees. How tall is the tree to 1 decimal place? The picture shows: A right-angled triangle. The tree is the vertical side with its height marked h. The ground is the horizontal side, 20 metres. The observer is at the bottom right and the angle of elevation of the top of the tree is 40 degrees.
+
+1095  A drone is 60 metres above the ground. From the drone, the angle of depression of a person on the ground is 32 degrees. How far is the person from the point directly below the drone? Give your answer in metres, to the nearest metre. The picture shows: A right-angled triangle. The vertical side is the drone height, 60 metres. The horizontal side along the ground is the distance d. A dashed horizontal line runs from the drone. The angle between the dashed line and the line of sight down to the person is 32 degrees.
+
+1096  A skate ramp is 3 metres long along its slope and makes an angle of 18 degrees with the ground. How high is the top of the ramp? Give your answer in metres, to 2 decimal places. The picture shows: A right-angled triangle. The sloping side is the ramp, 3 metres. The angle between the ramp and the ground is 18 degrees. The vertical side is the height h. Not drawn to scale.
+
+1097  Ali's eyes are 1.6 metres above the ground. He stands 25 metres from a building and looks at the top. The angle of elevation is 50 degrees. How tall is the building, to 1 decimal place? The picture shows: A right-angled triangle drawn from Ali's eye level. The horizontal side is 25 metres. The vertical side is the height of the building above his eyes, marked h. The angle of elevation is 50 degrees. Not drawn to scale.
+
+1098  Key idea: sin and sin minus 1 undo each other, in the same way that times and divided by do. sin minus 1(sin 40 degrees) equals 40 degrees. The same is true for cos and tan.
+
+1099  sin x equals 0.8. Find x in degrees, to 1 decimal place.
+
+1100  Work out cos minus 1(cos 40 degrees) without a calculator.
+
+1101  A 5 metres ladder must reach 4.5 metres up a wall. What angle must it make with the ground? Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle. The vertical side is the wall, 4.5 metres. The sloping side is the 5 metre ladder. The angle x is between the ladder and the ground. Not drawn to scale.
+
+1102  A ramp is 6 metres long along its slope and makes an angle of 5 degrees with the ground. How high does it rise? Give your answer in metres, to 2 decimal places.
+
+1103  A ramp must rise 0.3 metres at an angle of 4 degrees to the ground. How long is the sloping surface? Give your answer in metres, to 1 decimal place.
+
+1104  A right-angled triangle has shorter sides of 5 centimetres and 12 centimetres. Find the smallest angle, in degrees to 1 decimal place. Then check it using the hypotenuse from Pythagoras. The picture shows: A right-angled triangle with the right angle at the bottom left. The horizontal side is 12 centimetres and the vertical side is 5 centimetres. The smallest angle x is at the bottom right.
+
+1105  Write down the exact value of sin 30 degrees. Give your answer as a fraction, like 2 over 3.
+
+1106  Write down the exact value of tan 45 degrees.
+
+1107  What is the exact value of tan 60 degrees?
+
+1108  A right-angled triangle has an angle of 60 degrees. The adjacent side is 6 centimetres. Find the hypotenuse exactly, without a calculator. Give your answer in centimetres.
+
+1109  A ladder 8 metres long leans at 60 degrees to the ground. What is the exact height it reaches?
+
+1110  Show that sin 45 degrees times cos 45 degrees equals 1 over 2. Type the value of the product, as a fraction like 2 over 3.
+
+1111  Eli says: The hypotenuse is 10 centimetres and the angle is 40 degrees. The opposite side is x equals 10 divided by sin 40 degrees equals 15.6 centimetres. What went wrong? The picture shows: A right-angled triangle with the right angle at the bottom left. The sloping side is 10 centimetres. The angle at the bottom right is 40 degrees. The vertical side is marked x.
+
+1112  Ria says: sin x equals 0.6, so x equals 0.6435. She typed sin minus 1(0.6). The right answer is 36.9 degrees. What went wrong?
+
+1113  Tom says: The opposite side is 5 and the hypotenuse is 13, so tan x equals 5 over 13. What went wrong?
+
+1114  A right-angled triangle has shorter sides of 9 centimetres and 12 centimetres. How long is the hypotenuse, in centimetres?
+
+1115  Work out sin 25 degrees to 3 decimal places.
+
+1116  Find x to 1 decimal place. The hypotenuse is 20 centimetres, the angle is 36 degrees and x is the adjacent side.
+
+1117  Find the angle x to the nearest degree. The opposite side is 8 metres and the adjacent side is 5 metres.
+
+1118  A triangle has a right angle and its sides are in the ratio 3: 4: 5. Find its smallest angle to 1 decimal place.
+
+1119  A 6 metres ladder should lean at about 75 degrees to the ground. How far should its foot be from the wall? Give your answer in metres, to 2 decimal places. The picture shows: A right-angled triangle. The sloping side is the 6 metre ladder. The angle between the ladder and the ground is 75 degrees. The horizontal side is the distance d from the wall to the foot of the ladder. Not drawn to scale.
+
+1120  In a right-angled triangle, tan x equals 0.75 and the adjacent side is 12 centimetres. How long is the opposite side, in centimetres?
+
+1121  You know the adjacent side and the hypotenuse and want the angle. Which do you use?
+
+1122  [3 marks] A ramp up to a loading bay is 5.2 metres long. It makes an angle of 12 degrees with the ground. Work out the height of the loading bay. Give your answer in metres, to 3 significant figures. The picture shows: A right-angled triangle. The sloping side is the ramp, 5.2 metres. The angle between the ramp and the ground is 12 degrees. The vertical side is the height h of the loading bay. Not drawn to scale.
+
+1123  [4 marks] A roof is 8.4 metres wide. Each rafter slopes up from the wall at 35 degrees to the horizontal, and the two rafters meet in the middle. Work out the length of one rafter. Give your answer in metres, to 2 decimal places. The picture shows: A right-angled triangle that is half of a symmetrical roof. The horizontal side is half of the 8.4 metre width. The sloping side is a rafter, marked r. The angle between the rafter and the horizontal is 35 degrees. Not drawn to scale.
+
+1124  [3 marks] From the top of a 24 metres cliff, a boat is 70 metres out to sea, measured along the sea level from the foot of the cliff. Work out the angle of depression of the boat from the top of the cliff. Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle. The vertical side is the 24 metre cliff and the horizontal side along the sea is 70 metres. A dashed horizontal line runs from the top of the cliff. The angle of depression of the boat is marked x. Not drawn to scale.
+
+1125  [3 marks] Higher A right-angled triangle has an angle of 60 degrees and an adjacent side of 6 centimetres. Work out the length of the hypotenuse without a calculator. Give your answer in centimetres.
+
+1126  A ramp makes an angle of 30 degrees with the ground. A second, longer ramp is built at the same angle. Which is true?
+
+1127  A road has a gradient of 1 in 8: for every 8 metres along (horizontally), it rises 1 metres. What angle does the road make with the horizontal? Give your answer in degrees, to 1 decimal place.
+
+1128  An isosceles triangle has two equal sides of 10 centimetres and a base of 12 centimetres. Find one of the base angles, in degrees to 1 decimal place. (Hint: cut the triangle in half.) The picture shows: A right-angled triangle that is half of an isosceles triangle. The horizontal side is 6 centimetres, which is half of the 12 centimetre base. The sloping side is one of the equal sides, 10 centimetres. The angle x is a base angle at the bottom right.
+
+1129  Higher For an acute angle x, sin x equals 5 over 13. Use sin squaredx plus cos squaredx equals 1 to find cos x. Give your answer as a fraction, like 2 over 3.
+
+1130  Higher From a point on the ground, the angle of elevation of the top of a tower is 30 degrees. From a point 20 metres closer to the tower, it is 45 degrees. How tall is the tower? Give your answer in metres, to 1 decimal place. The picture shows: A tower is the vertical side of a right-angled triangle. From the nearer point the angle of elevation of the top is 45 degrees. From a point 20 metres further away it is 30 degrees. The height of the tower is h. Not drawn to scale.
+
+1131  A waste pipe must fall 1 metres for every 40 metres it runs along, a fall of 1 in 40. What angle does the pipe make with the horizontal? Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle. The long side along the top is labelled 40 metres. The short side at the right, going down, is labelled 1 metre. The sloping side is the pipe. The angle at the left end of the pipe is labelled with a question mark. Not drawn to scale: the slope is exaggerated.
+
+1132  The rafters of a garage roof rise 1.35 metres over a horizontal run of 3 metres. What is the pitch of the roof, the angle to the horizontal? Give your answer in degrees, to 1 decimal place. The picture shows: A right-angled triangle for half of a roof. The horizontal side is labelled 3 metres. The vertical side at the right is labelled 1.35 metres. The sloping side is the rafter. The angle at the left, between the horizontal side and the rafter, is labelled with a question mark.
+
+1133  A ramp is 3 metres long along its sloping surface and rises 0.6 metres. What angle does it make with the ground? Give your answer in degrees, to 1 decimal place.
+
+1134  [3 marks] A waste pipe runs 5.2 metres along the horizontal and slopes down at 1.5 degrees to the horizontal. How far does it drop over the 5.2 metres? Give your answer in millimetres, to the nearest millimetre.
+
+1135  A flue pipe leaves a boiler at 40 degrees to the horizontal and rises 0.9 metres. How long is the sloping pipe, in metres? Give your answer to 2 decimal places.

@@ -8,6 +8,7 @@ import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from '
 import { review, isDue, sanitize } from './book-queue.mjs';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
 import { toSpoken, splitSentences } from './book-speech.mjs';
+import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
 
 const REVIEW = isReviewMode(window.location.search);
@@ -366,6 +367,8 @@ export function enhanceQuestion(q, index) {
 
   feedback.after(help);
   if (solution) help.after(solution);
+  // A calculator only where the question allows one (its tag, or data-calc); non-calculator questions never get the button.
+  if (calcAllowed(q)) help.after(createCalculator(layoutFor(q)).root);
   addSelfMarking();
   ladder?.remove();
   wrongBox?.remove();

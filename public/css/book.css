@@ -414,12 +414,35 @@ footer li a{display:inline-block;padding:.45rem .25rem;}
 .g-jump a{display:inline-block;padding:2px 8px;font-weight:700;}
 [hidden]{display:none !important;}
 
+/* ---------- calculator (only inside questions where one is allowed) ---------- */
+.q-calc{margin:10px 0;}
+.btn-calc{font:inherit;font-weight:700;min-height:44px;padding:8px 16px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
+.btn-calc:hover{background:var(--paper-dim);}
+.btn-calc[aria-expanded="true"]{background:var(--navy);color:var(--white);}
+.calc{max-width:340px;margin-top:10px;padding:12px;border:2px solid var(--navy-mid);border-radius:14px;background:var(--paper-dim);}
+.calc[hidden]{display:none;}
+.calc:focus{outline:3px solid var(--navy-mid);outline-offset:2px;}
+.calc-screen{margin-bottom:10px;padding:8px 12px;border-radius:8px;background:var(--white);color:var(--ink);border:2px solid var(--navy-mid);text-align:right;}
+.calc-expr{min-height:1.6em;font-size:1.05rem;color:var(--ink-soft);overflow-wrap:anywhere;}
+.calc-result{display:block;font-size:1.7rem;font-weight:700;overflow-wrap:anywhere;}
+.calc-pad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.calc-key{font:inherit;font-weight:700;font-size:1.1rem;min-height:48px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
+.calc-key:hover{background:var(--paper);}
+.calc-control{background:var(--paper);}
+.calc-binary,.calc-open,.calc-bracket{border-style:dashed;}
+.calc-binary{font-size:1.4rem;}
+/* The floating Top button would cover the right-hand keys on a phone. */
+body:has(.calc:not([hidden])) .to-top{display:none;}
+.calc-equals{background:var(--navy);color:var(--white);}
+.calc-equals:hover{background:var(--navy-dark);}
+.calc-dismiss{display:block;margin:10px 0 0 auto;font:inherit;min-height:44px;padding:6px 14px;border:2px solid var(--navy-mid);border-radius:10px;background:var(--white);color:var(--navy);cursor:pointer;}
+
 /* ---------- print: everything open, no controls ---------- */
 @media print{
   .site-header,footer,.hero-actions,.q-form,.q-help,.btn,.g-tools,[data-reset-progress],.crumbs{display:none !important;}
   .js .q .ladder,.js .q .solution{display:none !important;}
   .js .print-answers .q .solution{display:block !important;}
-  .fast-route,.toc,.to-top,.listen,.sym-row,.timed-panel{display:none !important;}
+  .fast-route,.toc,.to-top,.listen,.sym-row,.timed-panel,.q-calc{display:none !important;}
   .book section{padding:14px 0;}
   .q,.worked,.key{box-shadow:none;break-inside:avoid;}
   .term{background:none;}
