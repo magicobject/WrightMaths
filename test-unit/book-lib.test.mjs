@@ -103,3 +103,17 @@ test('every term picture belongs to a real glossary term', async () => {
   for (const id of Object.keys(TERM_FIGURES)) assert.ok(ids.has(id), `${id} has a picture but is not in the glossary`);
   for (const svg of Object.values(TERM_FIGURES)) assert.match(svg, /role="img" aria-label="[^"]+"/);
 });
+
+test('answer keys: plainText and extractKey read a question page', async () => {
+  const { plainText, extractKey } = await import('../scripts/book-lib.mjs');
+  assert.equal(plainText('Work out {frac:3/4} of 20 &times; &pound;5'), 'Work out 3/4 of 20 × £5');
+  assert.equal(plainText('{frac:x + 1/2}'), '(x + 1)/2');
+  const raw = '<div class="q" data-answers="15;15.0" data-marks="2"><p class="qtext">[2 marks] Work out 3 &times; 5.</p><div class="solution"><p>3 &times; 5 = 15.</p><ul class="markscheme"><li><b>M1</b> multiply</li><li><b>A1</b> 15</li></ul></div></div>'
+    + '<div class="q" data-type="mc"><p class="qtext">Pick.</p><ul class="options"><li data-correct>Right one</li><li data-why="no">Wrong</li></ul><div class="solution"><p>Because.</p></div></div>'
+    + '<div class="q" data-type="show" data-marks="1"><p class="qtext">Show that.</p><div class="solution"><p>w</p><ul class="markscheme"><li><b>C1</b> done</li></ul></div></div>';
+  const k = extractKey(raw);
+  assert.equal(k.length, 3);
+  assert.deepEqual([k[0].answer, k[0].also, k[0].marks, k[0].scheme.length], ['15', ['15.0'], 2, 2]);
+  assert.equal(k[1].answer, 'Right one');
+  assert.match(k[2].answer, /mark scheme/);
+});

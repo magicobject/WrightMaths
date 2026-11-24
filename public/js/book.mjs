@@ -961,12 +961,14 @@ function showMarksSummary() {
 // Five questions, one minute per mark, hints hidden until time is up. The clock and the marks live on screen only.
 
 function startTimed() {
-  const main = document.querySelector('main[data-book-page="stretch"]');
+  const main = document.querySelector('main[data-book-page="stretch"], main[data-book-page="foundation"]');
   if (!main) return;
   const all = [...main.querySelectorAll('.q')];
   const panel = el('section', { class: 'timed-panel' });
   const wrap = el('div', { class: 'wrap narrow' });
   const startBtn = el('button', { type: 'button', class: 'btn btn-navy', text: 'Start a timed set (5 questions)' });
+  const filter = el('select', { class: 'timed-filter', 'aria-label': 'Which questions' });
+  for (const [value, label] of [['', 'Calculator and non-calculator mixed'], ['Non-calculator', 'Non-calculator questions only'], ['Calculator', 'Calculator questions only']]) filter.append(el('option', { value, text: label }));
   const clock = el('p', { class: 'timed-clock', role: 'timer', 'aria-live': 'off' });
   const clockBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Hide the clock' });
   clockBtn.hidden = true;
@@ -976,7 +978,7 @@ function startTimed() {
   const leaveBtn = el('button', { type: 'button', class: 'btn btn-ghost', text: 'Back to all questions' });
   finishBtn.hidden = true;
   leaveBtn.hidden = true;
-  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), startBtn, clock, clockBtn, status, finishBtn, leaveBtn);
+  wrap.append(el('h2', { text: 'Try it against the clock' }), el('p', { text: 'You get five questions and one minute for every mark, like a real paper. Hints stay hidden until time is up. Write your working on paper.' }), filter, startBtn, clock, clockBtn, status, finishBtn, leaveBtn);
   panel.append(wrap);
   main.querySelector('.key')?.closest('section')?.after(panel);
   let timer = null;
@@ -994,7 +996,9 @@ function startTimed() {
     finishBtn.hidden = false;
   };
   startBtn.addEventListener('click', () => {
-    const pool = [...all];
+    const wanted = filter.value;
+    let pool = all.filter((q) => !wanted || q.querySelector('.qtag-calc')?.textContent.trim() === wanted);
+    if (pool.length < 5) pool = [...all];
     for (let i = pool.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -1005,6 +1009,7 @@ function startTimed() {
     all.forEach((q) => { q.hidden = !chosen.includes(q); });
     chosen.forEach((q) => helpOf(q, true));
     startBtn.hidden = true;
+    filter.hidden = true;
     leaveBtn.hidden = false;
     finishBtn.hidden = false;
     clockBtn.hidden = false;
@@ -1035,6 +1040,7 @@ function startTimed() {
     clock.textContent = '';
     status.textContent = '';
     startBtn.hidden = false;
+    filter.hidden = false;
     leaveBtn.hidden = true;
     finishBtn.hidden = true;
     clockBtn.hidden = true;

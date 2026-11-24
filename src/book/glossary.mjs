@@ -2030,4 +2030,1105 @@ export const GLOSSARY = [
       "power"
     ]
   },
+  {
+    "id": "inequality",
+    "term": "Inequality",
+    "strand": "a",
+    "level": "F",
+    "def": "A statement that one amount is bigger or smaller than another, using &lt;, &gt;, &le; or &ge;, instead of saying they are equal.",
+    "example": [
+      "x &gt; 2 means x is any number bigger than 2.",
+      "x &le; 5 means x is 5 or smaller. A lift that carries at most 800 kg has load w &le; 800."
+    ],
+    "watch": "The line under &le; and &ge; means &ldquo;or equal to&rdquo;, so the number itself is allowed. Dividing both sides by a negative number turns the sign round.",
+    "flip": "From the answer back to the inequality: put the boundary value in and check numbers either side.",
+    "see": [
+      "number-line",
+      "double-inequality",
+      "solve",
+      "integer"
+    ]
+  },
+  {
+    "id": "double-inequality",
+    "term": "Double inequality",
+    "strand": "a",
+    "level": "F",
+    "def": "An inequality with two signs, saying a value is between two numbers.",
+    "example": [
+      "&minus;2 &lt; x &le; 3 means x is bigger than &minus;2 and at most 3.",
+      "A pipe cut to 600 mm, 2 mm out either way, has length x with 598 &le; x &le; 602."
+    ],
+    "watch": "Do the same step to all three parts when you solve one.",
+    "see": [
+      "inequality",
+      "number-line"
+    ]
+  },
+  {
+    "id": "quadratic-inequality",
+    "term": "Quadratic inequality",
+    "strand": "a",
+    "level": "H",
+    "def": "An inequality that contains an x&sup2; term, solved by sketching the graph of the quadratic and reading where it is above or below the x-axis.",
+    "example": [
+      "x&sup2; &minus; x &minus; 6 &lt; 0 gives &minus;2 &lt; x &lt; 3.",
+      "x&sup2; &minus; x &minus; 6 &gt; 0 gives x &lt; &minus;2 or x &gt; 3."
+    ],
+    "watch": "For a U-shaped curve, &ldquo;below the axis&rdquo; is between the critical values and &ldquo;above the axis&rdquo; is outside them. Do not divide both sides by x.",
+    "see": [
+      "quadratic",
+      "inequality",
+      "factorise"
+    ]
+  },
+  {
+    "id": "lower-bound",
+    "term": "Lower bound",
+    "strand": "n",
+    "level": "H",
+    "def": "The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.",
+    "example": [
+      "A plank of 2.4 m, to 1 decimal place, has lower bound 2.4 &minus; 0.05 = 2.35 m.",
+      "7 to the nearest whole number has lower bound 6.5."
+    ],
+    "watch": "Use half the rounding unit, not the whole unit.",
+    "flip": "The rounded number is halfway between the lower and upper bounds.",
+    "see": [
+      "upper-bound",
+      "error-interval",
+      "round"
+    ]
+  },
+  {
+    "id": "upper-bound",
+    "term": "Upper bound",
+    "strand": "n",
+    "level": "H",
+    "def": "The limit at the top of the possible values of a rounded or measured number. For a rounded number it is the number plus half the rounding unit.",
+    "example": [
+      "A plank of 2.4 m, to 1 decimal place, has upper bound 2.4 + 0.05 = 2.45 m.",
+      "7 to the nearest whole number has upper bound 7.5."
+    ],
+    "watch": "Values just below the upper bound still round to the number, but the upper bound itself would round up, so an error interval uses &lt; at this end.",
+    "see": [
+      "lower-bound",
+      "error-interval",
+      "round"
+    ]
+  },
+  {
+    "id": "error-interval",
+    "term": "Error interval",
+    "strand": "n",
+    "level": "H",
+    "def": "All the values a rounded number could really be, written as an inequality: lower bound &le; x &lt; upper bound.",
+    "example": [
+      "7 to the nearest whole number: 6.5 &le; x &lt; 7.5.",
+      "2.4 to 1 decimal place: 2.35 &le; x &lt; 2.45."
+    ],
+    "watch": "The lower bound is included (&le;) and the upper bound is not (&lt;).",
+    "flip": "The number that was rounded is the middle of the interval.",
+    "see": [
+      "lower-bound",
+      "upper-bound",
+      "inequality",
+      "truncation"
+    ]
+  },
+  {
+    "id": "truncation",
+    "term": "Truncation",
+    "strand": "n",
+    "level": "H",
+    "def": "Cutting off the digits after a chosen place without rounding.",
+    "example": [
+      "7.38 truncated to 1 decimal place is 7.3 (rounding would give 7.4).",
+      "A number that is 4.6 after truncation to 1 d.p. has 4.6 &le; x &lt; 4.7."
+    ],
+    "watch": "A truncated number goes a whole unit up and none down, so its error interval is not half a unit each way.",
+    "see": [
+      "error-interval",
+      "round",
+      "decimal-place"
+    ]
+  },
+  {
+    "id": "tolerance",
+    "term": "Tolerance",
+    "strand": "n",
+    "level": "H",
+    "def": "How far a measurement is allowed to be from its target. A tolerance of 2 mm on a 600 mm length means 598 mm to 602 mm.",
+    "example": [
+      "A pipe cut to 2.50 m with a tolerance of 5 mm either way is between 2495 mm and 2505 mm."
+    ],
+    "see": [
+      "error-interval",
+      "lower-bound",
+      "upper-bound"
+    ]
+  },
+  {
+    "id": "direct-proportion",
+    "term": "Direct proportion",
+    "strand": "r",
+    "level": "F",
+    "def": "Two quantities are in direct proportion when one is always the same multiple of the other. When one doubles, so does the other. The rule is y = kx, and the graph is a straight line through the origin.",
+    "example": [
+      "Cable costs &pound;3 per metre, so cost = 3 &times; length.",
+      "2 m costs &pound;6, 4 m costs &pound;12, and 0 m costs &pound;0."
+    ],
+    "watch": "A straight line is not enough: it must pass through (0, 0). A taxi fare with a start charge is not direct proportion.",
+    "flip": "From the rule and one value to a missing value, and from two values back to the rule.",
+    "see": [
+      "proportion",
+      "constant-of-proportionality",
+      "inverse-proportion",
+      "unitary-method"
+    ]
+  },
+  {
+    "id": "inverse-proportion",
+    "term": "Inverse proportion",
+    "strand": "r",
+    "level": "F",
+    "def": "Two quantities are in inverse proportion when one is halved as the other is doubled. Their product is always the same. The rule is y = k &divide; x, and the graph is a curve that falls and never touches the axes.",
+    "example": [
+      "6 workers take 8 days, so 12 workers take 4 days.",
+      "x &times; y = 48 every time, so y = 48 &divide; x."
+    ],
+    "watch": "More workers means fewer days. Do not multiply when you should divide.",
+    "flip": "From the rule to a missing value, and from two values back to k.",
+    "see": [
+      "proportion",
+      "constant-of-proportionality",
+      "direct-proportion"
+    ]
+  },
+  {
+    "id": "constant-of-proportionality",
+    "term": "Constant of proportionality",
+    "strand": "r",
+    "level": "F",
+    "def": "The fixed number, usually called k, that links two quantities that are in proportion. In direct proportion k = y &divide; x. In inverse proportion k = x &times; y.",
+    "example": [
+      "If 5 m of cable cost &pound;12, then k = 12 &divide; 5 = 2.4, the cost of one metre.",
+      "If 6 workers take 8 days, then k = 6 &times; 8 = 48 worker-days."
+    ],
+    "flip": "Finding k from one pair of values, and using k to find any other pair.",
+    "see": [
+      "direct-proportion",
+      "inverse-proportion",
+      "gradient"
+    ]
+  },
+  {
+    "id": "compound-measure",
+    "term": "Compound measure",
+    "strand": "r",
+    "level": "F",
+    "def": "A measure made by combining two other measures, written with &ldquo;per&rdquo; or a division. Speed, density and pressure are compound measures.",
+    "example": [
+      "Speed is distance &divide; time, in km/h.",
+      "Density is mass &divide; volume, in g/cm<sup>3</sup>."
+    ],
+    "watch": "Change the units so they match before you calculate, for example minutes into hours.",
+    "flip": "Finding the rate from two measures, and using the rate to find one of them.",
+    "see": [
+      "speed",
+      "density",
+      "pressure",
+      "ratio"
+    ]
+  },
+  {
+    "id": "speed",
+    "term": "Speed",
+    "strand": "r",
+    "level": "F",
+    "def": "How far something travels in each unit of time. Speed = distance &divide; time.",
+    "example": [
+      "150 km in 2.5 hours is 150 &divide; 2.5 = 60 km/h.",
+      "Rearranged: distance = speed &times; time, and time = distance &divide; speed."
+    ],
+    "watch": "For km/h the time must be in hours. 1 hour 30 minutes is 1.5 hours, not 1.3.",
+    "flip": "From distance and time to speed, and from speed and time to distance.",
+    "see": [
+      "average-speed",
+      "distance-time-graph",
+      "compound-measure",
+      "formula"
+    ]
+  },
+  {
+    "id": "average-speed",
+    "term": "Average speed",
+    "strand": "r",
+    "level": "F",
+    "def": "The total distance of a journey divided by the total time taken, including any stops.",
+    "example": [
+      "30 miles at 30 mph then 30 miles at 60 mph: total 60 miles in 1.5 hours, so the average speed is 40 mph."
+    ],
+    "watch": "It is not the mean of the speeds, unless the same time is spent at each one.",
+    "flip": "From the parts of a journey to the average, and from the average to a missing part.",
+    "see": [
+      "speed",
+      "distance-time-graph"
+    ]
+  },
+  {
+    "id": "distance-time-graph",
+    "term": "Distance-time graph",
+    "strand": "r",
+    "level": "F",
+    "def": "A graph with time along the bottom and distance up the side. The gradient of a line is the speed, a flat line means stopped, and a line going down means coming back.",
+    "example": [
+      "A line from (0, 0) to (1, 30) shows a speed of 30 km/h.",
+      "A flat line from 1 h to 1.5 h shows a 30-minute stop."
+    ],
+    "watch": "The graph shows distance from the start, not the total distance travelled.",
+    "flip": "Reading a speed from the graph, and drawing a graph from a journey.",
+    "see": [
+      "speed",
+      "gradient"
+    ]
+  },
+  {
+    "id": "density",
+    "term": "Density",
+    "strand": "r",
+    "level": "F",
+    "def": "How much mass there is in each unit of volume. Density = mass &divide; volume.",
+    "example": [
+      "540 g in 200 cm<sup>3</sup> is a density of 2.7 g/cm<sup>3</sup>.",
+      "Water has a density of 1 g/cm<sup>3</sup>, so things less dense than this float."
+    ],
+    "watch": "Keep the units matching: g with cm<sup>3</sup>, or kg with m<sup>3</sup>. 1 g/cm<sup>3</sup> = 1000 kg/m<sup>3</sup>.",
+    "flip": "From mass and volume to density, and from density and volume to mass.",
+    "see": [
+      "compound-measure",
+      "pressure",
+      "formula"
+    ]
+  },
+  {
+    "id": "pressure",
+    "term": "Pressure",
+    "strand": "r",
+    "level": "F",
+    "def": "How hard a force pushes on each unit of area. Pressure = force &divide; area.",
+    "example": [
+      "600 N on 2 m<sup>2</sup> is a pressure of 300 N/m<sup>2</sup>.",
+      "The same force on a smaller area gives a bigger pressure."
+    ],
+    "watch": "A bigger area spreads the force out, so the pressure goes down.",
+    "flip": "From force and area to pressure, and from pressure and area to force.",
+    "see": [
+      "compound-measure",
+      "density",
+      "formula"
+    ]
+  },
+  {
+    "id": "kilowatt-hour",
+    "term": "Kilowatt-hour (kWh)",
+    "strand": "r",
+    "level": "F",
+    "def": "A unit of energy: the energy used by a 1 kW appliance running for 1 hour. Energy in kWh = power in kW &times; time in hours.",
+    "example": [
+      "A 3 kW heater running for 4 hours uses 12 kWh.",
+      "At 28p per kWh, that costs 12 &times; 28 = 336p = &pound;3.36."
+    ],
+    "watch": "A kWh is energy, not power. Change watts into kilowatts and minutes into hours first.",
+    "flip": "From power and time to energy and cost, and from energy and time back to power.",
+    "see": [
+      "compound-measure",
+      "speed"
+    ]
+  },
+  {
+    "id": "congruent",
+    "term": "Congruent",
+    "strand": "g",
+    "level": "F",
+    "def": "Exactly the same shape and exactly the same size. One can be slid, turned or flipped to fit onto the other.",
+    "example": [
+      "Two identical floor tiles are congruent.",
+      "Congruent shapes are similar shapes with a scale factor of 1."
+    ],
+    "watch": "Similar shapes can be different sizes. Congruent shapes cannot.",
+    "flip": "Showing two triangles are congruent with SSS, SAS, ASA or RHS.",
+    "see": [
+      "similar-shapes",
+      "scale-factor"
+    ]
+  },
+  {
+    "id": "corresponding-sides",
+    "term": "Corresponding sides",
+    "strand": "g",
+    "level": "F",
+    "def": "Sides in the same place in two similar shapes. Each pair has the same scale factor.",
+    "example": [
+      "The shortest side of one triangle and the shortest side of a similar triangle are corresponding sides."
+    ],
+    "watch": "Match shortest to shortest and longest to longest before you divide.",
+    "see": [
+      "similar-shapes",
+      "scale-factor",
+      "corresponding-angles"
+    ]
+  },
+  {
+    "id": "enlargement",
+    "term": "Enlargement",
+    "strand": "g",
+    "level": "F",
+    "def": "A change of size where every length is multiplied by the same scale factor. The shape stays the same.",
+    "example": [
+      "A scale factor of 3 turns a 4 cm side into a 12 cm side.",
+      "A scale factor less than 1 makes the shape smaller."
+    ],
+    "flip": "Finding the scale factor from two matching sides: new length divided by old length.",
+    "see": [
+      "scale-factor",
+      "similar-shapes"
+    ]
+  },
+  {
+    "id": "scale-drawing",
+    "term": "Scale drawing",
+    "strand": "r",
+    "level": "F",
+    "def": "A drawing that is similar to the real thing, with every length reduced (or enlarged) by the same scale factor.",
+    "example": [
+      "On a scale of 1 : 50, a wall that is 8 cm long on the plan is 400 cm (4 m) in real life."
+    ],
+    "flip": "Real length to drawing length (divide), and drawing length to real length (multiply).",
+    "see": [
+      "map-scale",
+      "scale-factor",
+      "similar-shapes"
+    ]
+  },
+  {
+    "id": "bearing",
+    "term": "Bearing",
+    "strand": "g",
+    "level": "F",
+    "def": "A direction, given as an angle measured clockwise from north and written with three figures.",
+    "example": [
+      "East is 090&deg;, south is 180&deg; and west is 270&deg;.",
+      "45&deg; clockwise from north is written 045&deg;."
+    ],
+    "watch": "Always start from north and turn clockwise. \"The bearing of B from A\" starts at A.",
+    "flip": "Finding a bearing from a diagram, and using a bearing to find where you end up.",
+    "see": [
+      "back-bearing",
+      "compass-point",
+      "angle"
+    ]
+  },
+  {
+    "id": "back-bearing",
+    "term": "Back bearing",
+    "strand": "g",
+    "level": "F",
+    "def": "The bearing of the way back. It is 180&deg; different from the bearing you travelled on.",
+    "example": [
+      "The bearing of B from A is 065&deg;, so the bearing of A from B is 065 + 180 = 245&deg;.",
+      "From 285&deg; the back bearing is 285 &minus; 180 = 105&deg;."
+    ],
+    "watch": "Add 180 if the bearing is below 180. Subtract 180 if it is 180 or more.",
+    "see": [
+      "bearing",
+      "compass-point"
+    ]
+  },
+  {
+    "id": "compass-point",
+    "term": "Compass point",
+    "strand": "g",
+    "level": "F",
+    "def": "One of the named directions: north, east, south and west, and between them north-east, south-east, south-west and north-west.",
+    "example": [
+      "North-east is 045&deg;, south-east is 135&deg;, south-west is 225&deg; and north-west is 315&deg;."
+    ],
+    "see": [
+      "bearing",
+      "back-bearing"
+    ]
+  },
+  {
+    "id": "transformation",
+    "term": "Transformation",
+    "strand": "g",
+    "level": "F",
+    "def": "A rule that moves a shape or changes its size. The four you need are translation, reflection, rotation and enlargement.",
+    "example": [
+      "Slide a triangle 3 squares right: a translation.",
+      "Flip it over a line: a reflection."
+    ],
+    "flip": "From a shape and its image, describe the single transformation that links them.",
+    "see": [
+      "translation",
+      "reflection",
+      "rotation",
+      "enlargement",
+      "image"
+    ]
+  },
+  {
+    "id": "image",
+    "term": "Image",
+    "strand": "g",
+    "level": "F",
+    "def": "The shape you get after a transformation. The shape you start with is called the object.",
+    "example": [
+      "Triangle ABC is reflected. The new triangle is the image, and its corners are labelled A&prime;, B&prime; and C&prime;."
+    ],
+    "see": [
+      "transformation",
+      "congruent"
+    ]
+  },
+  {
+    "id": "translation",
+    "term": "Translation",
+    "strand": "g",
+    "level": "F",
+    "def": "A transformation that slides every point the same distance in the same direction. The shape does not turn, flip or change size.",
+    "example": [
+      "Translate (2, 3) by the column vector with 4 on top and 1 underneath: add 4 to x and 1 to y, giving (6, 4)."
+    ],
+    "watch": "The top number of the vector is the move across (negative is left). The bottom number is the move up (negative is down).",
+    "flip": "From a shape and its image, find the vector: image point minus object point.",
+    "see": [
+      "column-vector",
+      "transformation",
+      "image"
+    ]
+  },
+  {
+    "id": "column-vector",
+    "term": "Column vector",
+    "strand": "g",
+    "level": "F",
+    "def": "Two numbers written one above the other in brackets. The top number is the move across, and the bottom number is the move up or down.",
+    "example": [
+      "A move of 3 right and 2 down is the column vector with 3 on top and &minus;2 underneath.",
+      "In text we type it as (3, -2)."
+    ],
+    "watch": "Across first, then up: the same order as coordinates.",
+    "see": [
+      "translation",
+      "coordinates"
+    ]
+  },
+  {
+    "id": "reflection",
+    "term": "Reflection",
+    "strand": "g",
+    "level": "F",
+    "def": "A transformation that flips a shape over a mirror line. Each point and its image are the same distance from the line, on opposite sides.",
+    "example": [
+      "Reflect (1, 2) in the line x = 3: the point is 2 left of the line, so the image is 2 right, at (5, 2).",
+      "In the line y = x, the coordinates swap: (1, 2) goes to (2, 1)."
+    ],
+    "watch": "A point on the mirror line stays where it is.",
+    "flip": "From a shape and its image, the mirror line is halfway between matching points.",
+    "see": [
+      "transformation",
+      "line-of-symmetry",
+      "image"
+    ]
+  },
+  {
+    "id": "rotation",
+    "term": "Rotation",
+    "strand": "g",
+    "level": "F",
+    "def": "A transformation that turns a shape about a fixed point called the centre. To describe it you give the angle, the direction (clockwise or anticlockwise) and the centre.",
+    "example": [
+      "Rotate (2, 1) by 90&deg; clockwise about the origin: (x, y) goes to (y, &minus;x), giving (1, &minus;2).",
+      "A half turn about the origin: (x, y) goes to (&minus;x, &minus;y)."
+    ],
+    "watch": "A 90&deg; turn clockwise is the same as 270&deg; anticlockwise.",
+    "see": [
+      "transformation",
+      "rotational-symmetry",
+      "image"
+    ]
+  },
+  {
+    "id": "line-of-symmetry",
+    "term": "Line of symmetry",
+    "strand": "g",
+    "level": "F",
+    "def": "A line that cuts a shape into two halves that are mirror images of each other. Folding along the line makes the halves match.",
+    "example": [
+      "A rectangle has 2 lines of symmetry. A square has 4. A regular hexagon has 6."
+    ],
+    "see": [
+      "reflection",
+      "rotational-symmetry"
+    ]
+  },
+  {
+    "id": "rotational-symmetry",
+    "term": "Rotational symmetry",
+    "strand": "g",
+    "level": "F",
+    "def": "A shape has rotational symmetry if it fits onto itself after being turned by less than a full turn about its centre. The order is the number of ways it fits in one full turn.",
+    "example": [
+      "A square has rotational symmetry of order 4. The smallest turn that fits is 360&deg; &divide; 4 = 90&deg;.",
+      "A shape with order 1 has no rotational symmetry."
+    ],
+    "see": [
+      "rotation",
+      "line-of-symmetry"
+    ]
+  },
+  {
+    "id": "tessellation",
+    "term": "Tessellation",
+    "strand": "g",
+    "level": "F",
+    "def": "A pattern of the same tile repeated to cover a flat surface, with no gaps and no overlaps.",
+    "example": [
+      "Squares, equilateral triangles and regular hexagons tessellate on their own.",
+      "A brick wall is a tessellation of rectangles."
+    ],
+    "see": [
+      "translation",
+      "reflection",
+      "rotation"
+    ]
+  },
+  {
+    "id": "vector",
+    "term": "Vector",
+    "strand": "g",
+    "level": "H",
+    "def": "A journey with a size and a direction, such as 3 right and 2 up. It is drawn as an arrow and written as a column vector, or as a bold letter such as a.",
+    "example": [
+      "The vector from A(1, 2) to B(5, 5) is B &minus; A = (4, 3).",
+      "Equal vectors have the same length and direction, wherever they are drawn."
+    ],
+    "watch": "AB is end minus start. BA is the opposite vector: BA = &minus;AB.",
+    "flip": "From two points, write the vector. From a vector and one point, find the other point.",
+    "see": [
+      "column-vector",
+      "magnitude",
+      "scalar",
+      "translation"
+    ]
+  },
+  {
+    "id": "magnitude",
+    "term": "Magnitude",
+    "strand": "g",
+    "level": "H",
+    "def": "The length of a vector. For the vector with x across and y up it is the square root of (x squared plus y squared), from Pythagoras.",
+    "example": [
+      "The vector (5, &minus;12) has magnitude &radic;(25 + 144) = &radic;169 = 13."
+    ],
+    "watch": "Square the numbers first, then add. A magnitude is never negative.",
+    "see": [
+      "vector",
+      "pythagoras-theorem"
+    ]
+  },
+  {
+    "id": "scalar",
+    "term": "Scalar",
+    "strand": "g",
+    "level": "H",
+    "def": "An ordinary number, used to multiply a vector. Multiplying a vector by a scalar makes it longer or shorter, and a negative scalar reverses its direction.",
+    "example": [
+      "3 times the vector (2, &minus;1) is (6, &minus;3).",
+      "&minus;1 times a vector gives the opposite vector."
+    ],
+    "watch": "Vectors that are scalar multiples of each other are parallel.",
+    "see": [
+      "vector",
+      "parallel"
+    ]
+  },
+  {
+    "id": "construction",
+    "term": "Construction",
+    "strand": "g",
+    "level": "F",
+    "def": "An accurate drawing made with only a ruler, a protractor and compasses. The construction arcs and lines are kept to show the method.",
+    "example": [
+      "Drawing a triangle from its three sides, with arcs from each end of the base.",
+      "Drawing the bisector of an angle with equal arcs."
+    ],
+    "watch": "Never rub out the arcs. They show how you did it.",
+    "flip": "Describing the steps of a construction from the finished drawing.",
+    "see": [
+      "locus",
+      "perpendicular-bisector",
+      "angle-bisector"
+    ]
+  },
+  {
+    "id": "locus",
+    "term": "Locus (loci)",
+    "strand": "g",
+    "level": "F",
+    "def": "The set of all the points that follow one rule. It can be a line, a curve or a whole region. The plural is loci.",
+    "example": [
+      "The locus of points exactly 3 cm from a point P is a circle with radius 3 cm.",
+      "The locus of points the same distance from A and B is the perpendicular bisector of AB."
+    ],
+    "watch": "&ldquo;Exactly&rdquo; gives the line or curve. &ldquo;Less than&rdquo; gives the inside, and &ldquo;more than&rdquo; gives the outside.",
+    "flip": "Say the rule from a picture of the locus.",
+    "see": [
+      "construction",
+      "equidistant",
+      "arc"
+    ]
+  },
+  {
+    "id": "perpendicular-bisector",
+    "term": "Perpendicular bisector",
+    "strand": "g",
+    "level": "F",
+    "def": "The line that cuts another line exactly in half, at a right angle. Every point on it is the same distance from the two ends.",
+    "example": [
+      "The perpendicular bisector of a line AB 8 cm long meets AB 4 cm from A.",
+      "Any point on it is the same distance from A and from B."
+    ],
+    "flip": "Points the same distance from two points A and B lie on this line.",
+    "see": [
+      "perpendicular",
+      "equidistant",
+      "angle-bisector"
+    ]
+  },
+  {
+    "id": "angle-bisector",
+    "term": "Angle bisector",
+    "strand": "g",
+    "level": "F",
+    "def": "The line that cuts an angle exactly in half. Every point on it is the same distance from the two arms of the angle.",
+    "example": [
+      "The bisector of a 70&deg; angle makes two angles of 35&deg;.",
+      "A mitre joint at a 120&deg; corner is cut along the bisector, so each board is cut at 60&deg;."
+    ],
+    "flip": "Points the same distance from two lines that meet at a corner lie on this line.",
+    "see": [
+      "perpendicular-bisector",
+      "equidistant",
+      "angle"
+    ]
+  },
+  {
+    "id": "equidistant",
+    "term": "Equidistant",
+    "strand": "g",
+    "level": "F",
+    "def": "The same distance from two or more things.",
+    "example": [
+      "The middle of a line is equidistant from its two ends.",
+      "The centre of a circle is equidistant from every point on the circle."
+    ],
+    "see": [
+      "locus",
+      "perpendicular-bisector",
+      "angle-bisector"
+    ]
+  },
+  {
+    "id": "plan",
+    "term": "Plan",
+    "strand": "g",
+    "level": "F",
+    "def": "The view of a 3D shape from directly above, drawn flat.",
+    "example": [
+      "The plan of a cylinder standing on its end is a circle.",
+      "The plan of a cuboid 5 cm by 3 cm by 2 cm, lying flat, is a 5 cm by 3 cm rectangle."
+    ],
+    "flip": "Working out the solid from its plan and elevations.",
+    "see": [
+      "elevation"
+    ]
+  },
+  {
+    "id": "elevation",
+    "term": "Elevation",
+    "strand": "g",
+    "level": "F",
+    "def": "The view of a 3D shape from the front or from the side, drawn flat. There is a front elevation and a side elevation.",
+    "example": [
+      "The front elevation of a square-based pyramid is a triangle.",
+      "The front elevation of a cylinder standing on its end is a rectangle."
+    ],
+    "flip": "Working out the solid from its plan and elevations.",
+    "see": [
+      "plan"
+    ]
+  },
+  {
+    "id": "segment",
+    "term": "Segment (of a circle)",
+    "strand": "g",
+    "level": "H",
+    "def": "The region of a circle between a chord and the arc it cuts off. A chord splits a circle into a small segment and a big segment.",
+    "example": [
+      "The shaded piece of a circle cut off by a straight line across it is a segment.",
+      "If the chord is a diameter, each segment is a semicircle."
+    ],
+    "watch": "A sector is a slice between two radii. A segment is cut off by a chord.",
+    "see": [
+      "chord",
+      "arc",
+      "alternate-segment-theorem"
+    ]
+  },
+  {
+    "id": "alternate-segment-theorem",
+    "term": "Alternate segment theorem",
+    "strand": "g",
+    "level": "H",
+    "def": "The circle theorem: the angle between a tangent and a chord is equal to the angle in the alternate segment (the segment on the other side of the chord).",
+    "example": [
+      "A tangent at A and a chord AB make an angle of 52&deg;. Any point C in the other segment sees AB at 52&deg;, so angle ACB = 52&deg;."
+    ],
+    "flip": "An angle between a tangent and a chord that matches an angle at the circumference tells you to use this theorem.",
+    "see": [
+      "tangent",
+      "chord",
+      "segment"
+    ]
+  },
+  {
+    "id": "rational",
+    "term": "Rational number",
+    "strand": "n",
+    "level": "H",
+    "def": "A number that can be written as a fraction with a whole number on the top and a whole number on the bottom. Its decimal either stops or repeats.",
+    "example": [
+      "0.75 = {frac:3/4}, 5 = {frac:5/1} and 0.333&hellip; = {frac:1/3} are all rational.",
+      "&radic;16 = 4 is rational. &radic;2 is not."
+    ],
+    "watch": "Every whole number is rational. A root is only irrational (a surd) when the number under it is not a perfect square.",
+    "flip": "The opposite of an irrational number.",
+    "see": [
+      "irrational",
+      "surd",
+      "fraction"
+    ]
+  },
+  {
+    "id": "conjugate",
+    "term": "Conjugate (of a surd expression)",
+    "strand": "n",
+    "level": "H",
+    "def": "The same two terms with the sign in the middle swapped. Multiplying an expression by its conjugate removes the surds.",
+    "example": [
+      "The conjugate of 3 + &radic;5 is 3 &minus; &radic;5.",
+      "(3 + &radic;5)(3 &minus; &radic;5) = 9 &minus; 5 = 4, with no surd left."
+    ],
+    "watch": "Only swap the sign between the two terms. Do not change the sign of the surd itself.",
+    "flip": "Used to rationalise a denominator that has two terms, like {frac:1/1 + &radic;2}.",
+    "see": [
+      "rationalising",
+      "difference-of-two-squares",
+      "surd"
+    ]
+  },
+  {
+    "id": "algebraic-fraction",
+    "term": "Algebraic fraction",
+    "strand": "a",
+    "level": "H",
+    "def": "A fraction with algebra (a letter) on the top, the bottom, or both. It follows the same rules as a number fraction.",
+    "example": [
+      "{frac:3/x}, {frac:2x/5} and {frac:x + 1/x &minus; 2} are algebraic fractions.",
+      "{frac:x + 1/x &minus; 2} is only defined when x is not 2, because the bottom cannot be zero."
+    ],
+    "watch": "You can only cancel a factor (something multiplied), never a term (something added). {frac:x + 5/x} is not 5.",
+    "flip": "Simplifying by factorising, and combining over a common denominator.",
+    "see": [
+      "fraction",
+      "factorise",
+      "common-denominator",
+      "cancel"
+    ]
+  },
+  {
+    "id": "cancel",
+    "term": "Cancel",
+    "strand": "n",
+    "level": "F",
+    "def": "Divide the top and the bottom of a fraction by the same factor. The value of the fraction does not change.",
+    "example": [
+      "{frac:6x/9}: divide top and bottom by 3 to get {frac:2x/3}.",
+      "{frac:3(x + 2)/x + 2}: the bracket (x + 2) is on the top and the bottom, so it cancels, leaving 3."
+    ],
+    "watch": "Only cancel factors that multiply the whole top and the whole bottom. In {frac:x + 5/x} the x on top is added, so it cannot be cancelled.",
+    "see": [
+      "simplify-fraction",
+      "factor",
+      "algebraic-fraction"
+    ]
+  },
+  {
+    "id": "iteration",
+    "term": "Iteration",
+    "strand": "a",
+    "level": "H",
+    "def": "Repeating a rule again and again, using each answer as the next input, to home in on a solution.",
+    "example": [
+      "x<sub>n+1</sub> = 2x<sub>n</sub> + 1 with x<sub>0</sub> = 3 gives 7, 15, 31, ...",
+      "Use the Ans button on a calculator."
+    ],
+    "watch": "Keep every digit on the calculator and round only the final answer.",
+    "flip": "Repeating the rule forwards, and solving L = f(L) to find where the terms settle.",
+    "see": [
+      "iterative-formula",
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "iterative-formula",
+    "term": "Iterative formula",
+    "strand": "a",
+    "level": "H",
+    "def": "A rule written x<sub>n+1</sub> = f(x<sub>n</sub>) that gives the next term from the current one.",
+    "example": [
+      "x<sub>n+1</sub> = &#8731;(3 &minus; x<sub>n</sub>) comes from x&sup3; + x &minus; 3 = 0."
+    ],
+    "watch": "Not every rearrangement homes in. Some run away from the solution.",
+    "flip": "Rearranging an equation into a formula, and finding the equation a formula solves.",
+    "see": [
+      "iteration",
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "interval",
+    "term": "Interval",
+    "strand": "a",
+    "level": "H",
+    "def": "All the numbers between two given numbers.",
+    "example": [
+      "A solution between 1.2 and 1.3 lies in the interval from 1.2 to 1.3."
+    ],
+    "flip": "Showing a solution lies in an interval by a change of sign, and shrinking the interval.",
+    "see": [
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "axis-of-symmetry",
+    "term": "Line of symmetry (of a parabola)",
+    "strand": "a",
+    "level": "H",
+    "def": "The vertical line through the turning point of a parabola. The curve is a mirror image of itself on either side of it.",
+    "example": "y = x&sup2; &minus; 4x + 3 has roots 1 and 3, so its line of symmetry is x = 2, halfway between them.",
+    "watch": "It is a vertical line, so its equation is x = a number, not y = a number.",
+    "flip": "If you know the line of symmetry and one root, the other root is the same distance on the other side.",
+    "see": [
+      "parabola",
+      "turning-point",
+      "root-of-equation"
+    ]
+  },
+  {
+    "id": "cubic",
+    "term": "Cubic",
+    "strand": "a",
+    "level": "H",
+    "def": "An expression or graph whose highest power of x is 3. The simplest cubic graph, y = x&sup3;, is an S-shape through the origin.",
+    "example": "y = x&sup3; goes through (&minus;2, &minus;8), (0, 0) and (2, 8).",
+    "watch": "A negative number cubed stays negative: (&minus;2)&sup3; = &minus;8.",
+    "flip": "To undo cubing, take the cube root.",
+    "see": [
+      "quadratic",
+      "cube-number"
+    ]
+  },
+  {
+    "id": "asymptote",
+    "term": "Asymptote",
+    "strand": "a",
+    "level": "H",
+    "def": "A line that a curve gets closer and closer to but never touches.",
+    "example": "The graph of y = 1/x gets close to the x-axis and the y-axis but never meets either.",
+    "watch": "An asymptote is not part of the curve. The curve only gets nearer to it.",
+    "flip": "If a graph has an asymptote at x = 0, the equation cannot be worked out at x = 0.",
+    "see": [
+      "reciprocal",
+      "exponential"
+    ]
+  },
+  {
+    "id": "exponential",
+    "term": "Exponential",
+    "strand": "a",
+    "level": "H",
+    "def": "A relationship where the unknown is in the power, like y = 2<sup>x</sup>. Each step along multiplies y by the same number.",
+    "example": "y = 2<sup>x</sup> gives 1, 2, 4, 8, 16 as x goes 0, 1, 2, 3, 4. Its graph crosses the y-axis at (0, 1).",
+    "watch": "2<sup>x</sup> is not 2 &times; x. A power means repeated multiplication.",
+    "flip": "To find the power that gives a number, ask how many times you must multiply: 2 to the power what is 8? The answer is 3.",
+    "see": [
+      "power",
+      "asymptote",
+      "depreciation"
+    ]
+  },
+  {
+    "id": "conditional-probability",
+    "term": "Conditional probability",
+    "strand": "p",
+    "level": "H",
+    "def": "The probability of an event when you already know another event has happened. P(B | A) is read &ldquo;the probability of B given A&rdquo;. The event you know is the bottom of the fraction.",
+    "example": "In a class of 30 girls and 30 boys, 18 girls walk to school. P(walk | girl) = {frac:18/30} = {frac:3/5}.",
+    "watch": "P(B | A) and P(A | B) are usually different. They have the same top but different bottoms.",
+    "flip": "P(B | A) = P(A and B) &divide; P(A), so P(A and B) = P(A) &times; P(B | A).",
+    "see": [
+      "probability",
+      "tree-diagram",
+      "without-replacement",
+      "independent-events"
+    ]
+  },
+  {
+    "id": "two-way-table",
+    "term": "Two-way table",
+    "strand": "p",
+    "level": "F",
+    "def": "A table that sorts the same people or things in two ways at once, with rows for one grouping, columns for the other and totals at the ends.",
+    "example": "Boys and girls (rows) against walk and bus (columns). The 18 in the girls row and walk column are girls who walk.",
+    "watch": "Check that the rows, columns and totals add up before you use the numbers.",
+    "flip": "Fill in the totals first if they are missing, then work backwards to find the missing cells.",
+    "see": [
+      "probability",
+      "venn-diagram",
+      "conditional-probability"
+    ]
+  },
+  {
+    "id": "dependent-events",
+    "term": "Dependent events",
+    "strand": "p",
+    "level": "H",
+    "def": "Events where knowing one has happened changes the chance of the other, so P(B | A) is not the same as P(B).",
+    "example": "Taking two counters from a bag without replacement: the first pick changes what is left, so the second pick depends on it.",
+    "watch": "Picking with replacement gives independent events. Picking without replacement gives dependent events.",
+    "flip": "To test, compare P(B | A) with P(B). If they differ, the events are dependent.",
+    "see": [
+      "independent-events",
+      "conditional-probability",
+      "without-replacement"
+    ]
+  },
+  {
+    "id": "cumulative-frequency",
+    "term": "Cumulative frequency",
+    "strand": "s",
+    "level": "H",
+    "def": "A running total of the frequencies: how many values there are up to and including the end of each class.",
+    "example": "Frequencies 4, 12, 28 give cumulative frequencies 4, 16, 44. Plot them at the upper class boundaries to draw the cumulative frequency curve.",
+    "watch": "Plot each point at the upper boundary of its class, not at the midpoint.",
+    "flip": "The frequency of a class is how much the cumulative frequency rises across it.",
+    "see": [
+      "frequency-table",
+      "median",
+      "quartile"
+    ]
+  },
+  {
+    "id": "quartile",
+    "term": "Quartile",
+    "strand": "s",
+    "level": "H",
+    "def": "One of the three values that split ordered data into four equal parts: the lower quartile, the median and the upper quartile.",
+    "example": "For 80 values, read the lower quartile at height 20 on a cumulative frequency graph, the median at 40 and the upper quartile at 60.",
+    "watch": "The height on the vertical axis tells you where to read. The quartile is the value on the horizontal axis.",
+    "flip": "If the upper quartile of 80 values is 37, then 60 of the values are 37 or less.",
+    "see": [
+      "median",
+      "interquartile-range",
+      "box-plot"
+    ]
+  },
+  {
+    "id": "interquartile-range",
+    "term": "Interquartile range",
+    "strand": "s",
+    "level": "H",
+    "def": "The upper quartile minus the lower quartile. It is the spread of the middle half of the data, so it ignores very high and very low values.",
+    "example": "Lower quartile 14 and upper quartile 29 give an interquartile range of 29 &minus; 14 = 15.",
+    "watch": "Subtract the quartiles, do not add them. It is not the same as the range.",
+    "flip": "From the interquartile range and one quartile you can find the other quartile.",
+    "see": [
+      "quartile",
+      "range",
+      "outlier"
+    ]
+  },
+  {
+    "id": "percentile",
+    "term": "Percentile",
+    "strand": "s",
+    "level": "H",
+    "def": "A value that a given percentage of the data lies below. The 90th percentile has 90% of the values below it.",
+    "example": "For 100 cable lengths, read across at height 90 on the cumulative frequency graph to find the 90th percentile.",
+    "flip": "From a value on the graph, go up and across to find what percentage of the data is below it.",
+    "see": [
+      "quartile",
+      "cumulative-frequency",
+      "median"
+    ]
+  },
+  {
+    "id": "box-plot",
+    "term": "Box plot",
+    "strand": "s",
+    "level": "H",
+    "def": "A diagram of five numbers: the smallest value, lower quartile, median, upper quartile and largest value. The box shows the middle half of the data.",
+    "example": "Five numbers 4, 7, 12, 18, 23: the box runs from 7 to 18 with a line at 12, and whiskers go to 4 and 23.",
+    "watch": "The width of the box is the interquartile range, not the range.",
+    "flip": "From a box plot you can read the five numbers back, and work out the interquartile range and the range.",
+    "see": [
+      "quartile",
+      "interquartile-range",
+      "outlier",
+      "median"
+    ]
+  },
+  {
+    "id": "histogram",
+    "term": "Histogram",
+    "strand": "s",
+    "level": "H",
+    "def": "A graph of grouped data with touching bars. When the classes have different widths, the height of a bar is the frequency density and its area shows the frequency.",
+    "example": "A bar from 20 to 40 with height 3.5 has area 3.5 &times; 20 = 70, so the frequency is 70.",
+    "watch": "A histogram is not a bar chart. With unequal widths, the height is not the frequency.",
+    "flip": "To draw one, divide each frequency by its class width. To read one, multiply each height by its width.",
+    "see": [
+      "frequency-density",
+      "frequency-table",
+      "class-midpoint"
+    ]
+  },
+  {
+    "id": "frequency-density",
+    "term": "Frequency density",
+    "strand": "s",
+    "level": "H",
+    "def": "Frequency divided by class width. It is the height of a histogram bar.",
+    "example": "Class 20 &lt; l &le; 50 with frequency 45: class width 30, so frequency density = 45 &divide; 30 = 1.5.",
+    "watch": "Divide by the class width (upper boundary minus lower boundary), not by the boundary itself.",
+    "flip": "Frequency = frequency density &times; class width.",
+    "see": [
+      "histogram",
+      "frequency-table"
+    ]
+  },
 ];

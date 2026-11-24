@@ -87,7 +87,8 @@ test.describe('the book is well formed', () => {
     await page.goto('/books/gcse/');
     const live = page.locator('.pyr-node.live a');
     await expect(live).toHaveCount(BOOK_TOPICS.length);
-    expect(await page.locator('.pyr-node.planned .soon').count()).toBeGreaterThan(5);
+    // Every topic on the pyramid is written: nothing is left marked "coming soon" (a future planned topic would show here).
+    expect(await page.locator('.pyr-node.planned .soon').count()).toBe(0);
     const labels = await page.locator('.layer-label').allTextContents();
     expect(labels[labels.length - 1]).toBe('Base layer');
   });

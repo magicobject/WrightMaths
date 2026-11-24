@@ -305,3 +305,101 @@ export function autoLinkQuestionTerms(html, patterns) {
     return open + parts.join('') + close;
   });
 }
+
+
+// ---------- teacher answer keys ----------
+// Built from the same page source as the questions, so a key can never disagree with its page.
+
+const NAMED_ENTITIES = {
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', pound: '\u00a3', times: '\u00d7', divide: '\u00f7',
+  minus: '\u2212', deg: '\u00b0', sup2: '\u00b2', sup3: '\u00b3', radic: '\u221a', asymp: '\u2248', hellip: '\u2026',
+  rarr: '\u2192', larr: '\u2190', pi: '\u03c0', plusmn: '\u00b1', le: '\u2264', ge: '\u2265', ne: '\u2260', frac12: '\u00bd',
+  ldquo: '\u201c', rdquo: '\u201d', lsquo: '\u2018', rsquo: '\u2019', ndash: '\u2013', mdash: '\u2014', middot: '\u00b7',
+  equiv: '\u2261', theta: '\u03b8', alpha: '\u03b1', beta: '\u03b2', micro: '\u00b5', ohm: '\u03a9', Omega: '\u03a9',
+};
+
+/** Plain text of a fragment of page source: shorthands and tags removed, entities decoded. */
+export function plainText(html) {
+  return String(html)
+    .replace(/\{frac:([^}]*?)\/([^}/]*)\}/g, (_, t, u) => `${/^[\w.]+$/.test(t.trim()) ? t.trim() : `(${t.trim()})`}/${/^[\w.]+$/.test(u.trim()) ? u.trim() : `(${u.trim()})`}`)
+    .replace(/\{term:[^|}]*\|([^}]*)\}/g, '$1')
+    .replace(/\{term:([^}]*)\}/g, '$1')
+    .replace(/<svg[\s\S]*?<\/svg>/g, ' ')
+    .replace(/<sup>([^<]*)<\/sup>/g, '^$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&([a-zA-Z0-9]+);/g, (m, name) => NAMED_ENTITIES[name] ?? m)
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const esc = (t) => String(t).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+
+/** One entry per question on a topic page: number, text, answer, marks and mark scheme. */
+export function extractKey(raw) {
+  const parts = raw.split(/(?=<div class="q")/).filter((p) => p.startsWith('<div class="q"'));
+  return parts.map((part, i) => {
+    const attrs = /^<div class="q"([^>]*)>/.exec(part)?.[1] ?? '';
+    const attr = (name) => new RegExp(`${name}="([^"]*)"`).exec(attrs)?.[1];
+    const type = attr('data-type');
+    const marks = Number(attr('data-marks') ?? 0) || 0;
+    const qtext = plainText(/<p class="qtext">([\s\S]*?)<\/p>/.exec(part)?.[1] ?? '').replace(/^\[\d+ marks?\]\s*/, '');
+    let answer = '';
+    let also = [];
+    if (type === 'mc') {
+      answer = plainText(/<li data-correct[^>]*>([\s\S]*?)<\/li>/.exec(part)?.[1] ?? '');
+    } else if (type === 'show') {
+      answer = 'Written answer: see the mark scheme';
+    } else {
+      const list = plainText(attr('data-answers') ?? '').split(';').map((x) => x.trim()).filter(Boolean);
+      answer = list[0] ?? '';
+      also = list.slice(1);
+    }
+    const solution = /<div class="solution">([\s\S]*?)<\/div>\s*<\/div>/.exec(part)?.[1] ?? /<div class="solution">([\s\S]*?)<\/div>/.exec(part)?.[1] ?? '';
+    const scheme = [...solution.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => plainText(m[1]));
+    const working = plainText(solution.replace(/<ul class="markscheme">[\s\S]*?<\/ul>/, ''));
+    return { n: i + 1, type: type ?? 'typed', text: qtext, answer, also, marks, scheme: marks > 0 ? scheme : [], working };
+  });
+}
+
+/** The printable answer-key page for one topic. */
+export function renderAnswerKey(topic, raw) {
+  const rows = extractKey(raw);
+  const body = rows.map((r) => {
+    const q = r.text.length > 140 ? `${r.text.slice(0, 137)}...` : r.text;
+    const also = r.also.length ? ` <span class="muted">(also accept: ${esc(r.also.join(', '))})</span>` : '';
+    const marksCell = r.marks ? `${r.marks}` : '';
+    const scheme = r.scheme.length ? `<ol class="key-scheme">${r.scheme.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>` : '';
+    return `<tr><th scope="row">${r.n}</th><td>${esc(q)}</td><td><b>${esc(r.answer)}</b>${also}${scheme}</td><td>${marksCell}</td></tr>`;
+  }).join('\n');
+  const total = rows.reduce((n, r) => n + r.marks, 0);
+  return `<main class="book" data-book-page="key">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Teacher answer key</span>
+      <h1>${esc(topic.title)}: answers</h1>
+      <p class="lead">${rows.length} questions, ${rows.filter((r) => r.marks).length} of them marked (${total} marks in all). Question numbers match the page. Use your browser's Print for a copy.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="../${topic.id}.html">Open the questions</a>
+        <a class="btn btn-ghost" href="../teachers.html">Back to the teacher page</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="qtable-wide" tabindex="0" role="region" aria-label="Answer key table (scroll sideways if it does not fit)">
+    <table class="key-table">
+      <caption>Answers for ${esc(topic.title)}</caption>
+      <thead><tr><th scope="col">No.</th><th scope="col">Question</th><th scope="col">Answer</th><th scope="col">Marks</th></tr></thead>
+      <tbody>
+${body}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+</main>`;
+}

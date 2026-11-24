@@ -332,6 +332,13 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .timed-clock{font-size:1.6rem;font-weight:800;color:var(--navy);margin:10px 0 2px;}
 .timed-status{font-weight:700;margin:2px 0 10px;}
 .diag-progress{font-weight:700;color:var(--navy);margin:12px 0 4px;}
+.qtable-wide{overflow-x:auto;max-width:100%;}
+.key-table{border-collapse:collapse;width:100%;font-size:.95rem;}
+.key-table caption{text-align:left;font-weight:700;color:var(--navy);padding:6px 0;}
+.key-table th,.key-table td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;}
+.key-table thead th{background:var(--navy);color:var(--white);}
+.key-table tbody th{background:var(--paper-dim);font-weight:700;}
+.key-scheme{margin:6px 0 0;padding-left:1.2em;font-size:.88rem;color:var(--ink-soft);}
 .markscheme{list-style:none;padding-left:0;}
 .markscheme li{margin:6px 0;}
 .mark-box{width:22px;height:22px;vertical-align:middle;margin-right:6px;accent-color:var(--navy);}
@@ -379,7 +386,7 @@ body nav.mainnav a{display:inline-flex;align-items:center;min-height:44px;}
 .diag-list li{display:flex;gap:10px;align-items:center;margin:4px 0;color:var(--ink);}
 .diag-list .bar{background:var(--line);}
 .diag-list .bar-fill{background:var(--c-right);}
-.book[data-book-page="practice"] .qnum,.book[data-book-page="diagnostic"] .qnum,.book[data-book-page="stretch"] .qnum,.book[data-book-page="parents"] .qnum{background:var(--navy);}
+.book[data-book-page="practice"] .qnum,.book[data-book-page="diagnostic"] .qnum,.book[data-book-page="stretch"] .qnum,.book[data-book-page="foundation"] .qnum,.book[data-book-page="parents"] .qnum{background:var(--navy);}
 .skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--navy);color:var(--white);padding:10px 16px;border-radius:8px;font-weight:700;}
 .skip-link:focus{left:8px;}
 body :focus-visible{outline:3px solid #0f2440;outline-offset:2px;}
@@ -441,6 +448,9 @@ body:has(.calc:not([hidden])) .to-top{display:none;}
 
 /* ---------- print: everything open, no controls ---------- */
 @media print{
+  .qtable-wide{overflow:visible;}
+  .key-table{font-size:.8rem;}
+  .key-table tr{break-inside:avoid;}
   .site-header,footer,.hero-actions,.q-form,.q-help,.btn,.g-tools,[data-reset-progress],.crumbs{display:none !important;}
   .js .q .ladder,.js .q .solution{display:none !important;}
   .js .print-answers .q .solution{display:block !important;}

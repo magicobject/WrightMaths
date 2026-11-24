@@ -166,3 +166,31 @@ test('the same algebra written another way is accepted, but only in an acceptabl
   assert.match(feedbackFor('x^2+7x-2x-14', ['x^2+5x-14']), /form asked for/);
   ok('yes.', 'yes'); ok('3 4', '3,4'); ok('16;10', '16,10');
 });
+
+test('an algebraic fraction that could still be cancelled is not accepted as the simplified answer', () => {
+  assert.ok(!matches('(x+3)(x-1)/(2(x-1))', ['(x+3)/2'], 'exact'));
+  assert.ok(matches('(x+3)/2', ['(x+3)/2'], 'exact'));
+  assert.ok(matches('(x+3)/(2)', ['(x+3)/2'], 'exact'));
+});
+
+test('inequalities written another way are accepted', () => {
+  const ok = (typed, key) => assert.ok(matches(typed, [key], 'exact'), `${typed} should match ${key}`);
+  const no = (typed, key) => assert.ok(!matches(typed, [key], 'exact'), `${typed} should not match ${key}`);
+  ok('4>x>=-1', '-1<=x<4'); ok('4>x≥-1', '-1<=x<4'); ok('x>=-1 and x<4', '-1<=x<4'); ok('x>=-1,x<4', '-1<=x<4');
+  ok('x<4 and x>=-1', '-1<=x<4');
+  ok('x<-3 or 4<x', 'x<-3 or x>4'); ok('x<-3;x>4', 'x<-3 or x>4'); ok('x>7.', 'x>7'); ok('x>=5.0', 'x>=5');
+  ok('6.50<=x<7.50', '6.5<=x<7.5'); ok('-2>=x', 'x<=-2'); ok('x≤3', 'x<=3');
+  no('x>7', 'x>=7'); no('-1<x<4', '-1<=x<4'); no('x<-3 or x>5', 'x<-3 or x>4');
+  ok('2 3 4 5 6', '2,3,4,5,6'); ok('{2,3,4,5,6}', '2,3,4,5,6'); ok('2;3;4', '2,3,4');
+});
+
+test('several letters, bracketed halves, cancelled fractions and surds with brackets', () => {
+  const ok = (typed, key) => assert.ok(matches(typed, [key], 'exact'), `${typed} should match ${key}`);
+  const no = (typed, key) => assert.ok(!matches(typed, [key], 'exact'), `${typed} should not match ${key}`);
+  ok('(1/2)(a+b)', '1/2(a+b)'); ok('b-(1/2)a', '-1/2a+b'); ok('-(1/2)a+b', '-1/2a+b'); ok('b+(-a)', 'b-a'); ok('(b-a)', 'b-a');
+  ok('2a+1/2b', '2a+(1/2)b');
+  no('6x/9', '2x/3'); no('(x^2-9)/(x^2+x-6)', '(x-3)/(x-2)'); no('2x/x^2', '2/x');
+  ok('(2+x)/3', '(x+2)/3');
+  ok('(3+√5)/2', '(3+sqrt5)/2'); ok('(3+sqrt(5))/2', '(3+sqrt5)/2'); ok('(√2)/2', 'sqrt2/2'); ok('3sqrt(2)/2', '3sqrt2/2');
+  ok('3sqrt2', '3√2'); ok('3 sqrt(2)', '3√2');
+});

@@ -13,11 +13,14 @@ import { dirname, join } from 'node:path';
 import { NAV, PAGES } from '../src/pages.config.mjs';
 import { STRANDS, TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
+import { SPEC_REFS, SPEC_STATEMENTS } from '../src/book/spec-refs.mjs';
 import { TERM_FIGURES, figuresFor } from '../src/book/term-figures.mjs';
 import {
   buildGraph, expandInline, addQuestionIds, countQuestions,
   renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage, renderWords, renderPracticeTopics,
   buildAutoPatterns, autoLinkQuestionTerms,
+  renderAnswerKey,
+  extractKey,
 } from './book-lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -96,6 +99,8 @@ function renderBookContent(page, raw) {
     .replaceAll('{pyramid}', () => renderPyramid(graph))
     .replaceAll('{words}', () => (topic ? renderWords(topic.id, graph, glossaryById) : ''))
     .replaceAll('{practice-topics}', () => renderPracticeTopics(graph))
+    .replaceAll('{teacher-table}', () => renderTeacherTable())
+    .replaceAll('{spec-key}', () => renderSpecKey())
     .replace(/\{qcount:([a-z0-9-]+)\}/g, (_, id) => {
       if (!questionCounts.has(id)) throw new Error(`qcount: "${id}" is not a live topic`);
       return String(questionCounts.get(id));
@@ -121,6 +126,33 @@ const bookTopicPages = liveTopics.map((t) => ({
   description: `GCSE maths: ${t.title}. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.`,
 }));
 
+// Teacher answer keys: one printable page per live topic, generated from the same source as the questions.
+const keyPages = liveTopics.map((t) => ({
+  slug: `books/gcse/key/${t.id}`,
+  book: 'key',
+  keyTopic: t.id,
+  base: '../../../',
+  title: `${t.title}: teacher answer key | GCSE Maths Book (pilot) | Wright Maths Tuition`,
+  description: `Answers and mark schemes for every question on the ${t.title} page.`,
+}));
+
+function renderTeacherTable() {
+  const rows = [...liveTopics].sort((a, b) => a.layer - b.layer || a.title.localeCompare(b.title)).map((t) => {
+    const items = extractKey(read(`src/pages/books/gcse/${t.id}.html`));
+    const marked = items.filter((r) => r.marks).length;
+    const marks = items.reduce((n, r) => n + r.marks, 0);
+    const refs = (SPEC_REFS[t.id] ?? []).join(', ') || '–';
+    return `<tr><th scope="row"><a href="${t.id}.html">${t.title}</a></th><td>${t.tier === 'H' ? 'Higher' : 'Foundation and Higher'}</td><td>${t.strandName}</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${refs}</td><td><a href="key/${t.id}.html">Answer key</a></td></tr>`;
+  });
+  return `<div class="qtable-wide" tabindex="0" role="region" aria-label="Topics table (scroll sideways if it does not fit)"><table class="key-table"><caption>Every topic, with its answer key</caption><thead><tr><th scope="col">Topic</th><th scope="col">Tier</th><th scope="col">Strand</th><th scope="col">Questions</th><th scope="col">Marked questions</th><th scope="col">Curriculum statements (DfE)</th><th scope="col">Key</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+
+function renderSpecKey() {
+  const order = (c) => `${'NARGPS'.indexOf(c[0])}${String(Number(c.slice(1))).padStart(3, '0')}`;
+  const items = Object.keys(SPEC_STATEMENTS).sort((a, b) => order(a).localeCompare(order(b))).map((c) => `<li><b>${c}</b> ${SPEC_STATEMENTS[c]}</li>`);
+  return `<details class="spec-key"><summary>What the codes mean (short paraphrases)</summary><ul>${items.join('')}</ul></details>`;
+}
+
 const bookPageDefaults = {
   base: '../../',
   active: null,
@@ -132,7 +164,7 @@ const bookPageDefaults = {
 
 // Hub, glossary and grade-guide pages are listed in PAGES (flagged with `book`);
 // topic pages come from the graph above.
-const allPages = [...PAGES, ...bookTopicPages];
+const allPages = [...PAGES, ...bookTopicPages, ...keyPages];
 
 // Glossary last: it needs the term usage collected from every other book page.
 const ordered = [
@@ -154,8 +186,10 @@ for (const page of ordered) {
     .replace('{{CTA_HREF}}', () => withBase(cta.href, base))
     .replace('{{CTA_TEXT}}', () => cta.text);
 
-  let content = read(`src/pages/${merged.slug}.html`).trimEnd();
-  if (isBook) {
+  let content = merged.keyTopic
+    ? renderAnswerKey(graph.get(merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
+    : read(`src/pages/${merged.slug}.html`).trimEnd();
+  if (isBook && !merged.keyTopic) {
     content = renderBookContent(merged, content);
     if (merged.book === 'glossary') {
       const { jump, groups, count } = renderGlossaryPage(GLOSSARY, usage, graph, STRANDS, TERM_FIGURES);

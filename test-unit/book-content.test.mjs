@@ -68,3 +68,37 @@ test('each numeric keyed answer appears in its own worked solution (no student m
   }
   assert.deepEqual(problems, [], `${problems.length} keyed answers not found in their solutions:\n${problems.join('\n')}`);
 });
+
+test('multiple-choice feedback has normal spacing (a generator once turned every space into " x ")', () => {
+  const bad = [];
+  for (const file of files) {
+    const html = readFileSync(join(dir, file), 'utf8');
+    for (const m of html.matchAll(/data-why="([^"]*)"/g)) {
+      if ((m[1].match(/ x /g) ?? []).length >= 3) bad.push(`${file}: ${m[1].slice(0, 50)}`);
+    }
+  }
+  assert.deepEqual(bad, []);
+});
+
+test('every page has as many opening as closing paragraph tags (a generator once turned <p> into a pound sign)', () => {
+  const bad = [];
+  for (const file of files) {
+    const html = readFileSync(join(dir, file), 'utf8');
+    const open = (html.match(/<p[ >]/g) ?? []).length;
+    const close = (html.match(/<\/p>/g) ?? []).length;
+    if (open !== close) bad.push(`${file}: ${open} <p> and ${close} </p>`);
+  }
+  assert.deepEqual(bad, []);
+});
+
+test('the "like ..." example in a question is never the answer itself', () => {
+  const squash = (t) => t.replace(/[\s()]/g, '').toLowerCase();
+  const bad = [];
+  for (const q of questions()) {
+    const m = /\blike ([^.?]*?)(?:[.?]|$)/.exec(q.qtext);
+    if (!m) continue;
+    const example = squash(m[1]);
+    if (example && q.answers.some((a) => squash(a) === example)) bad.push(`${q.file}: ${q.qtext}`);
+  }
+  assert.deepEqual(bad, []);
+});
