@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.24.038">
+<link rel="stylesheet" href="css/style.css?v=2026.11.24.039">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.039</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Fix: a browser that had kept an old copy of one of the book&rsquo;s helper scripts could show &ldquo;does not provide an export named feedbackFor&rdquo; in the console and lose the hover definitions. The helper scripts are now fetched with a version tag and are re-checked on every visit, and a test makes sure every import carries the tag.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.038</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book (still unlinked): round 5 of testing, with seven new testers (a football fan, a grade 8 student, an autistic student, a college resit student, a low-vision student, a home-educated student and a teacher). New: study routes (resit to a 4 in 8 weeks, the whole book in 12 weeks, a Higher top-up) and a &ldquo;What next?&rdquo; link ending every topic page; homework links such as <code>?q=5-12</code> and a link to any question; a real printable worksheet (name line, questions only, room to work); teacher answer keys that show the full question, any figure and worked solutions on request, now also for both practice papers, with a time estimate per topic; screen-reader text versions of about 90 graphs and figures; a timed set that puts focus on the first question, speaks the time left, can pause or add time, keeps the clock in view and can pick a topic; &ldquo;Skip the basics&rdquo; remembered on the device; a Set complete message; a Higher tag on the pyramid; forced-colour and high-contrast styles; a ratio key; no more Tab stops on the symbol keys; the Top button out of the way while typing. Content: twelve Higher stretch questions (surds, vectors, circle theorems, iteration, bounds, functions and more), salon, shop and pitch question sets, a proof that the square root of 2 is irrational, an alternate-segment proof and tidier proofs elsewhere. The answer checker now needs simplest form where asked, takes more units, and rejects the ambiguous 2/3x for 2x/3.</p>
@@ -372,9 +376,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.038</span>
+    <span class="build-number">Build 2026.11.24.039</span>
   </div>
-  <script src="js/main.js?v=2026.11.24.038" defer></script>
+  <script src="js/main.js?v=2026.11.24.039" defer></script>
 </footer>
 </body>
 </html>

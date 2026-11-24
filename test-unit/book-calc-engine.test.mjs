@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluate, calculate, formatNumber, tokenize, CalcError, BASIC, SCIENTIFIC } from '../public/js/book-calc-engine.mjs';
+import { evaluate, calculate, formatNumber, tokenize, CalcError, BASIC, SCIENTIFIC } from '../public/js/book-calc-engine.mjs?m=39'; // same URL as book-calc.mjs uses, so both share one module instance
 
 const val = (text, options) => evaluate(text, options);
 const text = (t, options) => calculate(t, options).text;

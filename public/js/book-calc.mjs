@@ -12,7 +12,7 @@
 // scientific one (sin, cos, tan and inverses, log, ln, pi, cubes, roots, x10^x, angles in degrees).
 // To add another keypad, add an entry to LAYOUTS: rows of keys, a profile from book-calc-engine.mjs,
 // optional cols, show (how an inserted piece is displayed) and note.
-import { calculate, BASIC, SCIENTIFIC } from './book-calc-engine.mjs';
+import { calculate, BASIC, SCIENTIFIC } from './book-calc-engine.mjs?m=39';
 
 export function calcAllowed(q) {
   const tag = q.querySelector(':scope > .qtext .qtag-calc')?.textContent.trim().toLowerCase();

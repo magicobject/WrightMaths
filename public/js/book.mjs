@@ -4,13 +4,13 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs';
-import { review, isDue, sanitize } from './book-queue.mjs';
-import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs';
-import { splitSentences } from './book-speech.mjs';
-import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs';
-import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs';
-import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs';
+import { matches, rightValueWrongForm, splitList, diagnose, feedbackFor } from './book-answer.mjs?m=39';
+import { review, isDue, sanitize } from './book-queue.mjs?m=39';
+import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
+import { splitSentences } from './book-speech.mjs?m=39';
+import { unitText, playClip, stopClip, loadManifest } from './book-audio.mjs?m=39';
+import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
+import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs?m=39';
 
 const REVIEW = isReviewMode(window.location.search);
 
