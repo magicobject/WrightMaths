@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Sequences. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/sequences.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.047">
-<script src="../../js/book-boot.js?v=2026.11.24.047"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
+<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.047">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -127,7 +134,7 @@
     </div>
     <p><b>Try it:</b> carry on 2, 5, 8, 11 &hellip; for two more terms. (What is the gap?)</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Write the next two terms of 50, 44, 38, 32 &hellip;</p>
       <ol class="steps">
         <li>44 &minus; 50 = &minus;6, and 38 &minus; 44 = &minus;6. The rule is subtract 6.</li>
@@ -136,7 +143,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Write the next two terms of 7, 12, 17, 22 &hellip;</p>
       <ol class="steps">
         <li>12 &minus; 7 = ___, so the rule is add ___.</li>
@@ -166,7 +173,7 @@
     </div>
     <p><b>Try it:</b> the nth term is 5n + 2. What is the 4th term? (Put n = 4.)</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>The nth term of a sequence is 5n + 2. Find the 1st term, the 2nd term and the 10th term.</p>
       <ol class="steps">
         <li>n = 1: 5 &times; 1 + 2 = 7.</li>
@@ -175,7 +182,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>The nth term is 3n &minus; 4. Find the 8th term.</p>
       <ol class="steps">
         <li>Put n = 8: 3 &times; ___ &minus; 4.</li>
@@ -210,7 +217,7 @@
     </div>
     <p><b>Try it:</b> use 3n + 1 to find how many matchsticks make a row of 20 squares. (Put n = 20.)</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Find the nth term of 5, 8, 11, 14 &hellip;</p>
       <ol class="steps">
         <li>The gap is 3, so start with 3n: 3, 6, 9, 12.</li>
@@ -220,7 +227,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a sequence that goes down</h3>
+      <h3 id="s-worked-example-a-sequence-that-goes-down">Worked example: a sequence that goes down</h3>
       <p>Find the nth term of 20, 17, 14, 11 &hellip;</p>
       <ol class="steps">
         <li>The gap is &minus;3, so start with &minus;3n: &minus;3, &minus;6, &minus;9, &minus;12.</li>
@@ -230,7 +237,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Find the nth term of 6, 10, 14, 18 &hellip;</p>
       <ol class="steps">
         <li>The gap is ___, so start with ___n: ___, ___, ___, ___.</li>
@@ -262,7 +269,7 @@
     </div>
     <p><b>Try it:</b> is 30 in the sequence 4n &minus; 1? (Solve 4n &minus; 1 = 30. Is n whole?)</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>The nth term is 4n &minus; 1. Is 99 a term? Is 100 a term?</p>
       <ol class="steps">
         <li>4n &minus; 1 = 99, so 4n = 100 and n = 25. A whole number, so 99 is the 25th term.</li>
@@ -270,7 +277,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>The nth term is 5n + 2. Is 62 a term?</p>
       <ol class="steps">
         <li>5n + 2 = 62, so 5n = ___.</li>
@@ -292,17 +299,17 @@
   <div class="wrap narrow">
     <h2 id="s-5-other-kinds-of-sequence">5. Other kinds of sequence</h2>
     <p>Not every sequence has a common difference. Two more kinds turn up a lot, and for these you usually only need to carry them on.</p>
-    <h3>Multiplying each time</h3>
+    <h3 id="s-multiplying-each-time">Multiplying each time</h3>
     <p>A <a class="term" href="glossary.html#geometric-sequence" data-term="geometric-sequence" data-def="A sequence where each term is the one before multiplied by the same number.">Geometric sequence</a> multiplies by the same number each time. 2, 6, 18, 54 &hellip; multiplies by 3. You can also multiply by a fraction, which makes the terms smaller: 80, 40, 20, 10 &hellip; multiplies by <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">2</span></span>, which is the same as dividing by 2.</p>
     <figure class="figure qfig"><svg viewBox="0 0 320 84" role="img" aria-labelledby="sq3-t sq3-d" class="geo-svg"><title id="sq3-t">A sequence that multiplies</title><desc id="sq3-d">A row of four boxes holding 2, 6, 18 and 54. An arc over each pair of neighbouring boxes is labelled times 3.</desc><rect x="35" y="40" width="46" height="34" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:16px" x="58" y="63" text-anchor="middle">2</text><path d="M58 38 Q92 10 126 38" fill="none" stroke="#0f2440" stroke-width="1.8"/><text class="svg-t" style="font-size:13px" x="92" y="21" text-anchor="middle">&times;3</text><rect x="103" y="40" width="46" height="34" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:16px" x="126" y="63" text-anchor="middle">6</text><path d="M126 38 Q160 10 194 38" fill="none" stroke="#0f2440" stroke-width="1.8"/><text class="svg-t" style="font-size:13px" x="160" y="21" text-anchor="middle">&times;3</text><rect x="171" y="40" width="46" height="34" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:16px" x="194" y="63" text-anchor="middle">18</text><path d="M194 38 Q228 10 262 38" fill="none" stroke="#0f2440" stroke-width="1.8"/><text class="svg-t" style="font-size:13px" x="228" y="21" text-anchor="middle">&times;3</text><rect x="239" y="40" width="46" height="34" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/><text class="svg-t" style="font-size:16px" x="262" y="63" text-anchor="middle">54</text></svg></figure>
-    <h3>Adding the last two terms</h3>
+    <h3 id="s-adding-the-last-two-terms">Adding the last two terms</h3>
     <p>In a <a class="term" href="glossary.html#fibonacci-sequence" data-term="fibonacci-sequence" data-def="A sequence where each term is the sum of the two terms before it.">Fibonacci-type sequence</a>, each term is the sum of the two terms before it. The famous one starts 1, 1, 2, 3, 5, 8, 13 &hellip; But it can start with any two numbers: 3, 4, 7, 11, 18 &hellip;</p>
     <div class="key">
       <p><b>Key idea:</b> test the gaps first. If they are not equal, divide neighbouring terms. If those are equal, the sequence multiplies. If each term is the sum of the last two, it is Fibonacci-type.</p>
     </div>
     <p><b>Try it:</b> carry on 1, 3, 9, 27 &hellip; for one more term. (What do you multiply by?)</p>
     <div class="worked">
-      <h3>Worked example: multiplying</h3>
+      <h3 id="s-worked-example-multiplying">Worked example: multiplying</h3>
       <p>Write the next two terms of 5, 10, 20, 40 &hellip;</p>
       <ol class="steps">
         <li>10 &divide; 5 = 2 and 20 &divide; 10 = 2, so multiply by 2.</li>
@@ -310,7 +317,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>Write the next two terms of 1, 3, 4, 7 &hellip; where each term is the sum of the two before.</p>
       <ol class="steps">
         <li>3 + 4 = 7, so the rule works.</li>
@@ -339,7 +346,7 @@
       <li>Take these away from the sequence. What is left is linear: find its nth term as in section 3.</li>
     </ol>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x">Worked example</h3>
       <p>Find the nth term of 4, 9, 18, 31 &hellip;</p>
       <ol class="steps">
         <li>First differences: 5, 9, 13. Second differences: 4, 4.</li>
@@ -349,7 +356,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>Find the nth term of 2, 7, 14, 23 &hellip;</p>
       <ol class="steps">
         <li>First differences: 5, 7, 9. Second differences: ___, ___. Half of that is ___.</li>
@@ -370,15 +377,15 @@
     <h2 id="s-flip-it-from-the-rule-to-the-pattern-and">Flip it: from the rule to the pattern, and back</h2>
     <p>You can go from the rule to the terms, or from the terms back to the rule.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Continuing the pattern</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-sequences-0-t ff-sequences-0-d" class="geo-svg"><title id="ff-sequences-0-t">Forwards: 4n + 3 and 7, 11, unknown</title><desc id="ff-sequences-0-d">An arrow runs left to right from the box "4n + 3" to the box "7, 11, ?", labelled "n = 1, 2, 3". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">4n + 3</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">7, 11, ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">n = 1, 2, 3</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>nth term 4n + 3 &rarr; 7, 11, 15, 19 &hellip;</p><p class="muted">Put n = 1, 2, 3 into the rule. Write the terms out.</p></div>
-      <div class="flip-side"><h3>Writing the rule</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-sequences-1-t ff-sequences-1-d" class="geo-svg"><title id="ff-sequences-1-t">Backwards: unknown and 7, 11, 15</title><desc id="ff-sequences-1-d">An arrow runs right to left from the box "7, 11, 15" to the box "?", labelled "find the rule". The box with the question mark is the one to find.</desc><rect class="fl-box fl-unk" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">?</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">7, 11, 15</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">find the rule</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>7, 11, 15, 19 &hellip; &rarr; nth term ?</p><p class="muted">Find the gap, put it in front of n, then fix the start.</p></div>
+      <div class="flip-side"><h3 id="s-continuing-the-pattern">Continuing the pattern</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-sequences-0-t ff-sequences-0-d" class="geo-svg"><title id="ff-sequences-0-t">Forwards: 4n + 3 and 7, 11, unknown</title><desc id="ff-sequences-0-d">An arrow runs left to right from the box "4n + 3" to the box "7, 11, ?", labelled "n = 1, 2, 3". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">4n + 3</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">7, 11, ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">n = 1, 2, 3</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>nth term 4n + 3 &rarr; 7, 11, 15, 19 &hellip;</p><p class="muted">Put n = 1, 2, 3 into the rule. Write the terms out.</p></div>
+      <div class="flip-side"><h3 id="s-writing-the-rule">Writing the rule</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-sequences-1-t ff-sequences-1-d" class="geo-svg"><title id="ff-sequences-1-t">Backwards: unknown and 7, 11, 15</title><desc id="ff-sequences-1-d">An arrow runs right to left from the box "7, 11, 15" to the box "?", labelled "find the rule". The box with the question mark is the one to find.</desc><rect class="fl-box fl-unk" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">?</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">7, 11, 15</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">find the rule</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>7, 11, 15, 19 &hellip; &rarr; nth term ?</p><p class="muted">Find the gap, put it in front of n, then fix the start.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> use the term-to-term rule to carry a pattern on a few steps. Use the nth term to jump to a far-off term, or to test a number.</p>
     </div>
     <p>You can also write the rule when you only know two terms of a linear sequence. The terms between them rise evenly, so share the rise over the steps.</p>
     <div class="worked">
-      <h3>Worked example: from two terms</h3>
+      <h3 id="s-worked-example-from-two-terms">Worked example: from two terms</h3>
       <p>The 3rd term of a linear sequence is 11 and the 7th term is 27. Find the nth term.</p>
       <ol class="steps">
         <li>From the 3rd to the 7th term is 4 steps. The terms rise by 27 &minus; 11 = 16.</li>
@@ -388,7 +395,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3>
       <p>The 2nd term is 13 and the 6th term is 29. Find the nth term.</p>
       <ol class="steps">
         <li>From the 2nd to the 6th is ___ steps and the terms rise by ___.</li>
@@ -514,10 +521,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.047</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.047" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.047"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
 </body>
 </html>

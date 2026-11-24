@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Powers and indices. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/indices.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.047">
-<script src="../../js/book-boot.js?v=2026.11.24.047"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
+<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.047">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -151,14 +158,14 @@
     <p class="sum-line">5<sup>3</sup> = 5 &times; 5 &times; 5 = 125</p>
     <p>Here 5 is the base and 3 is the index. It does not mean 5 &times; 3. You multiply three 5s together.</p>
     <p>You already know two special cases. Raising to the power 2 is squaring, and the answer is a <a class="term" href="glossary.html#square-number" data-term="square-number" data-def="The answer when a whole number is multiplied by itself.">Square number</a>: 6<sup>2</sup> = 6 &times; 6 = 36. Raising to the power 3 is cubing, and the answer is a <a class="term" href="glossary.html#cube-number" data-term="cube-number" data-def="The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.">Cube number</a>: 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64.</p>
-    <h3>Powers worth knowing</h3>
+    <h3 id="s-powers-worth-knowing">Powers worth knowing</h3>
     <ul class="tick">
       <li><b>Powers with base 2:</b> 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024. Each one is double the one before.</li>
       <li><b>Powers with base 3:</b> 3, 9, 27, 81, 243. Each one is three times the one before.</li>
       <li><b>Powers with base 10:</b> 10<sup>1</sup> = 10, 10<sup>2</sup> = 100, 10<sup>3</sup> = 1000, 10<sup>4</sup> = 10 000. The index is the number of zeros.</li>
     </ul>
     <div class="key"><p><b>Key idea:</b> a power is repeated multiplication. Count how many times the base is written, and that is the index. 2<sup>5</sup> is five 2s: 2 &times; 2 &times; 2 &times; 2 &times; 2 = 32.</p></div>
-    <h3>Negative numbers raised to powers</h3>
+    <h3 id="s-negative-numbers-raised-to-powers">Negative numbers raised to powers</h3>
     <p>Multiply carefully, one step at a time. A negative times a negative is positive, so the answer flips sign each time you multiply by another negative.</p>
     <ul class="tick">
       <li>An <b>even</b> index gives a positive answer: (&minus;3)<sup>2</sup> = (&minus;3) &times; (&minus;3) = 9.</li>
@@ -166,7 +173,7 @@
     </ul>
     <p><b>Brackets matter.</b> (&minus;3)<sup>2</sup> = 9, but &minus;3<sup>2</sup> (with no brackets) means the minus of 3<sup>2</sup>, which is &minus;9. On a calculator, put a negative number in brackets before you square it.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Work out (&minus;2)<sup>4</sup>.</p>
       <ol class="steps">
         <li>Write it out: (&minus;2) &times; (&minus;2) &times; (&minus;2) &times; (&minus;2).</li>
@@ -175,7 +182,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Work out 3<sup>4</sup>.</p>
       <ol class="steps">
         <li>3 &times; 3 = ___.</li>
@@ -266,7 +273,7 @@
     </ul>
     <p><b>The laws only work when the bases are the same.</b> 2<sup>3</sup> &times; 3<sup>2</sup> cannot be made into a single power. And the base never changes: 2<sup>3</sup> &times; 2<sup>4</sup> is 2<sup>7</sup>, not 4<sup>7</sup>.</p>
     <div class="worked">
-      <h3>Worked example: multiply</h3>
+      <h3 id="s-worked-example-multiply">Worked example: multiply</h3>
       <p>Write 5<sup>4</sup> &times; 5<sup>3</sup> as a single power.</p>
       <ol class="steps">
         <li>The bases are both 5, so add the indices: 4 + 3 = 7.</li>
@@ -274,7 +281,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: divide</h3>
+      <h3 id="s-worked-example-divide">Worked example: divide</h3>
       <p>Simplify x<sup>9</sup> &divide; x<sup>4</sup>.</p>
       <ol class="steps">
         <li>The bases are both x, so subtract the indices: 9 &minus; 4 = 5.</li>
@@ -282,7 +289,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Write 7<sup>8</sup> &divide; 7<sup>5</sup> as a single power of 7.</p>
       <ol class="steps">
         <li>The bases match, so subtract the indices: 8 &minus; 5 = ___.</li>
@@ -350,7 +357,7 @@
     <p class="sum-line">(a<sup>m</sup>)<sup>n</sup> = a<sup>m&times;n</sup></p>
     <div class="key"><p><b>Key idea:</b> a power of a power: multiply the indices. If there is a number in front, the outer index applies to the number as well as the letter: (3a<sup>2</sup>)<sup>3</sup> = 3<sup>3</sup> &times; a<sup>6</sup> = 27a<sup>6</sup>.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Simplify (2a<sup>3</sup>)<sup>2</sup>.</p>
       <ol class="steps">
         <li>The outer index 2 applies to everything in the brackets, the 2 and the a<sup>3</sup>.</li>
@@ -359,7 +366,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: mixing the laws</h3>
+      <h3 id="s-worked-example-mixing-the-laws">Worked example: mixing the laws</h3>
       <p>Simplify (x<sup>2</sup>)<sup>3</sup> &times; x<sup>4</sup>.</p>
       <ol class="steps">
         <li>(x<sup>2</sup>)<sup>3</sup> = x<sup>6</sup>.</li>
@@ -367,7 +374,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Simplify 12y<sup>8</sup> &divide; 4y<sup>2</sup>.</p>
       <ol class="steps">
         <li>Divide the numbers: 12 &divide; 4 = ___.</li>
@@ -450,7 +457,7 @@
       <li>The laws still work: 3<sup>&minus;1</sup> &times; 3<sup>4</sup> = 3<sup>3</sup> = 27.</li>
     </ul>
     <div class="worked">
-      <h3>Worked example: a negative index</h3>
+      <h3 id="s-worked-example-a-negative-index">Worked example: a negative index</h3>
       <p>Work out 5<sup>&minus;2</sup> as a fraction and a decimal.</p>
       <ol class="steps">
         <li>A negative index means one over the positive power: 5<sup>&minus;2</sup> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">5<sup>2</sup></span></span>.</li>
@@ -459,7 +466,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x">Now you finish it</h3>
       <p>Work out 4<sup>&minus;3</sup> as a fraction.</p>
       <ol class="steps">
         <li>4<sup>&minus;3</sup> = <span class="frac"><span class="fn">1</span><span class="sr"> over </span><span class="fd">4<sup>___</sup></span></span>.</li>
@@ -532,7 +539,7 @@
     <p class="sum-line">a<sup>1/2</sup> = &radic;a &nbsp;&nbsp; a<sup>1/3</sup> = cube root of a &nbsp;&nbsp; a<sup>m/n</sup> = (n-th root of a)<sup>m</sup></p>
     <div class="key"><p><b>Key idea:</b> the bottom of the fraction is the root, the top is the power. Take the root FIRST (it keeps the numbers small), then apply the power. 8<sup>2/3</sup>: root 3 first, then power 2.</p></div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Work out 8<sup>2/3</sup>.</p>
       <ol class="steps">
         <li>The bottom number 3 is the root: the cube root of 8 is 2.</li>
@@ -541,7 +548,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x">Now you finish it</h3>
       <p>Work out 125<sup>2/3</sup>.</p>
       <ol class="steps">
         <li>The cube root of 125 is ___.</li>
@@ -608,7 +615,7 @@
     <p><b>To change it back:</b> move the point the other way. 3.2 &times; 10<sup>5</sup> = 320 000 (5 places right). 6.1 &times; 10<sup>&minus;3</sup> = 0.0061 (3 places left).</p>
     <div class="key"><p><b>Key idea:</b> A must be at least 1 and less than 10. 45 &times; 10<sup>3</sup> is NOT standard form (45 is too big), and 0.45 &times; 10<sup>4</sup> is NOT either (0.45 is too small).</p></div>
     <div class="worked">
-      <h3>Worked example: a big number</h3>
+      <h3 id="s-worked-example-a-big-number">Worked example: a big number</h3>
       <p>Write 530 000 in standard form.</p>
       <ol class="steps">
         <li>The first non-zero digit is 5, so the point goes after it: 5.3.</li>
@@ -617,7 +624,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a small number</h3>
+      <h3 id="s-worked-example-a-small-number">Worked example: a small number</h3>
       <p>Write 0.00042 in standard form.</p>
       <ol class="steps">
         <li>The first non-zero digit is 4, so the point goes after it: 4.2.</li>
@@ -626,7 +633,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x">Now you finish it</h3>
       <p>Write 7 200 000 in standard form.</p>
       <ol class="steps">
         <li>The point goes after the 7: ___.</li>
@@ -709,11 +716,11 @@
       <li>(4 &times; 10<sup>5</sup>) &times; (5 &times; 10<sup>3</sup>) = 20 &times; 10<sup>8</sup>. But 20 is too big: 20 &times; 10<sup>8</sup> = 2 &times; 10<sup>9</sup>.</li>
       <li>(2 &times; 10<sup>3</sup>) &divide; (8 &times; 10<sup>5</sup>) = 0.25 &times; 10<sup>&minus;2</sup>. But 0.25 is too small: 0.25 &times; 10<sup>&minus;2</sup> = 2.5 &times; 10<sup>&minus;3</sup>.</li>
     </ul>
-    <h3>Using a calculator</h3>
+    <h3 id="s-using-a-calculator">Using a calculator</h3>
     <p>Find the key marked EXP or &times;10<sup>x</sup>. To enter 3.2 &times; 10<sup>5</sup>, press 3.2, then that key, then 5. Do not type the &times; and the 10 yourself. A display such as 3.2E5 means 3.2 &times; 10<sup>5</sup>: always write it out in full in your answer.</p>
     <div class="key"><p><b>Key idea:</b> the calculator does the laws for you, but you must know them so you can spot a wrong entry. If an answer looks 10 or 100 times too big or too small, check the index.</p></div>
     <div class="worked">
-      <h3>Worked example: multiply</h3>
+      <h3 id="s-worked-example-multiply-x">Worked example: multiply</h3>
       <p>Work out (6 &times; 10<sup>3</sup>) &times; (3 &times; 10<sup>5</sup>). Give your answer in standard form.</p>
       <ol class="steps">
         <li>Multiply the first parts: 6 &times; 3 = 18. Add the indices: 3 + 5 = 8.</li>
@@ -722,7 +729,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: divide</h3>
+      <h3 id="s-worked-example-divide-x">Worked example: divide</h3>
       <p>Work out (9 &times; 10<sup>7</sup>) &divide; (3 &times; 10<sup>2</sup>).</p>
       <ol class="steps">
         <li>Divide the first parts: 9 &divide; 3 = 3. Subtract the indices: 7 &minus; 2 = 5.</li>
@@ -730,7 +737,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x">Now you finish it</h3>
       <p>Work out (8 &times; 10<sup>6</sup>) &times; (5 &times; 10<sup>2</sup>) in standard form.</p>
       <ol class="steps">
         <li>8 &times; 5 = ___ and 6 + 2 = ___, so ___ &times; 10<sup>___</sup>.</li>
@@ -800,7 +807,7 @@
     <h2 id="s-adding-and-subtracting-in-standard-form-">Adding and subtracting in standard form <span class="chip chip-higher">Higher</span></h2>
     <p>You cannot add the first parts unless the indices match. Write both numbers with the same power of 10 (or as ordinary numbers), then add or subtract.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x">Worked example</h3>
       <p>Work out (3 &times; 10<sup>4</sup>) + (5 &times; 10<sup>3</sup>).</p>
       <ol class="steps">
         <li>Write 5 &times; 10<sup>3</sup> with the power 10<sup>4</sup>: 5 &times; 10<sup>3</sup> = 0.5 &times; 10<sup>4</sup>.</li>
@@ -845,7 +852,7 @@
       <li><b>milli (m)</b> is 10<sup>&minus;3</sup>, so 1 mA = 0.001 A. To change mA to A, divide by 1000.</li>
     </ul>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x-x-x">Worked example</h3>
       <p>A circuit carries 47 mA. How many amps is that?</p>
       <ol class="steps">
         <li>milli means 10<sup>&minus;3</sup>, so 47 mA = 47 &times; 10<sup>&minus;3</sup> A.</li>
@@ -853,7 +860,7 @@
         <li>The current is 0.047 A.</li>
       </ol>
     </div>
-    <h3>Some sizes (all approximate)</h3>
+    <h3 id="s-some-sizes-all-approximate">Some sizes (all approximate)</h3>
     <ul class="tick">
       <li>Width of an atom: about 1 &times; 10<sup>&minus;10</sup> m.</li>
       <li>Thickness of a human hair: about 7 &times; 10<sup>&minus;5</sup> m.</li>
@@ -906,12 +913,12 @@
     <h2 id="s-flip-it-put-powers-together-take-them-ap">Flip it: put powers together, take them apart</h2>
     <p>Everything so far has built a power up. Now go the other way.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-indices-0-t ff-indices-0-d" class="geo-svg"><title id="ff-indices-0-t">Forwards: 2&sup3; &times; 2&#8308; and one power: unknown</title><desc id="ff-indices-0-d">An arrow runs left to right from the box "2&sup3; &times; 2&#8308;" to the box "one power: ?", labelled "add the powers". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">2&sup3; &times; 2&#8308;</text><text class="svg-t" style="font-size:12px" x="268" y="62" text-anchor="middle">one power: ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">add the powers</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>2<sup>3</sup> &times; 2<sup>4</sup> = 2<sup>7</sup></p><p class="muted">Two powers go in. One power comes out.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-indices-1-t ff-indices-1-d" class="geo-svg"><title id="ff-indices-1-t">Backwards: 2&#8311; and two powers: unknown</title><desc id="ff-indices-1-d">An arrow runs right to left from the box "two powers: ?" to the box "2&#8311;", labelled "split the power". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">2&#8311;</text><text class="svg-t" style="font-size:11px" x="268" y="62" text-anchor="middle">two powers: ?</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">split the power</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>2<sup>7</sup> = 2<sup>3</sup> &times; 2<sup>4</sup></p><p class="muted">Split one power into pieces, or find which index you need.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-indices-0-t ff-indices-0-d" class="geo-svg"><title id="ff-indices-0-t">Forwards: 2&sup3; &times; 2&#8308; and one power: unknown</title><desc id="ff-indices-0-d">An arrow runs left to right from the box "2&sup3; &times; 2&#8308;" to the box "one power: ?", labelled "add the powers". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">2&sup3; &times; 2&#8308;</text><text class="svg-t" style="font-size:12px" x="268" y="62" text-anchor="middle">one power: ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">add the powers</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>2<sup>3</sup> &times; 2<sup>4</sup> = 2<sup>7</sup></p><p class="muted">Two powers go in. One power comes out.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-indices-1-t ff-indices-1-d" class="geo-svg"><title id="ff-indices-1-t">Backwards: 2&#8311; and two powers: unknown</title><desc id="ff-indices-1-d">An arrow runs right to left from the box "two powers: ?" to the box "2&#8311;", labelled "split the power". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">2&#8311;</text><text class="svg-t" style="font-size:11px" x="268" y="62" text-anchor="middle">two powers: ?</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">split the power</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>2<sup>7</sup> = 2<sup>3</sup> &times; 2<sup>4</sup></p><p class="muted">Split one power into pieces, or find which index you need.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> to take a number apart, write it as a product of <a class="term" href="glossary.html#prime-factorisation" data-term="prime-factorisation" data-def="Writing a number as a product of prime numbers. Every whole number bigger than 1 has exactly one prime factorisation (ignoring order).">prime factors</a>, and write repeats as powers. 72 = 2 &times; 2 &times; 2 &times; 3 &times; 3 = 2<sup>3</sup> &times; 3<sup>2</sup>.</p></div>
     <div class="worked">
-      <h3>Worked example: find the index</h3>
+      <h3 id="s-worked-example-find-the-index">Worked example: find the index</h3>
       <p>Find n if 2<sup>n</sup> = 128.</p>
       <ol class="steps">
         <li>Keep doubling until you reach 128: 2, 4, 8, 16, 32, 64, 128.</li>
@@ -919,7 +926,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: prime factors</h3>
+      <h3 id="s-worked-example-prime-factors">Worked example: prime factors</h3>
       <p>Write 360 as a product of prime factors, using powers.</p>
       <ol class="steps">
         <li>360 = 2 &times; 180 = 2 &times; 2 &times; 90 = 2 &times; 2 &times; 2 &times; 45 = 2 &times; 2 &times; 2 &times; 3 &times; 15 = 2 &times; 2 &times; 2 &times; 3 &times; 3 &times; 5.</li>
@@ -928,7 +935,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x-x-x-x-x-x">Now you finish it</h3>
       <p>Write 200 as a product of prime factors, using powers.</p>
       <ol class="steps">
         <li>200 = 2 &times; 100 = 2 &times; 2 &times; 50 = 2 &times; 2 &times; 2 &times; 25 = 2 &times; 2 &times; 2 &times; 5 &times; 5.</li>
@@ -1277,10 +1284,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.047</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.047" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.047"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
 </body>
 </html>

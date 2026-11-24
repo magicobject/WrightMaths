@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Shapes and angles. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/shapes-angles.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.047">
-<script src="../../js/book-boot.js?v=2026.11.24.047"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
+<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.047">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -230,7 +237,7 @@
     <div class="key"><p><b>Key idea:</b> to find a missing angle, pick the fact that fits. Write the total (180&deg; or 360&deg;). Then <b>subtract</b> the angles you know. Give the reason too, for example &ldquo;angles on a straight line add up to 180&deg;&rdquo;. The reason earns marks in exams.</p></div>
     <p><b>Try it:</b> angles on a straight line are 50&deg; and x. Find x.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Angles around a point are 90&deg;, 120&deg; and 100&deg;, and x. Find x.</p>
       <ol class="steps">
         <li>Angles around a point add up to 360&deg;.</li>
@@ -299,7 +306,7 @@
     <div class="key"><p><b>Key idea:</b> the internal angles of a triangle add up to 180&deg;. A quadrilateral totals 360&deg;. A full turn totals 360&deg;. Pick the total that fits the shape, then subtract.</p></div>
     <p><b>Try it:</b> two angles of a triangle are 80&deg; and 40&deg;. Find the third.</p>
     <div class="worked">
-      <h3>Worked example: isosceles</h3>
+      <h3 id="s-worked-example-isosceles">Worked example: isosceles</h3>
       <p>An isosceles triangle has an angle of 40&deg; at the top between the two equal sides. Find a base angle.</p>
       <ol class="steps">
         <li>The angles add up to 180&deg;.</li>
@@ -355,7 +362,7 @@
   <div class="wrap narrow">
     <h2 id="s-4-quadrilaterals-and-polygons">4. Quadrilaterals and polygons</h2>
     <p>The four angles inside any <b>quadrilateral</b> add up to 360&deg;. A <a class="term" href="glossary.html#polygon" data-term="polygon" data-def="A closed flat shape with straight sides. A shape with n sides has interior angles that add up to (n &minus; 2) &times; 180&deg;.">polygon</a> is a flat shape with straight sides. Pentagons and hexagons are polygons.</p>
-    <h3>Polygon facts</h3>
+    <h3 id="s-polygon-facts">Polygon facts</h3>
     <ul class="tick">
       <li>An inside angle is an <b>interior angle</b>.</li>
       <li>Cut any shape into triangles from one corner.</li>
@@ -377,7 +384,7 @@
       </svg>
       <figcaption>A pentagon has 5 sides. Cut from one corner: 3 triangles. 3 &times; 180&deg; = 540&deg;.</figcaption>
     </figure>
-    <h3>Regular polygons</h3>
+    <h3 id="s-regular-polygons">Regular polygons</h3>
     <ul class="tick">
       <li>In a <a class="term" href="glossary.html#regular-polygon" data-term="regular-polygon" data-def="A polygon where all the sides are equal and all the angles are equal.">regular polygon</a> all sides are equal.</li>
       <li>All the angles are equal too.</li>
@@ -388,7 +395,7 @@
     <div class="key"><p><b>Key idea:</b> the exterior angles of any polygon always add up to 360&deg;. The interior angles add up to (n &minus; 2) &times; 180&deg;.</p></div>
     <p><b>Try it:</b> how many triangles can you cut a hexagon into from one corner?</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Find each interior angle of a regular hexagon.</p>
       <ol class="steps">
         <li>A hexagon has 6 sides: (6 &minus; 2) &times; 180 = 720&deg;.</li>
@@ -575,8 +582,8 @@
     <h2 id="s-flip-it-find-the-angle-or-build-the-shap">Flip it: find the angle, or build the shape</h2>
     <p>So far you have gone one way. Now run it backwards. Same idea, other direction.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 152" role="img" aria-labelledby="ff-shapes-angles-0-t ff-shapes-angles-0-d" class="geo-svg"><title id="ff-shapes-angles-0-t">Forwards: ten sides to one exterior angle</title><desc id="ff-shapes-angles-0-d">A regular ten-sided shape with one side extended past a corner. The angle between the extension and the next side is marked with a question mark.</desc><polygon class="tri" points="94.5,18.4 69.5,36.6 60,66 69.5,95.4 94.5,113.6 125.5,113.6 150.5,95.4 160,66 150.5,36.6 125.5,18.4"/><line class="ln" x1="94.5" y1="18.4" x2="114.5" y2="3.9" style="stroke-dasharray:5 4"/><text class="svg-t" style="font-size:14px" x="205" y="40" text-anchor="start">10 sides</text><text class="svg-t" style="font-size:14px" x="205" y="78" text-anchor="start">exterior angle</text><text class="svg-t" style="font-size:14px" x="205" y="96" text-anchor="start">= ?</text><text class="svg-t fl-soft" style="font-size:12px" x="205" y="112" text-anchor="start">sides to angle</text></svg></figure><p>A regular polygon has 10 sides. Find the exterior angle: 360 &divide; 10 = 36&deg;.</p><p class="muted">Sides to angle.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 152" role="img" aria-labelledby="ff-shapes-angles-1-t ff-shapes-angles-1-d" class="geo-svg"><title id="ff-shapes-angles-1-t">Backwards: one exterior angle to the number of sides</title><desc id="ff-shapes-angles-1-d">The same kind of shape, but now each exterior angle is 36 degrees and the number of sides is the question mark.</desc><polygon class="tri" points="94.5,18.4 69.5,36.6 60,66 69.5,95.4 94.5,113.6 125.5,113.6 150.5,95.4 160,66 150.5,36.6 125.5,18.4"/><text class="svg-t" style="font-size:26px" x="110" y="70" text-anchor="middle">?</text><text class="svg-t" style="font-size:14px" x="205" y="40" text-anchor="start">exterior angle</text><text class="svg-t" style="font-size:14px" x="205" y="58" text-anchor="start">= 36&deg; each</text><text class="svg-t" style="font-size:14px" x="205" y="90" text-anchor="start">sides = ?</text><text class="svg-t fl-soft" style="font-size:12px" x="205" y="112" text-anchor="start">angle to sides</text></svg></figure><p>A regular polygon has exterior angles of 36&deg;. How many sides? 360 &divide; 36 = 10.</p><p class="muted">Angle to sides.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 152" role="img" aria-labelledby="ff-shapes-angles-0-t ff-shapes-angles-0-d" class="geo-svg"><title id="ff-shapes-angles-0-t">Forwards: ten sides to one exterior angle</title><desc id="ff-shapes-angles-0-d">A regular ten-sided shape with one side extended past a corner. The angle between the extension and the next side is marked with a question mark.</desc><polygon class="tri" points="94.5,18.4 69.5,36.6 60,66 69.5,95.4 94.5,113.6 125.5,113.6 150.5,95.4 160,66 150.5,36.6 125.5,18.4"/><line class="ln" x1="94.5" y1="18.4" x2="114.5" y2="3.9" style="stroke-dasharray:5 4"/><text class="svg-t" style="font-size:14px" x="205" y="40" text-anchor="start">10 sides</text><text class="svg-t" style="font-size:14px" x="205" y="78" text-anchor="start">exterior angle</text><text class="svg-t" style="font-size:14px" x="205" y="96" text-anchor="start">= ?</text><text class="svg-t fl-soft" style="font-size:12px" x="205" y="112" text-anchor="start">sides to angle</text></svg></figure><p>A regular polygon has 10 sides. Find the exterior angle: 360 &divide; 10 = 36&deg;.</p><p class="muted">Sides to angle.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 152" role="img" aria-labelledby="ff-shapes-angles-1-t ff-shapes-angles-1-d" class="geo-svg"><title id="ff-shapes-angles-1-t">Backwards: one exterior angle to the number of sides</title><desc id="ff-shapes-angles-1-d">The same kind of shape, but now each exterior angle is 36 degrees and the number of sides is the question mark.</desc><polygon class="tri" points="94.5,18.4 69.5,36.6 60,66 69.5,95.4 94.5,113.6 125.5,113.6 150.5,95.4 160,66 150.5,36.6 125.5,18.4"/><text class="svg-t" style="font-size:26px" x="110" y="70" text-anchor="middle">?</text><text class="svg-t" style="font-size:14px" x="205" y="40" text-anchor="start">exterior angle</text><text class="svg-t" style="font-size:14px" x="205" y="58" text-anchor="start">= 36&deg; each</text><text class="svg-t" style="font-size:14px" x="205" y="90" text-anchor="start">sides = ?</text><text class="svg-t fl-soft" style="font-size:12px" x="205" y="112" text-anchor="start">angle to sides</text></svg></figure><p>A regular polygon has exterior angles of 36&deg;. How many sides? 360 &divide; 36 = 10.</p><p class="muted">Angle to sides.</p></div>
     </div>
     <div class="key"><p><b>Key idea:</b> angle facts work both ways. Use them to find a missing angle. Or use angles to check that a shape can exist.</p></div>
     <p>Another reverse: three angles make a triangle only if they add up to exactly 180&deg;.</p>
@@ -869,10 +876,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.047</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.047" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.047"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
 </body>
 </html>

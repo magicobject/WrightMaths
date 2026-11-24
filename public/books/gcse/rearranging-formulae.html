@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Rearranging formulae. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/rearranging-formulae.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.047">
-<script src="../../js/book-boot.js?v=2026.11.24.047"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
+<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.047">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -148,7 +155,7 @@
     </div>
     <p><b>Try it:</b> a taxi charges C = 3 + 2m pounds for m miles. Find C when m = 5.</p>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>A plumber charges C = 40 + 25h pounds for a job of h hours. Find the charge for a 4-hour job.</p>
       <ol class="steps">
         <li>Swap h for 4: C = 40 + 25 &times; 4.</li>
@@ -158,7 +165,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Use the same formula, C = 40 + 25h. Find the charge for a 6-hour job.</p>
       <ol class="steps">
         <li>Swap h for 6: C = 40 + 25 &times; 6.</li>
@@ -224,7 +231,7 @@
     </div>
     <p><b>Try it:</b> if p = q + 9, what is q on its own?</p>
     <div class="worked">
-      <h3>Worked example: one step</h3>
+      <h3 id="s-worked-example-one-step">Worked example: one step</h3>
       <p>Make x the subject of y = x + 5.</p>
       <ol class="steps">
         <li>5 has been added to x. The inverse is to take away 5.</li>
@@ -234,7 +241,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a product</h3>
+      <h3 id="s-worked-example-a-product">Worked example: a product</h3>
       <p>Make I the subject of V = IR. (Here R is not zero.)</p>
       <ol class="steps">
         <li>I has been multiplied by R. The inverse is to divide by R.</li>
@@ -244,7 +251,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x">Now you finish it</h3>
       <p>Make x the subject of y = x &minus; 3.</p>
       <ol class="steps">
         <li>3 has been taken away from x. The inverse is to add 3.</li>
@@ -314,7 +321,7 @@
       <p><b>Key idea:</b> a fraction line works like brackets. <span class="frac"><span class="fn">y &minus; 2</span><span class="sr"> over </span><span class="fd">3</span></span> means (y &minus; 2) &divide; 3, so the <i>whole</i> top line is divided, not just the last bit.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Make x the subject of y = 3x + 2.</p>
       <ol class="steps">
         <li>Take 2 from both sides: y &minus; 2 = 3x.</li>
@@ -324,7 +331,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: a trade formula</h3>
+      <h3 id="s-worked-example-a-trade-formula">Worked example: a trade formula</h3>
       <p>A plumber charges C = 40 + 25h. Make h the subject.</p>
       <ol class="steps">
         <li>Take 40 from both sides: C &minus; 40 = 25h.</li>
@@ -333,7 +340,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it-x-x">Now you finish it</h3>
       <p>Make n the subject of T = 5n &minus; 7.</p>
       <ol class="steps">
         <li>7 has been taken away, so add 7 to both sides: T + 7 = 5n.</li>
@@ -406,7 +413,7 @@
       <p><b>Key idea:</b> undo in reverse order again. Get the squared letter on its own first, then take the square root of both sides.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>The area of a circle is A = &pi;r&sup2;. Make r the subject. (r is a length, so it is positive.)</p>
       <ol class="steps">
         <li>r&sup2; has been multiplied by &pi;. Divide both sides by &pi;: <span class="frac"><span class="fn">A</span><span class="sr"> over </span><span class="fd">&pi;</span></span> = r&sup2;.</li>
@@ -453,14 +460,14 @@
     <h2 id="s-flip-it-run-it-backwards">Flip it: run it backwards</h2>
     <p>A formula can be used in two directions.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-rearranging-formulae-0-t ff-rearranging-formulae-0-d" class="geo-svg"><title id="ff-rearranging-formulae-0-t">Forwards: h = 4 and C = unknown</title><desc id="ff-rearranging-formulae-0-d">An arrow runs left to right from the box "h = 4" to the box "C = ?", labelled "put h in". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">h = 4</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">C = ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">put h in</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>C = 40 + 25h. When h = 4, what is C?</p><p class="muted">Substitute the numbers, then work it out.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-rearranging-formulae-1-t ff-rearranging-formulae-1-d" class="geo-svg"><title id="ff-rearranging-formulae-1-t">Backwards: h = unknown and C = 190</title><desc id="ff-rearranging-formulae-1-d">An arrow runs right to left from the box "C = 190" to the box "h = ?", labelled "rearrange". The box with the question mark is the one to find.</desc><rect class="fl-box fl-unk" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">h = ?</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">C = 190</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">rearrange</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>C = 40 + 25h. When C = 190, what is h?</p><p class="muted">Rearrange (or solve), then substitute.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-rearranging-formulae-0-t ff-rearranging-formulae-0-d" class="geo-svg"><title id="ff-rearranging-formulae-0-t">Forwards: h = 4 and C = unknown</title><desc id="ff-rearranging-formulae-0-d">An arrow runs left to right from the box "h = 4" to the box "C = ?", labelled "put h in". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">h = 4</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">C = ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">put h in</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>C = 40 + 25h. When h = 4, what is C?</p><p class="muted">Substitute the numbers, then work it out.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-rearranging-formulae-1-t ff-rearranging-formulae-1-d" class="geo-svg"><title id="ff-rearranging-formulae-1-t">Backwards: h = unknown and C = 190</title><desc id="ff-rearranging-formulae-1-d">An arrow runs right to left from the box "C = 190" to the box "h = ?", labelled "rearrange". The box with the question mark is the one to find.</desc><rect class="fl-box fl-unk" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">h = ?</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">C = 190</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">rearrange</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>C = 40 + 25h. When C = 190, what is h?</p><p class="muted">Rearrange (or solve), then substitute.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> substituting asks &ldquo;what comes out?&rdquo;. Rearranging asks &ldquo;what must go in?&rdquo;. If you will need the answer many times with different numbers, rearrange once, then substitute each time.</p>
     </div>
     <div class="worked">
-      <h3>Worked example: both directions</h3>
+      <h3 id="s-worked-example-both-directions">Worked example: both directions</h3>
       <p>v = u + at, where u is the starting speed, a the acceleration and t the time.</p>
       <ol class="steps">
         <li>Forwards: u = 5, a = 2, t = 6 gives v = 5 + 2 &times; 6 = 17.</li>
@@ -724,7 +731,7 @@
       <ul class="wrong"><li data-if="32">That is the number added. Collect the t terms on one side first.</li><li data-if="-0.8">That is the number in front of t after collecting. Divide 32 by it.</li></ul>
       <div class="solution"><p>t = 1.8t + 32, so t &minus; 1.8t = 32, so &minus;0.8t = 32, so t = 32 &divide; (&minus;0.8) = &minus;40. Check: 1.8 &times; (&minus;40) + 32 = &minus;72 + 32 = &minus;40.</p></div>
     </div>
-    <h3>Stretch: the letter on both sides <span class="chip chip-higher">Higher</span></h3>
+    <h3 id="s-stretch-the-letter-on-both-sides-higher">Stretch: the letter on both sides <span class="chip chip-higher">Higher</span></h3>
     <div class="q" data-qid="rearranging-formulae-52" data-answers="(d-b)/(a-c);(b-d)/(c-a)" data-mode="exact">
       <p class="qtext">ax + b = cx + d. Make x the <a class="term" href="glossary.html#subject" data-term="subject" data-def="The letter on its own on one side of a formula, usually the left. Making a letter the subject means rearranging the formula so that letter is alone.">subject</a>. Assume a is not equal to c. Use brackets where you need them.</p>
       <ol class="ladder"><li>x is on both sides. Collect the x terms on one side and the rest on the other.</li><li>Take cx and b from both sides: ax &minus; cx = d &minus; b.</li><li>Factorise the left side: x(a &minus; c) = d &minus; b. Then divide by (a &minus; c).</li></ol>
@@ -820,10 +827,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.047</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.047" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.047"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
 </body>
 </html>

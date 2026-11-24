@@ -14,10 +14,10 @@
 <meta name="description" content="GCSE maths: Solving equations. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://wrightmaths.uk/books/gcse/solving-equations.html">
-<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.047">
-<script src="../../js/book-boot.js?v=2026.11.24.047"></script>
+<link rel="stylesheet" href="../../css/book.css?v=2026.11.24.049">
+<script src="../../js/book-boot.js?v=2026.11.24.049"></script>
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.047">
+<link rel="stylesheet" href="../../css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,13 @@
       </ul>
     </nav>
     <a class="header-cta" href="../../contact.html">Get in touch</a>
+    <form class="book-search" role="search" aria-label="Search this book" data-index="../../books/gcse/search-index.json" autocomplete="off" hidden>
+      <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
+      <p class="book-search-empty" id="book-search-empty" hidden></p>
+      <p class="sr-only" id="book-search-status" role="status"></p>
+    </form>
   </div>
 </header>
 
@@ -144,7 +151,7 @@
       <div><b>&divide;</b> undoes <b>&times;</b></div>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example">Worked example</h3>
       <p>Solve x + 7 = 12.</p>
       <ol class="steps">
         <li>7 has been added to x. The inverse is to take away 7.</li>
@@ -200,7 +207,7 @@
       <p><b>Key idea:</b> in 3x + 5 = 20, x was first multiplied by 3, then 5 was added. So undo the "+ 5" first, then the "&times; 3".</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x">Worked example</h3>
       <p>Solve 3x + 5 = 20.</p>
       <ol class="steps">
         <li>Take 5 from both sides: 3x = 15.</li>
@@ -209,7 +216,7 @@
       </ol>
     </div>
     <div class="worked faded">
-      <h3>Now you finish it</h3>
+      <h3 id="s-now-you-finish-it">Now you finish it</h3>
       <p>Solve <span class="frac"><span class="fn">x</span><span class="sr"> over </span><span class="fd">2</span></span> + 3 = 8.</p>
       <ol class="steps">
         <li>Take 3 from both sides: <span class="frac"><span class="fn">x</span><span class="sr"> over </span><span class="fd">2</span></span> = 5.</li>
@@ -292,7 +299,7 @@
     <h2 id="s-3-brackets-and-letters-on-both-sides">3. Brackets and letters on both sides</h2>
     <p>With brackets you have two options: divide both sides by the number outside, or <a class="term" href="glossary.html#expand" data-term="expand" data-def="Remove brackets by multiplying every term inside by what is outside. With two brackets, multiply every term in one by every term in the other.">Expand (multiply out)</a> the bracket first. If x appears on both sides, collect the x terms on one side, then the numbers on the other.</p>
     <div class="worked">
-      <h3>Worked example: brackets</h3>
+      <h3 id="s-worked-example-brackets">Worked example: brackets</h3>
       <p>Solve 3(x + 2) = 21.</p>
       <ol class="steps">
         <li>Divide both sides by 3: x + 2 = 7.</li>
@@ -301,7 +308,7 @@
       </ol>
     </div>
     <div class="worked">
-      <h3>Worked example: x on both sides</h3>
+      <h3 id="s-worked-example-x-on-both-sides">Worked example: x on both sides</h3>
       <p>Solve 5x + 3 = 2x + 15.</p>
       <ol class="steps">
         <li>Take 2x from both sides, so the x terms are on the left: 3x + 3 = 15.</li>
@@ -354,7 +361,7 @@
       <p><b>Key idea:</b> multiply every term on both sides. Put brackets around a top line such as x + 1.</p>
     </div>
     <div class="worked">
-      <h3>Worked example</h3>
+      <h3 id="s-worked-example-x-x">Worked example</h3>
       <p>Solve <span class="frac"><span class="fn">x + 1</span><span class="sr"> over </span><span class="fd">3</span></span> = <span class="frac"><span class="fn">x &minus; 3</span><span class="sr"> over </span><span class="fd">2</span></span>.</p>
       <ol class="steps">
         <li>The denominators are 3 and 2. Both go into 6, so multiply both sides by 6.</li>
@@ -402,8 +409,8 @@
     <h2 id="s-flip-it-build-the-equation">Flip it: build the equation</h2>
     <p>Solving goes from an equation to a number. Flip it: go from a number puzzle or a real situation <i>to</i> an equation. Being able to do both is what turns algebra from symbols into a tool.</p>
     <div class="flip-grid">
-      <div class="flip-side"><h3>Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-solving-equations-0-t ff-solving-equations-0-d" class="geo-svg"><title id="ff-solving-equations-0-t">Forwards: 3x &minus; 4 = 11 and x = unknown</title><desc id="ff-solving-equations-0-d">An arrow runs left to right from the box "3x &minus; 4 = 11" to the box "x = ?", labelled "solve". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:13px" x="52" y="62" text-anchor="middle">3x &minus; 4 = 11</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">x = ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">solve</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>Solve 3x &minus; 4 = 11</p><p class="muted">From the equation to x.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-solving-equations-1-t ff-solving-equations-1-d" class="geo-svg"><title id="ff-solving-equations-1-t">Backwards: words and 3x &minus; 4 = 11</title><desc id="ff-solving-equations-1-d">An arrow runs right to left from the box "3x &minus; 4 = 11" to the box "words", labelled "write it down". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">words</text><text class="svg-t" style="font-size:13px" x="268" y="62" text-anchor="middle">3x &minus; 4 = 11</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">write it down</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>"I think of a number, multiply by 3, take away 4, and get 11."</p><p class="muted">From the words to the equation.</p></div>
+      <div class="flip-side"><h3 id="s-forwards">Forwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-solving-equations-0-t ff-solving-equations-0-d" class="geo-svg"><title id="ff-solving-equations-0-t">Forwards: 3x &minus; 4 = 11 and x = unknown</title><desc id="ff-solving-equations-0-d">An arrow runs left to right from the box "3x &minus; 4 = 11" to the box "x = ?", labelled "solve". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box fl-unk" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:13px" x="52" y="62" text-anchor="middle">3x &minus; 4 = 11</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">x = ?</text><line class="fl-arr" x1="104" y1="56" x2="206" y2="56"/><polygon class="fl-head" points="216,56 206,50 206,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">solve</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">forwards</text></svg></figure><p>Solve 3x &minus; 4 = 11</p><p class="muted">From the equation to x.</p></div>
+      <div class="flip-side"><h3 id="s-backwards">Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-solving-equations-1-t ff-solving-equations-1-d" class="geo-svg"><title id="ff-solving-equations-1-t">Backwards: words and 3x &minus; 4 = 11</title><desc id="ff-solving-equations-1-d">An arrow runs right to left from the box "3x &minus; 4 = 11" to the box "words", labelled "write it down". The box with the question mark is the one to find.</desc><rect class="fl-box" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">words</text><text class="svg-t" style="font-size:13px" x="268" y="62" text-anchor="middle">3x &minus; 4 = 11</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">write it down</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>"I think of a number, multiply by 3, take away 4, and get 11."</p><p class="muted">From the words to the equation.</p></div>
     </div>
     <div class="key">
       <p><b>Key idea:</b> a number puzzle <i>is</i> an equation told in words. Call the number x and write each step in order: 3x &minus; 4 = 11. To solve it, undo the steps in reverse: 11 + 4 = 15, then 15 &divide; 3 = 5.</p>
@@ -528,7 +535,7 @@
     <h2 id="s-exam-style">Exam style</h2>
     <p class="muted">Write your working on paper, then type the answer.</p>
     <p>There are four questions, 15 marks in all. On a real paper that is about 15 minutes: roughly one mark a minute.</p>
-    <h3>Question 1 (5 marks): perimeter</h3>
+    <h3 id="s-question-1-5-marks-perimeter">Question 1 (5 marks): perimeter</h3>
     <p class="muted">A triangle has sides of length x cm, (2x + 1) cm and (3x &minus; 2) cm. Its perimeter is 29 cm.</p>
     <div class="q" data-qid="solving-equations-37" data-answers="6x-1;-1+6x" data-mode="exact" data-marks="2">
       <p class="qtext"><b>(a)</b> [2 marks] <a class="term" href="glossary.html#write-down" data-term="write-down" data-def="A question word: give the answer only. No working is needed.">Write down</a> a simplified <a class="term" href="glossary.html#expression" data-term="expression" data-def="Letters and numbers combined with operations, with no equals sign. You can simplify an expression but you cannot solve it.">expression</a> for the <a class="term" href="glossary.html#perimeter" data-term="perimeter" data-def="The distance all the way round the edge of a shape.">perimeter</a> in terms of x. (Type it like 6x-1.)</p>
@@ -562,7 +569,7 @@
       <div class="solution"><p>The sides are 5, 11 and 13 cm. Check: 5 + 11 + 13 = 29 &#10003;</p></div>
     </div>
 
-    <h3>Question 2 (3 marks): show that</h3>
+    <h3 id="s-question-2-3-marks-show-that">Question 2 (3 marks): show that</h3>
     <p class="muted"><a class="term" href="glossary.html#show-that" data-term="show-that" data-def="A question word: the answer is given to you, and you must prove it is right by writing every step. The marks are for the working.">Show that</a> x = 4 is the solution of 3(x + 2) = 5x &minus; 2. Do it by working out each side when x = 4.</p>
     <div class="q" data-qid="solving-equations-40" data-answers="18" data-mode="value">
       <p class="qtext"><b>(a)</b> [1 mark] When x = 4, what is the value of the left <a class="term" href="glossary.html#opposite" data-term="opposite" data-def="In a right-angled triangle, the side across from the angle you are using. It does not touch that angle.">side</a>, 3(x + 2)?</p>
@@ -587,7 +594,7 @@
       <div class="solution"><p>Left side 18 and right side 18 are equal, so x = 4 makes the equation true.</p></div>
     </div>
 
-    <h3>Question 3 (4 marks): brackets</h3>
+    <h3 id="s-question-3-4-marks-brackets">Question 3 (4 marks): brackets</h3>
     <p class="muted">A rectangle has length (2x + 3) cm and width (x &minus; 1) cm. Its perimeter is 34 cm.</p>
     <div class="q" data-qid="solving-equations-43" data-answers="5" data-mode="value" data-marks="3">
       <p class="qtext"><b>(a)</b> [3 marks] Form an <a class="term" href="glossary.html#equation" data-term="equation" data-def="Two expressions with an equals sign between them, saying they have the same value. Solving it means finding the value of the unknown that makes it true.">equation</a> using the <a class="term" href="glossary.html#perimeter" data-term="perimeter" data-def="The distance all the way round the edge of a shape.">perimeter</a>, then <a class="term" href="glossary.html#work-out" data-term="work-out" data-def="A question word: find the answer by doing the calculation. Show your steps when there are marks for working.">work out</a> x.</p>
@@ -610,7 +617,7 @@
       <div class="solution"><p>Width = 5 &minus; 1 = 4 cm. The length is 13 cm. Check: 2 &times; 13 + 2 &times; 4 = 34 &#10003;</p></div>
     </div>
 
-    <h3>Question 4 (3 marks): form and solve</h3>
+    <h3 id="s-question-4-3-marks-form-and-solve">Question 4 (3 marks): form and solve</h3>
     <p class="muted">A plumber charges &pound;25 for a call-out and then &pound;18 for each hour of work. Jo&rsquo;s bill is &pound;97.</p>
     <div class="q" data-qid="solving-equations-45" data-answers="4" data-mode="value" data-marks="3">
       <p class="qtext">[3 marks] Form an <a class="term" href="glossary.html#equation" data-term="equation" data-def="Two expressions with an equals sign between them, saying they have the same value. Solving it means finding the value of the unknown that makes it true.">equation</a>, with h for the number of hours, and <a class="term" href="glossary.html#solve" data-term="solve" data-def="Find the value (or values) of the unknown that make an equation true.">solve</a> it. How many hours did the plumber work?</p>
@@ -739,10 +746,11 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.047</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="../../js/main.js?v=2026.11.24.047" defer></script>
+  <script src="../../js/main.js?v=2026.11.24.049" defer></script>
 </footer>
-<script type="module" src="../../js/book.mjs?v=2026.11.24.047"></script>
+<script type="module" src="../../js/book.mjs?v=2026.11.24.049"></script>
+<script type="module" src="../../js/book-search-ui.mjs?v=2026.11.24.049"></script>
 </body>
 </html>

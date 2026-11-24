@@ -112,6 +112,31 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 - Every `.q` has an accessible name, every answer box and Listen button a distinct name, hints keep focus on the Help button and are announced politely, the term pop-up works by keyboard (Enter moves into it, Escape closes and returns focus), a skip link is the first Tab stop, and the footer headings follow the heading order.
 
 
+## Book search
+
+Every book page has a search box in the header (and only book pages: the rest of the site has none). Type "circle theorems" and the topic page is the first result; glossary words, command words, section headings, the practice papers and the parents and teachers pages are found the same way.
+
+**How the index is built.** `npm run build` writes `public/books/gcse/search-index.json` (never edit it) from the finished pages, in `scripts/book-search-lib.mjs`. It holds only titles, headings, glossary words and short descriptions:
+
+- every topic and page: its title, strand and a one-line description (a topic's "flip" line), plus the glossary words from its "Words you need" strip as extra names;
+- every `h2` and `h3` that has an id (the build now gives every heading an id), as a "Section" result that links to the anchor and names the page it is in;
+- every glossary term, with its strand and the start of its definition.
+
+**Never indexed:** questions, hints, wrong-answer notes, worked solutions and "check my answer" blocks (they are stripped before headings are read), and the answer-key pages under `key/` (they are all answers). The teachers page is indexed on purpose, with "answer key" as one of its names, so a teacher typing that lands on the page that links to every key. Headings that are only scaffolding ("Check your knowledge", "Worked example: ...", "Going further"...) or that appear on more than six pages are left out so they do not bury real results.
+
+**Make something findable.**
+
+- A new topic or glossary term is picked up automatically on the next build.
+- Give a glossary term other names with `aka: ['exponent']` (one string, words separated by spaces; it is matched as extra words and as a whole phrase).
+- Give a hand-listed page (hub, practice papers...) other names with `searchWords: '...'` in `src/pages.config.mjs`.
+- A section is findable if its heading is an `h2` or `h3` with plain text. Write headings the way a student would say them.
+
+**How results are ranked** (`public/js/book-search.mjs`, unit-tested in `test-unit/book-search.test.mjs`). Little words ("the", "where", "do") are ignored. Every remaining word must match something; if no entry matches them all, entries matching some are offered, ranked lower. A title word scores most (exact, then starts-with, then inside a word of four or more letters, then a typo: one slip in a word of five or more letters, two in nine or more; swapping two neighbouring letters is one slip), then other names (an exact other name beats a title that merely starts with the word, except for topics), then the name of the page a section sits in. Plurals and -ise/-ising endings are folded. A query that is the whole title (ignoring a bracket such as "(index)") wins outright, then a title that starts with the query. Ties go to topics, then pages, then terms, then shorter titles. Results are capped at six and each shows a badge: Topic, Word meaning, Page or "Part of: page". Give a topic other names with `aka` in `src/book/topics.mjs`; set `searchSections: false` on a page in `src/pages.config.mjs` to keep its headings out of results (the hub and parents pages do).
+
+**Privacy (tested).** The index is fetched from this site only, the first time the box is focused (not on every page load). The query is never stored, sent or put in the address, there is no `localStorage`, and nothing is added to the Content Security Policy. The box is hidden until its script runs.
+
+**Where the code is.** `public/js/book-search-ui.mjs` (the box; its own script tag, not part of `book.mjs`), `public/js/book-search.mjs` (the matcher, no page code), the box markup in `renderSearchBox` and the index in `buildSearchIndex` (`scripts/book-search-lib.mjs`), styles and colour contrasts at the end of `public/css/book.css`, tests in `test/book-search.spec.ts`.
+
 ## Recorded audio for Listen
 
 Listen plays a recording when one exists for the exact sentence, and otherwise falls back to the student's on-device browser voice.
