@@ -7,15 +7,15 @@ import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
 const PUBLIC = join(__dirname, '..', 'public');
 
 test.describe('the GCSE book stays hidden', () => {
-  test('only the Books page and the 404 page lead to the book; the sitemap and robots.txt never mention it', async ({ page }) => {
+  test('the main site links only to the Books page (menu and footer), never straight to the GCSE book; the sitemap and robots.txt never mention it', async ({ page }) => {
     for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
-      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to the book`).toHaveCount(0);
+      // Greg's decision (24 Nov 2026): Books is in the main menu (and so the footer); the GCSE book is one click further on.
+      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to more than the Books page`).toHaveCount(['/404.html', '/updates.html'].includes(sitePage.path) ? 3 : 2);
+      if (sitePage.path !== '/books/') {
+        await expect(page.locator('a[href*="gcse"]'), `${sitePage.path} links straight to the book`).toHaveCount(0);
+      }
     }
-    // Greg's decision (24 Nov 2026): the 404 page points at /books/, which points at the GCSE book.
-    await page.goto('/404.html');
-    await expect(page.locator('a[href*="books"]')).toHaveCount(1);
-    await expect(page.locator('a[href="books/"]')).toHaveCount(1);
     for (const file of ['sitemap.xml', 'robots.txt']) {
       expect(readFileSync(join(PUBLIC, file), 'utf8'), file).not.toMatch(/books/i);
     }
@@ -744,6 +744,10 @@ test.describe('the Books page', () => {
     await expect(page).toHaveTitle(/Maths Books/);
     await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
+    const alevel = page.locator('.card', { hasText: 'A Level Maths Book' });
+    await expect(alevel).toContainText('Coming soon');
+    await expect(alevel.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
     await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
     await expect(page).toHaveURL(/\/books\/gcse\/$/);
     const response = await page.goto('/this-page-does-not-exist.html');

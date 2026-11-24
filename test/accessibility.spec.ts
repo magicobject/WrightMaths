@@ -22,7 +22,7 @@ async function violations(page: import('@playwright/test').Page, ignore: string[
 // book.css and are checked with every rule.
 const MAIN_SITE_KNOWN = ['color-contrast'];
 
-for (const sitePage of [...ALL_PAGES, { path: '/404.html' }, { path: '/books/' }]) {
+for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
   test(`${sitePage.path} has no axe violations (colour contrast excepted: see note)`, async ({ page }) => {
     await page.goto(sitePage.path);
     expect(await violations(page, MAIN_SITE_KNOWN)).toEqual([]);
