@@ -183,13 +183,19 @@
 .mc-option.is-right::after{content:"  \2713 correct";font-weight:700;color:var(--c-right);}
 .mc-option.is-wrong{background:var(--t-oops);border-color:var(--c-oops);}
 .mc-option.is-wrong::after{content:"  \2717 not this one";font-weight:700;color:var(--c-oops);}
-.rungs{margin:10px 0 0;padding-left:1.4em;color:var(--ink);}
-.rungs li{margin-bottom:8px;background:var(--t-term);border-radius:6px;padding:6px 10px;list-style-position:inside;}
+/* Hints are lettered A, B, C with a clear gap, so a hint that starts with a number is never mistaken for a list number (1. 2 + 5 looks like 1.2). */
+.rungs{margin:12px 0 0;padding:0;list-style:none;counter-reset:hint;color:var(--ink);}
+.rungs li{counter-increment:hint;position:relative;margin-bottom:10px;background:var(--t-term);border-radius:8px;padding:10px 14px 10px 4.6em;}
+.rungs li::before{content:"Hint " counter(hint, upper-alpha);position:absolute;left:14px;top:10px;font-weight:700;color:var(--c-term);}
+.rungs li.duck-rung::before,.rungs li.ask-rung::before{content:none;}
+.rungs li.ask-rung{padding-left:14px;counter-increment:none;}
 .q .solution{border-top:2px dashed var(--line);margin-top:12px;padding-top:6px;}
 .q .solution::before{content:"Why:";font-weight:700;color:var(--strand);display:block;}
 .q .solution p{color:var(--ink);margin-bottom:.5em;}
-.q .ladder{padding-left:1.3em;color:var(--ink);}
-.q .ladder::before{content:"Hints";display:block;font-weight:700;margin-left:-1.3em;color:var(--c-term);}
+.q .ladder{padding:0;list-style:none;counter-reset:hint;color:var(--ink);}
+.q .ladder::before{content:"Hints";display:block;font-weight:700;margin-bottom:4px;color:var(--c-term);}
+.q .ladder li{counter-increment:hint;position:relative;margin-bottom:8px;padding-left:4.6em;}
+.q .ladder li::before{content:"Hint " counter(hint, upper-alpha);position:absolute;left:0;font-weight:700;color:var(--c-term);}
 .q .wrong{padding-left:1.3em;color:var(--c-oops);}
 .q .options{padding-left:1.3em;color:var(--ink);}
 

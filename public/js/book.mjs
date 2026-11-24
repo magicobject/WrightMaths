@@ -164,7 +164,10 @@ export function enhanceQuestion(q, index) {
       const li = el('li');
       const rung = rungs[rungsShown];
       if (typeof rung === 'object') duckRung(li, q);
-      else li.innerHTML = rung;
+      else {
+        li.innerHTML = rung;
+        if (rung.startsWith('Still stuck?')) li.className = 'ask-rung';
+      }
       hintList.append(li);
       rungsShown += 1;
     }
@@ -207,8 +210,12 @@ export function enhanceQuestion(q, index) {
     say('q-feedback ok', `${CHEERS[hashOf(qid) % CHEERS.length]} The worked solution is below.`);
     showSolution();
     markDone(qid, wrongCount === 0 && rungsShown === 0);
-    // Keep Help available: hints, the duck and another way to see it are still useful after a right answer.
-    if (rungsShown === 0) helpBtn.textContent = 'Another way to see it';
+    // Keep Help available after a right answer, and start the hints again from Hint A.
+    hintList.replaceChildren();
+    rungsShown = 0;
+    delete helpBtn.dataset.final;
+    helpBtn.disabled = false;
+    helpBtn.textContent = 'Another way to see it';
   }
 
   function failure(message, html) {

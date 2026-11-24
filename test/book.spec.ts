@@ -596,3 +596,33 @@ test.describe('privacy and keyboard access', () => {
     levels.forEach((level, i) => { if (i > 0) expect(level - levels[i - 1]).toBeLessThanOrEqual(1); });
   });
 });
+
+test.describe('lettered hints', () => {
+  test('hints are lettered A, B, C (not numbered), and start again from A after a right answer', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 100.' }).first();
+    const help = q.getByRole('button', { name: /Help, I'm stuck/ });
+    await help.click();
+    const label = (n: number) => q.locator('.rungs li').nth(n).evaluate((e) => getComputedStyle(e, '::before').content);
+    expect(await label(0)).toContain('upper-alpha');
+    // get it right: the hints reset, and the next one is Hint A again
+    await q.getByLabel('Your answer').fill('1000');
+    await q.getByRole('button', { name: 'Check' }).click();
+    await expect(q).toHaveClass(/q-correct/);
+    await expect(q.locator('.rungs li')).toHaveCount(0);
+    const again = q.getByRole('button', { name: 'Another way to see it' });
+    await again.click();
+    expect(await label(0)).toContain('upper-alpha');
+    await q.locator('.btn-stuck').click();
+    await expect(q.locator('.rungs li')).toHaveCount(2);
+  });
+
+  test('the static hint list (no script) is lettered too', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto('http://localhost:4173/books/gcse/place-value.html');
+    const content = await page.locator('.q .ladder li').first().evaluate((e) => getComputedStyle(e, '::before').content);
+    expect(content).toContain('upper-alpha');
+    await context.close();
+  });
+});
