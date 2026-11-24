@@ -452,6 +452,8 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
   });
 
   test('Listen says maths symbols as words and only uses a voice that runs on the device', async ({ page }) => {
+    // Every sentence now has a recording; these tests are about the browser-voice fallback, so serve no recordings.
+    await page.route('**/audio/book/manifest.json', (route) => route.fulfill({ json: {} }));
     await page.addInitScript(() => {
       const spoken: { text: string; voice: string }[] = [];
       (window as any).__spoken = spoken;
@@ -798,6 +800,8 @@ test.describe('round 3 finishing touches', () => {
   });
 
   test('Listen reads what the picture shows as well as the question', async ({ page }) => {
+    // Every sentence now has a recording; these tests are about the browser-voice fallback, so serve no recordings.
+    await page.route('**/audio/book/manifest.json', (route) => route.fulfill({ json: {} }));
     await page.addInitScript(() => {
       const spoken: string[] = [];
       (window as any).__spoken = spoken;

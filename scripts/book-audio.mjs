@@ -4,7 +4,7 @@
 // recordings in public/audio/book/, and helps fill the gaps with a speech engine
 // of your choice or with Greg's own recordings.
 import { createServer } from 'node:http';
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, copyFileSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, copyFileSync, statSync, unlinkSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -112,6 +112,15 @@ if (command === 'status') {
   }
   writeManifest();
   console.log(`imported ${n} recording(s); manifest updated.`);
+} else if (command === 'prune') {
+  // Delete recordings whose sentence no longer exists (it was edited or removed). Needs every page, so no --pages.
+  if (pageFilter.length) throw new Error('prune looks at the whole book: run it without --pages');
+  const units = await collectUnits();
+  const manifest = buildManifest(clipFiles());
+  const orphans = orphanClips(units, manifest);
+  for (const hash of orphans) unlinkSync(join(CLIPS, manifest[hash]));
+  writeManifest();
+  console.log(`removed ${orphans.length} out-of-date recording(s); manifest updated.`);
 } else if (command === 'manifest') {
   console.log(`manifest lists ${Object.keys(writeManifest()).length} recording(s).`);
 } else {
@@ -123,6 +132,7 @@ if (command === 'status') {
               sentence on standard input and writes {out}; set WM_TTS_EXT (wav, mp3, m4a, ogg).
               Example:  WM_TTS_CMD='piper --model voice.onnx --output_file {out}'  WM_TTS_EXT=wav
   import dir  copy recordings named by script number (001.mp3, 002.mp3 ...) into the book
+  prune       delete recordings whose sentence was edited or removed (whole book only)
   manifest    rebuild public/audio/book/manifest.json from the files there
   Add --pages=place-value,shapes-angles to status, todo or make to work on just those pages.
   Many sentences at once with Piper: python scripts/piper-batch.py --voice <voice.onnx> (reads audio-work/script.json).

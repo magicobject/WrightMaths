@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.24.048">
+<link rel="stylesheet" href="css/style.css?v=2026.11.24.049">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,8 +80,16 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.049</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Merged the latest main (recorded Listen audio) into the search branch; no change in behaviour.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.048</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book search, improved after testing: swapped-letter typos (&ldquo;circel&rdquo;, &ldquo;fractoin&rdquo;) and word endings (&ldquo;rationalise&rdquo;) now work; little words are ignored and questions such as &ldquo;where do I start&rdquo; or &ldquo;angles in a triangle&rdquo; find the right page; other names work (&ldquo;sohcahtoa&rdquo;, &ldquo;gcd&rdquo;, &ldquo;exponent&rdquo;, &ldquo;angle sum&rdquo;); whole words rank above part-words; results show a badge (Topic, Word meaning, Part of: page) and a count, six at a time; symbols such as pi show properly; a failed load says so and retries; no results offers a link to browse all topics; the practice-papers page is no longer called &ldquo;past papers&rdquo;.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.047</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book: every Listen button now plays a recorded voice (Piper, British &ldquo;alba&rdquo;) instead of the browser&rsquo;s own. All 3,271 sentences across the book are recorded, about 183 MB of small audio files under <code>public/audio/book/</code>. Editing a sentence means recording it again: <code>npm run book:audio -- todo</code> lists what is missing and <code>prune</code> clears out-of-date clips (see <code>docs/book-authoring.md</code>).</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.046</span><span class="changelog-date">24 November 2026</span></div>
@@ -396,9 +404,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.048</span>
+    <span class="build-number">Build 2026.11.24.049</span>
   </div>
-  <script src="js/main.js?v=2026.11.24.048" defer></script>
+  <script src="js/main.js?v=2026.11.24.049" defer></script>
 </footer>
 </body>
 </html>
