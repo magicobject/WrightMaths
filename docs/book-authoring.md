@@ -125,3 +125,9 @@ Listen plays a recording when one exists for the exact sentence, and otherwise f
 ## Write units out, because Listen reads exactly what is written
 
 A voice says only the words on the page, so a bare number is spoken bare. Write angles as `180&deg;` (spoken "180 degrees"), lengths as `6 cm`, money as `&pound;15`, and say what a total is of ("the internal angles of a triangle add up to 180&deg;"). If a sentence reads fine on paper only because a diagram or the context fills the gap, add the missing words: recordings of it will be heard without the page.
+
+## Two texts: what the student reads and what the voice reads
+
+The voice does not read the page as written. `public/js/book-speech.mjs` turns the displayed words into spoken words: numbers become words ("4,872" is "four thousand, eight hundred and seventy-two", "0.643" is "zero point six four three", "045" is "zero four five"), symbols and units are spelled out, money is pounds and pence. Recordings are keyed to that spoken text.
+
+When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence for review.
