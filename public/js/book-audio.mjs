@@ -37,7 +37,9 @@ export function unitText(node) {
     s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
   });
   const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
-  return toSpoken(clone.textContent) + (picture ? ` The picture shows: ${toSpoken(picture)}` : '');
+  // data-say: the author's own words for the voice, read instead of the displayed words
+  const said = node.getAttribute?.('data-say');
+  return toSpoken(said ?? clone.textContent) + (picture ? ` The picture shows: ${toSpoken(picture)}` : '');
 }
 
 /** Every Listen unit under a root: { hash, text }. Used by the page and by the tool that lists what needs recording. */
