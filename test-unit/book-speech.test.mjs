@@ -37,3 +37,31 @@ test('units are spoken in full only straight after a number', () => {
 test('hard words get a spoken form, and abbreviations are expanded', () => {
   assert.equal(toSpoken('Use BIDMAS, e.g. brackets first.'), 'Use bid mass, for example brackets first.');
 });
+
+test('one of a unit is singular, and a unit that describes a thing is singular too', () => {
+  assert.equal(toSpoken('each 1 cm long'), 'each 1 centimetre long');
+  assert.equal(toSpoken('1 m'), '1 metre');
+  assert.equal(toSpoken('1.5 m long'), '1.5 metres long');
+  assert.equal(toSpoken('0.5 kg'), '0.5 kilograms');
+  assert.equal(toSpoken('a 3 m length of conduit'), 'a 3 metre length of conduit');
+  assert.equal(toSpoken('a 6 m pole'), 'a 6 metre pole');
+  assert.equal(toSpoken('a 5 kg weight'), 'a 5 kilogram weight');
+  assert.equal(toSpoken('3 m long and 4 m wide'), '3 metres long and 4 metres wide');
+  assert.equal(toSpoken('12 cm²'), '12 centimetres squared');
+  assert.equal(toSpoken('1 cm²'), '1 centimetre squared');
+  assert.equal(toSpoken('the number 21 cm'), 'the number 21 centimetres');
+});
+
+test('brackets are tidy, quotation marks are not spoken, apostrophes are plain', () => {
+  assert.equal(toSpoken('(−2) × (−2)'), '(minus 2) times (minus 2)');
+  assert.equal(toSpoken('Work out 7 − (−3).'), 'Work out 7 minus (minus 3).');
+  assert.equal(toSpoken('Tia says: “A regular pentagon.” What went wrong?'), 'Tia says: A regular pentagon. What went wrong?');
+  assert.equal(toSpoken('Don’t forget'), "Don't forget");
+});
+
+test('a pound amount at the end of a sentence keeps its full stop after "pounds"', () => {
+  assert.equal(toSpoken('A board costs £15. The price rises.'), 'A board costs 15 pounds. The price rises.');
+  assert.equal(toSpoken('It costs £8.40. Offcuts are free.'), 'It costs 8.40 pounds. Offcuts are free.');
+  assert.equal(toSpoken('Pay £1,250.50, then stop.'), 'Pay 1,250.50 pounds, then stop.');
+  assert.equal(toSpoken('£12'), '12 pounds');
+});

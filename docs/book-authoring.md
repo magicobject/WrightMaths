@@ -121,3 +121,7 @@ Listen plays a recording when one exists for the exact sentence, and otherwise f
 - Or let a speech engine do it: set `WM_TTS_CMD` to a command that reads the sentence on standard input and writes `{out}` (and `WM_TTS_EXT`), then `npm run book:audio -- make`. Any engine that runs on this machine works; nothing is uploaded unless the engine you choose does that, so prefer a local one.
 - The words a voice reads come from `public/js/book-speech.mjs` (symbols, units, "?" and so on); change a rule there and the hashes of affected sentences change, so they are re-listed for recording.
 - Clips are served from this site only (`default-src 'self'` covers them). Keep each clip small (speech at 32 to 48 kbps is plenty).
+
+## Write units out, because Listen reads exactly what is written
+
+A voice says only the words on the page, so a bare number is spoken bare. Write angles as `180&deg;` (spoken "180 degrees"), lengths as `6 cm`, money as `&pound;15`, and say what a total is of ("the internal angles of a triangle add up to 180&deg;"). If a sentence reads fine on paper only because a diagram or the context fills the gap, add the missing words: recordings of it will be heard without the page.
