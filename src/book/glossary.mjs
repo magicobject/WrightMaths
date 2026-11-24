@@ -52,7 +52,7 @@ export const GLOSSARY = [
     see: ['factor'],
   },
   {
-    id: 'hcf', term: 'Highest common factor (HCF)', strand: 'n', level: 'F', aka: ['greatest common divisor'],
+    id: 'hcf', term: 'Highest common factor (HCF)', strand: 'n', level: 'F', aka: ['greatest common divisor gcd gcf'],
     def: 'The biggest number that is a factor of two or more numbers.',
     example: 'Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18. The biggest in both lists is 6, so HCF(12, 18) = 6.',
     flip: 'The HCF is what you divide top and bottom by to simplify a fraction in one go: {frac:12/18} = {frac:2/3}.',

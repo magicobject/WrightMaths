@@ -51,7 +51,7 @@ test('a small typo still finds the page (longer words only)', () => {
 test('aliases find a term, and every word of the query must match', () => {
   assert.equal(first('hcf'), 'glossary.html#hcf');
   assert.equal(first('greatest common divisor'), 'glossary.html#hcf');
-  assert.deepEqual(searchIndex('circle banana', entries), []);
+  assert.deepEqual(searchIndex('banana split', entries), []);
 });
 
 test('sections are found through their page name but rank below the page itself', () => {
@@ -109,4 +109,74 @@ test('the built index (when built) is small, relative to the book, and finds the
   assert.equal(searchIndex('circle theorems', index, 8)[0].u, 'circle-theorems.html');
   assert.ok(searchIndex('hcf', index, 8).some((e) => e.k === 'Term'));
   assert.ok(!index.some((e) => e.u.startsWith('key/')), 'answer keys are not searchable');
+});
+
+// ---- round 2: fixes from the tester and UX reviews ----
+const more = [
+  ...entries,
+  { t: 'Triangles', u: 'triangles.html', k: 'Topic', s: 'Geometry' },
+  { t: 'Fractions', u: 'fractions.html', k: 'Topic', s: 'Number' },
+  { t: 'Trigonometry', u: 'trigonometry.html', k: 'Topic', s: 'Geometry', a: 'sohcahtoa soh cah toa' },
+  { t: 'Rationalising the denominator', u: 'glossary.html#rationalising', k: 'Term', s: 'Number' },
+  { t: 'Power (index)', u: 'glossary.html#power', k: 'Term', s: 'Number', a: 'exponent' },
+  { t: 'Exponential growth', u: 'exponential.html', k: 'Topic', s: 'Ratio' },
+  { t: 'Elevation', u: 'glossary.html#elevation', k: 'Term', s: 'Geometry' },
+  { t: 'VAT', u: 'glossary.html#vat', k: 'Term', s: 'Ratio' },
+  { t: 'Find Your Gaps', u: 'diagnostic.html', k: 'Page', s: 'Book', a: 'quiz test gaps where to start' },
+  { t: 'Angles in a triangle add up to 180', u: 'shapes-angles.html#s-tri', k: 'Section', p: 'Shapes and angles' },
+  { t: 'Shapes and angles', u: 'shapes-angles.html', k: 'Topic', s: 'Geometry', a: 'angle sum' },
+  { t: 'Pi (\u03c0)', u: 'glossary.html#pi', k: 'Term', s: 'Number', a: 'pi' },
+];
+const firstMore = (q) => searchIndex(q, more, 8)[0]?.u;
+
+test('transposed letters count as one typo', () => {
+  assert.equal(firstMore('circel theorem'), 'circle-theorems.html');
+  assert.equal(firstMore('cirlce'), 'circles.html');
+  assert.equal(firstMore('triangel'), 'triangles.html');
+  assert.equal(firstMore('fractoin'), 'fractions.html');
+});
+
+test('other names and word endings: sohcahtoa, rationalise', () => {
+  assert.equal(firstMore('sohcahtoa'), 'trigonometry.html');
+  assert.equal(firstMore('soh cah toa'), 'trigonometry.html');
+  assert.equal(firstMore('rationalise'), 'glossary.html#rationalising');
+});
+
+test('little words are ignored, and if not every word matches, entries matching some words are offered', () => {
+  assert.equal(firstMore('where do I start'), 'diagnostic.html');
+  assert.equal(firstMore('angle sum'), 'shapes-angles.html');
+  assert.ok(searchIndex('angles in a triangle', more, 8).some((e) => e.u === 'shapes-angles.html#s-tri'));
+  assert.deepEqual(searchIndex('the', more), []);
+});
+
+test('whole words beat mid-word matches, and short fragments never match mid-word', () => {
+  assert.deepEqual(searchIndex('vat', more).map((e) => e.t), ['VAT']);
+  assert.equal(firstMore('exponent'), 'glossary.html#power');
+});
+
+test('Greek letters can be searched', () => {
+  assert.equal(firstMore('\u03c0'), 'glossary.html#pi');
+});
+
+test('typo matching does not make short words match everything', () => {
+  assert.deepEqual(searchIndex('cube', more), []);
+});
+
+test('the built index has no HTML entities, no one-letter headings, no meta sections, and no "past papers"', () => {
+  const file = new URL('../public/books/gcse/search-index.json', import.meta.url);
+  if (!existsSync(file)) return;
+  const index = JSON.parse(readFileSync(file, 'utf8'));
+  for (const e of index) {
+    assert.ok(!/&[a-z#0-9]+;/i.test(JSON.stringify(e)), e.t);
+    assert.ok(e.k !== 'Section' || e.t.length > 1, e.t);
+    assert.ok(!/past papers?/i.test(e.a ?? ''), e.t);
+  }
+  assert.ok(!index.some((e) => /private by design/i.test(e.t)));
+  assert.ok(!index.some((e) => e.u.startsWith('parents.html#')), 'the parents page itself is indexed, not its sections');
+  assert.equal(searchIndex('pi', index, 3)[0].t, 'Pi (\u03c0)');
+  assert.ok(searchIndex('gcd', index, 3).some((e) => e.u === 'glossary.html#hcf'));
+  assert.equal(searchIndex('sohcahtoa', index, 3)[0].u, 'trigonometry.html');
+  assert.equal(searchIndex('where do i start', index, 3)[0].u, 'diagnostic.html');
+  assert.equal(searchIndex('exponent', index, 3)[0].u, 'glossary.html#power');
+  assert.equal(searchIndex('rationalise', index, 3)[0].u, 'glossary.html#rationalising');
 });

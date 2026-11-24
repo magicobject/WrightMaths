@@ -33,7 +33,7 @@ export function extractHeadings(html) {
     const id = /\bid="([^"]+)"/.exec(attrs)?.[1];
     const withoutChips = inner.replace(/<span class="chip[^>]*>[\s\S]*?<\/span>/g, '');
     const text = plainText(withoutChips).replace(/^\d+\.\s+/, '');
-    return id && text ? [{ id, text, level: Number(level) }] : [];
+    return id && text.length > 1 ? [{ id, text, level: Number(level) }] : [];
   });
 }
 
@@ -44,10 +44,11 @@ const short = (text, max = 110) => {
   const t = plainText(text);
   if (t.length <= max) return t;
   const cut = t.slice(0, max).replace(/\s+\S*$/, '');
-  return `${cut}…`;
+  return `${cut}\u2026`;
 };
 
-const compact = (entry) => Object.fromEntries(Object.entries(entry).filter(([, v]) => v));
+// Plain text only: HTML entities (&pi;) are decoded, so what is searched and shown is what a student sees.
+const compact = (entry) => Object.fromEntries(Object.entries(entry).filter(([, v]) => v).map(([k, v]) => [k, k === 'u' || k === 'k' ? v : plainText(v)]));
 
 /**
  * pages: [{ href, title, kind, sub, snippet, aliases?, html }]   (href relative to the book folder)
@@ -57,6 +58,7 @@ const compact = (entry) => Object.fromEntries(Object.entries(entry).filter(([, v
 export function buildSearchIndex({ pages, glossary, strands, glossaryHref, genericAfter = 6 }) {
   const counts = new Map();
   const headingsOf = pages.map((page) => {
+    if (page.sections === false) return [];
     const found = extractHeadings(stripAnswerBlocks(page.html ?? '')).filter((h) => h.text.toLowerCase() !== page.title.toLowerCase());
     for (const text of new Set(found.map((h) => h.text.toLowerCase()))) counts.set(text, (counts.get(text) ?? 0) + 1);
     return found;
@@ -87,8 +89,8 @@ export function renderSearchBox(base) {
   return `
     <form class="book-search" role="search" aria-label="Search this book" data-index="${base}books/gcse/search-index.json" autocomplete="off" hidden>
       <label class="sr-only" for="book-search-input">Search this book (topics, words and sections)</label>
-      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the book, e.g. circle theorems" maxlength="60" spellcheck="false">
-      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" hidden></ul>
+      <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search this book" maxlength="60" spellcheck="false">
+      <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>
       <p class="book-search-empty" id="book-search-empty" hidden></p>
       <p class="sr-only" id="book-search-status" role="status"></p>
     </form>`;

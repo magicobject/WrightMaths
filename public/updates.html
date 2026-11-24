@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.24.046">
+<link rel="stylesheet" href="css/style.css?v=2026.11.24.048">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.24.048</span><span class="changelog-date">24 November 2026</span></div>
+        <p>Hidden GCSE book search, improved after testing: swapped-letter typos (&ldquo;circel&rdquo;, &ldquo;fractoin&rdquo;) and word endings (&ldquo;rationalise&rdquo;) now work; little words are ignored and questions such as &ldquo;where do I start&rdquo; or &ldquo;angles in a triangle&rdquo; find the right page; other names work (&ldquo;sohcahtoa&rdquo;, &ldquo;gcd&rdquo;, &ldquo;exponent&rdquo;, &ldquo;angle sum&rdquo;); whole words rank above part-words; results show a badge (Topic, Word meaning, Part of: page) and a count, six at a time; symbols such as pi show properly; a failed load says so and retries; no results offers a link to browse all topics; the practice-papers page is no longer called &ldquo;past papers&rdquo;.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.24.046</span><span class="changelog-date">24 November 2026</span></div>
         <p>Hidden GCSE book: a search box in the header of every book page (and only book pages). Type &ldquo;circle theorems&rdquo; and the topic page comes first; glossary words (including other names such as &ldquo;average&rdquo;), the question words, section headings, the practice papers and the teachers and parents guides are found too. Plurals and small typos are forgiven, and it works with the keyboard (arrows, Enter, Escape) and on a phone. The list of titles is built at build time (<code>search-index.json</code>, no questions or answers in it, answer keys left out), fetched from this site only the first time the box is used, and nothing typed is stored or sent. Every <code>h3</code> in the book now has an anchor id too. The parents guide has a line about it.</p>
@@ -392,9 +396,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.24.046</span>
+    <span class="build-number">Build 2026.11.24.048</span>
   </div>
-  <script src="js/main.js?v=2026.11.24.046" defer></script>
+  <script src="js/main.js?v=2026.11.24.048" defer></script>
 </footer>
 </body>
 </html>

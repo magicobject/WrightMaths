@@ -71,7 +71,8 @@ export const PAGES = [
   // noindex. Topic pages are generated from src/book/topics.mjs, not listed here.
   {
     slug: 'books/gcse/index',
-    searchWords: 'home hub contents start pyramid map',
+    searchSections: false,
+    searchWords: 'home hub contents pyramid map',
     book: 'hub',
     title: 'GCSE Maths Book (pilot) | Wright Maths Tuition',
     description: 'A colourful, interactive GCSE maths book: every idea from both sides, every term explained, and help whenever you are stuck.',
@@ -86,7 +87,7 @@ export const PAGES = [
   },
   {
     slug: 'books/gcse/diagnostic',
-    searchWords: 'quiz test gaps where to start',
+    searchWords: 'quiz test gaps where to start where do i start',
     book: 'diagnostic',
     title: 'Find Your Gaps | GCSE Maths Book (pilot) | Wright Maths Tuition',
     description: 'Eleven quick questions, one for each foundation topic, to show you which GCSE maths topic to start with and how far you have come.',
@@ -121,7 +122,7 @@ export const PAGES = [
   },
   {
     slug: 'books/gcse/foundation',
-    searchWords: 'foundation tier past papers exam practice papers timed',
+    searchWords: 'foundation tier practice papers exam timed',
     book: 'foundation',
     title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book (pilot) | Wright Maths Tuition',
     description: 'Real-paper style questions for grades 4, 5 and 6, with calculator and non-calculator labels, a mark scheme you tick off yourself and a timed set.',
@@ -135,6 +136,7 @@ export const PAGES = [
   },
   {
     slug: 'books/gcse/parents',
+    searchSections: false,
     searchWords: 'parent carer help child',
     book: 'parents',
     title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',

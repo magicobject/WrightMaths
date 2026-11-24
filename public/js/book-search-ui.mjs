@@ -5,7 +5,8 @@
 // page load). The query is never stored, never sent anywhere and never put in the address.
 import { searchIndex } from './book-search.mjs?m=1';
 
-const MAX_RESULTS = 8;
+const MAX_RESULTS = 6;
+const KIND_LABEL = { Topic: 'Topic', Term: 'Word meaning', Page: 'Page' };
 
 function init() {
   const form = document.querySelector('form.book-search');
@@ -23,10 +24,11 @@ function init() {
   let shown = [];
 
   const load = () => {
+    // A failed load is forgotten, so the next search tries again.
     loading ??= fetch(indexUrl, { credentials: 'omit', cache: 'no-cache' })
-      .then((response) => (response.ok ? response.json() : []))
-      .catch(() => [])
-      .then((data) => { entries = Array.isArray(data) ? data : []; });
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error('index not available'))))
+      .then((data) => { entries = Array.isArray(data) ? data : []; })
+      .catch(() => { entries = null; loading = null; });
     return loading;
   };
 
@@ -63,11 +65,21 @@ function init() {
   function render(query, results) {
     close();
     if (!results.length) {
-      empty.textContent = `No results for “${query}”. Try a shorter or different word.`;
+      const message = document.createElement('span');
+      message.textContent = `Nothing matched \u201c${query}\u201d. Check the spelling, or try one word, like \u201ccircle\u201d. `;
+      const browse = document.createElement('a');
+      browse.href = new URL('index.html', indexUrl).href;
+      browse.textContent = 'Browse all topics';
+      empty.replaceChildren(message, browse);
       empty.hidden = false;
-      status.textContent = 'No results.';
+      status.textContent = message.textContent;
       return;
     }
+    const count = document.createElement('li');
+    count.setAttribute('role', 'presentation');
+    count.className = 'book-search-count';
+    count.textContent = `${results.length} result${results.length === 1 ? '' : 's'}`;
+    list.append(count);
     shown = results;
     results.forEach((entry, i) => {
       const item = document.createElement('li');
@@ -78,8 +90,8 @@ function init() {
       link.setAttribute('aria-selected', 'false');
       link.tabIndex = -1;
       link.href = new URL(entry.u, indexUrl).href;
-      const where = [entry.k, entry.p ? `in ${entry.p}` : entry.s].filter(Boolean).join(' · ');
-      link.append(line('bs-title', entry.t), line('bs-where', where));
+      const badge = entry.k === 'Section' ? `Part of: ${entry.p}` : [KIND_LABEL[entry.k] ?? entry.k, entry.s].filter(Boolean).join(' \u00b7 ');
+      link.append(line(`bs-badge bs-badge-${entry.k.toLowerCase()}`, badge), line('bs-title', entry.t));
       if (entry.d) link.append(line('bs-snippet', entry.d));
       item.append(link);
       list.append(item);
@@ -94,6 +106,13 @@ function init() {
     if (!query) { close(); status.textContent = ''; return; }
     await load();
     if (input.value.trim() !== query) return; // typed on while the index loaded
+    if (!entries) {
+      close();
+      empty.textContent = 'Search is not available, please reload the page.';
+      empty.hidden = false;
+      status.textContent = empty.textContent;
+      return;
+    }
     render(query, searchIndex(query, entries, MAX_RESULTS));
   }
 

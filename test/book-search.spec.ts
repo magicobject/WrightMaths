@@ -12,6 +12,7 @@ test.describe('the book search box', () => {
     await expect(options(page).first()).toHaveAttribute('href', /\/books\/gcse\/circle-theorems\.html$/);
     await expect(options(page).first()).toContainText('Circle theorems');
     await expect(options(page).first()).toContainText('Topic');
+    await expect(page.locator('.book-search-count')).toHaveText('6 results');
   });
 
   test('a glossary word finds its glossary entry, with its strand and a short definition', async ({ page }) => {
@@ -19,7 +20,7 @@ test.describe('the book search box', () => {
     await box(page).fill('hypotenuse');
     const first = options(page).first();
     await expect(first).toHaveAttribute('href', /\/books\/gcse\/glossary\.html#hypotenuse$/);
-    await expect(first).toContainText('Term');
+    await expect(first).toContainText('Word meaning');
     await expect(first).toContainText('Geometry');
     await first.click();
     await expect(page).toHaveURL(/glossary\.html#hypotenuse$/);
@@ -28,7 +29,7 @@ test.describe('the book search box', () => {
   test('a section heading is found and links to its anchor, and other pages are findable by plain words', async ({ page }) => {
     await page.goto('/books/gcse/index.html');
     await box(page).fill('alternate segment');
-    const href = await options(page).filter({ hasText: 'Section' }).first().getAttribute('href');
+    const href = await options(page).filter({ hasText: 'Part of:' }).first().getAttribute('href');
     expect(href).toMatch(/circle-theorems\.html#s-/);
     const id = new URL(href!).hash.slice(1);
     await box(page).fill('teacher answer key');
@@ -75,8 +76,9 @@ test.describe('the book search box', () => {
   test('a search with no matches says so, politely', async ({ page }) => {
     await page.goto('/books/gcse/index.html');
     await box(page).fill('zzzqqq');
-    await expect(page.locator('.book-search-empty')).toContainText('No results for');
-    await expect(page.getByRole('status')).toContainText('No results');
+    await expect(page.locator('.book-search-empty')).toContainText('Nothing matched');
+    await expect(page.locator('.book-search-empty').getByRole('link', { name: 'Browse all topics' })).toHaveAttribute('href', /books\/gcse\/index\.html$/);
+    await expect(page.getByRole('status')).toContainText('Nothing matched');
     await expect(options(page)).toHaveCount(0);
     await page.keyboard.press('Escape');
     await expect(page.locator('.book-search-empty')).toBeHidden();
@@ -86,6 +88,41 @@ test.describe('the book search box', () => {
     await page.goto('/books/gcse/index.html');
     await box(page).fill('simultanous equation');
     await expect(options(page).first()).toHaveAttribute('href', /simultaneous-equations\.html$/);
+  });
+
+  test('the placeholder fits a phone, and a swapped-letter typo and a question both work', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await expect(box(page)).toHaveAttribute('placeholder', 'Search this book');
+    await box(page).fill('circel theorem');
+    await expect(options(page).first()).toHaveAttribute('href', /circle-theorems.html$/);
+    await box(page).fill('where do I start');
+    await expect(options(page).first()).toHaveAttribute('href', /diagnostic.html$/);
+  });
+
+  test('a word meaning shows a Word meaning badge before its title; a section says which page it is part of', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('alternate segment');
+    const section = options(page).filter({ hasText: 'Part of:' }).first();
+    await expect(section.locator('.bs-badge')).toContainText('Part of: Circle theorems');
+    expect(await section.evaluate((a) => a.firstElementChild!.className)).toContain('bs-badge');
+  });
+
+  test('Tab from the box never lands in the list of results', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('circle');
+    await expect(options(page).first()).toBeVisible();
+    await page.keyboard.press('Tab');
+    expect(await page.evaluate(() => !!document.activeElement?.closest('.book-search-results'))).toBe(false);
+  });
+
+  test('if the list cannot be loaded it says so, and the next search tries again', async ({ page }) => {
+    let failures = 0;
+    await page.route('**/search-index.json', (route) => { if (failures++ === 0) return route.abort(); return route.continue(); });
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('circle');
+    await expect(page.locator('.book-search-empty')).toContainText('Search is not available, please reload');
+    await box(page).fill('circle theorems');
+    await expect(options(page).first()).toHaveAttribute('href', /circle-theorems.html$/);
   });
 
   test('privacy: the index is fetched from this site only, only once the box is used, and nothing is stored', async ({ page }) => {

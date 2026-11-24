@@ -195,7 +195,8 @@ function searchPageFor(page, html) {
     kind: topic ? 'Topic' : 'Page',
     sub: topic ? topic.strandName : 'Book',
     snippet: topic ? topic.flip : page.description,
-    aliases: [page.searchWords, ...(topic?.words ?? []).map((id) => glossaryById.get(id)?.term)].filter(Boolean).join(' '),
+    sections: page.searchSections,
+    aliases: [page.searchWords, topic?.aka, ...(topic?.words ?? []).map((id) => glossaryById.get(id)?.term)].filter(Boolean).join(' '),
     html,
   };
 }

@@ -29,7 +29,7 @@ export const TOPICS = [
   { id: 'order-of-operations', title: 'Order of operations', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Building a calculation and unpicking it', words: ['bidmas', 'operation', 'power', 'square-root'] },
   { id: 'factors-multiples', title: 'Factors and multiples', strand: 'n', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Factors and multiples are two views of the same facts', words: ['factor', 'multiple', 'prime-number', 'composite-number', 'hcf', 'lcm'] },
   { id: 'squares-roots', title: 'Squares and square roots', strand: 'n', tier: 'F', status: 'live', needs: ['factors-multiples'], flip: 'Squaring and square-rooting', words: ['square-number', 'square-root', 'cube-number', 'cube-root', 'power', 'irrational'] },
-  { id: 'shapes-angles', title: 'Shapes and angles', strand: 'g', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Finding an angle and building a shape from angles', words: ['angle', 'acute-angle', 'obtuse-angle', 'reflex-angle', 'parallel', 'polygon'] },
+  { id: 'shapes-angles', aka: 'angle sum angles in a triangle triangle angles', title: 'Shapes and angles', strand: 'g', tier: 'F', status: 'live', needs: ['four-operations'], flip: 'Finding an angle and building a shape from angles', words: ['angle', 'acute-angle', 'obtuse-angle', 'reflex-angle', 'parallel', 'polygon'] },
   { id: 'algebra-basics', title: 'Algebra basics', strand: 'a', tier: 'F', status: 'live', needs: ['order-of-operations', 'negative-numbers'], flip: 'Substituting numbers in, and writing a rule from numbers', words: ['unknown', 'expression', 'term', 'coefficient', 'like-terms', 'substitute'] },
 
   // Pilot topics: written and live in the pilot edition.
@@ -43,7 +43,7 @@ export const TOPICS = [
   { id: 'rearranging-formulae', title: 'Rearranging formulae', strand: 'a', tier: 'F', status: 'live', needs: ['solving-equations', 'fractions'], flip: 'Substituting into a formula, and making a different letter the subject', words: ['formula','subject','substitute','inverse-operation'] },
   { id: 'simultaneous-equations', title: 'Simultaneous equations', strand: 'a', tier: 'F', status: 'live', needs: ['solving-equations'], flip: 'Solving, and checking the answer in both equations', words: ['simultaneous-equations','elimination','substitute','unknown'] },
   { id: 'quadratic-equations', title: 'Quadratic equations', strand: 'a', tier: 'H', status: 'live', needs: ['solving-equations', 'squares-roots'], flip: 'Factorising and expanding', words: ['quadratic','expand','factorise','root-of-equation'] },
-  { id: 'trigonometry', title: 'Trigonometry', strand: 'g', tier: 'F', status: 'live', needs: ['pythagoras', 'ratio', 'rearranging-formulae'], flip: 'Finding a side, and finding an angle', words: ['hypotenuse','opposite','adjacent','soh-cah-toa'] },
+  { id: 'trigonometry', aka: 'sohcahtoa soh cah toa sin cos tan', title: 'Trigonometry', strand: 'g', tier: 'F', status: 'live', needs: ['pythagoras', 'ratio', 'rearranging-formulae'], flip: 'Finding a side, and finding an angle', words: ['hypotenuse','opposite','adjacent','soh-cah-toa'] },
   { id: 'percentage-change', title: 'Repeated percentage change', strand: 'r', tier: 'H', status: 'live', needs: ['percentages'], flip: 'Growth and depreciation, and working back to the start', words: ['compound-interest','multiplier','depreciation','percentage-change'] },
 
   // Next up (planned): the topics that stand on the ones above.
