@@ -8,6 +8,7 @@ export const NAV = [
   { href: 'lessons.html', label: 'Lessons' },
   { href: 'safeguarding.html', label: 'Safeguarding' },
   { href: 'resources.html', label: 'Resources' },
+  { href: 'books/', label: 'Books' },
   { href: 'contact.html', label: 'Contact' },
 ];
 
@@ -60,7 +61,7 @@ export const PAGES = [
     slug: 'books/index',
     title: 'Maths Books | Wright Maths Tuition',
     description: 'Free online maths books written by a tutor, starting with a GCSE maths book built from the ground up.',
-    active: null,
+    active: 'books/',
     robots: 'noindex',
     canonicalPath: 'books/',
     base: '../', // this page lives one folder down, so its stylesheet and script are one level up

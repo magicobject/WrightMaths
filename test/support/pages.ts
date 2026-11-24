@@ -43,6 +43,12 @@ export const PAGES: SitePage[] = [
     heading: /best free maths resources/i,
   },
   {
+    path: '/books/',
+    navLabel: 'Books',
+    titleContains: 'Maths Books',
+    heading: /Maths books, written by a tutor/i,
+  },
+  {
     path: '/contact.html',
     navLabel: 'Contact',
     titleContains: 'Contact',
