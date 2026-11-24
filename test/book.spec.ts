@@ -41,6 +41,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('every internal link and every #anchor on every book page resolves', async ({ page, request }) => {
+    test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     const checked = new Set<string>();
     for (const bookPage of BOOK_PAGES) {
       await page.goto(bookPage.path);

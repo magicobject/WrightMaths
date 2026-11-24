@@ -802,12 +802,15 @@ async function startPractice() {
     pool.set(id, qs);
     return qs;
   };
+  let dealToken = 0;
   const deal = async () => {
+    const mine = (dealToken += 1);
     const chosen = boxes.filter((b) => b.checked).map((b) => b.value);
     if (chosen.length === 0) { status.textContent = 'Pick at least one topic.'; return; }
     status.textContent = 'Getting your questions\u2026';
     let all = [];
     for (const id of chosen) all = all.concat(await loadTopic(id));
+    if (mine !== dealToken) return; // a newer press replaced this one while its pages were loading
     if (all.length === 0) { status.textContent = 'Could not get questions. Check your connection, then press the button to try again.'; return; }
     shuffle(all);
     const now = today();
