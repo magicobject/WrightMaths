@@ -1299,4 +1299,735 @@ export const GLOSSARY = [
       "depreciation"
     ]
   },
+  {
+    "id": "perpendicular-height",
+    "term": "Perpendicular height",
+    "strand": "g",
+    "level": "F",
+    "def": "The height of a shape measured at a right angle to its base. It is not the length of a slanting side.",
+    "example": [
+      "A triangle has a base of 10 cm, slanting sides of 13 cm and a perpendicular height of 12 cm.",
+      "Its area is &frac12; &times; 10 &times; 12 = 60 cm&sup2;. The 13 cm is not used."
+    ],
+    "watch": "The slanting side is always longer than the perpendicular height. Use the one at a right angle to the base.",
+    "see": [
+      "area",
+      "perpendicular",
+      "parallelogram"
+    ]
+  },
+  {
+    "id": "parallelogram",
+    "term": "Parallelogram",
+    "strand": "g",
+    "level": "F",
+    "def": "A four-sided shape with two pairs of parallel sides. Opposite sides are equal in length.",
+    "example": [
+      "Base 9 cm and perpendicular height 4 cm: area = 9 &times; 4 = 36 cm&sup2;."
+    ],
+    "flip": "From area to base: divide the area by the perpendicular height.",
+    "see": [
+      "area",
+      "perpendicular-height",
+      "trapezium"
+    ]
+  },
+  {
+    "id": "trapezium",
+    "term": "Trapezium",
+    "strand": "g",
+    "level": "F",
+    "def": "A four-sided shape with one pair of parallel sides. The plural is trapezia.",
+    "example": [
+      "Parallel sides 6 cm and 10 cm, height 4 cm between them.",
+      "Area = &frac12; &times; (6 + 10) &times; 4 = 32 cm&sup2;."
+    ],
+    "watch": "Add the two parallel sides, then halve. The slanting sides are not used in the area.",
+    "see": [
+      "area",
+      "perpendicular-height",
+      "parallelogram"
+    ]
+  },
+  {
+    "id": "compound-shape",
+    "term": "Compound shape",
+    "strand": "g",
+    "level": "F",
+    "def": "A shape made by joining simpler shapes, such as rectangles, triangles and semicircles.",
+    "example": [
+      "An L-shape split into two rectangles: add their areas.",
+      "Or draw a big rectangle round it and subtract the missing corner."
+    ],
+    "see": [
+      "area",
+      "perimeter"
+    ]
+  },
+  {
+    "id": "volume",
+    "term": "Volume",
+    "strand": "g",
+    "level": "F",
+    "def": "The amount of space inside a solid. It is measured in cubic units such as cm&sup3; and m&sup3;.",
+    "example": [
+      "A cuboid 6 cm by 4 cm by 3 cm has volume 6 &times; 4 &times; 3 = 72 cm&sup3;."
+    ],
+    "watch": "1 m&sup3; = 1 000 000 cm&sup3; and 1000 cm&sup3; = 1 litre.",
+    "flip": "From volume to a missing length: divide the volume by the other measurements.",
+    "see": [
+      "cuboid",
+      "prism",
+      "area"
+    ]
+  },
+  {
+    "id": "cuboid",
+    "term": "Cuboid",
+    "strand": "g",
+    "level": "F",
+    "def": "A solid with six rectangular faces, like a brick or a shoebox.",
+    "example": [
+      "A cuboid 8 cm by 5 cm by 3 cm: volume 8 &times; 5 &times; 3 = 120 cm&sup3;."
+    ],
+    "see": [
+      "volume",
+      "surface-area",
+      "prism"
+    ]
+  },
+  {
+    "id": "prism",
+    "term": "Prism",
+    "strand": "g",
+    "level": "F",
+    "def": "A solid with the same cross-section all the way along its length.",
+    "example": [
+      "Volume of a prism = area of cross-section &times; length.",
+      "A triangular prism with a triangle of area 10 cm&sup2; and a length of 8 cm has volume 80 cm&sup3;."
+    ],
+    "see": [
+      "cross-section",
+      "volume",
+      "cuboid"
+    ]
+  },
+  {
+    "id": "cross-section",
+    "term": "Cross-section",
+    "strand": "g",
+    "level": "F",
+    "def": "The flat shape you see when you slice straight through a solid. In a prism it is the same all the way along.",
+    "example": [
+      "Cut a pipe straight across and the cross-section is a ring.",
+      "Cut a triangular tent straight across and the cross-section is a triangle."
+    ],
+    "see": [
+      "prism",
+      "volume",
+      "area"
+    ]
+  },
+  {
+    "id": "surface-area",
+    "term": "Surface area",
+    "strand": "g",
+    "level": "F",
+    "def": "The total area of all the faces of a solid.",
+    "example": [
+      "A cuboid 5 cm by 4 cm by 2 cm has pairs of faces 20, 10 and 8 cm&sup2;.",
+      "Surface area = 2 &times; (20 + 10 + 8) = 76 cm&sup2;."
+    ],
+    "watch": "Surface area is measured in square units, even though the solid is 3D.",
+    "see": [
+      "area",
+      "cuboid",
+      "volume"
+    ]
+  },
+  {
+    "id": "circle",
+    "term": "Circle",
+    "strand": "g",
+    "level": "F",
+    "def": "A round shape where every point on the edge is the same distance from the centre.",
+    "example": [
+      "A coin, a wheel and the top of a tin are circles.",
+      "A circle with radius 3 cm has diameter 6 cm."
+    ],
+    "see": [
+      "radius",
+      "diameter",
+      "circumference"
+    ]
+  },
+  {
+    "id": "circumference",
+    "term": "Circumference",
+    "strand": "g",
+    "level": "F",
+    "def": "The distance all the way round the edge of a circle. It is the perimeter of a circle.",
+    "example": [
+      "C = &pi; &times; d, or C = 2 &times; &pi; &times; r.",
+      "A circle with diameter 10 cm has circumference &pi; &times; 10 = 31.4 cm (to 1 d.p.)."
+    ],
+    "watch": "A bit more than 3 times the diameter. Do not confuse it with the area, which uses r&sup2;.",
+    "flip": "From circumference to diameter: divide by &pi;.",
+    "see": [
+      "pi",
+      "diameter",
+      "perimeter",
+      "arc"
+    ]
+  },
+  {
+    "id": "pi",
+    "term": "Pi (&pi;)",
+    "strand": "g",
+    "level": "F",
+    "def": "The number you get when you divide the circumference of any circle by its diameter. It is about 3.14159, and its decimal digits never end or repeat.",
+    "example": [
+      "Circumference = &pi; &times; diameter. Area = &pi; &times; radius&sup2;.",
+      "Use the &pi; button on your calculator. Only use 3.14 if the question says so."
+    ],
+    "watch": "Do not round &pi; early. Keep the full value on the calculator and round the final answer.",
+    "see": [
+      "circumference",
+      "irrational",
+      "circle"
+    ]
+  },
+  {
+    "id": "arc",
+    "term": "Arc",
+    "strand": "g",
+    "level": "F",
+    "def": "Part of the circumference of a circle: a curved piece of the edge.",
+    "example": [
+      "A sector with angle 90&deg; and radius 8 cm has an arc length of &frac14; &times; 2&pi; &times; 8 = 12.6 cm (to 1 d.p.)."
+    ],
+    "see": [
+      "circumference",
+      "sector",
+      "chord"
+    ]
+  },
+  {
+    "id": "semicircle",
+    "term": "Semicircle",
+    "strand": "g",
+    "level": "F",
+    "def": "Half of a circle, cut along a diameter.",
+    "example": [
+      "A semicircle with diameter 8 cm has area &frac12; &times; &pi; &times; 4&sup2; = 25.1 cm&sup2;.",
+      "Its perimeter is the curved edge plus the straight 8 cm."
+    ],
+    "watch": "The perimeter of a semicircle includes the straight edge, not just the curve.",
+    "see": [
+      "circle",
+      "diameter",
+      "arc"
+    ]
+  },
+  {
+    "id": "sector",
+    "term": "Sector",
+    "strand": "g",
+    "level": "H",
+    "def": "A slice of a circle between two radii and the arc that joins their ends.",
+    "example": [
+      "A sector with angle 72&deg; and radius 5 cm is {frac:72/360} = {frac:1/5} of the circle.",
+      "Its area is &frac15; &times; &pi; &times; 5&sup2; = 15.7 cm&sup2; (to 1 d.p.)."
+    ],
+    "watch": "Find the fraction of the circle first: angle &divide; 360.",
+    "see": [
+      "arc",
+      "radius",
+      "circle"
+    ]
+  },
+  {
+    "id": "cylinder",
+    "term": "Cylinder",
+    "strand": "g",
+    "level": "H",
+    "def": "A solid with two equal circular ends and a curved side, like a tin of beans. It is a prism with a circle for its cross-section.",
+    "example": [
+      "Volume = &pi; &times; r&sup2; &times; h.",
+      "Radius 4 cm and height 10 cm: volume = &pi; &times; 16 &times; 10 = 502.7 cm&sup3; (to 1 d.p.)."
+    ],
+    "see": [
+      "circle",
+      "prism",
+      "volume"
+    ]
+  },
+  {
+    "id": "outcome",
+    "term": "Outcome",
+    "strand": "p",
+    "level": "F",
+    "def": "One possible result of an experiment or event, such as heads when you toss a coin.",
+    "example": "Rolling a dice has 6 outcomes: 1, 2, 3, 4, 5 and 6. Two coins have 4 outcomes: HH, HT, TH and TT.",
+    "watch": "HT and TH are different outcomes. List them both.",
+    "flip": "If you know how many outcomes there are and how many are favourable, you can work out the probability.",
+    "see": [
+      "probability",
+      "equally-likely"
+    ]
+  },
+  {
+    "id": "equally-likely",
+    "term": "Equally likely",
+    "strand": "p",
+    "level": "F",
+    "def": "Outcomes that each have the same chance of happening, such as the faces of a fair dice.",
+    "example": "A fair spinner with 8 equal sectors: each sector has probability {frac:1/8}.",
+    "watch": "Having three colours does not make each colour 1/3. That only works if the sectors are the same size.",
+    "flip": "If outcomes are not equally likely, use relative frequency from an experiment instead.",
+    "see": [
+      "probability",
+      "relative-frequency"
+    ]
+  },
+  {
+    "id": "sample-space",
+    "term": "Sample space",
+    "strand": "p",
+    "level": "F",
+    "def": "The list or table of every possible outcome. A sample-space diagram is a table that shows them all, so none are missed.",
+    "example": "For two dice, the sample space has 36 pairs, from (1,1) to (6,6).",
+    "flip": "Count the pairs you want in the table and divide by the total number of pairs to get a probability.",
+    "see": [
+      "outcome",
+      "probability"
+    ]
+  },
+  {
+    "id": "relative-frequency",
+    "term": "Relative frequency",
+    "strand": "p",
+    "level": "F",
+    "def": "An estimate of a probability from an experiment: the number of times something happened divided by the number of trials.",
+    "example": "A drawing pin lands point up 18 times in 50 drops. Relative frequency = 18 &divide; 50 = 0.36.",
+    "watch": "More trials give a better estimate. A few trials can be very misleading.",
+    "flip": "If you know the probability, expected number = probability &times; number of trials.",
+    "see": [
+      "probability",
+      "expected-number"
+    ]
+  },
+  {
+    "id": "expected-number",
+    "term": "Expected number",
+    "strand": "p",
+    "level": "F",
+    "def": "How many times you would expect something to happen on average: probability times the number of trials.",
+    "example": "P(6) = {frac:1/6}. In 120 rolls you expect {frac:1/6} &times; 120 = 20 sixes.",
+    "watch": "It is an average, not a promise. You will not get exactly 20 sixes every time.",
+    "flip": "Number of trials = expected number &divide; probability.",
+    "see": [
+      "probability",
+      "relative-frequency"
+    ]
+  },
+  {
+    "id": "mutually-exclusive",
+    "term": "Mutually exclusive",
+    "strand": "p",
+    "level": "F",
+    "def": "Outcomes that cannot happen at the same time. For mutually exclusive outcomes, P(A or B) = P(A) + P(B).",
+    "example": "On one roll of a dice, a 2 and a 5 are mutually exclusive, so P(2 or 5) = {frac:1/6} + {frac:1/6} = {frac:1/3}.",
+    "watch": "Even and bigger than 3 can both be true (4 and 6), so you cannot just add those probabilities.",
+    "flip": "If P(A or B) is not P(A) + P(B), the outcomes overlap.",
+    "see": [
+      "probability",
+      "independent-events"
+    ]
+  },
+  {
+    "id": "independent-events",
+    "term": "Independent events",
+    "strand": "p",
+    "level": "F",
+    "def": "Events where one does not change the chance of the other. For independent events, P(A and B) = P(A) &times; P(B).",
+    "example": "A coin and a dice: P(heads and 6) = {frac:1/2} &times; {frac:1/6} = {frac:1/12}.",
+    "watch": "Picking without replacement is not independent: the first pick changes what is left.",
+    "flip": "If P(A and B) is not P(A) &times; P(B), the events affect each other.",
+    "see": [
+      "probability",
+      "tree-diagram",
+      "without-replacement"
+    ]
+  },
+  {
+    "id": "venn-diagram",
+    "term": "Venn diagram",
+    "strand": "p",
+    "level": "F",
+    "def": "A diagram of overlapping circles in a box. Each circle is a set, the overlap is in both sets, and outside the circles is in neither.",
+    "example": "30 students: 18 like football, 12 like rugby, 5 like both. Football only 13, both 5, rugby only 7, neither 5.",
+    "watch": "Fill in the overlap first. Items in both sets must not be counted twice.",
+    "flip": "From the numbers in each region you can read off probabilities, such as P(neither) = {frac:5/30}.",
+    "see": [
+      "probability",
+      "tree-diagram"
+    ]
+  },
+  {
+    "id": "average",
+    "term": "Average",
+    "strand": "s",
+    "level": "F",
+    "def": "One number that stands for a whole set of data. The mean, median and mode are the three averages.",
+    "example": "Data: 2, 3, 3, 7. Mean 3.75, median 3, mode 3. Each is a different kind of average.",
+    "watch": "In maths there are three averages. In everyday speech &ldquo;average&rdquo; usually means the mean.",
+    "flip": "From an average and how many values there are, you can work backwards to a missing value.",
+    "see": [
+      "mean",
+      "median",
+      "mode",
+      "range"
+    ]
+  },
+  {
+    "id": "frequency-table",
+    "term": "Frequency table",
+    "strand": "s",
+    "level": "F",
+    "def": "A table that counts how many times each value occurs. The frequency (f) is the count.",
+    "example": "Goals: 0, 1, 2 with frequencies 4, 5, 6. The mean is (0 &times; 4 + 1 &times; 5 + 2 &times; 6) &divide; 15 = 17 &divide; 15.",
+    "watch": "The mode is the value with the biggest frequency, not the frequency itself.",
+    "flip": "Mean = sum of (frequency &times; value) &divide; sum of frequencies.",
+    "see": [
+      "mean",
+      "mode",
+      "median"
+    ]
+  },
+  {
+    "id": "outlier",
+    "term": "Outlier",
+    "strand": "s",
+    "level": "F",
+    "def": "A value that is far away from the rest of the data. It can drag the mean a long way.",
+    "example": "Pay: 24 000, 25 000, 26 000, 27 000, 98 000. The 98 000 is an outlier.",
+    "watch": "The median is hardly changed by an outlier, but the mean and the range are.",
+    "flip": "To describe typical data with an outlier, use the median instead of the mean.",
+    "see": [
+      "mean",
+      "median"
+    ]
+  },
+  {
+    "id": "pie-chart",
+    "term": "Pie chart",
+    "strand": "s",
+    "level": "F",
+    "def": "A circle cut into sectors, where the angle of each sector shows its share of the whole. The angles add up to 360 degrees.",
+    "example": "40 children, 15 chose cats. One child is 360 &divide; 40 = 9 degrees, so cats get 15 &times; 9 = 135 degrees.",
+    "watch": "A pie chart with no total cannot be used to compare numbers between two charts.",
+    "flip": "To read a pie chart backwards, divide an angle by the degrees for one item.",
+    "see": [
+      "percentage"
+    ]
+  },
+  {
+    "id": "scatter-graph",
+    "term": "Scatter graph",
+    "strand": "s",
+    "level": "F",
+    "def": "A graph of points, each showing two measurements for one person or thing, used to see whether the two are linked.",
+    "example": "Plot hours of revision against test score for each student.",
+    "watch": "A link on a scatter graph does not prove that one thing causes the other.",
+    "flip": "Draw a line of best fit, then use it to estimate one value from the other.",
+    "see": [
+      "correlation",
+      "line-of-best-fit"
+    ]
+  },
+  {
+    "id": "correlation",
+    "term": "Correlation",
+    "strand": "s",
+    "level": "F",
+    "def": "The link between two sets of data on a scatter graph. Positive: both go up together. Negative: one goes up as the other goes down. None: no pattern.",
+    "example": "Age of a car and its value show negative correlation: older cars are worth less.",
+    "watch": "Correlation shows a link, not a cause.",
+    "see": [
+      "scatter-graph",
+      "line-of-best-fit"
+    ]
+  },
+  {
+    "id": "line-of-best-fit",
+    "term": "Line of best fit",
+    "strand": "s",
+    "level": "F",
+    "def": "A straight line drawn through the middle of the points on a scatter graph, with about as many points above it as below.",
+    "example": "Draw it with a ruler, then read across from an x-value to estimate the y-value.",
+    "watch": "It need not go through the origin. Estimates far outside the data (extrapolation) are unreliable.",
+    "flip": "You can read a y-value from an x-value, or an x-value from a y-value.",
+    "see": [
+      "scatter-graph",
+      "correlation"
+    ]
+  },
+  {
+    "id": "class-midpoint",
+    "term": "Class midpoint",
+    "strand": "s",
+    "level": "H",
+    "def": "The value halfway between the two ends of a class in a grouped table. It is used as the value for everything in that class when estimating the mean.",
+    "example": "The class 10 &lt; t &le; 20 has midpoint (10 + 20) &divide; 2 = 15.",
+    "watch": "Using midpoints gives only an estimate of the mean, not the exact mean.",
+    "flip": "Estimated mean = sum of (frequency &times; midpoint) &divide; sum of frequencies.",
+    "see": [
+      "mean",
+      "modal-class"
+    ]
+  },
+  {
+    "id": "modal-class",
+    "term": "Modal class",
+    "strand": "s",
+    "level": "H",
+    "def": "In a grouped table, the class with the biggest frequency.",
+    "example": "If the class 10 &lt; t &le; 20 has the biggest frequency, it is the modal class.",
+    "watch": "Give the class, not the frequency.",
+    "see": [
+      "mode",
+      "class-midpoint"
+    ]
+  },
+  {
+    "id": "term-to-term-rule",
+    "term": "Term-to-term rule",
+    "strand": "a",
+    "level": "F",
+    "def": "A rule that tells you how to get from one term of a sequence to the next.",
+    "example": "3, 7, 11, 15 &hellip; has the term-to-term rule \"add 4\".",
+    "watch": "It is slow for a term far along the sequence. The nth term jumps straight there.",
+    "flip": "From the terms to the rule: find the gap between neighbouring terms.",
+    "see": [
+      "sequence",
+      "nth-term",
+      "common-difference"
+    ]
+  },
+  {
+    "id": "position-to-term-rule",
+    "term": "Position-to-term rule",
+    "strand": "a",
+    "level": "F",
+    "def": "Another name for the nth term: a formula that gives a term of a sequence from its position n.",
+    "example": "For 5, 8, 11, 14 &hellip; the position-to-term rule is 3n + 2. Put n = 10 to get the 10th term, 32.",
+    "flip": "From the rule to a term: put in n. From the terms to the rule: use the common difference.",
+    "see": [
+      "nth-term",
+      "term-to-term-rule"
+    ]
+  },
+  {
+    "id": "common-difference",
+    "term": "Common difference",
+    "strand": "a",
+    "level": "F",
+    "def": "The amount a linear sequence goes up or down by each time. It is also the number in front of n in the nth term.",
+    "example": "20, 17, 14, 11 &hellip; has common difference &minus;3.",
+    "watch": "If the terms go down, the common difference is negative.",
+    "flip": "Given the common difference and the first term, write the sequence or its nth term.",
+    "see": [
+      "linear-sequence",
+      "term-to-term-rule",
+      "nth-term"
+    ]
+  },
+  {
+    "id": "linear-sequence",
+    "term": "Linear sequence",
+    "strand": "a",
+    "level": "F",
+    "def": "A sequence that goes up or down by the same amount each time. Its nth term has the form an + b.",
+    "example": "4, 7, 10, 13 &hellip; goes up by 3, and its nth term is 3n + 1.",
+    "watch": "If the gaps themselves change, it is not linear. Check the gaps first.",
+    "flip": "Find the nth term from the terms: the gap is a, then fix the start to find b.",
+    "see": [
+      "common-difference",
+      "nth-term",
+      "quadratic-sequence"
+    ]
+  },
+  {
+    "id": "geometric-sequence",
+    "term": "Geometric sequence",
+    "strand": "a",
+    "level": "F",
+    "def": "A sequence where each term is the one before multiplied by the same number.",
+    "example": "2, 6, 18, 54 &hellip; multiplies by 3. 80, 40, 20, 10 &hellip; multiplies by {frac:1/2}.",
+    "watch": "The gaps are not equal. Divide neighbouring terms to find the multiplier.",
+    "flip": "Going back along the sequence means dividing by the multiplier.",
+    "see": [
+      "sequence",
+      "fibonacci-sequence",
+      "multiplier"
+    ]
+  },
+  {
+    "id": "fibonacci-sequence",
+    "term": "Fibonacci-type sequence",
+    "strand": "a",
+    "level": "F",
+    "def": "A sequence where each term is the sum of the two terms before it.",
+    "example": "1, 1, 2, 3, 5, 8, 13 &hellip; Another one starts 4, 5: 4, 5, 9, 14, 23 &hellip;",
+    "watch": "You need to be told the first two terms.",
+    "flip": "Going backwards, subtract: each term is the next one minus the one before.",
+    "see": [
+      "sequence",
+      "geometric-sequence"
+    ]
+  },
+  {
+    "id": "coordinates",
+    "term": "Coordinates",
+    "strand": "a",
+    "level": "F",
+    "def": "A pair of numbers (x, y) that says where a point is on a grid: x is how far along, y is how far up.",
+    "example": "The point (3, 2) is 3 along and 2 up. The point (&minus;4, 3) is 4 to the left and 3 up.",
+    "watch": "x always comes first. Left and down are negative.",
+    "flip": "From a point on the grid to its coordinates, and from coordinates to a point.",
+    "see": [
+      "axis",
+      "origin",
+      "quadrant"
+    ]
+  },
+  {
+    "id": "axis",
+    "term": "Axis (axes)",
+    "strand": "a",
+    "level": "F",
+    "def": "One of the two number lines on a graph. The x-axis goes across and the y-axis goes up.",
+    "example": "On a cost graph, hours might go along the x-axis and pounds up the y-axis.",
+    "watch": "Axes is the plural of axis.",
+    "see": [
+      "origin",
+      "coordinates"
+    ]
+  },
+  {
+    "id": "origin",
+    "term": "Origin",
+    "strand": "a",
+    "level": "F",
+    "def": "The point (0, 0) where the x-axis and the y-axis cross.",
+    "example": "The point (0, 5) is 5 above the origin.",
+    "see": [
+      "axis",
+      "coordinates"
+    ]
+  },
+  {
+    "id": "quadrant",
+    "term": "Quadrant",
+    "strand": "a",
+    "level": "F",
+    "def": "One of the four regions the axes cut a grid into, numbered 1 to 4 anticlockwise from the top right.",
+    "example": "(&minus;3, 6) is in quadrant 2 (top left), because x is negative and y is positive.",
+    "watch": "The numbering goes anticlockwise, not left to right.",
+    "see": [
+      "coordinates",
+      "axis"
+    ]
+  },
+  {
+    "id": "midpoint",
+    "term": "Midpoint",
+    "strand": "a",
+    "level": "F",
+    "def": "The point exactly halfway along a line segment. Add the x-coordinates and halve, and do the same for y.",
+    "example": "The midpoint of (2, 4) and (8, 10) is ((2 + 8) &divide; 2, (4 + 10) &divide; 2) = (5, 7).",
+    "watch": "Halve the totals. Do not give the gap between the points.",
+    "flip": "Given the midpoint and one end, go the same step again to find the other end.",
+    "see": [
+      "coordinates",
+      "gradient"
+    ]
+  },
+  {
+    "id": "gradient",
+    "term": "Gradient",
+    "strand": "a",
+    "level": "F",
+    "def": "How steep a line is: rise divided by run. A line that goes up to the right has a positive gradient, and one that goes down has a negative gradient.",
+    "example": "A line through (1, 2) and (4, 11) rises 9 over a run of 3, so its gradient is 9 &divide; 3 = 3.",
+    "watch": "It is rise &divide; run, not run &divide; rise. Check the sign against the picture.",
+    "flip": "Given the gradient and a point, you can draw or write the line.",
+    "see": [
+      "y-intercept",
+      "parallel",
+      "perpendicular"
+    ]
+  },
+  {
+    "id": "y-intercept",
+    "term": "y-intercept",
+    "strand": "a",
+    "level": "F",
+    "def": "The value of y where a line crosses the y-axis (where x = 0). In y = mx + c it is c.",
+    "example": "The line y = 3x &minus; 2 crosses the y-axis at (0, &minus;2), so its y-intercept is &minus;2.",
+    "watch": "It is where the line meets the y-axis, not the x-axis.",
+    "flip": "To find where a line crosses the x-axis, put y = 0 instead.",
+    "see": [
+      "gradient",
+      "coordinates"
+    ]
+  },
+  {
+    "id": "base",
+    "term": "Base (of a power)",
+    "strand": "n",
+    "level": "F",
+    "def": "The number that is multiplied by itself in a power. In 5 to the power 3, the base is 5 and the index is 3.",
+    "example": "5<sup>3</sup> = 5 &times; 5 &times; 5 = 125. The base is 5.",
+    "watch": "The laws of indices only combine powers that have the same base.",
+    "see": [
+      "power",
+      "indices-laws"
+    ]
+  },
+  {
+    "id": "standard-form",
+    "term": "Standard form",
+    "strand": "n",
+    "level": "F",
+    "def": "A way to write very big or very small numbers as a number from 1 up to (but not including) 10, times a power of 10.",
+    "example": [
+      "4 500 000 = 4.5 &times; 10<sup>6</sup>",
+      "0.00072 = 7.2 &times; 10<sup>&minus;4</sup>"
+    ],
+    "watch": "45 &times; 10<sup>3</sup> is not in standard form, because 45 is not less than 10.",
+    "flip": "Move the decimal point the other way to change standard form back into an ordinary number.",
+    "see": [
+      "power",
+      "indices-laws",
+      "place-value"
+    ]
+  },
+  {
+    "id": "metric-prefix",
+    "term": "Metric prefix",
+    "strand": "n",
+    "level": "F",
+    "def": "A short word or letter in front of a unit that stands for a power of 10, such as kilo (k), mega (M) and milli (m).",
+    "example": [
+      "kilo (k) = 10<sup>3</sup>, so 1 kW = 1000 W",
+      "milli (m) = 10<sup>&minus;3</sup>, so 1 mA = 0.001 A"
+    ],
+    "flip": "To change to a bigger unit divide by the power of 10, and to a smaller unit multiply.",
+    "see": [
+      "standard-form",
+      "power"
+    ]
+  },
 ];

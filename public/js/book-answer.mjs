@@ -7,7 +7,7 @@
 // Non-numeric answers (such as 6x-1) are compared as normalised text.
 
 const MINUS = /[−–—]/g;
-const UNITS = /\s*(cm²|cm\^2|cm2|m²|m\^2|m2|cm|mm|km|kg|m|g|degrees|deg|°c|°)$/;
+const UNITS = /\s*(cm³|cm\^3|cm3|m³|m\^3|m3|mm³|mm\^3|mm3|mm²|mm\^2|mm2|km²|km2|cm²|cm\^2|cm2|m²|m\^2|m2|litres?|ml|cm|mm|km|kg|m|g|l|degrees|deg|°c|°)$/;
 
 function clean(raw) {
   // A student cannot need more than 200 characters; longer input is junk and must not freeze the tab.
@@ -19,6 +19,7 @@ function clean(raw) {
     .replace(/÷/g, '/')
     .replace(/^£\s*/, '')
     .replace(/^[a-z]\s*=\s*/, '')
+    .replace(/(?<=[a-z)])\.$/, '')
     .replace(UNITS, '')
     .trim();
 }
@@ -60,10 +61,15 @@ export function textKey(raw) {
     .replace(/sqrt\s*\(?\s*(\d+)\s*\)?/g, '√$1')
     .replace(/√\s*\(\s*(\d+)\s*\)/g, '√$1')
     .replace(/\s*\/\s*/g, '/')
+    // Standard form needs its multiplication sign: "4.6x10^6" and "4.6*10^6" match, "4.610^6" does not.
+    .replace(/\s*[x*·]\s*(?=10\s*\^)/g, 'x')
+    // A bracketed whole-number index, "a^(8)" or "7^(-2)", means the same as "a^8".
+    .replace(/\^\((-?\d+)\)/g, '^$1')
     // Two solutions typed as "x = -4 or x = 3": drop the repeated "x =" so it matches "-4 or 3".
     .replace(/(\bor\b|\band\b|,)\s*[a-z]\s*=\s*/g, '$1 ')
     // A pair typed with brackets, "(2,5)", means the same as "2,5".
-    .replace(/^\(([^()]*,[^()]*)\)$/, '$1');
+    .replace(/^\(([^()]*,[^()]*)\)$/, '$1')
+    .replace(/^(-?\d+(?:\.\d+)?)[\s;]+(-?\d+(?:\.\d+)?)$/, '$1,$2');
   // Keep one space only in a mixed number such as "1 1/2"; drop all others.
   if (/^-?\d+\s+\d+\/\d+$/.test(s)) return s.replace(/\s+/g, ' ');
   return s.replace(/[\s*·]/g, '');
@@ -85,7 +91,122 @@ export function matches(input, answers, mode = 'value') {
     }
   }
   const key = textKey(input);
-  return list.some((a) => textKey(a) === key);
+  if (list.some((a) => textKey(a) === key)) return true;
+  return mode === 'exact' && list.some((a) => sameAlgebra(input, a) === 'same');
+}
+
+// ---------- algebra written a different way ----------
+// "n*3+1" and "1+3n" mean the same as "3n+1". Both sides are tried at several values of the letter.
+// The typed answer must also be no longer and no more bracketed than the key, so "2(x+1)" is not
+// accepted where "2x+2" (expanded) was asked for, and "x^2+7x-2x-14" is not accepted where a simplified answer was asked for.
+
+const ALG_OK = /^[0-9a-z.+\-*/^()\s]+$/;
+
+function algEval(src, x) {
+  const s = src.replace(/\s+/g, '');
+  let i = 0;
+  const peek = () => s[i];
+  const num = () => {
+    const m = /^\d*\.?\d+/.exec(s.slice(i));
+    if (!m) return null;
+    i += m[0].length;
+    return Number(m[0]);
+  };
+  function atom() {
+    if (peek() === '(') {
+      i += 1;
+      const v = sum();
+      if (peek() !== ')') throw new Error('bracket');
+      i += 1;
+      return v;
+    }
+    if (/[0-9.]/.test(peek() ?? '')) {
+      const v = num();
+      if (v === null) throw new Error('number');
+      return v;
+    }
+    if (/[a-z]/.test(peek() ?? '')) {
+      i += 1;
+      return x;
+    }
+    throw new Error('unexpected');
+  }
+  function power() {
+    const base = atom();
+    if (peek() === '^') {
+      i += 1;
+      const neg = peek() === '-';
+      if (neg) i += 1;
+      const e = peek() === '(' ? atom() : num();
+      if (e === null) throw new Error('exponent');
+      return base ** (neg ? -e : e);
+    }
+    return base;
+  }
+  function product() {
+    let v = power();
+    for (;;) {
+      const c = peek();
+      if (c === '*') { i += 1; v *= power(); }
+      else if (c === '/') { i += 1; v /= power(); }
+      else if (c !== undefined && (c === '(' || /[a-z0-9.]/.test(c))) v *= power(); // implicit multiplication: 3n, 2(n+1), n(n+1)
+      else return v;
+    }
+  }
+  function sum() {
+    let neg = false;
+    while (peek() === '+' || peek() === '-') { if (peek() === '-') neg = !neg; i += 1; }
+    let v = product();
+    if (neg) v = -v;
+    while (peek() === '+' || peek() === '-') {
+      const op = peek();
+      i += 1;
+      let sign = op === '-' ? -1 : 1;
+      while (peek() === '+' || peek() === '-') { if (peek() === '-') sign = -sign; i += 1; }
+      v += sign * product();
+    }
+    return v;
+  }
+  const out = sum();
+  if (i !== s.length) throw new Error('trailing');
+  return out;
+}
+
+const topTerms = (src) => {
+  let depth = 0;
+  let count = 1;
+  const t = src.replace(/\s+/g, '').replace(/^[+-]/, '');
+  for (let k = 0; k < t.length; k += 1) {
+    const c = t[k];
+    if (c === '(') depth += 1;
+    else if (c === ')') depth -= 1;
+    else if (depth === 0 && (c === '+' || c === '-') && !/[\^*/(]/.test(t[k - 1] ?? '')) count += 1;
+  }
+  return count;
+};
+
+/** 'same' when typed and key are the same algebra in an acceptable form; 'longer' when equal but not simplified; otherwise null. */
+export function sameAlgebra(input, key) {
+  const a = clean(input).replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*');
+  const b = clean(key).replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*');
+  if (!ALG_OK.test(a) || !ALG_OK.test(b)) return null;
+  if (/10\s*\^/.test(a) || /10\s*\^/.test(b)) return null; // standard form is matched by its written form, not as algebra
+  const letters = new Set([...(a + b).replace(/[^a-z]/g, '')]);
+  if (letters.size !== 1) return null; // exactly one letter, the same in both
+  if (!/[a-z]/.test(a) || !/[a-z]/.test(b)) return null;
+  try {
+    for (const x of [2, 3, 5, 7, -1, 0.5, 11]) {
+      const u = algEval(a, x);
+      const v = algEval(b, x);
+      if (!Number.isFinite(u) || !Number.isFinite(v)) continue;
+      if (Math.abs(u - v) > 1e-9 * Math.max(1, Math.abs(v))) return null;
+    }
+  } catch { return null; }
+  const bracketsA = (a.match(/\(/g) ?? []).length;
+  const bracketsB = (b.match(/\(/g) ?? []).length;
+  if (bracketsB === 0 && bracketsA > 0) return 'longer';
+  if (bracketsB > 0 && bracketsA === 0) return 'longer';
+  return topTerms(a) <= topTerms(b) ? 'same' : 'longer';
 }
 
 /** In exact mode: the value is right but the written form is not what was asked for. */
@@ -132,6 +253,8 @@ export function feedbackFor(input, answers) {
   const numeric = list.length > 0 && list.every((a) => parseNumber(a) !== null);
   const typed = String(input).trim();
   if (numeric && parseNumber(typed) === null && !/[0-9]/.test(typed)) return 'This answer is a number. Type digits, like 12.';
+  if (/^\d+(\.\d+)?e[-+]?\d+$/i.test(typed)) return 'Write E6 as x10^6, like 4.6x10^6.';
+  if (list.some((k) => sameAlgebra(typed, String(k)) === 'longer')) return 'That is equal to the answer, but it is not in the form asked for. Collect like terms or write it the way the question says.';
   if (numeric && /%\s*$/.test(typed) && !list.some((a) => /%\s*$/.test(String(a)))) return 'Just the number, without the % sign.';
   if (/^[a-z]\d+$/i.test(typed) && list.some((a) => String(a).includes('^'))) return 'Write a power with ^, like x^2.';
   const sign = diagnose(input, answers);
