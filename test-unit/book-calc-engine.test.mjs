@@ -97,3 +97,20 @@ test('the basic profile has no trigonometry; the scientific profile is ready for
   assert.throws(() => val('tan(90)', { profile: SCIENTIFIC }), (e) => e.kind === 'math');
   assert.deepEqual(tokenize('2+3').map((t) => t.t), ['num', '+', 'num']);
 });
+
+test('huge, tiny and absurd sums never show NaN or Infinity and never throw', () => {
+  for (const sum of ['1.797693134862 * 10 ^ 308', '9 ^ 9 ^ 9', '10 ^ 400', '2 ^ 1024']) {
+    assert.doesNotMatch(calculate(sum).text, /NaN|Infinity/, sum);
+  }
+  assert.equal(calculate('1.797693134862 * 10 ^ 308').text, 'Cannot work that out');
+  for (const sum of ['1 ÷ 10000000', '2 ÷ 3000000', '1 ÷ 1000000000']) {
+    const out = calculate(sum).text;
+    assert.doesNotMatch(out, /e/, sum);
+    assert.match(out, /^[0-9.]+E-\d+$/, sum);
+  }
+  assert.equal(calculate('1 ÷ 1000000').text, '0.000001');
+  assert.doesNotThrow(() => calculate('('.repeat(20000) + '1'));
+  assert.doesNotThrow(() => calculate('-'.repeat(20000) + '1'));
+  assert.equal(calculate('('.repeat(20000) + '1').ok, false);
+  assert.equal(calculate('-'.repeat(20000) + '1').ok, false);
+});

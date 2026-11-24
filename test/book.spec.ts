@@ -999,3 +999,19 @@ test.describe('the calculator, small kindnesses', () => {
     expect(order).toEqual(['q-form', 'q-feedback', 'q-calc', 'q-help']);
   });
 });
+
+test.describe('the calculator, from the tester\'s report', () => {
+  test('a typed square-root sign presses the root key, and Escape from a key returns focus to the button', async ({ page }) => {
+    await page.goto('/books/gcse/percentages.html');
+    const q = page.locator('.q:has(.calc-toggle)').first();
+    await q.locator('.calc-toggle').click();
+    // Playwright's typing inserts text without a key event for this symbol, so send the key event itself.
+    await q.locator('.calc').evaluate((node) => node.dispatchEvent(new KeyboardEvent('keydown', { key: '√', bubbles: true })));
+    await page.keyboard.type('30=');
+    await expect(q.locator('.calc-result')).toHaveText('5.477225575');
+    await q.locator('.calc').getByRole('button', { name: 'plus', exact: true }).focus();
+    await page.keyboard.press('Escape');
+    await expect(q.locator('.calc')).toBeHidden();
+    await expect(q.locator('.calc-toggle')).toBeFocused();
+  });
+});

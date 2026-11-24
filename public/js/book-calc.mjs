@@ -148,7 +148,8 @@ export function createCalculator(layout = LAYOUTS.basic) {
   }
 
   const allKeys = layout.rows.flat();
-  const byText = (text) => allKeys.find((k) => k.action === 'insert' && k.text === text);
+  // A typed character finds its key by what it inserts or by what is printed on it (so a typed √ presses the √ key).
+  const byText = (text) => allKeys.find((k) => k.action === 'insert' && (k.text === text || k.label === text));
 
   function open() {
     panel.hidden = false;

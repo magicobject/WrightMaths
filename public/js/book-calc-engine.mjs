@@ -88,6 +88,7 @@ export function tokenize(text, profile = BASIC) {
 /** Evaluate text to a number. `ans` is the previous answer for the Ans key. Throws CalcError. */
 export function evaluate(text, { profile = BASIC, ans = 0 } = {}) {
   const tokens = tokenize(text, profile);
+  if (tokens.length > 1000) throw new CalcError('syntax'); // no real sum is this long
   let opens = 0;
   for (const tok of tokens) { if (tok.t === '(') opens += 1; else if (tok.t === ')') opens -= 1; if (opens < 0) throw new CalcError('syntax'); }
   for (let k = 0; k < opens; k += 1) tokens.push({ t: ')' });
@@ -186,8 +187,9 @@ export function formatNumber(x) {
   if (!Number.isFinite(x)) return MESSAGES.math;
   if (x === 0) return '0';
   const rounded = Number(x.toPrecision(10));
+  if (!Number.isFinite(rounded)) return MESSAGES.math; // rounding up past the biggest number
   const abs = Math.abs(rounded);
-  if (abs >= 1e10 || abs < 1e-9) {
+  if (abs >= 1e10 || abs < 1e-6) {
     const [mantissa, exponent] = rounded.toExponential(9).split('e');
     return `${mantissa.replace(/\.?0+$/, '')}E${Number(exponent)}`;
   }
@@ -200,6 +202,7 @@ export function calculate(text, options = {}) {
     const value = evaluate(text, options);
     return { ok: true, value, text: formatNumber(value) };
   } catch (error) {
+    if (error instanceof RangeError) return { ok: false, text: MESSAGES.syntax }; // absurdly deep nesting
     if (error instanceof CalcError) return { ok: false, text: MESSAGES[error.kind] ?? MESSAGES.syntax };
     throw error;
   }
