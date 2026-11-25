@@ -165,6 +165,12 @@
 .q-form{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
 .q-input{flex:1 1 180px;min-width:0;font:inherit;font-size:1.05rem;padding:10px 12px;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);color:var(--ink);}
 .q-input:read-only{background:var(--t-right);border-color:var(--c-right);}
+.blank-input{font:inherit;color:var(--ink);text-align:center;min-height:36px;padding:2px 6px;margin:0 .15em;border:2px solid var(--navy-mid);border-radius:8px;background:var(--white);vertical-align:baseline;max-width:100%;}
+.blank-input:read-only{background:var(--t-right);border-color:var(--c-right);}
+.blank-input.blank-wrong{background:var(--t-oops);border-color:var(--c-oops);}
+.blank-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 12px;}
+.blank-status{margin:0;font-weight:600;color:var(--ink);}
+.blank-status.blank-ok{color:var(--c-right);}
 .btn-check,.btn-stuck,.mc-option{font:inherit;cursor:pointer;min-height:44px;}
 /* The symbol row always takes its room and is only shown while you are typing. If it came and went with focus, pressing
    "Give me a clue" (which takes focus away from the box) moved the button 54px between mouse-down and mouse-up, so the first press was lost. */
