@@ -4,11 +4,12 @@ import { ALL_PAGES } from './support/pages';
 const ALL_PATHS = [...ALL_PAGES.map((p) => p.path), '/404.html'];
 
 for (const path of ALL_PATHS) {
-  test(`${path} shows a build number in the footer`, async ({ page }) => {
+  test(`${path} has no build number or DBS claim in the footer`, async ({ page }) => {
     await page.goto(path);
 
-    const buildNumber = page.locator('.legal .build-number');
-    await expect(buildNumber).toBeVisible();
-    await expect(buildNumber).toHaveText(/^Build \d{4}\.\d{2}\.\d{2}\.\d{3}$/);
+    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.locator('footer .build-number')).toHaveCount(0);
+    await expect(page.locator('footer')).not.toContainText(/build \d{4}\./i);
+    await expect(page.locator('footer')).not.toContainText(/DBS/i);
   });
 }

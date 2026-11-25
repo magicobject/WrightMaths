@@ -16,8 +16,16 @@
     </div>
     <ul class="changelog">
       <li>
-        <div class="changelog-meta"><span class="changelog-build">2026.11.25.020</span><span class="changelog-date">25 November 2026</span></div>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.022</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, Listen: some sentences were read by the device voice instead of the recorded one for up to a day after a release, because a browser kept an old copy of the list of recordings (<code>manifest.json</code>) and so did not know about newly recorded sentences. The list is now checked with the server every time (a tiny &ldquo;not modified&rdquo; reply when nothing has changed), and recordings themselves are kept for an hour instead of a week, so a re-recorded sentence is heard within the hour. Found on the &ldquo;Why mixed?&rdquo; sentence on the mixed practice page. The test server now starts with <code>node</code> directly instead of <code>npx</code>, which could take over a minute to resolve in a git worktree and time the tests out.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.021</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Footer: the build number is gone from every page&rsquo;s footer (it still appears here, in the list below), and the &ldquo;Enhanced DBS check&rdquo; wording is gone from the footer too (it stays on the <a href="index.html">home page</a>). Pages touched: every page (shared footer).</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.020</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Docs only: a draft common A-level Pure Maths syllabus for the planned A-level book (<code>docs/alevel-pure-syllabus.md</code>). It sets out 46 topics in ten areas, split into Year 1 and Year 2, with a prerequisite graph, how the exam boards differ, and what is still to be checked against each board&rsquo;s specification. No site change.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.019</span><span class="changelog-date">25 November 2026</span></div>
