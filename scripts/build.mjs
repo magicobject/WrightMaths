@@ -21,37 +21,15 @@ import {
   renderPrereqs, renderUnlocks, renderPyramid, renderGlossaryPage, renderWords, renderPracticeTopics,
   buildAutoPatterns, autoLinkQuestionTerms,
   renderAnswerKey,
-  extractKey, plainText,
+  extractKey, plainText, addHeadingIds,
 } from './book-lib.mjs';
 import { buildSearchIndex, renderSearchBox } from './book-search-lib.mjs';
+import { loadShell, renderShell } from './page-shell.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(root, path), 'utf8');
 
-const pageTemplate = read('templates/page.html');
-const headerTemplate = read('templates/header.html').trimEnd();
-const footerTemplate = read('templates/footer.html').trimEnd();
-
-function readBuildNumber() {
-  const file = join(root, 'build-number.json');
-  if (!existsSync(file)) return '0000.00.00.000';
-  const { date, build } = JSON.parse(readFileSync(file, 'utf8'));
-  return `${date}.${String(build).padStart(3, '0')}`;
-}
-
-// Links that already point somewhere absolute are left alone; site-relative
-// ones get the page's base ("" for top-level pages, "../../" for the book).
-const isAbsolute = (href) => /^(tel:|mailto:|https?:|#|\/)/.test(href);
-const withBase = (href, base) => (isAbsolute(href) ? href : `${base}${href}`);
-
-function renderNavItems(activeHref, base) {
-  return NAV.map(({ href, label }) => {
-    const current = href === activeHref ? ' aria-current="page"' : '';
-    return `        <li><a href="${withBase(href, base)}"${current}>${label}</a></li>`;
-  }).join('\n');
-}
-
-const buildNumber = readBuildNumber();
+const shell = loadShell(root);
 
 // ---------- the GCSE book ----------
 
@@ -77,19 +55,6 @@ const usage = new Map(); // term id -> Set of topic ids that use it
 const questionCounts = new Map(
   liveTopics.map((t) => [t.id, countQuestions(read(`src/pages/books/gcse/${t.id}.html`))]),
 );
-
-// Give every <h2> and <h3> without an id a stable one ("s-measuring-turns") so "On this page" links work with no script.
-function addHeadingIds(html) {
-  const used = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
-  return html.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (whole, level, inner) => {
-    const text = inner.replace(/<[^>]+>/g, ' ').replace(/\{[^}]*\}/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
-    let id = `s-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}`;
-    if (id === 's-') id = 's-part';
-    while (used.has(id)) id += '-x';
-    used.add(id);
-    return `<h${level} id="${id}">${inner}</h${level}>`;
-  });
-}
 
 function renderBookContent(page, raw) {
   const topic = page.bookTopic ? graph.get(page.bookTopic) : null;
@@ -223,18 +188,6 @@ const ordered = [
 for (const page of ordered) {
   const isBook = Boolean(page.book || page.bookTopic);
   const merged = isBook ? { ...bookPageDefaults, ...page } : page;
-  const base = merged.base ?? '';
-  const cta = merged.cta ?? { href: 'contact.html', text: 'Get in touch' };
-
-  const footer = footerTemplate.replace('{{FOOTER_NAV_ITEMS}}', () =>
-    NAV.map(({ href, label }) => `        <li><a href="${withBase(href, base)}">${label}</a></li>`).join('\n'),
-  );
-  const header = headerTemplate
-    .replace('{{NAV_ITEMS}}', () => renderNavItems(merged.active, base))
-    .replace('{{CTA_HREF}}', () => withBase(cta.href, base))
-    .replace('{{CTA_TEXT}}', () => cta.text)
-    .replace('{{SEARCH}}', () => (isBook ? renderSearchBox(base) : ''));
-
   let content = merged.keyTopic
     ? renderAnswerKey(graph.get(merged.keyTopic) ?? PAPERS.find((p) => p.id === merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
     : read(`src/pages/${merged.slug}.html`).trimEnd();
@@ -252,44 +205,7 @@ for (const page of ordered) {
 
   if (isBook && !merged.keyTopic) searchPages.push(searchPageFor(merged, content));
 
-  let extraHead = '';
-  if (merged.robots) extraHead += `<meta name="robots" content="${merged.robots}">\n`;
-  if (merged.canonical !== false) {
-    const canonicalPath = merged.canonicalPath ?? `${merged.slug}.html`;
-    extraHead += `<link rel="canonical" href="https://wrightmaths.uk/${canonicalPath}">\n`;
-  }
-  for (const css of merged.extraCss ?? []) {
-    extraHead += `<link rel="stylesheet" href="${base}${css}?v={{BUILD_NUMBER}}">\n`;
-  }
-  for (const js of merged.extraBootScripts ?? []) {
-    extraHead += `<script src="${base}${js}?v={{BUILD_NUMBER}}"></script>\n`;
-  }
-  const extraScripts = (merged.extraModuleScripts ?? [])
-    .map((js) => `\n<script type="module" src="${base}${js}?v={{BUILD_NUMBER}}"></script>`)
-    .join('');
-
-  // Book pages load no third-party fonts: a child's IP address must not go to Google. They use the system font stack.
-  const fonts = isBook ? '' : [
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">',
-    '',
-  ].join('\n');
-  const skip = isBook ? '<a class="skip-link" href="#main">Skip to the content</a>\n' : '';
-  if (isBook) content = content.replace('<main class="book', '<main id="main" tabindex="-1" class="book');
-
-  const html = pageTemplate
-    .replace('{{FONTS}}', () => fonts)
-    .replace('{{SKIP}}', () => skip)
-    .replace('{{TITLE}}', () => merged.title)
-    .replace('{{DESCRIPTION}}', () => merged.description)
-    .replace('{{EXTRA_HEAD}}', () => extraHead)
-    .replace('{{HEADER}}', () => header)
-    .replace('{{CONTENT}}', () => content)
-    .replace('{{FOOTER}}', () => footer)
-    .replace('{{EXTRA_SCRIPTS}}', () => extraScripts)
-    .replaceAll('{{BASE}}', base)
-    .replaceAll('{{BUILD_NUMBER}}', buildNumber);
+  const html = renderShell({ shell, nav: NAV, merged, content, isBook, searchBox: isBook ? renderSearchBox(merged.base ?? '') : '' });
 
   const outFile = join(root, 'public', `${merged.slug}.html`);
   mkdirSync(dirname(outFile), { recursive: true });
@@ -301,3 +217,6 @@ for (const page of ordered) {
 const searchIndex = buildSearchIndex({ pages: searchPages, glossary: GLOSSARY, strands: STRANDS, glossaryHref: 'glossary.html' });
 writeFileSync(join(root, 'public/books/gcse/search-index.json'), JSON.stringify(searchIndex));
 console.log(`built public/books/gcse/search-index.json (${searchIndex.length} entries)`);
+
+// The A-level book is built from its own script (it shares the helpers above).
+await import('./build-alevel.mjs');

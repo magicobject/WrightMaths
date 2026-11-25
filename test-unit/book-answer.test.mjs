@@ -350,3 +350,42 @@ test('two or more answers asked for as "1 or 5" are accepted in any order with a
   assert.equal(matches('4 -4', ['4,-4', '(4, -4)'], 'exact'), true);
   assert.equal(matches('-4 4', ['4,-4', '(4, -4)'], 'exact'), false);
 });
+
+test('a list of roots is right in any order, and never with different numbers (exact mode)', () => {
+  for (const key of ['-5 or 2', '-5 and 2']) {
+    const word = key.includes('or') ? 'or' : 'and';
+    assert.equal(matches(`2 ${word} -5`, [key], 'exact'), true, 'reordered is right');
+    assert.equal(matches(`-5 ${word} 2`, [key], 'exact'), true, 'as written is right');
+    assert.equal(matches(`x = -5 ${word} x = 2`, [key], 'exact'), true, 'with x = is right');
+    assert.equal(matches(`-2 ${word} 5`, [key], 'exact'), false, 'both signs flipped is wrong');
+    assert.equal(matches(`5 ${word} 2`, [key], 'exact'), false, 'one sign flipped is wrong');
+    assert.equal(matches(`-5 ${word} -2`, [key], 'exact'), false, 'the other sign flipped is wrong');
+    assert.equal(matches('2', [key], 'exact'), false, 'one root dropped is wrong');
+    assert.equal(matches(`-5 ${word} 2 ${word} 7`, [key], 'exact'), false, 'an extra root is wrong');
+  }
+  assert.equal(matches('-2 or 5', ['-5 or 2'], 'value'), false);
+  assert.equal(matches('1 or -3', ['3 or -1'], 'value'), false);
+});
+
+test('words are never read as algebra: they cannot make a wrong answer equal a right one', () => {
+  assert.equal(matches('0 and 7', ['0 and 6'], 'exact'), false, 'a zero in both used to make every product 0');
+  assert.equal(matches('yes', ['sey'], 'exact'), false);
+  assert.equal(matches('no', ['on'], 'exact'), false);
+  assert.equal(matches('none', ['neon'], 'exact'), false);
+});
+
+test('a fraction in a power keeps its brackets: x^(1/2) is not x/2', () => {
+  assert.equal(matches('x/2', ['x^(1/2)'], 'exact'), false);
+  assert.equal(matches('2^(1/2)*x', ['x/2'], 'exact'), false);
+  assert.equal(matches('x^(1/2)', ['x^(1/2)'], 'exact'), true);
+  assert.equal(matches('x/2', ['(1/2)x'], 'exact'), true, 'a bracketed fraction that is not in a power still means itself');
+  assert.equal(matches('x^(-1/2)', ['x^(1/2)'], 'exact'), false);
+});
+
+test('ordinary algebra answers are still accepted in other written forms', () => {
+  assert.equal(matches('1+3n', ['3n+1'], 'exact'), true);
+  assert.equal(matches('n*3+1', ['3n+1'], 'exact'), true);
+  assert.equal(matches('yx', ['xy'], 'exact'), true);
+  assert.equal(matches('3x^2+5', ['5+3x^2'], 'exact'), true);
+  assert.equal(matches('2(x+1)', ['2x+2'], 'exact'), false, 'not expanded');
+});

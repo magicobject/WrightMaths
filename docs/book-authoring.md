@@ -65,6 +65,7 @@ Every question is a `<div class="q" ...>` (exactly that start; the build numbers
 
 - `data-answers`: accepted answers separated by `;`.
 - `data-mode="value"` accepts any equal number (3/4, 6/8, 0.75, 75%); `data-mode="exact"` needs the written form (for "simplest form" and algebra).
+- **Lists of answers.** A key written "a or b" or "a and b" (numbers) is right in any order, and with "x =" or a comma: but never with a different number, a dropped root or a flipped sign (a test over every page checks this). A list of things that are not numbers (for example "x(x-3) or x(x-2)") is compared as text: list each accepted order in `data-answers`, separated by `;`. Words (or, and, yes, no, none, true, false, not) are never read as algebra.
 - `<ul class="wrong">`: a specific message for a specific wrong answer. **Write the message for the mistake that produces that number**, not "wrong". Aim for the two or three most common slips.
 - Multiple choice: `data-type="mc"` with `<ul class="options">`; mark the right one `data-correct`; give each wrong one a `data-why`.
 - Hints (`ladder`) go from "what is it asking" to "first step" to "next step". The script adds a final "ask a person" rung itself.

@@ -209,6 +209,8 @@ function numberList(text) {
   return numbers.every((n) => n !== null) ? numbers.sort((x, y) => x - y) : null;
 }
 
+// A key such as "-5 or 2" or "0 and 6" is a list of numbers: right in any order, but never with different numbers.
+const LIST_WORD = /(?<![a-z])(?:or|and)(?![a-z])/i;
 const sameNumbers = (a, b) => Boolean(a && b) && a.length === b.length && a.every((n, i) => close(n, b[i]));
 
 /**
@@ -243,7 +245,7 @@ export function matches(input, answers, mode = 'value', context = '') {
   }
   // Several numbers asked for as "1 or 5" are right in any order and with any usual separator: "1 5", "1, 5", "5 and 1", "x = 1 or x = 5".
   const typedNumbers = numberList(typed);
-  if (typedNumbers && list.some((a) => /\bor\b/i.test(String(a)) && sameNumbers(typedNumbers, numberList(a)))) return true;
+  if (typedNumbers && list.some((a) => LIST_WORD.test(String(a)) && sameNumbers(typedNumbers, numberList(a)))) return true;
   const key = textKey(typed);
   if (list.some((a) => textKey(a) === key)) return true;
   // x = +-sqrt(a) is a fuller answer than sqrt(a), and right where the key is a root of letters.
@@ -343,9 +345,11 @@ const topTerms = (src) => {
   return count;
 };
 
+const WORDS_NOT_ALGEBRA = /(?<![a-z])(?:or|and|yes|no|none|true|false|not)(?![a-z])/i;
+
 /** 'same' when typed and key are the same algebra in an acceptable form; 'longer' when equal but not simplified; otherwise null. */
 export function sameAlgebra(input, key) {
-  const tidy = (t) => t.replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*').replace(/\((\d+(?:\.\d+)?|[a-z])\)/g, '$1').replace(/\((\d+\/\d+)\)/g, '$1'); // (2) means 2, (1/2) means 1/2
+  const tidy = (t) => t.replace(/²/g, '^2').replace(/³/g, '^3').replace(/×/g, '*').replace(/\((\d+(?:\.\d+)?|[a-z])\)/g, '$1').replace(/(?<!\^)\((\d+\/\d+)\)/g, '$1'); // (2) means 2, (1/2) means 1/2: but never after ^, where x^(1/2) is not x/2
   const unwrap = (t) => {
     let u = t.replace(/\+\(-([a-z0-9.]+)\)/g, '-$1');
     while (u.startsWith('(') && u.endsWith(')')) {
@@ -361,6 +365,8 @@ export function sameAlgebra(input, key) {
     }
     return u;
   };
+  // Words are not algebra: "or" and "and" must never be read as the letters o, r, n, d (so that "-2 or 5" does not equal "-5 or 2").
+  if (WORDS_NOT_ALGEBRA.test(String(input)) || WORDS_NOT_ALGEBRA.test(String(key))) return null;
   const a = unwrap(tidy(clean(input)));
   const b = unwrap(tidy(clean(key)));
   if (!ALG_OK.test(a) || !ALG_OK.test(b)) return null;

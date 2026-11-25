@@ -1,7 +1,11 @@
 // Pure helpers for building the GCSE book (public/books/gcse/). No file I/O
 // here so test-unit/book-lib.test.mjs can exercise every function directly.
 
+import { expandMath, mathToLinear, toLinear } from './book-math.mjs';
+
 export const STRAND_CLASS = { n: 'number', a: 'algebra', r: 'ratio', g: 'geometry', p: 'probability', s: 'statistics' };
+// A book with its own strands (the A-level book) uses the strand id as the class name directly.
+export const strandClass = (strand) => STRAND_CLASS[strand] ?? strand;
 
 export function escapeAttr(text) {
   return String(text).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
@@ -49,6 +53,19 @@ export function buildGraph(topics, { hasPage = null } = {}) {
   return byId;
 }
 
+// Give every <h2> and <h3> without an id a stable one ("s-measuring-turns") so "On this page" links work with no script.
+export function addHeadingIds(html) {
+  const used = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  return html.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (whole, level, inner) => {
+    const text = inner.replace(/<[^>]+>/g, ' ').replace(/\{[^}]*\}/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
+    let id = `s-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}`;
+    if (id === 's-') id = 's-part';
+    while (used.has(id)) id += '-x';
+    used.add(id);
+    return `<h${level} id="${id}">${inner}</h${level}>`;
+  });
+}
+
 // ---------- shorthand expansion ----------
 
 /** Turn "3/4" into a stacked fraction. Splits at the first "/" that is not part of a closing tag. */
@@ -69,7 +86,7 @@ export function renderFraction(body) {
  * `usage` is given, each term records which page used it.
  */
 export function expandInline(html, { glossaryById, usage, page }) {
-  return html
+  return expandMath(html)
     .replace(/\{frac:([^}]+)\}/g, (_, body) => renderFraction(body))
     .replace(/\{term:([a-z0-9-]+)(?:\|([^}]*))?\}/g, (_, id, label) => {
       const entry = glossaryById.get(id);
@@ -79,7 +96,7 @@ export function expandInline(html, { glossaryById, usage, page }) {
         usage.get(id).add(page);
       }
       const text = label ?? entry.term;
-      return `<a class="term" href="glossary.html#${id}" data-term="${id}" data-def="${escapeDefAttr(entry.def)}">${text}</a>`;
+      return `<a class="term" href="glossary.html#${id}" data-term="${id}" data-def="${escapeDefAttr(mathToLinear(entry.def))}">${text}</a>`;
     });
 }
 
@@ -106,7 +123,7 @@ const link = (t, graph) => {
 };
 
 function chip(topic) {
-  return `<span class="chip chip-${STRAND_CLASS[topic.strand]}">${topic.strandName}</span>`;
+  return `<span class="chip chip-${strandClass(topic.strand)}">${topic.strandName}</span>`;
 }
 
 export function renderPrereqs(id, graph) {
@@ -160,14 +177,14 @@ export function renderPyramid(graph) {
       const needs = t.needs.length
         ? `<span class="needs-line">builds on ${t.needs.map((n) => graph.get(n).title).join(', ')}</span>`
         : '<span class="needs-line">the very base</span>';
-      const inner = `<span class="node-title">${t.title}${t.tier === 'H' ? ' <span class="tier-tag">Higher</span>' : ''}</span>${needs}`;
+      const inner = `<span class="node-title">${t.title}${t.tier === 'H' ? ' <span class="tier-tag">Higher</span>' : ''}${t.year === 2 ? ' <span class="tier-tag">Year 2</span>' : ''}</span>${needs}`;
       const body = t.status === 'live'
         ? `<a href="${t.id}.html" data-topic-id="${t.id}">${inner}</a>`
         : `<span class="planned-node">${inner}<span class="soon">coming soon</span></span>`;
       const progress = t.status === 'live'
         ? `<span class="node-progress" data-progress-for="${t.id}" data-total="{qcount:${t.id}}"></span>`
         : '';
-      return `<li class="pyr-node strand-${STRAND_CLASS[t.strand]} ${t.status}">${body}${progress}</li>`;
+      return `<li class="pyr-node strand-${strandClass(t.strand)} ${t.status}">${body}${progress}</li>`;
     }).join('\n        ');
     const label = layer === 0 ? 'Base layer' : `Layer ${layer}`;
     rows.push(`      <li class="pyr-layer"><h3 class="layer-label">${label}</h3>
@@ -181,7 +198,9 @@ ${rows.join('\n')}
     </ol>`;
 }
 
-export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}, patterns = []) {
+const defaultLevelChip = (g) => (g.level === 'H' ? '<span class="chip chip-higher">Higher</span>' : '');
+
+export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}, patterns = [], { levelChip = defaultLevelChip } = {}) {
   const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
   const byId = new Map(glossary.map((g) => [g.id, g]));
   const letters = [...new Set(sorted.map((g) => g.term[0].toUpperCase()))];
@@ -206,9 +225,9 @@ export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}
       see ? `<p class="g-see"><b>See also:</b> ${see}</p>` : '',
       usedHtml,
     ].filter(Boolean).join('\n          ');
-    const level = g.level === 'H' ? '<span class="chip chip-higher">Higher</span>' : '';
-    return `<article class="g-entry strand-${STRAND_CLASS[g.strand]}" id="${g.id}" data-strand="${STRAND_CLASS[g.strand]}">
-          <h3>${g.term} <span class="chip chip-${STRAND_CLASS[g.strand]}">${strands[g.strand].short}</span> ${level}</h3>
+    const level = levelChip(g);
+    return `<article class="g-entry strand-${strandClass(g.strand)}" id="${g.id}" data-strand="${strandClass(g.strand)}">
+          <h3>${g.term} <span class="chip chip-${strandClass(g.strand)}">${strands[g.strand].short}</span> ${level}</h3>
           ${parts}
         </article>`;
   };
@@ -258,7 +277,7 @@ export function renderPracticeTopics(graph) {
 // ---------- automatic term links inside questions ----------
 
 // Words that are everywhere in questions or too general to be worth a pop-up on every use.
-const NEVER_AUTO = new Set(['work-out', 'calculate', 'write-down', 'show-that', 'explain-command', 'term', 'round', 'operation', 'proof', 'unknown', 'sum', 'mean']);
+export const NEVER_AUTO = new Set(['work-out', 'calculate', 'write-down', 'show-that', 'explain-command', 'term', 'round', 'operation', 'proof', 'unknown', 'sum', 'mean']);
 
 // Words in a term's brackets that are the entry's own qualifier or far too general to link on their own:
 // "Opposite (side)" and "Adjacent (side)" must not turn every "side" into a link, "Root (solution)" every "solution".
@@ -276,10 +295,10 @@ function termNames(g) {
 }
 
 /** Build the list of {id, re} patterns, longest names first. */
-export function buildAutoPatterns(glossary) {
+export function buildAutoPatterns(glossary, never = NEVER_AUTO) {
   const out = [];
   for (const g of glossary) {
-    if (NEVER_AUTO.has(g.id)) continue;
+    if (never.has(g.id)) continue;
     for (const name of termNames(g)) {
       const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+');
       out.push({ id: g.id, len: name.length, re: new RegExp(`(?<![A-Za-z])(${escaped})(?:s|es)?(?![A-Za-z])`, 'i') });
@@ -332,11 +351,15 @@ const NAMED_ENTITIES = {
   rarr: '\u2192', larr: '\u2190', pi: '\u03c0', plusmn: '\u00b1', le: '\u2264', ge: '\u2265', ne: '\u2260', frac12: '\u00bd',
   ldquo: '\u201c', rdquo: '\u201d', lsquo: '\u2018', rsquo: '\u2019', ndash: '\u2013', mdash: '\u2014', middot: '\u00b7',
   equiv: '\u2261', theta: '\u03b8', alpha: '\u03b1', beta: '\u03b2', micro: '\u00b5', ohm: '\u03a9', Omega: '\u03a9',
+  int: '\u222b', sum: '\u2211', infin: '\u221e', part: '\u2202', Delta: '\u0394', delta: '\u03b4', lambda: '\u03bb', mu: '\u03bc',
+  sigma: '\u03c3', phi: '\u03c6', omega: '\u03c9', rArr: '\u21d2', hArr: '\u21d4', lArr: '\u21d0', there4: '\u2234', because: '\u2235',
+  isin: '\u2208', cap: '\u2229', cup: '\u222a', prop: '\u221d', frac14: '\u00bc', frac34: '\u00be',
 };
 
 /** Plain text of a fragment of page source: shorthands and tags removed, entities decoded. */
 export function plainText(html) {
   return String(html)
+    .replace(/\{md?:([^{}]+)\}/g, (_, body) => toLinear(body))
     .replace(/\{frac:([^}]*?)\/([^}/]*)\}/g, (_, t, u) => `${/^[\w.]+$/.test(t.trim()) ? t.trim() : `(${t.trim()})`}/${/^[\w.]+$/.test(u.trim()) ? u.trim() : `(${u.trim()})`}`)
     .replace(/\{term:[^|}]*\|([^}]*)\}/g, '$1')
     .replace(/\{term:([^}]*)\}/g, '$1')
@@ -381,7 +404,7 @@ export function extractKey(raw) {
 }
 
 /** The printable answer-key page for one topic. */
-export function renderAnswerKey(topic, raw) {
+export function renderAnswerKey(topic, raw, { openHref = `../${topic.id}.html`, backHref = '../teachers.html', backText = 'Back to the teacher page', bookId = null } = {}) {
   const rows = extractKey(raw);
   const body = rows.map((r) => {
     const q = r.text + (r.figure ? ` [Figure: ${r.figure}]` : '');
@@ -392,7 +415,7 @@ export function renderAnswerKey(topic, raw) {
     return `<tr id="q${r.n}"><th scope="row">${r.n}</th><td>${esc(q)}</td><td><b>${esc(r.answer)}</b>${also}${scheme}${working}</td><td>${marksCell}</td></tr>`;
   }).join('\n');
   const total = rows.reduce((n, r) => n + r.marks, 0);
-  return `<main class="book" data-book-page="key">
+  return `<main class="book" data-book-page="key"${bookId ? ` data-book-id="${bookId}" data-audio="off"` : ''}>
 <section class="hero book-hero">
   <div class="wrap" style="grid-template-columns:1fr;">
     <div>
@@ -400,8 +423,8 @@ export function renderAnswerKey(topic, raw) {
       <h1>${esc(topic.title)}: answers</h1>
       <p class="lead">${rows.length} questions, ${rows.filter((r) => r.marks).length} of them marked (${total} marks in all). Question numbers match the page. Use your browser's Print for a copy.</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="../${topic.id}.html">Open the questions</a>
-        <a class="btn btn-ghost" href="../teachers.html">Back to the teacher page</a>
+        <a class="btn btn-gold" href="${openHref}">Open the questions</a>
+        <a class="btn btn-ghost" href="${backHref}">${backText}</a>
       </div>
     </div>
   </div>
