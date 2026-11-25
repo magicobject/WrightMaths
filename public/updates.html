@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.018">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.019">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.019</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Fix: the <a href="404.html">404 page</a> now looks right at any depth. Its stylesheet, script and links were relative, so an unknown address such as <code>/books/gcse/bad</code> loaded them from the wrong folder and showed an unstyled page. They are now root-absolute, with a test for a deep unknown URL.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.017</span><span class="changelog-date">25 November 2026</span></div>
         <p>Housekeeping: merged <code>main</code> again and repaired the changelog list, where two merged entries had lost the markup between them. No site change.</p>
@@ -472,9 +476,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.25.018</span>
+    <span class="build-number">Build 2026.11.25.019</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.018" defer></script>
+  <script src="js/main.js?v=2026.11.25.019" defer></script>
 </footer>
 </body>
 </html>
