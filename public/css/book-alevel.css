@@ -105,3 +105,7 @@ math{font-size:1.18em;font-family:"Cambria Math","STIX Two Math","Latin Modern M
 .book-year{border:2px solid var(--navy);border-radius:12px;padding:16px 18px;background:var(--white);}
 .book-year.is-soon{border-style:dashed;background:var(--paper);}
 .book-year h3{margin-top:0;}
+
+/* small pictures in glossary pop-ups and entries */
+.term-svg{max-width:340px;margin:0 auto;display:block;}
+.g-fig .term-svg{max-width:420px;}
