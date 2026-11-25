@@ -24,8 +24,8 @@
     <div class="key"><p><b>Units and money</b></p>
       <p>100 pence = &pound;1, so 85p = &pound;0.85 and &pound;1.20 = 120p.</p>
       <p>Round money to 2 decimal places: &pound;28.857 becomes &pound;28.86.</p>
-      <p>Do not mix pounds and pence in one calculation. Pick one.</p>
-      <p>VAT is 20%: add it by &times; 1.2, take it off again by &divide; 1.2.</p>
+      <p>Do not mix pounds and pence in one calculation. Use only one of them.</p>
+      <p>VAT is 20%: add it by multiplying by 1.2. Take it off again by dividing by 1.2.</p>
     </div>
   </div>
 </section>
@@ -33,31 +33,31 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Warm-up: what do you already know?</h2>
-    <p class="intro">Quick warm-up. No marks. A wrong answer just shows where to look.</p>
+    <p class="intro">Quick warm-up. No marks. A wrong answer only shows where to look.</p>
     <p><a href="#s-1-percent-means-out-of-100">Skip to the lesson</a></p>
     <div class="q" data-answers="1/4" data-mode="exact">
       <p class="qtext">Simplify {frac:25/100}. Give your answer as a fraction, like 3/5.</p>
       <ol class="ladder"><li>Which number divides into both 25 and 100?</li><li>Try the biggest one. 25 goes into 100 a whole number of times.</li></ol>
-      <ul class="wrong"><li data-if="5/20">Right value, but 5 and 20 still divide by 5.</li><li data-if="25/100">That is the fraction you started with. Divide the top and bottom.</li></ul>
+      <ul class="wrong"><li data-if="5/20">Right value, but 5 and 20 still divide by 5.</li><li data-if="25/100">That is the fraction you started with. Divide the numerator and the denominator by 25.</li></ul>
       <div class="solution"><p>25 &divide; 25 = 1 and 100 &divide; 25 = 4, so {frac:25/100} = {frac:1/4}.</p></div>
     </div>
     <details class="recap"><summary>Quick recap of the layer below (skip if you are happy)</summary>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Work out {frac:1/5} of 60.</p>
-      <ol class="ladder"><li>What does the bottom number, 5, tell you about the parts?</li><li>Divide by the bottom number to find one fifth.</li></ol>
-      <ul class="wrong"><li data-if="300">You multiplied by 5. Dividing by the bottom number finds one part.</li><li data-if="5">That is 60 divided by 12. Divide 60 by the bottom number, 5.</li></ul>
+      <ol class="ladder"><li>What does the denominator, 5, tell you about the parts?</li><li>Divide by the denominator to find one fifth.</li></ol>
+      <ul class="wrong"><li data-if="300">You multiplied by 5. Dividing by the denominator finds one part.</li><li data-if="5">That is 60 divided by 12. Divide 60 by the denominator, 5.</li></ul>
       <div class="solution"><p>60 &divide; 5 = 12.</p></div>
     </div>
     <div class="q" data-answers="7/20" data-mode="exact">
       <p class="qtext">Write 0.35 as a fraction in its simplest form, like 3/5.</p>
-      <ol class="ladder"><li>0.35 is 35 hundredths.</li><li>Write it over 100, then divide top and bottom by the same number.</li></ol>
-      <ul class="wrong"><li data-if="35/100">Right value, but it can be simplified. Divide the top and bottom by 5.</li></ul>
-      <div class="solution"><p>0.35 = {frac:35/100}. Divide the top and bottom by 5: {frac:7/20}.</p></div>
+      <ol class="ladder"><li>0.35 is 35 hundredths.</li><li>Write it over 100, then divide the numerator and the denominator by the same number.</li></ol>
+      <ul class="wrong"><li data-if="35/100">Right value, but it can be simplified. Divide the numerator and the denominator by 5.</li></ul>
+      <div class="solution"><p>0.35 = {frac:35/100}. Divide the numerator and the denominator by 5: {frac:7/20}.</p></div>
     </div>
     <div class="q" data-answers="60" data-mode="value">
       <p class="qtext">Fill the gap: {frac:3/5} = {frac:?/100}. What number goes where the ? is?</p>
-      <ol class="ladder"><li>What did you multiply 5 by to get 100?</li><li>Do the same to the top.</li></ol>
-      <ul class="wrong"><li data-if="98">You added 95 to the top as well. Multiply both numbers by the same thing instead.</li><li data-if="20">That is the number you multiplied by. Multiply it by the 3 on the top.</li></ul>
+      <ol class="ladder"><li>What did you multiply 5 by to get 100?</li><li>Do the same to the numerator.</li></ol>
+      <ul class="wrong"><li data-if="98">You added 95 to the numerator as well. Multiply both numbers by the same thing instead.</li><li data-if="20">That is the number you multiplied by. Multiply it by the numerator, 3.</li></ul>
       <div class="solution"><p>5 &times; 20 = 100, so 3 &times; 20 = 60. {frac:3/5} = {frac:60/100}.</p></div>
     </div>
     </details>
@@ -67,11 +67,11 @@
 <section>
   <div class="wrap narrow">
     <h2>1. Percent means out of 100</h2>
-    <p>A {term:percentage} is a {term:fraction} with 100 on the bottom. The word comes from <i>per cent</i>, which means &ldquo;for each hundred&rdquo;. So 35% means 35 out of every 100.</p>
+    <p>A {term:percentage} is a {term:fraction} with a denominator of 100. The word comes from <i>per cent</i>, which means &ldquo;for each hundred&rdquo;. So 35% means 35 out of every 100.</p>
     <p class="sum-line">35% = {frac:35/100} = 0.35</p>
     <figure class="figure qfig"><svg viewBox="0 0 320 152" role="img" aria-labelledby="pc1-t pc1-d" class="geo-svg"><title id="pc1-t">A hundred square</title><desc id="pc1-d">A square made of 100 small squares in 10 rows of 10. The first 35 squares are shaded pink and the rest are white.</desc><rect x="10" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="24" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="38" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="52" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="66" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="80" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="94" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="108" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="122" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="136" y="6" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="10" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="24" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="38" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="52" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="66" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="80" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="94" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="108" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="122" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="136" y="20" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="10" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="24" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="38" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="52" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="66" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="80" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="94" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="108" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="122" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="136" y="34" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="10" y="48" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="24" y="48" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="38" y="48" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="52" y="48" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="66" y="48" width="14" height="14" fill="#fbe3ee" stroke="#0f2440" stroke-width="1"/><rect x="80" y="48" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="48" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="48" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="48" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="48" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="62" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="76" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="90" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="104" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="118" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="24" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="38" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="52" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="66" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="80" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="94" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="108" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="122" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="136" y="132" width="14" height="14" fill="#fff" stroke="#0f2440" stroke-width="1"/><rect x="10" y="6" width="140" height="140" fill="none" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" style="font-size:14px" x="170" y="80" text-anchor="start" >35 shaded</text></svg></figure>
         <div class="key">
-      <p><b>Key idea:</b> the % sign is just a way of writing &ldquo;divided by 100&rdquo;. To go from a percentage to a decimal, divide by 100. To go back, multiply by 100.</p>
+      <p><b>Key idea:</b> the % sign is a way of writing &ldquo;divided by 100&rdquo;. To go from a percentage to a decimal, divide by 100. To go back, multiply by 100.</p>
     </div>
     <p><b>Try it:</b> write 8% as a {term:decimal}. (Divide by 100.)</p>
     <p>A few to know by heart: 50% = {frac:1/2}, 25% = {frac:1/4}, 75% = {frac:3/4}, 10% = {frac:1/10}, 20% = {frac:1/5}, 1% = {frac:1/100}.</p>
@@ -80,7 +80,7 @@
       <li><b>Percentage to decimal:</b> divide by 100. 62% = 0.62.</li>
       <li><b>Percentage to fraction:</b> put it over 100, then {term:simplify-fraction|simplify}. 62% = {frac:62/100} = {frac:31/50}.</li>
       <li><b>Decimal to percentage:</b> multiply by 100. 0.6 = 60%.</li>
-      <li><b>Fraction to percentage:</b> make the bottom 100 using an {term:equivalent-fractions|equivalent fraction}, or divide the top by the bottom and multiply by 100.</li>
+      <li><b>Fraction to percentage:</b> make the denominator 100 using an {term:equivalent-fractions|equivalent fraction}, or divide the numerator by the denominator and multiply by 100.</li>
     </ul>
     <div class="worked">
       <h3>Worked example: fraction to percentage</h3>
@@ -95,7 +95,7 @@
       <h3>Now you finish it</h3>
       <p>Write {frac:7/20} as a percentage.</p>
       <ol class="steps">
-        <li>20 &times; 5 = 100, so multiply the top and the bottom by <span class="blank" data-answers="5">___</span>.</li>
+        <li>20 &times; 5 = 100, so multiply the numerator and the denominator by <span class="blank" data-answers="5">___</span>.</li>
         <li>7 &times; 5 = <span class="blank" data-answers="35">___</span>.</li>
         <li>So {frac:7/20} = <span class="blank" data-answers="35">___</span> out of 100, which is <span class="blank" data-answers="35">___</span>%.</li>
       </ol>
@@ -128,9 +128,9 @@
     </div>
     <div class="q" data-answers="7/20" data-mode="exact">
       <p class="qtext">Write 35% as a fraction in its simplest form, like 3/5.</p>
-      <ol class="ladder"><li>Put 35 over 100.</li><li>Then divide top and bottom by the same number until nothing else divides both.</li></ol>
-      <ul class="wrong"><li data-if="35/100">Right value, but it can be simplified. Divide the top and bottom by 5.</li></ul>
-      <div class="solution"><p>35% = {frac:35/100}. Divide the top and bottom by 5: {frac:7/20}.</p></div>
+      <ol class="ladder"><li>Put 35 over 100.</li><li>Then divide the numerator and the denominator by the same number until nothing else divides both.</li></ol>
+      <ul class="wrong"><li data-if="35/100">Right value, but it can be simplified. Divide the numerator and the denominator by 5.</li></ul>
+      <div class="solution"><p>35% = {frac:35/100}. Divide the numerator and the denominator by 5: {frac:7/20}.</p></div>
     </div>
     <div class="q" data-answers="37.5%;37.5" data-mode="exact">
       <p class="qtext">Write {frac:3/8} as a percentage. Give your answer like 12.5%.</p>
@@ -141,7 +141,7 @@
     <div class="q" data-answers="36%;36" data-mode="exact">
       <p class="qtext">In a survey, 9 out of 25 gamers chose a blue controller. What percentage chose blue? Give your answer like 12%.</p>
       <ol class="ladder"><li>A percentage is a fraction out of 100. What do you multiply 25 by to get 100?</li><li>Do the same to the 9.</li></ol>
-      <ul class="wrong"><li data-if="225;225%">You multiplied 9 by 25. Multiply the top by the same number as the bottom, which is 4.</li><li data-if="34;34%">That is 9 + 25. To make an equivalent fraction, multiply, do not add.</li></ul>
+      <ul class="wrong"><li data-if="225;225%">You multiplied 9 by 25. Multiply the numerator by the same number you multiplied the denominator by, which is 4.</li><li data-if="34;34%">That is 9 + 25. To make an equivalent fraction, multiply, do not add.</li></ul>
       <div class="solution"><p>25 &times; 4 = 100 and 9 &times; 4 = 36, so {frac:9/25} = {frac:36/100} = 36%.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -224,7 +224,7 @@
       <div class="solution"><p>150 &divide; 10 = 15 in each part. 4 &times; 15 = &pound;60, which is 40% of &pound;150.</p></div>
     </div>
     <div class="q" data-calc="yes" data-answers="45" data-mode="value">
-      <p class="qtext">A game has 250 levels. Kai has finished 18% of them. How many levels is that? You can use a calculator.</p>
+      <p class="qtext">A game has 250 levels. Kai has finished 18% of them. How many levels has Kai finished? You can use a calculator.</p>
       <ol class="ladder"><li>Change 18% to a decimal first: divide 18 by 100.</li><li>Then multiply that decimal by 250.</li></ol>
       <ul class="wrong"><li data-if="4500">You multiplied by 18 and forgot to divide by 100. Use 0.18.</li><li data-if="205">That is the levels still to go. The question asks how many are finished.</li></ul>
       <div class="solution"><p>18% = 0.18 and 0.18 &times; 250 = 45 levels.</p></div>
@@ -258,10 +258,10 @@
 <section>
   <div class="wrap narrow">
     <h2>3. One amount as a percentage of another</h2>
-    <p>To say &ldquo;18 out of 45&rdquo; as a percentage, make a fraction with the part on top and the whole on the bottom. Then change it to a percentage.</p>
+    <p>To say &ldquo;18 out of 45&rdquo; as a percentage, make a fraction with the part as the numerator and the whole as the denominator. Then change it to a percentage.</p>
     <p class="sum-line">percentage = (part &divide; whole) &times; 100</p>
     <div class="key">
-      <p><b>Key idea:</b> the whole always goes on the bottom, and both amounts must be in the same units. 60 cm out of 3 m needs a change to 60 cm out of 300 cm first.</p>
+      <p><b>Key idea:</b> the whole always goes in the denominator, and both amounts must be in the same units. 60 cm out of 3 m needs a change to 60 cm out of 300 cm first.</p>
     </div>
     <p><b>Try it:</b> what percentage of 20 is 5? (Write {frac:5/20}, then think quarters.)</p>
     <div class="worked">
@@ -292,26 +292,26 @@
     <h2>Check your knowledge: one amount as a percentage of another</h2>
     <div class="q" data-answers="75%;75" data-mode="exact">
       <p class="qtext">A team won 6 of their 8 matches. What percentage did they win? Give your answer like 12.5%.</p>
-      <ol class="ladder"><li>Put the part over the whole: how many won, out of how many played?</li><li>Divide the top by the bottom, then multiply by 100.</li></ol>
-      <ul class="wrong"><li data-if="133.3;133.3%;133;133%">You divided the wrong way round. The whole (8) goes on the bottom.</li><li data-if="0.75;0.75%">That is the decimal. Multiply by 100 to get a percentage.</li></ul>
+      <ol class="ladder"><li>Put the part over the whole: how many won, out of how many played?</li><li>Divide the numerator by the denominator, then multiply by 100.</li></ol>
+      <ul class="wrong"><li data-if="133.3;133.3%;133;133%">You divided the wrong way round. The whole (8) goes in the denominator.</li><li data-if="0.75;0.75%">That is the decimal. Multiply by 100 to get a percentage.</li></ul>
       <div class="solution"><p>{frac:6/8} = 0.75, and 0.75 &times; 100 = 75%.</p></div>
     </div>
     <div class="q" data-answers="15%;15" data-mode="exact">
       <p class="qtext">A cake mix weighs 500 g. 75 g of it is cocoa. What percentage of the mix is cocoa? Give your answer like 12%.</p>
-      <ol class="ladder"><li>Which number is the whole? It goes on the bottom.</li><li>Work out 75 &divide; 500, then multiply by 100.</li></ol>
-      <ul class="wrong"><li data-if="0.15;0.15%">That is the decimal. Multiply by 100 to get a percentage.</li><li data-if="6.67;6.67%;6.7;6.7%">You divided 500 by 75. The part goes on top and the whole on the bottom.</li></ul>
+      <ol class="ladder"><li>Which number is the whole? It goes in the denominator.</li><li>Work out 75 &divide; 500, then multiply by 100.</li></ol>
+      <ul class="wrong"><li data-if="0.15;0.15%">That is the decimal. Multiply by 100 to get a percentage.</li><li data-if="6.67;6.67%;6.7;6.7%">You divided 500 by 75. The part is the numerator and the whole is the denominator.</li></ul>
       <div class="solution"><p>{frac:75/500} = 0.15, and 0.15 &times; 100 = 15%.</p></div>
     </div>
     <div class="q" data-answers="12%;12" data-mode="exact">
       <p class="qtext">Sam earns &pound;150 a week and saves &pound;18. What percentage of the wage (the money Sam earns) does Sam save? Give your answer like 12%.</p>
       <ol class="ladder"><li>The wage is the whole. The saving is the part.</li><li>Divide the part by the whole, then multiply by 100.</li></ol>
-      <ul class="wrong"><li data-if="8.33;8.33%;8.3;8.3%">You divided 150 by 18. The whole goes on the bottom.</li><li data-if="0.12;0.12%">That is the decimal. Multiply by 100.</li></ul>
+      <ul class="wrong"><li data-if="8.33;8.33%;8.3;8.3%">You divided 150 by 18. The whole goes in the denominator.</li><li data-if="0.12;0.12%">That is the decimal. Multiply by 100.</li></ul>
       <div class="solution"><p>18 &divide; 150 = 0.12, and 0.12 &times; 100 = 12%.</p></div>
     </div>
     <div class="q" data-answers="20%;20" data-mode="exact">
       <p class="qtext">A cable is 3 m long. A piece 60 cm long is cut off. What percentage of the cable is cut off? Give your answer like 12%.</p>
       <ol class="ladder"><li>The two lengths must be in the same unit. How many centimetres are in 3 m?</li><li>Then put the piece over the whole and multiply by 100.</li></ol>
-      <ul class="wrong"><li data-if="2000;2000%">You used 60 and 3 as they are. Change 3 m to 300 cm first.</li><li data-if="5;5%">You divided 3 by 60. The piece goes on top, and both lengths must be in cm.</li></ul>
+      <ul class="wrong"><li data-if="2000;2000%">You used 60 and 3 as they are. Change 3 m to 300 cm first.</li><li data-if="5;5%">You divided 3 by 60. The piece is the numerator, and both lengths must be in cm.</li></ul>
       <div class="solution"><p>3 m = 300 cm. {frac:60/300} = 0.2, and 0.2 &times; 100 = 20%.</p></div>
     </div>
     <div class="q" data-answers="82.5%;82.5" data-mode="exact">
@@ -327,7 +327,7 @@
         <li data-correct>Ali</li>
         <li data-why="41 out of 50 is 82%. Ali's 17 out of 20 is 85%, which is higher.">Cat</li>
       </ul>
-      <ol class="ladder"><li>The totals are different, so turn each score into a percentage.</li><li>17 out of 20: multiply the top and bottom by 5.</li></ol>
+      <ol class="ladder"><li>The totals are different, so turn each score into a percentage.</li><li>17 out of 20: multiply the numerator and the denominator by 5.</li></ol>
       <div class="solution"><p>Ali 17 out of 20 = 85%. Bea 33 out of 40 = 82.5%. Cat 41 out of 50 = 82%. Ali scored highest.</p></div>
     </div>
   </div>
@@ -344,7 +344,7 @@
       <li>Decrease by 10%: &times; 0.9. Decrease by 30%: &times; 0.7. Decrease by 50%: &times; 0.5.</li>
     </ul>
     <div class="key">
-      <p><b>Key idea:</b> a percentage change is one multiplication. The multiplier is the percentage you END with, written as a decimal.</p>
+      <p><b>Key idea:</b> a percentage change is one multiplication. The multiplier is the percentage you <b>end</b> with, written as a decimal.</p>
     </div>
     <p><b>Try it:</b> what multiplier increases an amount by 25%? (It is 100% + 25% = 125%.)</p>
     <div class="worked">
@@ -427,7 +427,7 @@
     <div class="q" data-answers="1140;1,140" data-mode="value">
       <p class="qtext">A game has 1200 players. The number of players falls by 5%. How many players are there now?</p>
       <ol class="ladder"><li>After a 5% fall, what percentage of the players are left?</li><li>Write that as a decimal and multiply.</li></ol>
-      <ul class="wrong"><li data-if="60">That is how many players left. The question asks how many are still playing.</li><li data-if="1260">That is an increase of 5%. This is a fall.</li></ul>
+      <ul class="wrong"><li data-if="60">That is the number of players who stopped playing. The question asks how many are still playing.</li><li data-if="1260">That is an increase of 5%. This is a fall.</li></ul>
       <div class="solution"><p>100% &minus; 5% = 95% = 0.95. 0.95 &times; 1200 = 1140 players.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -458,7 +458,7 @@
       <div class="flip-side"><h3>Backwards</h3><figure class="flipfig"><svg viewBox="0 -12 320 122" role="img" aria-labelledby="ff-percentages-1-t ff-percentages-1-d" class="geo-svg"><title id="ff-percentages-1-t">Backwards: unknown and 92</title><desc id="ff-percentages-1-d">An arrow runs right to left from the box "92" to the box "?", labelled "&divide; 1.15". The box with the question mark is the one to find.</desc><rect class="fl-box fl-unk" x="6" y="34" width="92" height="44" rx="8"/><rect class="fl-box" x="222" y="34" width="92" height="44" rx="8"/><text class="svg-t" style="font-size:17px" x="52" y="62" text-anchor="middle">?</text><text class="svg-t" style="font-size:17px" x="268" y="62" text-anchor="middle">92</text><line class="fl-arr" x1="216" y1="56" x2="114" y2="56"/><polygon class="fl-head" points="104,56 114,50 114,62"/><text class="svg-t" style="font-size:14px" x="160" y="44" text-anchor="middle">&divide; 1.15</text><text class="svg-t fl-soft" style="font-size:12px" x="160" y="82" text-anchor="middle">backwards</text></svg></figure><p>? increased by 15% = &pound;92</p><p class="muted">Divide by 1.15. Find the old amount. This is a {term:reverse-percentage}.</p></div>
     </div>
     <div class="key">
-      <p><b>Key idea:</b> after a percentage change, the new amount is a percentage of the ORIGINAL. Undo it by dividing by the multiplier. Never take the percentage off the new amount: it was not taken from there.</p>
+      <p><b>Key idea:</b> after a percentage change, the new amount is a percentage of the <b>original</b>. Undo it by dividing by the multiplier. Never take the percentage off the new amount, because it was not taken from there.</p>
     </div>
     <div class="worked">
       <h3>Worked example: reverse a discount</h3>
@@ -632,7 +632,7 @@
     <div class="q" data-answers="75%;75" data-mode="exact">
       <p class="qtext">In a music class, 18 of the 24 students play guitar. What percentage play guitar? Give your answer like 12%.</p>
       <ol class="ladder"><li>Put the guitar players over the whole class.</li><li>Simplify {frac:18/24} if you can, then change it to a percentage.</li></ol>
-      <ul class="wrong"><li data-if="133.3;133.3%;133;133%">You divided the class by the guitar players. The whole class goes on the bottom.</li><li data-if="0.75;0.75%">That is the decimal. Multiply by 100.</li></ul>
+      <ul class="wrong"><li data-if="133.3;133.3%;133;133%">You divided the class by the guitar players. The whole class goes in the denominator.</li><li data-if="0.75;0.75%">That is the decimal. Multiply by 100.</li></ul>
       <div class="solution"><p>{frac:18/24} = {frac:3/4} = 0.75, and 0.75 &times; 100 = 75%.</p></div>
     </div>
     <div class="q" data-answers="360" data-mode="value">
@@ -712,7 +712,7 @@
       <li><b>A percentage is a fraction of 100.</b> That is why you can divide by 100, make fractions over 100, and add percentages together: 10% + 5% = 15% for the same reason {frac:10/100} + {frac:5/100} = {frac:15/100}.</li>
       <li><b>One multiplier does the whole job.</b> Adding 15% to an amount means 100% + 15% = 115%, so it is the same as multiplying by 1.15. You skip the extra adding step.</li>
       <li><b>Reverse percentages divide.</b> If &times; 1.2 made the new price, then &divide; 1.2 gets back to the old price. Each operation has an opposite.</li>
-      <li><b>Percentage change divides by the original.</b> The question is &ldquo;what fraction of where I started?&rdquo;, so the starting amount goes on the bottom.</li>
+      <li><b>Percentage change divides by the original.</b> The question is &ldquo;what fraction of where I started?&rdquo;, so the starting amount goes in the denominator.</li>
     </ul>
     <h2>Common traps</h2>
     <ul class="tick traps">
@@ -761,7 +761,7 @@
 
 <section class="ckw"><div class="wrap narrow"><h2>Check your knowledge: on the job</h2><p class="intro">Real jobs from the building trades: plumbing, electrics and carpentry. Prices are typical, so check them with your own supplier.</p><div class="q" data-answers="101.40" data-mode="value"><p class="qtext">A boiler pressure valve costs &pound;84.50 before VAT. VAT is 20%. How much does it cost including VAT, in pounds? Type it like 42.75.</p><ol class="ladder"><li>Is the question asking for the price before VAT or after VAT?</li><li>Adding 20% means multiplying by 1.2.</li><li>Work out 84.50 &times; 1.2.</li></ol><ul class="wrong"><li data-if="16.9">That is only the VAT. Add it on to the price.</li><li data-if="104.5">You added 20 pounds. VAT is 20% of the price, not 20 pounds.</li></ul><div class="solution"><p>20% VAT means multiply by 1.2. 84.50 &times; 1.2 = 101.40, so the price is &pound;101.40. (Check: 20% of 84.50 is 16.90, and 84.50 + 16.90 = 101.40 &#10003;.)</p></div></div>
 <div class="q" data-answers="112.20" data-mode="value"><p class="qtext">A merchant gives a plumber 15% trade discount on a basin listed at &pound;132. What does the plumber pay, in pounds? Type it like 42.75.</p><ol class="ladder"><li>Does the plumber pay more or less than the list price?</li><li>Taking off 15% means multiplying by 0.85 (that is 100% &minus; 15%).</li><li>Work out 132 &times; 0.85.</li></ol><ul class="wrong"><li data-if="19.8">That is the discount. Take it off the list price.</li><li data-if="117">You took off 15 pounds. The discount is 15% of the price.</li></ul><div class="solution"><p>100% &minus; 15% = 85%, so multiply by 0.85. 132 &times; 0.85 = 112.20, so the plumber pays &pound;112.20. (Check: 15% of 132 is 19.80, and 132 &minus; 19.80 = 112.20 &#10003;.)</p></div></div>
-<div class="q" data-answers="28.86" data-mode="value" data-marks="3"><p class="qtext">[3 marks] A plumber buys a tap for &pound;18.50. She adds a 30% markup, and then 20% VAT is added to her selling price. How much does the customer pay, in pounds? Type it like 42.75.</p><ol class="ladder"><li>There are two percentage changes, one after the other. What are they?</li><li>A 30% markup is &times; 1.3 and 20% VAT is &times; 1.2.</li><li>Work out 18.50 &times; 1.3 first, then multiply the answer by 1.2.</li></ol><ul class="wrong"><li data-if="24.05">That is her selling price before VAT. The customer also pays the VAT.</li><li data-if="27.75">You added 30% and 20% together as 50%. Do them one after the other: &times; 1.3, then &times; 1.2.</li></ul><div class="solution">
+<div class="q" data-answers="28.86" data-mode="value" data-marks="3"><p class="qtext">[3 marks] A plumber buys a tap for &pound;18.50. She adds a 30% markup (a percentage added to what she paid), and then 20% VAT is added to her selling price. How much does the customer pay, in pounds? Type it like 42.75.</p><ol class="ladder"><li>There are two percentage changes, one after the other. What are they?</li><li>A 30% markup is &times; 1.3 and 20% VAT is &times; 1.2.</li><li>Work out 18.50 &times; 1.3 first, then multiply the answer by 1.2.</li></ol><ul class="wrong"><li data-if="24.05">That is her selling price before VAT. The customer also pays the VAT.</li><li data-if="27.75">You added 30% and 20% together as 50%. Do them one after the other: &times; 1.3, then &times; 1.2.</li></ul><div class="solution">
         <p>Markup: 18.50 &times; 1.3 = &pound;24.05. VAT: 24.05 &times; 1.2 = &pound;28.86. The customer pays &pound;28.86.</p>
         <ul class="markscheme">
           <li><b>M1</b> for the multiplier 1.3 (18.50 &times; 1.3)</li>
@@ -777,7 +777,7 @@
           <li><b>M1</b> for the VAT multiplier 1.2 (&times; 1.2)</li>
           <li><b>A1</b> for &pound;102.60</li>
         </ul>
-      </div></div><div class="q" data-answers="2.17" data-mode="value"><p class="qtext">The supply to a socket is 230 V. Along a long cable the voltage drops by 5 V. What is the voltage drop as a percentage of 230 V? Give your answer to 2 decimal places, as a number without the % sign.</p><ol class="ladder"><li>Is the question asking for the drop as a part of the 230 V supply, or the voltage left at the end?</li><li>Percentage = part &divide; whole &times; 100. Which number is the part and which is the whole?</li><li>Work out 5 &divide; 230, then multiply by 100.</li></ol><ul class="wrong"><li data-if="46">You divided 230 by 5. Put the part (5 V) over the whole (230 V).</li><li data-if="0.0217">That is the decimal. Multiply by 100 to turn it into a percentage.</li></ul><div class="solution"><p>The part is 5 V and the whole is 230 V. 5 &divide; 230 = 0.0217..., and &times; 100 gives 2.17... So the voltage drop is 2.17% (2 d.p.).</p></div></div>
+      </div></div><div class="q" data-answers="2.17" data-mode="value"><p class="qtext">The supply to a socket is 230 volts. Along a long cable the voltage drops by 5 volts. What is the voltage drop as a percentage of 230 volts? Give your answer to 2 decimal places, as a number without the % sign.</p><ol class="ladder"><li>Is the question asking for the drop as a part of the 230 V supply, or the voltage left at the end?</li><li>Percentage = part &divide; whole &times; 100. Which number is the part and which is the whole?</li><li>Work out 5 &divide; 230, then multiply by 100.</li></ol><ul class="wrong"><li data-if="46">You divided 230 by 5. Put the part (5 V) over the whole (230 V).</li><li data-if="0.0217">That is the decimal. Multiply by 100 to turn it into a percentage.</li></ul><div class="solution"><p>The part is 5 V and the whole is 230 V. 5 &divide; 230 = 0.0217..., and &times; 100 gives 2.17... So the voltage drop is 2.17% (2 d.p.).</p></div></div>
 <div class="q" data-answers="88.80" data-mode="value"><p class="qtext">An electrician buys 40 m of cable at &pound;1.85 per metre before VAT. VAT is 20%. How much does the cable cost including VAT, in pounds? Type it like 42.75.</p><ol class="ladder"><li>Is the question asking for the price before VAT or after VAT?</li><li>First find the cost before VAT. Then adding 20% means multiplying by 1.2.</li><li>Work out 40 &times; 1.85, then multiply the answer by 1.2.</li></ol><ul class="wrong"><li data-if="74">That is the price before VAT. The question asks for the price including VAT.</li><li data-if="14.8">That is only the VAT. Add it on to the price before VAT.</li></ul><div class="solution"><p>40 &times; 1.85 = &pound;74.00 before VAT. 20% VAT means multiply by 1.2: 74 &times; 1.2 = 88.80, so the cable costs &pound;88.80. (Check: 20% of 74 is 14.80, and 74 + 14.80 = 88.80 &#10003;.)</p></div></div>
 </div></section>
 
@@ -785,7 +785,7 @@
 <div class="q" data-answers="68" data-mode="value"><p class="qtext">A salon has 80 bottles of shampoo in stock. After a busy week the stock is down 15%. How many bottles are left?</p><ol class="ladder"><li>Is the stock going up or down, and what is 100% here?</li><li>Find 15% of 80 by finding 10% and 5%.</li><li>Take that away from 80.</li></ol><ul class="wrong"><li data-if="12">That is the 15% that was sold. The question asks how many are left.</li><li data-if="65">That takes 15 bottles off, not 15%. Work out 15% of 80 first.</li></ul><div class="solution"><p>10% of 80 is 8 and 5% is 4, so 15% is 12. 80 &minus; 12 = 68 bottles. (Or 85% of 80 = 0.85 &times; 80 = 68 &#10003;.)</p></div></div>
 <div class="q" data-answers="32.40;32.4" data-mode="value"><p class="qtext">A cut and colour usually costs &pound;36. Students get 10% off. How much does a student pay? Type it like 12.50.</p><ol class="ladder"><li>Is the student paying more or less than the usual price?</li><li>Find 10% by dividing by 10.</li><li>Take the discount away from 36.</li></ol><ul class="wrong"><li data-if="3.60">That is the discount. The question asks how much the student pays.</li><li data-if="26">That takes off 10 pounds. Take off 10% of 36, which is 3.60.</li></ul><div class="solution"><p>10% of 36 is 3.60. 36 &minus; 3.60 = &pound;32.40. (Or 90% of 36: 0.9 &times; 36 = 32.40 &#10003;.)</p></div></div>
 <div class="q" data-answers="53.55" data-mode="value" data-marks="3"><p class="qtext">[3 marks] Football boots cost &pound;85. In a sale they are reduced by 30%. Club members then get a further 10% off the sale price. How much does a club member pay? Type it like 12.50.</p><ol class="ladder"><li>The two reductions happen one after the other. Which comes first?</li><li>Work out the sale price first. Reducing by 30% means paying 70%.</li><li>Then reduce that sale price by 10%.</li></ol><ul class="wrong"><li data-if="51">That takes 40% off the original price. The 10% is taken off the sale price, not the original.</li><li data-if="59.50">That is the sale price. Club members get a further 10% off.</li></ul><div class="solution"><p>Sale price: 85 &times; 0.7 = &pound;59.50. Club member price: 59.50 &times; 0.9 = &pound;53.55.</p><ul class="markscheme"><li><b>M1</b> for 85 &times; 0.7 (= 59.50), or 85 &minus; 25.50</li><li><b>M1</b> for 59.50 &times; 0.9, or taking 10% off the sale price</li><li><b>A1</b> for 53.55</li></ul></div></div>
-<div class="q" data-answers="12.5" data-mode="value" data-marks="3"><p class="qtext">[3 marks] A salon raises the price of a cut from &pound;28 to &pound;31.50. Work out the percentage increase. Type the number only, like 7.5.</p><ol class="ladder"><li>What is the starting price, and how much has it gone up by?</li><li>Percentage change = change &divide; original &times; 100.</li><li>The original price goes on the bottom, not the new one.</li></ol><ul class="wrong"><li data-if="11.1">That divides by the new price. Divide the increase by the original price, 28.</li><li data-if="3.5">That is the increase in pounds. Turn it into a percentage of the original price.</li></ul><div class="solution"><p>Increase: 31.50 &minus; 28 = 3.50. Percentage increase = 3.50 &divide; 28 &times; 100 = 12.5%.</p><ul class="markscheme"><li><b>M1</b> for 31.50 &minus; 28 = 3.50</li><li><b>M1</b> for 3.50 &divide; 28 (= 0.125)</li><li><b>A1</b> for 12.5</li></ul></div></div></div></section>
+<div class="q" data-answers="12.5" data-mode="value" data-marks="3"><p class="qtext">[3 marks] A salon raises the price of a cut from &pound;28 to &pound;31.50. Work out the percentage increase. Type the number only, like 7.5.</p><ol class="ladder"><li>What is the starting price, and how much has it gone up by?</li><li>Percentage change = change &divide; original &times; 100.</li><li>The original price goes in the denominator, not the new one.</li></ol><ul class="wrong"><li data-if="11.1">That divides by the new price. Divide the increase by the original price, 28.</li><li data-if="3.5">That is the increase in pounds. Turn it into a percentage of the original price.</li></ul><div class="solution"><p>Increase: 31.50 &minus; 28 = 3.50. Percentage increase = 3.50 &divide; 28 &times; 100 = 12.5%.</p><ul class="markscheme"><li><b>M1</b> for 31.50 &minus; 28 = 3.50</li><li><b>M1</b> for 3.50 &divide; 28 (= 0.125)</li><li><b>A1</b> for 12.5</li></ul></div></div></div></section>
 
 <section>
   <div class="wrap narrow">

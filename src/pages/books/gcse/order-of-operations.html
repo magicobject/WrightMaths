@@ -55,14 +55,14 @@
 <section>
   <div class="wrap narrow">
     <h2>1. Why there has to be an order</h2>
-    <p>What is 3 + 4 &times; 2? One person adds first and gets 14. Another multiplies first and gets 11. Maths must mean the same to everybody. So there is an <b>agreed order</b> for the {term:operation|operations}. It is a <i>convention</i>: people agreed it, so that everyone gets the same answer from the same calculation (it is not a law of nature). The order is {term:bidmas|BIDMAS}:</p>
+    <p>What is 3 + 4 &times; 2? One person adds first and gets 14. Another multiplies first and gets 11. Maths must mean the same to everybody, so there is an <b>agreed order</b> for the {term:operation|operations}. This is a <i>convention</i>: people agreed it so that everyone gets the same answer from the same calculation. It is not a law of nature. The order is {term:bidmas|BIDMAS}:</p>
     <div class="pairs">
       <div><b>B</b>rackets first</div>
       <div><b>I</b>ndices (powers) next</div>
       <div><b>D</b>ivision and <b>M</b>ultiplication together</div>
       <div><b>A</b>ddition and <b>S</b>ubtraction together</div>
     </div>
-    <div class="key"><p><b>Key idea:</b> &times; and &divide; are equal. + and &minus; are equal. Equal? Go left to right.</p></div>
+    <div class="key"><p><b>Key idea:</b> multiplication and division have equal priority. Addition and subtraction have equal priority. When operations have equal priority, work from left to right.</p></div>
     <p>10 &minus; 2 + 3 = 8 + 3 = 11</p>
     <p>8 &divide; 2 &times; 4 = 4 &times; 4 = 16</p>
     <figure class="figure">
@@ -78,7 +78,7 @@
         <rect x="100" y="178" width="290" height="48" rx="6" fill="#fbeadb" stroke="#0f2440" stroke-width="3"/>
         <text class="svg-t" x="116" y="208">4  + &minus;  (left to right)</text>
       </svg>
-      <figcaption>The BIDMAS staircase. Start at the top. Inside step 3, &times; and &divide; are equal. Inside step 4, + and &minus; are equal. Go left to right in each.</figcaption>
+      <figcaption>The BIDMAS staircase. Start at the top. Inside step 3, &times; and &divide; have equal priority. Inside step 4, + and &minus; have equal priority. Go left to right in each.</figcaption>
     </figure>
     <p><b>Try it:</b> work out 2 + 3 &times; 4.</p>
     <div class="worked">
@@ -88,7 +88,7 @@
         <li>Divide before you subtract: 6 &divide; 2 = 3.</li>
         <li>20 &minus; 3 = 17.</li>
       </ol>
-      <p class="muted">A scientific calculator gives 17 too. If yours gives 7, it works left to right only.</p>
+      <p class="muted">A scientific calculator gives 17 too. If your calculator gives 7, it is working strictly from left to right and ignoring the order.</p>
     </div>
   </div>
 </section>
@@ -110,13 +110,13 @@
     </div>
     <div class="q" data-answers="11" data-mode="value">
       <p class="qtext">A player has 10 lives, loses 2 and then wins 3 back. Work out 10 &minus; 2 + 3.</p>
-      <ol class="ladder"><li>Same priority: work left to right.</li></ol>
+      <ol class="ladder"><li>Addition and subtraction have the same priority, so work from left to right.</li></ol>
       <ul class="wrong"><li data-if="5">You did 2 + 3 first. Go left to right: 10 &minus; 2 first.</li></ul>
       <div class="solution"><p>10 &minus; 2 = 8, then 8 + 3 = 11.</p></div>
     </div>
     <div class="q" data-answers="16" data-mode="value">
       <p class="qtext">Work out 8 &divide; 2 &times; 4.</p>
-      <ol class="ladder"><li>Same priority: left to right.</li></ol>
+      <ol class="ladder"><li>Multiplication and division have the same priority, so work from left to right.</li></ol>
       <ul class="wrong"><li data-if="1">You did 2 &times; 4 first. Go left to right: 8 &divide; 2 first.</li></ul>
       <div class="solution"><p>8 &divide; 2 = 4, then 4 &times; 4 = 16.</p></div>
     </div>
@@ -134,7 +134,7 @@
     <h2>2. Brackets and powers</h2>
     <p><b>Brackets</b> mean &ldquo;do this first&rdquo;. They change the normal order.</p>
     <p>(3 + 4) &times; 2 = 7 &times; 2 = 14</p>
-    <p>A fraction line works like brackets. Do the top first. A square root sign works the same way: work out what is under it first.</p>
+    <p>A fraction line works like brackets. Work out the {term:numerator|numerator} (top) and the {term:denominator|denominator} (bottom) first, then divide. A square root sign works the same way: work out what is under it first.</p>
     <p><b>Indices</b> (powers) come next, before multiplying.</p>
     <p>3 + 2&sup2; = 3 + 4 = 7</p>
     <p>(3 + 2)&sup2; = 5&sup2; = 25</p>
@@ -154,7 +154,7 @@
       <h3>Now you finish it: a fraction bar</h3>
       <p>Work out {frac:12 + 8/4}.</p>
       <ol class="steps">
-        <li>The fraction line works like brackets. Do the top first: 12 + 8 = 20.</li>
+        <li>The fraction line works like brackets. Work out the numerator first: 12 + 8 = 20.</li>
         <li>Then 20 &divide; 4 = <span class="blank" data-answers="5">___</span>.</li>
       </ol>
       <details class="check-line"><summary>Check my answer</summary><p>20 &divide; 4 = 5. Without the line, 12 + 8 &divide; 4 would be 12 + 2 = 14. The line changes the order.</p></details>
@@ -166,7 +166,7 @@
   <div class="wrap narrow">
     <h2>Check your knowledge: brackets and powers</h2>
     <div class="q" data-answers="16" data-mode="value">
-      <p class="qtext">Zoe mixes 2 batches of paint. Each batch has 5 ml of red and 3 ml of blue. Work out 2 &times; (5 + 3), the total ml of paint.</p>
+      <p class="qtext">Zoe mixes 2 batches of paint. Each batch has 5 ml of red and 3 ml of blue. Work out 2 &times; (5 + 3), the total amount of paint in millilitres.</p>
       <ol class="ladder"><li>Brackets first: 5 + 3.</li></ol>
       <ul class="wrong"><li data-if="13">You did 2 &times; 5 + 3. Do the brackets first.</li></ul>
       <div class="solution"><p>5 + 3 = 8, then 2 &times; 8 = 16.</p></div>
@@ -197,7 +197,7 @@
     </div>
     <div class="q" data-answers="5" data-mode="value">
       <p class="qtext">Work out {frac:12 + 8/4}.</p>
-      <ol class="ladder"><li>The top of a fraction is worked out first.</li></ol>
+      <ol class="ladder"><li>The numerator (the top) of a fraction is worked out first.</li></ol>
       <ul class="wrong"><li data-if="14">You did 8 &divide; 4 first. The fraction line groups 12 + 8.</li></ul>
       <div class="solution"><p>12 + 8 = 20, then 20 &divide; 4 = 5.</p></div>
     </div>
@@ -225,13 +225,13 @@
       <ul class="options">
         <li data-why="That is the same as with no brackets: 3 &times; 4 = 12, so 2 + 12 = 14.">2 + (3 &times; 4)</li>
         <li data-correct>(2 + 3) &times; 4</li>
-        <li data-why="Brackets round a single number change nothing.">2 + 3 &times; (4)</li>
+        <li data-why="Brackets around a single number change nothing.">2 + 3 &times; (4)</li>
       </ul>
       <ol class="ladder"><li>You need the addition done first.</li></ol>
       <div class="solution"><p>(2 + 3) &times; 4 = 5 &times; 4 = 20.</p></div>
     </div>
     <div class="q" data-type="mc">
-      <p class="qtext">Which operation makes 6 ? 2 + 3 = 6 true?</p>
+      <p class="qtext">Which operation sign, in place of the ?, makes 6 ? 2 + 3 = 6 true?</p>
       <ul class="options">
         <li data-why="6 + 2 + 3 = 11.">+</li>
         <li data-why="6 &minus; 2 + 3 = 7.">&minus;</li>
@@ -254,9 +254,9 @@
       <div class="solution"><p>6 &minus; 1 = 5, and 5 &times; 4 = 20. Check: 20 &divide; 4 + 1 = 6.</p></div>
     </div>
     <div class="q" data-answers="15" data-mode="value">
-      <p class="qtext">Leo works out the total for a relay kit as 9 + 18 &divide; 3 and gets 9. What should the answer be?</p>
+      <p class="qtext">Leo works out the total for a relay kit as 9 + 18 &divide; 3 and gets 9. What is the correct answer?</p>
       <ol class="ladder"><li>Divide first.</li></ol>
-      <ul class="wrong"><li data-if="9">That is Leo's answer: 9 + 18 first.</li></ul>
+      <ul class="wrong"><li data-if="9">That is Leo's answer. He added 9 + 18 first.</li></ul>
       <div class="solution"><p>18 &divide; 3 = 6, then 9 + 6 = 15. Leo added first (27 &divide; 3 = 9).</p></div>
     </div>
   </div>
@@ -272,7 +272,7 @@
         <li data-why="That goes left to right, but &times; comes before +.">Nothing is wrong: 6 + 4 = 10, then 10 &times; 2 = 20.</li>
         <li data-why="The question has no subtraction.">He should have subtracted, not added, in the first step.</li>
       </ul>
-      <ol class="ladder"><li>Which operation has priority?</li></ol>
+      <ol class="ladder"><li>Which operation should be done first?</li></ol>
       <div class="solution"><p>He added first, not multiplied first. 4 &times; 2 = 8, then 6 + 8 = 14.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -337,7 +337,7 @@
 <section class="exam-section">
   <div class="wrap narrow">
     <h2>Exam style</h2>
-    <p class="muted">No calculator. Marks are given for the right order.</p>
+    <p class="muted">No calculator. Marks are given for using the right order of operations.</p>
     <p class="muted">Not sure what a question word means? <a href="command-words.html">Question words explained</a>.</p>
     <p class="muted">Write your working on paper, then type the answer.</p>
     <div class="q" data-answers="103" data-mode="value">
@@ -378,7 +378,7 @@
     <h2>Going further</h2>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Work out {frac:2 + 10/3} + 4 &times; 2.</p>
-      <ol class="ladder"><li>Top of the fraction first: 2 + 10 = 12.</li><li>Then 12 &divide; 3, then add 4 &times; 2.</li></ol>
+      <ol class="ladder"><li>Numerator first: 2 + 10 = 12.</li><li>Then 12 &divide; 3, then add 4 &times; 2.</li></ol>
       <ul class="wrong"><li data-if="20">The top is 12. {frac:12/3} = 4, not 12.</li></ul>
       <div class="solution"><p>{frac:12/3} = 4 and 4 &times; 2 = 8. 4 + 8 = 12.</p></div>
     </div>
@@ -389,7 +389,7 @@
       <div class="solution"><p>3&sup2; = 9, 2 &times; 9 = 18, 18 &divide; 6 = 3, 3 + (&minus;1) = 2.</p></div>
     </div>
     <div class="q" data-type="mc">
-      <p class="qtext">A classic puzzle: use four 4s, once each, with the usual operations and brackets, to make a target number. For example, 4 &times; 4 + 4 &divide; 4 = 17. Which sign goes in the square brackets to make 4 &times; 4 [ ] (4 &divide; 4) = 15?</p>
+      <p class="qtext">A classic puzzle: use four 4s, once each, with the usual operations and brackets, to make a target number. For example, 4 &times; 4 + 4 &divide; 4 = 17. Which sign goes in the gap marked [ ] to make 4 &times; 4 [ ] (4 &divide; 4) = 15?</p>
       <ul class="options">
         <li data-why="4 &times; 4 + (4 &divide; 4) = 16 + 1 = 17, which is the example in the question.">+</li>
         <li data-correct>&minus;</li>
@@ -406,8 +406,8 @@
   <div class="wrap narrow">
     <h2>Negatives, powers and hidden brackets <span class="chip chip-higher">Higher</span></h2>
     <p>Two places where the order catches people out.</p>
-    <p><b>A minus sign and a power.</b> The power belongs to the number just before it, so in &minus;3&sup2; the square belongs to the 3 only: &minus;3&sup2; = &minus;(3&sup2;) = &minus;9. With brackets, (&minus;3)&sup2; = (&minus;3) &times; (&minus;3) = 9. Calculator note: some calculators treat the minus sign as part of the number and give 9 for &minus;3&sup2;, and others give &minus;9. Always type the brackets, (&minus;3)&sup2;, so it does not matter which kind you have.</p>
-    <p><b>Hidden brackets.</b> A fraction line groups its top and bottom. On one line, the same thing needs brackets. {frac:1/2}<i>x</i> means half of <i>x</i>, which is (1/2)<i>x</i> = <i>x</i>/2. But typed as 1/2<i>x</i>, some calculators and people read it as 1/(2<i>x</i>), which is different. When it is not a fraction layout, put the brackets in.</p>
+    <p><b>A minus sign and a power.</b> The power belongs to the number just before it, so in &minus;3&sup2; the square belongs to the 3 only: &minus;3&sup2; = &minus;(3&sup2;) = &minus;9. With brackets, (&minus;3)&sup2; = (&minus;3) &times; (&minus;3) = 9. Calculator note: some calculators treat the minus sign as part of the number and give 9 for &minus;3&sup2;, and others give &minus;9. To square &minus;3, always type the brackets, (&minus;3)&sup2;, so it does not matter which kind of calculator you have.</p>
+    <p><b>Hidden brackets.</b> A fraction line groups its numerator and its denominator. On one line, the same thing needs brackets. {frac:1/2}<i>x</i> means half of <i>x</i>, which is (1/2)<i>x</i> = <i>x</i>/2. But typed as 1/2<i>x</i>, some calculators and people read it as 1/(2<i>x</i>), which is different. When you type a fraction on one line, put the brackets in.</p>
     <div class="q" data-answers="-9" data-mode="value">
       <p class="qtext">Work out &minus;3&sup2;, using the standard order of operations.</p>
       <ol class="ladder"><li>Which number does the little 2 belong to: the 3, or the &minus;3?</li><li>Do the power first, then apply the minus sign.</li><li>3&sup2; = 9. Now put the minus in front.</li></ol>
@@ -423,7 +423,7 @@
     <div class="q" data-answers="3" data-mode="value">
       <p class="qtext">When <i>x</i> = 6, work out the value of (1/2)<i>x</i> (half of <i>x</i>).</p>
       <ol class="ladder"><li>What does &ldquo;half of <i>x</i>&rdquo; mean when <i>x</i> is 6?</li><li>Put 6 in for <i>x</i> and do the bracket first.</li><li>(1/2) &times; 6 = ?</li></ol>
-      <ul class="wrong"><li data-if="1/12">That is 1/(2<i>x</i>), with 2<i>x</i> on the bottom. The brackets in (1/2)<i>x</i> group only the half.</li><li data-if="12">That doubles <i>x</i>. A half of 6 is smaller than 6.</li></ul>
+      <ul class="wrong"><li data-if="1/12">That is 1/(2<i>x</i>), with 2<i>x</i> as the denominator. The brackets in (1/2)<i>x</i> group only the half.</li><li data-if="12">That doubles <i>x</i>. A half of 6 is smaller than 6.</li></ul>
       <div class="solution"><p>(1/2) &times; 6 = 3. (By contrast 1/(2<i>x</i>) would be 1/12, which is why the brackets matter.)</p></div>
     </div>
   </div>
@@ -440,7 +440,7 @@
     <h2>Common traps</h2>
     <ul class="tick traps">
       <li>Working only from left to right.</li>
-      <li>Doing all the multiplication before any division. They are equal.</li>
+      <li>Doing all the multiplication before any division. They have equal priority.</li>
       <li>Squaring more than the number just before the power.</li>
       <li>Forgetting that a fraction bar acts like brackets.</li>
       <li>Undoing steps in the wrong order when finding a missing number.</li>
