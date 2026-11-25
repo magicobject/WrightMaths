@@ -82,7 +82,8 @@ test.describe('the book in its interactive states', () => {
   // One test per page (each gets its own time budget): a 320px phone width, as a high-zoom user would see it.
   for (const bookPage of BOOK_PAGES) {
     test(`${bookPage.path} has no axe violations at 320px wide`, async ({ page }) => {
-      test.setTimeout(60_000); // the biggest pages have 100+ questions and run alongside many workers
+      // The biggest pages have 100+ questions and run alongside many workers; the glossary (about 290 entries, each with links) is the largest of all.
+      test.setTimeout(bookPage.path.includes('glossary') ? 150_000 : 60_000);
       await page.setViewportSize({ width: 320, height: 640 });
       await page.goto(bookPage.path);
       expect(await violations(page), bookPage.path).toEqual([]);
