@@ -6,7 +6,8 @@
 // data-answers is a list split on ";" (same rule as .q). data-mode="exact" on the box makes written form matter.
 // Nothing typed here is stored or sent anywhere.
 
-import { matches, splitList, parseNumber } from './book-answer.mjs?m=40';
+import { matches, splitList, parseNumber } from './book-answer.mjs?m=39';
+import { layoutFor, createCalculator, LAYOUTS } from './book-calc.mjs?m=39';
 
 /**
  * Gaps in one step that share the same key list of two or more different numbers (such as 5;9 and 5;9 in
@@ -111,6 +112,9 @@ export function enhanceFaded(box) {
   steps.replaceWith(form);
   form.append(steps, el('div', { class: 'blank-actions' }, check, status));
   for (const input of inputs) input.setAttribute('aria-describedby', statusId);
+  // data-calc="yes" or "scientific" on the box gives it the same calculator a question gets, after the form.
+  const calcMark = box.closest('[data-calc]')?.dataset.calc;
+  if (calcMark === 'yes' || (typeof calcMark === 'string' && calcMark in LAYOUTS)) form.after(createCalculator(layoutFor(box)).root);
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
