@@ -2,6 +2,9 @@
 // browser dependencies, so they are unit-tested here and can also be used by the
 // build step that makes recorded audio (one "say it this way" table for both).
 
+// A function's argument: a plain value or letter is said as it is; anything longer keeps its brackets.
+const bracketed = (arg) => (/^\s*[\w−-]+\s*$/.test(arg) ? arg.trim() : `(${arg.trim()})`);
+
 const PRONOUNCE = [
   [/\bBIDMAS\b/g, 'bid mass'],
   [/\bBODMAS\b/g, 'bod mass'],
@@ -12,7 +15,11 @@ const PRONOUNCE = [
   [/\betc\./gi, 'et cetera'],
   [/π/g, ' pi '],
   // Function notation: f(x) is "f of x", f(4) is "f of 4", f(x + 1) keeps its brackets: "f of (x plus 1)".
-  [/(?<![A-Za-z0-9])([fgh])\(([^()]*)\)/g, (match, name, arg) => (/^\s*[\w−-]+\s*$/.test(arg) ? `${name} of ${arg.trim()}` : `${name} of (${arg.trim()})`)],
+  // fg(x) is "f of g of x" (f applied to g(x)), f with a -1 power is "f inverse", and P(red) is "the probability of red".
+  [/(?<![A-Za-z0-9])([fgh])⁻¹(?=\()/g, '$1 inverse'],
+  [/(?<![A-Za-z0-9])P\(([^()]*)\)/g, (match, arg) => `the probability of ${arg.trim()}`],
+  [/(?<![A-Za-z0-9])([fgh])([fgh])\(([^()]*)\)/g, (match, outer, inner, arg) => `${outer} of ${inner} of ${bracketed(arg)}`],
+  [/(?<![A-Za-z0-9])([fgh])( inverse)?\(([^()]*)\)/g, (match, name, inverse = '', arg) => `${name}${inverse} of ${bracketed(arg)}`],
 ];
 
 const SYMBOLS = [
@@ -119,7 +126,8 @@ export function numbersToWords(text) {
  */
 export function toSpoken(text) {
   let out = String(text);
-  for (const [pattern, say] of [...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
+  // The pronunciation table runs twice so a function inside a function, f(g(x)), is reached from the inside out.
+  for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
   out = numbersToWords(out);
   return out
     .replace(/[“”]/g, '') // quotation marks are not spoken

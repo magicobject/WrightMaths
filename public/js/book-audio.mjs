@@ -3,7 +3,7 @@
 // old recording stop matching (the browser voice reads it instead) and the build
 // tooling lists it as needing a new one. Clips are plain files on this site:
 // nothing is fetched from anywhere else.
-import { toSpoken } from './book-speech.mjs?m=41';
+import { toSpoken } from './book-speech.mjs?m=42';
 
 export const AUDIO_DIR = '/audio/book/';
 export const AUDIO_TYPES = ['mp3', 'm4a', 'ogg', 'wav'];
@@ -34,7 +34,9 @@ export function unitText(node) {
   });
   clone.querySelectorAll('sup').forEach((s) => {
     const p = s.textContent.trim();
-    s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
+    // f<sup>-1</sup>(x) is "f inverse of x", not "f to the power of minus one"
+    const inverse = /^[−-]1$/.test(p) && /(^|[^A-Za-z0-9])[fgh]$/.test(s.previousSibling?.textContent ?? '') && /^\(/.test(s.nextSibling?.textContent ?? '');
+    s.replaceWith(inverse ? ' inverse' : p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
   });
   const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
   // data-say: the author's own words for the voice, read instead of the displayed words

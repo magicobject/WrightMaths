@@ -157,7 +157,11 @@ A voice says only the words on the page, so a bare number is spoken bare. Write 
 
 The voice does not read the page as written. `public/js/book-speech.mjs` turns the displayed words into spoken words: numbers become words ("4,872" is "four thousand, eight hundred and seventy-two", "0.643" is "zero point six four three", "045" is "zero four five"), symbols and units are spelled out, money is pounds and pence. Recordings are keyed to that spoken text.
 
-When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence for review.
+When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence that still needs a recording.
+
+**Reviewing what the voice is given.** `npm run book:audio -- review` (add `--pages=a,b` for some pages) writes `audio-work/review.html` (not committed, not part of the site): every sentence with the words as written beside the words the voice is given. Sentences with notation the voice has to interpret (functions such as f(x), P(A), roots, angle signs, powers, any `data-say`) are coloured, with a tick box to show only those. Reading the spoken column is much quicker than listening, so do that first and listen only to the ones that look wrong.
+
+Function notation is spoken as a teacher says it: `f(x)` is "f of x", `fg(x)` is "f of g of x", `f<sup>&minus;1</sup>(x)` is "f inverse of x", and `P(red)` is "the probability of red". Only a lone f, g or h (or a pair) straight before a bracket counts, so `h (cm)` and `6h(` are untouched.
 
 ### Recorded audio (whole book, 24 Nov 2026)
 

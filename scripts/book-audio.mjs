@@ -9,7 +9,7 @@ import { spawnSync } from 'node:child_process';
 import { dirname, extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
-import { buildManifest, missingUnits, orphanClips, scriptSheet, unitForRecording, engineCommand } from './book-audio-lib.mjs';
+import { buildManifest, missingUnits, orphanClips, scriptSheet, unitForRecording, engineCommand, reviewPage } from './book-audio-lib.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
@@ -53,6 +53,37 @@ async function collectUnits() {
   return [...seen.values()];
 }
 
+// Every Listen sentence on every page (not de-duplicated), with the words as written beside the words the voice is given.
+async function collectReview() {
+  const server = await serve();
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const pages = readdirSync(join(PUBLIC, 'books', 'gcse'))
+    .filter((f) => f.endsWith('.html') && (!pageFilter.length || pageFilter.includes(f.replace(/\.html$/, ''))))
+    .sort();
+  const browser = await chromium.launch();
+  const rows = [];
+  try {
+    const page = await browser.newPage();
+    for (const name of pages) {
+      await page.goto(`${base}/books/gcse/${name}`);
+      const found = await page.evaluate(async () => {
+        const { unitText, hashText } = await import('/js/book-audio.mjs');
+        return [...document.querySelectorAll('.qtext, .key')].map((node) => {
+          const shown = node.cloneNode(true);
+          shown.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
+          const spoken = unitText(node);
+          return { display: shown.textContent, spoken, hash: hashText(spoken), says: node.hasAttribute('data-say') };
+        }).filter((r) => r.spoken);
+      });
+      for (const r of found) rows.push({ page: name.replace(/\.html$/, ''), ...r });
+    }
+  } finally {
+    await browser.close();
+    server.close();
+  }
+  return rows;
+}
+
 function clipFiles() {
   return existsSync(CLIPS) ? readdirSync(CLIPS) : [];
 }
@@ -83,6 +114,12 @@ if (command === 'status') {
   writeFileSync(join(WORK, 'script.json'), `${JSON.stringify(sheet, null, 2)}\n`);
   writeFileSync(join(WORK, 'script.txt'), sheet.map((r) => `${r.number}  ${r.text}`).join('\n\n') + '\n');
   console.log(`${sheet.length} sentences still need a recording. Reading script: audio-work/script.txt`);
+} else if (command === 'review') {
+  const manifest = buildManifest(clipFiles());
+  const rows = (await collectReview()).map((r) => ({ ...r, recorded: Boolean(manifest[r.hash]) }));
+  mkdirSync(WORK, { recursive: true });
+  writeFileSync(join(WORK, 'review.html'), reviewPage(rows, { generated: new Date().toISOString().slice(0, 10) }));
+  console.log(`${rows.length} sentences. Open audio-work/review.html to read what the voice is given beside what is written.`);
 } else if (command === 'make') {
   const template = process.env.WM_TTS_CMD;
   const ext = (process.env.WM_TTS_EXT ?? 'wav').toLowerCase();
@@ -128,6 +165,7 @@ if (command === 'status') {
 
   status      how many Listen sentences have a recording, and which recordings are out of date
   todo        write audio-work/script.txt: the numbered sentences that still need recording
+  review      write audio-work/review.html: every sentence as written beside what the voice is given, differences marked
   make [n]    make recordings with a speech engine. Set WM_TTS_CMD to the engine command, which reads the
               sentence on standard input and writes {out}; set WM_TTS_EXT (wav, mp3, m4a, ogg).
               Example:  WM_TTS_CMD='piper --model voice.onnx --output_file {out}'  WM_TTS_EXT=wav
