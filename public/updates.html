@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.022">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.023">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.023</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book: (1) the word &ldquo;side&rdquo; no longer links to the Opposite or Adjacent glossary entries wherever it appears (it did, on every page that said &ldquo;which side&rdquo;); &ldquo;solution&rdquo; and &ldquo;variable&rdquo; likewise no longer link, and the bracketed qualifiers in a term&rsquo;s name (&ldquo;of a circle&rdquo;, &ldquo;of a formula&rdquo;, &ldquo;the trig ratio&rdquo;) are not treated as names. A bare &ldquo;opposite&rdquo; or &ldquo;adjacent&rdquo; still links. (2) The calculator is now offered on 89 questions that ask for a rounded answer to a number of decimal places or significant figures and could not be done without one (Pythagoras including question 10, circles, bearings, loci, a few surds and others), and on two sine and cosine rule questions that mention the calculator. Tests added for both.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.022</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, Listen: some sentences were read by the device voice instead of the recorded one for up to a day after a release, because a browser kept an old copy of the list of recordings (<code>manifest.json</code>) and so did not know about newly recorded sentences. The list is now checked with the server every time (a tiny &ldquo;not modified&rdquo; reply when nothing has changed), and recordings themselves are kept for an hour instead of a week, so a re-recorded sentence is heard within the hour. Found on the &ldquo;Why mixed?&rdquo; sentence on the mixed practice page. The test server now starts with <code>node</code> directly instead of <code>npx</code>, which could take over a minute to resolve in a git worktree and time the tests out.</p>
@@ -490,7 +494,7 @@
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.022" defer></script>
+  <script src="js/main.js?v=2026.11.25.023" defer></script>
 </footer>
 </body>
 </html>

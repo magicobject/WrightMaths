@@ -130,3 +130,13 @@ test('glossary entries link the technical terms they use, once each and never to
     assert.ok(!ids.includes(g.id), `${g.id} links to itself`);
   }
 });
+
+test('a bare "side", "solution" or "variable" is never linked automatically (only "opposite side" / "adjacent side" style names are)', () => {
+  const patterns = buildAutoPatterns(GLOSSARY);
+  const linksTo = (text) => patterns.filter((p) => p.re.test(text)).map((p) => p.id);
+  for (const word of ['Which side is the hypotenuse?', 'Find the solution.', 'a variable', 'the sides of the triangle']) {
+    assert.deepEqual(linksTo(word).filter((id) => ['opposite', 'adjacent', 'root-of-equation', 'unknown'].includes(id)), [], word);
+  }
+  // the qualifiers in brackets ("of a circle", "the trig ratio") are not names either
+  assert.deepEqual(linksTo('the area of a circle').filter((id) => id === 'segment'), []);
+});
