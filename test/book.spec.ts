@@ -1698,3 +1698,16 @@ test.describe('"Now you finish it" gaps (pilot: fractions, averages)', () => {
     await expect(box.locator('.blank-status')).toContainText('Right!');
   });
 });
+
+test.describe('term links mean the right thing', () => {
+  test('where a question asks for the name of the rule, "sine" and "cosine" link to the sine rule and cosine rule, not to the functions', async ({ page }) => {
+    await page.goto('/books/gcse/sine-cosine-rules.html');
+    const asks = page.locator('.qtext', { hasText: /Type (the name of the rule, )?sine or cosine/ });
+    await expect(asks).toHaveCount(2);
+    for (const q of await asks.all()) {
+      await expect(q.locator('a.term[data-term="sine-rule"]')).toHaveText('sine');
+      await expect(q.locator('a.term[data-term="cosine-rule"]')).toHaveText('cosine');
+      await expect(q.locator('a.term[data-term="sine"], a.term[data-term="cosine"]')).toHaveCount(0);
+    }
+  });
+});
