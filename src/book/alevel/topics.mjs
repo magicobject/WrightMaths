@@ -32,7 +32,7 @@ export const TOPICS = [
 
   // Algebra and functions
   t('indices-surds', 'Indices and surds', 'algebra', 1, [], 'Writing a root as a power, and a power as a root'),
-  t('quadratics', 'Quadratics', 'algebra', 1, ['indices-surds'], 'Solving a quadratic, and building a quadratic from its solutions', { aka: 'quadratic equation completing the square discriminant factorise formula' }),
+  t('quadratics', 'Quadratics', 'algebra', 1, ['indices-surds'], 'Solving a quadratic, and building a quadratic from its solutions', { aka: 'quadratic equation completing the square discriminant factorise formula', status: 'live', words: ['quadratic', 'root', 'completing-the-square', 'quadratic-formula', 'discriminant', 'vertex'] }),
   t('simultaneous', 'Simultaneous equations', 'algebra', 1, ['quadratics'], 'Solving two equations together, and seeing where two graphs cross'),
   t('inequalities', 'Inequalities', 'algebra', 1, ['quadratics'], 'Solving an inequality, and shading the region it describes'),
   t('polynomials', 'Polynomials and the factor theorem', 'algebra', 1, ['quadratics'], 'Dividing to find a factor, and multiplying factors back into a polynomial'),
