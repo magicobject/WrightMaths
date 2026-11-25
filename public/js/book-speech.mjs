@@ -11,6 +11,8 @@ const PRONOUNCE = [
   [/\bi\.e\./gi, 'that is'],
   [/\betc\./gi, 'et cetera'],
   [/π/g, ' pi '],
+  // Function notation: f(x) is "f of x", f(4) is "f of 4", f(x + 1) keeps its brackets: "f of (x plus 1)".
+  [/(?<![A-Za-z0-9])([fgh])\(([^()]*)\)/g, (match, name, arg) => (/^\s*[\w−-]+\s*$/.test(arg) ? `${name} of ${arg.trim()}` : `${name} of (${arg.trim()})`)],
 ];
 
 const SYMBOLS = [

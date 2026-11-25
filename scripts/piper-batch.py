@@ -15,6 +15,7 @@ The words are spoken exactly as written in the script: they are already the "wha
 import argparse
 import json
 import os
+import re
 import sys
 import time
 
@@ -37,6 +38,8 @@ def main():
     ap.add_argument('--script', default='audio-work/script.json')
     ap.add_argument('--out', default='public/audio/book')
     ap.add_argument('--quality', type=float, default=0.85, help='Ogg compression 0 to 1: 0.85 is about 40 kbps')
+    ap.add_argument('--gap', type=float, default=0.45, help='extra seconds of silence after each full stop (the spoken text never has a decimal point: 0.5 is "zero point five")')
+    ap.add_argument('--redo', action='store_true', help='make clips again even when a good file exists (after changing --gap or the voice)')
     ap.add_argument('--limit', type=int, default=0, help='stop after this many new clips (0 = all)')
     args = ap.parse_args()
 
@@ -49,10 +52,18 @@ def main():
     seconds = 0.0
     for row in rows:
         path = os.path.join(args.out, f"{row['hash']}.ogg")
-        if os.path.exists(path) and is_good(path):
+        if not args.redo and os.path.exists(path) and is_good(path):
             skipped += 1
             continue
-        pieces = [chunk.audio_int16_array for chunk in voice.synthesize(row['text'])]
+        # One sentence at a time, with a little extra silence after each full stop. The text is the spoken text, so a
+        # "." is always a full stop: decimals are already words ("zero point five") and abbreviations are spelled out.
+        silence = np.zeros(int(voice.config.sample_rate * args.gap), dtype=np.int16)
+        pieces = []
+        sentences = [s for s in re.split(r'(?<=[.?!])\s+', row['text'].strip()) if s]
+        for i, sentence in enumerate(sentences):
+            pieces.extend(chunk.audio_int16_array for chunk in voice.synthesize(sentence))
+            if i < len(sentences) - 1:
+                pieces.append(silence)
         if not pieces:
             print('no audio for', row['hash'], file=sys.stderr)
             continue
