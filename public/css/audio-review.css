@@ -1,0 +1,15 @@
+/* Private review page for the Listen recordings (/books/gcse/audio-review.html). Not linked anywhere. */
+.ar-bar { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: 0 0 1rem; padding: .6rem 0; }
+.ar-bar select, .ar-bar button, .ar-item button, .ar-item input { font: inherit; padding: .4rem .8rem; border: 1px solid #5a6472; border-radius: .4rem; background: #fff; color: #1b1b1b; cursor: pointer; }
+.ar-item { border: 1px solid #9aa3ae; border-left-width: 6px; border-radius: .5rem; padding: .8rem 1rem; margin: 0 0 .8rem; background: #f6f7f9; color: #1b1b1b; }
+.ar-item.current { outline: 3px solid #0b5cad; outline-offset: 2px; }
+.ar-item.flag { border-left-color: #a30000; }
+.ar-item.ok { border-left-color: #0a6b2d; }
+.ar-meta { font-size: .85rem; color: #3d4652; margin: 0; }
+.ar-text { margin: .3rem 0; font-size: 1.05rem; }
+.ar-heard { margin: .3rem 0; font-size: .9rem; color: #3d4652; }
+.ar-warn { color: #a30000; font-weight: 600; }
+.ar-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .5rem; }
+.ar-keys { font-size: .9rem; margin: 0; }
+.ar-item button:focus-visible, .ar-bar select:focus-visible, .ar-bar button:focus-visible, .ar-item input:focus-visible { outline: 3px solid #0b5cad; outline-offset: 2px; }
+.ar-item kbd, .ar-keys kbd { border: 1px solid #5a6472; border-bottom-width: 2px; border-radius: .25rem; padding: 0 .3rem; font-size: .85em; }

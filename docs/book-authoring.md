@@ -175,3 +175,15 @@ Voice chosen by Greg: Piper `en_GB-alba-medium` (dataset licence CC BY 4.0, cred
 4. `npm run book:audio -- prune` deletes recordings of sentences that no longer exist, then `npm run book:audio -- manifest` (prune does this too).
 
 Add `--pages=topic-a,topic-b` to `status`, `todo` and `make` to work on chosen pages only (not to `prune`).
+
+### Voice rules chosen by Greg (25 Nov 2026) - keep these when re-recording
+
+These live in code (`public/js/book-speech.mjs`, `public/js/book-audio.mjs`, `scripts/piper-batch.py`) and are tested in `test-unit/book-speech.test.mjs`, so a re-record picks them up automatically. If the voice or engine changes, check each still holds:
+
+- **Pauses between sentences:** a full stop is a slight pause, never a spoken "dot". `piper-batch.py` puts 0.45 s of extra silence after each full stop (`--gap`). Paragraphs and list items are joined with a space in `unitText` (they used to run together as "hundred.The", which Piper read as "dot").
+- **The letter A** (a variable, a point, a label, "A-level") is said as the letter name, "ay" as in "hay" without the h. Piper reads a bare "A" as the article ("uh") and the spelling "ay" as "eye", so the spoken text uses the respelling `eigh` (`sayLetterA`). The article stays: "A tube of paint", "plus a bit". Not handled (rare, flagged in review): a lowercase variable `a` after a plain word, such as "add a to both sides".
+- **Coordinates:** "(3, 4)" is "three comma four" and "(-2, 5)" is "minus two comma five". The word "comma" is spoken and the brackets are not (`coordinatesToWords`). A function such as f(x, y) keeps its brackets.
+- **Column vectors:** the stacked numbers are said "vector minus one, two", with a slight pause (a comma) between the two (`unitText`, from the vector's `aria-label`).
+- **Every clip** is re-recorded when these change: `python scripts/piper-batch.py --voice <onnx> --redo-before <Unix time you start>` (like `--redo`, but a stopped run restarts with the same value and skips what is already done), then `npm run book:audio -- prune`.
+- **Check afterwards:** `npm run book:audio -- all`, `python scripts/audio-check.py` (transcribes each clip and compares it with its text), then `npm run book:review`, which builds the page for listening and flagging.
+- **Not decided:** times such as 09:15 are spoken "zero nine:fifteen" (Greg's call how they should sound).
