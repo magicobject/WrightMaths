@@ -76,7 +76,7 @@ export const SEARCH_SYNONYMS = {
  * glossary: the terms (id, term, strand, def, optional aka: ['other name', ...])
  * Headings that appear on more than `genericAfter` pages ("Check your knowledge") are left out: they would bury real results.
  */
-export function buildSearchIndex({ pages, glossary, strands, glossaryHref, genericAfter = 6 }) {
+export function buildSearchIndex({ pages, glossary, strands, glossaryHref, genericAfter = 6, synonyms = SEARCH_SYNONYMS }) {
   const counts = new Map();
   const headingsOf = pages.map((page) => {
     if (page.sections === false) return [];
@@ -87,7 +87,7 @@ export function buildSearchIndex({ pages, glossary, strands, glossaryHref, gener
 
   const index = [];
   pages.forEach((page, i) => {
-    index.push(compact({ t: page.title, u: page.href, k: page.kind, s: page.sub, d: page.snippet && short(page.snippet), a: page.aliases, y: SEARCH_SYNONYMS[page.href] }));
+    index.push(compact({ t: page.title, u: page.href, k: page.kind, s: page.sub, d: page.snippet && short(page.snippet), a: page.aliases, y: synonyms[page.href] }));
     const seen = new Set();
     for (const h of headingsOf[i]) {
       const key = h.text.toLowerCase();
@@ -106,9 +106,9 @@ export function buildSearchIndex({ pages, glossary, strands, glossaryHref, gener
  * The header search box (book pages only). Hidden until book-search-ui.mjs starts it, so nothing dead shows without JavaScript.
  * The index address is relative to the page, so it is always fetched from this site.
  */
-export function renderSearchBox(base) {
+export function renderSearchBox(base, bookRoot = 'books/gcse') {
   return `
-    <form class="book-search" role="search" aria-label="Search the whole book" data-index="${base}books/gcse/search-index.json" autocomplete="off" hidden>
+    <form class="book-search" role="search" aria-label="Search the whole book" data-index="${base}${bookRoot}/search-index.json" autocomplete="off" hidden>
       <label class="sr-only" for="book-search-input">Search the whole book (topics, words and sections)</label>
       <input id="book-search-input" type="search" role="combobox" aria-expanded="false" aria-controls="book-search-results" aria-autocomplete="list" placeholder="Search the whole book" maxlength="60" spellcheck="false">
       <ul id="book-search-results" class="book-search-results" role="listbox" aria-label="Search results" tabindex="-1" hidden></ul>

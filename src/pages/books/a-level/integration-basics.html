@@ -1,0 +1,1014 @@
+<main class="book strand-al-integration" data-book-page="topic" data-topic="integration-basics">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Integration &middot; Year 1</span>
+      <h1>Integration as reverse differentiation</h1>
+      <p class="lead">Differentiating gives the gradient of a curve. Integrating goes the other way: from the gradient back to the curve. This page shows how to do it, and why every integral without limits ends in + c.</p>
+      <p class="where-use"><b>Where you will use this:</b> finding a curve when you know its gradient, finding an area under a curve (the next topic), and working back from a rate of change to the quantity.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Integration as reverse differentiation</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page assumes you can differentiate a power of x, and that you can write roots and reciprocals as powers. The warm-up checks both. It does not use definite integrals or area: they come in the next topic.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-going-backwards-what-was-differentiate">Skip to the lesson</a></p>
+    <div class="q" data-answers="4x^3" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=x^4}. Type {m:frac(dy, dx)} like 5x^2.</p>
+      <ol class="ladder"><li>Differentiating a function gives its derivative, written {m:frac(dy, dx)} and read "dy by dx".</li><li>Bring the power down in front, as a multiplier.</li><li>Then take 1 off the power.</li></ol>
+      <ul class="wrong"><li data-if="x^3">You took 1 off the power, but the old power, 4, must also come down in front as a multiplier.</li><li data-if="4x^4">You brought the 4 down, but you also need to take 1 off the power.</li></ul>
+      <div class="solution"><p>Multiply by the power, 4, and take 1 off the power: {m:frac(dy, dx)=4x^3}. At {m:x=1} the curve has gradient 4.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip if you are happy)</summary>
+    <div class="q" data-answers="6x+5;5+6x" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=3x^2+5x-7}. Type your answer like 4x^3+2.</p>
+      <ol class="ladder"><li>Differentiate each term on its own, then add the results.</li><li>{m:3x^2} gives {m:6x}, and {m:5x} gives 5.</li><li>A number on its own gives 0.</li></ol>
+      <ul class="wrong"><li data-if="6x+5-7">A number on its own, such as {m:-7}, has derivative 0. It does not stay.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=6x+5+0=6x+5}. The {m:-7} only moves the curve down. It does not change the gradient.</p></div>
+    </div>
+    <div class="q" data-answers="x^(-2);x^-2" data-mode="exact">
+      <p class="qtext">Write {m:frac(1, x^2)} as a power of x. Type your answer like x^3.</p>
+      <ol class="ladder"><li>You want one power of x, with no fraction.</li><li>{m:x^(-1)} means {m:frac(1, x)}. Use the same pattern.</li><li>Put the minus sign in the power.</li></ol>
+      <ul class="wrong"><li data-if="x^2">{m:x^2} is x squared. A power on the bottom of a fraction becomes a negative power.</li><li data-if="-x^2">The minus sign belongs in the power, not in front. {m:frac(1, x^2)} is positive.</li></ul>
+      <div class="solution"><p>{m:frac(1, x^n)=x^(-n)}, so {m:frac(1, x^2)=x^(-2)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^(1/2);x^0.5" data-mode="exact">
+      <p class="qtext">Write {m:sqrt(x)} as a power of x. Type your answer like x^(1/3).</p>
+      <ol class="ladder"><li>A square root is a power of x. Which power?</li><li>Squaring doubles a power. A square root halves it.</li><li>Write the power as a fraction in brackets.</li></ol>
+      <ul class="wrong"><li data-if="x^2">{m:x^2} is x squared. A square root undoes squaring, so the power is a half.</li><li data-if="x^(-1/2)">A negative power means 1 over. {m:x^(-1/2)} is {m:frac(1, sqrt(x))}, not {m:sqrt(x)}.</li></ul>
+      <div class="solution"><p>{m:sqrt(x)=x^(1/2)}, because {m:x^(1/2)*x^(1/2)=x^1=x}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+4x+4;4+4x+x^2" data-mode="exact">
+      <p class="qtext">Expand {m:(x+2)^2}. Type your answer like x^2+3x+1.</p>
+      <ol class="ladder"><li>Squaring a bracket means multiplying it by itself.</li><li>Write {m:(x+2)(x+2)}. Multiply every term by every term.</li><li>Two of the four pieces are like terms. Join them.</li></ol>
+      <ul class="wrong"><li data-if="x^2+4">That misses the middle term. {m:(x+2)^2} means {m:(x+2)(x+2)}, which has four pieces.</li><li data-if="x^2+2x+4">The two middle pieces are 2x and 2x. They make 4x.</li></ul>
+      <div class="solution"><p>{m:(x+2)(x+2)=x^2+2x+2x+4=x^2+4x+4}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Going backwards: what was differentiated?</h2>
+    <p>To {term:differentiate} a function is to find its {term:derivative}. The derivative gives the gradient of the curve at every value of x.</p>
+    <p>Now go the other way. You are given the derivative, and you want the function it came from. To {term:integrate} is to do exactly that. Integrating reverses differentiating.</p>
+    <figure class="figure-lg">{fig:integration-basics-curve-and-gradient}<figcaption>The curve {m:y=x^2} is on top. Its derivative, {m:frac(dy, dx)=2x}, is below. Look at x = 2: the curve has gradient 4, and the lower graph is 4 high.</figcaption></figure>
+    <p>Read the two graphs together. The height of the lower graph is the gradient of the upper graph. Integrating starts from the lower graph and asks: which curve has these gradients?</p>
+    <div class="key">
+      <p><b>Key idea:</b> to integrate a function {m:f(x)} is to find a function whose derivative is {m:f(x)}. Any such function is an {term:antiderivative} of {m:f(x)}. The result of integrating is called an {term:integral}.</p>
+    </div>
+    <figure class="figure-lg">{fig:integration-basics-two-way}<figcaption>Differentiating takes x&sup3; to 3x&sup2;. Integrating goes back.</figcaption></figure>
+    <p>So there is one question to ask each time: <i>what did I differentiate to get this function?</i> Use what you know about differentiating powers. Differentiating brings the power down in front and takes 1 off the power. Integrating must undo that.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find a function whose derivative is {m:4x^3}.</p>
+      <ol class="steps">
+        <li>Differentiating takes 1 off the power. So the power in the answer is one more than 3. Try {m:x^4}.</li>
+        <li>Differentiate {m:x^4}: the 4 comes down in front and the power drops to 3. This gives {m:4x^3}.</li>
+        <li>That is the derivative we were given. So {m:x^4} is a function whose derivative is {m:4x^3}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find a function whose derivative is {m:5x^4}.</p>
+      <ol class="steps">
+        <li>The power in the answer is one more than 4. So try <span class="blank" data-mode="exact" data-answers="x^5">___</span>.</li>
+        <li>The derivative of {m:x^5} is <span class="blank" data-mode="exact" data-answers="5x^4">___</span>.</li>
+        <li>That is the derivative we were given. So a function whose derivative is {m:5x^4} is <span class="blank" data-mode="exact" data-answers="x^5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>One more than 4 is 5. Differentiating {m:x^5} gives {m:5x^4}. So {m:x^5} works. Other functions work too, such as {m:x^5+2}. The next section shows why.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: going backwards</h2>
+    <div class="q" data-answers="3x" data-mode="exact">
+      <p class="qtext">The graph shows {m:frac(dy, dx)} for a straight line {m:y=F(x)} that passes through the origin. Write down {m:F(x)}. Type your answer like 4x.</p>
+      <figure class="qfig-lg">{fig:integration-basics-q-flat-gradient}</figure>
+      <ol class="ladder"><li>The graph shows the gradient of the line at every x. What do you notice about the gradient?</li><li>The gradient is the same everywhere, so {m:y=F(x)} is a straight line with that gradient.</li><li>A line through the origin has equation {m:y=mx}, where m is the gradient.</li></ol>
+      <ul class="wrong"><li data-if="3">3 is the gradient, not the function. The function is the line itself, whose gradient is 3.</li><li data-if="x+3">The line {m:y=x+3} has gradient 1. The gradient must be 3, and the line must pass through the origin.</li></ul>
+      <div class="solution"><p>The derivative is 3 everywhere, so the line has gradient 3. Through the origin, {m:F(x)=3x}. Check: the derivative of {m:3x} is 3.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A curve has {m:frac(dy, dx)=2x}. Which of these could be the equation of the curve?</p>
+      <ul class="options">
+        <li data-why="The derivative of 2x&sup2; is 4x, not 2x."><span class="sr-only">y equals 2 x squared</span><span aria-hidden="true">{m:y=2x^2}</span></li>
+        <li data-correct><span class="sr-only">y equals x squared plus 7</span><span aria-hidden="true">{m:y=x^2+7}</span></li>
+        <li data-why="The derivative of x is 1, not 2x."><span class="sr-only">y equals x</span><span aria-hidden="true">{m:y=x}</span></li>
+      </ul>
+      <ol class="ladder"><li>Differentiate each option. Which gives {m:2x}?</li><li>The derivative of {m:x^2} is {m:2x}.</li><li>A number added on does not change the derivative.</li></ol>
+      <div class="solution"><p>The derivative of {m:x^2+7} is {m:2x+0=2x}. Check the others: {m:2x^2} gives {m:4x}, and {m:x} gives 1.</p></div>
+    </div>
+    <div class="q" data-answers="x^7" data-mode="exact">
+      <p class="qtext">Find a function whose derivative is {m:7x^6}. Give the simplest one, with nothing added. Type your answer like x^3.</p>
+      <ol class="ladder"><li>You want a function that differentiates to {m:7x^6}.</li><li>The power in the answer is one more than 6.</li><li>Try it, then differentiate your answer to check.</li></ol>
+      <ul class="wrong"><li data-if="7x^7">The derivative of {m:7x^7} is {m:49x^6}. The 7 in front comes from the power, so it must not be in the answer.</li><li data-if="x^6">The derivative of {m:x^6} is {m:6x^5}. The power in the answer is one more than 6.</li></ul>
+      <div class="solution"><p>Try {m:x^7}. Its derivative is {m:7x^6}. Check: the 7 comes down in front and the power drops to 6.</p></div>
+    </div>
+    <div class="q" data-answers="2x^3" data-mode="exact">
+      <p class="qtext">Find a function whose derivative is {m:6x^2}. Give the simplest one, with nothing added. Type your answer like 5x^2.</p>
+      <ol class="ladder"><li>You want a function that differentiates to {m:6x^2}.</li><li>Start with {m:x^3}. Its derivative is {m:3x^2}. How many copies of {m:3x^2} make {m:6x^2}?</li><li>Multiply {m:x^3} by that number.</li></ol>
+      <ul class="wrong"><li data-if="x^3">The derivative of {m:x^3} is {m:3x^2}, which is only half of {m:6x^2}.</li><li data-if="6x^3">The derivative of {m:6x^3} is {m:18x^2}, which is too big. Use a smaller number in front: how many copies of {m:3x^2} make {m:6x^2}?</li></ul>
+      <div class="solution"><p>The derivative of {m:x^3} is {m:3x^2}. We need twice that, so use {m:2x^3}. Check: the derivative of {m:2x^3} is {m:6x^2}.</p></div>
+    </div>
+    <div class="q" data-answers="3x^4" data-mode="exact">
+      <p class="qtext">The derivative of {m:F(x)} is {m:12x^3}. Find the simplest {m:F(x)}, with nothing added. Type your answer like 5x^2.</p>
+      <ol class="ladder"><li>You want a function whose derivative is {m:12x^3}.</li><li>The power in the answer is one more than 3. The derivative of {m:x^4} is {m:4x^3}.</li><li>How many copies of {m:4x^3} make {m:12x^3}?</li></ol>
+      <ul class="wrong"><li data-if="12x^4">The derivative of {m:12x^4} is {m:48x^3}. The 4 that comes down multiplies the 12.</li><li data-if="x^4">The derivative of {m:x^4} is {m:4x^3}. You need three times that.</li></ul>
+      <div class="solution"><p>The derivative of {m:x^4} is {m:4x^3}. We need three times that, so {m:F(x)=3x^4}. Check: {m:3*4x^3=12x^3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Why every integral ends in + c</h2>
+    <p>Differentiate {m:x^2}. You get {m:2x}. Now differentiate {m:x^2+3} and {m:x^2-5}. You get {m:2x} again each time.</p>
+    <p>Adding a number moves a curve up or down. It does not change how steep the curve is at any value of x. So many functions have the same derivative. The picture shows three of them.</p>
+    <figure class="figure-lg">{fig:integration-basics-family}<figcaption>The curves {m:y=x^2+c} for {m:c=-2}, 0 and 2. Look at x = 1. Each curve has gradient 2, so the three short tangents are parallel.</figcaption></figure>
+    <p>Together, these curves are a family: one curve for each value of c. Every function with derivative {m:2x} has the form {m:x^2+c}, where c is a number. We write all of them at once as {m:x^2+c}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the letter {m:c} is the {term:constant-of-integration|constant of integration}. It stands for an unknown number: any real number. Every integral on this page has no limits, so always write {m:+c}.</p>
+    </div>
+    <p>Why can you not find c from the derivative alone? Differentiating turns every constant into 0, so the derivative shows nothing about it. Integrating cannot tell which constant was there. Section 7 shows how a point on the curve gives c.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Differentiate {m:y=x^3}, {m:y=x^3+9} and {m:y=x^3-4}. What do you notice? What does it tell you about the integral of {m:3x^2}?</p>
+      <ol class="steps">
+        <li>{m:y=x^3} gives {m:frac(dy, dx)=3x^2}.</li>
+        <li>{m:y=x^3+9} gives {m:3x^2+0=3x^2}. {m:y=x^3-4} gives {m:3x^2-0=3x^2}.</li>
+        <li>All three have the same derivative, {m:3x^2}.</li>
+        <li>So the functions with derivative {m:3x^2} are {m:x^3+c}, for any number c.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Differentiate {m:y=x^4+7} and {m:y=x^4-2}. Write all the functions with derivative {m:4x^3} in one expression.</p>
+      <ol class="steps">
+        <li>{m:y=x^4+7} gives {m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="4x^3">___</span>.</li>
+        <li>{m:y=x^4-2} gives the same derivative, {m:4x^3}.</li>
+        <li>So the functions with derivative {m:4x^3} are {m:x^4+}<span class="blank" data-answers="c">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The 7 and the {m:-2} both become 0 when you differentiate. So every function with derivative {m:4x^3} is {m:x^4+c}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the constant</h2>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">The curves {m:y=x^3+8} and {m:y=x^3-5} have the same gradient at every value of x. Find that gradient at {m:x=2}.</p>
+      <ol class="ladder"><li>You need the derivative first, then its value at {m:x=2}.</li><li>The derivative of {m:x^3} is {m:3x^2}. The numbers 8 and {m:-5} do not matter.</li><li>Put {m:x=2} into {m:3x^2}.</li></ol>
+      <ul class="wrong"><li data-if="6">You forgot to square the 2. {m:3x^2} at {m:x=2} is {m:3*2^2}.</li><li data-if="36">{m:3x^2} means 3 times {m:x^2}, not {m:(3x)^2}. Square the 2 first, then multiply by 3.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2}. At {m:x=2} it is {m:3*2^2=3*4=12}. Both curves have gradient 12 there, because the constants 8 and {m:-5} disappear when you differentiate.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Two different functions have the same derivative. What must be true about the two functions?</p>
+      <ul class="options">
+        <li data-why="Different functions can have the same derivative. x&sup2; and x&sup2; + 1 are different and both have derivative 2x.">They are the same function</li>
+        <li data-correct>They differ by a constant: one graph is the other moved up or down</li>
+        <li data-why="Take x&sup2; and 2x&sup2;. One is twice the other, but their derivatives, 2x and 4x, are not equal.">One is twice the other</li>
+      </ul>
+      <ol class="ladder"><li>Try an example: {m:x^2} and {m:x^2+1}. Differentiate both.</li><li>What did the 1 do to the graph?</li><li>Moving a graph up or down does not change its gradient.</li></ol>
+      <div class="solution"><p>Two functions with the same derivative differ only by a constant. Their graphs are the same shape, one moved up or down.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+5;5+x^2" data-mode="exact">
+      <p class="qtext">Both curves have {m:frac(dy, dx)=2x}. The lower curve is {m:y=x^2}. The upper curve crosses the y-axis at (0, 5). Write down the equation of the upper curve. Type your answer like x^2+1.</p>
+      <figure class="qfig-lg">{fig:integration-basics-q-two-curves}</figure>
+      <ol class="ladder"><li>The two curves have the same derivative, so they differ by a constant.</li><li>The upper curve is {m:y=x^2+c}. Look at where it crosses the y-axis.</li><li>When {m:x=0}, {m:y=c}. Read off c.</li></ol>
+      <ul class="wrong"><li data-if="x^2">That is the lower curve. The upper curve is the same shape, moved up.</li><li data-if="x^2+c">The question asks for an equation with a number, not the letter c. Use the point (0, 5) to find c.</li><li data-if="5x^2">Moving a curve up adds to it. It does not multiply it. Multiplying by 5 would change the gradient.</li></ul>
+      <div class="solution"><p>The curves differ by a constant, so the upper curve is {m:y=x^2+c}. At {m:x=0} it is at height 5, so {m:c=5}. The equation is {m:y=x^2+5}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2+c} passes through the point (0, 4). Find the number c.</p>
+      <ol class="ladder"><li>The point (0, 4) means {m:y=4} when {m:x=0}.</li><li>Put {m:x=0} and {m:y=4} into {m:y=x^2+c}.</li><li>Solve for c.</li></ol>
+      <ul class="wrong"><li data-if="-4">Check the sign. {m:4=0^2+c} gives {m:c=4}, not {m:-4}.</li><li data-if="x^2+4;4+x^2">That is the equation of the curve. The question asks only for the number c.</li></ul>
+      <div class="solution"><p>{m:4=0^2+c}, so {m:c=4}. The curve is {m:y=x^2+4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many different functions have the derivative {m:2x}?</p>
+      <ul class="options">
+        <li data-why="x&sup2; and x&sup2; + 1 both have derivative 2x, so there is more than one.">One</li>
+        <li data-why="x&sup2;, x&sup2; + 1 and x&sup2; + 2 all have derivative 2x. You can use any number, not only two.">Two</li>
+        <li data-correct>As many as there are numbers: one for each value of c</li>
+      </ul>
+      <ol class="ladder"><li>Every function {m:x^2+c} has derivative {m:2x}.</li><li>How many values can c take?</li><li>c can be any real number.</li></ol>
+      <div class="solution"><p>The functions with derivative {m:2x} are {m:x^2+c}, and c can be any real number. So there is one function for each value of c.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. The integral sign, and the rule for powers of x</h2>
+    <p>Integrating has its own notation. {m:int() 2x dx} is read "the integral of 2x with respect to x". The sign {m:int()} is a stretched letter S. The integrals on this page have no numbers on the sign. Numbers there are called limits. They come in the next topic.</p>
+    <p>The function between the sign and the dx is the {term:integrand}. The dx says which letter is the variable: this is what {term:with-respect-to|with respect to x} means. Always write the dx.</p>
+    {md:int() 2x dx=x^2+c}
+    <p>Read this as: the integral of 2x with respect to x equals x squared plus c.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to integrate a power of x, add 1 to the power, then divide by the new power. Then add c.</p>
+      {md:int() x^n dx=frac(x^(n+1), n+1)+c}
+      <p>Here n is the power: {m:x^n} is read "x to the power n". This works for every number n except {m:n=-1}.</p>
+    </div>
+    <figure class="figure-lg">{fig:integration-basics-rule}<figcaption>The rule in three steps, for any n (left) and for n = 5 (right).</figcaption></figure>
+    <h3>Why the rule works</h3>
+    <p>Differentiate {m:frac(x^(n+1), n+1)}. The power {m:n+1} comes down in front, and the power drops to n. The result is {m:frac((n+1)x^n, n+1)=x^n}. So the rule undoes the {term:power-rule|power rule}.</p>
+    <h3>Why n = &minus;1 is excluded</h3>
+    <p>If {m:n=-1}, then {m:n+1=0}. The rule would divide by 0, which is not possible. The integrand is then {m:x^(-1)=frac(1, x)}. No power of x has {m:frac(1, x)} as its derivative. You meet the answer in Year 2.</p>
+    <p>Every other power works, including negative powers and fractional powers. Write roots and reciprocals as powers first.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() x^5 dx}.</p>
+      <ol class="steps">
+        <li>The power is 5. Add 1: the new power is 6.</li>
+        <li>Divide by the new power: {m:frac(x^6, 6)}.</li>
+        <li>Add c: {m:int() x^5 dx=frac(x^6, 6)+c}.</li>
+        <li>Check by differentiating: {m:frac(x^6, 6)} gives {m:frac(6x^5, 6)=x^5}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a power you cannot see</h3>
+      <p>Find {m:int() x dx}.</p>
+      <ol class="steps">
+        <li>Write x as {m:x^1}. The new power is 2.</li>
+        <li>Divide by the new power: {m:frac(x^2, 2)}.</li>
+        <li>{m:int() x dx=frac(x^2, 2)+c}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int() x^7 dx}.</p>
+      <ol class="steps">
+        <li>The power is 7. The new power is <span class="blank" data-answers="8">___</span>.</li>
+        <li>Divide {m:x^8} by the new power, <span class="blank" data-answers="8">___</span>. This gives {m:frac(x^8, 8)}.</li>
+        <li>So {m:int() x^7 dx=} <span class="blank" data-mode="exact" data-answers="x^8/8+c;(1/8)x^8+c;0.125x^8+c">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>7 + 1 = 8, so the answer is {m:frac(x^8, 8)+c}. Check: the derivative of {m:frac(x^8, 8)} is {m:frac(8x^7, 8)=x^7}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the rule for powers</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">How do you read {m:int() x^3 dx}?</p>
+      <ul class="options">
+        <li data-correct>The integral of x cubed with respect to x</li>
+        <li data-why="The derivative sign is d/dx. The sign for integrating is the integral sign.">The derivative of x cubed with respect to x</li>
+        <li data-why="The dx is not a multiplier. It says the variable is x.">x cubed multiplied by d and x</li>
+      </ul>
+      <ol class="ladder"><li>The sign {m:int()} means "the integral of".</li><li>The function after it is x cubed.</li><li>The dx says "with respect to x".</li></ol>
+      <div class="solution"><p>{m:int() x^3 dx} is read "the integral of x cubed with respect to x". Its value is {m:frac(x^4, 4)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="x^5/5+c;(1/5)x^5+c;0.2x^5+c" data-mode="exact">
+      <p class="qtext">Find {m:int() x^4 dx}. Use the letter c for the constant. Type your answer like x^3/3+c.</p>
+      <ol class="ladder"><li>You are integrating a power of x.</li><li>Add 1 to the power, then divide by the new power.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^5+c">You added 1 to the power, but you did not divide by the new power, 5.</li><li data-if="x^5/4+c">You divided by the old power, 4. Divide by the new power, 5.</li><li data-if="x^5/5">Right, but you need {m:+c}. The answer is a whole family of functions.</li><li data-if="4x^3+c">That is differentiating. Integrating adds 1 to the power.</li></ul>
+      <div class="solution"><p>The power 4 becomes 5. Divide by 5: {m:int() x^4 dx=frac(x^5, 5)+c}. Check: the derivative of {m:frac(x^5, 5)} is {m:x^4}.</p></div>
+    </div>
+    <div class="q" data-answers="x^11/11+c;(1/11)x^11+c" data-mode="exact">
+      <p class="qtext">Find {m:int() x^10 dx}. Use the letter c for the constant. Type your answer like x^3/3+c.</p>
+      <ol class="ladder"><li>You are integrating a power of x.</li><li>Add 1 to the power, then divide by the new power.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="10x^9+c">That is differentiating. Integrating adds 1 to the power.</li><li data-if="x^11+c">You did not divide by the new power, 11.</li><li data-if="x^11/10+c">Divide by the new power, 11, not the old power.</li></ul>
+      <div class="solution"><p>10 + 1 = 11, so {m:int() x^10 dx=frac(x^11, 11)+c}. Check: the derivative of {m:frac(x^11, 11)} is {m:x^10}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2/2+c;(1/2)x^2+c;0.5x^2+c" data-mode="exact">
+      <p class="qtext">Find {m:int() x dx}. Use the letter c for the constant. Type your answer like x^3/3+c.</p>
+      <ol class="ladder"><li>The integrand is x. Write it as a power of x.</li><li>x is {m:x^1}. Add 1 to the power, then divide by the new power.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^2+c">You added 1 to the power but did not divide by the new power, 2.</li><li data-if="1+c">That is differentiating x. Integrating adds 1 to the power.</li><li data-if="x^2/2">Right, but you need {m:+c}.</li></ul>
+      <div class="solution"><p>{m:x=x^1}, so the new power is 2. {m:int() x dx=frac(x^2, 2)+c}. Check: the derivative of {m:frac(x^2, 2)} is {m:frac(2x, 2)=x}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why can you not use the rule {m:int() x^n dx=frac(x^(n+1), n+1)+c} when {m:n=-1}?</p>
+      <ul class="options">
+        <li data-correct>The new power is 0, so the rule would divide by 0</li>
+        <li data-why="The rule works for other negative powers. For example, x&#8315;&sup2; can be integrated by the rule.">The rule does not work for negative powers</li>
+        <li data-why="x&#8315;&sup1; can be integrated. You meet the answer in Year 2. The rule cannot give it.">{m:x^(-1)} cannot be integrated at all</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:n=-1} into {m:n+1}.</li><li>What is the new power?</li><li>What happens if you divide by it?</li></ol>
+      <div class="solution"><p>{m:n+1=-1+1=0}. The rule divides by {m:n+1}, so it would divide by 0. That is not possible. {m:int() x^(-1) dx} has a different answer, which you meet in Year 2.</p></div>
+    </div>
+    <div class="q" data-answers="x+c;c+x" data-mode="exact">
+      <p class="qtext">The number 1 is {m:x^0}. Use the rule with {m:n=0} to find {m:int() 1 dx}. Type your answer like x^3/3+c.</p>
+      <ol class="ladder"><li>Write the integrand as {m:x^0}.</li><li>Add 1 to the power: the new power is 1. Divide by 1.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="1+c;c+1">Differentiate {m:1+c}: you get 0, not 1. Integrating 1 gives {m:x}.</li><li data-if="x">Right, but you need {m:+c}.</li></ul>
+      <div class="solution"><p>{m:int() x^0 dx=frac(x^1, 1)+c=x+c}. Check: the derivative of {m:x+c} is 1.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Numbers, multiples and sums</h2>
+    <p>Three facts let you integrate longer expressions.</p>
+    <ol class="steps">
+      <li><b>A number in front stays in front.</b> {m:int() 6x^2 dx}: integrate {m:x^2} to get {m:frac(x^3, 3)}, then multiply by 6. The answer is {m:2x^3+c}.</li>
+      <li><b>A sum is integrated one term at a time.</b> Integrate each term, then add the results.</li>
+      <li><b>A number on its own gets an x.</b> {m:int() 5 dx=5x+c}, because the derivative of {m:5x} is 5. This is the rule with {m:5=5x^0}.</li>
+    </ol>
+    <p>Write one c at the end of the whole answer, not one c for each term. Each term could have its own constant, but a sum of unknown constants is one unknown constant.</p>
+    <figure class="figure-lg">{fig:integration-basics-split}<figcaption>Split the expression into terms, integrate each term, then join the results and add c.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() (6x^2+4x-5) dx}.</p>
+      <ol class="steps">
+        <li>Integrate {m:6x^2}: {m:frac(6x^3, 3)=2x^3}.</li>
+        <li>Integrate {m:4x}: {m:frac(4x^2, 2)=2x^2}.</li>
+        <li>Integrate {m:-5}: {m:-5x}.</li>
+        <li>Join the terms and add c: {m:int() (6x^2+4x-5) dx=2x^3+2x^2-5x+c}.</li>
+        <li>Check by differentiating: the derivative of the answer is {m:6x^2+4x-5}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int() (8x^3-3x^2+2) dx}.</p>
+      <ol class="steps">
+        <li>{m:8x^3} integrates to {m:frac(8x^4, 4)=}<span class="blank" data-mode="exact" data-answers="2x^4">___</span>.</li>
+        <li>{m:-3x^2} integrates to {m:frac(-3x^3, 3)=}<span class="blank" data-mode="exact" data-answers="-x^3">___</span>.</li>
+        <li>2 integrates to <span class="blank" data-mode="exact" data-answers="2x">___</span>.</li>
+        <li>So the integral is {m:2x^4-x^3+2x+}<span class="blank" data-answers="c">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:int() (8x^3-3x^2+2) dx=2x^4-x^3+2x+c}. Check: the derivative is {m:8x^3-3x^2+2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: numbers, multiples and sums</h2>
+    <div class="q" data-answers="2x^3+c;c+2x^3" data-mode="exact">
+      <p class="qtext">Find {m:int() 6x^2 dx}. Use the letter c for the constant. Type your answer like 3x^2+c.</p>
+      <ol class="ladder"><li>The 6 in front stays in front. Integrate the power of x.</li><li>{m:x^2} integrates to {m:frac(x^3, 3)}. Multiply by 6.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="6x^3+c">You did not divide by the new power, 3.</li><li data-if="12x+c">That is differentiating. Integrating adds 1 to the power.</li><li data-if="2x^3">Right, but you need {m:+c}.</li></ul>
+      <div class="solution"><p>{m:int() 6x^2 dx=frac(6x^3, 3)+c=2x^3+c}. Check: the derivative of {m:2x^3} is {m:6x^2}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3+4x^2+c;c+x^3+4x^2;4x^2+x^3+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (3x^2+8x) dx}. Use the letter c for the constant. Type your answer like x^3+2x+c.</p>
+      <ol class="ladder"><li>Integrate each term on its own.</li><li>{m:3x^2} gives {m:frac(3x^3, 3)}. {m:8x} gives {m:frac(8x^2, 2)}.</li><li>Join them, then write one {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^3+8x^2+c">You divided the first term but not the second. {m:8x} integrates to {m:frac(8x^2, 2)=4x^2}.</li><li data-if="x^3+4x^2">Right, but you need {m:+c}.</li><li data-if="6x+8+c">That is differentiating. Integrating adds 1 to each power.</li></ul>
+      <div class="solution"><p>{m:int() 3x^2 dx=x^3} and {m:int() 8x dx=4x^2}. So {m:int() (3x^2+8x) dx=x^3+4x^2+c}. Check: the derivative is {m:3x^2+8x}.</p></div>
+    </div>
+    <div class="q" data-answers="5x+c;c+5x" data-mode="exact">
+      <p class="qtext">Find {m:int() 5 dx}. Use the letter c for the constant. Type your answer like 3x+c.</p>
+      <ol class="ladder"><li>The integrand is a number on its own.</li><li>Write 5 as {m:5x^0}. Add 1 to the power and divide by the new power.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="5+c;c+5">The derivative of {m:5+c} is 0, not 5. Integrating 5 gives {m:5x}.</li><li data-if="5x">Right, but you need {m:+c}.</li><li data-if="x^5/5+c">The integrand is 5, not {m:x^5}. The 5 is a number, so the answer is 5 times x.</li></ul>
+      <div class="solution"><p>{m:int() 5 dx=5x+c}. Check: the derivative of {m:5x} is 5.</p></div>
+    </div>
+    <div class="q" data-answers="x^4-3x^3+x^2-x+c;c+x^4-3x^3+x^2-x" data-mode="exact">
+      <p class="qtext">Find {m:int() (4x^3-9x^2+2x-1) dx}. Use the letter c for the constant. Type your answer like x^3+2x^2-x+c.</p>
+      <ol class="ladder"><li>There are four terms. Integrate each on its own.</li><li>Add 1 to each power and divide by the new power. The last term is a number.</li><li>Write one {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^4-3x^3+x^2+c">You left out the last term. {m:int() -1 dx=-x}.</li><li data-if="x^4-9x^3+x^2-x+c">You did not divide by the new power, 3. {m:-9x^2} integrates to {m:-3x^3}, not {m:-9x^3}.</li></ul>
+      <div class="solution"><p>{m:4x^3} gives {m:x^4}. {m:-9x^2} gives {m:-3x^3}. {m:2x} gives {m:x^2}. {m:-1} gives {m:-x}. So the integral is {m:x^4-3x^3+x^2-x+c}.</p></div>
+    </div>
+    <div class="q" data-answers="x^4/8+c;(1/8)x^4+c;0.125x^4+c" data-mode="exact">
+      <p class="qtext">Find {m:int() frac(x^3, 2) dx}. Use the letter c for the constant. Type your answer like x^3/6+c.</p>
+      <ol class="ladder"><li>{m:frac(x^3, 2)} is the same as {m:frac(1, 2)} times {m:x^3}.</li><li>The {m:frac(1, 2)} stays in front. Integrate {m:x^3}.</li><li>{m:x^3} integrates to {m:frac(x^4, 4)}. Multiply that by {m:frac(1, 2)}.</li></ol>
+      <ul class="wrong"><li data-if="x^4/4+c">You ignored the {m:frac(1, 2)}. It stays in front, so you must multiply by it.</li><li data-if="x^4/2+c">You divided by 2 but not by the new power, 4. Divide by both: {m:frac(1, 2)*frac(1, 4)=frac(1, 8)}.</li></ul>
+      <div class="solution"><p>{m:int() frac(x^3, 2) dx=frac(1, 2)*frac(x^4, 4)+c=frac(x^4, 8)+c}. Check: the derivative of {m:frac(x^4, 8)} is {m:frac(4x^3, 8)=frac(x^3, 2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Tidy first: brackets, fractions and roots</h2>
+    <p>The rule needs each term to be a number times a power of x. Many expressions are not in that form yet. Rewrite them first.</p>
+    <figure class="figure-lg">{fig:integration-basics-tidy}<figcaption>Rewrite, integrate each term, then add c and check.</figcaption></figure>
+    <h3>Brackets: expand first</h3>
+    <p>You cannot integrate a product by integrating each factor. Expand the brackets, then integrate each term.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() (x+2)^2 dx}.</p>
+      <ol class="steps">
+        <li>Expand: {m:(x+2)^2=x^2+4x+4}.</li>
+        <li>Integrate each term: {m:frac(x^3, 3)+frac(4x^2, 2)+4x}.</li>
+        <li>Tidy and add c: {m:int() (x+2)^2 dx=frac(x^3, 3)+2x^2+4x+c}.</li>
+        <li>Check by differentiating: the derivative of the answer is {m:x^2+4x+4}, which is {m:(x+2)^2}. &#10003;</li>
+      </ol>
+      <p>Section 8 gives a shortcut for brackets like this one. Expanding always works.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int() (x+3)^2 dx}.</p>
+      <ol class="steps">
+        <li>Expand: {m:(x+3)^2=}<span class="blank" data-mode="exact" data-answers="x^2+6x+9">___</span>.</li>
+        <li>Integrate each term: {m:frac(x^3, 3)+}<span class="blank" data-mode="exact" data-answers="3x^2">___</span>{m:+}<span class="blank" data-mode="exact" data-answers="9x">___</span>.</li>
+        <li>Add c: {m:int() (x+3)^2 dx=frac(x^3, 3)+3x^2+9x+c}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(x+3)(x+3)=x^2+6x+9}. Then {m:6x} integrates to {m:frac(6x^2, 2)=3x^2} and 9 integrates to {m:9x}.</p></details>
+    </div>
+    <h3>Fractions: divide each term first</h3>
+    <p>If the bottom of a fraction is a single term, divide each term on the top by it. Then use the laws of indices. This is allowed because {m:frac(a+b, c)=frac(a, c)+frac(b, c)}. Dividing each term is not allowed when the bottom has two terms.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() frac(x^3+4, x^2) dx}.</p>
+      <ol class="steps">
+        <li>Divide each term on the top by {m:x^2}: {m:frac(x^3, x^2)+frac(4, x^2)=x+4x^(-2)}.</li>
+        <li>Integrate {m:x}: {m:frac(x^2, 2)}. Integrate {m:4x^(-2)}: the new power is {m:-1}, so {m:frac(4x^(-1), -1)=-4x^(-1)}.</li>
+        <li>Write {m:-4x^(-1)} as {m:-frac(4, x)}.</li>
+        <li>{m:int() frac(x^3+4, x^2) dx=frac(x^2, 2)-frac(4, x)+c}.</li>
+      </ol>
+      <p>Watch for a term that becomes {m:frac(1, x)}. For example, {m:frac(x^3+4x, x^2)=x+frac(4, x)}. The rule cannot integrate {m:frac(4, x)}. That is the {m:n=-1} case, which you meet in Year 2.</p>
+    </div>
+    <h3>Roots and reciprocal powers</h3>
+    <p>Write a root or a reciprocal as a power of x. Then use the rule. The rule works for negative and fractional powers. To divide by a fraction, multiply by its reciprocal: dividing by {m:frac(3, 2)} is multiplying by {m:frac(2, 3)}.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() sqrt(x) dx}.</p>
+      <ol class="steps">
+        <li>Write the root as a power: {m:sqrt(x)=x^(1/2)}.</li>
+        <li>The new power is {m:frac(1, 2)+1=frac(3, 2)}.</li>
+        <li>Divide by {m:frac(3, 2)}, which is multiplying by {m:frac(2, 3)}: {m:frac(2, 3)x^(3/2)}.</li>
+        <li>{m:int() sqrt(x) dx=frac(2, 3)x^(3/2)+c}.</li>
+        <li>Check: the derivative of {m:frac(2, 3)x^(3/2)} is {m:frac(2, 3)*frac(3, 2)x^(1/2)=x^(1/2)}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a reciprocal power</h3>
+      <p>Find {m:int() frac(1, x^2) dx}.</p>
+      <ol class="steps">
+        <li>Write the reciprocal as a power: {m:frac(1, x^2)=x^(-2)}.</li>
+        <li>The new power is {m:-2+1=-1}. Divide by {m:-1}: {m:frac(x^(-1), -1)=-x^(-1)}.</li>
+        <li>{m:int() frac(1, x^2) dx=-frac(1, x)+c}.</li>
+        <li>Check: the derivative of {m:-x^(-1)} is {m:-1*(-1)x^(-2)=x^(-2)}. &#10003;</li>
+      </ol>
+      <p>Take care with signs. Adding 1 to {m:-2} gives {m:-1}, not {m:-3}. Dividing by {m:-1} changes the sign.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int() frac(1, x^3) dx}.</p>
+      <ol class="steps">
+        <li>Write the reciprocal as a power: {m:frac(1, x^3)=x^(-3)}.</li>
+        <li>The new power is <span class="blank" data-answers="-2">___</span>.</li>
+        <li>Divide by the new power: {m:frac(x^(-2), -2)=}<span class="blank" data-mode="exact" data-answers="-1/(2x^2);-x^(-2)/2;-(1/2)x^(-2);-0.5x^(-2)">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:-3+1=-2}. Dividing by {m:-2} gives {m:-frac(1, 2)x^(-2)=-frac(1, 2x^2)}. So {m:int() frac(1, x^3) dx=-frac(1, 2x^2)+c}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: tidy first</h2>
+    <div class="q" data-answers="x^3/3+x^2+x+c;(1/3)x^3+x^2+x+c;(x+1)^3/3+c;(1/3)(x+1)^3+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (x+1)^2 dx}. Expand first. Use the letter c for the constant. Type your answer like x^3/3+x+c.</p>
+      <ol class="ladder"><li>You cannot integrate until the brackets are gone. Expand {m:(x+1)^2}.</li><li>{m:(x+1)(x+1)} has four pieces. Join the like terms.</li><li>Integrate each term, then write {m:+c}.</li></ol>
+      <ul class="wrong"><li data-if="x^3/3+x+c">You wrote {m:(x+1)^2} as {m:x^2+1}. Squaring a bracket gives a middle term: {m:(x+1)^2=x^2+2x+1}.</li><li data-if="x^3/3+x^2+1+c">You left the last term, 1, without integrating it. {m:int() 1 dx=x}.</li></ul>
+      <div class="solution"><p>{m:(x+1)^2=x^2+2x+1}. Integrate each term: {m:frac(x^3, 3)+x^2+x}. So the integral is {m:frac(x^3, 3)+x^2+x+c}. Check: the derivative is {m:x^2+2x+1}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^3/3+3x^2/2+c;(2/3)x^3+(3/2)x^2+c;3x^2/2+2x^3/3+c;(3/2)x^2+(2/3)x^3+c;2x^3/3+1.5x^2+c;c+2x^3/3+3x^2/2" data-mode="exact">
+      <p class="qtext">Find {m:int() x(2x+3) dx}. Expand first. Use the letter c for the constant. Type your answer like x^3/3+x^2/2+c.</p>
+      <ol class="ladder"><li>Multiply out {m:x(2x+3)} to get a sum of terms.</li><li>{m:x(2x+3)=2x^2+3x}. Integrate each term.</li><li>Divide each term by its new power. Write {m:+c}.</li></ol>
+      <ul class="wrong"><li data-if="2x^3+3x^2+c">You added 1 to the powers but did not divide by the new powers, 3 and 2.</li><li data-if="2x^3/3+3x^2+c">You divided the first term but not the second. {m:3x} integrates to {m:frac(3x^2, 2)}.</li></ul>
+      <div class="solution"><p>{m:x(2x+3)=2x^2+3x}. {m:2x^2} gives {m:frac(2x^3, 3)}. {m:3x} gives {m:frac(3x^2, 2)}. So the integral is {m:frac(2x^3, 3)+frac(3x^2, 2)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2/2-4/x+c;(1/2)x^2-4/x+c;x^2/2-4x^(-1)+c;(1/2)x^2-4x^(-1)+c;-4/x+x^2/2+c;-4x^(-1)+x^2/2+c;c+x^2/2-4/x" data-mode="exact">
+      <p class="qtext">Find {m:int() frac(x^3+4, x^2) dx}. Divide first. Use the letter c for the constant. Type your answer like x^2/2+3/x+c.</p>
+      <ol class="ladder"><li>The bottom is one term, so divide each term on top by {m:x^2}.</li><li>{m:frac(x^3+4, x^2)=x+4x^(-2)}. Integrate each term.</li><li>The power {m:-2} becomes {m:-1}. Divide by {m:-1}.</li></ol>
+      <ul class="wrong"><li data-if="x^2/2+4/x+c;x^2/2+4x^(-1)+c">Check the sign of the second term. Dividing by the new power, {m:-1}, makes {m:4x^(-2)} integrate to {m:-4x^(-1)}.</li><li data-if="x^2/2-4/x;x^2/2-4x^(-1)">Right, but you need {m:+c}.</li></ul>
+      <div class="solution"><p>{m:frac(x^3+4, x^2)=x+4x^(-2)}. {m:x} gives {m:frac(x^2, 2)}. {m:4x^(-2)} gives {m:frac(4x^(-1), -1)=-4x^(-1)}. So the integral is {m:frac(x^2, 2)-frac(4, x)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="-1/(2x^2)+c;-x^(-2)/2+c;-(1/2)x^(-2)+c;-0.5x^(-2)+c;c-1/(2x^2)" data-mode="exact">
+      <p class="qtext">Find {m:int() frac(1, x^3) dx}. Use the letter c for the constant. Type your answer like x^(-2)/5+c.</p>
+      <ol class="ladder"><li>Write {m:frac(1, x^3)} as a power of x.</li><li>{m:frac(1, x^3)=x^(-3)}. Add 1 to the power. Be careful with the sign.</li><li>The new power is {m:-2}. Divide by {m:-2}, then write {m:+c}.</li></ol>
+      <ul class="wrong"><li data-if="x^(-2)/2+c;1/(2x^2)+c">Check the sign. You divide by the new power, {m:-2}, so the answer is negative.</li><li data-if="-3x^(-4)+c;-3/x^4+c">That is differentiating. Integrating adds 1 to the power.</li></ul>
+      <div class="solution"><p>{m:frac(1, x^3)=x^(-3)}. The new power is {m:-3+1=-2}. Divide by {m:-2}: {m:int() x^(-3) dx=frac(x^(-2), -2)+c=-frac(1, 2x^2)+c}. Check: the derivative of {m:-frac(1, 2)x^(-2)} is {m:x^(-3)}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^(3/2)/3+c;(2/3)x^(3/2)+c;(2x^(3/2))/3+c;2x^1.5/3+c;(2/3)x^1.5+c" data-mode="exact">
+      <p class="qtext">Find {m:int() sqrt(x) dx}. Use the letter c for the constant. Type your answer like 3x^(5/2)/5+c.</p>
+      <ol class="ladder"><li>Write {m:sqrt(x)} as a power of x.</li><li>{m:sqrt(x)=x^(1/2)}. Add 1 to the power.</li><li>The new power is {m:frac(3, 2)}. Divide by {m:frac(3, 2)}, which is multiplying by {m:frac(2, 3)}.</li></ol>
+      <ul class="wrong"><li data-if="x^(3/2)+c">You added 1 to the power but did not divide by the new power, {m:frac(3, 2)}.</li><li data-if="(3/2)x^(3/2)+c">Dividing by {m:frac(3, 2)} means multiplying by {m:frac(2, 3)}, not by {m:frac(3, 2)}.</li><li data-if="(1/2)x^(-1/2)+c">That is differentiating. Integrating adds 1 to the power.</li></ul>
+      <div class="solution"><p>{m:sqrt(x)=x^(1/2)}. The new power is {m:frac(3, 2)}. {m:int() sqrt(x) dx=frac(x^(3/2), 3/2)+c=frac(2, 3)x^(3/2)+c}. Check: the derivative of {m:frac(2, 3)x^(3/2)} is {m:x^(1/2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-4/x+c;-4x^(-1)+c;-4x^-1+c;c-4/x" data-mode="exact">
+      <p class="qtext">Find {m:int() frac(4, x^2) dx}. Use the letter c for the constant. Type your answer like 3/x+c.</p>
+      <ol class="ladder"><li>Write {m:frac(4, x^2)} as 4 times a power of x.</li><li>{m:frac(4, x^2)=4x^(-2)}. The 4 stays in front.</li><li>Integrate {m:x^(-2)}: the new power is {m:-1}. Divide by {m:-1}.</li></ol>
+      <ul class="wrong"><li data-if="4/x+c;4x^(-1)+c">Check the sign. Dividing by the new power, {m:-1}, makes the answer negative.</li><li data-if="-8x^(-3)+c;-8/x^3+c">That is differentiating. Integrating adds 1 to the power.</li><li data-if="-4x+c">{m:x^(-1)} is {m:frac(1, x)}, not x. Write the answer as {m:-frac(4, x)}.</li></ul>
+      <div class="solution"><p>{m:frac(4, x^2)=4x^(-2)}. {m:int() 4x^(-2) dx=frac(4x^(-1), -1)+c=-frac(4, x)+c}. Check: the derivative of {m:-4x^(-1)} is {m:4x^(-2)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3/3+1/x+c;(1/3)x^3+1/x+c;x^3/3+x^(-1)+c;(1/3)x^3+x^(-1)+c;1/x+x^3/3+c;x^(-1)+x^3/3+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (x^2-frac(1, x^2)) dx}. Use the letter c for the constant. Type your answer like x^3/3+2/x+c.</p>
+      <ol class="ladder"><li>Write the second term as a power of x.</li><li>{m:-frac(1, x^2)=-x^(-2)}. Integrate each term.</li><li>{m:-x^(-2)} gives {m:frac(-x^(-1), -1)}. Take care with the two minus signs.</li></ol>
+      <ul class="wrong"><li data-if="x^3/3-1/x+c;x^3/3-x^(-1)+c">Check the signs. {m:-x^(-2)} integrates to {m:frac(-x^(-1), -1)=+x^(-1)}: two minus signs make a plus.</li></ul>
+      <div class="solution"><p>{m:x^2} gives {m:frac(x^3, 3)}. {m:-x^(-2)} gives {m:frac(-x^(-1), -1)=x^(-1)}. So the integral is {m:frac(x^3, 3)+frac(1, x)+c}. Check: the derivative of {m:x^(-1)} is {m:-x^(-2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Check an integral by differentiating</h2>
+    <p>Integrating undoes differentiating. So you can check any integral: differentiate your answer. You should get back the function you integrated.</p>
+    <figure class="figure-lg">{fig:integration-basics-check}<figcaption>Integrate, then differentiate the answer. If you get back what you started with, the answer is right.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the derivative of a correct integral is the integrand. The {m:c} becomes 0, so it does not appear.</p>
+    </div>
+    <p>The check finds a wrong power, a wrong division and a wrong sign. It cannot find a missing {m:+c}, because a missing {m:+c} does not change the derivative. Look for the {m:+c} yourself.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Check that {m:int() (4x^3+6x) dx=x^4+3x^2+c}.</p>
+      <ol class="steps">
+        <li>Differentiate the answer: {m:x^4} gives {m:4x^3}. {m:3x^2} gives {m:6x}. {m:c} gives 0.</li>
+        <li>The derivative is {m:4x^3+6x}.</li>
+        <li>That is the integrand. So the integral is correct.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Check that {m:int() (10x^4-3) dx=2x^5-3x+c}.</p>
+      <ol class="steps">
+        <li>{m:2x^5} differentiates to <span class="blank" data-mode="exact" data-answers="10x^4">___</span>.</li>
+        <li>{m:-3x} differentiates to <span class="blank" data-answers="-3">___</span>.</li>
+        <li>So the derivative is {m:10x^4-3}, which is the integrand.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:2*5x^4=10x^4} and the derivative of {m:-3x} is {m:-3}. The c gives 0. The derivative matches the integrand, so the integral is correct.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: checking</h2>
+    <div class="q" data-answers="8x^3+2x;2x+8x^3" data-mode="exact">
+      <p class="qtext">A student writes {m:int() (8x^3+2x) dx=2x^4+x^2+c}. Differentiate the student's answer. Type the result like 4x^3+1.</p>
+      <ol class="ladder"><li>You are checking, so differentiate the answer, not the integrand.</li><li>{m:2x^4} gives {m:8x^3}. {m:x^2} gives {m:2x}.</li><li>The c gives 0.</li></ol>
+      <ul class="wrong"><li data-if="2x^4+x^2">That is the student's answer. Differentiate it: bring each power down and take 1 off.</li><li data-if="8x^3+2">The derivative of {m:x^2} is {m:2x}, not 2.</li></ul>
+      <div class="solution"><p>The derivative of {m:2x^4+x^2+c} is {m:8x^3+2x}. This is the integrand, so the student's integral is correct.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these integrals is wrong? Differentiate each answer to check.</p>
+      <ul class="options">
+        <li data-why="The derivative of 3x&sup2; is 6x. This integral is right."><span class="sr-only">the integral of 6x with respect to x equals 3x squared plus c</span><span aria-hidden="true">{m:int() 6x dx=3x^2+c}</span></li>
+        <li data-why="The derivative of x&#8308;/4 is x&sup3;. This integral is right."><span class="sr-only">the integral of x cubed with respect to x equals x to the 4 over 4, plus c</span><span aria-hidden="true">{m:int() x^3 dx=frac(x^4, 4)+c}</span></li>
+        <li data-correct><span class="sr-only">the integral of 2x plus 5 with respect to x equals x squared plus 5, plus c</span><span aria-hidden="true">{m:int() (2x+5) dx=x^2+5+c}</span></li>
+      </ul>
+      <ol class="ladder"><li>Differentiate the answer of each option.</li><li>Compare each derivative with the integrand, the part between the sign and the dx.</li><li>One derivative does not match.</li></ol>
+      <div class="solution"><p>The derivative of {m:x^2+5+c} is {m:2x}, not {m:2x+5}. Integrate the 5 as well: it becomes {m:5x}. The correct integral is {m:x^2+5x+c}.</p></div>
+    </div>
+    <div class="q" data-answers="25x^4" data-mode="exact">
+      <p class="qtext">A student writes {m:int() 5x^4 dx=5x^5+c}. Differentiate the student's answer. Type the result like 4x^3.</p>
+      <ol class="ladder"><li>You are checking, so differentiate the student's answer.</li><li>The power 5 comes down and multiplies the 5 in front.</li><li>Then take 1 off the power.</li></ol>
+      <ul class="wrong"><li data-if="5x^4">That is the integrand. The student's answer gives something different. Multiply the 5 in front by the power 5.</li></ul>
+      <div class="solution"><p>The derivative of {m:5x^5} is {m:5*5x^4=25x^4}. This is not {m:5x^4}, so the student's integral is wrong.</p></div>
+    </div>
+    <div class="q" data-answers="x^5+c;c+x^5" data-mode="exact">
+      <p class="qtext">The student's integral of {m:5x^4} was wrong. Write the correct integral. Use the letter c for the constant. Type your answer like x^3+c.</p>
+      <ol class="ladder"><li>Integrate {m:5x^4}. The 5 stays in front.</li><li>{m:x^4} integrates to {m:frac(x^5, 5)}. Multiply by 5.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^5">Right, but you need {m:+c}.</li><li data-if="5x^5+c">That is the student's wrong answer. Divide by the new power, 5.</li></ul>
+      <div class="solution"><p>{m:int() 5x^4 dx=frac(5x^5, 5)+c=x^5+c}. Check: the derivative of {m:x^5} is {m:5x^4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>7. Finding the curve through a point</h2>
+    <p>Sometimes you know the derivative of a function and one point on its graph. The point picks out one curve from the family.</p>
+    <figure class="figure-lg">{fig:integration-basics-through-point}<figcaption>The derivative is {m:frac(dy, dx)=2x}. Only the solid curve passes through (1, 5).</figcaption></figure>
+    <p>The derivative of {m:f(x)} is written {m:f'(x)}, read "f prime of x". You are given {m:f'(x)} and a point, and you find {m:f(x)}.</p>
+    <div class="key">
+      <p><b>Method:</b></p>
+      <ol class="steps">
+        <li>Integrate the derivative. Include {m:+c}.</li>
+        <li>Put the x-value and y-value of the point into your answer.</li>
+        <li>Solve for c.</li>
+        <li>Write the equation of the curve with the value of c in it.</li>
+      </ol>
+    </div>
+    <p>A given point tells you c. It does not change the other terms.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A curve has {m:frac(dy, dx)=6x^2-4}. It passes through (2, 9). Find the equation of the curve.</p>
+      <ol class="steps">
+        <li>Integrate: {m:y=2x^3-4x+c}.</li>
+        <li>Put in {m:x=2} and {m:y=9}: {m:9=2*8-4*2+c=16-8+c=8+c}.</li>
+        <li>Solve: {m:c=1}.</li>
+        <li>The curve is {m:y=2x^3-4x+1}.</li>
+        <li>Check: at {m:x=2}, {m:y=16-8+1=9}. &#10003; The derivative is {m:6x^2-4}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A function has {m:f'(x)=3x^2+2x}, and {m:f(1)=5}. Find {m:f(x)}.</p>
+      <ol class="steps">
+        <li>Integrate: {m:f(x)=x^3+}<span class="blank" data-mode="exact" data-answers="x^2">___</span>{m:+c}.</li>
+        <li>{m:f(1)=5} means {m:y=5} when {m:x=1}. So {m:5=1+1+c}, which gives {m:c=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>So {m:f(x)=x^3+x^2+}<span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:f(1)=1+1+3=5}. &#10003; The derivative of {m:x^3+x^2+3} is {m:3x^2+2x}. &#10003;</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: finding the curve</h2>
+    <div class="q" data-answers="x^2-4x+1;1-4x+x^2;-4x+x^2+1" data-mode="exact">
+      <p class="qtext">The graph shows {m:frac(dy, dx)} for a curve. The curve passes through (0, 1). Find the equation of the curve. Type your answer like x^3-2x+5.</p>
+      <figure class="qfig-lg">{fig:integration-basics-q-gradient-line}</figure>
+      <ol class="ladder"><li>First find the equation of the line, which is {m:frac(dy, dx)}. Use its gradient and its y-intercept.</li><li>Integrate {m:frac(dy, dx)}. Include {m:+c}.</li><li>Put in the point (0, 1) to find c.</li></ol>
+      <ul class="wrong"><li data-if="x^2-4x">You need {m:+c}. The point (0, 1) gives {m:c=1}.</li><li data-if="2x-4">That is {m:frac(dy, dx)}, the line in the graph. The question asks for the curve, which you find by integrating.</li><li data-if="x^2-4x-1">Check the sign of c. At {m:x=0}, {m:y=1}, so {m:1=0-0+c}.</li></ul>
+      <div class="solution"><p>The line passes through (0, {m:-4}) and (2, 0), so its gradient is 2 and {m:frac(dy, dx)=2x-4}. Integrate: {m:y=x^2-4x+c}. At (0, 1): {m:1=0-0+c}, so {m:c=1}. The curve is {m:y=x^2-4x+1}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3+3;3+x^3" data-mode="exact">
+      <p class="qtext">A curve has {m:frac(dy, dx)=3x^2} and passes through (1, 4). Find the equation of the curve. Type your answer like x^2+1.</p>
+      <ol class="ladder"><li>Integrate {m:3x^2}. Include {m:+c}.</li><li>Put {m:x=1} and {m:y=4} into your answer.</li><li>Solve for c, then write the equation.</li></ol>
+      <ul class="wrong"><li data-if="x^3+4;4+x^3">You used the y-value 4 as c. Put in {m:x=1} and {m:y=4}: {m:4=1+c}.</li><li data-if="x^3+c;c+x^3">Your answer still has the letter c. Use the point (1, 4) to find its value.</li></ul>
+      <div class="solution"><p>{m:y=x^3+c}. At (1, 4): {m:4=1+c}, so {m:c=3}. The curve is {m:y=x^3+3}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^2-3x;-3x+4x^2" data-mode="exact">
+      <p class="qtext">A function has {m:f'(x)=8x-3} and {m:f(2)=10}. Find {m:f(x)}. Type your answer like 2x^2+x+1.</p>
+      <ol class="ladder"><li>Integrate {m:f'(x)}. Include {m:+c}.</li><li>{m:f(2)=10} means {m:y=10} when {m:x=2}.</li><li>Solve for c. It may be 0.</li></ol>
+      <ul class="wrong"><li data-if="4x^2-3x+c">Find c: {m:10=16-6+c}, so {m:c=0}. A value of 0 means no term is added.</li><li data-if="4x^2-3x+10;10+4x^2-3x">You used the y-value 10 as c. Put {m:x=2} and {m:y=10} into {m:4x^2-3x+c}.</li></ul>
+      <div class="solution"><p>{m:f(x)=4x^2-3x+c}. {m:f(2)=10}: {m:10=4*4-3*2+c=16-6+c=10+c}, so {m:c=0}. So {m:f(x)=4x^2-3x}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^3-x^2+x+3;3+4x^3-x^2+x;4x^3+x-x^2+3;x-x^2+4x^3+3" data-mode="exact">
+      <p class="qtext">A curve has {m:frac(dy, dx)=12x^2-2x+1} and passes through (&minus;1, &minus;3). Find the equation of the curve. Type your answer like 2x^3-x+5.</p>
+      <ol class="ladder"><li>Integrate {m:frac(dy, dx)}. Include {m:+c}.</li><li>Put {m:x=-1} and {m:y=-3} into your answer. Take care with signs.</li><li>Solve for c, then write the equation.</li></ol>
+      <ul class="wrong"><li data-if="4x^3-x^2+x-3">You used the y-value {m:-3} as c. Put in {m:x=-1} and {m:y=-3}, then solve.</li><li data-if="4x^3-x^2+x-5">Check {m:4*(-1)^3}. An odd power of {m:-1} is {m:-1}, so this term is {m:-4}, not +4.</li></ul>
+      <div class="solution"><p>{m:y=4x^3-x^2+x+c}. At (&minus;1, &minus;3): {m:-3=4*(-1)^3-(-1)^2+(-1)+c=-4-1-1+c=-6+c}. So {m:c=3}. The curve is {m:y=4x^3-x^2+x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^(3/2)+8;4x^1.5+8;8+4x^(3/2);8+4x^1.5" data-mode="exact">
+      <p class="qtext">A function has {m:f'(x)=6 sqrt(x)} and {m:f(4)=40}. Find {m:f(x)}. Type your answer like 2x^(3/2)+1.</p>
+      <ol class="ladder"><li>Write {m:6 sqrt(x)} as {m:6x^(1/2)}, then integrate. Include {m:+c}.</li><li>{m:6x^(1/2)} integrates to {m:6*frac(2, 3)x^(3/2)}. Simplify the number.</li><li>Put {m:x=4} and {m:y=40} in. Work out {m:4^(3/2)} as {m:(sqrt(4))^3}.</li></ol>
+      <ul class="wrong"><li data-if="9x^(3/2)-32;9x^1.5-32;-32+9x^(3/2)">You multiplied by {m:frac(3, 2)}. Dividing by {m:frac(3, 2)} means multiplying by {m:frac(2, 3)}, so the number in front is 4, not 9.</li><li data-if="4x^(3/2)+40;4x^1.5+40;40+4x^(3/2)">You used the y-value 40 as c. Put {m:x=4} and {m:y=40} into {m:4x^(3/2)+c}.</li></ul>
+      <div class="solution"><p>{m:6x^(1/2)} integrates to {m:6*frac(2, 3)x^(3/2)=4x^(3/2)}. So {m:f(x)=4x^(3/2)+c}. {m:4^(3/2)=(sqrt(4))^3=8}, so {m:f(4)=4*8+c=32+c=40}. Then {m:c=8}, and {m:f(x)=4x^(3/2)+8}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">A curve {m:y=f(x)} has {m:f'(x)=3x^2-6x}. It passes through (0, 2). Find {m:f(2)}.</p>
+      <ol class="ladder"><li>First find {m:f(x)}. Integrate {m:f'(x)} and use the point (0, 2) to find c.</li><li>{m:f(x)=x^3-3x^2+c}. At {m:x=0}, {m:f=2}.</li><li>Then put {m:x=2} into {m:f(x)}.</li></ol>
+      <ul class="wrong"><li data-if="0">That is {m:f'(2)}, the gradient at {m:x=2}. The question asks for {m:f(2)}, the height of the curve.</li><li data-if="-4">You left out c. First use (0, 2) to find c, then work out {m:f(2)}.</li></ul>
+      <div class="solution"><p>{m:f(x)=x^3-3x^2+c}. At (0, 2): {m:2=0-0+c}, so {m:c=2}. Then {m:f(x)=x^3-3x^2+2}, and {m:f(2)=8-12+2=-2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>8. When the inside is linear <span class="chip chip-year2">Extra</span></h2>
+    <p>This is an extra method. In the syllabus plan it belongs to Year 2, where it is called the reverse chain rule, and some courses introduce it earlier. Check your specification. If your course does not need it, skip to "Flip it".</p>
+    <p>A linear expression has the form {m:ax+b}, where a and b are numbers, such as {m:2x+1}. To integrate a power of {m:(ax+b)}, treat the bracket like x. Then also divide by a, the number in front of x. The expression in the bracket is called the inside.</p>
+    <div class="key">
+      <p><b>Key idea:</b></p>
+      {md:int() (ax+b)^n dx=frac((ax+b)^(n+1), a(n+1))+c}
+      <p>This works for every n except {m:n=-1}, and for {m:a != 0}. It works only when the expression in the bracket is linear.</p>
+    </div>
+    <figure class="figure-lg">{fig:integration-basics-linear-inside}<figcaption>Treat the bracket like x. Then divide by the number in front of x as well.</figcaption></figure>
+    <h3>Why you divide by a</h3>
+    <p>Test the rule on {m:(2x+1)^2}. Expand first: {m:(2x+1)^2=4x^2+4x+1}. Integrate each term: {m:frac(4x^3, 3)+2x^2+x+c}.</p>
+    <p>Now use the rule with {m:a=2} and {m:n=2}. It gives {m:frac((2x+1)^3, 6)+c}. Expand the top: {m:frac(8x^3+12x^2+6x+1, 6)=frac(4x^3, 3)+2x^2+x+frac(1, 6)}. This matches the expanded method. The two answers differ only by a constant, and c can be any number, so they agree. The 6 on the bottom is {m:a(n+1)=2*3}.</p>
+    <p>Differentiating {m:frac((2x+1)^3, 6)} needs the chain rule, which comes in Year 2. For now, check by expanding, as above.</p>
+    <p>For brackets like {m:(x+2)^2}, where {m:a=1}, the rule gives {m:frac((x+2)^3, 3)+c}. The two answers differ only by a constant, so they agree.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int() (3x-1)^4 dx}.</p>
+      <ol class="steps">
+        <li>The inside is linear, {m:3x-1}, and {m:a=3}.</li>
+        <li>Treat the bracket like x: add 1 to the power to get 5, and divide by 5.</li>
+        <li>Divide by a, which is 3 (so you divide by {m:5*3=15} altogether).</li>
+        <li>{m:int() (3x-1)^4 dx=frac((3x-1)^5, 15)+c}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int() (2x+5)^3 dx}.</p>
+      <ol class="steps">
+        <li>The inside is linear, {m:2x+5}, and {m:a=2}. The new power is <span class="blank" data-answers="4">___</span>.</li>
+        <li>Divide by the new power and by a: {m:4*2=}<span class="blank" data-answers="8">___</span>.</li>
+        <li>So {m:int() (2x+5)^3 dx=frac((2x+5)^4, 8)+c}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The new power is 3 + 1 = 4. Divide by 4 for the power and by 2 for a: {m:4*2=8}. So the answer is {m:frac((2x+5)^4, 8)+c}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: linear inside <span class="chip chip-year2">Extra</span></h2>
+    <div class="q" data-answers="(x+4)^4/4+c;(1/4)(x+4)^4+c;((x+4)^4)/4+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (x+4)^3 dx}. Use the letter c for the constant. Type your answer like (x+1)^3/3+c.</p>
+      <ol class="ladder"><li>The inside is {m:x+4}, so {m:a=1}.</li><li>Treat the bracket like x. Add 1 to the power and divide by the new power.</li><li>Dividing by {m:a=1} changes nothing. Write {m:+c}.</li></ol>
+      <ul class="wrong"><li data-if="(x+4)^4+c">You did not divide by the new power, 4.</li><li data-if="3(x+4)^2+c">That is differentiating. Integrating adds 1 to the power.</li></ul>
+      <div class="solution"><p>The new power is 4. {m:a=1}. So {m:int() (x+4)^3 dx=frac((x+4)^4, 4)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="(2x+1)^6/12+c;(1/12)(2x+1)^6+c;((2x+1)^6)/12+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (2x+1)^5 dx}. Use the letter c for the constant. Type your answer like (x+1)^3/3+c.</p>
+      <ol class="ladder"><li>The inside is {m:2x+1}, so {m:a=2}.</li><li>The new power is 6. Divide by 6 and by a.</li><li>Dividing by both means dividing by {m:6*2}.</li></ol>
+      <ul class="wrong"><li data-if="(2x+1)^6/6+c">You forgot to divide by a, which is 2.</li><li data-if="(2x+1)^6/2+c">You divided by a, 2, but not by the new power, 6. Divide by both.</li></ul>
+      <div class="solution"><p>The new power is 6 and {m:a=2}, so divide by {m:6*2=12}. {m:int() (2x+1)^5 dx=frac((2x+1)^6, 12)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="(5x-3)^3/15+c;(1/15)(5x-3)^3+c;((5x-3)^3)/15+c" data-mode="exact">
+      <p class="qtext">Find {m:int() (5x-3)^2 dx}. Use the letter c for the constant. Type your answer like (x+1)^3/3+c.</p>
+      <ol class="ladder"><li>The inside is {m:5x-3}, so {m:a=5}.</li><li>The new power is 3. Divide by 3 and by a.</li><li>Dividing by both means dividing by {m:3*5}.</li></ol>
+      <ul class="wrong"><li data-if="(5x-3)^3/3+c">You forgot to divide by a, which is 5.</li><li data-if="(5x-3)^3/5+c">You divided by a, 5, but not by the new power, 3.</li></ul>
+      <div class="solution"><p>The new power is 3 and {m:a=5}, so divide by {m:3*5=15}. {m:int() (5x-3)^2 dx=frac((5x-3)^3, 15)+c}.</p></div>
+    </div>
+    <div class="q" data-answers="(2x+1)^(3/2)/3+c;(1/3)(2x+1)^(3/2)+c;((2x+1)^(3/2))/3+c;(2x+1)^1.5/3+c;(1/3)(2x+1)^1.5+c" data-mode="exact">
+      <p class="qtext">Find {m:int() sqrt(2x+1) dx}. Use the letter c for the constant. Type your answer like (x+1)^(3/2)/2+c.</p>
+      <ol class="ladder"><li>Write the root as a power: {m:sqrt(2x+1)=(2x+1)^(1/2)}. The inside is {m:2x+1}, so {m:a=2}.</li><li>The new power is {m:frac(3, 2)}. Divide by {m:frac(3, 2)} and by a.</li><li>{m:frac(3, 2)*2=3}, so divide by 3.</li></ol>
+      <ul class="wrong"><li data-if="(2/3)(2x+1)^(3/2)+c;2(2x+1)^(3/2)/3+c;(2(2x+1)^(3/2))/3+c">You divided by {m:frac(3, 2)} but not by a, which is 2.</li></ul>
+      <div class="solution"><p>{m:sqrt(2x+1)=(2x+1)^(1/2)}. The new power is {m:frac(3, 2)} and {m:a=2}. Dividing by {m:frac(3, 2)*2=3}: {m:int() sqrt(2x+1) dx=frac((2x+1)^(3/2), 3)+c}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: differentiate then integrate, and integrate then differentiate</h2>
+    <p>The two steps undo each other. But they do not undo each other equally. Look at what happens in each order.</p>
+    <div class="flip-grid" style="grid-template-columns:1fr;">
+      <div class="flip-side"><h3>Forwards: differentiate, then integrate</h3><figure class="figure-lg">{fig:integration-basics-flip-forward}<figcaption>You get back to the start, plus an unknown c.</figcaption></figure></div>
+      <div class="flip-side"><h3>Backwards: integrate, then differentiate</h3><figure class="figure-lg">{fig:integration-basics-flip-backward}<figcaption>You get back to exactly where you started.</figcaption></figure></div>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> differentiating loses any constant, so integrating cannot give it back. That is why c appears. Integrating first and then differentiating gets you back exactly to the start. Differentiating only removes c, and c was not part of the start.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Differentiate {m:y=2x^4-5}, then integrate the result.</p>
+      <ol class="steps">
+        <li>Differentiate: {m:frac(dy, dx)=8x^3}. The {m:-5} has gone.</li>
+        <li>Integrate: {m:int() 8x^3 dx=2x^4+c}.</li>
+        <li>This is the start, {m:2x^4-5}, with the {m:-5} replaced by c. The number {m:-5} is lost. The c could stand for it, but nothing in the working says that c is {m:-5}.</li>
+      </ol>
+    </div>
+    <p><b>Try it:</b> integrate {m:4x^3}, then differentiate your answer. What do you get?</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="x^5+3x+c;c+x^5+3x;3x+x^5+c" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=x^5+3x}. Then integrate your answer. Type the final result, using the letter c for the constant. Type your answer like x^2+c.</p>
+      <ol class="ladder"><li>Do two steps: differentiate first, then integrate the result.</li><li>The derivative is {m:5x^4+3}. Now integrate that.</li><li>Write {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^5+3x">Right, but you need {m:+c}. Integrating always adds a constant.</li><li data-if="5x^4+3">That is the answer to the first step. Now integrate it.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=5x^4+3}. Then {m:int() (5x^4+3) dx=x^5+3x+c}. This is the start, plus c.</p></div>
+    </div>
+    <div class="q" data-answers="20x^3" data-mode="exact">
+      <p class="qtext">Integrate {m:20x^3}, then differentiate your answer. Type the final result like 5x^2.</p>
+      <ol class="ladder"><li>Do two steps: integrate first, then differentiate the result.</li><li>The integral is {m:5x^4+c}. Now differentiate that.</li><li>What happens to the c?</li></ol>
+      <ul class="wrong"><li data-if="5x^4+c">That is the answer to the first step. Now differentiate it.</li><li data-if="20x^3+c">The c disappears when you differentiate: the derivative of a number is 0.</li></ul>
+      <div class="solution"><p>{m:int() 20x^3 dx=5x^4+c}. Then the derivative of {m:5x^4+c} is {m:20x^3}. You are back where you started, exactly.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You differentiate {m:y=x^2+7}, then integrate the result. The final answer is {m:x^2+c}. What happened to the 7?</p>
+      <ul class="options">
+        <li data-why="Differentiating x&sup2; + 7 gives 2x. The 7 has gone, so integrating 2x cannot bring it back.">It is still there: the answer is {m:x^2+7+c}</li>
+        <li data-correct>It was lost when differentiating. The c could stand for it, but nothing in the working says which number c is</li>
+        <li data-why="The 7 does not change in any step. It disappears at the first step.">It was multiplied by 2</li>
+      </ul>
+      <ol class="ladder"><li>Write the two steps: differentiate {m:x^2+7}, then integrate.</li><li>Differentiating {m:x^2+7} gives {m:2x}. Is the 7 still there?</li><li>Then integrating {m:2x} gives {m:x^2+c}.</li></ol>
+      <div class="solution"><p>Differentiating gives {m:2x}, with no 7. Integrating gives {m:x^2+c}. The c can stand for any number, including 7, but nothing in the working says which number c is.</p></div>
+    </div>
+    <div class="q" data-answers="2x^5" data-mode="exact">
+      <p class="qtext">A function {m:F} has {m:F'(x)=10x^4} and {m:F(0)=0}. Find {m:F(x)}. Type your answer like 3x^2.</p>
+      <ol class="ladder"><li>Integrate {m:F'(x)}. Include {m:+c}.</li><li>{m:F(0)=0} means {m:y=0} when {m:x=0}. Put these in.</li><li>Solve for c.</li></ol>
+      <ul class="wrong"><li data-if="2x^5+c;c+2x^5">Find c using {m:F(0)=0}. It is 0, so no term is added.</li><li data-if="10x^5">You added 1 to the power but did not divide by the new power, 5.</li></ul>
+      <div class="solution"><p>{m:int() 10x^4 dx=2x^5+c}. {m:F(0)=0}: {m:0=0+c}, so {m:c=0}. So {m:F(x)=2x^5}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Anna says:</b> {m:int() 6x^2 dx=6x^3+c}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She did not divide by the new power, 3</li>
+        <li data-why="Integrating is the right step. The question uses the integral sign.">She should have differentiated</li>
+        <li data-why="Differentiate 6x&sup3;: you get 18x&sup2;, not 6x&sup2;.">Nothing: it is correct</li>
+      </ul>
+      <ol class="ladder"><li>Differentiate Anna's answer to check it.</li><li>{m:6x^3} gives {m:18x^2}. Is that the integrand?</li><li>What should she have divided by?</li></ol>
+      <div class="solution"><p>The derivative of {m:6x^3+c} is {m:18x^2}, not {m:6x^2}. She added 1 to the power but did not divide by the new power. The correct integral is {m:frac(6x^3, 3)+c=2x^3+c}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> {m:int() (x^2+3x) dx=frac(x^3, 3)+frac(3x^2, 2)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not write {m:+c}</li>
+        <li data-why="He did divide 3x&sup2; by 2. That term is right.">He should have divided the second term by 3</li>
+        <li data-why="x&sup3;/3 is right: the power 2 becomes 3, and you divide by 3.">The first term should be {m:frac(x^3, 2)}</li>
+      </ul>
+      <ol class="ladder"><li>Check each term by differentiating it.</li><li>{m:frac(x^3, 3)} gives {m:x^2}. {m:frac(3x^2, 2)} gives {m:3x}. Both are right.</li><li>What is missing from the end?</li></ol>
+      <div class="solution"><p>Both terms are right. What is missing is {m:+c}. The answer is a family of functions, not one function. The correct integral is {m:frac(x^3, 3)+frac(3x^2, 2)+c}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> {m:int() x^(-3) dx=frac(x^(-2), 2)+c}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She divided by 2. The new power is {m:-2}, so she should divide by {m:-2}</li>
+        <li data-why="&minus;3 + 1 = &minus;2, so the new power is right.">She added 1 to the power wrongly</li>
+        <li data-why="Negative powers can be integrated. The rule works for every power except &minus;1.">Negative powers cannot be integrated</li>
+      </ul>
+      <ol class="ladder"><li>Differentiate Cara's answer: {m:frac(x^(-2), 2)}.</li><li>The power {m:-2} comes down in front, and the 2 on the bottom cancels part of it. What sign do you get?</li><li>What should she divide by?</li></ol>
+      <div class="solution"><p>The derivative of {m:frac(x^(-2), 2)} is {m:frac(-2x^(-3), 2)=-x^(-3)}. It has the wrong sign. The new power is {m:-2}, so she should divide by {m:-2}. The correct integral is {m:-frac(x^(-2), 2)+c}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> {m:int() (x+1)^2 dx=frac(x^3, 3)+x+c}, because {m:(x+1)^2=x^2+1}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>{m:(x+1)^2} is not {m:x^2+1}. It has a middle term, 2x</li>
+        <li data-why="The terms of x&sup2; + 1 are integrated correctly. The mistake is earlier.">He should have integrated {m:x^2} to {m:frac(x^3, 2)}</li>
+        <li data-why="He did write c.">He forgot {m:+c}</li>
+      </ul>
+      <ol class="ladder"><li>Test {m:(x+1)^2=x^2+1} with {m:x=2}.</li><li>{m:(2+1)^2=9}, but {m:2^2+1=5}. What is missing?</li><li>Expand {m:(x+1)(x+1)}.</li></ol>
+      <div class="solution"><p>{m:(x+1)^2=x^2+2x+1}. At {m:x=2} this gives 9, as it should. So the integral is {m:frac(x^3, 3)+x^2+x+c}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eli says:</b> {m:int() sqrt(x) dx=frac(x^(3/2), 3)+c}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He divided by 3. He should divide by {m:frac(3, 2)}</li>
+        <li data-why="1/2 + 1 = 3/2, so the new power is right.">The new power should be {m:frac(1, 2)}</li>
+        <li data-why="The integrand is the root, so he must integrate. He did.">He should have differentiated</li>
+      </ul>
+      <ol class="ladder"><li>Write the root as a power: {m:x^(1/2)}.</li><li>The new power is {m:frac(3, 2)}. What do you divide by?</li><li>Differentiate Eli's answer to check: does it give {m:x^(1/2)}?</li></ol>
+      <div class="solution"><p>The new power is {m:frac(3, 2)}, so divide by {m:frac(3, 2)}, which is multiplying by {m:frac(2, 3)}. The correct integral is {m:frac(2, 3)x^(3/2)+c}. Eli's answer differentiates to {m:frac(1, 2)x^(1/2)}, not {m:x^(1/2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="x^5-x^2+7x+c;c+x^5-x^2+7x" data-mode="exact">
+      <p class="qtext">Find {m:int() (5x^4-2x+7) dx}. Use the letter c for the constant. Type your answer like x^3+2x+c.</p>
+      <ol class="ladder"><li>Integrate each term on its own.</li><li>{m:5x^4} gives {m:x^5}. {m:-2x} gives {m:-x^2}. 7 gives {m:7x}.</li><li>Write one {m:+c} at the end.</li></ol>
+      <ul class="wrong"><li data-if="x^5-2x^2+7x+c">You did not divide {m:-2x} by the new power, 2. {m:int() -2x dx=-x^2}.</li><li data-if="x^5-x^2+7+c">The number 7 needs an x. {m:int() 7 dx=7x}.</li></ul>
+      <div class="solution"><p>{m:int() (5x^4-2x+7) dx=x^5-x^2+7x+c}. Check: the derivative is {m:5x^4-2x+7}.</p></div>
+    </div>
+    <div class="q" data-answers="6-2/x;-2/x+6;6-2x^(-1);-2x^(-1)+6" data-mode="exact">
+      <p class="qtext">A curve has {m:frac(dy, dx)=frac(2, x^2)} and passes through (2, 5). Find the equation of the curve. Type your answer like 3-4/x.</p>
+      <ol class="ladder"><li>Write {m:frac(2, x^2)} as {m:2x^(-2)}, then integrate. Include {m:+c}.</li><li>The new power is {m:-1}. Divide by {m:-1}.</li><li>Put {m:x=2} and {m:y=5} in, and solve for c.</li></ol>
+      <ul class="wrong"><li data-if="4+2/x;2/x+4;4+2x^(-1);2x^(-1)+4">Check the sign. Dividing by the new power, {m:-1}, makes the term {m:-frac(2, x)}.</li><li data-if="-2/x+5;5-2/x;-2x^(-1)+5;5-2x^(-1)">You used the y-value 5 as c. Put in {m:x=2} and {m:y=5}: {m:5=-1+c}.</li></ul>
+      <div class="solution"><p>{m:y=frac(2x^(-1), -1)+c=-frac(2, x)+c}. At (2, 5): {m:5=-frac(2, 2)+c=-1+c}, so {m:c=6}. The curve is {m:y=6-frac(2, x)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these integrals cannot be done with the rule {m:int() x^n dx=frac(x^(n+1), n+1)+c}, even after tidying?</p>
+      <ul class="options">
+        <li data-why="This tidies to x + 4x&#8315;&sup2;, and the rule works on both terms."><span class="sr-only">the integral of x cubed plus 4, all over x squared, with respect to x</span><span aria-hidden="true">{m:int() frac(x^3+4, x^2) dx}</span></li>
+        <li data-correct><span class="sr-only">the integral of x cubed plus 4x, all over x squared, with respect to x</span><span aria-hidden="true">{m:int() frac(x^3+4x, x^2) dx}</span></li>
+        <li data-why="This tidies to x + 4, and the rule works on both terms."><span class="sr-only">the integral of x cubed plus 4x squared, all over x squared, with respect to x</span><span aria-hidden="true">{m:int() frac(x^3+4x^2, x^2) dx}</span></li>
+      </ul>
+      <ol class="ladder"><li>Divide each term on the top by {m:x^2} in all three options.</li><li>Look for a term that becomes {m:x^(-1)}, which is {m:frac(1, x)}.</li><li>The rule cannot integrate {m:x^(-1)}.</li></ol>
+      <div class="solution"><p>{m:frac(x^3+4x, x^2)=x+frac(4, x)=x+4x^(-1)}. The term {m:4x^(-1)} has {m:n=-1}, so the rule cannot integrate it. The other two options tidy to powers other than {m:-1}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">A curve has {m:frac(dy, dx)=4x^3-6x} and passes through (1, 0). Find the value of y when {m:x=2}.</p>
+      <ol class="ladder"><li>First find the equation of the curve. Integrate, with {m:+c}.</li><li>{m:y=x^4-3x^2+c}. Use (1, 0) to find c.</li><li>Then put {m:x=2} into the equation.</li></ol>
+      <ul class="wrong"><li data-if="4">You left out c. Use (1, 0) to find c first. It is not 0.</li><li data-if="20">That is {m:frac(dy, dx)} at {m:x=2}, the gradient. The question asks for y.</li></ul>
+      <div class="solution"><p>{m:y=x^4-3x^2+c}. At (1, 0): {m:0=1-3+c}, so {m:c=2}. At {m:x=2}: {m:y=16-12+2=6}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^3/3+x^2/2-3x+c;(2/3)x^3+(1/2)x^2-3x+c;2x^3/3+0.5x^2-3x+c;-3x+2x^3/3+x^2/2+c;c+2x^3/3+x^2/2-3x" data-mode="exact">
+      <p class="qtext">Find {m:int() (2x+3)(x-1) dx}. Use the letter c for the constant. Type your answer like x^3/3+x^2/2+c.</p>
+      <ol class="ladder"><li>Expand the brackets first.</li><li>{m:(2x+3)(x-1)=2x^2-2x+3x-3}. Join the like terms.</li><li>Integrate each term of {m:2x^2+x-3}. Write {m:+c}.</li></ol>
+      <ul class="wrong"><li data-if="2x^3/3+x^2-3x+c">You did not divide the x term by the new power, 2. {m:x} integrates to {m:frac(x^2, 2)}.</li></ul>
+      <div class="solution"><p>{m:(2x+3)(x-1)=2x^2+x-3}. Integrate: {m:frac(2x^3, 3)+frac(x^2, 2)-3x}. So the integral is {m:frac(2x^3, 3)+frac(x^2, 2)-3x+c}.</p></div>
+    </div>
+    <div class="q" data-answers="-1/x^3+c;-x^(-3)+c;-x^-3+c;c-1/x^3" data-mode="exact">
+      <p class="qtext">Find {m:int() frac(3, x^4) dx}. Use the letter c for the constant. Type your answer like 2/x^2+c.</p>
+      <ol class="ladder"><li>Write {m:frac(3, x^4)} as 3 times a power of x.</li><li>{m:frac(3, x^4)=3x^(-4)}. The new power is {m:-3}.</li><li>Divide by {m:-3}. The 3 in front cancels.</li></ol>
+      <ul class="wrong"><li data-if="1/x^3+c;x^(-3)+c">Check the sign. You divide by the new power, {m:-3}, so the answer is negative.</li><li data-if="3/x^3+c;3x^(-3)+c">You did not divide by the new power, {m:-3}. The 3 in front is divided by it.</li></ul>
+      <div class="solution"><p>{m:frac(3, x^4)=3x^(-4)}. {m:int() 3x^(-4) dx=frac(3x^(-3), -3)+c=-x^(-3)+c=-frac(1, x^3)+c}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper: no calculator. The marks tell you how much to write. M marks are for the method. A marks are for an accurate answer.</p>
+    <p class="muted">Write your working on paper, then type the answer.</p>
+    <div class="q" data-answers="2x^3-2x^2+5x+c;c+2x^3-2x^2+5x;5x-2x^2+2x^3+c" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Find {m:int() (6x^2-4x+5) dx}. Use the letter c for the constant. Type your answer like x^3+2x+c.</p>
+      <ol class="ladder"><li>The marks tell you the steps: integrate three terms, then add c.</li><li>For each term, add 1 to the power and divide by the new power. The last term is a number.</li><li>{m:6x^2} gives {m:2x^3}. Do the same for the other terms.</li></ol>
+      <ul class="wrong"><li data-if="2x^3-2x^2+5x">Right, but you need {m:+c}. You lose a mark without it.</li><li data-if="2x^3-4x^2+5x+c">You did not divide {m:-4x} by the new power, 2.</li></ul>
+      <div class="solution">
+        <p>{m:int() 6x^2 dx=2x^3}, {m:int() -4x dx=-2x^2} and {m:int() 5 dx=5x}. So {m:int() (6x^2-4x+5) dx=2x^3-2x^2+5x+c}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for adding 1 to a power and dividing by the new power in at least one term</li>
+          <li><b>A1</b> for at least two terms correct</li>
+          <li><b>A1</b> for all three terms correct and {m:+c}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="8x^(3/2)/3-3/x+c;(8/3)x^(3/2)-3/x+c;8x^(3/2)/3-3x^(-1)+c;(8/3)x^(3/2)-3x^(-1)+c;-3/x+8x^(3/2)/3+c;-3x^(-1)+8x^(3/2)/3+c;-3/x+(8/3)x^(3/2)+c;-3x^(-1)+(8/3)x^(3/2)+c;c+8x^(3/2)/3-3/x" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] Find {m:int() (4 sqrt(x)+frac(3, x^2)) dx}. Use the letter c for the constant. Type your answer like 3x^(5/2)/5+2/x+c.</p>
+      <ol class="ladder"><li>The marks tell you the steps: write as powers, integrate each term, add c.</li><li>{m:4 sqrt(x)=4x^(1/2)} and {m:frac(3, x^2)=3x^(-2)}.</li><li>Integrate each term. Divide by {m:frac(3, 2)} for the first and by {m:-1} for the second.</li></ol>
+      <ul class="wrong"><li data-if="8x^(3/2)/3+3/x+c;(8/3)x^(3/2)+3/x+c;8x^(3/2)/3+3x^(-1)+c;(8/3)x^(3/2)+3x^(-1)+c">Check the sign of the second term. Dividing by the new power, {m:-1}, makes {m:3x^(-2)} integrate to {m:-3x^(-1)}.</li><li data-if="8x^(3/2)/3-3/x;(8/3)x^(3/2)-3/x;8x^(3/2)/3-3x^(-1);(8/3)x^(3/2)-3x^(-1)">Right, but you need {m:+c}.</li></ul>
+      <div class="solution">
+        <p>{m:4 sqrt(x)+frac(3, x^2)=4x^(1/2)+3x^(-2)}. {m:int() 4x^(1/2) dx=4*frac(2, 3)x^(3/2)=frac(8, 3)x^(3/2)}. {m:int() 3x^(-2) dx=frac(3x^(-1), -1)=-3x^(-1)}. So the integral is {m:frac(8, 3)x^(3/2)-frac(3, x)+c}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for writing as {m:4x^(1/2)+3x^(-2)}</li>
+          <li><b>A1</b> for {m:frac(8, 3)x^(3/2)}</li>
+          <li><b>A1</b> for {m:-3x^(-1)}</li>
+          <li><b>A1</b> for {m:+c}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2x^3-4x^2+x+5;5+2x^3-4x^2+x;x+2x^3-4x^2+5;2x^3+x-4x^2+5" data-mode="exact" data-marks="5">
+      <p class="qtext">[5 marks] The curve C has {m:frac(dy, dx)=6x^2-8x+1}. The point (2, 7) lies on C. Find the equation of C. Type your answer like x^3-2x+9.</p>
+      <ol class="ladder"><li>The marks tell you the steps: integrate, use the point to find c, write the equation.</li><li>Integrate {m:frac(dy, dx)} with {m:+c}. Put {m:x=2} and {m:y=7} in.</li><li>Solve for c, then write {m:y=} with the value of c in it.</li></ol>
+      <ul class="wrong"><li data-if="2x^3-4x^2+x+7">You used the y-value 7 as c. Put {m:x=2} and {m:y=7} into {m:2x^3-4x^2+x+c} and solve.</li><li data-if="2x^3-4x^2+x+c">Your answer still has the letter c. Use the point (2, 7) to find its value.</li></ul>
+      <div class="solution">
+        <p>{m:y=2x^3-4x^2+x+c}. At (2, 7): {m:7=16-16+2+c=2+c}, so {m:c=5}. The equation of C is {m:y=2x^3-4x^2+x+5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for adding 1 to a power and dividing in at least one term</li>
+          <li><b>A1</b> for {m:2x^3-4x^2+x} (with or without {m:+c})</li>
+          <li><b>M1</b> for substituting {m:x=2} and {m:y=7}</li>
+          <li><b>A1</b> for {m:c=5}</li>
+          <li><b>A1</b> for the full equation {m:y=2x^3-4x^2+x+5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x^3/3+x^2/2-6x+c;(1/3)x^3+(1/2)x^2-6x+c;x^3/3+0.5x^2-6x+c;c+x^3/3+x^2/2-6x;-6x+x^3/3+x^2/2+c" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Find {m:int() (x+3)(x-2) dx}. Use the letter c for the constant. Type your answer like x^3/3+x+c.</p>
+      <ol class="ladder"><li>The marks tell you the steps: expand, integrate, add c.</li><li>{m:(x+3)(x-2)} has four pieces. Join the like terms.</li><li>Integrate each term of the expanded expression.</li></ol>
+      <ul class="wrong"><li data-if="x^3/3+x^2/2-6x">Right, but you need {m:+c}.</li><li data-if="x^3/3+x^2-6x+c">You did not divide the x term by the new power, 2.</li></ul>
+      <div class="solution">
+        <p>{m:(x+3)(x-2)=x^2-2x+3x-6=x^2+x-6}. Integrate: {m:frac(x^3, 3)+frac(x^2, 2)-6x+c}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for expanding to {m:x^2+x-6}</li>
+          <li><b>A1</b> for {m:frac(x^3, 3)+frac(x^2, 2)-6x}</li>
+          <li><b>A1</b> for {m:+c}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="6x+5-2/x^2;6x+5-2x^(-2);5+6x-2/x^2;-2/x^2+6x+5;-2x^(-2)+6x+5;5+6x-2x^(-2);6x-2/x^2+5;6x-2x^(-2)+5;-2/x^2+5+6x;-2x^(-2)+5+6x;5-2/x^2+6x;5-2x^(-2)+6x" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] A function has {m:f'(x)=frac(4, x^3)+6} and {m:f(1)=9}. Find {m:f(x)}. Type your answer like 3x+2-1/x^2.</p>
+      <ol class="ladder"><li>The marks tell you the steps: integrate, use {m:f(1)=9} to find c, write {m:f(x)}.</li><li>Write {m:frac(4, x^3)} as {m:4x^(-3)}, then integrate each term. Include {m:+c}.</li><li>Put {m:x=1} and {m:y=9} in. Take care with the negative power.</li></ol>
+      <ul class="wrong"><li data-if="6x+1+2/x^2;6x+1+2x^(-2)">Check the sign of the {m:x^(-2)} term. Dividing by the new power, {m:-2}, makes it negative.</li><li data-if="6x+9-2/x^2;6x+9-2x^(-2)">You used the y-value 9 as c. Put {m:x=1} and {m:y=9} into {m:-2x^(-2)+6x+c}.</li></ul>
+      <div class="solution">
+        <p>{m:f(x)=int() (4x^(-3)+6) dx=frac(4x^(-2), -2)+6x+c=-2x^(-2)+6x+c}. {m:f(1)=9}: {m:9=-2+6+c=4+c}, so {m:c=5}. So {m:f(x)=6x+5-frac(2, x^2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for writing {m:frac(4, x^3)} as {m:4x^(-3)} and raising a power</li>
+          <li><b>A1</b> for {m:-2x^(-2)+6x} (with or without {m:+c})</li>
+          <li><b>M1</b> for substituting {m:x=1} and {m:f=9}</li>
+          <li><b>A1</b> for {m:f(x)=6x+5-frac(2, x^2)}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Integrating undoes differentiating.</b> The derivative of an integral is the integrand. That is the reason you can check any answer by differentiating it.</li>
+      <li><b>The rule is the power rule backwards.</b> Differentiating brings the power down and takes 1 off. Integrating adds 1 to the power and divides by the new power, which cancels the number that came down.</li>
+      <li><b>The constant appears because differentiating loses it.</b> A number added to a function moves its graph up or down, and does not change the gradient. So a whole family of curves has the same derivative.</li>
+      <li><b>One point fixes the constant.</b> Only one curve in the family passes through a given point.</li>
+      <li><b>The power {m:-1} is different.</b> The rule would divide by 0. A different function has {m:frac(1, x)} as its derivative. You meet it in Year 2.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Forgetting {m:+c} in an integral with no limits.</li>
+      <li>Adding 1 to the power but not dividing by the new power.</li>
+      <li>Dividing by the old power instead of the new power.</li>
+      <li>Differentiating when you should integrate, by bringing the power down.</li>
+      <li>Leaving a number on its own without an x: {m:int() 5 dx} is {m:5x+c}.</li>
+      <li>Writing a root or a reciprocal without rewriting it as a power first.</li>
+      <li>Losing a sign with negative powers: {m:int() x^(-2) dx} is {m:-x^(-1)+c}.</li>
+      <li>Dividing by {m:frac(3, 2)} as if it were {m:frac(2, 3)}. Dividing by a fraction means multiplying by its reciprocal.</li>
+      <li>Squaring each term of a bracket: {m:(x+1)^2} is not {m:x^2+1}.</li>
+      <li>Using the y-value of a point as c. Put the point into the equation and solve for c.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="integration-basics">
+      <li><label><input type="checkbox"> say that integrating reverses differentiating, and ask "what was differentiated?"</label></li>
+      <li><label><input type="checkbox"> explain why an integral without limits has a constant, and draw the family of curves</label></li>
+      <li><label><input type="checkbox"> read and write the integral sign and the dx, and say why n = &minus;1 is excluded</label></li>
+      <li><label><input type="checkbox"> integrate a power of x, a multiple, a sum and a number on its own</label></li>
+      <li><label><input type="checkbox"> expand, divide or rewrite as powers before integrating</label></li>
+      <li><label><input type="checkbox"> check an integral by differentiating it</label></li>
+      <li><label><input type="checkbox"> find the equation of a curve from its derivative and one point on it</label></li>
+      <li><label><input type="checkbox"> integrate a power of a linear bracket (the extra method)</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

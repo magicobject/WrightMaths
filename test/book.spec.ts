@@ -759,9 +759,13 @@ test.describe('the Books page', () => {
     await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
-    const alevel = page.locator('.card', { hasText: 'A Level Maths Book' });
-    await expect(alevel).toContainText('Coming soon');
-    await expect(alevel.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
+    // Three "Coming soon" cards: A-level Year 1, A-level Year 2 and Further Pure. None links to a book (the A-level book stays hidden).
+    for (const name of ['A-level Pure Maths, Year 1', 'A-level Pure Maths, Year 2', 'Further Pure Maths']) {
+      const card = page.locator('.card', { hasText: name });
+      await expect(card, name).toContainText('Coming soon');
+      await expect(card.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
+    }
+    await expect(page.locator('a[href*="a-level"]')).toHaveCount(0);
     await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
     await expect(page).toHaveURL(/\/books\/gcse\/$/);
     const response = await page.goto('/this-page-does-not-exist.html');

@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from './support/fixtures';
 import { ALL_PAGES } from './support/pages';
 import { BOOK_PAGES } from './support/book-pages';
+import { ALEVEL_PAGES } from './support/alevel-pages';
 
 // WCAG 2.1 A and AA rules (colour contrast included). Each page is checked as
 // it loads; the book pages are also checked in their interactive open states.
@@ -29,9 +30,10 @@ for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
   });
 }
 
-for (const bookPage of BOOK_PAGES) {
+for (const bookPage of [...BOOK_PAGES, ...ALEVEL_PAGES]) {
   test(`${bookPage.path} has no axe violations`, async ({ page }) => {
-    test.setTimeout(60_000);
+    // The glossaries (about 300 entries, many with a diagram) are by far the biggest pages; give them the same budget as their 320px check below.
+    test.setTimeout(bookPage.path.includes('glossary') ? 150_000 : 60_000);
     await page.goto(bookPage.path);
     expect(await violations(page)).toEqual([]);
   });
@@ -80,7 +82,7 @@ test.describe('the book in its interactive states', () => {
   });
 
   // One test per page (each gets its own time budget): a 320px phone width, as a high-zoom user would see it.
-  for (const bookPage of BOOK_PAGES) {
+  for (const bookPage of [...BOOK_PAGES, ...ALEVEL_PAGES]) {
     test(`${bookPage.path} has no axe violations at 320px wide`, async ({ page }) => {
       // The biggest pages have 100+ questions and run alongside many workers; the glossary (about 290 entries, each with links) is the largest of all.
       test.setTimeout(bookPage.path.includes('glossary') ? 150_000 : 60_000);

@@ -1,0 +1,1166 @@
+<main class="book strand-al-differentiation" data-book-page="topic" data-topic="differentiation-basics">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Differentiation &middot; Year 1</span>
+      <h1>Differentiation from first principles</h1>
+      <p class="lead">A curve is steeper in some places than in others. Differentiation finds exactly how steep it is at any point. You will build the idea from a straight line, then learn the shortcut that every later calculus topic uses.</p>
+      <p class="where-use"><b>Where you will use this:</b> finding a speed from a distance graph, how fast a tank fills or drains, the highest or lowest point of a curve (the next topic), and every Year 2 calculus topic.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Differentiation from first principles</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page assumes three skills. You can expand brackets. You can write roots and reciprocals as powers of x (indices). You can find the gradient of a straight line. The warm-up checks all three. It covers all four English exam boards: nothing here is specific to one board.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Four quick questions. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-the-gradient-of-a-curve">Skip to the lesson</a></p>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the gradient of the straight line through (1, 3) and (4, 12).</p>
+      <ol class="ladder"><li>The gradient of a straight line is the rise divided by the run.</li><li>Find the rise: the change in y from (1, 3) to (4, 12). Find the run: the change in x.</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="1/3">You divided the run by the rise. The gradient is the rise divided by the run.</li><li data-if="9">That is the rise only (12 &minus; 3). Divide it by the run, 4 &minus; 1 = 3.</li></ul>
+      <div class="solution"><p>Rise = 12 &minus; 3 = 9. Run = 4 &minus; 1 = 3. Gradient = 9 &divide; 3 = 3. The line rises 3 units for each 1 unit across.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of the algebra you need (skip if you are happy)</summary>
+    <div class="q" data-answers="x^(-2);x^-2" data-mode="exact">
+      <p class="qtext">Write {m:frac(1, x^2)} as a power of x. Type it like x^(-5).</p>
+      <ol class="ladder"><li>A negative power means one over the positive power. For example {m:x^(-1)=frac(1, x)}.</li><li>Which power of x is on the bottom of the fraction?</li><li>Write that power with a minus sign.</li></ol>
+      <ul class="wrong"><li data-if="x^2;x^(2)">That is x squared, not one over x squared. The power must be negative.</li><li data-if="-x^2">The minus sign belongs in the power, not in front of the x.</li></ul>
+      <div class="solution"><p>{m:frac(1, x^2)=x^(-2)}, because a negative power means one over the positive power.</p></div>
+    </div>
+    <div class="q" data-answers="x^(1/2);x^0.5;x^(0.5)" data-mode="exact">
+      <p class="qtext">Write {m:sqrt(x)} as a power of x. Type it like x^(2/3).</p>
+      <ol class="ladder"><li>A fractional power is a root. The square root is the power one half.</li><li>Write x, then the power in brackets.</li></ol>
+      <ul class="wrong"><li data-if="x^2">That squares x. The square root is the power one half, not 2.</li><li data-if="x^(-1/2);x^-0.5">The minus sign would give one over the square root of x. The square root itself has a positive power.</li></ul>
+      <div class="solution"><p>{m:sqrt(x)=x^(1/2)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+6x+9;9+6x+x^2" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+3)^2}. Type it like x^2+8x+4.</p>
+      <ol class="ladder"><li>Squaring a bracket means writing it twice: {m:(x+3)(x+3)}.</li><li>Multiply every term in the first bracket by every term in the second.</li><li>Join the two x terms.</li></ol>
+      <ul class="wrong"><li data-if="x^2+9;9+x^2">The two middle terms, 3x and 3x, are missing. {m:(x+3)^2} is not {m:x^2+3^2}.</li><li data-if="x^2+3x+9;9+3x+x^2">There are two 3x terms. They join to make 6x.</li></ul>
+      <div class="solution"><p>{m:(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. The gradient of a curve</h2>
+    <p>The {term:gradient} of a straight line is the same everywhere: rise divided by run. A curve bends, so its steepness changes from point to point. We need a way to talk about the steepness at one point.</p>
+    <p>Zoom in very close on a smooth curve and it looks like a straight line. That line is the {term:tangent-to-curve|tangent} to the curve at that point. It touches the curve there and points the same way as the curve.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the {term:gradient-of-curve|gradient of a curve} at a point is the gradient of the tangent at that point.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-basics-tangent-triangle}<figcaption>The tangent at A touches the curve {m:y=x^2} at (1, 1). The dashed triangle goes across 1 and up 2, so the gradient of the curve at A is 2.</figcaption></figure>
+    <p>To read a gradient, draw a triangle under the tangent and divide the distance up by the distance across. A positive gradient means the curve is rising at that point. A negative gradient means it is falling.</p>
+    <p>At A, the gradient is 2: the curve rises 2 units for each 1 unit across.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>The tangent to a curve at P passes through (1, 4) and (3, 10). Find the gradient of the curve at P.</p>
+      <ol class="steps">
+        <li>The gradient of the curve at P is the gradient of the tangent. Use the two points on the tangent.</li>
+        <li>Rise = 10 &minus; 4 = 6. Run = 3 &minus; 1 = 2.</li>
+        <li>Gradient = 6 &divide; 2 = 3. At P, the curve rises 3 units for each 1 unit across.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The tangent to a curve at Q passes through (0, 9) and (3, 0). Find the gradient of the curve at Q.</p>
+      <ol class="steps">
+        <li>Rise = 0 &minus; 9 = <span class="blank" data-answers="-9">___</span>.</li>
+        <li>Run = 3 &minus; 0 = <span class="blank" data-answers="3">___</span>.</li>
+        <li>Gradient = rise &divide; run = <span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>Rise = &minus;9, run = 3, so the gradient is &minus;9 &divide; 3 = &minus;3. The gradient is negative, so the curve is falling at Q: it drops 3 units for each 1 unit across.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the gradient of a curve</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">A curve passes through the origin. The tangent to the curve at P is drawn. It passes through (1, 0) and (3, 6). Find the gradient of the curve at P.</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-read-tangent}</figure>
+      <ol class="ladder"><li>The gradient of the curve at P is the gradient of the tangent at P.</li><li>Use the two points that lie on the tangent: (1, 0) and (3, 6).</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="1/3">You divided the run by the rise. The gradient is the rise divided by the run.</li><li data-if="1.5;3/2">That is the gradient of the straight line from the origin to P. The question asks for the tangent at P, so use the two points on the tangent.</li><li data-if="6">That is the rise from (1, 0) to (3, 6) on its own. Divide by the run, 3 &minus; 1 = 2.</li></ul>
+      <div class="solution"><p>Rise = 6 &minus; 0 = 6. Run = 3 &minus; 1 = 2. Gradient = 6 &divide; 2 = 3. At P the curve rises 3 units for each 1 unit across.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Two tangents are drawn to the same curve, one at A and one at B. At which point is the gradient of the curve greater?</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-two-tangents}</figure>
+      <ul class="options">
+        <li data-correct>At B, because the tangent there is steeper</li>
+        <li data-why="The height of a point does not decide the gradient. Compare how steeply the two tangents slope.">At A, because A is lower down</li>
+        <li data-why="A curve can have a different gradient at each point. That is why we always say which point.">The same at both, because it is one curve</li>
+      </ul>
+      <ol class="ladder"><li>The gradient of the curve at a point is the gradient of the tangent there.</li><li>Look at the two tangents. Which one rises more for each 1 unit across?</li></ol>
+      <div class="solution"><p>The tangent at B slopes up more steeply than the tangent at A, so the gradient of the curve is greater at B.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">A straight line has equation {m:y=4x-3}. What is the gradient of the line at {m:x=5}?</p>
+      <ol class="ladder"><li>A straight line is its own tangent, so it has one gradient everywhere.</li><li>In {m:y=mx+c}, the gradient is m.</li></ol>
+      <ul class="wrong"><li data-if="17">That is the value of y when x = 5. The question asks for the gradient.</li><li data-if="20">The gradient of a straight line does not change with x. It is the number in front of x.</li><li data-if="-3">That is where the line crosses the y-axis, not its gradient.</li></ul>
+      <div class="solution"><p>The line {m:y=4x-3} has gradient 4 at every point, including at {m:x=5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">At a point on a curve, the tangent slopes down as you move from left to right. What does that tell you about the gradient of the curve there?</p>
+      <ul class="options">
+        <li data-why="A positive gradient means the tangent slopes up from left to right.">It is positive</li>
+        <li data-correct>It is negative</li>
+        <li data-why="A zero gradient means the tangent is horizontal.">It is zero</li>
+      </ul>
+      <ol class="ladder"><li>A positive gradient is uphill from left to right. What is the opposite?</li><li>The curve is falling at that point.</li></ol>
+      <div class="solution"><p>The tangent goes down as x increases, so its gradient is negative. The curve is falling at that point.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Chords closing in on a tangent</h2>
+    <p>A tangent needs only one point, but we can estimate its gradient from two points. A {term:chord-of-curve|chord} is a straight line segment that joins two points on a curve. Its gradient is rise over run, like any line.</p>
+    <p>Take the point A (1, 1) on {m:y=x^2}. Pick a second point B on the curve, further to the right. Now slide B along the curve towards A. The chord AB turns, and it gets closer and closer to the tangent at A.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-chords-approach}<figcaption>Three chords from A, each to a point nearer A than the last, in three line styles. Their gradients, 4, 3 and 2.5, are getting closer to the gradient of the tangent, 2.</figcaption></figure>
+    <p>Here are more chords from A, with the x-coordinate of B and the gradient of the chord AB:</p>
+    <ul>
+      <li>B at {m:x=3}: {m:frac(9-1, 3-1)=4}.</li>
+      <li>B at {m:x=2}: {m:frac(4-1, 2-1)=3}.</li>
+      <li>B at {m:x=1.5}: {m:frac(2.25-1, 1.5-1)=2.5}.</li>
+      <li>B at {m:x=1.1}: {m:frac(1.21-1, 0.1)=2.1}.</li>
+      <li>B at {m:x=1.01}: {m:frac(1.0201-1, 0.01)=2.01}.</li>
+    </ul>
+    <p>The gradients 4, 3, 2.5, 2.1 and 2.01 are getting close to 2. That is the gradient of the tangent at A.</p>
+    <div class="key">
+      <p><b>Key idea:</b> as the second point of a chord moves towards the first, the gradient of the chord gets closer to the gradient of the tangent. Each chord gives an estimate. The gradient of the tangent is the value the estimates get close to. B can never be exactly A: a chord needs two different points.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Estimate the gradient of {m:y=x^2} at {m:x=3} using the chord from {m:x=3} to {m:x=3.1}.</p>
+      <ol class="steps">
+        <li>At {m:x=3}, {m:y=9}. At {m:x=3.1}, {m:y=3.1^2=9.61}.</li>
+        <li>Rise = 9.61 &minus; 9 = 0.61. Run = 3.1 &minus; 3 = 0.1.</li>
+        <li>Gradient of the chord = 0.61 &divide; 0.1 = 6.1. This is an estimate. A closer point, {m:x=3.01}, gives {m:frac(9.0601-9, 0.01)=6.01}. The estimates are getting close to 6.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Estimate the gradient of {m:y=x^2} at {m:x=2} using the chord from {m:x=2} to {m:x=2.5}.</p>
+      <ol class="steps">
+        <li>At {m:x=2}, {m:y=4}. At {m:x=2.5}, {m:y=6.25}. Rise = 6.25 &minus; 4 = <span class="blank" data-answers="2.25">___</span>.</li>
+        <li>Run = 2.5 &minus; 2 = <span class="blank" data-answers="0.5">___</span>.</li>
+        <li>Gradient of the chord = <span class="blank" data-answers="4.5">___</span>.</li>
+        <li>The chord from {m:x=2} to {m:x=2.1} has gradient 4.1. The estimates are getting close to <span class="blank" data-answers="4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>Rise = 2.25, run = 0.5, so the chord gradient is 2.25 &divide; 0.5 = 4.5. The estimates 4.5, 4.1, ... are getting close to 4: the gradient of the curve at {m:x=2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: chords</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the gradient of the chord of {m:y=x^2} from the point where {m:x=1} to the point where {m:x=4}.</p>
+      <ol class="ladder"><li>Find the y-coordinate at each end of the chord.</li><li>At {m:x=1}, {m:y=1}. At {m:x=4}, {m:y=16}. Find the rise and the run.</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="15">That is the rise on its own (16 &minus; 1). Divide it by the run, 4 &minus; 1 = 3.</li><li data-if="3">That is the run on its own (4 &minus; 1). The gradient is the rise divided by the run.</li></ul>
+      <div class="solution"><p>Rise = 16 &minus; 1 = 15. Run = 4 &minus; 1 = 3. Gradient = 15 &divide; 3 = 5.</p></div>
+    </div>
+    <div class="q" data-answers="3.31" data-mode="value">
+      <p class="qtext">Find the gradient of the chord of {m:y=x^3} from {m:x=1} to {m:x=1.1}. Give your answer to 2 decimal places.</p>
+      <ol class="ladder"><li>Find {m:y} at {m:x=1} and at {m:x=1.1}.</li><li>{m:1.1^3=1.331}. Find the rise and the run.</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="0.331;0.33">That is the rise (0.331) on its own. Divide it by the run, 0.1.</li></ul>
+      <div class="solution"><p>Rise = 1.331 &minus; 1 = 0.331. Run = 0.1. Gradient = 0.331 &divide; 0.1 = 3.31.</p></div>
+    </div>
+    <div class="q" data-answers="6.5" data-mode="value">
+      <p class="qtext">Find the gradient of the chord of {m:y=x^2} from {m:x=3} to {m:x=3.5}.</p>
+      <ol class="ladder"><li>At {m:x=3}, {m:y=9}. At {m:x=3.5}, {m:y=12.25}.</li><li>Find the rise and the run.</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="3.25">That is the rise on its own (12.25 &minus; 9). Divide it by the run, 0.5.</li></ul>
+      <div class="solution"><p>Rise = 12.25 &minus; 9 = 3.25. Run = 0.5. Gradient = 3.25 &divide; 0.5 = 6.5.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The gradients of four chords of {m:y=x^2}, each starting at {m:x=2}, are 5, 4.5, 4.1 and 4.01. Each chord ends nearer to {m:x=2} than the one before. What value do the gradients get close to?</p>
+      <ol class="ladder"><li>Look at how the numbers change as the chords get shorter.</li><li>The gradient of the curve at {m:x=2} is the value they are getting close to.</li></ol>
+      <ul class="wrong"><li data-if="4.01">4.01 is the last chord in the list. The values keep getting closer, so the value they get close to is lower than 4.01.</li><li data-if="5">5 is the first chord in the list. The values get smaller as the chords get shorter, so the value they get close to is below 4.01. Look at the last few numbers.</li></ul>
+      <div class="solution"><p>5, 4.5, 4.1, 4.01, ... are getting close to 4. That is the gradient of the curve at {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The point B slides along a curve towards the point A. What happens to the chord AB?</p>
+      <ul class="options">
+        <li data-correct>It gets closer to the tangent at A</li>
+        <li data-why="The chord gets shorter, because B is getting nearer to A.">It gets longer and longer</li>
+        <li data-why="The chord only becomes horizontal if the tangent at A is horizontal. In general it gets close to the tangent.">It becomes a horizontal line</li>
+      </ul>
+      <ol class="ladder"><li>Picture B moving along the curve until it is almost on top of A.</li><li>The line through two points that are almost the same point touches the curve at that point.</li></ol>
+      <div class="solution"><p>As B gets closer to A, the chord AB turns towards the tangent at A.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Limits, and differentiation from first principles</h2>
+    <h3>The limit idea</h3>
+    <p>Look again at the chord from A (1, 1) to a point B on {m:y=x^2}. Give B the x-coordinate {m:1+h}. The number h is the run: how far B is to the right of A. (If h is negative, B is to the left. The algebra works for either sign.) So B is the point {m:(1+h, (1+h)^2)}.</p>
+    <p>The rise is {m:(1+h)^2-1=2h+h^2}. The gradient of the chord is {m:frac(2h+h^2, h)}. We may divide the top and the bottom by h, because h is not 0. If h were 0, B would be A and there would be no chord. So for every h that is not 0, the gradient of the chord is {m:2+h}.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-limit-open-point}<figcaption>The gradient of the chord, {m:2+h}, plotted against h. There is a gap in the graph at {m:h=0}, because there is no chord when h is 0. The line gets close to the height 2.</figcaption></figure>
+    <p>As h gets closer to 0, {m:2+h} gets closer to 2. We say that 2 is the {term:limit} of {m:2+h} as h tends to 0 (h gets close to 0), and write</p>
+    {md:lim(h -> 0) (2+h)=2}
+    <p>Read it as "the limit, as h tends to zero, of 2 plus h, is 2". "Tends to" means "gets as close as you like to".</p>
+    <div class="key">
+      <p><b>Key idea:</b> a limit is the value an expression gets close to as h gets close to 0. The expression does not have to reach that value, and h is never actually 0. So simplify first, while h is not 0, and then see what value the result gets close to. Do not put {m:h=0} into the fraction: it gives 0 over 0, which has no value.</p>
+    </div>
+    <h3>The derivative from the definition</h3>
+    <p>Now do the same at any point. Write the curve as {m:y=f(x)}, read as "f of x". It means the height of the curve at x. Let A be the point {m:(x, f(x))} and let B be the point {m:(x+h, f(x+h))}.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-chord-algebra}<figcaption>The run from A to B is h. The rise is {m:f(x+h)-f(x)}. The gradient of the chord is the rise divided by the run.</figcaption></figure>
+    <p>The gradient of the chord is {m:frac(f(x+h)-f(x), h)}. The gradient of the curve at x is the limit of this as h tends to 0. This limit is called the {term:derivative} of f. It is written f&prime;(x), read as "f dash of x".</p>
+    <div class="key">
+      <p><b>Key idea (the definition of the derivative):</b></p>
+      {md:f'(x)=lim(h -> 0) frac(f(x+h)-f(x), h)}
+      <p>Using this to find a derivative is called {term:first-principles|differentiation from first principles}.</p>
+    </div>
+    <p>The method is the same every time:</p>
+    <ol>
+      <li>Write {m:f(x+h)} and expand it.</li>
+      <li>Find {m:f(x+h)-f(x)}, divide by h and simplify. Now h should have cancelled.</li>
+      <li>Let h tend to 0.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Differentiate {m:f(x)=x^2} from first principles.</p>
+      <ol class="steps">
+        <li>{m:f(x+h)=(x+h)^2=x^2+2xh+h^2}.</li>
+        <li>{m:f(x+h)-f(x)=2xh+h^2}. Divide by h, which is allowed because h is not 0: {m:frac(2xh+h^2, h)=2x+h}.</li>
+        <li>As h tends to 0, {m:2x+h} tends to {m:2x}. So {m:f'(x)=lim(h -> 0)(2x+h)=2x}.</li>
+      </ol>
+      <p>The gradient of {m:y=x^2} at any point is twice the x-coordinate. At {m:x=1} it is 2, as the tangent triangle showed.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Differentiate {m:f(x)=x^3} from first principles. Use {m:(x+h)^3=x^3+3x^2h+3xh^2+h^3}.</p>
+      <ol class="steps">
+        <li>{m:f(x+h)-f(x)=(x^3+3x^2h+3xh^2+h^3)-x^3}, which is <span class="blank" data-mode="exact" data-answers="3x^2h+3xh^2+h^3">___</span>.</li>
+        <li>Divide by h: {m:frac(f(x+h)-f(x), h)=}<span class="blank" data-mode="exact" data-answers="3x^2+3xh+h^2">___</span>.</li>
+        <li>As h tends to 0, the terms with h in them tend to 0. So {m:f'(x)=}<span class="blank" data-mode="exact" data-answers="3x^2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The x&sup3; terms cancel, leaving {m:3x^2h+3xh^2+h^3}. Dividing by h gives {m:3x^2+3xh+h^2}. As h tends to 0 this tends to {m:3x^2}. So {m:f'(x)=3x^2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: limits and first principles</h2>
+    <div class="q" data-answers="2x+h;h+2x" data-mode="exact">
+      <p class="qtext">For {m:f(x)=x^2}, the rise of the chord from x to {m:x+h} is {m:2xh+h^2}. Divide it by the run, h, and simplify. Type the gradient of the chord like 5x+3h.</p>
+      <ol class="ladder"><li>The gradient of the chord is the rise divided by the run.</li><li>Divide every term in {m:2xh+h^2} by h.</li><li>Do not let h tend to 0 yet. This answer is the gradient of the chord, so it still contains h.</li></ol>
+      <ul class="wrong"><li data-if="2x">That is the value the chord gradient gets close to as h tends to 0. The question asks for the chord gradient itself, which still has the h in it.</li><li data-if="2xh+h^2;h^2+2xh">That is the rise. Divide it by the run, h.</li></ul>
+      <div class="solution"><p>{m:frac(2xh+h^2, h)=2x+h}. This is the gradient of the chord. Letting h tend to 0 would then give {m:2x}.</p></div>
+    </div>
+    <div class="q" data-answers="6x" data-mode="exact">
+      <p class="qtext">Use differentiation from first principles to find {m:f'(x)} for {m:f(x)=3x^2}. Type it like 5x.</p>
+      <ol class="ladder"><li>Write {m:f(x+h)=3(x+h)^2}. Expand it, then find {m:f(x+h)-f(x)}.</li><li>{m:3(x+h)^2-3x^2=6xh+3h^2}. Divide by h.</li><li>Now let h tend to 0.</li></ol>
+      <ul class="wrong"><li data-if="6x+3h;3h+6x">That is the gradient of the chord. For the gradient of the curve, let h tend to 0: the 3h tends to 0.</li><li data-if="2x">That is the derivative of {m:x^2}. The 3 in front multiplies the whole result.</li></ul>
+      <div class="solution"><p>{m:3(x+h)^2-3x^2=3x^2+6xh+3h^2-3x^2=6xh+3h^2}. Divide by h: {m:6x+3h}. As h tends to 0, this tends to {m:6x}. So {m:f'(x)=6x}.</p></div>
+    </div>
+    <div class="q" data-answers="3x^2+3xh+h^2" data-mode="exact">
+      <p class="qtext">For {m:f(x)=x^3}, use {m:(x+h)^3=x^3+3x^2h+3xh^2+h^3} to simplify the gradient of the chord, {m:frac(f(x+h)-f(x), h)}. Type it like 4x^2+5xh+h^2.</p>
+      <ol class="ladder"><li>First find {m:f(x+h)-f(x)}. The {m:x^3} terms cancel.</li><li>What is left has h in every term. Divide each term by h.</li></ol>
+      <ul class="wrong"><li data-if="3x^2">That is the value the gradient gets close to as h tends to 0. The question asks for the chord gradient, which still has h in it.</li><li data-if="3x^2h+3xh^2+h^3;h^3+3xh^2+3x^2h">That is the rise. Divide every term by the run, h.</li><li data-if="h^2">{m:(x+h)^3} is not {m:x^3+h^3}: it has four terms. The terms {m:3x^2h} and {m:3xh^2} are missing.</li></ul>
+      <div class="solution"><p>{m:f(x+h)-f(x)=3x^2h+3xh^2+h^3}. Dividing every term by h gives {m:3x^2+3xh+h^2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In first principles working you see {m:frac(2xh+h^2, h)=2x+h}. Why is it allowed to divide by h?</p>
+      <ul class="options">
+        <li data-correct>h is not 0 at this stage: B is a different point from A, so there is a chord</li>
+        <li data-why="If h were 0, the fraction would be 0 over 0, which has no value. h is not 0 while we divide.">h is 0, so the h's cancel</li>
+        <li data-why="h is not ignored. Dividing by h is exact. The limit comes afterwards, when we ask what value the result gets close to.">h is very small, so it can be ignored</li>
+      </ul>
+      <ol class="ladder"><li>What would the fraction be if h were exactly 0?</li><li>For there to be a chord, the two points must be different.</li></ol>
+      <div class="solution"><p>The chord joins two different points, so h is not 0 and we may divide by it. Only after simplifying do we ask what happens as h tends to 0.</p></div>
+    </div>
+    <div class="q" data-answers="6x^2" data-mode="exact">
+      <p class="qtext">Use first principles to find {m:f'(x)} for {m:f(x)=2x^3}. You may use {m:(x+h)^3=x^3+3x^2h+3xh^2+h^3}. Type it like 5x^2.</p>
+      <ol class="ladder"><li>Find {m:f(x+h)-f(x)=2(x+h)^3-2x^3}.</li><li>{m:2(x+h)^3-2x^3=6x^2h+6xh^2+2h^3}. Divide by h.</li><li>Let h tend to 0 in what is left.</li></ol>
+      <ul class="wrong"><li data-if="6x^2+6xh+2h^2;2h^2+6xh+6x^2">That is the gradient of the chord. For the gradient of the curve, let h tend to 0: the terms with h tend to 0.</li><li data-if="3x^2">That is the derivative of {m:x^3}. The 2 in front multiplies the whole result.</li></ul>
+      <div class="solution"><p>{m:2(x+h)^3-2x^3=6x^2h+6xh^2+2h^3}. Divide by h: {m:6x^2+6xh+2h^2}. As h tends to 0 this tends to {m:6x^2}. So {m:f'(x)=6x^2}.</p></div>
+    </div>
+    <div class="q" data-answers="4x" data-mode="exact">
+      <p class="qtext">Write down the limit as h tends to 0 of {m:4x+7h}. Type it like 5x.</p>
+      <ol class="ladder"><li>Look at each term. Which one changes as h changes?</li><li>When h is close to 0, what is {m:7h} close to?</li></ol>
+      <ul class="wrong"><li data-if="4x+7h;7h+4x">The 7h part gets close to 0 as h tends to 0, so it should not be in the limit.</li><li data-if="0">Only the 7h part tends to 0. The 4x part does not contain h, so it stays.</li></ul>
+      <div class="solution"><p>{m:7h} tends to 0 as h tends to 0. {m:4x} does not depend on h. So {m:lim(h -> 0)(4x+7h)=4x}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Notation and the power rule</h2>
+    <h3>Two ways to write a derivative</h3>
+    <p>If {m:y=f(x)}, the derivative can be written {m:f'(x)} or {m:frac(dy, dx)}. Say "dy by dx". The symbol means "the derivative of y with respect to x".</p>
+    <p>The letter d is not a number. It stands for "a small change in". So {m:frac(dy, dx)} is a single symbol: you cannot cancel the d's. We also write {m:frac(d, dx)(x^2)=2x}, read as "d by dx of x squared is 2x". The symbol d by dx means: {term:differentiate} what follows with respect to x.</p>
+    <h3>A pattern</h3>
+    <p>We found two results from first principles: {m:x^2} has derivative {m:2x}, and {m:x^3} has derivative {m:3x^2}. The same method shows that {m:x^4} has derivative {m:4x^3}. Two more facts. The derivative of {m:x} is 1, because the graph of {m:y=x} has gradient 1 everywhere. The derivative of a constant is 0, because the graph of {m:y=7} is horizontal.</p>
+    <div class="key">
+      <p><b>Key idea (the {term:power-rule|power rule}):</b></p>
+      {md:frac(d, dx)(x^n)=n x^(n-1)}
+      <p>Bring the power down to the front as a multiplier. Then subtract 1 from the power (this is "taking 1 off"). This works for every rational number n, wherever {m:x^n} is defined: whole numbers, negative numbers and fractions.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-basics-power-rule-steps}<figcaption>The power rule in two moves, with {m:x^5} as an example.</figcaption></figure>
+    <p>We have proved the rule for {m:n=2} and {m:n=3}. The proof for every positive whole number n is in "Why it works" at the end of this page. For negative and fractional n we use the rule without proof here.</p>
+    <h3>Constants, multiples and sums</h3>
+    <p>Three more facts let you differentiate any sum of powers of x.</p>
+    <ul>
+      <li>A constant on its own has derivative 0.</li>
+      <li>A constant multiple stays in front: {m:frac(d, dx)(k f(x))=k f'(x)}. For example, {m:5x^4} has derivative {m:5*4x^3=20x^3}.</li>
+      <li>A sum is differentiated term by term: the derivative of {m:f(x)+g(x)} is {m:f'(x)+g'(x)}.</li>
+    </ul>
+    <p>Why this works: multiplying a function by 5 multiplies every chord gradient by 5. Adding two functions adds their chord gradients. Both facts still hold after you take the limit.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=4x^3-5x^2+7x-9}.</p>
+      <ol class="steps">
+        <li>Differentiate each term. {m:4x^3} gives {m:4*3x^2=12x^2}.</li>
+        <li>{m:-5x^2} gives {m:-5*2x=-10x}. {m:7x} is {m:7x^1}, which gives 7. The constant {m:-9} gives 0.</li>
+        <li>{m:frac(dy, dx)=12x^2-10x+7}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=2x^5+6x^2-x+8}.</p>
+      <ol class="steps">
+        <li>{m:2x^5} gives {m:2*5x^4=}<span class="blank" data-mode="exact" data-answers="10x^4">___</span>.</li>
+        <li>{m:6x^2} gives {m:6*2x=}<span class="blank" data-mode="exact" data-answers="12x">___</span>.</li>
+        <li>{m:-x} is {m:-1*x^1}, which gives <span class="blank" data-answers="-1">___</span>. The constant 8 gives <span class="blank" data-answers="0">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dy, dx)=10x^4+12x-1}. The term {m:-x} gives {m:-1}, which stays in the answer. The constant 8 gives 0, so it disappears.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the power rule</h2>
+    <div class="q" data-answers="7x^6" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=x^7} with respect to x. Type {m:frac(dy, dx)} like 3x^2.</p>
+      <ol class="ladder"><li>The power rule has two moves: bring the power down, then take 1 off the power.</li><li>The power is 7. What is 7 &minus; 1?</li></ol>
+      <ul class="wrong"><li data-if="7x^7">You brought the 7 down but did not take 1 off the power. Change the power 7 to 7 &minus; 1.</li><li data-if="x^6">You lowered the power but did not bring the 7 down to the front. Write the 7 in front of x^6.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=7x^(7-1)=7x^6}.</p></div>
+    </div>
+    <div class="q" data-answers="20x^3" data-mode="exact">
+      <p class="qtext">Find {m:f'(x)} when {m:f(x)=5x^4}. Type it like 6x^2.</p>
+      <ol class="ladder"><li>The 5 is a constant multiple, so it stays. Differentiate {m:x^4} and multiply by 5.</li><li>{m:frac(d, dx)(x^4)=4x^3}. Now multiply by 5.</li></ol>
+      <ul class="wrong"><li data-if="5x^3">You took 1 off the power but did not multiply by 4. Bring the 4 down and multiply it by the 5.</li><li data-if="20x^4">You multiplied correctly, but the power must go down by 1: {m:x^4} becomes {m:x^3}.</li><li data-if="4x^3">The 5 in front is a constant multiple, so it stays: {m:5*4x^3=20x^3}.</li></ul>
+      <div class="solution"><p>{m:f'(x)=5*4x^3=20x^3}.</p></div>
+    </div>
+    <div class="q" data-answers="6x-4" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=3x^2-4x+1} with respect to x. Type {m:frac(dy, dx)} like 5x^2-3.</p>
+      <ol class="ladder"><li>Differentiate the three terms one at a time.</li><li>{m:3x^2} gives {m:6x}. {m:-4x} is {m:-4x^1}. What does it give?</li><li>The constant 1 gives 0.</li></ol>
+      <ul class="wrong"><li data-if="6x-3">The constant 1 differentiates to 0. It does not stay in the answer.</li><li data-if="6x">The term {m:-4x} does not vanish. It is {m:-4x^1}, which gives {m:-4*1=-4}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=6x-4+0=6x-4}. The terms gave {m:6x}, {m:-4} and 0.</p></div>
+    </div>
+    <div class="q" data-answers="0" data-mode="value">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=12}.</p>
+      <ol class="ladder"><li>Sketch the graph of {m:y=12}. What does it look like?</li><li>What is the gradient of a horizontal line?</li></ol>
+      <ul class="wrong"><li data-if="12">12 is the height of the line. The line is horizontal, so its gradient is 0.</li><li data-if="1">1 is the derivative of x. A constant has a flat graph, so its derivative is 0.</li></ul>
+      <div class="solution"><p>The graph of {m:y=12} is a horizontal line, so its gradient is 0 everywhere. {m:frac(dy, dx)=0}.</p></div>
+    </div>
+    <div class="q" data-answers="6x^2-2x" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=2x^3-x^2}. Type it like 5x^2-3x.</p>
+      <ol class="ladder"><li>Differentiate each term. {m:-x^2} has the power 2 and a multiplier of {m:-1}.</li><li>{m:2x^3} gives {m:2*3x^2=6x^2}.</li></ol>
+      <ul class="wrong"><li data-if="6x^2-x">For {m:-x^2}, bring the 2 down: {m:-1*2x=-2x}, not {m:-x}.</li><li data-if="6x^3-2x^2">You multiplied correctly, but each power must go down by 1.</li></ul>
+      <div class="solution"><p>{m:2x^3} gives {m:6x^2}. {m:-x^2} gives {m:-2x}. So {m:frac(dy, dx)=6x^2-2x}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What does {m:frac(dy, dx)} mean?</p>
+      <ul class="options">
+        <li data-correct>The derivative of y with respect to x: the gradient of the curve at each value of x</li>
+        <li data-why="d is not a number, so you cannot cancel the d letters. dy by dx is one symbol for the derivative.">y divided by x, after cancelling the d's</li>
+        <li data-why="The area under a curve comes from integration, a later topic. dy by dx is a gradient.">The area under the curve</li>
+      </ul>
+      <ol class="ladder"><li>Think of how it was built: the limit of the gradient of a chord.</li><li>The letter d means "a small change in".</li></ol>
+      <div class="solution"><p>{m:frac(dy, dx)} is the derivative of y with respect to x. It is the limit of the chord gradient: the gradient of the curve.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Negative and fractional powers</h2>
+    <p>The power rule works for every rational number n, wherever {m:x^n} is defined. But a question rarely writes the powers for you. Before you differentiate, rewrite each term as a number times a power of x.</p>
+    <ul>
+      <li>A {term:negative-index|negative power} means one over the positive power: {m:frac(1, x)=x^(-1)}, {m:frac(1, x^2)=x^(-2)} and {m:frac(3, x^2)=3x^(-2)}.</li>
+      <li>A {term:fractional-index|fractional power} is a root: {m:sqrt(x)=x^(1/2)}, {m:root(3, x)=x^(1/3)} and {m:frac(1, sqrt(x))=x^(-1/2)}.</li>
+      <li>A number on the bottom of a fraction is a constant multiplier: {m:frac(x^2, 3)=frac(1, 3)x^2}.</li>
+    </ul>
+    <p>Then use the same two moves: bring the power down, then take 1 off. Take care with the arithmetic. {m:-2-1=-3}, and {m:frac(1, 2)-1=-frac(1, 2)}.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-sqrt-tangents}<figcaption>The curve {m:y=sqrt(x)} gets flatter as x increases. The power rule gives {m:frac(dy, dx)=frac(1, 2)x^(-1/2)}. At {m:x=1} the gradient is {m:frac(1, 2)}. At {m:x=4} the gradient is {m:frac(1, 2)*frac(1, 2)=frac(1, 4)}, which is smaller, as the picture shows.</figcaption></figure>
+    <figure class="figure-lg">{fig:differentiation-basics-reciprocal-tangents}<figcaption>The curve {m:y=1/x} falls everywhere, so its gradient is negative. The power rule gives {m:frac(dy, dx)=-x^(-2)=-frac(1, x^2)}. At {m:x=1} the gradient is {m:-1}. At {m:x=2} the gradient is {m:-frac(1, 4)}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=4sqrt(x)-frac(3, x^2)}.</p>
+      <ol class="steps">
+        <li>Rewrite as powers: {m:y=4x^(1/2)-3x^(-2)}.</li>
+        <li>Differentiate the first term: {m:4*frac(1, 2)x^(-1/2)=2x^(-1/2)}. Differentiate the second: {m:-3*(-2)x^(-3)=6x^(-3)}.</li>
+        <li>{m:frac(dy, dx)=2x^(-1/2)+6x^(-3)}. You may write this as {m:frac(2, sqrt(x))+frac(6, x^3)}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=frac(2, x^3)-sqrt(x)}.</p>
+      <ol class="steps">
+        <li>Rewrite each term as a number times a power of x. The first term, {m:frac(2, x^3)}, has the power <span class="blank" data-answers="-3">___</span>. The second term, {m:sqrt(x)}, has the power <span class="blank" data-answers="1/2;0.5">___</span>.</li>
+        <li>So {m:y=2x^(-3)-x^(1/2)}. The first term gives {m:2*(-3)x^(-4)=}<span class="blank" data-mode="exact" data-answers="-6x^(-4);-6x^-4;-6/x^4">___</span>.</li>
+        <li>The second term, {m:-x^(1/2)}, gives {m:-frac(1, 2)x^p}. The new power p is {m:frac(1, 2)-1=}<span class="blank" data-answers="-1/2;-0.5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dy, dx)=-6x^(-4)-frac(1, 2)x^(-1/2)}. In the other form, {m:-frac(6, x^4)-frac(1, 2sqrt(x))}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: negative and fractional powers</h2>
+    <div class="q" data-answers="5x^(-3);5x^-3" data-mode="exact">
+      <p class="qtext">Write {m:frac(5, x^3)} as a number times a power of x. Type it like 7x^(-2).</p>
+      <ol class="ladder"><li>The 5 is on top, so it stays as a multiplier.</li><li>The {m:x^3} is on the bottom. What does that do to the sign of the power?</li></ol>
+      <ul class="wrong"><li data-if="5x^3;5x^(3)">The x is on the bottom of the fraction, so the power is negative: {m:frac(1, x^3)=x^(-3)}.</li></ul>
+      <div class="solution"><p>{m:frac(5, x^3)=5*frac(1, x^3)=5x^(-3)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2x^(-3);-2x^-3;-2/x^3" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=frac(1, x^2)}. Type it like 5x^(-4) or like 5/x^4.</p>
+      <ol class="ladder"><li>Rewrite {m:frac(1, x^2)} as a power of x.</li><li>The power is {m:-2}. Bring it down as a multiplier.</li><li>New power: {m:-2-1}.</li></ol>
+      <ul class="wrong"><li data-if="-2x^(-1);-2x^-1;-2/x">You added 1 to the power. The rule takes 1 away: {m:-2-1=-3}.</li><li data-if="1/(2x);1/2x">{m:frac(1, x^2)} does not differentiate to {m:frac(1, 2x)}. Rewrite it as {m:x^(-2)} and use the power rule.</li><li data-if="2x^(-3);2x^-3;2/x^3">The power is {m:-2}, so the multiplier is {m:-2}, not 2. Keep the minus sign.</li></ul>
+      <div class="solution"><p>{m:y=x^(-2)}, so {m:frac(dy, dx)=-2x^(-3)}. In fraction form this is {m:-frac(2, x^3)}.</p></div>
+    </div>
+    <div class="q" data-answers="(1/2)x^(-1/2);1/2x^(-1/2);x^(-1/2)/2;0.5x^(-1/2);(0.5)x^(-1/2);0.5x^-0.5;1/(2x^(1/2));1/(2sqrt(x));1/(2*sqrt(x))" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=sqrt(x)}. Give your answer using a power of x or a fraction, like 3x^(-2/3) or 1/(4x^(2/3)).</p>
+      <ol class="ladder"><li>Rewrite {m:sqrt(x)} as a power of x.</li><li>Bring the power down as a multiplier.</li><li>New power: {m:frac(1, 2)-1}.</li></ol>
+      <ul class="wrong"><li data-if="(1/2)x^(1/2);1/2x^(1/2);0.5x^(1/2);x^(1/2)/2">You brought the one half down but did not take 1 off the power. {m:frac(1, 2)-1=-frac(1, 2)}.</li><li data-if="x^(-1/2)">You lowered the power but did not bring the one half down. Write {m:frac(1, 2)} in front of {m:x^(-1/2)}.</li></ul>
+      <div class="solution"><p>{m:y=x^(1/2)}, so {m:frac(dy, dx)=frac(1, 2)x^(-1/2)}. In fraction form this is {m:frac(1, 2sqrt(x))}.</p></div>
+    </div>
+    <div class="q" data-answers="6x^(1/2);6x^0.5;6x^(0.5);6sqrt(x);6*sqrt(x)" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=4x^(3/2)}. Give your answer using a power of x, like 5x^(1/3), or using sqrt(x).</p>
+      <ol class="ladder"><li>The 4 is a constant multiple. Differentiate {m:x^(3/2)} and multiply by 4.</li><li>Bring {m:frac(3, 2)} down: {m:4*frac(3, 2)}. New power: {m:frac(3, 2)-1}.</li></ol>
+      <ul class="wrong"><li data-if="6x^(-1/2);6x^-0.5">{m:frac(3, 2)-1=frac(1, 2)}, which is positive. Check your subtraction: the new power is {m:frac(1, 2)}, not {m:-frac(1, 2)}.</li><li data-if="4x^(1/2);4x^0.5">You lowered the power but did not multiply by {m:frac(3, 2)}. Multiply 4 by {m:frac(3, 2)} to get the new multiplier.</li><li data-if="6x^(5/2);6x^2.5">You added 1 to the power. The rule takes 1 away.</li></ul>
+      <div class="solution"><p>{m:4*frac(3, 2)x^(3/2-1)=6x^(1/2)}, which is {m:6sqrt(x)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the derivative of {m:y=frac(1, x)}?</p>
+      <ul class="options">
+        <li data-correct>It is {m:-frac(1, x^2)}</li>
+        <li data-why="The power is -1, so the multiplier is -1, not 1. The sign is lost.">It is {m:frac(1, x^2)}</li>
+        <li data-why="You brought the -1 down but did not take 1 off the power. x to the power -1 becomes x to the power -2.">It is {m:-frac(1, x)}</li>
+      </ul>
+      <ol class="ladder"><li>Write {m:frac(1, x)} as {m:x^(-1)}.</li><li>Bring the power, {m:-1}, down in front. Then take 1 off the power.</li></ol>
+      <div class="solution"><p>{m:y=x^(-1)}, so {m:frac(dy, dx)=-1*x^(-2)=-frac(1, x^2)}. This agrees with the picture: the curve always falls.</p></div>
+    </div>
+    <div class="q" data-answers="-1/4" data-mode="value">
+      <p class="qtext">Find the gradient of the curve {m:y=frac(1, x)} at the point where {m:x=2}. Give your answer as a fraction or a decimal.</p>
+      <ol class="ladder"><li>First find {m:frac(dy, dx)} for {m:y=x^(-1)}.</li><li>The gradient at {m:x=2} is the value of {m:frac(dy, dx)} when {m:x=2}.</li></ol>
+      <ul class="wrong"><li data-if="1/4">The curve is falling, so the gradient is negative.</li><li data-if="-1/2">That is {m:-frac(1, x)} at {m:x=2}. The derivative is {m:-frac(1, x^2)}: the power goes down by 1.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=-x^(-2)=-frac(1, x^2)}. At {m:x=2}: {m:-frac(1, 4)}. The gradient is {m:-frac(1, 4)}, which matches the picture of the tangent at {m:(2, frac(1, 2))}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Expand or split before you differentiate</h2>
+    <p>The power rule works on a number times a power of x. A product of brackets, or a fraction with several terms on top, is not in that form. Rewrite it first: expand the brackets, and divide each term on top by the term on the bottom. We call this splitting the fraction.</p>
+    <ul>
+      <li>{m:x(x-3)=x^2-3x}.</li>
+      <li>{m:(x+2)^2=x^2+4x+4}. This is not {m:x^2+4}: the two middle terms count.</li>
+      <li>{m:frac(x^2+4x+4, x)=x+4+4x^(-1)}. Divide every term on top by x.</li>
+      <li>{m:x sqrt(x)=x^1*x^(1/2)=x^(3/2)}. Add the powers when you multiply.</li>
+    </ul>
+    <figure class="figure-lg">{fig:differentiation-basics-split-then-differentiate}<figcaption>Expand and split first. Then differentiate each term with the power rule.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=frac((x+2)^2, x)}.</p>
+      <ol class="steps">
+        <li>Expand the top: {m:(x+2)^2=x^2+4x+4}.</li>
+        <li>Divide each term by x: {m:y=x+4+4x^(-1)}.</li>
+        <li>Differentiate each term: {m:frac(dy, dx)=1+0-4x^(-2)=1-frac(4, x^2)}. At {m:x=1} the gradient is {m:1-4=-3}.</li>
+      </ol>
+      <p><b>Take care.</b> Do not differentiate the top and the bottom separately and divide. That would give {m:frac(2x+4, 1)=2x+4}, which is wrong.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:frac(dy, dx)} when {m:y=frac(x^3+5x, x^2)}.</p>
+      <ol class="steps">
+        <li>Divide each term on top by {m:x^2}: {m:frac(x^3, x^2)=}<span class="blank" data-mode="exact" data-answers="x">___</span> and {m:frac(5x, x^2)=}<span class="blank" data-mode="exact" data-answers="5x^(-1);5x^-1;5/x">___</span>.</li>
+        <li>So {m:y=x+5x^(-1)}.</li>
+        <li>{m:frac(dy, dx)=1+5*(-1)x^(-2)=}<span class="blank" data-mode="exact" data-answers="1-5x^(-2);1-5x^-2;1-5/x^2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:y=x+5x^(-1)}, so {m:frac(dy, dx)=1-5x^(-2)=1-frac(5, x^2)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: rewriting first</h2>
+    <div class="q" data-answers="3x^2-4" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=x(x^2-4)}. Type it like 5x^2-3.</p>
+      <ol class="ladder"><li>Expand the brackets first: multiply x by each term inside.</li><li>You should have two terms, each a power of x.</li><li>Differentiate each term.</li></ol>
+      <ul class="wrong"><li data-if="2x">You multiplied the derivatives of x and of {m:x^2-4}. That does not work. Expand first: {m:y=x^3-4x}.</li></ul>
+      <div class="solution"><p>{m:y=x^3-4x}, so {m:frac(dy, dx)=3x^2-4}.</p></div>
+    </div>
+    <div class="q" data-answers="2x+6" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=(x+3)^2}. Type it like 5x+7.</p>
+      <ol class="ladder"><li>Expand the bracket. Write it as {m:(x+3)(x+3)}.</li><li>You should get three terms. Differentiate each one.</li></ol>
+      <ul class="wrong"><li data-if="2x">The expansion is missing the middle term. {m:(x+3)^2=x^2+6x+9}, not {m:x^2+9}.</li></ul>
+      <div class="solution"><p>{m:y=x^2+6x+9}, so {m:frac(dy, dx)=2x+6}.</p></div>
+    </div>
+    <div class="q" data-answers="1-x^(-2);1-x^-2;1-1/x^2;-x^(-2)+1;-x^-2+1;-1/x^2+1" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=frac(x^2+1, x)}. Type it like 5x^(-3)+2, or like 5/x^3+2.</p>
+      <ol class="ladder"><li>Divide each term on top by x.</li><li>You should get {m:y=x+x^(-1)}. Differentiate each term.</li></ol>
+      <ul class="wrong"><li data-if="2x">You differentiated the top and the bottom separately. Divide each term on top by x first.</li><li data-if="1+x^(-2);1+x^-2;1+1/x^2;x^(-2)+1">The power of {m:x^(-1)} is {m:-1}, so its derivative is {m:-1*x^(-2)}: keep the minus sign.</li></ul>
+      <div class="solution"><p>{m:y=x+x^(-1)}, so {m:frac(dy, dx)=1-x^(-2)=1-frac(1, x^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="(3/2)x^(1/2);3/2x^(1/2);1.5x^(1/2);0.5*3x^(1/2);x^(1/2)*3/2;(3/2)sqrt(x);3/2sqrt(x);1.5sqrt(x);3sqrt(x)/2;1.5x^0.5;(3/2)x^0.5" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=x sqrt(x)}. Give your answer using a power of x or sqrt(x), like 5x^(1/3) or 7sqrt(x).</p>
+      <ol class="ladder"><li>Write {m:x sqrt(x)} as a single power of x. Add the powers: {m:1+frac(1, 2)}.</li><li>Differentiate {m:x^(3/2)}.</li></ol>
+      <ul class="wrong"><li data-if="(1/2)x^(-1/2);1/2x^(-1/2);0.5x^(-1/2);x^(-1/2)/2">You multiplied the derivatives of x and of the square root of x. That does not work. Write the product as one power, {m:x^(3/2)}, first.</li></ul>
+      <div class="solution"><p>{m:x sqrt(x)=x^(3/2)}, so {m:frac(dy, dx)=frac(3, 2)x^(1/2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is {m:frac(dy, dx)} when {m:y=frac(x+5, x)}?</p>
+      <ul class="options">
+        <li data-correct>It is {m:-frac(5, x^2)}</li>
+        <li data-why="You differentiated the top and the bottom separately and divided: 1 over 1. That does not work.">It is 1</li>
+        <li data-why="Rewrite as 1 plus 5 times x to the power -1. The term 5x to the -1 gives -5x to the -2, so the power goes down by 1.">It is {m:-frac(5, x)}</li>
+      </ul>
+      <ol class="ladder"><li>Divide each term on top by x: {m:y=1+5x^(-1)}.</li><li>The constant 1 gives 0. Differentiate {m:5x^(-1)}.</li></ol>
+      <div class="solution"><p>{m:y=1+5x^(-1)}, so {m:frac(dy, dx)=0-5x^(-2)=-frac(5, x^2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>7. The second derivative</h2>
+    <p>Differentiate a derivative and you get the {term:second-derivative|second derivative}. For {m:y=f(x)} it is written {m:frac(d^2y, dx^2)}, read as "d two y by dx squared", or {m:f''(x)}, read as "f double dash of x". Both forms mean: differentiate twice.</p>
+    <p>Take care with the notation. {m:frac(d^2y, dx^2)} is not the same as {m:(frac(dy, dx))^2}.</p>
+    <p>The derivative tells you how steep the curve is. The second derivative tells you how fast the steepness is changing.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if {m:frac(d^2y, dx^2)} is positive at a point, the gradient is increasing as x increases, and the curve bends upwards. If it is negative, the gradient is decreasing, and the curve bends downwards.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-basics-second-derivative-positive}<figcaption>On {m:y=x^2} the gradient goes up as you move right: {m:-2}, then 0, then 2. Here {m:frac(d^2y, dx^2)=2}, which is positive. The curve bends upwards.</figcaption></figure>
+    <figure class="figure-lg">{fig:differentiation-basics-second-derivative-negative}<figcaption>On {m:y=4-x^2} the gradient goes down as you move right: 2, then 0, then {m:-2}. Here {m:frac(d^2y, dx^2)=-2}, which is negative. The curve bends downwards.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>For {m:y=2x^3-5x^2+x}, find {m:frac(d^2y, dx^2)}. Then find its value at {m:x=1}.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=6x^2-10x+1}.</li>
+        <li>Differentiate again: {m:frac(d^2y, dx^2)=12x-10}.</li>
+        <li>At {m:x=1}: {m:12-10=2}. The value 2 is positive, so the gradient is increasing at {m:x=1}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>For {m:y=x^5-4x^3}, find {m:frac(d^2y, dx^2)} and its value at {m:x=1}.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="5x^4-12x^2">___</span>.</li>
+        <li>{m:frac(d^2y, dx^2)=}<span class="blank" data-mode="exact" data-answers="20x^3-24x">___</span>.</li>
+        <li>At {m:x=1}: {m:20-24=}<span class="blank" data-answers="-4">___</span>. The value {m:-4} is negative, so the gradient is decreasing at {m:x=1}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dy, dx)=5x^4-12x^2} and {m:frac(d^2y, dx^2)=20x^3-24x}. At {m:x=1} that is {m:-4}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the second derivative</h2>
+    <div class="q" data-answers="12x^2+6" data-mode="exact">
+      <p class="qtext">Find {m:frac(d^2y, dx^2)} when {m:y=x^4+3x^2-5x}. Type it like 5x^2+3.</p>
+      <ol class="ladder"><li>Differentiate once to find {m:frac(dy, dx)}.</li><li>{m:frac(dy, dx)=4x^3+6x-5}. Differentiate that.</li><li>The constant {m:-5} gives 0.</li></ol>
+      <ul class="wrong"><li data-if="4x^3+6x-5">That is {m:frac(dy, dx)}. Differentiate once more.</li><li data-if="12x^2+1">The constant {m:-5} differentiates to 0. It does not stay in the answer.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=4x^3+6x-5}, so {m:frac(d^2y, dx^2)=12x^2+6}.</p></div>
+    </div>
+    <div class="q" data-answers="6x-12" data-mode="exact">
+      <p class="qtext">Find {m:f''(x)} when {m:f(x)=x^3-6x^2}. Type it like 5x-3.</p>
+      <ol class="ladder"><li>Find {m:f'(x)} first.</li><li>{m:f'(x)=3x^2-12x}. Differentiate again.</li></ol>
+      <ul class="wrong"><li data-if="3x^2-12x">That is {m:f'(x)}. {m:f''(x)} means differentiate twice.</li></ul>
+      <div class="solution"><p>{m:f'(x)=3x^2-12x}, so {m:f''(x)=6x-12}.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">Find the value of {m:frac(d^2y, dx^2)} when {m:x=2}, for {m:y=x^3-3x}.</p>
+      <ol class="ladder"><li>Find {m:frac(dy, dx)}, then {m:frac(d^2y, dx^2)}, as expressions in x.</li><li>Then put {m:x=2} into the second derivative.</li></ol>
+      <ul class="wrong"><li data-if="9">That is {m:frac(dy, dx)} at {m:x=2}: {m:3*4-3}. You need {m:frac(d^2y, dx^2)}, which comes from differentiating twice.</li><li data-if="6x">That is the second derivative as an expression. Put {m:x=2} into it to get a number.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-3} and {m:frac(d^2y, dx^2)=6x}. At {m:x=2}: {m:6*2=12}. The value 12 is positive, so the gradient is increasing there.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">At one point on a curve, {m:frac(d^2y, dx^2)=-4}. What does that tell you?</p>
+      <ul class="options">
+        <li data-correct>The gradient is decreasing as x increases through that point</li>
+        <li data-why="Whether the curve is falling depends on the sign of dy by dx. The second derivative is about how the gradient changes.">The curve is falling at that point</li>
+        <li data-why="The gradient is dy by dx. The second derivative says how quickly the gradient is changing, not what it is.">The gradient is {m:-4}</li>
+      </ul>
+      <ol class="ladder"><li>The second derivative is the derivative of the gradient.</li><li>A negative derivative means the thing is decreasing. What is the thing here?</li></ol>
+      <div class="solution"><p>{m:frac(d^2y, dx^2)} is the rate of change of the gradient. The second derivative here is negative, so the gradient is decreasing as x increases.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The gradients of a curve are measured at {m:x=0}, {m:x=1} and {m:x=2}. They are {m:-3}, {m:-1} and {m:1}. Is the second derivative positive, negative or zero for x from 0 to 2?</p>
+      <ul class="options">
+        <li data-correct>Positive</li>
+        <li data-why="The gradients are getting larger: minus 3, minus 1, 1. A negative second derivative means they are getting smaller.">Negative</li>
+        <li data-why="The gradient is changing: it goes up by 2 each time. A zero second derivative means the gradient is not changing.">Zero</li>
+      </ul>
+      <ol class="ladder"><li>The second derivative is about how the gradient changes, not what it is.</li><li>Do the gradients get larger or smaller as x increases?</li></ol>
+      <div class="solution"><p>The gradients go from {m:-3} to {m:-1} to 1. They increase, so the second derivative is positive.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>8. Sketching the graph of the derivative</h2>
+    <p>The derivative {m:f'(x)} is a function of x, so it has a graph of its own. You can sketch it from the graph of f without any algebra, by reading the gradient of f at each place. (Exam questions may call the derivative the "gradient function". It means the same thing. This book always says "derivative".)</p>
+    <figure class="figure-lg">{fig:differentiation-basics-gradient-signs}<figcaption>Short tangents along a curve. Where the curve rises, the gradient is positive. Where it falls, the gradient is negative.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> read the sign and the size of the gradient of f at each x, then plot that as the height of f&prime;.</p>
+      <ul>
+        <li>Where f rises as you go right, {m:f'(x)} is positive, so the graph of {m:f'} is above the x-axis.</li>
+        <li>Where f falls, {m:f'(x)} is negative, so the graph of {m:f'} is below the x-axis.</li>
+        <li>Where the tangent to f is horizontal, {m:f'(x)=0}, so the graph of {m:f'} touches or crosses the x-axis.</li>
+        <li>The steeper f is, the further the graph of {m:f'} is from the x-axis.</li>
+      </ul>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-basics-f-and-derivative}<figcaption>The solid curve is {m:y=f(x)=frac(x^3, 3)-x}. The dashed curve is its derivative, {m:y=f'(x)=x^2-1}. The dashed curve crosses the x-axis at {m:x=-1} and {m:x=1}, exactly where the solid curve is flat.</figcaption></figure>
+    <p>There is a pattern in the highest power of x. The derivative of a cubic is a quadratic. The derivative of a quadratic is a straight line. Each differentiation lowers the highest power by 1.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Describe the graph of {m:f'} for {m:f(x)=frac(x^3, 3)-x}, using only the shape of the solid curve above.</p>
+      <ol class="steps">
+        <li>For {m:x<-1}, f rises. So {m:f'(x)} is positive: the dashed curve is above the axis.</li>
+        <li>At {m:x=-1}, the tangent is horizontal. So {m:f'(-1)=0}: the dashed curve crosses the axis.</li>
+        <li>For {m:-1<x<1}, f falls. So {m:f'(x)} is negative. At {m:x=1}, {m:f'(1)=0} again. For {m:x>1}, f rises again, so {m:f'(x)} is positive.</li>
+        <li>Check by algebra: {m:f'(x)=x^2-1}, which is 0 at {m:x=-1} and {m:x=1} and negative between them. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A curve {m:y=f(x)} rises for {m:x<1}, has a horizontal tangent at {m:x=1}, and falls for {m:x>1}. Describe {m:f'}.</p>
+      <ol class="steps">
+        <li>For {m:x<1}, the curve rises, so {m:f'(x)} is <span class="blank" data-answers="positive">___</span> (write positive, negative or zero).</li>
+        <li>At {m:x=1}, the tangent is horizontal, so {m:f'(1)=}<span class="blank" data-answers="0">___</span>.</li>
+        <li>For {m:x>1}, the curve falls, so {m:f'(x)} is <span class="blank" data-answers="negative">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:f'(x)} is positive for {m:x<1}, zero at {m:x=1} and negative for {m:x>1}. The graph of {m:f'} goes from above the axis, through the axis at {m:x=1}, to below it.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the graph of the derivative</h2>
+    <div class="q" data-answers="-2 or 2;2 or -2" data-mode="exact">
+      <p class="qtext">The graph shows {m:y=f(x)}. Use it to find the two values of x where {m:f'(x)=0}. Type them with "or" between, like 1 or 3.</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-cubic-a}</figure>
+      <ol class="ladder"><li>{m:f'(x)} is the gradient of the curve. It is 0 where the tangent is horizontal.</li><li>Find the two places where the curve is flat. Read their x-values from the axis.</li></ol>
+      <ul class="wrong"><li data-if="16 or -16;-16 or 16">Those are the y-values of the two flat points. The question asks for the x-values.</li><li data-if="0">At {m:x=0} the curve passes through the origin, falling steeply. The tangent there is not horizontal.</li></ul>
+      <div class="solution"><p>The tangent is horizontal at the top of the left hill and the bottom of the right valley. Reading across, those are at {m:x=-2} and {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-2&lt;x&lt;2" data-mode="exact">
+      <p class="qtext">The graph shows {m:y=f(x)}. For which values of x is {m:f'(x)} negative? Type your answer as an inequality, like 1&lt;x&lt;4.</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-cubic-b}</figure>
+      <ol class="ladder"><li>{m:f'(x)} is negative where the curve falls as you go to the right.</li><li>Find where the curve goes down from left to right. Give the range of x-values.</li></ol>
+      <ul class="wrong"><li data-if="x&lt;-2 or x&gt;2;x&lt;-2,x&gt;2;x&gt;2 or x&lt;-2">That is where the curve rises, so {m:f'(x)} is positive there. The curve falls between the two flat points.</li></ul>
+      <div class="solution"><p>The curve falls between its two flat points, so {m:f'(x)} is negative for {m:-2<x<2}. It is positive outside that range.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is a U-shaped parabola with its lowest point at {m:x=1}. Which description fits the graph of {m:y=f'(x)}?</p>
+      <ul class="options">
+        <li data-correct>A straight line that crosses the x-axis at {m:x=1} and slopes upwards</li>
+        <li data-why="That describes f, not its derivative. The derivative of a quadratic is a straight line: the highest power goes down by 1.">A U-shaped parabola with its lowest point at {m:x=1}</li>
+        <li data-why="f' is zero where f is flat, which is at x = 1. So the line crosses the x-axis at x = 1. It does not cross the y-axis at 1.">A straight line that crosses the y-axis at 1</li>
+      </ul>
+      <ol class="ladder"><li>What is the gradient of f at its lowest point?</li><li>To the left of that point f falls; to the right it rises. What sign does the gradient have on each side?</li></ol>
+      <div class="solution"><p>At the lowest point the tangent is horizontal, so {m:f'(1)=0}. On the left f falls, so {m:f'} is negative. On the right f rises, so {m:f'} is positive. A straight line through {m:(1, 0)} sloping up does all of this.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is a cubic curve. What shape is the graph of {m:y=f'(x)}?</p>
+      <ul class="options">
+        <li data-correct>A quadratic curve (a parabola)</li>
+        <li data-why="The derivative of a quadratic is a straight line. The derivative of a cubic is a quadratic: the highest power goes down by 1.">A straight line</li>
+        <li data-why="The highest power goes down by 1 when you differentiate, so the derivative of a cubic is not a cubic.">A cubic curve</li>
+      </ul>
+      <ol class="ladder"><li>A cubic has {m:x^3} as its highest power.</li><li>What does the power rule do to the highest power?</li></ol>
+      <div class="solution"><p>{m:x^3} differentiates to {m:3x^2}. So the derivative of a cubic has {m:x^2} as its highest power: it is a quadratic.</p></div>
+    </div>
+    <div class="q" data-answers="-12" data-mode="value">
+      <p class="qtext">For the curve in the first question of this set, {m:f(x)=x^3-12x}. Use {m:f'(x)=3x^2-12} to find {m:f'(0)}.</p>
+      <ol class="ladder"><li>{m:f'(0)} is the gradient of the curve at {m:x=0}.</li><li>Put {m:x=0} into {m:3x^2-12}.</li></ol>
+      <ul class="wrong"><li data-if="0">{m:f(0)=0} is the height of the curve. {m:f'(0)} is its gradient, which comes from {m:3x^2-12}.</li><li data-if="12">The curve is falling at {m:x=0}, so the gradient is negative.</li></ul>
+      <div class="solution"><p>{m:f'(0)=3*0^2-12=-12}. The gradient is negative, which agrees with the graph in the first question: the curve is falling, steeply, at the origin.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>9. The derivative as a rate of change</h2>
+    <p>The gradient of a graph tells you how fast y changes when x increases. So {m:frac(dy, dx)} is the {term:rate-of-change|rate of change} of y with respect to x.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-rate-of-change}<figcaption>A distance against time graph. The tangent at {m:t=3} goes up 8 metres for each 1 second across, so the rate of change of s at that moment is 8 metres per second.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the units of {m:frac(dy, dx)} are the units of y, per unit of x. If s is in metres and t is in seconds, {m:frac(ds, dt)} is in metres per second. A positive rate means y is increasing. A negative rate means y is decreasing.</p>
+    </div>
+    <p>The gradient of a <i>chord</i> is an average rate of change over a stretch of time. The gradient of the <i>tangent</i> is the rate of change at one moment. Differentiation finds the rate at one moment.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A cyclist travels s metres in t seconds, where {m:s=t^2+2t} for {m:0 <= t <= 5}. Find how fast the distance is changing when {m:t=3}.</p>
+      <ol class="steps">
+        <li>{m:frac(ds, dt)=2t+2}.</li>
+        <li>At {m:t=3}: {m:2*3+2=8}.</li>
+        <li>The rate of change is 8 metres per second. At {m:t=3} s, the cyclist is moving at 8 m/s.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A tank holds V litres of water after t minutes, where {m:V=40-3t^2} for {m:0 <= t <= 3}. Find the rate of change of the volume when {m:t=2}.</p>
+      <ol class="steps">
+        <li>{m:frac(dV, dt)=}<span class="blank" data-mode="exact" data-answers="-6t">___</span>.</li>
+        <li>At {m:t=2}: {m:frac(dV, dt)=}<span class="blank" data-answers="-12">___</span> litres per minute.</li>
+        <li>The rate is negative, so the volume is <span class="blank" data-answers="decreasing;falling;going down;getting smaller">___</span> (write increasing or decreasing).</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dV, dt)=-6t}. At {m:t=2} it is {m:-12}. The tank is losing water at 12 litres per minute: it is draining.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: rates of change</h2>
+    <div class="q" data-answers="53" data-mode="value">
+      <p class="qtext">A balloon holds V cm&sup3; of air after t seconds, where {m:V=2t^3-t}. Find {m:frac(dV, dt)} when {m:t=3}. Give the number only, in cm&sup3; per second.</p>
+      <ol class="ladder"><li>Differentiate V with respect to t.</li><li>{m:frac(dV, dt)=6t^2-1}.</li><li>Put {m:t=3} into {m:frac(dV, dt)}, not into V.</li></ol>
+      <ul class="wrong"><li data-if="51">That is V when {m:t=3}, the volume. The question asks for the rate of change, {m:frac(dV, dt)}.</li><li data-if="17">The derivative of {m:2t^3} is {m:6t^2}, not {m:6t}. Bring the 3 down and take 1 off the power.</li></ul>
+      <div class="solution"><p>{m:frac(dV, dt)=6t^2-1}. At {m:t=3}: {m:6*9-1=53}. The volume is increasing at 53 cm&sup3; per second.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A car travels s km in t hours. What are the units of {m:frac(ds, dt)}?</p>
+      <ul class="options">
+        <li data-correct>Kilometres per hour</li>
+        <li data-why="That is the unit of s, the distance. The rate of change has the units of s per unit of t.">Kilometres</li>
+        <li data-why="This is the wrong way up. The rate is units of s per unit of t: kilometres per hour.">Hours per kilometre</li>
+      </ul>
+      <ol class="ladder"><li>The rate of change is the change in s for each 1 unit of t.</li><li>What does 1 unit of t mean here?</li></ol>
+      <div class="solution"><p>{m:frac(ds, dt)} is the change in distance (km) per unit of time (hours), so it is in kilometres per hour.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The graph shows the distance s metres of a trolley after t seconds. The tangent at P is drawn. It passes through (2, 2) and (6, 14). Find the rate of change of s at the moment shown. Give the number only, in metres per second.</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-rate-read}</figure>
+      <ol class="ladder"><li>The rate of change at P is the gradient of the tangent at P.</li><li>Use the two points on the tangent: (2, 2) and (6, 14).</li><li>Divide the rise by the run.</li></ol>
+      <ul class="wrong"><li data-if="2">That is the gradient of the chord from the origin to P (8 &divide; 4), an average rate. The rate at P is the gradient of the tangent at P.</li><li data-if="12">That is the rise (14 &minus; 2) on its own. Divide it by the run, 6 &minus; 2 = 4.</li></ul>
+      <div class="solution"><p>Rise = 14 &minus; 2 = 12. Run = 6 &minus; 2 = 4. Gradient = 12 &divide; 4 = 3. At P the distance is increasing at 3 metres per second.</p></div>
+    </div>
+    <div class="q" data-answers="-12" data-mode="value">
+      <p class="qtext">The temperature T &deg;C of a cup of tea after t minutes is {m:T=90-2t^2} for {m:0 <= t <= 5}. Find {m:frac(dT, dt)} when {m:t=3}. Give the number only, in &deg;C per minute.</p>
+      <ol class="ladder"><li>Differentiate T with respect to t. The constant 90 gives 0.</li><li>{m:frac(dT, dt)=-4t}.</li><li>Put {m:t=3} into {m:frac(dT, dt)}.</li></ol>
+      <ul class="wrong"><li data-if="12">The tea is cooling, so the rate of change is negative. Keep the minus sign: {m:-4*3=-12}.</li><li data-if="72">That is T when {m:t=3}, the temperature. The question asks for the rate of change.</li></ul>
+      <div class="solution"><p>{m:frac(dT, dt)=-4t}. At {m:t=3}: {m:-12}. The tea is cooling at 12 &deg;C per minute.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>10. The gradient at a point</h2>
+    <p>To find the gradient of a curve at a point, follow two steps.</p>
+    <ol>
+      <li>Differentiate to find {m:frac(dy, dx)}.</li>
+      <li>Put the x-value of the point into {m:frac(dy, dx)}.</li>
+    </ol>
+    <div class="key">
+      <p><b>Key idea:</b> put the x-value into the <i>derivative</i>, not into the original equation. The original equation gives the height of the curve. The derivative gives its gradient. The y-coordinate of the point is not needed to find the gradient.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-basics-gradient-at-point}<figcaption>The tangent to {m:y=x^3-4x^2+5} at (1, 2). The derivative is {m:3x^2-8x}. At {m:x=1} the gradient is {m:3-8=-5}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the gradient of {m:y=x^3-4x^2+5} at the point (1, 2).</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=3x^2-8x}.</li>
+        <li>At {m:x=1}: {m:3*1^2-8*1=-5}.</li>
+        <li>The gradient is {m:-5}. The curve is falling steeply at (1, 2).</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the gradient of {m:y=x^2+frac(8, x)} at the point where {m:x=2}.</p>
+      <ol class="steps">
+        <li>Rewrite: {m:y=x^2+8x^(-1)}. Then {m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="2x-8x^(-2);2x-8x^-2;2x-8/x^2">___</span>.</li>
+        <li>At {m:x=2}: {m:2*2-frac(8, 2^2)=4-2=}<span class="blank" data-answers="2">___</span>.</li>
+        <li>The gradient at {m:x=2} is 2. The curve is rising there.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dy, dx)=2x-8x^(-2)}. At {m:x=2} it is {m:4-frac(8, 4)=2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: gradient at a point</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the gradient of the curve {m:y=x^3-4x^2+5} at the point where {m:x=3}.</p>
+      <ol class="ladder"><li>Differentiate first: find {m:frac(dy, dx)}.</li><li>{m:frac(dy, dx)=3x^2-8x}. Now put {m:x=3} into it.</li></ol>
+      <ul class="wrong"><li data-if="-4">That is y when {m:x=3}, the height of the curve. The gradient comes from {m:frac(dy, dx)}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-8x}. At {m:x=3}: {m:3*9-8*3=27-24=3}.</p></div>
+    </div>
+    <div class="q" data-answers="2/3" data-mode="value">
+      <p class="qtext">Find {m:f'(9)} when {m:f(x)=4sqrt(x)}. Give your answer as a fraction.</p>
+      <ol class="ladder"><li>Rewrite {m:4sqrt(x)} as {m:4x^(1/2)}, then differentiate.</li><li>{m:f'(x)=2x^(-1/2)}. Now put {m:x=9} into it.</li><li>{m:9^(-1/2)} means one over the square root of 9.</li></ol>
+      <ul class="wrong"><li data-if="6">A negative power means one over: {m:9^(-1/2)=frac(1, 3)}, not 3.</li><li data-if="4/3">The 4 is multiplied by the one half: {m:f'(x)=2x^(-1/2)}, not {m:4x^(-1/2)}.</li></ul>
+      <div class="solution"><p>{m:f'(x)=4*frac(1, 2)x^(-1/2)=2x^(-1/2)}. At {m:x=9}: {m:2*frac(1, 3)=frac(2, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2 or 2;2 or -2" data-mode="exact">
+      <p class="qtext">The curve {m:y=x^3} has gradient 12 at two points. Find the x-values of both points. Type them with "or" between, like 1 or 3.</p>
+      <ol class="ladder"><li>Find {m:frac(dy, dx)}, then set it equal to 12.</li><li>{m:3x^2=12}. Solve for x.</li><li>A positive number has two square roots, one positive and one negative.</li></ol>
+      <ul class="wrong"><li data-if="2">There is a second answer: {m:x^2=4} has two solutions, {m:x=2} and {m:x=-2}. Give both.</li><li data-if="4">That is {m:x^2}. The question asks for x, so take the square root.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2}. Set {m:3x^2=12}, so {m:x^2=4}, so {m:x=2} or {m:x=-2}. The gradient is 12 at both points: {m:3*(-2)^2=12}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from the gradient back to the function</h2>
+    <p>Differentiating goes from a function to its derivative. Now run it backwards: given a derivative, find a function that has it.</p>
+    <h3>Forwards</h3>
+    <p>Start with {m:y=x^2}. Differentiate: {m:frac(dy, dx)=2x}.</p>
+    <h3>Backwards</h3>
+    <p>Start with {m:frac(dy, dx)=2x}. Which function has this derivative? {m:y=x^2} does. So does {m:y=x^2+3}, and so does {m:y=x^2-3}. A constant differentiates to 0, so the derivative cannot tell these functions apart.</p>
+    <figure class="figure-lg">{fig:differentiation-basics-same-gradient}<figcaption>Three functions with the same derivative, {m:2x}. They are the same curve at three different heights, so their tangents at the same x are parallel.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> undoing a derivative gives a whole family of functions that differ only by a constant. One point on the curve fixes the constant. To undo the power rule, do its two moves backwards: add 1 to the power, then divide by the new power. Check every answer by differentiating it.</p>
+    </div>
+    <p>This undoing has a name, {term:integrate|integration}. It is a later topic. Here you only need to guess a function and check it.</p>
+    <p>The same flip works on graphs. In section 8 you went from the graph of f to the graph of {m:f'}. Backwards, the graph of {m:f'} tells you the gradient of f at each x. Where {m:f'} is above the x-axis, f is rising. Where {m:f'} is below, f is falling. Where {m:f'} crosses the axis, f is flat.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A curve has {m:frac(dy, dx)=6x^2-4} and passes through (1, 5). Find its equation.</p>
+      <ol class="steps">
+        <li>Undo each term. {m:6x^2} comes from {m:2x^3}, because {m:frac(d, dx)(2x^3)=6x^2}. And {m:-4} comes from {m:-4x}.</li>
+        <li>So {m:y=2x^3-4x+c}, where c is a constant.</li>
+        <li>The curve passes through (1, 5): {m:2-4+c=5}, so {m:c=7}. The equation is {m:y=2x^3-4x+7}. Check: differentiating gives {m:6x^2-4}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A curve has {m:frac(dy, dx)=4x^3+2x} and passes through (0, 3). Find its equation.</p>
+      <ol class="steps">
+        <li>{m:4x^3} comes from <span class="blank" data-mode="exact" data-answers="x^4">___</span>, and {m:2x} comes from <span class="blank" data-mode="exact" data-answers="x^2">___</span>.</li>
+        <li>So {m:y=x^4+x^2+c}. At the point (0, 3): {m:0+0+c=3}, so {m:c=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>The equation is {m:y=x^4+x^2+3}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(d, dx)(x^4)=4x^3} and {m:frac(d, dx)(x^2)=2x}, so {m:y=x^4+x^2+c}. The point (0, 3) gives {m:c=3}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="3x^2+5" data-mode="exact">
+      <p class="qtext">A curve has {m:frac(dy, dx)=6x} and passes through (0, 5). Find its equation. Type it like 2x^2+1.</p>
+      <ol class="ladder"><li>Which function differentiates to {m:6x}? Try {m:x^2} and see what you get.</li><li>Which multiple of {m:x^2} has derivative {m:6x}? Then add a constant, c.</li><li>Use the point (0, 5) to find c.</li></ol>
+      <ul class="wrong"><li data-if="3x^2">That differentiates correctly, but the curve must pass through (0, 5). At {m:x=0} this gives 0. Add the constant that fixes it.</li><li data-if="x^2+5">{m:x^2+5} differentiates to {m:2x}, not {m:6x}. Check by differentiating.</li></ul>
+      <div class="solution"><p>{m:y=3x^2+c}. At (0, 5): {m:c=5}. So {m:y=3x^2+5}. Check: {m:frac(dy, dx)=6x}. &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="x^3-4x+1" data-mode="exact">
+      <p class="qtext">A curve has {m:frac(dy, dx)=3x^2-4} and passes through (2, 1). Find its equation. Type it like x^2-3x+5.</p>
+      <ol class="ladder"><li>Undo each term of {m:3x^2-4}. Which power of x has derivative {m:3x^2}? Which term has derivative {m:-4}?</li><li>Write your terms, then add a constant c.</li><li>Put {m:x=2} and {m:y=1} into the equation to find c.</li></ol>
+      <ul class="wrong"><li data-if="x^3-4x">Add the constant c. The curve must pass through (2, 1), and {m:x^3-4x} is 0 at {m:x=2}.</li><li data-if="x^3-4x-7">Put both terms into the equation: {m:8-8+c=1}. The {m:-4x} term counts too.</li></ul>
+      <div class="solution"><p>{m:y=x^3-4x+c}. At (2, 1): {m:8-8+c=1}, so {m:c=1}. So {m:y=x^3-4x+1}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">The graph shows {m:y=f'(x)}. At which value of x does the graph of {m:y=f(x)} have a horizontal tangent?</p>
+      <figure class="qfig qfig-lg">{fig:differentiation-basics-q-gradient-graph}</figure>
+      <ol class="ladder"><li>A horizontal tangent means the gradient of f is 0.</li><li>The graph shows {m:f'(x)}, the gradient of f. Where is it 0?</li></ol>
+      <ul class="wrong"><li data-if="-2">That is where the graph meets the y-axis: {m:f'(0)=-2}. A horizontal tangent needs {m:f'(x)=0}, where the graph meets the x-axis.</li><li data-if="2">2 is the gradient of the line in the picture. A horizontal tangent needs {m:f'(x)=0}: look for where the line meets the x-axis.</li></ul>
+      <div class="solution"><p>{m:f'(x)=0} where the graph of {m:f'} crosses the x-axis, which is at {m:x=1}. So the graph of f has a horizontal tangent at {m:x=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">{m:f'(x)=2x-2}. For {m:x>1}, is f increasing or decreasing?</p>
+      <ul class="options">
+        <li data-correct>Increasing, because {m:f'(x)} is positive there</li>
+        <li data-why="A decreasing function has a negative derivative. For x greater than 1, 2x minus 2 is positive.">Decreasing, because {m:f'(x)} is positive there</li>
+        <li data-why="A straight-line derivative does not stop f from changing. f rises wherever its derivative is positive.">Neither, because {m:f'} is a straight line</li>
+      </ul>
+      <ol class="ladder"><li>Pick a value of x greater than 1, such as 3. What is {m:f'(3)}?</li><li>What does the sign of the gradient tell you about the curve?</li></ol>
+      <div class="solution"><p>For {m:x>1}, {m:2x-2>0}. A positive gradient means f is increasing.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Both {m:y=x^2+1} and {m:y=x^2-3} have {m:frac(dy, dx)=2x}. Why do they have the same derivative?</p>
+      <ul class="options">
+        <li data-correct>A constant has a flat graph, so adding or subtracting a constant does not change the gradient</li>
+        <li data-why="Any constant works, including ones that are far apart. For example, y = x squared plus 1000 also has the derivative 2x.">Because 1 and {m:-3} are close together</li>
+        <li data-why="dy by dx describes the gradient, not the height of the curve. Different heights can have the same gradient.">Because dy by dx only describes the height of the curve</li>
+      </ul>
+      <ol class="ladder"><li>What is the derivative of a constant?</li><li>The derivative of a sum is the sum of the derivatives.</li></ol>
+      <div class="solution"><p>The derivative of {m:x^2+1} is {m:2x+0}. The derivative of {m:x^2-3} is {m:2x-0}. The constant differentiates to 0 in each case.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Asha says:</b> {m:frac(d, dx)(x^3)=x^2}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She took 1 off the power but did not bring the 3 down as a multiplier</li>
+        <li data-why="She did take 1 off the power: 3 minus 1 is 2. The multiplier is what is missing.">She added 1 to the power</li>
+        <li data-why="Test it: the chord gradient of x cubed from x = 1 to x = 1.01 is about 3.03, but her answer gives 1 at x = 1.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>Write the power rule: {m:frac(d, dx)(x^n)=n x^(n-1)}.</li><li>Put {m:n=3} into it and compare.</li></ol>
+      <div class="solution"><p>The rule gives {m:frac(d, dx)(x^3)=3x^2}. She has lost the multiplier 3.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> {m:y=5}, so {m:frac(dy, dx)=5}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The graph of {m:y=5} is horizontal, so its gradient is 0</li>
+        <li data-why="1 is the derivative of x. A constant has a flat graph, so its derivative is 0.">He should have written 1</li>
+        <li data-why="A constant does not differentiate to itself. The line y = 5 is flat, so its gradient is 0.">Nothing, a constant differentiates to itself</li>
+      </ul>
+      <ol class="ladder"><li>Sketch the graph of {m:y=5}.</li><li>What is the gradient of a horizontal line?</li></ol>
+      <div class="solution"><p>The graph of {m:y=5} is a horizontal line, so {m:frac(dy, dx)=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Chen says:</b> {m:y=frac(1, x^2)}, so {m:frac(dy, dx)=frac(1, 2x)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not rewrite {m:frac(1, x^2)} as {m:x^(-2)}. The power rule gives {m:-2x^(-3)}</li>
+        <li data-why="The multiplier is -2 and the power goes down to -3. 2 times x to the -2 has the wrong multiplier and the wrong power.">He should have got {m:2x^(-2)}</li>
+        <li data-why="The curve y = 1 over x squared is falling for x greater than 0, so its gradient is negative. His answer is positive there.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>Rewrite {m:frac(1, x^2)} as a power of x first.</li><li>Apply the power rule to {m:x^(-2)}.</li></ol>
+      <div class="solution"><p>{m:y=x^(-2)}, so {m:frac(dy, dx)=-2x^(-3)=-frac(2, x^3)}. Check the sign: for {m:x>0} the curve falls, so the gradient must be negative.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dee says:</b> for {m:f(x)=x^2}, {m:frac(f(x+h)-f(x), h)=frac(2xh+h^2, h)}. She puts {m:h=0}, gets {m:frac(0, 0)}, and says {m:f'(x)=0}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She put {m:h=0} into the fraction before cancelling h. The fraction has no value at {m:h=0}. Cancel first to get {m:2x+h}, then let h tend to 0</li>
+        <li data-why="Dividing by h is allowed: on a chord h is not 0. Dividing is exactly what turns the rise into a gradient.">She should not have divided by h</li>
+        <li data-why="The curve y = x squared is not flat everywhere. At x = 1 its gradient is 2.">Nothing, f dash of x is 0 because the curve is flat</li>
+      </ul>
+      <ol class="ladder"><li>Is it allowed to put {m:h=0} into a fraction that has h on the bottom?</li><li>Simplify the fraction while h is not 0. What do you get?</li></ol>
+      <div class="solution"><p>While h is not 0, {m:frac(2xh+h^2, h)=2x+h}. As h tends to 0 this tends to {m:2x}, so {m:f'(x)=2x}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eli says:</b> {m:frac(d^2y, dx^2)} means {m:(frac(dy, dx))^2}. For {m:y=x^2}, {m:frac(dy, dx)=2x}, so {m:frac(d^2y, dx^2)=4x^2}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>{m:frac(d^2y, dx^2)} means differentiate twice. The answer is 2</li>
+        <li data-why="That is dy by dx, the first derivative. The second derivative is the derivative of 2x.">He should have got {m:2x}</li>
+        <li data-why="You do need dy by dx first. Then differentiate it again.">He should not have found dy by dx first</li>
+      </ul>
+      <ol class="ladder"><li>Does the 2 in {m:d^2y} mean squaring?</li><li>Differentiate {m:2x} once more.</li></ol>
+      <div class="solution"><p>{m:frac(d^2y, dx^2)} means differentiate twice. {m:frac(dy, dx)=2x}, and differentiating again gives {m:frac(d^2y, dx^2)=2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="12x^3-4x+1" data-mode="exact">
+      <p class="qtext">Find {m:f'(x)} when {m:f(x)=3x^4-2x^2+x-7}. Type it like 5x^3-2x+4.</p>
+      <ol class="ladder"><li>Differentiate each of the four terms.</li><li>{m:3x^4} gives {m:12x^3}. {m:-2x^2} gives {m:-4x}.</li><li>{m:x} gives 1. The constant {m:-7} gives 0.</li></ol>
+      <ul class="wrong"><li data-if="12x^3-4x-6">The constant {m:-7} differentiates to 0. It does not stay in the answer.</li><li data-if="12x^3-2x+1">For {m:-2x^2}, bring the 2 down and multiply: {m:-2*2x=-4x}.</li></ul>
+      <div class="solution"><p>{m:f'(x)=12x^3-4x+1-0=12x^3-4x+1}.</p></div>
+    </div>
+    <div class="q" data-answers="2x-2x^(-2);2x-2x^-2;2x-2/x^2;-2x^(-2)+2x;-2x^-2+2x;-2/x^2+2x" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=frac(2, x)+x^2}. Type it like 5x-3x^(-2), or like 5x-3/x^2.</p>
+      <ol class="ladder"><li>Rewrite {m:frac(2, x)} as {m:2x^(-1)}.</li><li>Differentiate {m:2x^(-1)}: bring {m:-1} down and take 1 off the power.</li><li>Differentiate {m:x^2}.</li></ol>
+      <ul class="wrong"><li data-if="2x+2x^(-2);2x+2x^-2;2x+2/x^2">The power is {m:-1}, so the multiplier is {m:-1}: the term is {m:-2x^(-2)}. Keep the minus sign.</li><li data-if="2x-2x^(-1);2x-2x^-1;2x-2/x">The power of the first term must go down by 1: {m:-1-1=-2}.</li></ul>
+      <div class="solution"><p>{m:y=2x^(-1)+x^2}, so {m:frac(dy, dx)=-2x^(-2)+2x}. In the other form, {m:2x-frac(2, x^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-11" data-mode="value">
+      <p class="qtext">Find the gradient of the curve {m:y=3x^2-5x} at the point where {m:x=-1}.</p>
+      <ol class="ladder"><li>Differentiate first: {m:frac(dy, dx)=6x-5}.</li><li>Put {m:x=-1} into {m:frac(dy, dx)}. Take care with the minus sign.</li></ol>
+      <ul class="wrong"><li data-if="1">{m:6x} at {m:x=-1} is {m:-6}, not 6. Then {m:-6-5=-11}.</li><li data-if="8">That is y when {m:x=-1}, the height of the curve. The gradient comes from {m:frac(dy, dx)}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=6x-5}. At {m:x=-1}: {m:6*(-1)-5=-11}. The curve is falling steeply there.</p></div>
+    </div>
+    <div class="q" data-answers="15/2" data-mode="value">
+      <p class="qtext">Find the value of {m:frac(d^2y, dx^2)} when {m:x=4}, for {m:y=x^(5/2)}. Give your answer as a fraction or a decimal.</p>
+      <ol class="ladder"><li>Differentiate twice. First {m:frac(dy, dx)=frac(5, 2)x^(3/2)}.</li><li>Differentiate again: bring {m:frac(3, 2)} down and take 1 off the power.</li><li>Put {m:x=4}. Remember {m:4^(1/2)=2}.</li></ol>
+      <ul class="wrong"><li data-if="20">That is {m:frac(dy, dx)} at {m:x=4}: {m:frac(5, 2)*4^(3/2)=20}. You need {m:frac(d^2y, dx^2)}.</li><li data-if="15/4;3.75">{m:4^(1/2)} is 2, not 1. Multiply {m:frac(15, 4)} by 2.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=frac(5, 2)x^(3/2)} and {m:frac(d^2y, dx^2)=frac(15, 4)x^(1/2)}. At {m:x=4}: {m:frac(15, 4)*2=frac(15, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="4x+3;3+4x" data-mode="exact">
+      <p class="qtext">For {m:f(x)=2x^2+3x}, the gradient of the chord from x to {m:x+h} simplifies to {m:4x+2h+3}. Find {m:f'(x)}. Type it like 5x+7.</p>
+      <ol class="ladder"><li>{m:f'(x)} is the limit of the chord gradient as h tends to 0.</li><li>Which terms contain h? What happens to them?</li></ol>
+      <ul class="wrong"><li data-if="4x+2h+3;2h+4x+3">That is the gradient of the chord. Let h tend to 0: the {m:2h} tends to 0.</li><li data-if="4x">Only the {m:2h} tends to 0. The 3 does not contain h, so it stays.</li></ul>
+      <div class="solution"><p>As h tends to 0, {m:2h} tends to 0. The terms {m:4x} and 3 do not contain h. So {m:f'(x)=4x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="3+x^(-2);3+x^-2;3+1/x^2;x^(-2)+3;x^-2+3;1/x^2+3" data-mode="exact">
+      <p class="qtext">Find {m:frac(dy, dx)} when {m:y=frac(3x^2-1, x)}. Type it like 5+x^(-3), or like 5+1/x^3.</p>
+      <ol class="ladder"><li>Divide each term on top by x.</li><li>{m:y=3x-x^(-1)}. Differentiate each term.</li></ol>
+      <ul class="wrong"><li data-if="6x">You differentiated the top and the bottom separately. Divide each term on top by x first.</li><li data-if="3-x^(-2);3-x^-2;3-1/x^2">The term is {m:-x^(-1)}. Its derivative is {m:-1*(-1)x^(-2)=+x^(-2)}: two minus signs make a plus.</li></ul>
+      <div class="solution"><p>{m:y=3x-x^(-1)}, so {m:frac(dy, dx)=3+x^(-2)=3+frac(1, x^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">A cyclist has travelled s metres after t seconds, where {m:s=0.5t^2+3t}. Find how fast the distance is changing when {m:t=4}. Give the number only, in metres per second.</p>
+      <ol class="ladder"><li>The rate of change of s is {m:frac(ds, dt)}.</li><li>{m:frac(ds, dt)=t+3}. Put {m:t=4} into it.</li></ol>
+      <ul class="wrong"><li data-if="20">That is s when {m:t=4}, the distance. The question asks for the rate of change, {m:frac(ds, dt)}.</li></ul>
+      <div class="solution"><p>{m:frac(ds, dt)=t+3}. At {m:t=4}: 7. The distance is increasing at 7 metres per second.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">For {m:y=x^3}, find the value of {m:frac(d^2y, dx^2)} when {m:x=-1}. Give the number only. Then, on paper, say what the sign of your answer tells you about the gradient.</p>
+      <ol class="ladder"><li>{m:frac(dy, dx)=3x^2}. Differentiate again.</li><li>Put {m:x=-1} into the second derivative.</li></ol>
+      <ul class="wrong"><li data-if="6">{m:6x} at {m:x=-1} is {m:-6}. Take care with the minus sign.</li><li data-if="3">That is {m:frac(dy, dx)} at {m:x=-1}. You need the second derivative.</li></ul>
+      <div class="solution"><p>{m:frac(d^2y, dx^2)=6x}. At {m:x=-1} it is {m:-6}. The value {m:-6} is negative, so the gradient is decreasing as x increases through {m:x=-1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. M marks are for method. A marks are for an accurate answer. B marks are for a correct fact or statement.</p>
+    <p class="muted">Write your working on paper, then type the answer.</p>
+    <div class="q" data-answers="8x-3;-3+8x" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] Differentiate {m:f(x)=4x^2-3x} from first principles. Type {m:f'(x)} like 5x+7.</p>
+      <ol class="ladder"><li>The marks tell you the steps: expand, simplify the chord gradient, take the limit.</li><li>{m:f(x+h)=4(x+h)^2-3(x+h)}. Expand it, then find {m:f(x+h)-f(x)}.</li><li>Divide by h, then let h tend to 0.</li></ol>
+      <ul class="wrong"><li data-if="8x+4h-3;4h+8x-3">That is the gradient of the chord. Let h tend to 0: the {m:4h} tends to 0.</li><li data-if="8x">The term {m:-3x} also contributes. Its chord gradient is {m:-3}, which does not contain h, so it stays.</li></ul>
+      <div class="solution">
+        <p>{m:f(x+h)=4(x^2+2xh+h^2)-3x-3h}. So {m:f(x+h)-f(x)=8xh+4h^2-3h}. Divide by h: {m:8x+4h-3}. As h tends to 0 this tends to {m:8x-3}. So {m:f'(x)=8x-3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for expanding {m:f(x+h)} correctly</li>
+          <li><b>M1</b> for forming {m:frac(f(x+h)-f(x), h)} and simplifying it to {m:8x+4h-3}</li>
+          <li><b>M1</b> for letting h tend to 0 (the limit must be shown)</li>
+          <li><b>A1</b> for {m:f'(x)=8x-3}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4-9x^(-2);4-9x^-2;4-9/x^2;-9x^(-2)+4;-9x^-2+4;-9/x^2+4" data-mode="exact" data-marks="3">
+      <ul class="facts"><li>{m:y=frac((2x+3)^2, x)}, for {m:x>0}.</li></ul>
+      <p class="qtext"><b>(a)</b> [3 marks] Find {m:frac(dy, dx)}. Type it like 5-3x^(-2), or like 5-3/x^2.</p>
+      <ol class="ladder"><li>Expand the top first. Then divide each term by x.</li><li>{m:(2x+3)^2=4x^2+12x+9}. You should get three terms, each a power of x.</li><li>Differentiate each term.</li></ol>
+      <ul class="wrong"><li data-if="4+9x^(-2);4+9x^-2;4+9/x^2">The term {m:9x^(-1)} has the power {m:-1}, so its derivative is {m:-9x^(-2)}. Keep the minus sign.</li><li data-if="4">The term {m:9x^(-1)} also differentiates, to {m:-9x^(-2)}. It does not disappear.</li></ul>
+      <div class="solution">
+        <p>{m:y=frac(4x^2+12x+9, x)=4x+12+9x^(-1)}. So {m:frac(dy, dx)=4+0-9x^(-2)=4-frac(9, x^2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for expanding {m:(2x+3)^2=4x^2+12x+9}</li>
+          <li><b>M1</b> for dividing each term by x to get {m:4x+12+9x^(-1)}</li>
+          <li><b>A1</b> for {m:frac(dy, dx)=4-9x^(-2)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="18" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(b)</b> [2 marks] Hence find the value of {m:frac(d^2y, dx^2)} when {m:x=1}.</p>
+      <ol class="ladder"><li>&ldquo;Hence&rdquo; means: use your answer to part (a).</li><li>Differentiate {m:4-9x^(-2)}. The 4 gives 0.</li><li>Put {m:x=1} into the result.</li></ol>
+      <ul class="wrong"><li data-if="-18">{m:-9*(-2)=+18}: a minus times a minus is a plus.</li><li data-if="18x^(-3);18x^-3;18/x^3">That is {m:frac(d^2y, dx^2)} as an expression. Put {m:x=1} into it to get a number.</li></ul>
+      <div class="solution">
+        <p>{m:frac(d^2y, dx^2)=-9*(-2)x^(-3)=18x^(-3)}. At {m:x=1}: 18. The value 18 is positive, so the gradient is increasing there.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for differentiating {m:-9x^(-2)} to get {m:18x^(-3)}</li>
+          <li><b>A1</b> for 18</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-5-2t;-2t-5" data-mode="exact" data-marks="2">
+      <ul class="facts"><li>A tank holds V litres of water after t minutes.</li><li>{m:V=120-5t-t^2}, for {m:0 <= t <= 8}.</li></ul>
+      <p class="qtext"><b>(a)</b> [2 marks] Find {m:frac(dV, dt)}. Type it like 3-4t.</p>
+      <ol class="ladder"><li>Differentiate each term with respect to t.</li><li>The constant 120 gives 0. {m:-5t} gives {m:-5}.</li></ol>
+      <ul class="wrong"><li data-if="-5-t;-t-5">{m:-t^2} gives {m:-2t}: bring the 2 down.</li><li data-if="120-5-2t;-2t+115">The constant 120 differentiates to 0. It does not stay.</li></ul>
+      <div class="solution">
+        <p>{m:frac(dV, dt)=0-5-2t=-5-2t}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for differentiating at least one term correctly</li>
+          <li><b>A1</b> for {m:frac(dV, dt)=-5-2t}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-11" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] Find the rate of change of the volume when {m:t=3}. Give the number only, in litres per minute. Then, on paper, say what the sign of your answer means.</p>
+      <ol class="ladder"><li>Use your answer to part (a).</li><li>Put {m:t=3} into {m:frac(dV, dt)}, not into V.</li></ol>
+      <ul class="wrong"><li data-if="11">The rate is negative: the volume is going down, so keep the minus sign.</li><li data-if="96">That is V when {m:t=3}, the volume. The question asks for the rate of change.</li></ul>
+      <div class="solution">
+        <p>{m:frac(dV, dt)=-5-2*3=-11}. The rate is {m:-11} litres per minute. The sign is negative, so the volume is decreasing: the tank is losing 11 litres each minute at that moment.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for substituting {m:t=3} into {m:frac(dV, dt)}</li>
+          <li><b>A1</b> for {m:-11}</li>
+          <li><b>B1</b> for saying that the volume is decreasing (at 11 litres per minute)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="13/16" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] {m:f(x)=4sqrt(x)+frac(3, x)}, for {m:x>0}. Find the exact value of {m:f'(4)}. Give your answer as a fraction.</p>
+      <ol class="ladder"><li>Rewrite both terms as powers of x: {m:4x^(1/2)} and {m:3x^(-1)}.</li><li>Differentiate each term.</li><li>Put {m:x=4} into {m:f'(x)}. Use {m:4^(-1/2)=frac(1, 2)}.</li></ol>
+      <ul class="wrong"><li data-if="1">That is the first term only, {m:2*4^(-1/2)=1}. The second term also contributes.</li><li data-if="19/16">The second term is {m:-3x^(-2)}, which is negative. At {m:x=4} it is {m:-frac(3, 16)}, so subtract it.</li></ul>
+      <div class="solution">
+        <p>{m:f(x)=4x^(1/2)+3x^(-1)}, so {m:f'(x)=2x^(-1/2)-3x^(-2)}. At {m:x=4}: {m:2*frac(1, 2)-frac(3, 16)=1-frac(3, 16)=frac(13, 16)}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for rewriting as {m:4x^(1/2)+3x^(-1)}</li>
+          <li><b>M1</b> for differentiating one term correctly</li>
+          <li><b>A1</b> for {m:f'(x)=2x^(-1/2)-3x^(-2)}</li>
+          <li><b>A1</b> for {m:frac(13, 16)}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The tangent is the limit of chords.</b> A chord needs two different points, so h is never 0. We simplify while h is not 0, and then ask what value the chord gradient gets close to. That is how a gradient at one point comes from a gradient between two points.</li>
+      <li><b>The power rule, for positive whole n.</b> Use the {term:binomial-expansion|binomial expansion} of {m:(x+h)^n}. The first two terms are {m:x^n} and {m:n x^(n-1) h}. Every other term has at least {m:h^2} in it. Subtract {m:x^n} and divide by h: you get {m:n x^(n-1)} plus terms that each still contain h. As h tends to 0, those terms tend to 0. What is left is {m:n x^(n-1)}.</li>
+      <li><b>Negative and fractional powers.</b> The same rule holds, and the pictures agree: {m:y=sqrt(x)} flattens as x grows, so its gradient {m:frac(1, 2)x^(-1/2)} falls. {m:y=1/x} falls, so its gradient {m:-x^(-2)} is negative. A full proof for these needs ideas from Year 2.</li>
+      <li><b>Constant multiples and sums.</b> If you multiply a function by 5, every chord gradient is multiplied by 5, and so is the limit. If you add two functions, the chord gradients add, and so do the limits.</li>
+      <li><b>A constant has derivative 0.</b> Its graph is horizontal, so every chord gradient is 0.</li>
+      <li><b>The second derivative.</b> It is the rate of change of the gradient. If the gradient is increasing, the tangent turns anticlockwise as you move right, and the curve bends upwards.</li>
+      <li><b>Working backwards loses the constant.</b> Constants differentiate to 0, so many functions share one derivative. A point on the curve fixes the constant.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Putting {m:h=0} into the chord gradient before cancelling h.</li>
+      <li>Stopping at {m:2x+h}, or writing it as the derivative. The limit has not been taken yet.</li>
+      <li>Bringing the power down but not taking 1 off it, or taking 1 off but not bringing it down.</li>
+      <li>Leaving a constant term in the derivative. It differentiates to 0.</li>
+      <li>Differentiating {m:frac(1, x^2)} or {m:sqrt(x)} without rewriting them as powers first.</li>
+      <li>Differentiating the top and the bottom of a fraction separately, or multiplying the derivatives of two factors.</li>
+      <li>Losing a minus sign when the power is negative: {m:-2*(-3)=+6}.</li>
+      <li>Putting the x-value into the original function instead of into the derivative.</li>
+      <li>Reading {m:frac(d^2y, dx^2)} as {m:(frac(dy, dx))^2}.</li>
+      <li>Forgetting the constant when working backwards from a gradient.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="differentiation-basics">
+      <li><label><input type="checkbox"> explain the gradient of a curve at a point as the gradient of the tangent</label></li>
+      <li><label><input type="checkbox"> use chords closing in on a tangent to explain a limit</label></li>
+      <li><label><input type="checkbox"> differentiate x&sup2; and x&sup3; from first principles, and say why h is not 0 while I divide</label></li>
+      <li><label><input type="checkbox"> use f&prime;(x), dy by dx and the power rule for any whole, negative or fractional power (wherever it is defined)</label></li>
+      <li><label><input type="checkbox"> expand or split an expression, then differentiate it term by term</label></li>
+      <li><label><input type="checkbox"> find the second derivative and say what its sign means</label></li>
+      <li><label><input type="checkbox"> sketch the graph of the derivative from the graph of a function</label></li>
+      <li><label><input type="checkbox"> use the derivative as a rate of change, with its units, and find a gradient at a point</label></li>
+      <li><label><input type="checkbox"> run it backwards: find a function from its derivative and one point</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

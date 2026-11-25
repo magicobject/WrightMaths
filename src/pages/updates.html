@@ -16,16 +16,60 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.036</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Merged the latest main into the GCSE proofread branch (build 035). No content change.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.035</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Docs only: a full proofread of the hidden GCSE book ahead of the print edition (<code>docs/proofread-gcse-2026-11-25.md</code>), listing maths slips, typos, tier labels and print issues page by page. No pages changed yet.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.034</span><span class="changelog-date">25 November 2026</span></div>
         <p>Fix, both hidden books: the answer checker no longer accepts a wrong pair of roots. In the typed-answer check, &ldquo;-2 or 5&rdquo; was marked right where the answer was &ldquo;-5 or 2&rdquo;, because the words &ldquo;or&rdquo; and &ldquo;and&rdquo; were read as letters (so &ldquo;1 or 6&rdquo; was also accepted for &ldquo;2 or 3&rdquo;, and &ldquo;0 and 7&rdquo; for &ldquo;0 and 6&rdquo;). A list of numbers is now right in any order but never with different numbers, and x to the power one half is no longer accepted as x over 2. A check over all 2,724 typed questions found 58 wrong answers that used to be accepted and no right answer that is now refused. A test covers every page from now on.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.033</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book, third topic page: <code>Quadratics</code> (Year 1). 82 questions with hints and specific wrong-answer messages, 23 large diagrams (including completing the square drawn as an area), a &ldquo;Flip it&rdquo; section and exam-style questions. Checked by script, by an independent maths reviewer, and by a separate language reviewer. With this, the three pilot topics are in place. No page of the book is linked from the site.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.032</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book, second topic page: <code>Differentiation from first principles</code> (Year 1). 77 questions with hints and specific wrong-answer messages, 21 large diagrams (chords closing in on a tangent, the gradient graph, rates of change), a &ldquo;Flip it&rdquo; section and exam-style questions. Checked by script, by an independent maths reviewer, and by a separate language reviewer. No page of the book is linked from the site.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.031</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book: on a question with a large diagram, the answer box now sits below the diagram instead of above it. A test covers it. No site change.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.030</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book, first topic page: <code>Integration as reverse differentiation</code> (Year 1). 67 questions with hints and specific wrong-answer messages, 14 large diagrams, a &ldquo;Flip it&rdquo; section and exam-style questions. Every answer, wrong-answer message and solution was checked by script and by an independent reviewer, and the language was reviewed separately. No page of the book is linked from the site.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.029</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book tooling: the build now stops if maths shorthand is placed inside an HTML attribute (it silently broke the markup), and a multiple-choice answer made only of maths now has a spoken name for screen readers. No site change.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.028</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book glossary: reviewed line by line by four independent readers (two for the maths, two for the language) and corrected. Fixes include four parametric examples that used the wrong equation, a backwards integration sentence, one wrong iteration value, ambiguous wording, symbols now read aloud, Year 2 ideas moved out of Year 1 entries, and diagrams with overlapping labels or lines that ran off the graph. Diagram lines are now clipped to the graph and hatched regions now draw. No page of the book is linked from the site.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.027</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden A-level book: the first full glossary, Years 1 and 2 together: 303 terms in ten areas, each with a plain-English definition, worked examples, a common slip and the reverse side of the idea, and about 280 diagrams. The maths shorthand now also draws column vectors, ⁿCᵣ, ⇒ ⇔ ± and primes, tidier brackets, and any equation wider than the screen can be scrolled by keyboard. No page of the book is linked from the site.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.026</span><span class="changelog-date">25 November 2026</span></div>
         <p>Docs only: the A-level Pure Maths syllabus draft (<code>docs/alevel-pure-syllabus.md</code>) is now checked against the AQA, Edexcel, OCR A and OCR MEI specifications and the DfE content. Corrections: 47 topics (area between curves moved to Year 2), change of base and a few other items marked as beyond every board, the paper structures fixed, and the Eduqas entry removed (it offers no A-level Maths). No site change.</p>
       </li>
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.025</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Groundwork for the hidden A-level book: its glossary and its glossary pictures are now split into one file per area of maths, so the areas can be written side by side. No site change.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.024</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book: (1) the calculator on the sine and cosine rules page, and on every other question that uses sin, cos or tan (bearings, the stretch questions), is now the scientific one with sin, cos, tan and their inverses, not the basic one. (2) Every &ldquo;Now you finish it&rdquo; box now has a typed answer box for every gap; 19 of them (algebraic fractions, circle theorems, circles, functions, histograms, iteration, sine and cosine rules, surds, trigonometry, vectors) showed only ___ with nowhere to type. The ones that need a calculator (sine and cosine rules, trigonometry, circles, iteration) now offer one too. Tests check every box and the keypad choice.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.024</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Groundwork for a hidden A-level Pure Maths book (no page of it is linked from the site yet): the book build now handles more than one book, with its own topic graph (47 topics, Year 1 and Year 2), ten colour-coded areas, a Year 1 + Year 2 glossary, native-MathML maths and large-diagram styles, and no voice output at all. A starter hub, glossary and how-to page are built under <code>/books/a-level/</code>. The Books page now shows three &ldquo;Coming soon&rdquo; cards: A-level Year 1, Year 2 and Further Pure. GCSE book pages are unchanged, except that a stray &ldquo;&amp;rArr;&rdquo; in one teacher answer key now shows as an arrow.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.023</span><span class="changelog-date">25 November 2026</span></div>
@@ -53,16 +97,16 @@
         <p>Housekeeping: merged <code>main</code> again and repaired the changelog list, where two merged entries had lost the markup between them. No site change.</p>
       </li>
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.016</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book, sine and cosine rules (<code>books/gcse/sine-cosine-rules.html</code>): where two questions asked for the name of the rule (&ldquo;Type sine or cosine&rdquo;), the words &ldquo;sine&rdquo; and &ldquo;cosine&rdquo; linked to the sine and cosine functions in the glossary; they now link to the Sine rule and Cosine rule entries. I checked every book page for the same fault (a short term linked where a longer one was meant, including &ldquo;X and Y rules&rdquo; lists) and found no other case; a test covers this one.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.015</span><span class="changelog-date">25 November 2026</span></div>
         <p>Housekeeping: <code>main</code> merged into the speech-rules branch (build 014 is that merge, no site change). Two entries below share the number 011, because two branches each took it; the test-fix entries 011 and 012 are the ones tagged <code>build-2026.11.25.011</code> and <code>.012</code>, and the glossary Listen entry is the other 011.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.013</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, Listen: the voice now says <code>fg(x)</code> as &ldquo;f of g of x&rdquo;, <code>f<sup>&minus;1</sup>(x)</code> as &ldquo;f inverse of x&rdquo; and <code>P(red)</code> as &ldquo;the probability of red&rdquo; (plain <code>f(x)</code> was already &ldquo;f of x&rdquo;). New <code>npm run book:audio -- review</code> writes a local page (<code>audio-work/review.html</code>, not part of the site) with every Listen sentence as written beside the words the voice is given, so they can be checked by reading. Pages touched: <code>books/gcse/functions-graphs.html</code>, <code>books/gcse/iteration.html</code>, <code>books/gcse/stretch.html</code> and the probability topics (their recordings of changed sentences need re-making; the browser voice reads them until then).</p>
-      </li>
-      <li>
-        <div class="changelog-meta"><span class="changelog-build">2026.11.25.016</span><span class="changelog-date">25 November 2026</span></div>
-        <p>Hidden GCSE book, sine and cosine rules (<code>books/gcse/sine-cosine-rules.html</code>): where two questions asked for the name of the rule (&ldquo;Type sine or cosine&rdquo;), the words &ldquo;sine&rdquo; and &ldquo;cosine&rdquo; linked to the sine and cosine functions in the glossary; they now link to the Sine rule and Cosine rule entries. I checked every book page for the same fault (a short term linked where a longer one was meant, including &ldquo;X and Y rules&rdquo; lists) and found no other case; a test covers this one.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.012</span><span class="changelog-date">25 November 2026</span></div>
