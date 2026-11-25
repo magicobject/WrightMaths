@@ -39,14 +39,14 @@ export const GLOSSARY = [
   },
   {
     id: 'multiple', term: 'Multiple', strand: 'n', level: 'F',
-    def: 'A number in the times table of another number: what you get by multiplying it by a whole number.',
+    def: 'A number in the times table of another number: what you get by multiplying that number by a whole number.',
     example: 'Multiples of 6: 6, 12, 18, 24, 30 &hellip;',
     flip: '18 is a multiple of 6 and 6 is a factor of 18: one fact, two views.',
     see: ['factor', 'lcm'],
   },
   {
     id: 'prime-number', term: 'Prime number', strand: 'n', level: 'F',
-    def: 'A number with exactly two factors: 1 and itself.',
+    def: 'A whole number with exactly two factors: 1 and itself.',
     example: 'Primes: 2, 3, 5, 7, 11, 13 &hellip; 9 is not prime because 3 &times; 3 = 9.',
     watch: '1 is not prime (it has only one factor). 2 is the only even prime.',
     see: ['factor'],
@@ -55,14 +55,14 @@ export const GLOSSARY = [
     id: 'hcf', term: 'Highest common factor (HCF)', strand: 'n', level: 'F', aka: ['greatest common divisor gcd gcf'],
     def: 'The biggest number that is a factor of two or more numbers.',
     example: 'Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18. The biggest in both lists is 6, so HCF(12, 18) = 6.',
-    flip: 'The HCF is what you divide top and bottom by to simplify a fraction in one go: {frac:12/18} = {frac:2/3}.',
+    flip: 'The HCF of the numerator and denominator is the number to divide both by, to simplify a fraction in one go: {frac:12/18} = {frac:2/3}.',
     see: ['factor', 'lcm', 'simplify-fraction'],
   },
   {
     id: 'lcm', term: 'Lowest common multiple (LCM)', strand: 'n', level: 'F', aka: ['least common multiple'],
     def: 'The smallest number that is a multiple of two or more numbers.',
     example: 'Multiples of 4: 4, 8, 12 &hellip; Multiples of 6: 6, 12 &hellip; The first in both is 12, so LCM(4, 6) = 12.',
-    flip: 'The LCM of two denominators is the neatest common denominator for adding fractions.',
+    flip: 'The LCM of two denominators is the smallest common denominator, which makes adding fractions easiest.',
     see: ['multiple', 'hcf', 'common-denominator'],
   },
   {
@@ -77,7 +77,7 @@ export const GLOSSARY = [
     def: 'The positive number that, multiplied by itself, gives the number you started with. Written with the sign &radic;.',
     example: '&radic;81 = 9 because 9 &times; 9 = 81.',
     watch: 'Every positive number has two square roots (9 and &minus;9 both square to 81). The &radic; sign means the positive one; solving x&sup2; = 81 gives x = 9 or x = &minus;9.',
-    flip: 'The inverse of squaring, for numbers 0 or more.',
+    flip: 'The inverse of squaring, for numbers that are 0 or more.',
     see: ['square-number', 'surd'],
   },
   {
@@ -90,16 +90,16 @@ export const GLOSSARY = [
   },
   {
     id: 'indices-laws', term: 'Laws of indices', strand: 'n', level: 'H', aka: ['powers exponents'],
-    def: 'Rules for powers of the same base: add the powers when multiplying, subtract when dividing, multiply when raising a power to a power. A negative power means "one over"; a fractional power means a root.',
+    def: 'Rules for powers of the same base: add the powers when multiplying, subtract the powers when dividing, and multiply the powers when raising a power to a power. A negative power means one divided by the positive power; a fractional power means a root.',
     example: 'a<sup>m</sup> &times; a<sup>n</sup> = a<sup>m+n</sup>; a<sup>&minus;n</sup> = {frac:1/a<sup>n</sup>}; 9<sup>1/2</sup> = &radic;9 = 3.',
-    watch: 'The laws only work when the bases are the same.',
+    watch: 'The laws for multiplying and dividing powers only work when the bases are the same.',
     see: ['power'],
   },
   {
     id: 'reciprocal', term: 'Reciprocal', strand: 'n', level: 'F', aka: ['flip'],
-    def: 'The number you multiply by to get 1. For a fraction, turn it upside down.',
-    example: 'Reciprocal of {frac:3/4} is {frac:4/3}. Reciprocal of 5 is {frac:1/5}. {frac:3/4} &times; {frac:4/3} = 1.',
-    watch: '0 has no reciprocal.',
+    def: 'The number you multiply a number by to get 1. For a fraction, turn it upside down.',
+    example: 'The reciprocal of {frac:3/4} is {frac:4/3}. The reciprocal of 5 is {frac:1/5}. {frac:3/4} &times; {frac:4/3} = 1.',
+    watch: 'Zero has no reciprocal, because nothing multiplied by 0 gives 1.',
     flip: 'Dividing by a number is the same as multiplying by its reciprocal.',
     see: ['fraction'],
   },
@@ -114,37 +114,37 @@ export const GLOSSARY = [
     id: 'numerator', term: 'Numerator', strand: 'n', level: 'F',
     def: 'The top number of a fraction. It counts how many parts you have.',
     example: 'In {frac:3/8} the numerator is 3: three parts.',
-    watch: 'Memory hook: numerator = "number of parts" and it sits up top like a number on a roof.',
+    watch: 'Memory hook: the numerator tells you the number of parts, and it sits at the top.',
     see: ['denominator'],
   },
   {
     id: 'denominator', term: 'Denominator', strand: 'n', level: 'F',
     def: 'The bottom number of a fraction. It tells you how many equal parts the whole is cut into, and so how big each part is.',
     example: 'In {frac:3/8} the denominator is 8: the whole is cut into eighths.',
-    watch: 'Bigger denominator, smaller parts: {frac:1/8} is smaller than {frac:1/4}. Denominators are never added when you add fractions.',
+    watch: 'A bigger denominator means smaller parts: {frac:1/8} is smaller than {frac:1/4}. You do not add the denominators when you add fractions.',
     see: ['numerator', 'common-denominator'],
   },
   {
     id: 'equivalent-fractions', term: 'Equivalent fractions', strand: 'n', level: 'F',
-    def: 'Fractions that look different but have the same value. Multiply or divide top and bottom by the same number to make one.',
+    def: 'Fractions that look different but have the same value. Multiply or divide the numerator and denominator by the same non-zero number to make one.',
     example: '{frac:1/2} = {frac:2/4} = {frac:3/6} = {frac:50/100}.',
-    watch: 'You must do the same thing to the top and the bottom. Adding the same number to both changes the value.',
-    flip: 'Making a fraction bigger-looking (multiply top and bottom) and simplifying it (divide top and bottom).',
+    watch: 'You must multiply or divide the numerator and denominator by the same number. Adding the same number to both changes the value.',
+    flip: 'Making a fraction with a bigger numerator and denominator (multiply both by the same number), and simplifying it (divide both by the same number).',
     see: ['simplify-fraction'],
   },
   {
     id: 'simplify-fraction', term: 'Simplify a fraction', strand: 'n', level: 'F', aka: ['cancel lowest terms'],
-    def: 'Write a fraction in its lowest terms: divide the top and bottom by the same number until nothing else divides both.',
-    example: '{frac:12/18}: divide top and bottom by 6 to get {frac:2/3}. {frac:2/3} cannot be simplified further.',
+    def: 'Write a fraction in its lowest terms: divide the numerator and denominator by the same number until no number except 1 divides both.',
+    example: '{frac:12/18}: divide the numerator and denominator by 6 to get {frac:2/3}. {frac:2/3} cannot be simplified further.',
     watch: 'Examiners expect the simplest form unless the question says otherwise. Divide by the HCF to finish in one step.',
     flip: 'Simplifying is the reverse of making an equivalent fraction.',
     see: ['equivalent-fractions', 'hcf'],
   },
   {
     id: 'improper-fraction', term: 'Improper fraction', strand: 'n', level: 'F',
-    def: 'A fraction where the top is bigger than (or equal to) the bottom, so it is worth 1 or more. It is also called a top-heavy fraction.',
+    def: 'A fraction where the numerator is bigger than or equal to the denominator, so it is worth 1 or more. It is also called a top-heavy fraction.',
     example: '{frac:7/4} = 1 {frac:3/4}.',
-    flip: 'Convert to a mixed number to see its size; convert from a mixed number before multiplying or dividing.',
+    flip: 'Convert an improper fraction to a mixed number to see its size. Convert a mixed number to an improper fraction before multiplying or dividing.',
     see: ['mixed-number'],
   },
   {
@@ -158,7 +158,7 @@ export const GLOSSARY = [
     id: 'common-denominator', term: 'Common denominator', strand: 'n', level: 'F',
     def: 'A denominator that two or more fractions share. You need one before you can add or subtract fractions.',
     example: '{frac:1/3} + {frac:1/4}: use 12 as the common denominator. {frac:4/12} + {frac:3/12} = {frac:7/12}.',
-    watch: 'You add the numerators only. {frac:1/3} + {frac:1/4} is not {frac:2/7}.',
+    watch: 'You add the numerators only, not the denominators. {frac:1/3} + {frac:1/4} is not {frac:2/7}.',
     see: ['lcm', 'denominator'],
   },
   {
@@ -170,22 +170,22 @@ export const GLOSSARY = [
   },
   {
     id: 'multiplier', term: 'Multiplier', strand: 'n', level: 'F',
-    def: 'A single number you multiply by to make a percentage change in one step.',
-    example: '15% decrease: multiplier 0.85. 7% increase: multiplier 1.07.',
+    def: 'A single number you multiply a quantity by to make a percentage change in one step.',
+    example: 'A 15% decrease has multiplier 0.85. A 7% increase has multiplier 1.07.',
     flip: 'To undo a percentage change, divide by the same multiplier.',
     see: ['reverse-percentage', 'depreciation'],
   },
   {
     id: 'reverse-percentage', term: 'Reverse percentage', strand: 'n', level: 'F',
     def: 'Working backwards from the value after a percentage change to find the original value.',
-    example: 'After a 20% discount a coat costs &pound;48. Multiplier 0.8, so original = 48 &divide; 0.8 = &pound;60.',
+    example: 'After a 20% discount a coat costs &pound;48. The multiplier is 0.8, so the original price = 48 &divide; 0.8 = &pound;60.',
     watch: 'Do not add 20% back onto &pound;48. The 20% was taken from the original, not from &pound;48.',
     see: ['multiplier'],
   },
   {
     id: 'depreciation', term: 'Depreciation', strand: 'n', level: 'H',
-    def: 'When something loses value over time. If it loses the same percentage each year this is compound depreciation.',
-    example: 'A car worth &pound;10 000 loses 15% a year. After 3 years: 10 000 &times; 0.85<sup>3</sup> = &pound;6141.25.',
+    def: 'When something loses value over time. If it loses the same percentage of its value each year, this is compound depreciation.',
+    example: 'A car worth &pound;10 000 loses 15% of its value each year. After 3 years its value is 10 000 &times; 0.85<sup>3</sup> = &pound;6141.25.',
     flip: 'Compound growth (such as interest) is the same idea with a multiplier bigger than 1.',
     see: ['multiplier'],
   },
@@ -198,8 +198,8 @@ export const GLOSSARY = [
   },
   {
     id: 'rationalising', term: 'Rationalising the denominator', strand: 'n', level: 'H',
-    def: 'Rewriting a fraction so there is no surd on the bottom. Multiply top and bottom by a suitable surd.',
-    example: '{frac:1/&radic;2} = {frac:&radic;2/2}. For 3 &minus; &radic;3 on the bottom, multiply by 3 + &radic;3: (3 &minus; &radic;3)(3 + &radic;3) = 9 &minus; 3 = 6.',
+    def: 'Rewriting a fraction so there is no surd in the denominator. Multiply the numerator and denominator by a suitable surd.',
+    example: '{frac:1/&radic;2} = {frac:&radic;2/2}. When the denominator is 3 &minus; &radic;3, multiply the numerator and denominator by 3 + &radic;3: (3 &minus; &radic;3)(3 + &radic;3) = 9 &minus; 3 = 6.',
     see: ['surd'],
   },
   {
@@ -212,7 +212,7 @@ export const GLOSSARY = [
     id: 'decimal-place', term: 'Decimal place (d.p.)', strand: 'n', level: 'F',
     def: 'The position of a digit after the decimal point. "To 1 d.p." means one digit after the point.',
     example: '8.602 to 1 d.p. is 8.6. 7.2111 to 1 d.p. is 7.2. 3.95 to 1 d.p. is 4.0.',
-    watch: 'Look at the next digit only: 5 or more rounds up. Keep the trailing zero (4.0) when asked for 1 d.p.',
+    watch: 'Look only at the digit after the place you are rounding to: 5 or more rounds up, 4 or less rounds down. Keep the trailing zero (4.0) when asked for 1 d.p.',
     see: ['significant-figure'],
   },
   {
@@ -258,14 +258,14 @@ export const GLOSSARY = [
     def: 'The result of adding numbers together.',
     example: 'The sum of 7 and 5 is 12.',
     watch: 'In everyday English "a sum" can mean any calculation. In maths it is specifically the answer to an addition.',
-    flip: 'The difference undoes the sum: if the sum of 7 and 5 is 12, the difference 12 &minus; 5 is 7.',
+    flip: 'Subtraction undoes a sum: if the sum of 7 and 5 is 12, then 12 &minus; 5 = 7.',
     see: ['difference', 'product'],
   },
   {
     id: 'difference', term: 'Difference', strand: 'n', level: 'F',
     def: 'The result of subtracting the smaller number from the larger: how far apart two numbers are.',
     example: 'The difference between 83 and 127 is 127 &minus; 83 = 44.',
-    watch: 'On a number line the difference is always "higher minus lower", so it is never negative. From &minus;3 to 4 the difference is 4 &minus; (&minus;3) = 7.',
+    watch: 'The difference is always the bigger number minus the smaller number, so it is never negative. From &minus;3 to 4 the difference is 4 &minus; (&minus;3) = 7.',
     see: ['sum', 'negative-number'],
   },
   {
@@ -287,8 +287,8 @@ export const GLOSSARY = [
     id: 'remainder', term: 'Remainder', strand: 'n', level: 'F',
     def: 'What is left over when one whole number does not divide exactly into another.',
     example: '95 &divide; 4 = 23 remainder 3, because 4 &times; 23 = 92 and 95 &minus; 92 = 3.',
-    watch: 'In a real problem a remainder usually means you need one more: 70 students in 16-seat minibuses need 5 minibuses, not 4.',
-    flip: 'number = divisor &times; quotient + remainder.',
+    watch: 'In a real problem, a remainder often means you need one more: 70 students in 16-seat minibuses need 5 minibuses, not 4.',
+    flip: 'The original number = divisor &times; quotient + remainder.',
     see: ['quotient', 'factor'],
   },
   {
@@ -317,7 +317,7 @@ export const GLOSSARY = [
     id: 'divisible', term: 'Divisible', strand: 'n', level: 'F',
     def: 'A number is divisible by another if it divides into it exactly, with no remainder.',
     example: '78 is divisible by 6 because 78 &divide; 6 = 13. 4,563 is divisible by 3 because its digits add up to 18, which is a multiple of 3.',
-    watch: 'Quick tests: by 2 if it ends in an even digit; by 3 if the digit sum divides by 3, and by 9 if it divides by 9; by 5 if it ends in 0 or 5; by 10 if it ends in 0.',
+    watch: 'Quick tests: a number is divisible by 2 if its last digit is even; by 3 if its digit sum is divisible by 3; by 9 if its digit sum is divisible by 9; by 5 if its last digit is 0 or 5; by 10 if its last digit is 0.',
     flip: 'If A is divisible by B, then B is a factor of A and A is a multiple of B.',
     see: ['factor', 'multiple'],
   },
@@ -331,7 +331,7 @@ export const GLOSSARY = [
   },
   {
     id: 'cube-number', term: 'Cube number', strand: 'n', level: 'F',
-    def: 'The answer when a whole number is multiplied by itself twice (three of the number multiplied together). It is the volume of a cube with that side length.',
+    def: 'The answer when a whole number is multiplied by itself twice, so three copies of the number are multiplied together. It is the volume of a cube whose side length is that whole number.',
     example: '1, 8, 27, 64, 125 &hellip; 4<sup>3</sup> = 4 &times; 4 &times; 4 = 64.',
     watch: 'A negative number cubed stays negative: (&minus;2)<sup>3</sup> = &minus;8.',
     flip: 'Cubing and cube-rooting undo each other.',
@@ -341,7 +341,7 @@ export const GLOSSARY = [
     id: 'cube-root', term: 'Cube root', strand: 'n', level: 'F',
     def: 'The number that, multiplied by itself twice, gives the number you started with. It is written with the sign &#8731;.',
     example: '&#8731;125 = 5 because 5 &times; 5 &times; 5 = 125.',
-    watch: 'Unlike square roots, a cube root of a negative number exists: &#8731;(&minus;8) = &minus;2.',
+    watch: 'Unlike square roots, a negative number does have a cube root: &#8731;(&minus;8) = &minus;2.',
     flip: 'The inverse of cubing.',
     see: ['cube-number', 'square-root'],
   },
@@ -357,21 +357,21 @@ export const GLOSSARY = [
     id: 'calculate', term: 'Calculate', strand: 'n', level: 'F',
     def: 'A question word: use maths to find a number. A calculator is usually allowed, and you should still show your working.',
     example: 'Calculate 15% of 80. Answer: 0.15 &times; 80 = 12.',
-    watch: 'Look at the paper: some are non-calculator.',
+    watch: 'Check the instructions on the paper: some papers do not allow a calculator.',
     see: ['work-out', 'write-down'],
   },
   {
     id: 'show-that', term: 'Show that', strand: 'n', level: 'F',
     def: 'A question word: the answer is given to you, and you must prove it is right by writing every step. The marks are for the working.',
     example: 'Show that x = 4 is a solution of 3x &minus; 1 = 11. Write 3 &times; 4 &minus; 1 = 11.',
-    watch: 'Do not just write the answer: it is already in the question.',
+    watch: 'Do not write only the answer: it is already in the question.',
     see: ['work-out', 'explain-command'],
   },
   {
     id: 'explain-command', term: 'Explain', strand: 'n', level: 'F',
     def: 'A question word: give a reason in words (and numbers) for why something is true.',
     example: 'Explain why 1 is not a prime number. Answer: it has only one factor, and a prime needs exactly two.',
-    watch: 'Use a full sentence with a because.',
+    watch: 'Write a full sentence that includes the word "because".',
     see: ['show-that', 'work-out'],
   },
   {
@@ -382,7 +382,7 @@ export const GLOSSARY = [
   },
   {
     id: 'hence', term: 'Hence', strand: 'n', level: 'F',
-    def: 'A question word: use what you have just found to get the next answer. The question wants you to use your last result, not start again.',
+    def: 'A question word: use the result you found in the previous part to get the next answer. The question wants you to use your last result, not start again.',
     example: 'Factorise x&sup2; + 5x + 6 to get (x + 2)(x + 3). Hence solve x&sup2; + 5x + 6 = 0. Use the brackets: x = &minus;2 or x = &minus;3.',
     watch: 'If you ignore the earlier part and use another method, you may lose the marks.',
     see: ['deduce', 'show-that'],
@@ -391,7 +391,7 @@ export const GLOSSARY = [
     id: 'deduce', term: 'Deduce', strand: 'n', level: 'F',
     def: 'A question word: work out a new fact from a fact you are given or have already found. Say which fact you used.',
     example: 'You are told 23 &times; 14 = 322. Deduce 2.3 &times; 14. Write: 2.3 is 23 &divide; 10, so the answer is 322 &divide; 10 = 32.2.',
-    watch: 'A calculator is not the point: use the fact you were given.',
+    watch: 'Do not start again with a calculator: use the fact you were given.',
     see: ['hence', 'explain-command'],
   },
   {
@@ -412,7 +412,7 @@ export const GLOSSARY = [
     id: 'sketch', term: 'Sketch', strand: 'n', level: 'F',
     def: 'A question word: draw a quick, rough picture that shows the main features. It does not need to be exact, but it must have the right shape and label the key points.',
     example: 'Sketch the graph of y = x&sup2; &minus; 4. Draw a U-shaped curve that crosses the x-axis at &minus;2 and 2, and the y-axis at &minus;4.',
-    watch: 'Sketch is not draw. Draw means accurate, with a ruler and compasses. Sketch means rough. Label the points the question asks for.',
+    watch: 'Sketch is not the same as draw. Draw means accurate, with a ruler and compasses. Sketch means rough. Label the points the question asks for.',
     see: ['work-out'],
   },
   {
@@ -425,15 +425,15 @@ export const GLOSSARY = [
   {
     id: 'describe', term: 'Describe', strand: 'n', level: 'F',
     def: 'A question word: say in words what you see or what happens. Give the key facts, and numbers where they matter.',
-    example: 'Describe the pattern in 3, 7, 11, 15. Write: it goes up by 4 each time.',
+    example: 'Describe the pattern in 3, 7, 11, 15. Write: the numbers go up by 4 each time.',
     watch: 'For a transformation, a full description needs the type and the details: for a translation, say translation and give the vector.',
     see: ['explain-command', 'sketch'],
   },
   {
     id: 'wage', term: 'Wage', strand: 'n', level: 'F',
-    def: 'Money paid for work, usually counted by the hour or the week.',
+    def: 'Money paid for work, usually worked out per hour or per week.',
     example: 'A wage of &pound;12 an hour for 7 hours is 12 &times; 7 = &pound;84.',
-    watch: 'A salary is similar but is a fixed amount for the year, paid monthly.',
+    watch: 'A salary is similar, but it is a fixed amount for the year, usually paid monthly.',
     see: ['salary', 'commission'],
   },
   {
@@ -444,20 +444,20 @@ export const GLOSSARY = [
   },
   {
     id: 'pence', term: 'Pence', strand: 'n', level: 'F',
-    def: 'The small coins in UK money. There are 100 pence (100p) in &pound;1.',
+    def: 'A unit of UK money. There are 100 pence (100p) in &pound;1.',
     example: '65p = &pound;0.65. &pound;2.40 = 240p.',
     watch: 'Put the answer in the unit the question asks for. Do not write &pound;0.65p, which mixes the two.',
   },
   {
     id: 'profit', term: 'Profit', strand: 'r', level: 'F',
-    def: 'The money left after the costs are taken away from the money you get in.',
+    def: 'The money left after you take the costs away from the money you receive.',
     example: 'You buy a bike for &pound;80 and sell it for &pound;100. Profit = 100 &minus; 80 = &pound;20.',
-    flip: 'If the costs are bigger than the money in, the difference is a loss.',
+    flip: 'If the costs are more than the money received, the difference is a loss.',
     see: ['loss'],
   },
   {
     id: 'loss', term: 'Loss', strand: 'r', level: 'F',
-    def: 'The money you are down when the costs are more than the money you get in.',
+    def: 'The amount of money lost when the costs are more than the money you receive.',
     example: 'You buy a bike for &pound;80 and sell it for &pound;70. Loss = 80 &minus; 70 = &pound;10.',
     see: ['profit'],
   },
@@ -482,8 +482,8 @@ export const GLOSSARY = [
   },
   {
     id: 'raffle', term: 'Raffle', strand: 'p', level: 'F',
-    def: 'A prize draw. Each ticket sold has an equal chance, so more tickets means a better chance.',
-    example: '200 tickets are sold and you buy 5. The probability you win is {frac:5/200} = {frac:1/40}.',
+    def: 'A prize draw. Every ticket sold has an equal chance of winning, so the more tickets you hold, the better your chance.',
+    example: '200 tickets are sold and you buy 5. If there is one prize, the probability that you win is {frac:5/200} = {frac:1/40}.',
   },
   {
     id: 'tip', term: 'Tip (gratuity)', strand: 'r', level: 'F',
@@ -494,7 +494,7 @@ export const GLOSSARY = [
   },
   {
     id: 'work-shift', term: 'Work shift', strand: 'n', level: 'F',
-    def: 'The set hours a person works in one go, for example 9 am to 5 pm.',
+    def: 'The fixed block of hours a person works in one go, for example 9 am to 5 pm.',
     example: 'A shift from 9:30 am to 5:15 pm is 7 hours 45 minutes long.',
     watch: 'Count from the start time to the end time. Take off any unpaid break if the question says so.',
     see: ['wage'],
@@ -534,12 +534,12 @@ export const GLOSSARY = [
   {
     id: 'digit-sum', term: 'Digit sum', strand: 'n', level: 'F',
     def: 'The total you get by adding the digits of a number. It helps you test divisibility by 3 and by 9.',
-    example: '4,563 has digit sum 4 + 5 + 6 + 3 = 18, so it divides by 3 and by 9.',
+    example: '4,563 has digit sum 4 + 5 + 6 + 3 = 18, so it is divisible by 3 and by 9.',
     see: ['divisible', 'digit'],
   },
   {
     id: 'carry-borrow', term: 'Carrying and borrowing', strand: 'n', level: 'F',
-    def: 'In written addition you <b>carry</b> a ten into the next column when a column adds to 10 or more. In written subtraction you <b>borrow</b> a ten from the next column when you cannot take away.',
+    def: 'In written addition you <b>carry</b> a ten into the next column when a column adds to 10 or more. In written subtraction you <b>borrow</b> a ten from the next column when you cannot subtract.',
     example: '8 + 4 = 12: write 2, carry 1 to the tens column.',
     watch: 'Borrowing here means taking a ten from the next column, not asking a friend.',
     see: ['place-value'],
@@ -553,8 +553,8 @@ export const GLOSSARY = [
   },
   {
     id: 'proof', term: 'Proof', strand: 'n', level: 'F',
-    def: 'A chain of reasons that shows a statement is true in every case, not just in the examples you tried.',
-    example: 'Examples show 3, 4, 5 and 5, 12, 13 fit a&sup2; + b&sup2; = c&sup2;. A proof shows it works for every right-angled triangle.',
+    def: 'A chain of reasons that shows a statement is true in every case, not only in the examples you tried.',
+    example: 'Examples show that the sides 3, 4, 5 and the sides 5, 12, 13 fit a&sup2; + b&sup2; = c&sup2;. A proof shows it works for every right-angled triangle.',
     watch: 'A few examples are evidence, not proof.',
     see: ['algebraic-proof'],
   },
@@ -570,7 +570,7 @@ export const GLOSSARY = [
     id: 'term', term: 'Term', strand: 'a', level: 'F',
     def: 'One part of an expression. Terms are separated by + and &minus; signs, and each term keeps the sign in front of it.',
     example: '4x &minus; 7y + 3 has three terms: 4x, &minus;7y and 3.',
-    watch: 'Not the same as "term" in sequences (the terms of a sequence are its numbers).',
+    watch: 'This is different from "term" in sequences (the terms of a sequence are its numbers).',
     see: ['expression', 'coefficient'],
   },
   {
@@ -583,7 +583,7 @@ export const GLOSSARY = [
     id: 'expression', term: 'Expression', strand: 'a', level: 'F',
     def: 'Letters and numbers combined with operations, with no equals sign. You can simplify an expression but you cannot solve it.',
     example: '3x + 5 is an expression. 3x + 5 = 20 is an equation.',
-    watch: 'In everyday English "expression" means a look on your face or a way of saying something. In maths there is no equals sign.',
+    watch: 'In everyday English "expression" means a look on your face or a way of saying something. In maths an expression has no equals sign.',
     see: ['equation', 'formula'],
   },
   {
@@ -597,7 +597,7 @@ export const GLOSSARY = [
     id: 'solve', term: 'Solve', strand: 'a', level: 'F',
     def: 'Find the value (or values) of the unknown that make an equation true.',
     example: 'Solve 3x + 5 = 20: take 5 from both sides (3x = 15), then divide both by 3 (x = 5).',
-    watch: 'Always check: put your answer back in. 3 &times; 5 + 5 = 20 &check;',
+    watch: 'Check your answer by putting it back into the equation. 3 &times; 5 + 5 = 20 &check;',
     see: ['equation', 'inverse-operation'],
   },
   {
@@ -617,7 +617,7 @@ export const GLOSSARY = [
   {
     id: 'formula', term: 'Formula', strand: 'a', level: 'F',
     def: 'A rule written with letters that links quantities. The plural is formulae.',
-    example: 'Area of a rectangle: A = l &times; w. Perimeter of a rectangle: P = 2l + 2w.',
+    example: 'Area of a rectangle: A = l &times; w, where l is the length and w is the width. Perimeter of a rectangle: P = 2l + 2w.',
     see: ['substitute', 'expression'],
   },
   {
@@ -669,7 +669,7 @@ export const GLOSSARY = [
   {
     id: 'discriminant', term: 'Discriminant', strand: 'a', level: 'H',
     def: 'The expression b&sup2; &minus; 4ac from the quadratic formula. Its sign tells you how many real solutions ax&sup2; + bx + c = 0 has.',
-    example: 'Positive: two solutions. Zero: one (repeated) solution. Negative: none, as you cannot square-root a negative.',
+    example: 'If the discriminant is positive, there are two solutions. If it is zero, there is one (repeated) solution. If it is negative, there are no real solutions, because you cannot take the square root of a negative number.',
     see: ['quadratic'],
   },
   {
@@ -682,7 +682,7 @@ export const GLOSSARY = [
     id: 'composite-function', term: 'Composite function', strand: 'a', level: 'H',
     def: 'One function followed by another. fg(x) means do g first, then f.',
     example: 'f(x) = x + 1 and g(x) = 2x. fg(3) = f(6) = 7 but gf(3) = g(4) = 8.',
-    watch: 'Order matters: fg and gf are usually different. The one nearest x goes first.',
+    watch: 'Order matters: fg and gf are usually different. The function written nearest x goes first.',
     see: ['function'],
   },
   {
@@ -713,7 +713,7 @@ export const GLOSSARY = [
   },
   {
     id: 'simultaneous-equations', term: 'Simultaneous equations', strand: 'a', level: 'F', aka: ['elimination substitution'],
-    def: 'Two (or more) equations that are true at the same time. Their solution is where their graphs cross.',
+    def: 'Two or more equations that are all true at the same time for the same values of the unknowns. For two straight-line equations, the solution is where their graphs cross.',
     example: 'x + y = 5 and x &minus; y = 1 are both true when x = 3 and y = 2.',
     see: ['equation'],
   },
@@ -748,7 +748,7 @@ export const GLOSSARY = [
   {
     id: 'ratio', term: 'Ratio', strand: 'r', level: 'F',
     def: 'A way of comparing quantities. A ratio tells you the shares, not the actual numbers.',
-    example: 'Boys to girls 3 : 5 means for every 3 boys there are 5 girls. If one part is x, there are 3x boys and 5x girls.',
+    example: 'A ratio of boys to girls of 3 : 5 means for every 3 boys there are 5 girls. If one part is x, there are 3x boys and 5x girls.',
     watch: 'Order matters: boys to girls (3 : 5) is not girls to boys.',
     flip: 'Sharing a total in a ratio, and finding the total (or a share) from one known amount.',
     see: ['proportion'],
@@ -783,7 +783,7 @@ export const GLOSSARY = [
   },
   {
     id: 'perpendicular', term: 'Perpendicular', strand: 'g', level: 'F',
-    def: 'At right angles (90&deg;). Two lines that are not horizontal or vertical are perpendicular if their gradients multiply to &minus;1.',
+    def: 'At right angles to each other (90&deg;). Two lines that are neither horizontal nor vertical are perpendicular if their gradients multiply to &minus;1.',
     example: 'Gradients 2 and &minus;{frac:1/2} give 2 &times; (&minus;{frac:1/2}) = &minus;1, so those lines are perpendicular.',
     see: ['right-angle', 'tangent'],
   },
@@ -791,28 +791,28 @@ export const GLOSSARY = [
     id: 'hypotenuse', term: 'Hypotenuse', strand: 'g', level: 'F',
     def: 'The longest side of a right-angled triangle. It is always opposite the right angle.',
     example: 'In a triangle with sides 3, 4 and 5, the hypotenuse is 5.',
-    watch: 'Look for the right angle first, then pick the side opposite it. It is not just "the slanted one".',
+    watch: 'Look for the right angle first, then pick the side opposite it. Do not pick it because it is "the slanted one".',
     see: ['pythagoras-theorem'],
   },
   {
     id: 'pythagoras-theorem', term: "Pythagoras' theorem", strand: 'g', level: 'F',
-    def: 'In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: a&sup2; + b&sup2; = c&sup2;.',
-    example: 'Sides 3 and 4: c&sup2; = 9 + 16 = 25, so c = 5.',
+    def: 'In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: a&sup2; + b&sup2; = c&sup2;, where c is the hypotenuse.',
+    example: 'The two shorter sides are 3 and 4: c&sup2; = 9 + 16 = 25, so c = 5.',
     watch: 'It works for right-angled triangles only. To find a short side, subtract: a&sup2; = c&sup2; &minus; b&sup2;.',
     flip: 'Find the hypotenuse (add the squares) or find a shorter side (subtract). The converse tests whether a triangle is right-angled.',
     see: ['hypotenuse', 'pythagorean-triple', 'converse'],
   },
   {
     id: 'pythagorean-triple', term: 'Pythagorean triple', strand: 'g', level: 'F',
-    def: 'Three whole numbers that fit a&sup2; + b&sup2; = c&sup2;.',
-    example: '3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25. Doubling or tripling a triple gives another: 6, 8, 10.',
+    def: 'Three whole numbers a, b and c that fit a&sup2; + b&sup2; = c&sup2;.',
+    example: '3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25. Doubling or tripling every number in a triple gives another triple, such as 6, 8, 10.',
     see: ['pythagoras-theorem'],
   },
   {
     id: 'converse', term: 'Converse', strand: 'g', level: 'F',
-    def: 'The reverse of a statement: swap "if" and "then". A converse is not automatically true, but for Pythagoras it is.',
-    example: 'Theorem: right-angled &rArr; a&sup2; + b&sup2; = c&sup2;. Converse: if a&sup2; + b&sup2; = c&sup2; then the triangle is right-angled.',
-    flip: 'This is the "two sides" idea in its purest form.',
+    def: 'The reverse of a statement: swap "if" and "then". The converse of a true statement is not always true, but for Pythagoras&rsquo; theorem it is.',
+    example: 'Theorem: if a triangle is right-angled, then a&sup2; + b&sup2; = c&sup2;. Converse: if a&sup2; + b&sup2; = c&sup2;, then the triangle is right-angled.',
+    flip: 'The theorem and its converse are the two directions of one fact.',
     see: ['pythagoras-theorem'],
   },
   {
@@ -829,7 +829,7 @@ export const GLOSSARY = [
   },
   {
     id: 'diameter', term: 'Diameter', strand: 'g', level: 'F',
-    def: 'A straight line across a circle through the centre. It is twice the radius.',
+    def: 'A straight line across a circle that passes through the centre. Its length is twice the radius.',
     example: 'Radius 4 cm, diameter 8 cm.',
     see: ['radius', 'chord'],
   },
@@ -842,13 +842,13 @@ export const GLOSSARY = [
   {
     id: 'tangent', term: 'Tangent', strand: 'g', level: 'H',
     def: 'A straight line that touches a circle at exactly one point. It is perpendicular to the radius at that point.',
-    example: 'A bike wheel resting on flat ground: the ground is a tangent.',
+    example: 'A bike wheel resting on flat ground: the ground is a tangent to the wheel.',
     see: ['radius', 'perpendicular'],
   },
   {
     id: 'cyclic-quadrilateral', term: 'Cyclic quadrilateral', strand: 'g', level: 'H',
     def: 'A four-sided shape with all four corners on a circle. Its opposite angles add up to 180&deg;.',
-    example: 'If one angle is 110&deg;, the angle opposite is 70&deg;.',
+    example: 'If one angle is 110&deg;, the opposite angle is 70&deg;.',
     see: ['angle-in-semicircle'],
   },
   {
@@ -861,12 +861,12 @@ export const GLOSSARY = [
   {
     id: 'angle-at-centre', term: 'Angle at the centre', strand: 'g', level: 'H',
     def: 'The circle theorem: the angle at the centre of a circle is twice the angle at the circumference when both are made from the same arc (the same two points on the circle).',
-    example: 'Angle at the circumference 35&deg;, so angle at the centre 70&deg;.',
+    example: 'If the angle at the circumference is 35&deg;, the angle at the centre is 70&deg;.',
     see: ['angle-in-semicircle', 'radius'],
   },
   {
     id: 'frustum', term: 'Frustum', strand: 'g', level: 'H',
-    def: 'What is left of a cone or pyramid when the top is cut off by a cut parallel to the base.',
+    def: 'What is left of a cone or pyramid when the top is removed by a cut parallel to the base.',
     example: 'A lampshade or a flowerpot.',
     see: ['similar-shapes'],
   },
@@ -878,26 +878,26 @@ export const GLOSSARY = [
   },
   {
     id: 'sine-rule', term: 'Sine rule', strand: 'g', level: 'H',
-    def: 'For any triangle: a / sin A = b / sin B = c / sin C. Use it when you know a side and the angle opposite it.',
-    example: 'Side a = 6 opposite A = 30&deg;; find side b opposite B = 45&deg;.',
+    def: 'For any triangle: a / sin A = b / sin B = c / sin C, where side a is opposite angle A, and so on. Use it when you know a side and the angle opposite it, and one more side or angle.',
+    example: 'Side a = 6 is opposite angle A = 30&deg;. Find side b, which is opposite angle B = 45&deg;.',
     watch: 'When finding an angle, there may be two answers (see ambiguous case).',
     see: ['ambiguous-case', 'cosine-rule'],
   },
   {
     id: 'cosine-rule', term: 'Cosine rule', strand: 'g', level: 'H',
-    def: 'For any triangle: a&sup2; = b&sup2; + c&sup2; &minus; 2bc cos A. Use it when you know all three sides, or two sides and the angle between them.',
-    example: 'It becomes Pythagoras when A = 90&deg;, because cos 90&deg; = 0.',
+    def: 'For any triangle: a&sup2; = b&sup2; + c&sup2; &minus; 2bc cos A, where side a is opposite angle A. Use it when you know all three sides, or two sides and the angle between them.',
+    example: 'The rule becomes Pythagoras&rsquo; theorem when A = 90&deg;, because cos 90&deg; = 0.',
     see: ['sine-rule', 'included-angle'],
   },
   {
     id: 'ambiguous-case', term: 'Ambiguous case', strand: 'g', level: 'H',
-    def: 'When the sine rule finds an angle there can be two answers, &theta; and 180&deg; &minus; &theta;, because they have the same sine.',
+    def: 'When the sine rule is used to find an angle, there can be two answers, &theta; and 180&deg; &minus; &theta;, because they have the same sine.',
     example: 'sin 30&deg; = sin 150&deg; = 0.5.',
     see: ['sine-rule'],
   },
   {
     id: 'exact-trig-values', term: 'Exact trig values', strand: 'g', level: 'H',
-    def: 'Values of sin, cos and tan you should know without a calculator.',
+    def: 'Exact values of sin, cos and tan for some angles, which you should know without a calculator.',
     example: 'sin 30&deg; = {frac:1/2}, cos 60&deg; = {frac:1/2}, tan 45&deg; = 1, sin 60&deg; = {frac:&radic;3/2}.',
     see: ['sine-rule'],
   },
@@ -905,7 +905,7 @@ export const GLOSSARY = [
   {
     id: 'angle', term: 'Angle', strand: 'g', level: 'F',
     def: 'A measure of turn between two lines that meet at a point. It is measured in degrees: a full turn is 360&deg;.',
-    example: 'A right angle is 90&deg;. A straight line is 180&deg;.',
+    example: 'A right angle is 90&deg;. A straight line is an angle of 180&deg;.',
     watch: 'The size of an angle does not depend on how long the lines are drawn.',
     see: ['right-angle', 'acute-angle', 'obtuse-angle', 'reflex-angle'],
   },
@@ -925,42 +925,42 @@ export const GLOSSARY = [
   {
     id: 'reflex-angle', term: 'Reflex angle', strand: 'g', level: 'F',
     def: 'An angle that is more than 180&deg; and less than 360&deg;.',
-    example: '270&deg; is reflex. A reflex angle plus the angle on the other side of the same point makes 360&deg;.',
+    example: '270&deg; is reflex. A reflex angle and the angle on the other side of the same point together make 360&deg;.',
     see: ['angle', 'obtuse-angle'],
   },
   {
     id: 'vertically-opposite', term: 'Vertically opposite angles', strand: 'g', level: 'F',
     def: 'The angles that face each other when two straight lines cross (an X shape). They are always equal.',
     example: 'If one angle is 48&deg;, the angle directly opposite is also 48&deg;, and each of the other two is 132&deg;.',
-    watch: 'These are not the angles <i>next to</i> each other: those add to 180&deg;.',
+    watch: 'Angles <i>next to</i> each other on a straight line are not vertically opposite: they add to 180&deg;.',
     see: ['angle'],
   },
   {
     id: 'alternate-angles', term: 'Alternate angles', strand: 'g', level: 'F',
     def: 'Angles between two parallel lines, on opposite sides of the line that crosses them, forming a Z shape. Alternate angles are equal.',
     example: 'If one angle is 70&deg;, the alternate angle is also 70&deg;.',
-    watch: 'Only equal when the two lines are parallel.',
+    watch: 'Alternate angles are equal only when the two lines are parallel.',
     see: ['corresponding-angles', 'co-interior-angles', 'parallel'],
   },
   {
     id: 'corresponding-angles', term: 'Corresponding angles', strand: 'g', level: 'F',
     def: 'Angles in the same position at each of the two crossing points when a line crosses two parallel lines, forming an F shape. Corresponding angles are equal.',
     example: 'If the top-right angle at one crossing is 70&deg;, the top-right angle at the other is also 70&deg;.',
-    watch: 'Only equal when the two lines are parallel.',
+    watch: 'Corresponding angles are equal only when the two lines are parallel.',
     see: ['alternate-angles', 'co-interior-angles', 'parallel'],
   },
   {
     id: 'co-interior-angles', term: 'Co-interior angles', strand: 'g', level: 'F',
     def: 'Angles between two parallel lines, on the same side of the line that crosses them, forming a C shape. Co-interior angles add up to 180&deg;.',
-    example: 'If one angle is 70&deg;, its co-interior angle is 180 &minus; 70 = 110&deg;.',
-    watch: 'Not equal (unless both are 90&deg;): they add to 180&deg;.',
+    example: 'If one angle is 70&deg;, its co-interior angle is 180&deg; &minus; 70&deg; = 110&deg;.',
+    watch: 'They are not equal, unless both are 90&deg;: they add up to 180&deg;.',
     see: ['alternate-angles', 'corresponding-angles', 'parallel'],
   },
   {
     id: 'parallel', term: 'Parallel', strand: 'g', level: 'F',
-    def: 'Lines that stay the same distance apart and never meet. They are marked with matching arrows.',
+    def: 'Straight lines that stay the same distance apart and never meet. They are marked with matching arrows.',
     example: 'The two long edges of a rectangle are parallel.',
-    watch: 'Two lines that meet are never parallel.',
+    watch: 'Two straight lines that cross each other are not parallel.',
     see: ['perpendicular', 'alternate-angles'],
   },
   {
@@ -975,8 +975,8 @@ export const GLOSSARY = [
     id: 'regular-polygon', term: 'Regular polygon', strand: 'g', level: 'F',
     def: 'A polygon where all the sides are equal and all the angles are equal.',
     example: 'A square and an equilateral triangle are regular. Each interior angle of a regular hexagon is 120&deg;.',
-    watch: 'A shape can have equal sides without equal angles (a rhombus), so it is not regular.',
-    flip: 'Each exterior angle is 360 &divide; n, so n = 360 &divide; exterior angle.',
+    watch: 'A shape can have equal sides without equal angles (a rhombus), and then it is not regular.',
+    flip: 'Each exterior angle is 360&deg; &divide; n, so n = 360&deg; &divide; exterior angle.',
     see: ['polygon'],
   },
 
@@ -991,9 +991,9 @@ export const GLOSSARY = [
   {
     id: 'exterior-angle', term: 'Exterior angle', strand: 'g', level: 'F',
     def: 'An angle outside a shape at a corner, between one side and the next side extended in a straight line.',
-    example: ['A regular hexagon has exterior angles of 360 &divide; 6 = 60&deg;.', 'The exterior angles of a polygon add up to 360&deg;.'],
+    example: ['A regular hexagon has exterior angles of 360&deg; &divide; 6 = 60&deg;.', 'The exterior angles of a polygon add up to 360&deg;.'],
     watch: 'It is not the same as the interior angle. The two together make 180&deg;.',
-    flip: 'Number of sides = 360 &divide; exterior angle (for a regular polygon).',
+    flip: 'Number of sides = 360&deg; &divide; exterior angle (for a regular polygon).',
     see: ['interior-angle', 'polygon', 'regular-polygon'],
   },
   {
@@ -1014,7 +1014,7 @@ export const GLOSSARY = [
   {
     id: 'diagonal', term: 'Diagonal', strand: 'g', level: 'F',
     def: 'A straight line joining two corners of a shape that are not next to each other.',
-    example: ['The diagonal of a 9 cm by 12 cm rectangle is 15 cm (Pythagoras).'],
+    example: ['The diagonal of a 9 cm by 12 cm rectangle is 15 cm (using Pythagoras&rsquo; theorem).'],
     see: ['hypotenuse', 'polygon'],
   },
 
@@ -1024,19 +1024,19 @@ export const GLOSSARY = [
     def: 'A number from 0 to 1 that says how likely something is. 0 means impossible and 1 means certain.',
     example: 'A fair coin lands heads with probability {frac:1/2}. A fair dice shows a 6 with probability {frac:1/6}.',
     watch: 'Probabilities of all possible outcomes add up to 1.',
-    flip: 'P(event) and P(not event) add to 1, so P(not) = 1 &minus; P.',
+    flip: 'The probability of an event happening and the probability of it not happening add up to 1. So P(not event) = 1 &minus; P(event).',
     see: ['tree-diagram'],
   },
   {
     id: 'tree-diagram', term: 'Tree diagram', strand: 'p', level: 'F',
-    def: 'A diagram of branches showing all possible outcomes of two or more events, with probabilities on the branches. Multiply along the branches, add between the end results you want.',
-    example: 'Two spins: P(head then head) = {frac:1/2} &times; {frac:1/2} = {frac:1/4}.',
+    def: 'A diagram of branches showing all possible outcomes of two or more events, with probabilities on the branches. Multiply the probabilities along the branches, and add the probabilities of the end results you want.',
+    example: 'Two flips of a fair coin: P(head then head) = {frac:1/2} &times; {frac:1/2} = {frac:1/4}.',
     see: ['without-replacement', 'probability'],
   },
   {
     id: 'without-replacement', term: 'Without replacement', strand: 'p', level: 'F',
     def: 'When an item is taken and not put back, so the second pick has one fewer to choose from and the probabilities change.',
-    example: 'A bag with 3 red and 2 blue counters. First pick red: {frac:3/5}. Second pick red (no replacement): {frac:2/4}.',
+    example: 'A bag with 3 red and 2 blue counters. The probability that the first pick is red is {frac:3/5}. The probability that the second pick is also red, with no replacement, is {frac:2/4}.',
     see: ['tree-diagram'],
   },
   {
@@ -1072,7 +1072,7 @@ export const GLOSSARY = [
     "strand": "n",
     "level": "F",
     "def": "Interest worked out only on the starting amount, so the same amount is paid every year.",
-    "example": "&pound;600 at 3% simple interest for 4 years. 3% of 600 = &pound;18 a year, so the interest is 4 &times; 18 = &pound;72.",
+    "example": "&pound;600 at 3% simple interest for 4 years. 3% of &pound;600 = &pound;18 a year, so the interest is 4 &times; 18 = &pound;72.",
     "watch": "Simple interest does not earn interest on the interest. Compound interest does.",
     "flip": "Find the rate or the time from the interest paid: rate = interest &divide; (amount &times; years).",
     "see": [
@@ -1087,7 +1087,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "Value added tax: a percentage added to the price of most goods and services. The usual UK rate is 20%.",
     "example": "A bike costs &pound;250 before VAT. With 20% VAT: 250 &times; 1.2 = &pound;300.",
-    "watch": "To take VAT out of a price that includes it, divide by 1.2. Taking 20% off does not work.",
+    "watch": "To take VAT out of a price that includes it, divide by 1.2. Taking 20% off the price does not work.",
     "flip": "Price without VAT = price with VAT &divide; 1.2.",
     "see": [
       "multiplier",
@@ -1100,7 +1100,7 @@ export const GLOSSARY = [
     "strand": "n",
     "level": "F",
     "def": "How much an amount has changed, written as a percentage of the starting amount: change divided by original, times 100.",
-    "example": "A price goes from &pound;80 to &pound;92. Change = 12. 12 &divide; 80 &times; 100 = 15%, so it is a 15% increase.",
+    "example": "A price goes from &pound;80 to &pound;92. The change is &pound;12. 12 &divide; 80 &times; 100 = 15%, so it is a 15% increase.",
     "watch": "Always divide by the original amount, not the new one.",
     "flip": "To go from a percentage change to the new amount, use a multiplier.",
     "see": [
@@ -1113,12 +1113,12 @@ export const GLOSSARY = [
     "term": "Equivalent ratios",
     "strand": "r",
     "level": "F",
-    "def": "Ratios that describe the same split with different numbers. You get one by multiplying or dividing both sides by the same number.",
+    "def": "Ratios that describe the same split with different numbers. You get one by multiplying or dividing both numbers by the same number.",
     "example": [
       "2 : 3 = 4 : 6 = 10 : 15.",
-      "Divide 12 : 18 by 6 to get the simplest form, 2 : 3."
+      "Divide both numbers in 12 : 18 by 6 to get the simplest form, 2 : 3."
     ],
-    "watch": "Adding the same number to both sides does not work: 2 : 3 is not the same as 4 : 5.",
+    "watch": "Adding the same number to both parts does not work: 2 : 3 is not the same as 4 : 5.",
     "flip": "Simplifying a ratio, and scaling it up.",
     "see": [
       "ratio",
@@ -1157,7 +1157,7 @@ export const GLOSSARY = [
     "term": "Map scale",
     "strand": "r",
     "level": "F",
-    "def": "A ratio that compares a length on a map, plan or model with the real length. The same units are used on both sides.",
+    "def": "A ratio that compares a length on a map, plan or model with the real length. The same unit is used on both sides of the ratio.",
     "example": "A scale of 1 : 50 000 means 1 cm on the map is 50 000 cm (500 m) in real life.",
     "watch": "Change units at the end: multiply by the scale, then change centimetres to metres or kilometres.",
     "flip": "Map length to real length, and real length to map length.",
@@ -1174,9 +1174,9 @@ export const GLOSSARY = [
     "def": "The letter on its own on one side of a formula, usually the left. Making a letter the subject means rearranging the formula so that letter is alone.",
     "example": [
       "In v = u + at, the subject is v.",
-      "Make t the subject: take u from both sides, then divide by a, to get t = {frac:v &minus; u/a}."
+      "Make t the subject: subtract u from both sides, then divide by a, to get t = {frac:v &minus; u/a}."
     ],
-    "watch": "Use the same step on both sides, and divide the whole of the other side, not just one term.",
+    "watch": "Use the same step on both sides, and divide the whole of the other side, not only one term.",
     "flip": "Substituting puts numbers in to find the output. Making a letter the subject builds the formula that finds an input.",
     "see": [
       "formula",
@@ -1189,12 +1189,12 @@ export const GLOSSARY = [
     "term": "Elimination",
     "strand": "a",
     "level": "F",
-    "def": "A way to solve simultaneous equations. Add or subtract the two equations so that one letter disappears, leaving one equation with one unknown. You may need to multiply an equation first so the letter matches.",
+    "def": "A way to solve simultaneous equations. Add or subtract the two equations so that one letter disappears, leaving one equation with one unknown. You may need to multiply an equation first so that the numbers in front of the letter match.",
     "example": [
       "x + y = 7 and x &minus; y = 1. Add the equations: 2x = 8, so x = 4.",
       "Then 4 + y = 7, so y = 3."
     ],
-    "watch": "Same signs on the letter you want to remove: subtract. Different signs: add. Multiply every term of an equation, including the number on the right.",
+    "watch": "If the letter you want to remove has the same sign in both equations, subtract. If the signs are different, add. Multiply every term of an equation, including the number on the right.",
     "flip": "Check an answer by putting it back into both original equations.",
     "see": [
       "simultaneous-equations",
@@ -1251,7 +1251,7 @@ export const GLOSSARY = [
     "term": "Quadratic formula",
     "strand": "a",
     "level": "H",
-    "def": "A formula that solves any equation ax&sup2; + bx + c = 0 (with a not 0): x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) &divide; 2a.",
+    "def": "A formula that solves any equation ax&sup2; + bx + c = 0 (where a is not 0): x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) &divide; 2a.",
     "example": "x&sup2; &minus; 6x + 2 = 0 has a = 1, b = &minus;6, c = 2. So x = (6 &plusmn; &radic;28) &divide; 2 = 5.65 or 0.35 to 2 d.p.",
     "watch": "If b is negative, then &minus;b is positive. Take care with the signs.",
     "see": [
@@ -1281,7 +1281,7 @@ export const GLOSSARY = [
     "strand": "g",
     "level": "F",
     "def": "In a right-angled triangle, the side next to the angle you are using that is not the hypotenuse.",
-    "example": "For a ladder against a wall, the ground is adjacent to the angle between the ladder and the ground.",
+    "example": "For a ladder leaning against a wall, the ground is the adjacent side for the angle between the ladder and the ground.",
     "watch": "Two sides touch the angle. One is the hypotenuse, so adjacent is the other one.",
     "flip": "Naming the sides from an angle, and choosing the angle from the sides.",
     "see": [
@@ -1297,7 +1297,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "For an angle in a right-angled triangle, sine is the opposite side divided by the hypotenuse.",
     "example": [
-      "If the opposite is 3 and the hypotenuse is 5, sin x = {frac:3/5}.",
+      "If the opposite side is 3 and the hypotenuse is 5, sin x = {frac:3/5}.",
       "sin 30&deg; = 0.5."
     ],
     "watch": "Make sure your calculator is in degrees. In a right-angled triangle, sine is never more than 1.",
@@ -1315,7 +1315,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "For an angle in a right-angled triangle, cosine is the adjacent side divided by the hypotenuse.",
     "example": [
-      "If the adjacent is 4 and the hypotenuse is 5, cos x = {frac:4/5}.",
+      "If the adjacent side is 4 and the hypotenuse is 5, cos x = {frac:4/5}.",
       "cos 60&deg; = 0.5."
     ],
     "watch": "Make sure your calculator is in degrees. In a right-angled triangle, cosine is never more than 1.",
@@ -1333,7 +1333,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "For an angle in a right-angled triangle, tan is the opposite side divided by the adjacent side. It is not the same as a tangent line to a circle.",
     "example": [
-      "If the opposite is 3 and the adjacent is 4, tan x = {frac:3/4}.",
+      "If the opposite side is 3 and the adjacent side is 4, tan x = {frac:3/4}.",
       "tan 45&deg; = 1."
     ],
     "watch": "Tan can be bigger than 1. It does not use the hypotenuse.",
@@ -1350,8 +1350,8 @@ export const GLOSSARY = [
     "term": "SOH CAH TOA",
     "strand": "g",
     "level": "F",
-    "def": "A memory aid for the three trig ratios: Sin = Opposite / Hypotenuse, Cos = Adjacent / Hypotenuse, Tan = Opposite / Adjacent.",
-    "example": "You know the adjacent side and want the hypotenuse. Adjacent and Hypotenuse is CAH, so use cos.",
+    "def": "A memory aid for the three trig ratios: Sin = Opposite &divide; Hypotenuse, Cos = Adjacent &divide; Hypotenuse, Tan = Opposite &divide; Adjacent.",
+    "example": "You know the adjacent side and want the hypotenuse. Adjacent and Hypotenuse are the A and H in CAH, so use cos.",
     "flip": "Choosing the ratio from the sides, and naming the sides from the ratio.",
     "see": [
       "sine",
@@ -1412,7 +1412,7 @@ export const GLOSSARY = [
     "def": "Interest that is added to the account each year, so later interest is worked out on the interest as well.",
     "example": "&pound;1000 at 5% a year for 3 years: 1000 &times; 1.05<sup>3</sup> = &pound;1157.63 (to the nearest penny).",
     "watch": "Three years at 5% is not 15%. You multiply by 1.05 three times.",
-    "flip": "To find the starting amount, divide by the multiplier to the power n.",
+    "flip": "To find the starting amount, divide the final amount by the multiplier raised to the power n, where n is the number of years.",
     "see": [
       "multiplier",
       "simple-interest",
@@ -1459,7 +1459,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "A four-sided shape with one pair of parallel sides. The plural is trapezia.",
     "example": [
-      "Parallel sides 6 cm and 10 cm, height 4 cm between them.",
+      "The parallel sides are 6 cm and 10 cm, and the perpendicular height between them is 4 cm.",
       "Area = &frac12; &times; (6 + 10) &times; 4 = 32 cm&sup2;."
     ],
     "watch": "Add the two parallel sides, then halve. The slanting sides are not used in the area.",
@@ -1477,7 +1477,7 @@ export const GLOSSARY = [
     "def": "A shape made by joining simpler shapes, such as rectangles, triangles and semicircles.",
     "example": [
       "An L-shape split into two rectangles: add their areas.",
-      "Or draw a big rectangle round it and subtract the missing corner."
+      "Or draw a big rectangle round the shape, and subtract the area of the missing corner."
     ],
     "see": [
       "area",
@@ -1524,7 +1524,7 @@ export const GLOSSARY = [
     "def": "A solid with the same cross-section all the way along its length.",
     "example": [
       "Volume of a prism = area of cross-section &times; length.",
-      "A triangular prism with a triangle of area 10 cm&sup2; and a length of 8 cm has volume 80 cm&sup3;."
+      "A triangular prism with a cross-section that is a triangle of area 10 cm&sup2;, and a length of 8 cm, has volume 80 cm&sup3;."
     ],
     "see": [
       "cross-section",
@@ -1555,7 +1555,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "The total area of all the faces of a solid.",
     "example": [
-      "A cuboid 5 cm by 4 cm by 2 cm has pairs of faces 20, 10 and 8 cm&sup2;.",
+      "A cuboid 5 cm by 4 cm by 2 cm has three pairs of matching faces, with areas 20 cm&sup2;, 10 cm&sup2; and 8 cm&sup2;.",
       "Surface area = 2 &times; (20 + 10 + 8) = 76 cm&sup2;."
     ],
     "watch": "Surface area is measured in square units, even though the solid is 3D.",
@@ -1588,10 +1588,10 @@ export const GLOSSARY = [
     "level": "F",
     "def": "The distance all the way round the edge of a circle. It is the perimeter of a circle.",
     "example": [
-      "C = &pi; &times; d, or C = 2 &times; &pi; &times; r.",
+      "C = &pi; &times; d, or C = 2 &times; &pi; &times; r, where d is the diameter and r is the radius.",
       "A circle with diameter 10 cm has circumference &pi; &times; 10 = 31.4 cm (to 1 d.p.)."
     ],
-    "watch": "A bit more than 3 times the diameter. Do not confuse it with the area, which uses r&sup2;.",
+    "watch": "The circumference is a bit more than 3 times the diameter. Do not confuse it with the area, which uses r&sup2;.",
     "flip": "From circumference to diameter: divide by &pi;.",
     "see": [
       "pi",
@@ -1639,10 +1639,10 @@ export const GLOSSARY = [
     "level": "F",
     "def": "Half of a circle, cut along a diameter.",
     "example": [
-      "A semicircle with diameter 8 cm has area &frac12; &times; &pi; &times; 4&sup2; = 25.1 cm&sup2;.",
+      "A semicircle with diameter 8 cm has radius 4 cm, so its area is &frac12; &times; &pi; &times; 4&sup2; = 25.1 cm&sup2;.",
       "Its perimeter is the curved edge plus the straight 8 cm."
     ],
-    "watch": "The perimeter of a semicircle includes the straight edge, not just the curve.",
+    "watch": "The perimeter of a semicircle includes the straight edge, not only the curve.",
     "see": [
       "circle",
       "diameter",
@@ -1659,7 +1659,7 @@ export const GLOSSARY = [
       "A sector with angle 72&deg; and radius 5 cm is {frac:72/360} = {frac:1/5} of the circle.",
       "Its area is &frac15; &times; &pi; &times; 5&sup2; = 15.7 cm&sup2; (to 1 d.p.)."
     ],
-    "watch": "Find the fraction of the circle first: angle &divide; 360.",
+    "watch": "Find the fraction of the circle first: angle &divide; 360&deg;.",
     "see": [
       "arc",
       "radius",
@@ -1673,7 +1673,7 @@ export const GLOSSARY = [
     "level": "H",
     "def": "A solid with two equal circular ends and a curved side, like a tin of beans. It is a prism with a circle for its cross-section.",
     "example": [
-      "Volume = &pi; &times; r&sup2; &times; h.",
+      "Volume = &pi; &times; r&sup2; &times; h, where r is the radius and h is the height.",
       "Radius 4 cm and height 10 cm: volume = &pi; &times; 16 &times; 10 = 502.7 cm&sup3; (to 1 d.p.)."
     ],
     "see": [
@@ -1687,8 +1687,8 @@ export const GLOSSARY = [
     "term": "Outcome",
     "strand": "p",
     "level": "F",
-    "def": "One possible result of an experiment or event, such as heads when you toss a coin.",
-    "example": "Rolling a dice has 6 outcomes: 1, 2, 3, 4, 5 and 6. Two coins have 4 outcomes: HH, HT, TH and TT.",
+    "def": "One possible result of an experiment or event, such as getting heads when you toss a coin.",
+    "example": "Rolling a dice has 6 outcomes: 1, 2, 3, 4, 5 and 6. Tossing two coins has 4 outcomes: HH, HT, TH and TT.",
     "watch": "HT and TH are different outcomes. List them both.",
     "flip": "If you know how many outcomes there are and how many are favourable, you can work out the probability.",
     "see": [
@@ -1703,7 +1703,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "Outcomes that each have the same chance of happening, such as the faces of a fair dice.",
     "example": "A fair spinner with 8 equal sectors: each sector has probability {frac:1/8}.",
-    "watch": "Having three colours does not make each colour 1/3. That only works if the sectors are the same size.",
+    "watch": "Having three colours on a spinner does not make the probability of each colour {frac:1/3}. That only works if the sectors are the same size.",
     "flip": "If outcomes are not equally likely, use relative frequency from an experiment instead.",
     "see": [
       "probability",
@@ -1716,7 +1716,7 @@ export const GLOSSARY = [
     "strand": "p",
     "level": "F",
     "def": "The list or table of every possible outcome. A sample-space diagram is a table that shows them all, so none are missed.",
-    "example": "For two dice, the sample space has 36 pairs, from (1,1) to (6,6).",
+    "example": "For two dice, the sample space has 36 pairs of scores, from (1, 1) to (6, 6).",
     "flip": "Count the pairs you want in the table and divide by the total number of pairs to get a probability.",
     "see": [
       "outcome",
@@ -1743,7 +1743,7 @@ export const GLOSSARY = [
     "strand": "p",
     "level": "F",
     "def": "How many times you would expect something to happen on average: probability times the number of trials.",
-    "example": "P(6) = {frac:1/6}. In 120 rolls you expect {frac:1/6} &times; 120 = 20 sixes.",
+    "example": "P(6) = {frac:1/6}. In 120 rolls of a fair dice you expect {frac:1/6} &times; 120 = 20 sixes.",
     "watch": "It is an average, not a promise. You will not get exactly 20 sixes every time.",
     "flip": "Number of trials = expected number &divide; probability.",
     "see": [
@@ -1758,7 +1758,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "Outcomes that cannot happen at the same time. For mutually exclusive outcomes, P(A or B) = P(A) + P(B).",
     "example": "On one roll of a dice, a 2 and a 5 are mutually exclusive, so P(2 or 5) = {frac:1/6} + {frac:1/6} = {frac:1/3}.",
-    "watch": "Even and bigger than 3 can both be true (4 and 6), so you cannot just add those probabilities.",
+    "watch": "On one roll of a dice, &ldquo;even&rdquo; and &ldquo;bigger than 3&rdquo; can both be true (4 and 6), so adding their probabilities would count 4 and 6 twice.",
     "flip": "If P(A or B) is not P(A) + P(B), the outcomes overlap.",
     "see": [
       "probability",
@@ -1771,8 +1771,8 @@ export const GLOSSARY = [
     "strand": "p",
     "level": "F",
     "def": "Events where one does not change the chance of the other. For independent events, P(A and B) = P(A) &times; P(B).",
-    "example": "A coin and a dice: P(heads and 6) = {frac:1/2} &times; {frac:1/6} = {frac:1/12}.",
-    "watch": "Picking without replacement is not independent: the first pick changes what is left.",
+    "example": "Toss a coin and roll a dice: P(heads and 6) = {frac:1/2} &times; {frac:1/6} = {frac:1/12}.",
+    "watch": "Picking without replacement gives events that are not independent: the first pick changes what is left.",
     "flip": "If P(A and B) is not P(A) &times; P(B), the events affect each other.",
     "see": [
       "probability",
@@ -1785,8 +1785,8 @@ export const GLOSSARY = [
     "term": "Venn diagram",
     "strand": "p",
     "level": "F",
-    "def": "A diagram of overlapping circles in a box. Each circle is a set, the overlap is in both sets, and outside the circles is in neither.",
-    "example": "30 students: 18 like football, 12 like rugby, 5 like both. Football only 13, both 5, rugby only 7, neither 5.",
+    "def": "A diagram of overlapping circles in a box. Each circle is a set, the overlap holds what is in both sets, and the space outside the circles holds what is in neither.",
+    "example": "In a class of 30 students, 18 like football, 12 like rugby and 5 like both. So 13 like football only, 5 like both, 7 like rugby only and 5 like neither.",
     "watch": "Fill in the overlap first. Items in both sets must not be counted twice.",
     "flip": "From the numbers in each region you can read off probabilities, such as P(neither) = {frac:5/30}.",
     "see": [
@@ -1816,7 +1816,7 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "F",
     "def": "A table that counts how many times each value occurs. The frequency (f) is the count.",
-    "example": "Goals: 0, 1, 2 with frequencies 4, 5, 6. The mean is (0 &times; 4 + 1 &times; 5 + 2 &times; 6) &divide; 15 = 17 &divide; 15.",
+    "example": "Goals scored in a match: 0, 1 and 2, with frequencies 4, 5 and 6. The mean number of goals is (0 &times; 4 + 1 &times; 5 + 2 &times; 6) &divide; 15 = 17 &divide; 15.",
     "watch": "The mode is the value with the biggest frequency, not the frequency itself.",
     "flip": "Mean = sum of (frequency &times; value) &divide; sum of frequencies.",
     "see": [
@@ -1831,7 +1831,7 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "F",
     "def": "A value that is far away from the rest of the data. It can drag the mean a long way.",
-    "example": "Pay: 24 000, 25 000, 26 000, 27 000, 98 000. The 98 000 is an outlier.",
+    "example": "Pay in pounds: 24 000, 25 000, 26 000, 27 000, 98 000. The 98 000 is an outlier.",
     "watch": "The median is hardly changed by an outlier, but the mean and the range are.",
     "flip": "To describe typical data with an outlier, use the median instead of the mean.",
     "see": [
@@ -1845,7 +1845,7 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "F",
     "def": "A circle cut into sectors, where the angle of each sector shows its share of the whole. The angles add up to 360 degrees.",
-    "example": "40 children, 15 chose cats. One child is 360 &divide; 40 = 9 degrees, so cats get 15 &times; 9 = 135 degrees.",
+    "example": "40 children, 15 chose cats. One child is shown by 360 &divide; 40 = 9 degrees, so cats get 15 &times; 9 = 135 degrees.",
     "watch": "A pie chart with no total cannot be used to compare numbers between two charts.",
     "flip": "To read a pie chart backwards, divide an angle by the degrees for one item.",
     "see": [
@@ -1871,7 +1871,7 @@ export const GLOSSARY = [
     "term": "Correlation",
     "strand": "s",
     "level": "F",
-    "def": "The link between two sets of data on a scatter graph. Positive: both go up together. Negative: one goes up as the other goes down. None: no pattern.",
+    "def": "The link between two sets of data on a scatter graph. Positive correlation: both go up together. Negative correlation: one goes up as the other goes down. No correlation: no pattern.",
     "example": "Age of a car and its value show negative correlation: older cars are worth less.",
     "watch": "Correlation shows a link, not a cause.",
     "see": [
@@ -1885,8 +1885,8 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "F",
     "def": "A straight line drawn through the middle of the points on a scatter graph, with about as many points above it as below.",
-    "example": "Draw it with a ruler, then read across from an x-value to estimate the y-value.",
-    "watch": "It need not go through the origin. Estimates far outside the data (extrapolation) are unreliable.",
+    "example": "Draw it with a ruler. To estimate a y-value, go up from the x-value to the line, then across to the y-axis.",
+    "watch": "The line does not have to go through the origin. Estimates far outside the data (extrapolation) are unreliable.",
     "flip": "You can read a y-value from an x-value, or an x-value from a y-value.",
     "see": [
       "scatter-graph",
@@ -1971,7 +1971,7 @@ export const GLOSSARY = [
     "def": "A sequence that goes up or down by the same amount each time. Its nth term has the form an + b.",
     "example": "4, 7, 10, 13 &hellip; goes up by 3, and its nth term is 3n + 1.",
     "watch": "If the gaps themselves change, it is not linear. Check the gaps first.",
-    "flip": "Find the nth term from the terms: the gap is a, then fix the start to find b.",
+    "flip": "Find the nth term from the terms: the common difference is a, then use the first term to find b.",
     "see": [
       "common-difference",
       "nth-term",
@@ -1984,7 +1984,7 @@ export const GLOSSARY = [
     "strand": "a",
     "level": "F",
     "def": "A sequence where each term is the one before multiplied by the same number.",
-    "example": "2, 6, 18, 54 &hellip; multiplies by 3. 80, 40, 20, 10 &hellip; multiplies by {frac:1/2}.",
+    "example": "2, 6, 18, 54 &hellip; multiplies by 3 each time. 80, 40, 20, 10 &hellip; multiplies by {frac:1/2} each time.",
     "watch": "The gaps are not equal. Divide neighbouring terms to find the multiplier.",
     "flip": "Going back along the sequence means dividing by the multiplier.",
     "see": [
@@ -2014,7 +2014,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "A pair of numbers (x, y) that says where a point is on a grid: x is how far along, y is how far up.",
     "example": "The point (3, 2) is 3 along and 2 up. The point (&minus;4, 3) is 4 to the left and 3 up.",
-    "watch": "x always comes first. Left and down are negative.",
+    "watch": "The x-coordinate always comes first. Going left or down from the origin gives negative values.",
     "flip": "From a point on the grid to its coordinates, and from coordinates to a point.",
     "see": [
       "axis",
@@ -2041,7 +2041,7 @@ export const GLOSSARY = [
     "strand": "a",
     "level": "F",
     "def": "The point (0, 0) where the x-axis and the y-axis cross.",
-    "example": "The point (0, 5) is 5 above the origin.",
+    "example": "The point (0, 5) is 5 units above the origin.",
     "see": [
       "axis",
       "coordinates"
@@ -2067,7 +2067,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "The point exactly halfway along a line segment. Add the x-coordinates and halve, and do the same for y.",
     "example": "The midpoint of (2, 4) and (8, 10) is ((2 + 8) &divide; 2, (4 + 10) &divide; 2) = (5, 7).",
-    "watch": "Halve the totals. Do not give the gap between the points.",
+    "watch": "Halve the totals of the coordinates. Do not give the gap between the points.",
     "flip": "Given the midpoint and one end, go the same step again to find the other end.",
     "see": [
       "coordinates",
@@ -2144,7 +2144,7 @@ export const GLOSSARY = [
       "kilo (k) = 10<sup>3</sup>, so 1 kW = 1000 W",
       "milli (m) = 10<sup>&minus;3</sup>, so 1 mA = 0.001 A"
     ],
-    "flip": "To change to a bigger unit divide by the power of 10, and to a smaller unit multiply.",
+    "flip": "To change to a bigger unit, divide by the power of 10. To change to a smaller unit, multiply by it.",
     "see": [
       "standard-form",
       "power"
@@ -2158,9 +2158,9 @@ export const GLOSSARY = [
     "def": "A statement that one amount is bigger or smaller than another, using &lt;, &gt;, &le; or &ge;, instead of saying they are equal.",
     "example": [
       "x &gt; 2 means x is any number bigger than 2.",
-      "x &le; 5 means x is 5 or smaller. A lift that carries at most 800 kg has load w &le; 800."
+      "x &le; 5 means x is 5 or smaller. A lift that carries at most 800 kg has a load of w kilograms, where w &le; 800."
     ],
-    "watch": "The line under &le; and &ge; means &ldquo;or equal to&rdquo;, so the number itself is allowed. Dividing both sides by a negative number turns the sign round.",
+    "watch": "The line under &le; and &ge; means &ldquo;or equal to&rdquo;, so the number itself is allowed. Dividing both sides by a negative number turns the inequality sign round.",
     "flip": "From the answer back to the inequality: put the boundary value in and check numbers either side.",
     "see": [
       "number-line",
@@ -2177,7 +2177,7 @@ export const GLOSSARY = [
     "def": "An inequality with two signs, saying a value is between two numbers.",
     "example": [
       "&minus;2 &lt; x &le; 3 means x is bigger than &minus;2 and at most 3.",
-      "A pipe cut to 600 mm, 2 mm out either way, has length x with 598 &le; x &le; 602."
+      "A pipe cut to 600 mm, with an error of up to 2 mm either way, has a length of x millimetres with 598 &le; x &le; 602."
     ],
     "watch": "Do the same step to all three parts when you solve one.",
     "see": [
@@ -2209,7 +2209,7 @@ export const GLOSSARY = [
     "level": "H",
     "def": "The smallest value a rounded or measured number could really be. For a rounded number it is the number minus half the rounding unit.",
     "example": [
-      "A plank of 2.4 m, to 1 decimal place, has lower bound 2.4 &minus; 0.05 = 2.35 m.",
+      "A plank of length 2.4 m, to 1 decimal place, has lower bound 2.4 &minus; 0.05 = 2.35 m.",
       "7 to the nearest whole number has lower bound 6.5."
     ],
     "watch": "Use half the rounding unit, not the whole unit.",
@@ -2227,7 +2227,7 @@ export const GLOSSARY = [
     "level": "H",
     "def": "The limit at the top of the possible values of a rounded or measured number. For a rounded number it is the number plus half the rounding unit.",
     "example": [
-      "A plank of 2.4 m, to 1 decimal place, has upper bound 2.4 + 0.05 = 2.45 m.",
+      "A plank of length 2.4 m, to 1 decimal place, has upper bound 2.4 + 0.05 = 2.45 m.",
       "7 to the nearest whole number has upper bound 7.5."
     ],
     "watch": "Values just below the upper bound still round to the number, but the upper bound itself would round up, so an error interval uses &lt; at this end.",
@@ -2264,9 +2264,9 @@ export const GLOSSARY = [
     "def": "Cutting off the digits after a chosen place without rounding.",
     "example": [
       "7.38 truncated to 1 decimal place is 7.3 (rounding would give 7.4).",
-      "A number that is 4.6 after truncation to 1 d.p. has 4.6 &le; x &lt; 4.7."
+      "If a number is 4.6 after truncation to 1 d.p., then 4.6 &le; x &lt; 4.7."
     ],
-    "watch": "A truncated number goes a whole unit up and none down, so its error interval is not half a unit each way.",
+    "watch": "The original number is at least the truncated value and less than one rounding unit above it, so the error interval is not half a unit each way.",
     "see": [
       "error-interval",
       "round",
@@ -2298,7 +2298,7 @@ export const GLOSSARY = [
       "Cable costs &pound;3 per metre, so cost = 3 &times; length.",
       "2 m costs &pound;6, 4 m costs &pound;12, and 0 m costs &pound;0."
     ],
-    "watch": "A straight line is not enough: it must pass through (0, 0). A taxi fare with a start charge is not direct proportion.",
+    "watch": "A straight line is not enough: it must pass through (0, 0). A taxi fare with a start charge is not in direct proportion.",
     "flip": "From the rule and one value to a missing value, and from two values back to the rule.",
     "see": [
       "proportion",
@@ -2315,7 +2315,7 @@ export const GLOSSARY = [
     "def": "Two quantities are in inverse proportion when one is halved as the other is doubled. Their product is always the same. The rule is y = k &divide; x, and the graph is a curve that falls and never touches the axes.",
     "example": [
       "6 workers take 8 days, so 12 workers take 4 days.",
-      "x &times; y = 48 every time, so y = 48 &divide; x."
+      "With x workers and y days, x &times; y = 48 every time, so y = 48 &divide; x."
     ],
     "watch": "More workers means fewer days. Do not multiply when you should divide.",
     "flip": "From the rule to a missing value, and from two values back to k.",
@@ -2401,7 +2401,7 @@ export const GLOSSARY = [
     "term": "Distance-time graph",
     "strand": "r",
     "level": "F",
-    "def": "A graph with time along the bottom and distance up the side. The gradient of a line is the speed, a flat line means stopped, and a line going down means coming back.",
+    "def": "A graph with time on the horizontal axis and distance on the vertical axis. The gradient of a line is the speed, a flat line means the object has stopped, and a line going down means it is coming back.",
     "example": [
       "A line from (0, 0) to (1, 30) shows a speed of 30 km/h.",
       "A flat line from 1 h to 1.5 h shows a 30-minute stop."
@@ -2421,7 +2421,7 @@ export const GLOSSARY = [
     "def": "How much mass there is in each unit of volume. Density = mass &divide; volume.",
     "example": [
       "540 g in 200 cm<sup>3</sup> is a density of 2.7 g/cm<sup>3</sup>.",
-      "Water has a density of 1 g/cm<sup>3</sup>, so things less dense than this float."
+      "Water has a density of 1 g/cm<sup>3</sup>, so things that are less dense than water float in it."
     ],
     "watch": "Keep the units matching: g with cm<sup>3</sup>, or kg with m<sup>3</sup>. 1 g/cm<sup>3</sup> = 1000 kg/m<sup>3</sup>.",
     "flip": "From mass and volume to density, and from density and volume to mass.",
@@ -2477,7 +2477,7 @@ export const GLOSSARY = [
       "Congruent shapes are similar shapes with a scale factor of 1."
     ],
     "watch": "Similar shapes can be different sizes. Congruent shapes cannot.",
-    "flip": "Showing two triangles are congruent with SSS, SAS, ASA or RHS.",
+    "flip": "Showing that two triangles are congruent using SSS, SAS, ASA or RHS.",
     "see": [
       "similar-shapes",
       "scale-factor"
@@ -2556,10 +2556,10 @@ export const GLOSSARY = [
     "level": "F",
     "def": "The bearing of the way back. It is 180&deg; different from the bearing you travelled on.",
     "example": [
-      "The bearing of B from A is 065&deg;, so the bearing of A from B is 065 + 180 = 245&deg;.",
-      "From 285&deg; the back bearing is 285 &minus; 180 = 105&deg;."
+      "The bearing of B from A is 065&deg;, so the bearing of A from B is 065&deg; + 180&deg; = 245&deg;.",
+      "From 285&deg; the back bearing is 285&deg; &minus; 180&deg; = 105&deg;."
     ],
-    "watch": "Add 180 if the bearing is below 180. Subtract 180 if it is 180 or more.",
+    "watch": "Add 180&deg; if the bearing is below 180&deg;. Subtract 180&deg; if it is 180&deg; or more.",
     "see": [
       "bearing",
       "compass-point"
@@ -2587,7 +2587,7 @@ export const GLOSSARY = [
     "def": "A rule that moves a shape or changes its size. The four you need are translation, reflection, rotation and enlargement.",
     "example": [
       "Slide a triangle 3 squares right: a translation.",
-      "Flip it over a line: a reflection."
+      "Flip the triangle over a line: a reflection."
     ],
     "flip": "From a shape and its image, describe the single transformation that links them.",
     "see": [
@@ -2915,7 +2915,7 @@ export const GLOSSARY = [
     "level": "H",
     "def": "The circle theorem: the angle between a tangent and a chord is equal to the angle in the alternate segment (the segment on the other side of the chord).",
     "example": [
-      "A tangent at A and a chord AB make an angle of 52&deg;. Any point C in the other segment sees AB at 52&deg;, so angle ACB = 52&deg;."
+      "A tangent at A and a chord AB make an angle of 52&deg;. For any point C in the alternate segment, angle ACB = 52&deg;."
     ],
     "flip": "An angle between a tangent and a chord that matches an angle at the circumference tells you to use this theorem.",
     "see": [
@@ -2929,13 +2929,13 @@ export const GLOSSARY = [
     "term": "Rational number",
     "strand": "n",
     "level": "H",
-    "def": "A number that can be written as a fraction with a whole number on the top and a whole number on the bottom. Its decimal either stops or repeats.",
+    "def": "A number that can be written as a fraction with a whole number as the numerator and a whole number as the denominator. Its decimal either stops or repeats.",
     "example": [
       "0.75 = {frac:3/4}, 5 = {frac:5/1} and 0.333&hellip; = {frac:1/3} are all rational.",
       "&radic;16 = 4 is rational. &radic;2 is not."
     ],
     "watch": "Every whole number is rational. A root is only irrational (a surd) when the number under it is not a perfect square.",
-    "flip": "The opposite of an irrational number.",
+    "flip": "A rational number is one that is not irrational.",
     "see": [
       "irrational",
       "surd",
@@ -2965,12 +2965,12 @@ export const GLOSSARY = [
     "term": "Algebraic fraction",
     "strand": "a",
     "level": "H",
-    "def": "A fraction with algebra (a letter) on the top, the bottom, or both. It follows the same rules as a number fraction.",
+    "def": "A fraction with algebra (a letter) in the numerator, the denominator, or both. It follows the same rules as a number fraction.",
     "example": [
       "{frac:3/x}, {frac:2x/5} and {frac:x + 1/x &minus; 2} are algebraic fractions.",
-      "{frac:x + 1/x &minus; 2} is only defined when x is not 2, because the bottom cannot be zero."
+      "{frac:x + 1/x &minus; 2} is only defined when x is not 2, because the denominator cannot be zero."
     ],
-    "watch": "You can only cancel a factor (something multiplied), never a term (something added). {frac:x + 5/x} is not 5.",
+    "watch": "You can only cancel a factor (something multiplied), never a term (something added). {frac:x + 5/x} does not simplify to 5.",
     "flip": "Simplifying by factorising, and combining over a common denominator.",
     "see": [
       "fraction",
@@ -2984,12 +2984,12 @@ export const GLOSSARY = [
     "term": "Cancel",
     "strand": "n",
     "level": "F",
-    "def": "Divide the top and the bottom of a fraction by the same factor. The value of the fraction does not change.",
+    "def": "Divide the numerator and the denominator of a fraction by the same factor. The value of the fraction does not change.",
     "example": [
-      "{frac:6x/9}: divide top and bottom by 3 to get {frac:2x/3}.",
-      "{frac:3(x + 2)/x + 2}: the bracket (x + 2) is on the top and the bottom, so it cancels, leaving 3."
+      "{frac:6x/9}: divide the numerator and denominator by 3 to get {frac:2x/3}.",
+      "{frac:3(x + 2)/x + 2}: the bracket (x + 2) is in both the numerator and the denominator, so it cancels, leaving 3."
     ],
-    "watch": "Only cancel factors that multiply the whole top and the whole bottom. In {frac:x + 5/x} the x on top is added, so it cannot be cancelled.",
+    "watch": "Only cancel factors that multiply the whole numerator and the whole denominator. In {frac:x + 5/x} the x in the numerator is added, so it cannot be cancelled.",
     "see": [
       "simplify-fraction",
       "factor",
@@ -3001,7 +3001,7 @@ export const GLOSSARY = [
     "term": "Iteration",
     "strand": "a",
     "level": "H",
-    "def": "Repeating a rule again and again, using each answer as the next input, to home in on a solution.",
+    "def": "Repeating a rule again and again, using each answer as the next input, to get closer and closer to a solution.",
     "example": [
       "x<sub>n+1</sub> = 2x<sub>n</sub> + 1 with x<sub>0</sub> = 3 gives 7, 15, 31, ...",
       "Use the Ans button on a calculator."
@@ -3022,7 +3022,7 @@ export const GLOSSARY = [
     "example": [
       "x<sub>n+1</sub> = &#8731;(3 &minus; x<sub>n</sub>) comes from x&sup3; + x &minus; 3 = 0."
     ],
-    "watch": "Not every rearrangement homes in. Some run away from the solution.",
+    "watch": "Not every rearrangement gets closer to the solution. Some move further away from it.",
     "flip": "Rearranging an equation into a formula, and finding the equation a formula solves.",
     "see": [
       "iteration",
@@ -3080,7 +3080,7 @@ export const GLOSSARY = [
     "def": "A line that a curve gets closer and closer to but never touches.",
     "example": "The graph of y = 1/x gets close to the x-axis and the y-axis but never meets either.",
     "watch": "An asymptote is not part of the curve. The curve only gets nearer to it.",
-    "flip": "If a graph has an asymptote at x = 0, the equation cannot be worked out at x = 0.",
+    "flip": "If a graph has an asymptote at x = 0, the formula for the graph cannot be worked out at x = 0.",
     "see": [
       "reciprocal",
       "exponential"
@@ -3091,7 +3091,7 @@ export const GLOSSARY = [
     "term": "Exponential",
     "strand": "a",
     "level": "H",
-    "def": "A relationship where the unknown is in the power, like y = 2<sup>x</sup>. Each step along multiplies y by the same number.",
+    "def": "A relationship where the unknown is in the power, like y = 2<sup>x</sup>. Each step of 1 along the x-axis multiplies y by the same number.",
     "example": "y = 2<sup>x</sup> gives 1, 2, 4, 8, 16 as x goes 0, 1, 2, 3, 4. Its graph crosses the y-axis at (0, 1).",
     "watch": "2<sup>x</sup> is not 2 &times; x. A power means repeated multiplication.",
     "flip": "To find the power that gives a number, ask how many times you must multiply: 2 to the power what is 8? The answer is 3.",
@@ -3106,9 +3106,9 @@ export const GLOSSARY = [
     "term": "Conditional probability",
     "strand": "p",
     "level": "H",
-    "def": "The probability of an event when you already know another event has happened. P(B | A) is read &ldquo;the probability of B given A&rdquo;. The event you know is the bottom of the fraction.",
+    "def": "The probability of an event when you already know another event has happened. P(B | A) is read &ldquo;the probability of B given A&rdquo;. The event you already know about is the denominator of the fraction.",
     "example": "In a class of 30 girls and 30 boys, 18 girls walk to school. P(walk | girl) = {frac:18/30} = {frac:3/5}.",
-    "watch": "P(B | A) and P(A | B) are usually different. They have the same top but different bottoms.",
+    "watch": "P(B | A) and P(A | B) are usually different. They have the same numerator but different denominators.",
     "flip": "P(B | A) = P(A and B) &divide; P(A), so P(A and B) = P(A) &times; P(B | A).",
     "see": [
       "probability",
@@ -3123,7 +3123,7 @@ export const GLOSSARY = [
     "strand": "p",
     "level": "F",
     "def": "A table that sorts the same people or things in two ways at once, with rows for one grouping, columns for the other and totals at the ends.",
-    "example": "Boys and girls (rows) against walk and bus (columns). The 18 in the girls row and walk column are girls who walk.",
+    "example": "Boys and girls (rows) against walk and bus (columns). The 18 in the girls row and the walk column means that 18 girls walk.",
     "watch": "Check that the rows, columns and totals add up before you use the numbers.",
     "flip": "Fill in the totals first if they are missing, then work backwards to find the missing cells.",
     "see": [
@@ -3167,7 +3167,7 @@ export const GLOSSARY = [
     "term": "Quartile",
     "strand": "s",
     "level": "H",
-    "def": "One of the three values that split ordered data into four equal parts: the lower quartile, the median and the upper quartile.",
+    "def": "One of the three values that split data, in order from smallest to largest, into four equal parts: the lower quartile, the median and the upper quartile.",
     "example": "For 80 values, read the lower quartile at height 20 on a cumulative frequency graph, the median at 40 and the upper quartile at 60.",
     "watch": "The height on the vertical axis tells you where to read. The quartile is the value on the horizontal axis.",
     "flip": "If the upper quartile of 80 values is 37, then 60 of the values are 37 or less.",
@@ -3184,7 +3184,7 @@ export const GLOSSARY = [
     "level": "H",
     "def": "The upper quartile minus the lower quartile. It is the spread of the middle half of the data, so it ignores very high and very low values.",
     "example": "Lower quartile 14 and upper quartile 29 give an interquartile range of 29 &minus; 14 = 15.",
-    "watch": "Subtract the quartiles, do not add them. It is not the same as the range.",
+    "watch": "Subtract the lower quartile from the upper quartile; do not add them. It is not the same as the range.",
     "flip": "From the interquartile range and one quartile you can find the other quartile.",
     "see": [
       "quartile",
@@ -3198,8 +3198,8 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "H",
     "def": "A value that a given percentage of the data lies below. The 90th percentile has 90% of the values below it.",
-    "example": "For 100 cable lengths, read across at height 90 on the cumulative frequency graph to find the 90th percentile.",
-    "flip": "From a value on the graph, go up and across to find what percentage of the data is below it.",
+    "example": "For 100 cable lengths, find 90 on the cumulative frequency (vertical) axis, read across to the curve, then down to the horizontal axis to find the 90th percentile.",
+    "flip": "From a value on the horizontal axis, go up to the curve and then across to the vertical axis to find what percentage of the data is below it.",
     "see": [
       "quartile",
       "cumulative-frequency",
@@ -3212,7 +3212,7 @@ export const GLOSSARY = [
     "strand": "s",
     "level": "H",
     "def": "A diagram of five numbers: the smallest value, lower quartile, median, upper quartile and largest value. The box shows the middle half of the data.",
-    "example": "Five numbers 4, 7, 12, 18, 23: the box runs from 7 to 18 with a line at 12, and whiskers go to 4 and 23.",
+    "example": "For the five numbers 4, 7, 12, 18 and 23, the box runs from 7 to 18 with a line at 12, and whiskers go to 4 and 23.",
     "watch": "The width of the box is the interquartile range, not the range.",
     "flip": "From a box plot you can read the five numbers back, and work out the interquartile range and the range.",
     "see": [
