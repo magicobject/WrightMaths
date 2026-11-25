@@ -167,7 +167,7 @@ Voice chosen by Greg: Piper `en_GB-alba-medium` (dataset licence CC BY 4.0, cred
 
 1. `npm run build`, then `npm run book:audio -- status` (how many sentences have no recording, and how many recordings are out of date).
 2. `npm run book:audio -- todo` writes the sentences that still need a recording to `audio-work/script.json`.
-3. `python scripts/piper-batch.py --voice <path to en_GB-alba-medium.onnx>` records them (about 0.5 seconds a sentence). It needs `pip install piper-tts soundfile` and the voice from `python -m piper.download_voices en_GB-alba-medium`.
+3. `python scripts/piper-batch.py --voice <path to en_GB-alba-medium.onnx>` records them (about 0.5 seconds a sentence), leaving a 0.45 second extra gap after each full stop (`--gap`; decimals are spoken as words, so there is never a stray stop). After changing `--gap` or the voice, add `--redo` to make every clip again (the clip's name is a hash of its text, not of how it sounds). It needs `pip install piper-tts soundfile` and the voice from `python -m piper.download_voices en_GB-alba-medium`.
 4. `npm run book:audio -- prune` deletes recordings of sentences that no longer exist, then `npm run book:audio -- manifest` (prune does this too).
 
 Add `--pages=topic-a,topic-b` to `status`, `todo` and `make` to work on chosen pages only (not to `prune`).
