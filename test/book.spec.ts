@@ -416,11 +416,11 @@ test.describe('display on a phone', () => {
     await expect(easy).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('the pyramid comes before the five habits on the hub', async ({ page }) => {
+  test('the pyramid comes before the list of what is built into every page on the hub', async ({ page }) => {
     await page.goto('/books/gcse/');
     const order = await page.evaluate(() => {
       const a = document.querySelector('#pyramid')!.getBoundingClientRect().top;
-      const b = [...document.querySelectorAll('h2')].find((h) => h.textContent?.includes('Five habits'))!.getBoundingClientRect().top;
+      const b = [...document.querySelectorAll('h2')].find((h) => h.textContent?.includes('What is built into every page'))!.getBoundingClientRect().top;
       return a < b;
     });
     expect(order).toBe(true);

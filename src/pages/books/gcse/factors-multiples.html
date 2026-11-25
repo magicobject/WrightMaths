@@ -55,7 +55,7 @@
   <div class="wrap narrow">
     <h2>1. Multiples</h2>
     <p>A {term:multiple} of a number is a number in its times table: what you get by multiplying it by 1, 2, 3, 4 &hellip; The multiples of 7 are 7, 14, 21, 28, 35 &hellip;</p>
-    <div class="key"><p><b>Key idea:</b> multiples go on for ever, and the 5th multiple of 8 is 5 &times; 8 = 40. To test whether a number is a multiple, divide: it is a multiple of 7 if it divides by 7 with <b>no remainder</b>.</p></div>
+    <div class="key"><p><b>Key idea:</b> the list of multiples never ends. The 5th multiple of 8 is 5 &times; 8 = 40. To test whether a number is a multiple, divide: it is a multiple of 7 if it divides by 7 with <b>no remainder</b>.</p></div>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Is 91 a multiple of 7?</p>
@@ -89,7 +89,7 @@
     <div class="q" data-answers="108" data-mode="value">
       <p class="qtext">What is the first multiple of 12 that is bigger than 100?</p>
       <ol class="ladder"><li>12 &times; 8 = 96. Go one more.</li></ol>
-      <ul class="wrong"><li data-if="96">That is smaller than 100.</li><li data-if="120">That is a multiple, but 108 is the first one over 100.</li></ul>
+      <ul class="wrong"><li data-if="96">That is a multiple of 12, but it is smaller than 100.</li><li data-if="120">That is a multiple, but 108 is the first one over 100.</li></ul>
       <div class="solution"><p>12 &times; 8 = 96 is too small; 12 &times; 9 = 108.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -122,7 +122,7 @@
         <li>1 &times; 20 = 20: factors 1 and 20.</li>
         <li>2 &times; 10 = 20: factors 2 and 10.</li>
         <li>3 does not go into 20. 4 &times; 5 = 20: factors 4 and 5.</li>
-        <li>Next is 5, which we already have, so stop.</li>
+        <li>The next number to test is 5, which we already have, so stop.</li>
         <li>Factors of 20: 1, 2, 4, 5, 10, 20.</li>
       </ol>
     </div>
@@ -181,9 +181,9 @@
 <section>
   <div class="wrap narrow">
     <h2>3. Prime numbers</h2>
-    <p>A {term:prime-number|prime number} has exactly two factors: 1 and itself. The first few are 2, 3, 5, 7, 11, 13, 17, 19, 23. Every other whole number bigger than 1 is built from primes by multiplying, which is called its {term:prime-factorisation|prime factorisation}. The product is the same every time, apart from the order of the primes.</p>
+    <p>A {term:prime-number|prime number} has exactly two factors: 1 and itself. The first few are 2, 3, 5, 7, 11, 13, 17, 19, 23. Every other whole number bigger than 1 is built from primes by multiplying, which is called its {term:prime-factorisation|prime factorisation}. The product of primes is the same every time, apart from the order of the primes.</p>
     <div class="key"><p><b>Key idea:</b> 1 is not prime (it has only one factor). 2 is the only even prime. Break any number into primes with a <b>factor tree</b>: split it into two factors, keep splitting until every branch ends in a prime.</p></div>
-    <p>To test whether <i>n</i> is prime you only need to try the primes up to &radic;<i>n</i>. Factors come in pairs, and in every pair one factor is at most &radic;<i>n</i>. So if <i>n</i> has no factor other than 1 between 2 and &radic;<i>n</i>, it has no factor other than 1 and itself, and it is prime. Any factor bigger than 1 has a prime factor no bigger than it, so you only need to test primes.</p>
+    <p>To test whether <i>n</i> is prime you only need to try the primes up to &radic;<i>n</i>. Factors come in pairs, and in every pair one factor is at most &radic;<i>n</i>. So if <i>n</i> has no factor from 2 up to &radic;<i>n</i>, it has no factors other than 1 and itself, so it is prime. Any factor bigger than 1 has a prime factor no bigger than it, so you only need to test primes.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Write 84 as a product of prime factors.</p>
@@ -257,8 +257,8 @@
 <section>
   <div class="wrap narrow">
     <h2>4. Highest common factor and lowest common multiple</h2>
-    <p>The {term:hcf|HCF} of two numbers is the biggest number that is a factor of both. The {term:lcm|LCM} is the smallest number that is a multiple of both. List them and find where they first meet.</p>
-    <div class="key"><p><b>Key idea:</b> HCF answers &ldquo;what is the biggest piece size that fits both exactly?&rdquo; LCM answers &ldquo;when do the two cycles line up next?&rdquo; The HCF is never bigger than the smaller number; the LCM is never smaller than the bigger.</p></div>
+    <p>The {term:hcf|HCF} of two numbers is the biggest number that is a factor of both. The {term:lcm|LCM} is the smallest number that is a multiple of both. To find them, list the factors of each number (for the HCF) or the multiples of each number (for the LCM).</p>
+    <div class="key"><p><b>Key idea:</b> HCF answers &ldquo;what is the biggest piece size that fits both exactly?&rdquo; LCM answers &ldquo;when do the two cycles line up next?&rdquo; The HCF is never bigger than the smaller of the two numbers. The LCM is never smaller than the bigger of the two numbers.</p></div>
     <div class="worked">
       <h3>Worked example: HCF</h3>
       <p>Find the HCF of 24 and 36.</p>
@@ -295,13 +295,13 @@
     <h2>Check your knowledge: HCF and LCM</h2>
     <div class="q" data-answers="6" data-mode="value">
       <p class="qtext">Find the HCF of 12 and 18.</p>
-      <ol class="ladder"><li>Factors of 12 and of 18. Which is the biggest in both?</li></ol>
+      <ol class="ladder"><li>List the factors of 12 and of 18. Which is the biggest factor in both lists?</li></ol>
       <ul class="wrong"><li data-if="36">36 is the LCM (a common multiple). The HCF is a factor.</li></ul>
       <div class="solution"><p>Common factors: 1, 2, 3, 6. The HCF is 6.</p></div>
     </div>
     <div class="q" data-answers="12" data-mode="value">
       <p class="qtext">Find the LCM of 4 and 6.</p>
-      <ol class="ladder"><li>List multiples of each.</li></ol>
+      <ol class="ladder"><li>List the multiples of each number.</li></ol>
       <ul class="wrong"><li data-if="24">24 is a common multiple, but not the lowest.</li><li data-if="2">2 is the HCF. The LCM is a multiple.</li></ul>
       <div class="solution"><p>Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. First common: 12.</p></div>
     </div>
@@ -319,7 +319,7 @@
     </div>
     <div class="q" data-answers="35" data-mode="value">
       <p class="qtext">Find the LCM of 5 and 7.</p>
-      <ol class="ladder"><li>They have no common factor except 1.</li></ol>
+      <ol class="ladder"><li>5 and 7 have no common factor except 1.</li></ol>
       <ul class="wrong"><li data-if="12">That is 5 + 7. The LCM is a multiple.</li></ul>
       <div class="solution"><p>When two numbers have no common factor except 1, their LCM is their product: 5 &times; 7 = 35.</p></div>
     </div>
@@ -343,7 +343,7 @@
     </div>
     <div class="q" data-answers="72" data-mode="value">
       <p class="qtext">Write 18 and 24 as products of primes, then find their LCM.</p>
-      <ol class="ladder"><li>18 = 2 &times; 3 &times; 3 and 24 = 2 &times; 2 &times; 2 &times; 3.</li><li>Highest power of 2, highest power of 3.</li></ol>
+      <ol class="ladder"><li>18 = 2 &times; 3 &times; 3 and 24 = 2 &times; 2 &times; 2 &times; 3.</li><li>Take the highest power of 2 and the highest power of 3, then multiply.</li></ol>
       <ul class="wrong"><li data-if="6">6 is the HCF. The LCM takes the highest power of every prime.</li><li data-if="432">That is 18 &times; 24. The shared factors must be counted once only.</li></ul>
       <div class="solution"><p>18 = 2 &times; 3&sup2; and 24 = 2&sup3; &times; 3. LCM = 2&sup3; &times; 3&sup2; = 8 &times; 9 = 72. Check: 72 = 18 &times; 4 = 24 &times; 3.</p></div>
     </div>
@@ -423,7 +423,7 @@
       <div class="solution"><p>Multiples of 12: 12, 24, 36. Multiples of 18: 18, 36. LCM = 36 minutes.</p></div>
     </div>
     <div class="q" data-answers="18" data-mode="value">
-      <p class="qtext">Ribbons of 36 cm and 54 cm are cut into equal pieces with no ribbon left over. What is the longest piece possible, in cm?</p>
+      <p class="qtext">Two ribbons, one 36 cm long and one 54 cm long, are cut into pieces that are all the same length, with no ribbon left over. What is the longest possible length of a piece, in centimetres?</p>
       <figure class="figure qfig"><svg viewBox="0 0 290 112" role="img" aria-labelledby="fm4-t fm4-d" class="geo-svg"><title id="fm4-t">Two ribbons to cut into equal pieces</title><desc id="fm4-d">Two bars. The shorter one is a ribbon 36 centimetres long and the longer one is 54 centimetres long. Both are to be cut into equal pieces of an unknown length, labelled with a question mark.</desc><rect x="20" y="26" width="165.6" height="30" fill="#e4eefb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="102.8" y="46" text-anchor="middle" style="font-size:14px">36 cm</text><rect x="20" y="70" width="248.39999999999998" height="30" fill="#fbeadb" stroke="#0f2440" stroke-width="2.5"/><text class="svg-t" x="144.2" y="90" text-anchor="middle" style="font-size:14px">54 cm</text><text class="svg-t" x="160" y="18" text-anchor="middle" style="font-size:13px">cut into equal pieces of ? cm</text></svg></figure>
       <ol class="ladder"><li>&ldquo;Biggest piece that fits both&rdquo;: HCF of 36 and 54.</li></ol>
       <ul class="wrong"><li data-if="108">108 is the LCM. The pieces must fit into both ribbons, so use the HCF.</li><li data-if="9">9 fits both, but a longer piece also does.</li><li data-if="12">12 goes into 36 but not into 54.</li></ul>

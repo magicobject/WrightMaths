@@ -32,7 +32,7 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Warm-up: what do you already know?</h2>
-    <p class="intro">Quick warm-up. No marks. A wrong answer just shows where to look.</p>
+    <p class="intro">Quick warm-up. No marks. A wrong answer only shows where to look.</p>
     <p><a href="#s-1-the-limits-of-a-rounded-number">Skip to the lesson</a></p>
 <div class="q" data-answers="3.5" data-mode="value">
   <p class="qtext">Round 3.46 to 1 decimal place.</p>
@@ -66,12 +66,12 @@
 <section>
   <div class="wrap narrow">
     <h2>1. The limits of a rounded number</h2>
-    <p>A length written as 7 cm to the nearest centimetre is not exactly 7 cm. It could be 6.6, or 7.3, or 7.49. Anything from 6.5 up to (but not including) 7.5 rounds to 7. These limits have names.</p>
+    <p>A length written as 7 cm to the nearest centimetre is not exactly 7 cm. It could be 6.6 cm, or 7.3 cm, or 7.49 cm. Anything from 6.5 cm up to (but not including) 7.5 cm rounds to 7 cm. These limits have names.</p>
     <ul class="tick">
       <li>The <b>{term:lower-bound}</b> is the smallest value that rounds to the number. For 7 it is 6.5.</li>
-      <li>The <b>{term:upper-bound}</b> is the limit at the top. For 7 it is 7.5. Values just under 7.5 round to 7, but 7.5 itself would round up to 8.</li>
+      <li>The <b>{term:upper-bound}</b> is the limit at the upper end. For 7 it is 7.5. Values just under 7.5 round to 7, but 7.5 itself would round up to 8.</li>
     </ul>
-    <p>Here is the rule. Find the size of the rounding unit, halve it, then go that far down and up.</p>
+    <p>Here is the rule. Find the size of the rounding unit, halve it, then go that far down and up from the rounded number.</p>
 <table style="border-collapse:collapse;margin:12px auto"><caption style="caption-side:top;padding-bottom:6px;font-weight:700">Half the rounding unit</caption><tr><th scope="col" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">Rounded to</th><th scope="col" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">Rounding unit</th><th scope="col" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">Half the unit</th><th scope="col" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">Example</th></tr><tr><th scope="row" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">nearest 10</th><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">10</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">5</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">40 is from 35 up to 45</td></tr><tr><th scope="row" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">nearest whole number</th><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">1</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">0.5</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">7 is from 6.5 up to 7.5</td></tr><tr><th scope="row" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">1 decimal place</th><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">0.1</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">0.05</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">5.3 is from 5.25 up to 5.35</td></tr><tr><th scope="row" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">2 decimal places</th><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">0.01</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">0.005</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">2.46 is from 2.455 up to 2.465</td></tr><tr><th scope="row" style="border:2px solid #0f2440;padding:4px 10px;text-align:center;font-weight:700;background:#fbe3ee;color:#0f2440">2 significant figures</th><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">the place of the last digit</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">half of that</td><td style="border:2px solid #0f2440;padding:4px 10px;text-align:center">4300 is from 4250 up to 4350</td></tr></table>    <p>For {term:significant-figure|significant figures}, look at the place of the last digit. In 4300 to 2 s.f. the 3 is in the hundreds place, so the unit is 100 and half the unit is 50. In 530 to 2 s.f. the 3 is in the tens place, so the unit is 10 and half the unit is 5.</p>
     <p class="sum-line">lower bound = number &minus; half the unit &nbsp;&nbsp; upper bound = number + half the unit</p>
 <figure class="figure qfig"><svg viewBox="0 0 320 74" role="img" aria-labelledby="bd1-t bd1-d" class="geo-svg"><title id="bd1-t">All the values that round to 7</title><desc id="bd1-d">A number line from 6 to 8 marked in halves. A filled circle on 6.5, an open circle on 7.5, and a thick line joining them. Every value on the line rounds to 7 to the nearest whole number.</desc><line class="ln" x1="12" y1="38" x2="308" y2="38"/><line class="ln" style="stroke-width:2" x1="26" y1="32" x2="26" y2="44"/><text class="svg-t" style="font-size:12px" x="26" y="62" text-anchor="middle">6</text><line class="ln" style="stroke-width:2" x1="93" y1="32" x2="93" y2="44"/><text class="svg-t" style="font-size:12px" x="93" y="62" text-anchor="middle">6.5</text><line class="ln" style="stroke-width:2" x1="160" y1="32" x2="160" y2="44"/><text class="svg-t" style="font-size:12px" x="160" y="62" text-anchor="middle">7</text><line class="ln" style="stroke-width:2" x1="227" y1="32" x2="227" y2="44"/><text class="svg-t" style="font-size:12px" x="227" y="62" text-anchor="middle">7.5</text><line class="ln" style="stroke-width:2" x1="294" y1="32" x2="294" y2="44"/><text class="svg-t" style="font-size:12px" x="294" y="62" text-anchor="middle">8</text><line x1="93" y1="38" x2="227" y2="38" stroke="#ad1f5c" stroke-width="5" stroke-linecap="round"/><circle cx="93" cy="38" r="6.5" fill="#ad1f5c" stroke="#0f2440" stroke-width="2.5"/><circle cx="227" cy="38" r="6.5" fill="#fff" stroke="#0f2440" stroke-width="2.5"/></svg></figure>    <p class="muted">Every value from 6.5 (filled: included) up to 7.5 (open: not included) rounds to 7.</p>    <div class="key"><p><b>Key idea:</b> half the rounding unit, below and above. The most common slip is to use the whole unit, or half of the wrong unit.</p></div>
@@ -316,7 +316,7 @@
     </div>
     <div class="worked faded">
       <h3>Now you finish it</h3>
-      <p>A pipe is 3.2 m and a piece 1.5 m is cut off. Both are to 1 decimal place. Find the greatest possible length left.</p>
+      <p>A pipe is 3.2 m long and a piece 1.5 m long is cut off. Both lengths are to 1 decimal place. Find the greatest possible length left.</p>
       <ol class="steps">
         <li>Biggest pipe: upper bound <span class="blank" data-answers="3.25">___</span>.</li>
         <li>Smallest piece: lower bound <span class="blank" data-answers="1.45">___</span>.</li>
@@ -377,7 +377,7 @@
       <li><b>Product a &times; b.</b> Biggest: upper bound &times; upper bound. Smallest: lower bound &times; lower bound.</li>
       <li><b>Quotient a &divide; b.</b> Biggest: upper bound of a <b>divided by the lower bound of b</b>. Smallest: lower bound of a <b>divided by the upper bound of b</b>.</li>
     </ul>
-    <div class="key"><p><b>Key idea:</b> to make a division as big as possible, divide the biggest top by the smallest bottom. To make it as small as possible, divide the smallest top by the biggest bottom.</p></div>
+    <div class="key"><p><b>Key idea:</b> to make a division a &divide; b as big as possible, divide the biggest a by the smallest b. To make it as small as possible, divide the smallest a by the biggest b.</p></div>
     <div class="worked">
       <h3>Worked example: area</h3>
       <p>A rectangle is 8 cm by 5 cm, both to the nearest cm. Find the greatest and smallest possible area.</p>
@@ -432,20 +432,20 @@
 </div>
 <div class="q" data-answers="4.43" data-mode="value">
   <p class="qtext">x = 15 and y = 4, both to the nearest whole number. What is the greatest possible value of x &divide; y? Give your answer to 2 decimal places.</p>
-  <ol class="ladder"><li>To make a division as big as possible, divide the biggest top by the smallest bottom.</li><li>Use the upper bound of x and the lower bound of y.</li></ol>
-  <ul class="wrong"><li data-if="3.22">That is the smallest possible value (smallest top over biggest bottom). The question asks for the greatest.</li><li data-if="3.75">That is 15 &divide; 4 with no bounds. Use 15.5 &divide; 3.5.</li></ul>
+  <ol class="ladder"><li>To make a division as big as possible, divide the biggest x by the smallest y.</li><li>Use the upper bound of x and the lower bound of y.</li></ol>
+  <ul class="wrong"><li data-if="3.22">That is the smallest possible value (smallest x over biggest y). The question asks for the greatest.</li><li data-if="3.75">That is 15 &divide; 4 with no bounds. Use 15.5 &divide; 3.5.</li></ul>
   <div class="solution"><p>Upper bound of x = 15.5. Lower bound of y = 3.5. Greatest x &divide; y = 15.5 &divide; 3.5 = 4.4285&hellip; &asymp; 4.43.</p></div>
 </div>
 <div class="q" data-answers="3.22" data-mode="value">
   <p class="qtext">x = 15 and y = 4, both to the nearest whole number. What is the smallest possible value of x &divide; y? Give your answer to 2 decimal places.</p>
-  <ol class="ladder"><li>To make a division as small as possible, divide the smallest top by the biggest bottom.</li><li>Use the lower bound of x and the upper bound of y.</li></ol>
-  <ul class="wrong"><li data-if="4.43">That is the greatest possible value. For the smallest, use the smallest top and the biggest bottom.</li><li data-if="3.75">That is 15 &divide; 4 with no bounds. Use 14.5 &divide; 4.5.</li></ul>
+  <ol class="ladder"><li>To make a division as small as possible, divide the smallest x by the biggest y.</li><li>Use the lower bound of x and the upper bound of y.</li></ol>
+  <ul class="wrong"><li data-if="4.43">That is the greatest possible value. For the smallest, use the smallest x and the biggest y.</li><li data-if="3.75">That is 15 &divide; 4 with no bounds. Use 14.5 &divide; 4.5.</li></ul>
   <div class="solution"><p>Lower bound of x = 14.5. Upper bound of y = 4.5. Smallest x &divide; y = 14.5 &divide; 4.5 = 3.2222&hellip; &asymp; 3.22.</p></div>
 </div>
 <div class="q" data-answers="7.12" data-mode="value">
   <p class="qtext">A 24.5 m cable, to 1 decimal place, is cut into pieces of 3.5 m, to 1 decimal place. What is the greatest possible value of 24.5 &divide; 3.5? Give your answer to 2 decimal places.</p>
   <ol class="ladder"><li>Divide the biggest possible cable length by the smallest possible piece.</li><li>Upper bound of 24.5, over lower bound of 3.5.</li></ol>
-  <ul class="wrong"><li data-if="7">That is 24.5 &divide; 3.5 with no bounds. Use 24.55 &divide; 3.45.</li><li data-if="6.89">That is the smallest possible value (smallest top over biggest bottom). The question asks for the greatest.</li></ul>
+  <ul class="wrong"><li data-if="7">That is 24.5 &divide; 3.5 with no bounds. Use 24.55 &divide; 3.45.</li><li data-if="6.89">That is the smallest possible value (smallest cable length over biggest piece length). The question asks for the greatest.</li></ul>
   <div class="solution"><p>Upper bound of the cable = 24.55 m. Lower bound of a piece = 3.45 m. Greatest value = 24.55 &divide; 3.45 = 7.1159&hellip; &asymp; 7.12.</p></div>
 </div>
   </div>
@@ -457,10 +457,10 @@
     <p>The same ideas work in any {term:formula}. Decide whether each letter should be as big or as small as possible, then use its upper or lower bound.</p>
     <p class="sum-line">speed = distance &divide; time</p>
     <ul class="tick">
-      <li><b>Greatest speed:</b> the greatest distance and the least time. A big top and a small bottom make a big answer.</li>
+      <li><b>Greatest speed:</b> the greatest distance and the least time. A big distance divided by a small time gives a big speed.</li>
       <li><b>Smallest speed:</b> the least distance and the greatest time.</li>
     </ul>
-    <div class="key"><p><b>Key idea:</b> look at the formula. Anything on the top of a division works in the same direction as the answer. Anything on the bottom works in the opposite direction.</p></div>
+    <div class="key"><p><b>Key idea:</b> look at the formula. A quantity that is divided (the distance in distance &divide; time) makes the answer bigger when it is bigger. A quantity you divide by (the time) makes the answer smaller when it is bigger.</p></div>
     <div class="worked">
       <h3>Worked example</h3>
       <p>A car travels 120 m, to the nearest 10 m, in 8.4 s, to 1 decimal place. Find the greatest and smallest possible speed, to 2 decimal places.</p>
@@ -500,7 +500,7 @@
 </div>
 <div class="q" data-answers="8.15" data-mode="value">
   <p class="qtext">The density of a metal is mass &divide; volume. A block has mass 480 g, to the nearest 10 g, and volume 60 cm&sup3;, to the nearest cm&sup3;. What is the greatest possible density? Give your answer to 2 decimal places, in g/cm&sup3;.</p>
-  <ol class="ladder"><li>Density = mass &divide; volume. Which letter is on the top?</li><li>For the greatest density, use the upper bound of the mass and the lower bound of the volume.</li></ol>
+  <ol class="ladder"><li>Density = mass &divide; volume. Which quantity is being divided?</li><li>For the greatest density, use the upper bound of the mass and the lower bound of the volume.</li></ol>
   <ul class="wrong"><li data-if="7.85">That is the smallest possible density. For the greatest, use the biggest mass and the smallest volume.</li><li data-if="8">That is 480 &divide; 60 with no bounds. Use 485 &divide; 59.5.</li></ul>
   <div class="solution"><p>Upper bound of mass = 485 g. Lower bound of volume = 59.5 cm&sup3;. Greatest density = 485 &divide; 59.5 = 8.1512&hellip; &asymp; 8.15 g/cm&sup3;.</p></div>
 </div>
@@ -719,8 +719,8 @@
 </div>
 <div class="q" data-answers="1.73" data-mode="value">
   <p class="qtext">a = 3.5 and b = 2.1, both to 1 decimal place. What is the greatest possible value of a &divide; b? Give your answer to 2 decimal places.</p>
-  <ol class="ladder"><li>To make a division big, divide the biggest top by the smallest bottom.</li><li>Upper bound of a over lower bound of b.</li></ol>
-  <ul class="wrong"><li data-if="1.67">That is 3.5 &divide; 2.1 with no bounds. Use 3.55 &divide; 2.05.</li><li data-if="1.60;1.6">That is the smallest possible value (smallest top over biggest bottom).</li></ul>
+  <ol class="ladder"><li>To make a division big, divide the biggest a by the smallest b.</li><li>Upper bound of a over lower bound of b.</li></ol>
+  <ul class="wrong"><li data-if="1.67">That is 3.5 &divide; 2.1 with no bounds. Use 3.55 &divide; 2.05.</li><li data-if="1.60;1.6">That is the smallest possible value (smallest a over biggest b).</li></ul>
   <div class="solution"><p>Upper bound of a = 3.55. Lower bound of b = 2.05. Greatest a &divide; b = 3.55 &divide; 2.05 = 1.7317&hellip; &asymp; 1.73.</p></div>
 </div>
 <div class="q" data-answers="1.3" data-mode="value">
@@ -764,7 +764,7 @@
 </div>
 <div class="q" data-answers="19.8" data-mode="value" data-marks="4">
   <p class="qtext">[4 marks] <span class="chip chip-higher">Higher</span> p = 4.8, to 1 decimal place, and q = 0.25, to 2 decimal places. Work out the upper bound of p &divide; q. Give your answer to 3 significant figures.</p>
-  <ol class="ladder"><li>For the greatest division, divide the biggest top by the smallest bottom.</li><li>Upper bound of p over lower bound of q.</li><li>Half the unit for q is 0.005, because q is to 2 decimal places.</li></ol>
+  <ol class="ladder"><li>For the greatest division, divide the biggest p by the smallest q.</li><li>Upper bound of p over lower bound of q.</li><li>Half the unit for q is 0.005, because q is to 2 decimal places.</li></ol>
   <ul class="wrong"><li data-if="19.2">That is 4.8 &divide; 0.25 with no bounds. Use 4.85 &divide; 0.245.</li><li data-if="18.6">That is the lower bound. The question asks for the upper bound.</li></ul>
   <div class="solution"><p>Upper bound of p = 4.85. Lower bound of q = 0.245. Upper bound of p &divide; q = 4.85 &divide; 0.245 = 19.7959&hellip; &asymp; 19.8.</p><ul class="markscheme"><li><b>M1</b> for the upper bound of p, 4.85</li><li><b>M1</b> for the lower bound of q, 0.245</li><li><b>M1</b> for 4.85 &divide; 0.245</li><li><b>A1</b> for 19.8 (19.7959&hellip; before rounding)</li></ul></div>
 </div>
@@ -781,9 +781,9 @@
   <div class="wrap narrow">
     <h2>Why it works</h2>
     <ul class="tick">
-      <li><b>Rounding makes a box, not a point.</b> A rounded number stands for a whole range of true values. The half-unit rule comes from the middle of the range being the rounded number, and its width being one unit.</li>
+      <li><b>Rounding makes a range, not a single value.</b> A rounded number stands for a whole range of true values. The half-unit rule comes from the middle of the range being the rounded number, and its width being one unit.</li>
       <li><b>The lower bound is in and the upper bound is out.</b> The number halfway between two rounded values has to go to one of them. The convention is that it goes up. So 6.5 rounds up to 7, and 7.5 rounds up to 8.</li>
-      <li><b>To get the biggest answer, pick the best end of each number.</b> In a sum or product you want both numbers big. In a difference you want the first big and the second small. In a quotient you want the top big and the bottom small.</li>
+      <li><b>To get the biggest answer, pick the best end of each number.</b> In a sum or product you want both numbers big. In a difference you want the first big and the second small. In a quotient you want the number being divided big and the number you divide by small.</li>
       <li><b>Why both bounds must agree.</b> The true answer is somewhere between the lower and upper bounds. If both round to the same number, the true answer rounds to it too. If they do not, the extra digits are guesses.</li>
       <li><b>Truncation only goes one way.</b> Cutting digits off can only make a number smaller, so the true value is at least the truncated number and less than one whole unit more.</li>
     </ul>
@@ -816,8 +816,8 @@
 </div>
 <div class="q" data-answers="1.79" data-mode="value">
   <p class="qtext"><span class="chip chip-higher">Higher</span> a = 7.2 and b = 3.1, both to 1 decimal place. Work out the upper bound of a &divide; (a &minus; b). Give your answer to 3 significant figures. (Take care: a appears twice, so the usual rule does not work.)</p>
-  <ol class="ladder"><li>The expression a &divide; (a &minus; b) has a on the top and a on the bottom. Try some values of a and b to see what happens.</li><li>Make a smaller and b bigger, and the answer grows. Check with a = 7.25 and a = 7.15 if you are unsure.</li><li>Use the lower bound of a and the upper bound of b, everywhere they appear.</li></ol>
-  <ul class="wrong"><li data-if="1.81">That uses the upper bound of a on the top and the lower bound of a on the bottom. The same letter has the same value everywhere, so use one value of a in both places.</li><li data-if="1.76">That is 7.2 &divide; (7.2 &minus; 3.1) with no bounds. Use the bounds, and one value of a in both places.</li></ul>
+  <ol class="ladder"><li>The expression a &divide; (a &minus; b) has a as the number being divided and a inside the brackets. Try some values of a and b to see what happens.</li><li>Make a smaller and b bigger, and the answer grows. Check with a = 7.25 and a = 7.15 if you are unsure.</li><li>Use the lower bound of a and the upper bound of b, everywhere they appear.</li></ol>
+  <ul class="wrong"><li data-if="1.81">That uses the upper bound of a before the division sign and the lower bound of a inside the brackets. The same letter has the same value everywhere, so use one value of a in both places.</li><li data-if="1.76">That is 7.2 &divide; (7.2 &minus; 3.1) with no bounds. Use the bounds, and one value of a in both places.</li></ul>
   <div class="solution"><p>Write it as 1 &divide; (1 &minus; b &divide; a). It gets bigger when b &divide; a gets bigger, so use the biggest b and smallest a. Upper bound of b = 3.15. Lower bound of a = 7.15. a &divide; (a &minus; b) = 7.15 &divide; (7.15 &minus; 3.15) = 7.15 &divide; 4 = 1.7875 &asymp; 1.79.</p></div>
 </div>
   </div>
@@ -841,8 +841,8 @@
 </div>
 <div class="q" data-answers="3.96" data-mode="value" data-marks="3">
   <p class="qtext">[3 marks] A carpenter has a board 2.40 m long, to the nearest centimetre. She cuts shelves 0.60 m long, to the nearest centimetre. What is the smallest possible value of the board length &divide; the shelf length? Give your answer to 3 significant figures. Can she be certain of getting 4 shelves?</p>
-  <ol class="ladder"><li>For the smallest quotient, divide the smallest top by the biggest bottom.</li><li>Half the unit is 0.005 m, since the rounding is to the nearest centimetre.</li><li>Lower bound of the board over upper bound of a shelf.</li></ol>
-  <ul class="wrong"><li data-if="4">That is 2.40 &divide; 0.60 with no bounds. Use 2.395 &divide; 0.605.</li><li data-if="4.04">That is the greatest possible value (biggest top over smallest bottom). The question asks for the smallest.</li></ul>
+  <ol class="ladder"><li>For the smallest quotient, divide the smallest board length by the biggest shelf length.</li><li>Half the unit is 0.005 m, since the rounding is to the nearest centimetre.</li><li>Lower bound of the board over upper bound of a shelf.</li></ol>
+  <ul class="wrong"><li data-if="4">That is 2.40 &divide; 0.60 with no bounds. Use 2.395 &divide; 0.605.</li><li data-if="4.04">That is the greatest possible value (biggest board length over smallest shelf length). The question asks for the smallest.</li></ul>
   <div class="solution"><p>Lower bound of the board = 2.395 m. Upper bound of a shelf = 0.605 m. Smallest value = 2.395 &divide; 0.605 = 3.9587&hellip; &asymp; 3.96. This is less than 4, so she cannot be certain of getting 4 shelves.</p><ul class="markscheme"><li><b>M1</b> for the lower bound of the board, 2.395</li><li><b>M1</b> for the upper bound of a shelf, 0.605, and dividing</li><li><b>A1</b> for 3.96 (so she cannot be certain of 4 shelves)</li></ul></div>
 </div>
 <div class="q" data-answers="0.1" data-mode="value">
