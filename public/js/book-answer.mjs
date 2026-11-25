@@ -201,6 +201,16 @@ export function decimalCommaTip(input, answers) {
   return `Use a decimal point: ${typed.replace(',', '.')}`;
 }
 
+/** The numbers in a typed list ("1 5", "1, 5", "5 and 1", "x = 1 or x = 5"), sorted; null when it is not a list of two or more plain numbers. */
+function numberList(text) {
+  const parts = String(text).toLowerCase().replace(/\b[a-z]\s*=\s*/g, ' ').split(/\s*(?:,|;|&|\band\b|\bor\b|\s)\s*/).filter(Boolean);
+  if (parts.length < 2) return null;
+  const numbers = parts.map((p) => parseNumber(p));
+  return numbers.every((n) => n !== null) ? numbers.sort((x, y) => x - y) : null;
+}
+
+const sameNumbers = (a, b) => Boolean(a && b) && a.length === b.length && a.every((n, i) => close(n, b[i]));
+
 /**
  * True when `input` matches any of `answers` under `mode`. `context` (optional) is the question and
  * solution text: with it a typed unit must suit the question, and "10pi" is read as 10 where the question is about pi.
@@ -231,6 +241,9 @@ export function matches(input, answers, mode = 'value', context = '') {
       return false;
     }
   }
+  // Several numbers asked for as "1 or 5" are right in any order and with any usual separator: "1 5", "1, 5", "5 and 1", "x = 1 or x = 5".
+  const typedNumbers = numberList(typed);
+  if (typedNumbers && list.some((a) => /\bor\b/i.test(String(a)) && sameNumbers(typedNumbers, numberList(a)))) return true;
   const key = textKey(typed);
   if (list.some((a) => textKey(a) === key)) return true;
   // x = +-sqrt(a) is a fuller answer than sqrt(a), and right where the key is a root of letters.
