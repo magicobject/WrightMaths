@@ -108,4 +108,5 @@ math{font-size:1.18em;font-family:"Cambria Math","STIX Two Math","Latin Modern M
 
 /* small pictures in glossary pop-ups and entries */
 .term-svg{max-width:340px;margin:0 auto;display:block;}
-.g-fig .term-svg{max-width:420px;}
+.book .g-fig{max-width:540px;}
+.g-fig .term-svg{max-width:540px;}

@@ -1,4 +1,220 @@
-// A-level glossary: numerical. Entry format: see the header of ../glossary.mjs.
+// A-level glossary: numerical methods. Entry format: see the header of ../glossary.mjs.
 // Every term in this file has strand 'al-numerical'.
 export const TERMS = [
+  {
+    id: 'numerical-method', term: 'Numerical method', strand: 'al-numerical', level: 'Y2',
+    def: 'A step-by-step method that finds an approximate answer to a problem which cannot be solved exactly by algebra.',
+    example: [
+      '{m:x^3-x-1=0} cannot be solved by factorising or by a formula you know. A numerical method finds {m:x=1.3247} to 4 decimal places, or as many as you need.',
+      'Three methods in this book: the {term:change-of-sign} method, {term:iteration} (including {term:newton-raphson}) and the {term:trapezium-rule}.',
+    ],
+    watch: 'A numerical answer is an approximation. State how accurate it is ("to 3 decimal places"), and show the working that proves it.',
+    see: ['change-of-sign', 'iteration', 'newton-raphson', 'trapezium-rule'],
+    aka: ['approximate solution'],
+  },
+  {
+    id: 'continuous-function', term: 'Continuous function', strand: 'al-numerical', level: 'Y2',
+    def: 'A function whose graph on an interval has no gaps or jumps, so you can draw it without lifting your pen.',
+    example: [
+      '{m:f(x)=x^2-3} is continuous for every x. {m:f(x)=sin x} and {m:f(x)=e^x} are continuous too.',
+      '{m:f(x)=frac(1, x)} is not continuous on an interval that includes {m:x=0}. It has a break there.',
+    ],
+    watch: 'A function can be continuous on one interval and not on another. For example {m:frac(1, x)} is continuous on {m:1<=x<=2}. Always say on which interval.',
+    flip: 'A break in the graph is called a {term:discontinuity}.',
+    see: ['discontinuity', 'change-of-sign'],
+  },
+  {
+    id: 'discontinuity', term: 'Discontinuity', strand: 'al-numerical', level: 'Y2',
+    def: 'A point where the graph of a function has a break: a gap, a jump or an asymptote.',
+    example: [
+      '{m:f(x)=frac(1, x-1)} has a discontinuity at {m:x=1}, where it has a vertical asymptote.',
+      '{m:f(0)=-1} and {m:f(2)=1}, so f changes sign between 0 and 2. But there is no root there: the sign change happens at the asymptote.',
+    ],
+    watch: 'A sign change across a discontinuity does not mean there is a root. This is the most common way the {term:change-of-sign} method fails: always check that the function is continuous on the interval.',
+    see: ['continuous-function', 'change-of-sign'],
+    aka: ['break', 'jump', 'vertical asymptote'],
+  },
+  {
+    id: 'change-of-sign', term: 'Change of sign', strand: 'al-numerical', level: 'Y2',
+    def: 'If a continuous function is positive at one end of an interval and negative at the other, the function must equal zero somewhere in between, so there is a root there.',
+    example: [
+      '{m:f(x)=x^3-x-1}. {m:f(1)=-1} and {m:f(2)=5}. The signs are different, so there is a root between 1 and 2.',
+      '{m:f(1.3)=-0.103} and {m:f(1.4)=0.344}. So there is a root between 1.3 and 1.4. Keep narrowing the interval to get more decimal places.',
+    ],
+    watch: 'To use it, say: f is continuous, f(a) is negative, f(b) is positive, so there is a root between a and b. It can fail: if f has a {term:discontinuity} in the interval, or if there are two roots in the interval (the signs at the ends are then the same). A root where the graph only touches the x-axis shows no sign change.',
+    flip: 'To prove that a root is correct to a given number of decimal places, find a change of sign across an interval of that width: see {term:root-bounds}.',
+    see: ['continuous-function', 'discontinuity', 'root-bounds', 'numerical-method'],
+    aka: ['sign change', 'locating a root', 'interval bisection'],
+  },
+  {
+    id: 'root-bounds', term: 'Bounds for a root (accuracy)', strand: 'al-numerical', level: 'Y2',
+    def: 'The two values, a little below and a little above a root, that you use to prove the root is correct to a stated number of decimal places.',
+    example: [
+      'Show that the root of {m:x^3-x-1=0} is 1.32 to 2 decimal places. Numbers that round to 1.32 lie between 1.315 and 1.325.',
+      '{m:f(1.315)=-0.041} and {m:f(1.325)=0.001}. There is a change of sign, so the root is between 1.315 and 1.325. So it is 1.32 to 2 decimal places.',
+    ],
+    watch: 'Use the two values halfway between the answer and its neighbours (here 1.315 and 1.325), not 1.31 and 1.33. Use the bounds, not the answer itself.',
+    see: ['change-of-sign', 'numerical-method'],
+    aka: ['upper and lower bound', 'show the root is correct to'],
+  },
+  {
+    id: 'iteration', term: 'Iteration', strand: 'al-numerical', level: 'Y2',
+    def: 'Repeating the same calculation again and again, each time using the answer as the next input, to get closer and closer to a solution.',
+    example: [
+      'Start with {m:x_0=1.3} and repeat {m:x_(n+1)=root(3, x_n+1)}. The values are {m:x_1=1.3200}, {m:x_2=1.3238}, {m:x_3=1.3246}, getting closer to {m:1.3247}.',
+      'A calculator makes this easy: type the starting value, press equals, then keep applying the formula to the answer (using the ANS key).',
+    ],
+    watch: 'Keep full calculator accuracy while iterating and round only at the end. Write the values in a list: {m:x_1}, {m:x_2}, {m:x_3} and so on.',
+    see: ['iterative-formula', 'starting-value', 'convergent-iteration', 'newton-raphson'],
+    aka: ['iterate', 'repeated substitution'],
+  },
+  {
+    id: 'iterative-formula', term: 'Iterative formula', strand: 'al-numerical', level: 'Y2',
+    def: 'A rule of the form x(n+1) = g(x(n)) that gives each new approximation from the one before it.',
+    example: [
+      'To solve {m:x^3-x-1=0}, rearrange it as {m:x^3=x+1}, so {m:x=root(3, x+1)}. This gives the iterative formula {m:x_(n+1)=root(3, x_n+1)}.',
+      'The same equation can also be rearranged as {m:x=x^3-1}, giving {m:x_(n+1)=x_n^3-1}. From {m:x_0=1.3} this one moves away from the root. Different rearrangements behave differently.',
+    ],
+    watch: 'The rearrangement must still be equivalent to the original equation: a fixed point of the formula must be a root. Whether it works depends on the rearrangement, so test it.',
+    see: ['iteration', 'fixed-point', 'convergent-iteration', 'divergent-iteration'],
+    aka: ['recurrence relation', 'rearrangement', 'x_(n+1) = g(x_n)'],
+  },
+  {
+    id: 'starting-value', term: 'Starting value', strand: 'al-numerical', level: 'Y2',
+    def: 'The first approximation, x with subscript 0, from which an iteration begins.',
+    example: [
+      'For {m:x^3-x-1=0}, there is a root between 1 and 2, so you might choose {m:x_0=1.5}.',
+      'A change of sign usually gives a good starting value.',
+    ],
+    watch: 'A poor starting value can send an iteration to a different root or make it fail. With {term:newton-raphson}, do not start where the gradient is 0.',
+    see: ['iteration', 'change-of-sign', 'newton-raphson'],
+    aka: ['x_0', 'initial approximation', 'initial value'],
+  },
+  {
+    id: 'fixed-point', term: 'Fixed point', strand: 'al-numerical', level: 'Y2',
+    def: 'A value x for which g(x) = x, so that putting it into an iterative formula gives the same value back.',
+    example: [
+      'For {m:g(x)=cos x}, the fixed point is where {m:cos x=x}. That is {m:x=0.739} to 3 decimal places.',
+      'On a graph, it is where {m:y=g(x)} crosses the line {m:y=x}. The root you want is the x-coordinate of that crossing.',
+    ],
+    watch: 'A fixed point exists whether or not the iteration finds it. The iteration only finds it if it converges (see {term:convergent-iteration}).',
+    flip: 'If an iteration converges, the limit {m:L} is a fixed point: {m:L=g(L)}.',
+    see: ['iterative-formula', 'convergent-iteration', 'staircase-diagram', 'cobweb-diagram'],
+    aka: ['limit of an iteration', 'x = g(x)'],
+  },
+  {
+    id: 'convergent-iteration', term: 'Convergence', strand: 'al-numerical', level: 'Y2',
+    def: 'When the values given by an iteration get closer and closer to one number, called the limit.',
+    example: [
+      '{m:x_(n+1)=cos x_n} from {m:x_0=0.2}: the values go 0.98, 0.56, 0.85, 0.66, 0.79 &hellip; and settle on 0.739. This is convergence.',
+      'The limit {m:L} satisfies {m:L=g(L)}. That is how you can find the exact limit or check it.',
+    ],
+    watch: 'Convergence is a property of the iteration and the starting value. For a starting value close enough, it happens when the gradient of {m:g} at the limit is between &minus;1 and 1. If the gradient is positive the values approach in a one-sided staircase. If it is negative the values go either side of the limit in a cobweb.',
+    flip: 'The opposite is {term:divergent-iteration}.',
+    see: ['divergent-iteration', 'fixed-point', 'staircase-diagram', 'cobweb-diagram'],
+    aka: ['converge', 'converges', 'convergent'],
+  },
+  {
+    id: 'divergent-iteration', term: 'Divergence', strand: 'al-numerical', level: 'Y2',
+    def: 'When the values given by an iteration do not settle on one number: they move away from the root or jump about.',
+    example: [
+      '{m:x_(n+1)=frac(x_n^2, 2)} from {m:x_0=2.2} gives 2.42, 2.93, 4.29, 9.2 &hellip; The values grow without limit.',
+      'The number 2 satisfies {m:2=frac(2^2, 2)}, so it is a fixed point. But the iteration moves away from it, so it never finds it.',
+    ],
+    watch: 'Divergence happens when the gradient of {m:g} at the fixed point is bigger than 1 or less than &minus;1. If an iteration diverges, try another rearrangement of the equation.',
+    flip: 'The opposite is {term:convergent-iteration}.',
+    see: ['convergent-iteration', 'fixed-point', 'staircase-diagram', 'cobweb-diagram'],
+    aka: ['diverge', 'diverges', 'divergent'],
+  },
+  {
+    id: 'staircase-diagram', term: 'Staircase diagram', strand: 'al-numerical', level: 'Y2',
+    def: 'A graph of y = g(x) and y = x that shows an iteration moving towards (or away from) a fixed point in steps like a staircase, one side of the fixed point.',
+    example: [
+      'To draw it: start at {m:x_0} on the x-axis. Go up (or down) to the curve {m:y=g(x)}. Go across to the line {m:y=x}. Go up (or down) to the curve again. Repeat.',
+      'The x-coordinates where you meet the line {m:y=x} are {m:x_1}, {m:x_2}, {m:x_3}. They steadily approach the fixed point.',
+    ],
+    watch: 'A staircase appears when the curve slopes upwards at the fixed point (positive gradient). If the curve slopes downwards, you get a {term:cobweb-diagram} instead. Going up the stairs, away from the fixed point, shows divergence.',
+    see: ['cobweb-diagram', 'convergent-iteration', 'divergent-iteration', 'fixed-point'],
+    aka: ['stair-step diagram'],
+  },
+  {
+    id: 'cobweb-diagram', term: 'Cobweb diagram', strand: 'al-numerical', level: 'Y2',
+    def: 'A graph of y = g(x) and y = x that shows an iteration spiralling in towards (or out from) a fixed point, with values alternating either side of it.',
+    example: [
+      'It is drawn in the same way as a {term:staircase-diagram}: up or down to the curve, across to the line {m:y=x}, and repeat.',
+      'For {m:g(x)=cos x}, the lines spiral inwards to the fixed point {m:x=0.739}. The values are 0.98, 0.56, 0.85, 0.66, 0.79 &hellip; (above, below, above, below).',
+    ],
+    watch: 'A cobweb appears when the curve slopes downwards at the fixed point (negative gradient). A spiral that closes in means convergence; a spiral that opens out means divergence.',
+    see: ['staircase-diagram', 'convergent-iteration', 'divergent-iteration', 'fixed-point'],
+    aka: ['spider diagram', 'spiral'],
+  },
+  {
+    id: 'newton-raphson', term: 'Newton-Raphson method', strand: 'al-numerical', level: 'Y2',
+    def: 'An iterative method that finds a root of f(x) = 0 by following the tangent to the curve at each approximation down to the x-axis.',
+    example: [
+      'The formula is x<sub>n+1</sub> = x<sub>n</sub> &minus; f(x<sub>n</sub>) / f&prime;(x<sub>n</sub>), where f&prime; is the derivative of f.',
+      'Find {m:sqrt(2)} using {m:f(x)=x^2-2}, so f&prime;(x) = 2x. From {m:x_0=2}: {m:x_1=2-frac(2, 4)=1.5} and {m:x_2=1.5-frac(0.25, 3)=1.41667}. The true value is 1.41421.',
+    ],
+    watch: 'It fails if f&prime;(x<sub>n</sub>) = 0, because the tangent is flat and never reaches the x-axis. A starting value near a stationary point can send it far away, or to a different root. It is much faster than most other iterations when it works.',
+    flip: 'It is an iterative formula chosen from the gradient of the curve, so it needs the {term:iterative-formula} and the derivative.',
+    see: ['iteration', 'iterative-formula', 'starting-value', 'convergent-iteration'],
+    aka: ['Newton\'s method', 'tangent method'],
+  },
+  {
+    id: 'trapezium-rule', term: 'Trapezium rule', strand: 'al-numerical', level: 'Y2',
+    def: 'A method that estimates the area under a curve by dividing it into strips of equal width and treating each strip as a trapezium.',
+    example: [
+      '{m:int(a, b) y dx} &asymp; {m:frac(h, 2) [y_0+y_n+2 sum(r=1, n-1) y_r]}',
+      'Estimate {m:int(0, 2) x^2 dx} with 4 strips. {m:h=frac(2-0, 4)=0.5}. The y-values are 0, 0.25, 1, 2.25 and 4. So the estimate is {m:frac(0.5, 2) [0+2(0.25+1+2.25)+4]=0.25*11=2.75}.',
+    ],
+    watch: 'The first and last y-values are used once. All the middle ones are used twice. With {m:n} strips there are {m:n+1} y-values. The answer is an estimate: say whether it is an over- or underestimate.',
+    flip: 'The exact answer is {m:int(0, 2) x^2 dx=frac(8,3)=2.667}. So the estimate 2.75 is too big: see {term:over-and-under-estimate}.',
+    see: ['strip-width', 'ordinate', 'over-and-under-estimate', 'numerical-integration'],
+    aka: ['trapezoidal rule', 'trapezoid rule'],
+  },
+  {
+    id: 'strip-width', term: 'Strip width', strand: 'al-numerical', level: 'Y2',
+    def: 'The width h of each strip in the trapezium rule, found by dividing the length of the interval by the number of strips.',
+    example: [
+      '{md:h=frac(b-a, n)}',
+      'From {m:x=1} to {m:x=3} with 4 strips: {m:h=frac(3-1, 4)=0.5}. The x-values are 1, 1.5, 2, 2.5, 3.',
+    ],
+    watch: 'It is the number of strips that goes in the bottom of the fraction, not the number of y-values. 4 strips need 5 y-values.',
+    see: ['trapezium-rule', 'ordinate'],
+    aka: ['width of each strip', 'h'],
+  },
+  {
+    id: 'ordinate', term: 'Ordinate (y-value)', strand: 'al-numerical', level: 'Y2',
+    def: 'The height of the curve at one of the equally spaced x-values used in the trapezium rule.',
+    example: [
+      'For {m:y=x^2} from 0 to 2 with 4 strips, the x-values are 0, 0.5, 1, 1.5, 2. The ordinates are {m:y_0=0}, {m:y_1=0.25}, {m:y_2=1}, {m:y_3=2.25}, {m:y_4=4}.',
+      'Each ordinate is a vertical side of one or two trapezia.',
+    ],
+    watch: 'Number them from 0: {m:y_0} is the first. Put your calculator in radian mode if the function has sin or cos and no degree sign.',
+    see: ['trapezium-rule', 'strip-width'],
+    aka: ['y-values', 'heights'],
+  },
+  {
+    id: 'over-and-under-estimate', term: 'Over- and underestimate', strand: 'al-numerical', level: 'Y2',
+    def: 'The trapezium rule gives an answer that is too big if the curve bends upwards and too small if it bends downwards, because the straight tops of the trapezia lie above or below the curve.',
+    example: [
+      'For {m:y=x^2}, the curve bends upwards (the second derivative is positive). Each straight top lies above the curve, so the trapezium rule gives too big an answer: 2.75 instead of 2.667.',
+      'For {m:y=sqrt(x)}, the curve bends downwards. The straight tops lie below the curve, so the rule gives too small an answer.',
+    ],
+    watch: 'Justify it by looking at the shape of the curve over the whole interval, with a sketch. If the curve bends one way in part of the interval and the other way in the rest, you cannot say. Using more strips makes the estimate better.',
+    flip: 'A curve that bends upwards has f&Prime;(x) &gt; 0 (second derivative positive): the trapezium rule overestimates. A curve that bends downwards has f&Prime;(x) &lt; 0: it underestimates.',
+    see: ['trapezium-rule', 'numerical-integration'],
+    aka: ['overestimate', 'underestimate', 'too big or too small'],
+  },
+  {
+    id: 'numerical-integration', term: 'Numerical integration', strand: 'al-numerical', level: 'Y2',
+    def: 'Finding an approximate value of a definite integral by a numerical method, for when the function cannot be integrated exactly.',
+    example: [
+      '{m:int(0, 1) e^(-x^2) dx} has no answer in terms of the functions you know. The {term:trapezium-rule} gives an estimate.',
+      'You can also use it to check an answer found by integrating, like checking 2.75 against {m:frac(8,3)}.',
+    ],
+    watch: 'The answer is an approximation, so say "to 3 decimal places" or similar. More strips give a better approximation.',
+    see: ['trapezium-rule', 'numerical-method'],
+    aka: ['approximating an integral'],
+  },
 ];

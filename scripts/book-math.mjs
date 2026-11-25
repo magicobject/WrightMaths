@@ -25,8 +25,15 @@ const GREEK = {
   pi: 'π', theta: 'θ', alpha: 'α', beta: 'β', gamma: 'γ', delta: 'δ', Delta: 'Δ',
   lambda: 'λ', mu: 'μ', sigma: 'σ', phi: 'φ', omega: 'ω', epsilon: 'ε', rho: 'ρ', tau: 'τ',
 };
-const FUNCS = new Set(['frac', 'sqrt', 'root', 'abs', 'vec', 'hat', 'int', 'sum', 'lim']);
-const OPS = [['<=', '≤', '<='], ['>=', '≥', '>='], ['!=', '≠', '!='], ['~=', '≈', '~='], ['->', '→', '->'], ['+', '+', '+'], ['-', '−', '-'], ['*', '×', '*'], ['=', '=', '='], ['<', '&lt;', '<'], ['>', '&gt;', '>'], [',', ',', ','], [';', ';', ';'], [':', ':', ':'], ['/', '/', '/'], ['!', '!', '!']];
+const FUNCS = new Set(['frac', 'sqrt', 'root', 'abs', 'vec', 'hat', 'int', 'sum', 'lim', 'col', 'nCr']);
+// Named symbols: written as a word, drawn as the sign. kind 'set' is a double-struck letter, 'op' an operator sign.
+const SYMS = {
+  reals: ['ℝ', 'R', 'set'], integers: ['ℤ', 'Z', 'set'], rationals: ['ℚ', 'Q', 'set'], naturals: ['ℕ', 'N', 'set'],
+  elementof: ['∈', 'in', 'op'], notelementof: ['∉', 'not in', 'op'], union: ['∪', 'union', 'op'], intersect: ['∩', 'intersect', 'op'],
+  implies: ['⇒', '=>', 'op'], iff: ['⇔', '<=>', 'op'], mapsto: ['↦', '->', 'op'], therefore: ['∴', 'therefore', 'op'], prop: ['∝', 'prop', 'op'],
+  plusminus: ['±', '+-', 'op'],
+};
+const OPS = [['<=>', '⇔', '<=>'], ['=>', '⇒', '=>'], ['+-', '±', '+-'], ['<=', '≤', '<='], ['>=', '≥', '>='], ['!=', '≠', '!='], ['~=', '≈', '~='], ['->', '→', '->'], ['+', '+', '+'], ['-', '−', '-'], ['*', '×', '*'], ['=', '=', '='], ['<', '&lt;', '<'], ['>', '&gt;', '>'], [',', ',', ','], [';', ';', ';'], [':', ':', ':'], ['/', '/', '/'], ['!', '!', '!']];
 
 function fail(src, msg) {
   throw new Error(`maths shorthand {m:${src}}: ${msg}`);
@@ -58,6 +65,7 @@ function tokenise(src) {
     if (word) {
       const w = word[0];
       if (FUNCS.has(w) && src[i + w.length] === '(') { out.push({ t: 'func', v: w }); i += w.length; continue; }
+      if (SYMS[w]) { out.push({ t: 'named', name: w }); i += w.length; continue; }
       if (w === 'infinity') { out.push({ t: 'sym', v: '∞' }); i += w.length; continue; }
       if (w === 'deg') { out.push({ t: 'deg' }); i += 3; continue; }
       if (WORDS.has(w)) { out.push({ t: 'word', v: w }); i += w.length; continue; }
@@ -69,6 +77,12 @@ function tokenise(src) {
     }
     if (c === '(' || c === ')' || c === '[' || c === ']') { out.push({ t: c }); i += 1; continue; }
     if (c === '^' || c === '_') { out.push({ t: c }); i += 1; continue; }
+    if (c === "'") {
+      const n = src.startsWith("''", i) ? 2 : 1;
+      out.push({ t: 'op', v: n === 2 ? '″' : '′', lin: "'".repeat(n), prime: true });
+      i += n;
+      continue;
+    }
     if (c === '~') { out.push({ t: 'space' }); i += 1; continue; }
     if (c === '|') fail(src, 'use abs(x) for a modulus, not |x|');
     const op = OPS.find(([s]) => src.startsWith(s, i));
@@ -101,12 +115,13 @@ function parse(src) {
       case 'num': return { k: 'num', v: tok.v };
       case 'var': return { k: 'var', v: tok.v };
       case 'greek': return { k: 'greek', v: tok.v, name: tok.name };
+      case 'named': return { k: 'named', name: tok.name };
       case 'sym': return { k: 'sym', v: tok.v };
       case 'word': return { k: 'word', v: tok.v };
       case 'text': return { k: 'text', v: tok.v };
       case 'deg': return { k: 'deg' };
       case 'space': return { k: 'space' };
-      case 'op': return { k: 'op', v: tok.v, lin: tok.lin };
+      case 'op': return { k: 'op', v: tok.v, lin: tok.lin, prime: tok.prime };
       case '(': case '[': {
         const close = tok.t === '(' ? ')' : ']';
         const body = sequence([close]);
@@ -136,6 +151,8 @@ function parse(src) {
     if (need && args.length !== need) fail(src, `${name}(...) needs ${need} part${need > 1 ? 's' : ''} separated by commas`);
     if (name === 'int' && args.length !== 0 && args.length !== 2) fail(src, 'int() needs no limits, or int(lower, upper)');
     if (name === 'sum' && args.length !== 2) fail(src, 'sum(start, end) needs two parts, for example sum(r=1, n)');
+    if (name === 'col' && (args.length < 2 || args.length > 3)) fail(src, 'col(a, b) or col(a, b, c) needs two or three rows');
+    if (name === 'nCr' && args.length !== 2) fail(src, 'nCr(n, r) needs two parts');
     if (name === 'lim' && args.length !== 1) fail(src, 'lim(x -> 0) needs one part');
     return { k: 'func', name, args };
   }
@@ -191,13 +208,14 @@ function ml(n) {
     case 'num': return `<mn>${n.v}</mn>`;
     case 'var': return `<mi>${n.v}</mi>`;
     case 'greek': return `<mi>${n.v}</mi>`;
+    case 'named': return SYMS[n.name][2] === 'set' ? `<mi mathvariant="double-struck">${SYMS[n.name][0]}</mi>` : `<mo>${SYMS[n.name][0]}</mo>`;
     case 'sym': return `<mi>${n.v}</mi>`;
     case 'word': return `<mi mathvariant="normal">${n.v}</mi>`;
     case 'text': return `<mtext>${esc(n.v)}</mtext>`;
     case 'deg': return '<mo>°</mo>';
     case 'space': return '<mspace width="0.5em"></mspace>';
     case 'op': return `<mo>${n.v === '&lt;' ? '&lt;' : n.v === '&gt;' ? '&gt;' : n.v}</mo>`;
-    case 'group': return `<mrow><mo>${n.open}</mo>${mlSeq(n.body)}<mo>${n.close}</mo></mrow>`;
+    case 'group': return `<mrow><mo form="prefix" fence="true" stretchy="false" lspace="0em" rspace="0em">${n.open}</mo>${mlSeq(n.body)}<mo form="postfix" fence="true" stretchy="false" lspace="0em" rspace="0em">${n.close}</mo></mrow>`;
     case 'row': return `<mrow>${mlSeq(n.body)}</mrow>`;
     case 'sup': return `<msup>${ml(n.base)}${ml(n.arg)}</msup>`;
     case 'sub': return `<msub>${ml(n.base)}${ml(n.arg)}</msub>`;
@@ -217,6 +235,8 @@ function mlFunc({ name, args }) {
     case 'hat': return `<mover><mrow>${mlSeq(args[0])}</mrow><mo>^</mo></mover>`;
     case 'int': return args.length ? `<msubsup><mo>∫</mo>${a(0)}${a(1)}</msubsup>` : '<mo>∫</mo>';
     case 'sum': return `<munderover><mo>∑</mo>${a(0)}${a(1)}</munderover>`;
+    case 'col': return `<mrow><mo>(</mo><mtable>${args.map((row) => `<mtr><mtd>${mlSeq(row)}</mtd></mtr>`).join('')}</mtable><mo>)</mo></mrow>`;
+    case 'nCr': return `<mmultiscripts><mi>C</mi><mrow>${mlSeq(args[1])}</mrow><none></none><mprescripts></mprescripts><mrow>${mlSeq(args[0])}</mrow><none></none></mmultiscripts>`;
     case 'lim': return `<munder><mi mathvariant="normal">lim</mi>${a(0)}</munder>`;
     default: throw new Error(`maths shorthand: unknown function ${name}`);
   }
@@ -233,6 +253,7 @@ function linSeq(items) {
   items.forEach((n, i) => {
     const text = lin(n);
     const prev = items[i - 1];
+    if (n.k === 'named' && SYMS[n.name][2] === 'op') { out += ` ${text} `; return; }
     if (n.k !== 'op') {
       const afterBigOperator = prev?.k === 'func' && ['int', 'sum', 'lim'].includes(prev.name);
       const afterWord = prev?.k === 'word' && ['var', 'num', 'greek', 'sup'].includes(n.k);
@@ -242,7 +263,7 @@ function linSeq(items) {
     }
     // "a, b"  "n!"  "-3" (a sign at the start or after another operator) and "x - 1" (a sum).
     if (n.lin === ',' || n.lin === ';') out += `${text} `;
-    else if (n.lin === '!') out += text;
+    else if (n.lin === '!' || n.prime) out += text;
     else if ((n.lin === '-' || n.lin === '+') && (!prev || prev.k === 'op')) out += text;
     else out += ` ${text} `;
   });
@@ -253,6 +274,7 @@ function lin(n) {
   switch (n.k) {
     case 'num': case 'var': return n.v;
     case 'greek': return n.name;
+    case 'named': return SYMS[n.name][1];
     case 'sym': return n.v === '∞' ? 'infinity' : n.v;
     case 'word': return n.v;
     case 'text': return n.v;
@@ -284,6 +306,8 @@ function linFunc({ name, args }) {
     case 'hat': return `${t(0)}-hat`;
     case 'int': return args.length ? `integral from ${t(0)} to ${t(1)} of` : 'integral of';
     case 'sum': return `sum from ${t(0)} to ${t(1)} of`;
+    case 'col': return `column vector (${args.map((_, i) => t(i)).join(', ')})`;
+    case 'nCr': return `${t(0)}C${t(1)}`;
     case 'lim': return `limit as ${t(0)} of`;
     default: return '';
   }

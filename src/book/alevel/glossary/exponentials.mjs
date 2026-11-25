@@ -1,4 +1,277 @@
-// A-level glossary: exponentials. Entry format: see the header of ../glossary.mjs.
+// A-level glossary: exponentials and logarithms. Entry format: see the header of ../glossary.mjs.
 // Every term in this file has strand 'al-exponentials'.
 export const TERMS = [
+  // ---------- Year 1 ----------
+  {
+    id: 'exponential-function', term: 'Exponential function', strand: 'al-exponentials', level: 'Y1',
+    def: 'A function of the form a to the power x, where the unknown x is in the power and the base a is a positive number other than 1.',
+    example: [
+      '{m:y=2^x}: the values for {m:x=0, 1, 2, 3} are 1, 2, 4, 8. The graph passes through (0, 1) and goes up faster and faster.',
+      '{m:y=(frac(1,2))^x}: the values are 1, {m:frac(1,2)}, {m:frac(1,4)}, {m:frac(1,8)}. The graph passes through (0, 1) and falls towards 0.',
+    ],
+    watch: 'This is not the same as {m:y=x^2}. In {m:x^2} the unknown is the base; in {m:2^x} the unknown is the power. The graph of {m:y=a^x} is always above the x-axis and gets as close as you like to the line {m:y=0} (an asymptote), but never reaches it.',
+    flip: 'The reverse of an exponential function is a {term:logarithm}: {m:2^x=8} has the answer {m:x=log_2 8=3}.',
+    see: ['base-number', 'exponential-growth', 'exponential-decay', 'natural-exponential', 'logarithm'],
+    aka: ['a to the x', 'y = a^x'],
+  },
+  {
+    id: 'base-number', term: 'Base', strand: 'al-exponentials', level: 'Y1',
+    def: 'The number that is being raised to a power, and also the number that a logarithm is counting in.',
+    example: [
+      'In {m:2^5=32} the base is 2 and the power is 5.',
+      'In {m:log_2 32=5} the base of the logarithm is 2. It is the same 2.',
+    ],
+    watch: 'The base of a logarithm is written small and lower, as in {m:log_2 x}. If it is not written, {m:log x} usually means base 10 on a calculator and in many questions: read the question.',
+    see: ['exponential-function', 'logarithm', 'common-logarithm', 'natural-logarithm'],
+    aka: ['base of a logarithm'],
+  },
+  {
+    id: 'exponential-growth', term: 'Exponential growth', strand: 'al-exponentials', level: 'Y1',
+    def: 'Growth where a quantity is multiplied by the same factor, bigger than 1, in every equal time step, so it grows faster the bigger it gets.',
+    example: [
+      'A population starts at 100 and doubles every hour: {m:N=100*2^t}, with {m:t} in hours. After 3 hours, {m:N=100*8=800}.',
+      '{m:y=A*b^x} with {m:b>1}, or {m:y=A e^(k x)} with {m:k>0}, are both exponential growth.',
+    ],
+    watch: 'It is not the same as growing by a fixed amount each time (that is linear, a straight line). A growth of 5% a year multiplies by {m:1.05}, not {m:0.05}.',
+    flip: 'If the factor is between 0 and 1, the quantity falls: {term:exponential-decay}.',
+    see: ['exponential-decay', 'growth-factor', 'exponential-model', 'continuous-growth-model'],
+    aka: ['growth model', 'compound growth'],
+  },
+  {
+    id: 'exponential-decay', term: 'Exponential decay', strand: 'al-exponentials', level: 'Y1',
+    def: 'Decay where a quantity is multiplied by the same factor, between 0 and 1, in every equal time step, so it falls quickly at first and then more slowly.',
+    example: [
+      'A car is worth 15000 pounds and loses 20% of its value each year: {m:V=15000*0.8^t}. After 2 years, {m:V=15000*0.64=9600} pounds.',
+      '{m:y=A*b^x} with {m:0<b<1}, or {m:y=A e^(-k x)} with {m:k>0}, are both exponential decay.',
+    ],
+    watch: 'The quantity never reaches 0 in this model: the graph gets closer and closer to the x-axis. A fall of 20% multiplies by {m:0.8}, not by {m:0.2}.',
+    flip: 'If the factor is bigger than 1, the quantity grows: {term:exponential-growth}.',
+    see: ['exponential-growth', 'growth-factor', 'half-life', 'continuous-growth-model'],
+    aka: ['decay model', 'depreciation'],
+  },
+  {
+    id: 'growth-factor', term: 'Growth factor (multiplier)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The number you multiply by in each time step, which is greater than 1 for growth and between 0 and 1 for decay.',
+    example: [
+      'A rise of 5% each year has growth factor {m:1+frac(5,100)=1.05}.',
+      'A fall of 20% each year has factor {m:1-frac(20,100)=0.8}.',
+    ],
+    watch: 'The factor is not the percentage. A 5% rise is 1.05, not 0.05. In {m:y=A*b^x} the growth factor is {m:b}.',
+    see: ['exponential-growth', 'exponential-decay', 'exponential-model'],
+    aka: ['multiplier', 'decay factor', 'common ratio'],
+  },
+  {
+    id: 'half-life', term: 'Half-life', strand: 'al-exponentials', level: 'Y1',
+    def: 'The time it takes for a decaying quantity to fall to half of its value.',
+    example: [
+      'A substance has half-life 2 days. From 8 g, it falls to 4 g after 2 days, then to 2 g after 4 days, then to 1 g after 6 days.',
+      'The model is {m:m=8*(frac(1,2))^(t/2)}, with {m:t} in days.',
+    ],
+    watch: 'The half-life is the same wherever you start. From 4 g, it takes 2 days to reach 2 g, just as it took 2 days to go from 8 g to 4 g. That is the signature of exponential decay.',
+    flip: 'For growth, the matching idea is the doubling time: how long it takes to double.',
+    see: ['exponential-decay', 'exponential-model'],
+    aka: ['doubling time'],
+  },
+  {
+    id: 'euler-number', term: 'The number e', strand: 'al-exponentials', level: 'Y1',
+    def: 'The special irrational number, about 2.71828, chosen so that the graph of y = e to the power x has gradient equal to its height at every point.',
+    example: [
+      'e = 2.71828 to 5 decimal places. The digits never end and never repeat.',
+      'At {m:x=0}, {m:y=e^0=1}, and the gradient of {m:y=e^x} there is also 1. At {m:x=1}, the height is {m:e} and the gradient is also {m:e}.',
+    ],
+    watch: 'It is a number, like {m:pi}, not a variable. Do not round it to 2.7 in an exact answer: leave it as {m:e}.',
+    flip: 'Its reverse is the {term:natural-logarithm}: {m:ln e=1}.',
+    see: ['natural-exponential', 'natural-logarithm'],
+    aka: ['Euler\'s number', 'exponential constant'],
+  },
+  {
+    id: 'natural-exponential', term: 'Natural exponential function (e^x)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The function y = e to the power x, which is the exponential function whose gradient at every point equals its height.',
+    example: [
+      '{m:e^0=1}, {m:e^1=2.718}, {m:e^(-1)=0.368}. The graph goes through (0, 1), is always above the x-axis and has the x-axis as an asymptote.',
+      'It can also be written {m:exp x}. On a calculator, use the {m:e^x} key.',
+    ],
+    watch: 'Do not write {m:e^(2x)} as {m:(e^x)*2}. The brackets matter: {m:e^(2x)=(e^x)^2}. Also {m:e^(x+y)=e^x*e^y}, but it is not {m:e^x+e^y}.',
+    flip: 'Its inverse is {term:natural-logarithm} {m:ln x}: {m:e^(ln x)=x} and {m:ln(e^x)=x}.',
+    see: ['euler-number', 'natural-logarithm', 'exponential-function'],
+    aka: ['exp', 'exp x', 'e to the x', 'e^x'],
+  },
+  {
+    id: 'logarithm', term: 'Logarithm (log)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The logarithm to base a of a number x is the power you must raise a to in order to get x.',
+    example: [
+      '{m:log_2 8=3} because {m:2^3=8}. {m:log_10 1000=3} because {m:10^3=1000}.',
+      '{m:log_a x=y} means exactly the same as {m:a^y=x}. Two ways of writing one fact.',
+      'Some values are always the same: {m:log_a 1=0} and {m:log_a a=1}.',
+    ],
+    watch: 'You can only take the logarithm of a positive number: {m:log_a x} needs {m:x>0}. The base must be positive and not 1. A logarithm is a power, so it can be negative or a fraction: {m:log_2 (frac(1,4))=-2}.',
+    flip: 'It undoes an {term:exponential-function}: {m:log_a (a^x)=x} and {m:a^(log_a x)=x}. See {term:log-exp-inverse}.',
+    see: ['base-number', 'common-logarithm', 'natural-logarithm', 'log-exp-inverse', 'log-graph'],
+    aka: ['log', 'log base a', 'logarithm base'],
+  },
+  {
+    id: 'common-logarithm', term: 'Common logarithm (log base 10)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The logarithm to base 10, which is what the log key on a calculator gives.',
+    example: [
+      '{m:log_10 1000=3}, {m:log_10 0.01=-2}, {m:log_10 5=0.699} to 3 decimal places.',
+      'Solve {m:10^x=500}: {m:x=log_10 500=2.70} to 3 significant figures.',
+    ],
+    watch: 'It is often written lg or log with no base. It is not the natural logarithm ln, which is base e.',
+    see: ['logarithm', 'natural-logarithm'],
+    aka: ['lg', 'log10', 'log base 10', 'base 10 log'],
+  },
+  {
+    id: 'natural-logarithm', term: 'Natural logarithm (ln)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The logarithm to base e, written ln x, which is the inverse of the function e to the power x.',
+    example: [
+      '{m:ln x=y} means {m:e^y=x}. So {m:ln e=1}, {m:ln 1=0} and {m:ln(e^3)=3}.',
+      'Solve {m:e^x=5}: {m:x=ln 5=1.61} to 3 significant figures.',
+    ],
+    watch: 'ln and log are different keys on the calculator: ln is base e, log is base 10. {m:ln x} is only defined for {m:x>0}. {m:ln(x+y)} is not {m:ln x+ln y}.',
+    flip: 'Its graph is the graph of {m:y=e^x} reflected in the line {m:y=x}. It has the y-axis as an asymptote and passes through (1, 0).',
+    see: ['logarithm', 'euler-number', 'natural-exponential', 'log-graph'],
+    aka: ['ln', 'log base e', 'loge', 'Napierian logarithm'],
+  },
+  {
+    id: 'log-product-law', term: 'Product law of logarithms', strand: 'al-exponentials', level: 'Y1',
+    def: 'The rule that adding two logarithms with the same base gives the logarithm of the product.',
+    example: [
+      '{md:log_a x+log_a y=log_a (x y)}',
+      '{m:log_10 4+log_10 25=log_10 100=2}.',
+    ],
+    watch: 'Both logarithms must have the same base. The rule does not turn {m:log_a (x+y)} into anything: {m:log_a (x+y)} is not {m:log_a x+log_a y}.',
+    flip: 'Read from right to left, it splits a product into a sum: {m:log_a (6x)=log_a 6+log_a x}.',
+    see: ['log-quotient-law', 'log-power-law', 'logarithm'],
+    aka: ['addition law', 'log of a product', 'laws of logarithms'],
+  },
+  {
+    id: 'log-quotient-law', term: 'Quotient law of logarithms', strand: 'al-exponentials', level: 'Y1',
+    def: 'The rule that subtracting two logarithms with the same base gives the logarithm of the quotient.',
+    example: [
+      '{md:log_a x-log_a y=log_a frac(x, y)}',
+      '{m:log_2 40-log_2 5=log_2 8=3}. In particular {m:log_a frac(1, y)=-log_a y}.',
+    ],
+    watch: 'The order matters: {m:log_a x-log_a y} is the logarithm of {m:frac(x, y)}, not of {m:frac(y, x)}. And {m:frac(log_a x, log_a y)} is not {m:log_a x-log_a y}.',
+    see: ['log-product-law', 'log-power-law', 'logarithm'],
+    aka: ['subtraction law', 'log of a quotient', 'log of a division'],
+  },
+  {
+    id: 'log-power-law', term: 'Power law of logarithms', strand: 'al-exponentials', level: 'Y1',
+    def: 'The rule that the logarithm of a number raised to a power is the power multiplied by the logarithm of the number.',
+    example: [
+      '{md:log_a (x^k)=k log_a x}',
+      '{m:log_10 (5^3)=3 log_10 5}. And {m:log_a sqrt(x)=frac(1,2) log_a x}.',
+      'It is how you solve {m:3^x=20}: take logs of both sides to get {m:x log_10 3=log_10 20}, so {m:x=frac(log_10 20, log_10 3)=2.73}.',
+    ],
+    watch: 'The power {m:k} must be on the number inside the log. In {m:(log_a x)^2}, the square is on the log, and the rule does not apply.',
+    see: ['log-product-law', 'log-quotient-law', 'exponential-equation'],
+    aka: ['bring the power down', 'log of a power'],
+  },
+  {
+    id: 'log-exp-inverse', term: 'Logarithm and exponential are inverses', strand: 'al-exponentials', level: 'Y1',
+    def: 'Taking a logarithm and raising to the same base undo each other, in either order.',
+    example: [
+      '{m:log_a (a^x)=x} and {m:a^(log_a x)=x}.',
+      '{m:ln(e^x)=x} and {m:e^(ln x)=x}. For example {m:e^(ln 5)=5} and {m:log_10 (10^7)=7}.',
+    ],
+    watch: 'It only works when the base of the logarithm and the base of the power are the same. {m:10^(ln 5)} is not 5.',
+    flip: 'This is why the graph of a logarithm is the reflection of the matching exponential graph in the line {m:y=x}.',
+    see: ['logarithm', 'natural-logarithm', 'log-graph', 'exponential-equation'],
+    aka: ['inverse of log', 'a^(log x)'],
+  },
+  {
+    id: 'change-of-base', term: 'Change of base', strand: 'al-exponentials', level: 'Y1',
+    def: 'A formula that turns a logarithm in one base into a quotient of logarithms in another base.',
+    example: [
+      '{md:log_a x=frac(log_b x, log_b a)}',
+      '{m:log_2 20=frac(log_10 20, log_10 2)=4.32} to 3 significant figures. Use it to find a logarithm to a base your calculator has no key for.',
+    ],
+    watch: 'Not every exam board asks for this formula by name. Check your specification. If it is not required, you can still get the same result by taking logs of both sides.',
+    see: ['logarithm', 'common-logarithm', 'natural-logarithm', 'exponential-equation'],
+    aka: ['base change', 'changing the base'],
+  },
+  {
+    id: 'exponential-equation', term: 'Exponential equation', strand: 'al-exponentials', level: 'Y1',
+    def: 'An equation in which the unknown is in the power, usually solved by taking logarithms of both sides.',
+    example: [
+      'Solve {m:2^x=10}. Take logs of both sides: {m:x log 2=log 10}. So {m:x=frac(log 10, log 2)=3.32} to 3 significant figures.',
+      'Solve {m:e^(2x)-5 e^x+6=0}. Let {m:u=e^x}. Then {m:u^2-5u+6=0}, so {m:u=2} or {m:u=3}. So {m:x=ln 2} or {m:x=ln 3}.',
+    ],
+    watch: 'Use the power law to bring the unknown down. Do not take the logarithm of each term separately. For {m:e^x=-2}, there is no solution, because {m:e^x} is always positive.',
+    see: ['log-power-law', 'log-exp-inverse', 'change-of-base'],
+    aka: ['solving a^x = b', 'taking logs'],
+  },
+  {
+    id: 'log-graph', term: 'Graph of a logarithm', strand: 'al-exponentials', level: 'Y1',
+    def: 'The graph of y = log to the base a of x, which passes through (1, 0), exists only for x greater than 0, and has the y-axis as an asymptote.',
+    example: [
+      '{m:y=log_2 x} passes through (1, 0), (2, 1), (4, 2) and (8, 3). It rises slowly. For {m:0<x<1} it is negative.',
+      'The graph of {m:y=ln x} has the same shape, passing through (1, 0) and ({m:e}, 1).',
+    ],
+    watch: 'It never touches the y-axis, and there is no part of the graph to the left of it. Do not draw it as a curve that goes down through the x-axis.',
+    flip: 'It is the reflection of {m:y=a^x} in the line {m:y=x}: the point {m:(p, q)} on one becomes {m:(q, p)} on the other.',
+    see: ['logarithm', 'natural-logarithm', 'log-exp-inverse', 'exponential-function'],
+    aka: ['logarithmic graph', 'y = log x'],
+  },
+  {
+    id: 'linearising', term: 'Reducing to a straight line (linearising)', strand: 'al-exponentials', level: 'Y1',
+    def: 'Taking logarithms of both sides of an equation so that it turns into the equation of a straight line.',
+    example: [
+      '{m:y=a x^n} becomes {m:log y=n log x+log a}. A graph of {m:log y} against {m:log x} is a straight line. See {term:log-log-graph}.',
+      '{m:y=k b^x} becomes {m:log y=(log b) x+log k}. A graph of {m:log y} against {m:x} is a straight line. See {term:semi-log-graph}.',
+    ],
+    watch: 'Match your equation to {m:Y=m X+c} term by term: say what is playing the part of Y, X, m and c. Then read the gradient and the intercept from the graph.',
+    flip: 'This is how experimental data is tested: if the points lie on a straight line, the model fits.',
+    see: ['log-log-graph', 'semi-log-graph', 'log-power-law'],
+    aka: ['logarithmic graph paper', 'straight-line graph from logs'],
+  },
+  {
+    id: 'log-log-graph', term: 'Log-log graph', strand: 'al-exponentials', level: 'Y1',
+    def: 'A graph of log y against log x, which is a straight line when y = a x^n, with gradient n and vertical intercept log a.',
+    example: [
+      '{m:y=3 x^2} gives {m:log y=2 log x+log 3}. The gradient is 2 and the intercept is {m:log 3=0.477}.',
+      'If a graph of {m:log y} against {m:log x} passes through (0, 0.477) and has gradient 2, then {m:log a=0.477}, so {m:a=3}, and {m:n=2}.',
+    ],
+    watch: 'The intercept is {m:log a}, not {m:a}. To find {m:a}, work backwards: {m:a=10^(log a)} for logs to base 10, or {m:a=e^(ln a)} for natural logs.',
+    flip: 'It turns a power law into a straight line, while a {term:semi-log-graph} does the same for exponential growth.',
+    see: ['linearising', 'semi-log-graph', 'log-power-law'],
+    aka: ['log y against log x', 'power law graph'],
+  },
+  {
+    id: 'semi-log-graph', term: 'Semi-log graph', strand: 'al-exponentials', level: 'Y1',
+    def: 'A graph of log y against x, which is a straight line when y = k b to the power x, with gradient log b and vertical intercept log k.',
+    example: [
+      '{m:y=2*3^x} gives {m:log y=(log 3) x+log 2}. The gradient is {m:log 3=0.477} and the intercept is {m:log 2=0.301}.',
+      'With natural logs: {m:y=A e^(k x)} gives {m:ln y=k x+ln A}. The gradient is {m:k} and the intercept is {m:ln A}.',
+    ],
+    watch: 'The gradient is {m:log b}, not {m:b}. Only the y-values are changed to logs. The x-values stay as they are.',
+    flip: 'It turns exponential growth or decay into a straight line, while a {term:log-log-graph} does the same for a power law.',
+    see: ['linearising', 'log-log-graph', 'exponential-model'],
+    aka: ['log y against x', 'semi-logarithmic'],
+  },
+  {
+    id: 'exponential-model', term: 'Exponential model', strand: 'al-exponentials', level: 'Y1',
+    def: 'A formula of the form y = A times b to the power x (or A e to the power kx) used to describe something that changes by the same percentage in each equal step.',
+    example: [
+      'A bank account of 500 pounds earns 4% a year: {m:S=500*1.04^t}. After 10 years, {m:S=500*1.04^10=740.12} pounds.',
+      'A is the starting value: it is the value when {m:t=0}.',
+    ],
+    watch: 'A model is only as good as its assumptions. Real populations run out of room and food, and real decay can speed up or slow down, so exponential growth cannot go on for ever. State the limits: for example "only for a short time" or "only for small populations".',
+    see: ['exponential-growth', 'exponential-decay', 'growth-factor', 'semi-log-graph'],
+    aka: ['modelling', 'initial value', 'population model'],
+  },
+
+  // ---------- Year 2 ----------
+  {
+    id: 'continuous-growth-model', term: 'Continuous growth model (rate proportional to size)', strand: 'al-exponentials', level: 'Y2',
+    def: 'A model in which the rate of change of a quantity is proportional to the quantity itself, which leads to exponential growth or decay with base e.',
+    example: [
+      '{m:frac(dP, dt)=k P} says that the rate of growth of {m:P} is {m:k} times {m:P}. Its solution is {m:P=P_0 e^(k t)}, where {m:P_0} is the starting value.',
+      'If {m:k>0}, the quantity grows. If {m:k<0}, it decays. For {m:k=-0.2}, the half-life is {m:frac(ln 2, 0.2)=3.47}.',
+    ],
+    watch: 'Here {m:k} is a rate, not a factor. A fixed percentage per step is multiplied (factor {m:b}), while {m:k} is a continuous rate (a factor of {m:e^k} each step).',
+    flip: 'The same idea in reverse: if {m:P=P_0 e^(k t)}, then {m:frac(dP, dt)=k P}, because the derivative of {m:e^(k t)} is {m:k e^(k t)}.',
+    see: ['exponential-growth', 'exponential-decay', 'natural-exponential', 'euler-number'],
+    aka: ['dP/dt = kP', 'rate proportional to amount'],
+  },
 ];

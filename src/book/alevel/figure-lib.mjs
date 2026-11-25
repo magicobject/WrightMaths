@@ -20,11 +20,12 @@ const esc = (t) => String(t).replaceAll('&', '&amp;').replaceAll('<', '&lt;').re
 
 /** Text for a diagram: x^2 and x^(n+1) and u_n become real superscripts and subscripts; "-" before a digit is a true minus. */
 export function label(s) {
-  let out = esc(s).replace(/(^|[\s(])-(?=\d|[a-z(])/gi, '$1−').replace(/ - /g, ' − ');
-  out = out.replace(/\^\(([^)]*)\)/g, (_, a) => `<tspan class="sup" dy="-0.5em" font-size="72%">${a}</tspan><tspan dy="0.5em"> </tspan>`);
-  out = out.replace(/\^(-?\w+)/g, (_, a) => `<tspan class="sup" dy="-0.5em" font-size="72%">${a.replace('-', '−')}</tspan><tspan dy="0.5em"></tspan>`);
-  out = out.replace(/_\(([^)]*)\)/g, (_, a) => `<tspan dy="0.35em" font-size="72%">${a}</tspan><tspan dy="-0.35em"></tspan>`);
-  out = out.replace(/_(\w+)/g, (_, a) => `<tspan dy="0.35em" font-size="72%">${a}</tspan><tspan dy="-0.35em"></tspan>`);
+  const ZW = '\u200b'; // a zero-width character: browsers ignore a dy on an EMPTY tspan, so the shift back needs one
+  let out = esc(s).replace(/(^|[\s(])-(?=\d|[a-z(])/gi, '$1\u2212').replace(/ - /g, ' \u2212 ');
+  out = out.replace(/\^\(([^)]*)\)/g, (_, a) => `<tspan dy="-0.5em" font-size="72%">${a}</tspan><tspan dy="0.5em">${ZW}</tspan>`);
+  out = out.replace(/\^(-?\w+)/g, (_, a) => `<tspan dy="-0.5em" font-size="72%">${a.replace('-', '\u2212')}</tspan><tspan dy="0.5em">${ZW}</tspan>`);
+  out = out.replace(/_\(([^)]*)\)/g, (_, a) => `<tspan dy="0.35em" font-size="72%">${a}</tspan><tspan dy="-0.35em">${ZW}</tspan>`);
+  out = out.replace(/_(\w+)/g, (_, a) => `<tspan dy="0.35em" font-size="72%">${a}</tspan><tspan dy="-0.35em">${ZW}</tspan>`);
   return out;
 }
 

@@ -1320,6 +1320,18 @@ function keyPageTools() {
   main.querySelector('.hero-actions')?.prepend(btn);
 }
 
+// A display equation wider than the screen scrolls sideways. A scrollable box must be reachable by keyboard,
+// so only the ones that really overflow become focusable (the rest are not extra Tab stops).
+function enhanceEquations() {
+  for (const eq of document.querySelectorAll('.eq')) {
+    if (eq.scrollWidth > eq.clientWidth + 1) {
+      eq.setAttribute('tabindex', '0');
+      eq.setAttribute('role', 'region');
+      eq.setAttribute('aria-label', 'Equation (scroll sideways if it does not fit)');
+    }
+  }
+}
+
 function start() {
   if (REVIEW) startReviewMode();
   initReadingTools();
@@ -1334,6 +1346,7 @@ function start() {
   showMarksSummary();
   enhanceChecklists();
   enhanceTerms();
+  enhanceEquations();
   enhanceGlossary();
   updateProgress();
   document.querySelector('[data-reset-progress]')?.addEventListener('click', () => {

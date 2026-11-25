@@ -40,3 +40,16 @@ test('expandMath and mathToLinear handle whole pages of text', () => {
   assert.match(expandMath(html), /<span class="eq"><math display="block"/);
   assert.equal(mathToLinear(html), '<p>Solve x^2 = 4.</p>y = x^2');
 });
+
+test('column vectors, nCr, set symbols, arrows and primes', () => {
+  assert.match(toMathML('col(1, 2)'), /<mtable><mtr><mtd><mn>1<\/mn><\/mtd><\/mtr><mtr><mtd><mn>2<\/mn><\/mtd><\/mtr><\/mtable>/);
+  assert.equal(toLinear('col(3, -4, 5)'), 'column vector (3, -4, 5)');
+  assert.match(toMathML('nCr(n, r)'), /<mmultiscripts><mi>C<\/mi>/);
+  assert.equal(toLinear('nCr(5, 2)'), '5C2');
+  assert.equal(toLinear('x elementof reals'), 'x in R');
+  assert.equal(toLinear("f'(x)"), "f'(x)");
+  assert.match(toMathML("f''(x)"), /<mo>\u2033<\/mo>/);
+  assert.match(toMathML('a implies b'), /<mo>\u21d2<\/mo>/);
+  assert.match(toMathML('x=3 plusminus 2'), /<mo>\u00b1<\/mo>/);
+  assert.equal(toLinear('S_(infinity)'), 'S_infinity');
+});
