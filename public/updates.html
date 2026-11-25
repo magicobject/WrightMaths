@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.003">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.004">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,10 @@
       <h2>Every build, newest first</h2>
     </div>
     <ul class="changelog">
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.004</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book: every glossary entry (<code>books/gcse/glossary.html</code>) now has a Listen button. It reads the term, its meaning, its examples, the watch-out and the flip-it, then says what the picture shows; the strand label, &ldquo;See also&rdquo; and &ldquo;Taught in&rdquo; lines are left out. Like the rest of the book it plays the recorded voice where a clip exists, so the 290 entries need recording (<code>npm run book:audio -- todo</code>) before they all sound the same; until then the browser voice reads them. The parents guide now describes the recorded voice accurately.</p>
+      </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.003</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, glossary (<code>books/gcse/glossary.html</code>): technical words inside an entry now link to their own entries (Rationalising the denominator links &ldquo;surd&rdquo;, and so on; once per entry, never to itself), checked by a new unit test. Reflection has a diagram (a grid showing (1, 2) reflected in x = 3 and in y = x) and says &ldquo;Reflect the point&rdquo;; the Translation and Rotation examples say &ldquo;the point&rdquo; too; the relative frequency example says &ldquo;a dropped drawing pin&rdquo;.</p>
@@ -420,9 +424,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.25.003</span>
+    <span class="build-number">Build 2026.11.25.004</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.003" defer></script>
+  <script src="js/main.js?v=2026.11.25.004" defer></script>
 </footer>
 </body>
 </html>
