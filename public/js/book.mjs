@@ -7,7 +7,7 @@
 import { matches, rightValueWrongForm, splitList, diagnose, feedbackOrDefault, decimalCommaTip } from './book-answer.mjs?m=39';
 import { review, isDue, sanitize } from './book-queue.mjs?m=39';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
-import { splitSentences } from './book-speech.mjs?m=39';
+import { splitSentences } from './book-speech.mjs?m=41';
 import { unitText, playClip, stopClip } from './book-audio.mjs?m=39';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
 import { parseRanges, rangeBanner } from './book-ranges.mjs?m=39';
