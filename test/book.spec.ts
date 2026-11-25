@@ -359,9 +359,13 @@ test.describe('mixed practice', () => {
     for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
     await page.locator('input[name="practice-topic"][value="pythagoras"]').check();
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
-    const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
-    expect(ids.length).toBe(5);
-    for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+    // The press deals asynchronously (it fetches the ticked topic first), so wait until the set on screen is the new one:
+    // reading it straight away can still catch the five dealt when the page loaded.
+    await expect(async () => {
+      const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
+      expect(ids.length).toBe(5);
+      for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+    }).toPass({ timeout: 20_000 });
   });
 
   test('finishing any question records a practice day on this device, once a day', async ({ page }) => {
