@@ -53,3 +53,10 @@ test('column vectors, nCr, set symbols, arrows and primes', () => {
   assert.match(toMathML('x=3 plusminus 2'), /<mo>\u00b1<\/mo>/);
   assert.equal(toLinear('S_(infinity)'), 'S_infinity');
 });
+
+test('a fraction next to other terms is bracketed in the plain-text form', () => {
+  assert.equal(toLinear('27^(frac(2, 3))'), '27^(2/3)');
+  assert.equal(toLinear('frac(1, 2) x'), '(1/2)x');
+  assert.equal(toLinear('x = frac(a, b)'), 'x = a/b');
+  assert.equal(toLinear('frac(x + 1, x - 2)'), '(x + 1)/(x - 2)');
+});

@@ -48,7 +48,7 @@ export const FIGS = {
     p.tangent(parabola, 3, { span: 1.6 });
     p.point(3, parabola(3), { label: 'gradient = 3', dx: -12, dy: -14, anchor: 'end' });
     p.text(0.5, 6.8, 'y = x^2/2', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-gradient-of-curve', title: 'The gradient of a curve at a point', desc: 'The curve y = x squared over 2. A straight tangent touches it at the point where x is 3. The tangent has gradient 3, and that is the gradient of the curve at that point.', cls: CLS });
+    return p.svg({ id: 'tf-gradient-of-curve', title: 'The gradient of a curve at a point', desc: 'The curve y equals half of x squared. A straight tangent touches it at the point where x is 3. The tangent has gradient 3, and that is the gradient of the curve at that point.', cls: CLS });
   })(),
 
   'chord-of-curve': (() => {
@@ -59,7 +59,7 @@ export const FIGS = {
     p.point(1, f(1), { label: '(1, 1)', dx: 12, dy: 22 });
     p.point(3, f(3), { label: '(3, 9)', dx: -12, dy: -12, anchor: 'end' });
     p.text(2.1, 2.4, 'chord, gradient 4', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-chord-of-curve', title: 'A chord of a curve', desc: 'The curve y = x squared. A straight line, the chord, joins the points (1, 1) and (3, 9) on the curve. Its gradient is 4.', cls: CLS });
+    return p.svg({ id: 'tf-chord-of-curve', title: 'A chord of a curve', desc: 'The curve y equals x squared. A straight line, the chord, joins the points (1, 1) and (3, 9) on the curve. Its gradient is 4.', cls: CLS });
   })(),
 
   'first-principles': (() => {
@@ -75,7 +75,7 @@ export const FIGS = {
     p.tangent(parabola, a, { span: 2.2 });
     p.point(a, parabola(a), { label: 'P', dx: -14, dy: -14, anchor: 'end' });
     p.text(0.3, 7, 'Q moves towards P', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-first-principles', title: 'Chords turning into the tangent', desc: 'The curve y = x squared over 2 with a fixed point P where x is 2. Two chords from P to points further along the curve are drawn, a dotted one to x equals 4 and a dashed one to x equals 3. The solid tangent at P is what the chords become as the second point moves towards P.', cls: CLS });
+    return p.svg({ id: 'tf-first-principles', title: 'Chords turning into the tangent', desc: 'The curve y equals half of x squared with a fixed point P where x is 2. Two chords from P to points further along the curve are drawn, a dotted one to x equals 4 and a dashed one to x equals 3. The solid tangent at P is what the chords become as the second point moves towards P.', cls: CLS });
   })(),
 
   'rate-of-change': (() => {
@@ -94,7 +94,7 @@ export const FIGS = {
     p.tangent(quarter, 2, { span: 2 });
     p.point(2, quarter(2), { label: '(2, 1)', dx: -12, dy: -14, anchor: 'end' });
     p.text(3.5, 1.0, 'tangent', { cls: 'alt' });
-    return p.svg({ id: 'tf-tangent-to-curve', title: 'A tangent to a curve', desc: 'The curve y = x squared over 4. A straight line touches the curve at the point (2, 1) and has the same gradient as the curve there.', cls: CLS });
+    return p.svg({ id: 'tf-tangent-to-curve', title: 'A tangent to a curve', desc: 'The curve y equals one quarter of x squared. A straight line touches the curve at the point (2, 1) and has the same gradient as the curve there.', cls: CLS });
   })(),
 
   'normal-to-curve': (() => {
@@ -106,19 +106,19 @@ export const FIGS = {
     p.point(2, quarter(2), { label: '' });
     p.text(0.7, 1.1, 'normal', { cls: 'alt' });
     p.text(3.5, 1.0, 'tangent', { cls: 'alt' });
-    return p.svg({ id: 'tf-normal-to-curve', title: 'A normal to a curve', desc: 'The curve y = x squared over 4 with its solid tangent at (2, 1), rising to the right. The normal is a dashed line through the same point at right angles to the tangent, falling to the right.', cls: CLS });
+    return p.svg({ id: 'tf-normal-to-curve', title: 'A normal to a curve', desc: 'The curve y equals one quarter of x squared with its solid tangent at (2, 1), rising to the right. The normal is a dashed line through the same point at right angles to the tangent, falling to the right.', cls: CLS });
   })(),
 
   'increasing-function': bowlFigure({
     id: 'tf-increasing-function',
     title: 'An increasing function',
-    desc: 'The curve y = x squared over 2 minus 2x, a bowl with its lowest point where x is 2. To the right of x equals 2 the curve is drawn solid and rises. Two tangents there slope upwards, so the gradient is positive.',
+    desc: 'The curve y equals half of x squared, minus 2x, a bowl with its lowest point where x is 2. To the right of x equals 2 the curve is drawn solid and rises. Two tangents there slope upwards, so the gradient is positive.',
     xs: [3, 4.3], note: 'gradient > 0', side: 'right',
   }),
   'decreasing-function': bowlFigure({
     id: 'tf-decreasing-function',
     title: 'A decreasing function',
-    desc: 'The curve y = x squared over 2 minus 2x, a bowl with its lowest point where x is 2. To the left of x equals 2 the curve is drawn solid and falls. Two tangents there slope downwards, so the gradient is negative.',
+    desc: 'The curve y equals half of x squared, minus 2x, a bowl with its lowest point where x is 2. To the left of x equals 2 the curve is drawn solid and falls. Two tangents there slope downwards, so the gradient is negative.',
     xs: [0, 1.2], note: 'gradient < 0', side: 'left',
   }),
 
@@ -131,7 +131,7 @@ export const FIGS = {
     }
     p.text(-1, 1.45, 'gradient 0', { cls: 'alt' });
     p.text(1, -1.45, 'gradient 0', { cls: 'alt' });
-    return p.svg({ id: 'tf-stationary-point', title: 'Stationary points', desc: 'The curve y = x cubed over 3 minus x. At its two stationary points, x equals negative 1 (the top of a hill) and x equals 1 (the bottom of a dip), the tangent is horizontal and the gradient is 0.', cls: CLS });
+    return p.svg({ id: 'tf-stationary-point', title: 'Stationary points', desc: 'The curve y equals one third of x cubed, minus x. At its two stationary points, x equals minus 1 (the top of a hill) and x equals 1 (the bottom of a dip), the tangent is horizontal and the gradient is 0.', cls: CLS });
   })(),
 
   'turning-point': (() => {
@@ -141,7 +141,7 @@ export const FIGS = {
     p.point(2, f(2), { label: 'turning point (2, -4)', dx: 0, dy: 30, anchor: 'middle' });
     p.text(1.0, -0.9, 'falling', { cls: 'alt' });
     p.text(3.1, -0.9, 'rising', { cls: 'alt' });
-    return p.svg({ id: 'tf-turning-point', title: 'A turning point', desc: 'The curve y = x squared minus 4x. It falls on the left and rises on the right. At the point (2, -4) it turns from falling to rising.', cls: CLS });
+    return p.svg({ id: 'tf-turning-point', title: 'A turning point', desc: 'The curve y equals x squared minus 4x. It falls on the left and rises on the right. At the point (2, minus 4) it turns from falling to rising.', cls: CLS });
   })(),
 
   'maximum-point': gradientSigns({
@@ -157,7 +157,7 @@ export const FIGS = {
   'minimum-point': gradientSigns({
     id: 'tf-minimum-point',
     title: 'A minimum point',
-    desc: 'A bowl-shaped curve with its lowest point at (2, -3). Short tangents show the gradient: negative on the left of the lowest point, zero at the lowest point, and positive on the right.',
+    desc: 'A bowl-shaped curve with its lowest point at (2, minus 3). Short tangents show the gradient: negative on the left of the lowest point, zero at the lowest point, and positive on the right.',
     f: (x) => (x - 2) * (x - 2) - 3,
     xmin: -0.5, xmax: 4.5, ymin: -5, ymax: 3,
     marks: [[1, 'negative', -1.2], [2, 'zero', -0.9], [3, 'positive', -1.2]],
@@ -171,7 +171,7 @@ export const FIGS = {
     p.point(1, cubic(1), { label: 'minimum', dx: 14, dy: 30, anchor: 'start' });
     p.text(-1, 1.6, "f'' < 0", { cls: 'alt' });
     p.text(1, -1.6, "f'' > 0", { cls: 'alt' });
-    return p.svg({ id: 'tf-nature-of-stationary-point', title: 'The nature of two stationary points', desc: 'The curve y = x cubed over 3 minus x. Its stationary point at x equals negative 1 is a maximum, where the second derivative is negative. Its stationary point at x equals 1 is a minimum, where the second derivative is positive.', cls: CLS });
+    return p.svg({ id: 'tf-nature-of-stationary-point', title: 'The nature of two stationary points', desc: 'The curve y equals one third of x cubed, minus x. Its stationary point at x equals minus 1 is a maximum, where the second derivative is negative. Its stationary point at x equals 1 is a minimum, where the second derivative is positive.', cls: CLS });
   })(),
 
   'optimisation': (() => {
@@ -180,7 +180,7 @@ export const FIGS = {
     p.curve(f, { from: 0, to: 20 });
     p.drop(10, 100);
     p.point(10, 100, { label: 'greatest area (10, 100)', dx: 0, dy: -16, anchor: 'middle' });
-    return p.svg({ id: 'tf-optimisation', title: 'Optimisation: the greatest area', desc: 'The graph of A = x times (20 minus x) for x from 0 to 20, an arch. Its top is at x equals 10, where A is 100, the greatest possible area.', cls: CLS });
+    return p.svg({ id: 'tf-optimisation', title: 'Optimisation: the greatest area', desc: 'The graph of A equals x times (20 minus x) for x from 0 to 20, an arch. Its top is at x equals 10, where A is 100, the greatest possible area.', cls: CLS });
   })(),
 
   'global-extremum': (() => {
@@ -192,7 +192,7 @@ export const FIGS = {
     p.point(1, cubic(1), { label: 'global min', dx: 12, dy: 30 });
     p.point(-1, cubic(-1), { label: '' });
     p.text(-0.7, 1.6, 'local max', { cls: 'alt', anchor: 'end' });
-    return p.svg({ id: 'tf-global-extremum', title: 'Global maximum and minimum on an interval', desc: 'The curve y = x cubed over 3 minus x, drawn solid only for x from negative 1.5 to 3. The greatest value, 6, is at the right-hand end where x is 3. The least value is at the dip where x is 1. The small hill at x equals negative 1 is only a local maximum.', cls: CLS });
+    return p.svg({ id: 'tf-global-extremum', title: 'Global maximum and minimum on an interval', desc: 'The curve y equals one third of x cubed, minus x, drawn solid only for x from minus 1.5 to 3. The greatest value, 6, is at the right-hand end where x is 3. The least value is at the dip where x is 1. The small hill at x equals minus 1 is only a local maximum.', cls: CLS });
   })(),
 
   'concave': (() => {
@@ -203,7 +203,7 @@ export const FIGS = {
     p.point(-2, f(-2), { label: '' });
     p.point(2.5, f(2.5), { label: '' });
     p.text(0.15, 3.4, 'chord', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-concave', title: 'A concave curve', desc: 'The curve y = 5 minus x squared over 2, shaped like the top of a hill, bending downwards. A dashed chord joining two points on it lies below the curve.', cls: CLS });
+    return p.svg({ id: 'tf-concave', title: 'A concave curve', desc: 'The curve y equals 5 minus half of x squared, shaped like the top of a hill, bending downwards. A dashed chord joining two points on it lies below the curve.', cls: CLS });
   })(),
 
   'convex': (() => {
@@ -214,7 +214,7 @@ export const FIGS = {
     p.point(-2, f(-2), { label: '' });
     p.point(2.5, f(2.5), { label: '' });
     p.text(0.15, 3.4, 'chord', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-convex', title: 'A convex curve', desc: 'The curve y = x squared over 2, shaped like a bowl, bending upwards. A dashed chord joining two points on it lies above the curve.', cls: CLS });
+    return p.svg({ id: 'tf-convex', title: 'A convex curve', desc: 'The curve y equals half of x squared, shaped like a bowl, bending upwards. A dashed chord joining two points on it lies above the curve.', cls: CLS });
   })(),
 
   'point-of-inflection': (() => {
@@ -225,7 +225,7 @@ export const FIGS = {
     p.point(1, f(1), { label: 'inflection', dx: 14, dy: -14 });
     p.text(0.25, 1.8, 'concave', { cls: 'alt', anchor: 'start' });
     p.text(2.4, 1.8, 'convex', { cls: 'alt' });
-    return p.svg({ id: 'tf-point-of-inflection', title: 'A point of inflection', desc: 'The curve y = x cubed minus 3 x squared. At the point (1, -2) the curve changes from bending downwards (concave, on the left) to bending upwards (convex, on the right). The tangent there crosses the curve.', cls: CLS });
+    return p.svg({ id: 'tf-point-of-inflection', title: 'A point of inflection', desc: 'The curve y equals x cubed minus 3 x squared. At the point (1, minus 2) the curve changes from bending downwards (concave, on the left) to bending upwards (convex, on the right). The tangent there crosses the curve.', cls: CLS });
   })(),
 
   'implicit-differentiation': (() => {
@@ -236,6 +236,6 @@ export const FIGS = {
     p.point(3, 4, { label: '(3, 4)', dx: 12, dy: -12 });
     p.text(-0.3, 0.9, 'x^2 + y^2 = 25', { cls: 'alt', anchor: 'end' });
     p.text(-0.3, -2.5, 'gradient -3/4', { cls: 'alt', anchor: 'end' });
-    return p.svg({ id: 'tf-implicit-differentiation', title: 'A tangent found by implicit differentiation', desc: 'The circle x squared plus y squared equals 25. At the point (3, 4) a tangent is drawn. Implicit differentiation gives its gradient as negative 3 over 4, so it falls to the right.', cls: CLS });
+    return p.svg({ id: 'tf-implicit-differentiation', title: 'A tangent found by implicit differentiation', desc: 'The circle x squared plus y squared equals 25. At the point (3, 4) a tangent is drawn. Implicit differentiation gives its gradient as minus 3 over 4, so it falls to the right.', cls: CLS });
   })(),
 };

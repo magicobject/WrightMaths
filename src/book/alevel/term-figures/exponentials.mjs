@@ -17,12 +17,12 @@ function exponentialFunctionGraph() {
   p.curve((x) => 0.5 ** x, { cls: 'curve-b' });
   p.point(0, 1, {});
   notes(p, 'solid: y = 2^x    dashed: y = (1/2)^x', 'both curves pass through (0, 1)');
-  return p.svg({ id: 'tf-exponential-function', title: 'Graphs of y = 2 to the x and y = a half to the x', desc: 'Two curves above the x-axis. The solid curve y = 2 to the power x rises faster and faster to the right and gets close to the x-axis on the left. The dashed curve y = one half to the power x is its mirror image, falling to the right. Both pass through the point (0, 1).', cls: TERM });
+  return p.svg({ id: 'tf-exponential-function', title: 'Graphs of y = 2 to the x and y = a half to the x', desc: 'Two curves above the x-axis. The solid curve y equals 2 to the power x rises faster and faster to the right and gets close to the x-axis on the left. The dashed curve y equals one half to the power x is its mirror image, falling to the right. Both pass through the point (0, 1).', cls: TERM });
 }
 
 function exponentialGrowthGraph() {
   const f = (t) => 100 * 2 ** t;
-  const p = graph({ xmin: -0.5, xmax: 3.6, ymin: -100, ymax: 950, xstep: 1, ystep: 400 }, 2);
+  const p = graph({ xmin: -0.5, xmax: 3.6, ymin: -100, ymax: 950, xstep: 1, ystep: 400, xlabel: 't', ylabel: 'N' }, 2);
   p.curve(f, { from: 0, to: 3.2 });
   for (const t of [0, 1, 2, 3]) p.point(t, f(t), { label: String(f(t)), dx: -12, dy: 4, anchor: 'end' });
   notes(p, 'N = 100 ' + TIMES + ' 2^t', 'each hour the number doubles');
@@ -31,7 +31,7 @@ function exponentialGrowthGraph() {
 
 function exponentialDecayGraph() {
   const f = (t) => 15000 * 0.8 ** t;
-  const p = graph({ xmin: -0.7, xmax: 6.6, ymin: -2000, ymax: 17500, xstep: 2, ystep: 5000 }, 2);
+  const p = graph({ xmin: -0.7, xmax: 6.6, ymin: -2000, ymax: 17500, xstep: 2, ystep: 5000, xlabel: 't', ylabel: 'V' }, 2);
   p.curve(f, { from: 0, to: 6.2 });
   p.point(0, f(0), { label: '15000', dx: 14, dy: -14 });
   p.point(2, f(2), { label: '9600', dx: 12, dy: -10 });
@@ -47,7 +47,7 @@ function growthFactorGraph() {
   for (const x of [0, 1, 2, 3]) p.point(x, f(x), {});
   for (const x of [0, 1, 2]) p.text(x + 0.5, f(x + 0.5) + 0.8, TIMES + '1.5', { cls: 'alt small' });
   note(p, 'each step multiplies the height by 1.5');
-  return p.svg({ id: 'tf-growth-factor', title: 'Growth factor 1.5', desc: 'The curve y = 1.5 to the power x, with points at x = 0, 1, 2 and 3. Between each pair of neighbouring points the label times 1.5 shows that each step to the right multiplies the height by 1.5.', cls: TERM });
+  return p.svg({ id: 'tf-growth-factor', title: 'Growth factor 1.5', desc: 'The curve y equals 1.5 to the power x, with points at x equals 0, 1, 2 and 3. Between each pair of neighbouring points the label times 1.5 shows that each step to the right multiplies the height by 1.5.', cls: TERM });
 }
 
 function halfLifeGraph() {
@@ -65,7 +65,7 @@ function eulerNumberGraph() {
   p.tangent(Math.exp, 0, { span: 1.6 });
   p.point(0, 1, {});
   note(p, 'at (0, 1) the gradient of y = e^x is 1');
-  return p.svg({ id: 'tf-euler-number', title: 'The curve y = e to the x', desc: 'The curve y = e to the power x, rising from near zero on the left. A straight tangent is drawn at the point (0, 1). Its gradient is exactly 1, the same as the height of the curve there.', cls: TERM });
+  return p.svg({ id: 'tf-euler-number', title: 'The curve y = e to the x', desc: 'The curve y equals e to the power x, rising from near zero on the left. A straight tangent is drawn at the point (0, 1). Its gradient is exactly 1, the same as the height of the curve there.', cls: TERM });
 }
 
 function naturalExponentialGraph() {
@@ -75,7 +75,7 @@ function naturalExponentialGraph() {
   p.curve(Math.exp);
   p.point(0, 1, {});
   notes(p, 'solid: y = e^x', 'dashed: y = 2^x    dotted: y = 3^x');
-  return p.svg({ id: 'tf-natural-exponential', title: 'The curve y = e to the x between 2 to the x and 3 to the x', desc: 'Three exponential curves that all pass through (0, 1): y = 2 to the x dashed, y = e to the x solid and y = 3 to the x dotted. For x greater than 0 the e curve lies between the other two.', cls: TERM });
+  return p.svg({ id: 'tf-natural-exponential', title: 'The curve y = e to the x between 2 to the x and 3 to the x', desc: 'Three exponential curves that all pass through (0, 1): y equals 2 to the x dashed, y equals e to the x solid and y equals 3 to the x dotted. For x greater than 0 the e curve lies between the other two.', cls: TERM });
 }
 
 function logarithmFigure() {
@@ -118,7 +118,7 @@ function exponentialEquationGraph() {
   p.text(x0, 0, 'x = 3.32', { cls: 'small alt', dy: 56 });
   p.text(0.4, 7, 'y = 2^x', { cls: 'alt', anchor: 'start' });
   p.text(5.1, 10, 'y = 10', { cls: 'small', anchor: 'end', dy: -10 });
-  return p.svg({ id: 'tf-exponential-equation', title: 'Solving 2 to the x equals 10', desc: 'The curve y = 2 to the power x and the dashed line y = 10. They cross at the point where x is about 3.32, marked with a dashed drop line to the x-axis. That value of x is the solution of 2 to the x equals 10.', cls: TERM });
+  return p.svg({ id: 'tf-exponential-equation', title: 'Solving 2 to the x equals 10', desc: 'The curve y equals 2 to the power x and the dashed line y equals 10. They cross at the point where x is about 3.32, marked with a dashed drop line to the x-axis. That value of x is the solution of 2 to the x equals 10.', cls: TERM });
 }
 
 function straightLineLogGraph({ id, title, desc, xlabel, f, g, gradX, gradLabel, interceptLabel, xmin, xmax, ymin, ymax }) {
@@ -147,23 +147,23 @@ const semiLogGraph = () => straightLineLogGraph({
 
 function exponentialModelGraph() {
   const f = (t) => 500 * 1.04 ** t;
-  const p = graph({ xmin: -1, xmax: 11, ymin: -120, ymax: 900, xstep: 5, ystep: 300 });
+  const p = graph({ xmin: -1, xmax: 11, ymin: -120, ymax: 900, xstep: 5, ystep: 300, xlabel: 't', ylabel: 'S' });
   p.curve(f, { from: 0, to: 10.5 });
   p.point(0, 500, { label: 'A = 500', dx: 14, dy: 34 });
   p.text(6.5, 440, 'S = 500 ' + TIMES + ' 1.04^t', { cls: 'alt' });
   note(p, 'A is the value when t = 0');
-  return p.svg({ id: 'tf-exponential-model', title: 'An exponential model: 500 growing at 4% a year', desc: 'A gently rising curve S = 500 times 1.04 to the power t, drawn for t from 0 to 10. It starts at the point (0, 500), marked A equals 500, the starting value.', cls: TERM });
+  return p.svg({ id: 'tf-exponential-model', title: 'An exponential model: 500 growing at 4% a year', desc: 'A gently rising curve S equals 500 times 1.04 to the power t, drawn for t from 0 to 10. It starts at the point (0, 500), marked A equals 500, the starting value.', cls: TERM });
 }
 
 function continuousGrowthGraph() {
   const f = (t) => Math.exp(0.5 * t);
-  const p = graph({ xmin: -0.6, xmax: 4.6, ymin: -0.8, ymax: 9, xstep: 1, ystep: 4 }, 2);
+  const p = graph({ xmin: -0.6, xmax: 4.6, ymin: -0.8, ymax: 9, xstep: 1, ystep: 4, xlabel: 't', ylabel: 'P' }, 2);
   p.curve(f, { from: 0, to: 4.2 });
   p.tangent(f, 1, { span: 1.1 }).tangent(f, 3, { span: 1.1 });
   p.point(1, f(1), {});
   p.point(3, f(3), {});
   notes(p, 'small P: gentle gradient;  bigger P: steeper', 'the gradient is proportional to P');
-  return p.svg({ id: 'tf-continuous-growth-model', title: 'Rate of growth proportional to size', desc: 'The curve P = e to the power 0.5t. Tangent lines are drawn at two points. At the left point, where P is small, the tangent is gentle. At the right point, where P is bigger, the tangent is steeper: the gradient is proportional to P.', cls: TERM });
+  return p.svg({ id: 'tf-continuous-growth-model', title: 'Rate of growth proportional to size', desc: 'The curve P equals e to the power 0.5t. Tangent lines are drawn at two points. At the left point, where P is small, the tangent is gentle. At the right point, where P is bigger, the tangent is steeper: the gradient is proportional to P.', cls: TERM });
 }
 
 export const FIGS = {
@@ -175,7 +175,7 @@ export const FIGS = {
   'euler-number': eulerNumberGraph(),
   'natural-exponential': naturalExponentialGraph(),
   logarithm: logarithmFigure(),
-  'natural-logarithm': naturalLogGraph('tf-natural-logarithm', 'ln x as the mirror image of e to the x', 'The curve y = e to the x, solid, and the curve y = ln x, dashed, drawn with equal scales on both axes. They are mirror images of each other in the dotted line y = x. The first passes through (0, 1) and the second through (1, 0).'),
+  'natural-logarithm': naturalLogGraph('tf-natural-logarithm', 'ln x as the mirror image of e to the x', 'The curve y equals e to the x, solid, and the curve y equals ln x, dashed, drawn with equal scales on both axes. They are mirror images of each other in the dotted line y equals x. The first passes through (0, 1) and the second through (1, 0).'),
   'log-graph': logGraph(),
   'exponential-equation': exponentialEquationGraph(),
   'log-log-graph': logLogGraph(),

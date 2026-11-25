@@ -80,7 +80,7 @@ function tangentGraph() {
   p.text(90, 3.3, 'x = 90\u00b0', { anchor: 'start', dx: 8, cls: 'small' });
   p.text(270, 3.3, 'x = 270\u00b0', { anchor: 'start', dx: 8, cls: 'small' });
   p.text(290, 1.6, 'y = tan x', { cls: 'alt', anchor: 'start' });
-  return p.svg({ id: 'tf-tangent-function', title: 'Graph of y = tan x', desc: 'A curve that rises from 0 at 0 degrees towards a vertical asymptote at 90 degrees, then repeats: it comes up from minus infinity, crosses 0 at 180 degrees, and climbs to the asymptote at 270 degrees. The pattern repeats every 180 degrees.', cls: TERM });
+  return p.svg({ id: 'tf-tangent-function', title: 'Graph of y = tan x', desc: 'A curve that rises from 0 at 0 degrees towards a vertical asymptote at 90 degrees. It then comes up from minus infinity, crosses 0 at 180 degrees and climbs towards the asymptote at 270 degrees. The pattern repeats every 180 degrees.', cls: TERM });
 }
 
 function periodGraph() {
@@ -89,7 +89,7 @@ function periodGraph() {
   p.line(0, 1.5, 360, 1.5).line(0, 1.35, 0, 1.65).line(360, 1.35, 360, 1.65);
   p.text(180, 1.7, 'one period = 360\u00b0', { cls: 'alt' });
   p.vline(0).vline(360);
-  return p.svg({ id: 'tf-period', title: 'One period of y = sin x', desc: 'The graph of y = sin x from 0 to 360 degrees, with a bar above it from 0 to 360 degrees labelled one period equals 360 degrees. The graph repeats after that.', cls: TERM });
+  return p.svg({ id: 'tf-period', title: 'One period of y = sin x', desc: 'The graph of y equals sin x from 0 to 360 degrees, with a bar above it from 0 to 360 degrees labelled one period equals 360 degrees. The graph repeats after that.', cls: TERM });
 }
 
 function amplitudeGraph() {
@@ -101,7 +101,7 @@ function amplitudeGraph() {
   p.point(90, 3, {});
   p.text(90, 3.45, 'amplitude 2', { cls: 'alt', anchor: 'start', dx: 16 });
   p.text(300, 1.35, 'middle line y = 1', { cls: 'small' });
-  return p.svg({ id: 'tf-amplitude', title: 'Amplitude of y = 2 sin x + 1', desc: 'The graph of y = 2 sin x + 1 oscillates about the middle line y = 1, between minus 1 and 3. A vertical bar from the middle line up to the highest point at 90 degrees is labelled amplitude 2.', cls: TERM });
+  return p.svg({ id: 'tf-amplitude', title: 'Amplitude of y = 2 sin x + 1', desc: 'The graph of y equals 2 sin x + 1 goes up and down about the middle line y equals 1, between minus 1 and 3. A vertical bar from the middle line up to the highest point at 90 degrees is labelled amplitude 2.', cls: TERM });
 }
 
 function principalValueGraph() {
@@ -112,7 +112,7 @@ function principalValueGraph() {
   p.point(30, 0.5, {}).point(150, 0.5, {});
   p.text(330, 0.5, 'y = 0.5', { cls: 'small', dy: -10 });
   p.text(250, 1.2, 'x = 30\u00b0 or 150\u00b0', { cls: 'alt' });
-  return p.svg({ id: 'tf-principal-value', title: 'Two solutions of sin x = 0.5', desc: 'The graph of y = sin x from 0 to 360 degrees crossed by the dashed line y = 0.5. They meet at x = 30 degrees, which is the value a calculator gives, and at x = 150 degrees, the second solution.', cls: TERM });
+  return p.svg({ id: 'tf-principal-value', title: 'Two solutions of sin x = 0.5', desc: 'The graph of y equals sin x from 0 to 360 degrees crossed by the dashed line y equals 0.5. They meet at x equals 30 degrees, which is the value a calculator gives, and at x equals 150 degrees, the second solution.', cls: TERM });
 }
 
 function rFormGraph() {
@@ -124,7 +124,7 @@ function rFormGraph() {
   p.point(90 - alpha, 5, { label: '(36.9\u00b0, 5)', dx: 14, dy: -12 });
   p.text(398, 5, 'R = 5', { cls: 'small alt', anchor: 'end', dy: -10 });
   p.text(270, -6.3, '3 sin x + 4 cos x', { cls: 'alt small' });
-  return p.svg({ id: 'tf-r-form', title: 'The graph of 3 sin x + 4 cos x', desc: 'A single sine wave from 0 to 360 degrees that oscillates between minus 5 and 5. Its highest point is at x = 36.9 degrees, so the wave is a sine curve of amplitude R = 5 moved to the left by 53.1 degrees.', cls: TERM });
+  return p.svg({ id: 'tf-r-form', title: 'The graph of 3 sin x + 4 cos x', desc: 'A single sine wave from 0 to 360 degrees that goes up and down between minus 5 and 5. Its highest point is at x equals 36.9 degrees, so the wave is a sine curve of amplitude R equals 5 moved to the left by 53.1 degrees.', cls: TERM });
 }
 
 // ---------- circles ----------
@@ -179,7 +179,7 @@ const radii = (p, { cx, cy, R, a0, a1 }, cls = 'line') => {
 };
 
 const radianFigure = () => circleDrawing({
-  id: 'tf-radian', a0: 0, a1: 1, title: 'One radian', desc: 'A circle with two radii that make an angle of one radian at the centre. The arc between them is drawn thick and is labelled arc = r: it is exactly as long as the radius r.',
+  id: 'tf-radian', a0: 0, a1: 1, title: 'One radian', desc: 'A circle with two radii that make an angle of one radian at the centre. The arc between them is drawn thick and is labelled arc equals r: it is exactly as long as the radius r.',
   extra: (p, g) => {
     radii(p, g);
     p.point(g.cx, g.cy, {});
@@ -200,7 +200,7 @@ const arcFigure = () => circleDrawing({
 });
 
 const arcLengthFigure = () => circleDrawing({
-  id: 'tf-arc-length', a0: 0, a1: 1.2, title: 'Arc length s = r times theta', desc: 'A circle of radius r with an angle theta at the centre, in radians. The arc between the two radii is drawn thick and labelled s, the arc length. The note says s = r theta.',
+  id: 'tf-arc-length', a0: 0, a1: 1.2, title: 'Arc length s = r times theta', desc: 'A circle of radius r with an angle theta at the centre, in radians. The arc between the two radii is drawn thick and labelled s, the arc length. The note says s equals r theta.',
   extra: (p, g) => {
     radii(p, g);
     p.text(g.cx + g.R / 2, g.cy, 'r', { dy: 30 });
@@ -252,7 +252,7 @@ function smallAngleGraph() {
   p.curve(Math.sin);
   p.curve((x) => x, { cls: 'curve-b' });
   p.note(220, 292, 'solid: y = sin x    dashed: y = x', { cls: 'small', anchor: 'middle' });
-  return p.svg({ id: 'tf-small-angle-approximation', title: 'sin x and x for small x', desc: 'The curve y = sin x and the dashed line y = x, drawn for x between minus 1.6 and 1.6 radians. They almost coincide near 0 and move apart further out.', cls: TERM });
+  return p.svg({ id: 'tf-small-angle-approximation', title: 'sin x and x for small x', desc: 'The curve y equals sin x and the dashed line y equals x, drawn for x between minus 1.6 and 1.6 radians. They almost overlap near 0 and move apart further out.', cls: TERM });
 }
 
 // ---------- reciprocal functions (radians) ----------
@@ -264,7 +264,7 @@ function secantGraph() {
   p.curve((x) => 1 / Math.cos(x));
   p.text(PI, 2.6, 'y = sec x', { cls: 'alt' });
   p.note(220, 292, 'dashed: y = cos x', { cls: 'small', anchor: 'middle' });
-  return p.svg({ id: 'tf-secant-function', title: 'Graph of y = sec x', desc: 'The curve y = sec x from 0 to 2 pi, with the dashed curve y = cos x for comparison. Sec x is at least 1 or at most minus 1, with vertical asymptotes at pi over 2 and 3 pi over 2. It touches 1 at 0 and 2 pi and touches minus 1 at pi.', cls: TERM });
+  return p.svg({ id: 'tf-secant-function', title: 'Graph of y = sec x', desc: 'The curve y equals sec x, drawn from a little below 0 to a little above 2 pi, with the dashed curve y equals cos x for comparison. Sec x is at least 1 or at most minus 1, with vertical asymptotes at pi over 2 and 3 pi over 2. It touches 1 at 0 and 2 pi and touches minus 1 at pi.', cls: TERM });
 }
 
 function cosecantGraph() {
@@ -274,7 +274,7 @@ function cosecantGraph() {
   p.curve((x) => 1 / Math.sin(x));
   p.text(4.7, 2.6, 'y = cosec x', { cls: 'alt' });
   p.note(220, 292, 'dashed: y = sin x', { cls: 'small', anchor: 'middle' });
-  return p.svg({ id: 'tf-cosecant-function', title: 'Graph of y = cosec x', desc: 'The curve y = cosec x from 0 to 2 pi, with the dashed curve y = sin x for comparison. Cosec x is at least 1 or at most minus 1. It has vertical asymptotes at 0, pi and 2 pi. It touches 1 at pi over 2 and minus 1 at 3 pi over 2.', cls: TERM });
+  return p.svg({ id: 'tf-cosecant-function', title: 'Graph of y = cosec x', desc: 'The curve y equals cosec x, drawn from a little below 0 to a little above 2 pi, with the dashed curve y equals sin x for comparison. Cosec x is at least 1 or at most minus 1. It has vertical asymptotes at 0, pi and 2 pi. It touches 1 at pi over 2 and minus 1 at 3 pi over 2.', cls: TERM });
 }
 
 function cotangentGraph() {
@@ -282,7 +282,7 @@ function cotangentGraph() {
   p.vline(PI).vline(2 * PI);
   p.curve((x) => 1 / Math.tan(x));
   p.text(4.9, 2.6, 'y = cot x', { cls: 'alt' });
-  return p.svg({ id: 'tf-cotangent-function', title: 'Graph of y = cot x', desc: 'The curve y = cot x from 0 to 2 pi. In each interval between the vertical asymptotes at 0, pi and 2 pi it falls from high on the left to low on the right, crossing 0 at pi over 2 and 3 pi over 2.', cls: TERM });
+  return p.svg({ id: 'tf-cotangent-function', title: 'Graph of y = cot x', desc: 'The curve y equals cot x, drawn from a little below 0 to a little above 2 pi. In each interval between the vertical asymptotes at 0, pi and 2 pi it falls from high on the left to low on the right, crossing 0 at pi over 2 and 3 pi over 2.', cls: TERM });
 }
 
 // ---------- inverse trigonometric functions ----------
@@ -318,7 +318,7 @@ function arctanGraph() {
   p.hline(PI / 2).hline(-PI / 2);
   p.curve(Math.atan);
   p.text(-3.6, 0.9, 'y = arctan x', { cls: 'alt' });
-  return p.svg({ id: 'tf-arctan', title: 'Graph of y = arctan x', desc: 'An S-shaped curve through the origin. It rises for all values of x and gets closer and closer to the horizontal lines y = pi over 2 and y = minus pi over 2 without reaching them.', cls: TERM });
+  return p.svg({ id: 'tf-arctan', title: 'Graph of y = arctan x', desc: 'An S-shaped curve through the origin. It rises for all values of x and gets closer and closer to the horizontal lines y equals pi over 2 and y equals minus pi over 2 without reaching them.', cls: TERM });
 }
 
 function inverseTrigGraph() {
@@ -328,7 +328,7 @@ function inverseTrigGraph() {
   p.curve(Math.asin, { from: -1, to: 1, cls: 'curve-b' });
   p.note(200, 394, 'solid: y = sin x (part of it)', { cls: 'small', anchor: 'middle' });
   p.note(200, 416, 'dashed: y = sin\u207b\u00b9 x  (arcsin)', { cls: 'small', anchor: 'middle' });
-  return p.svg({ id: 'tf-inverse-trigonometric-functions', title: 'sin x and its inverse', desc: 'The part of y = sin x between x = minus pi over 2 and pi over 2, drawn solid, and the curve y = arcsin x, drawn dashed. They are mirror images of each other in the dotted line y = x.', cls: TERM });
+  return p.svg({ id: 'tf-inverse-trigonometric-functions', title: 'sin x and its inverse', desc: 'The part of y equals sin x between x equals minus pi over 2 and pi over 2, drawn solid, and the curve y equals arcsin x, drawn dashed. They are mirror images of each other in the dotted line y equals x.', cls: TERM });
 }
 
 // ---------- triangles ----------
@@ -432,7 +432,7 @@ export const FIGS = {
   'cosine-rule': cosineRuleFigure(),
   'ambiguous-case': ambiguousFigure(),
   'area-of-triangle-sine': areaTriangleFigure(),
-  'unit-circle': unitCircleFigure({ id: 'tf-unit-circle', title: 'The unit circle', desc: 'A circle of radius 1 centred at the origin. A radius makes an angle theta with the positive x-axis and meets the circle at the point P. The horizontal distance to P is cos theta and the vertical distance is sin theta, so P = (cos theta, sin theta).' }),
+  'unit-circle': unitCircleFigure({ id: 'tf-unit-circle', title: 'The unit circle', desc: 'A circle of radius 1 centred at the origin. A radius makes an angle theta with the positive x-axis and meets the circle at the point P. The horizontal distance to P is cos theta and the vertical distance is sin theta, so P equals (cos theta, sin theta).' }),
   'pythagorean-identity': unitCircleFigure({ id: 'tf-pythagorean-identity', legs: true, title: 'Why sin squared plus cos squared is 1', desc: 'A right-angled triangle inside the unit circle. Its horizontal side is cos theta, its vertical side is sin theta and its longest side is the radius, which is 1. Pythagoras gives sin squared theta plus cos squared theta equals 1.' }),
   'cast-diagram': castDiagram(),
   period: periodGraph(),

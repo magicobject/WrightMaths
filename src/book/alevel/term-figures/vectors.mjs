@@ -119,7 +119,7 @@ export const FIGS = {
     const p = bare({ xmin: -1, xmax: 6, cy: 1.5 });
     p.text(2.5, 2.4, '5', { cls: 'big' });
     p.text(2.5, 0.6, 'size only', { cls: 'small' });
-    cap(p, 'a scalar is just a number', 'no arrow, no direction');
+    cap(p, 'a scalar is a number', 'no arrow, no direction');
     return p.svg(o('scalar', 'A scalar', 'The number 5 with the words size only. A scalar is an ordinary number with no direction, so there is no arrow.'));
   })(),
 
@@ -199,7 +199,7 @@ export const FIGS = {
 
   'vector-addition': addFig('vector-addition', 'Adding vectors', 'Two arrows joined head to tail: a goes first, then b starts where a ends. A third arrow from the start of a to the end of b is the sum a plus b.', ['tail of b at head of a', 'the sum goes start to end'], 'a + b'),
 
-  resultant: addFig('resultant', 'The resultant', 'Two arrows a and b joined head to tail. A third arrow from the start of a to the end of b is the resultant, a single vector with the same effect as a and b together.', ['the resultant does the work', 'of a and b together'], 'resultant', [-0.8, 3.6, 'start', 0, 0]),
+  resultant: addFig('resultant', 'The resultant', 'Two arrows a and b joined head to tail. A third arrow from the start of a to the end of b is the resultant, a single vector with the same effect as a and b together.', ['the resultant does the work', 'of a and b together'], 'resultant'),
 
   'vector-subtraction': (() => {
     const p = bare({ xmin: -1, xmax: 6.4, cy: 1.8 });

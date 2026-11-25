@@ -32,7 +32,8 @@ for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
 
 for (const bookPage of [...BOOK_PAGES, ...ALEVEL_PAGES]) {
   test(`${bookPage.path} has no axe violations`, async ({ page }) => {
-    test.setTimeout(60_000);
+    // The glossaries (about 300 entries, many with a diagram) are by far the biggest pages; give them the same budget as their 320px check below.
+    test.setTimeout(bookPage.path.includes('glossary') ? 150_000 : 60_000);
     await page.goto(bookPage.path);
     expect(await violations(page)).toEqual([]);
   });

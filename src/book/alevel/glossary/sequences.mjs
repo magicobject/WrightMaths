@@ -47,7 +47,7 @@ export const TERMS = [
       '{m:(1 + 2x)^3 = 1 + 3(2x) + 3(2x)^2 + (2x)^3 = 1 + 6x + 12x^2 + 8x^3}.',
       'The term in {m:a^(n - r) b^r} is ' + nCr('n', 'r') + ' {m:a^(n - r) b^r}.',
     ],
-    watch: 'Put brackets round the whole second term: {m:(2x)^2 = 4x^2}, not {m:2x^2}. In {m:(a - b)^n} the signs alternate. There are always n + 1 terms.',
+    watch: 'Write brackets round the whole second term: {m:(2x)^2 = 4x^2}, not {m:2x^2}. In {m:(a - b)^n} the signs alternate. There are always n + 1 terms.',
     flip: 'The coefficients in a binomial expansion are the numbers in {term:pascals-triangle|Pascal\u2019s triangle}.',
     see: ['ncr', 'pascals-triangle', 'ascending-powers', 'binomial-expansion-rational'],
   },
@@ -60,24 +60,24 @@ export const TERMS = [
   },
   {
     id: 'binomial-expansion-rational', term: 'Binomial expansion for any rational power', strand: 'al-sequences', level: 'Y2', aka: ['binomial series', 'negative power expansion', 'fractional power expansion'],
-    def: 'The expansion of (1 + x) to a power n that is negative or a fraction. It goes on forever and is only valid for some values of x.',
+    def: 'The expansion of (1 + x) to a power n that is negative or a fraction. It goes on for ever and is only valid for some values of x.',
     example: [
       '{m:(1 + x)^n = 1 + nx + frac(n(n - 1), 2!) x^2 + frac(n(n - 1)(n - 2), 3!) x^3} &hellip;',
       '{m:(1 + x)^(-1) = 1 - x + x^2 - x^3} &hellip; for {m:abs(x) < 1}.',
       '{m:(1 + x)^(1/2) = 1 + frac(1, 2) x - frac(1, 8) x^2} &hellip; for {m:abs(x) < 1}.',
-      'For {m:(a + bx)^n}, take out {m:a^n} first: {m:a^n (1 + frac(b, a) x)^n}.',
+      'For {m:(a + bx)^n}, factor out {m:a^n} first: {m:a^n (1 + frac(b, a) x)^n}.',
     ],
     watch: 'The expansion does not stop, so it is only an approximation if you keep a few terms. For a whole-number power n it stops at the term in {m:x^n} and is true for every x. If the bracket is {m:(a + bx)^n} with a not 1, you must factor out {m:a^n} before using the formula.',
     see: ['binomial-expansion', 'binomial-validity'],
   },
   {
     id: 'binomial-validity', term: 'Range of validity', strand: 'al-sequences', level: 'Y2', aka: ['valid for', 'validity of an expansion'],
-    def: 'The values of x for which an infinite expansion gives the true value of the function. For (1 + x) to a power that is not a positive whole number, it is |x| < 1.',
+    def: 'The values of x for which an infinite expansion gives the true value of the function. For (1 + x) to a power that is not a positive whole number, the range is -1 < x < 1.',
     example: [
       '{m:(1 + 2x)^(-3)} is valid when {m:abs(2x) < 1}, so when {m:abs(x) < frac(1, 2)}.',
       '{m:abs(x) < frac(1, 2)} means {m:-frac(1, 2) < x < frac(1, 2)}.',
     ],
-    watch: 'Put the whole of the term you are expanding inside the modulus. For {m:(2 + x)^(-1) = frac(1, 2)(1 + frac(x, 2))^(-1)}, the condition is {m:abs(frac(x, 2)) < 1}, so {m:abs(x) < 2}, not {m:abs(x) < 1}.',
+    watch: 'Write the whole of the term you are expanding inside the modulus. For {m:(2 + x)^(-1) = frac(1, 2)(1 + frac(x, 2))^(-1)}, the condition is {m:abs(frac(x, 2)) < 1}, so {m:abs(x) < 2}, not {m:abs(x) < 1}.',
     see: ['binomial-expansion-rational'],
   },
 
@@ -86,7 +86,7 @@ export const TERMS = [
     id: 'sequence', term: 'Sequence', strand: 'al-sequences', level: 'Y2',
     def: 'A list of numbers in a fixed order that follows a rule.',
     example: '3, 7, 11, 15 &hellip; (add 4 each time). 1, 2, 4, 8 &hellip; (double each time).',
-    watch: 'Order matters. 1, 2, 3 and 3, 2, 1 are different sequences. A sequence may stop (it is finite) or go on forever (it is infinite).',
+    watch: 'Order matters. 1, 2, 3 and 3, 2, 1 are different sequences. A sequence may stop (it is finite) or go on for ever (it is infinite).',
     see: ['sequence-term', 'nth-term', 'term-to-term-rule', 'series'],
   },
   {
@@ -108,13 +108,13 @@ export const TERMS = [
   },
   {
     id: 'nth-term', term: 'nth term (position-to-term rule)', strand: 'al-sequences', level: 'Y2', aka: ['general term', 'position to term'],
-    def: 'A formula that gives any term of a sequence straight from its position n.',
+    def: 'A formula that gives any term of a sequence directly from its position n.',
     example: [
       '{m:u_n = 2n + 1} gives {m:u_1 = 3}, {m:u_2 = 5}, {m:u_3 = 7} &hellip;',
       'The 10th term is {m:u_10 = 2*10 + 1 = 21}.',
     ],
     watch: 'Substitute the position n, not the value of the term. To check a formula, test it on the first two terms.',
-    flip: 'A {term:term-to-term-rule|term-to-term rule} gets one term from the one before. The nth term formula jumps straight to any term.',
+    flip: 'A {term:term-to-term-rule|term-to-term rule} gets one term from the one before. The nth term formula gives any term directly.',
     see: ['term-to-term-rule', 'arithmetic-sequence', 'geometric-sequence'],
   },
   {
@@ -127,13 +127,13 @@ export const TERMS = [
   },
   {
     id: 'recurrence-relation', term: 'Recurrence relation', strand: 'al-sequences', level: 'Y2', aka: ['iteration formula', 'recursive formula'],
-    def: 'An equation that gives each term of a sequence in terms of the one before it, together with the starting value.',
+    def: 'An equation that gives each term of a sequence from the one before it, together with the starting value.',
     example: [
       '{m:u_(n + 1) = 2u_n + 1}, {m:u_1 = 3}.',
       'Then {m:u_2 = 2*3 + 1 = 7}, {m:u_3 = 2*7 + 1 = 15}, {m:u_4 = 31}.',
     ],
     watch: 'Without the starting value the relation does not give one sequence. Work through the terms in order; you cannot skip to {m:u_10} without finding the ones before it.',
-    flip: 'Some recurrence relations settle on a limit. Put L for both {m:u_n} and {m:u_(n + 1)} to find it.',
+    flip: 'Some recurrence relations settle on a limit. Replace both {m:u_n} and {m:u_(n + 1)} with L to find it.',
     see: ['term-to-term-rule', 'limit-of-a-sequence', 'sequence-notation'],
   },
   {
@@ -148,7 +148,7 @@ export const TERMS = [
     id: 'decreasing-sequence', term: 'Decreasing sequence', strand: 'al-sequences', level: 'Y2',
     def: 'A sequence in which every term is smaller than the one before it.',
     example: '20, 17, 14, 11 &hellip; is decreasing. 1, {m:frac(1, 2)}, {m:frac(1, 4)} &hellip; is also decreasing.',
-    watch: 'A sequence of negative numbers can be decreasing even though the terms look bigger in size: {m:-1, -3, -9} &hellip;',
+    watch: 'A sequence of negative numbers can be decreasing even though the numbers get larger if you ignore the minus signs: {m:-1, -3, -9} &hellip;',
     flip: 'In an increasing sequence every term is bigger than the one before.',
     see: ['increasing-sequence'],
   },
@@ -177,7 +177,7 @@ export const TERMS = [
       '{m:u_n = 3 + frac(4, n)} gives 7, 5, 4.33 &hellip; The terms get closer to 3, so the limit is 3.',
       '{m:u_(n + 1) = frac(u_n, 2) + 3}: if there is a limit L, then {m:L = frac(L, 2) + 3}, so {m:L = 6}.',
     ],
-    watch: 'The terms need not ever reach the limit. Only use "put L for {m:u_n} and {m:u_(n + 1)}" when the sequence does converge. For this rule it does, because each step halves the distance to 6.',
+    watch: 'The terms need not ever reach the limit. Only use "replace {m:u_n} and {m:u_(n + 1)} with L" when the sequence does converge. For this rule it does, because each step halves the distance to 6.',
     see: ['convergent', 'recurrence-relation'],
   },
   {
@@ -217,19 +217,19 @@ export const TERMS = [
     def: 'The total of the first n terms of a series, written with a capital S and a small n below it.',
     example: [
       'For 2, 4, 6, 8 &hellip;: {m:S_3 = 2 + 4 + 6 = 12}.',
-      'Each term is the difference of two sums: {m:u_n = S_n - S_(n - 1)}. Here {m:u_3 = S_3 - S_2 = 12 - 6 = 6}.',
+      'For n of at least 2, each term is the difference of two sums: {m:u_n = S_n - S_(n - 1)}. Here {m:u_3 = S_3 - S_2 = 12 - 6 = 6}.',
     ],
     watch: '{m:S_n} is a total. {m:u_n} is one term. They are different numbers.',
     see: ['series', 'arithmetic-series', 'geometric-series'],
   },
   {
     id: 'sigma-notation', term: 'Sigma notation', strand: 'al-sequences', level: 'Y2', aka: ['summation notation', 'capital sigma'],
-    def: 'The Greek capital letter sigma means "add up". The numbers below and above it say where to start and where to stop, and the expression after it says what to add.',
+    def: 'The Greek capital letter sigma means "add up". The numbers below and above it say where to start and where to stop. The expression after it says what to add.',
     example: [
       '{m:sum(r=1, 4) 2r = 2 + 4 + 6 + 8 = 20}. Read it as "the sum of 2r for r from 1 to 4".',
       '{m:sum(r=3, 6) r^2 = 9 + 16 + 25 + 36 = 86}.',
     ],
-    watch: 'The number of terms is the top minus the bottom, plus 1. The letter r is only a counter. A constant counts too: {m:sum(r=1, 4) 5 = 5 + 5 + 5 + 5 = 20}, which is {m:5*4}.',
+    watch: 'The number of terms is the top minus the bottom, plus 1. The letter r is only a counter. The expression can be a constant: {m:sum(r=1, 4) 5 = 5 + 5 + 5 + 5 = 20}, which is {m:5*4}.',
     see: ['series', 'partial-sum'],
   },
 
@@ -261,7 +261,7 @@ export const TERMS = [
       'The sum 1 + 2 + &hellip; + 100 is {m:frac(100, 2)(1 + 100) = 5050}.',
     ],
     watch: 'Use the right n. If a question gives the last term, work out how many terms there are first: {m:n = frac(l - a, d) + 1}.',
-    flip: 'Why it works: write the sum forwards and backwards and add. Every pair totals {m:a + l}, and there are n pairs, which is {m:2S_n}.',
+    flip: 'Why it works: write the sum forwards and backwards and add. Every pair totals {m:a + l}, and there are n pairs, so {m:2S_n = n(a + l)}.',
     see: ['arithmetic-sequence', 'partial-sum', 'sigma-notation'],
   },
 
@@ -297,7 +297,7 @@ export const TERMS = [
   },
   {
     id: 'sum-to-infinity', term: 'Sum to infinity', strand: 'al-sequences', level: 'Y2', aka: ['infinite geometric series', 'S infinity'],
-    def: 'The number that the sum of a geometric series settles on when you keep adding terms forever. It exists only when r is between -1 and 1.',
+    def: 'The number that the sum of a geometric series settles on when you keep adding terms for ever. It exists only when r is between -1 and 1.',
     example: [
       '{m:S_(infinity) = frac(a, 1 - r)} for {m:abs(r) < 1}.',
       '{m:1 + frac(1, 2) + frac(1, 4)} &hellip; has {m:a = 1}, {m:r = frac(1, 2)}, so {m:S_(infinity) = frac(1, 1/2) = 2}.',

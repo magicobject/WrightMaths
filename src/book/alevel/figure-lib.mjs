@@ -102,7 +102,23 @@ export function plane({
       push(`<path class="${cls}" d="${d.trim()}"/>`); return api;
     },
     /** A straight segment between two points in graph coordinates. */
-    line(x1, y1, x2, y2, { cls = 'line' } = {}) { push(`<line class="${cls}" x1="${f(X(x1))}" y1="${f(Y(y1))}" x2="${f(X(x2))}" y2="${f(Y(y2))}"/>`); return api; },
+    line(x1, y1, x2, y2, { cls = 'line', clip = true } = {}) {
+      if (clip) {
+        // Liang-Barsky: keep only the part of the segment inside the picture, so a long line never pokes out of the grid.
+        let t0 = 0;
+        let t1 = 1;
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        for (const [p, q] of [[-dx, x1 - xmin], [dx, xmax - x1], [-dy, y1 - ymin], [dy, ymax - y1]]) {
+          if (Math.abs(p) < 1e-12) { if (q < 0) return api; } else {
+            const r = q / p;
+            if (p < 0) { if (r > t1) return api; if (r > t0) t0 = r; } else { if (r < t0) return api; if (r < t1) t1 = r; }
+          }
+        }
+        [x1, y1, x2, y2] = [x1 + t0 * dx, y1 + t0 * dy, x1 + t1 * dx, y1 + t1 * dy];
+      }
+      push(`<line class="${cls}" x1="${f(X(x1))}" y1="${f(Y(y1))}" x2="${f(X(x2))}" y2="${f(Y(y2))}"/>`); return api;
+    },
     /** A straight line y = m x + c across the whole picture. */
     straight(m, c, { cls = 'line' } = {}) { return api.line(xmin, m * xmin + c, xmax, m * xmax + c, { cls }); },
     vline(x, { cls = 'guide' } = {}) { return api.line(x, ymin, x, ymax, { cls }); },
@@ -114,7 +130,9 @@ export function plane({
       const pts = [];
       for (let i = 0; i <= samples; i += 1) { const x = from + ((to - from) * i) / samples; pts.push([x, upper(x)]); }
       for (let i = samples; i >= 0; i -= 1) { const x = from + ((to - from) * i) / samples; pts.push([x, lower(x)]); }
-      push(`<polygon class="${cls}" points="${pts.map(([x, y]) => `${f(X(x))},${f(Math.min(Math.max(Y(y), top), top + h))}`).join(' ')}"/>`); return api;
+      // A hatched region carries its fill as an attribute: each picture has its own pattern id, which a shared CSS rule cannot name.
+      const fillAttr = cls.includes('hatch') ? ' fill="url(#hatch)"' : '';
+      push(`<polygon class="${cls}"${fillAttr} points="${pts.map(([x, y]) => `${f(X(x))},${f(Math.min(Math.max(Y(y), top), top + h))}`).join(' ')}"/>`); return api;
     },
     /** A filled dot (open: a hollow ring, for a point that is not included). */
     point(x, y, { label: text = '', dx = 12, dy = -12, open = false, anchor = 'start', cls = '' } = {}) {
@@ -136,7 +154,8 @@ export function plane({
     defs(s) { defs.push(s); return api; },
     /** The finished <svg>. `id` makes the title/description ids unique on the page. */
     svg({ id, title, desc, cls = 'graph-svg', hatch = false }) {
-      const hatchDef = hatch ? `<pattern id="${id}-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#e4eefb"/><line x1="0" y1="0" x2="0" y2="12" stroke="#7d8fb3" stroke-width="3"/></pattern>` : '';
+      const wantsHatch = hatch || parts.join('').includes('url(#hatch)');
+      const hatchDef = wantsHatch ? `<pattern id="${id}-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#e4eefb"/><line x1="0" y1="0" x2="0" y2="12" stroke="#7d8fb3" stroke-width="3"/></pattern>` : '';
       const body = parts.join('').replaceAll('url(#hatch)', `url(#${id}-hatch)`);
       return `<svg class="${cls}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${id}-t ${id}-d" xmlns="http://www.w3.org/2000/svg"><title id="${id}-t">${esc(title)}</title><desc id="${id}-d">${esc(desc)}</desc><defs>${hatchDef}${defs.join('')}</defs>${body}</svg>`;
     },

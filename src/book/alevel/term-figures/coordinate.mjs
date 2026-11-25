@@ -63,10 +63,10 @@ const R = 2.8;
 const rad = (deg) => (deg * Math.PI) / 180;
 const onCircle = (deg) => [R * Math.cos(rad(deg)), R * Math.sin(rad(deg))];
 /** A circle with its centre dot C; `draw` adds the rest and `lines` is the caption. */
-function circleFig(id, title, desc, lines, draw) {
+function circleFig(id, title, desc, lines, draw, cLabel = { dx: -26, dy: 6 }) {
   const p = bare({ xmin: -4.6, xmax: 4.6, cy: 0 });
   p.parametric((t) => R * Math.cos(t), (t) => R * Math.sin(t), 0, 2 * Math.PI);
-  p.point(0, 0, { label: 'C', dx: -26, dy: 6 });
+  p.point(0, 0, { label: 'C', ...cLabel });
   draw(p);
   cap(p, ...lines);
   return p.svg(o(id, title, desc));
@@ -115,17 +115,17 @@ export const FIGS = {
   'y-intercept': (() => {
     const p = axesOnly({ xmin: -2, xmax: 5, cy: 2 });
     lineIn(p, 0.5, 2, 'curve');
-    p.point(0, 2, { label: '(0, 2)', dx: 14, dy: -14 });
+    p.point(0, 2, { label: '(0, 2)', dx: -14, dy: -14, anchor: 'end' });
     cap(p, 'y = x/2 + 2', 'y-intercept: (0, 2)');
-    return p.svg(o('y-intercept', 'The y-intercept', 'A straight line crossing the y-axis at the point (0, 2), which is marked with a dot. The line is y = x/2 + 2.'));
+    return p.svg(o('y-intercept', 'The y-intercept', 'A straight line crossing the y-axis at the point (0, 2), which is marked with a dot. The line is y equals x over 2, plus 2.'));
   })(),
 
   'x-intercept': (() => {
     const p = axesOnly({ xmin: -2, xmax: 6, cy: 1 });
     lineIn(p, 1, -3, 'curve');
-    p.point(3, 0, { label: '(3, 0)', dx: 12, dy: -14 });
+    p.point(3, 0, { label: '(3, 0)', dx: 12, dy: 32 });
     cap(p, 'y = x - 3', 'x-intercept: (3, 0)');
-    return p.svg(o('x-intercept', 'The x-intercept', 'A straight line crossing the x-axis at the point (3, 0), which is marked with a dot. The line is y = x - 3.'));
+    return p.svg(o('x-intercept', 'The x-intercept', 'A straight line crossing the x-axis at the point (3, 0), which is marked with a dot. The line is y equals x minus 3.'));
   })(),
 
   'equation-of-a-line': (() => {
@@ -136,7 +136,7 @@ export const FIGS = {
     p.text(1.5, 3, '1', { cls: 'small', dy: 28 });
     p.text(2.1, 4, '2', { cls: 'small', anchor: 'start', dx: 2 });
     cap(p, 'y = 2x + 1', 'gradient m = 2, c = 1');
-    return p.svg(o('equation-of-a-line', 'y = mx + c', 'The line y = 2x + 1. It crosses the y-axis at 1, marked c. A dashed step shows that going 1 across takes the line 2 up, so the gradient m is 2.'));
+    return p.svg(o('equation-of-a-line', 'y = mx + c', 'The line y equals 2x plus 1. It crosses the y-axis at 1, marked c. A dashed step shows that going 1 across takes the line 2 up, so the gradient m is 2.'));
   })(),
 
   'point-gradient-form': (() => {
@@ -144,7 +144,7 @@ export const FIGS = {
     lineIn(p, 2, -3, 'curve');
     p.point(2, 1, { label: '(x\u2081, y\u2081)', dx: 14, dy: 34 });
     cap(p, 'm = 2 through (2, 1)', 'y - 1 = 2(x - 2)');
-    return p.svg(o('point-gradient-form', 'The point-gradient form', 'A straight line of gradient 2 through the point (2, 1), which is marked and labelled (x1, y1). The line has equation y - 1 = 2(x - 2).'));
+    return p.svg(o('point-gradient-form', 'The point-gradient form', 'A straight line of gradient 2 through the point (2, 1), which is marked and labelled x one, y one. The line has equation y minus 1 equals 2 times (x minus 2).'));
   })(),
 
   'parallel-lines': (() => {
@@ -152,7 +152,7 @@ export const FIGS = {
     lineIn(p, 2, 1, 'curve');
     lineIn(p, 2, -2, 'curve-b');
     cap(p, 'solid: y = 2x + 1', 'dashed: y = 2x - 2');
-    return p.svg(o('parallel-lines', 'Parallel lines', 'Two straight lines that rise at the same rate and never meet. One is solid, y = 2x + 1. The other is dashed, y = 2x - 2. Both have gradient 2.'));
+    return p.svg(o('parallel-lines', 'Parallel lines', 'Two straight lines that rise at the same rate and never meet. One is solid, y equals 2x plus 1. The other is dashed, y equals 2x minus 2. Both have gradient 2.'));
   })(),
 
   perpendicular: (() => {
@@ -176,7 +176,7 @@ export const FIGS = {
 
   'line-segment': (() => {
     const p = bare({ xmin: -1, xmax: 7, cy: 2 });
-    p.line(-0.8, -0.2, 6.8, 4.2, { cls: 'curve-b' });
+    p.line(-0.8, -0.035, 6.8, 4.335, { cls: 'curve-b' });
     p.line(1, 1, 5, 3.3, { cls: 'curve' });
     p.point(1, 1, { label: 'A', dx: 14, dy: 30 }).point(5, 3.3, { label: 'B', dx: 14, dy: 28 });
     cap(p, 'solid: line segment AB', 'dashed: the line goes on');
@@ -213,7 +213,7 @@ export const FIGS = {
     tick(p, 2, 1.5, [2, 1]);
     tick(p, 4, 2.5, [2, 1]);
     p.point(1, 1, { label: 'A', dx: -24, dy: 14 }).point(5, 3, { label: 'B', dx: 14, dy: 28 });
-    p.point(3, 2, { label: 'M', dx: 16, dy: 34 });
+    p.point(3, 2, { label: 'M', dx: 30, dy: 26 });
     cap(p, 'dashed line: perpendicular', 'bisector of AB');
     return p.svg(o('perpendicular-bisector', 'Perpendicular bisector', 'A segment AB with its midpoint M. A dashed line through M crosses AB at a right angle, marked with a small square. Matching tick marks show that AM and MB are the same length.'));
   })(),
@@ -247,7 +247,7 @@ export const FIGS = {
     const [x, y] = onCircle(20);
     p.line(-x, -y, x, y, { cls: 'tangent' });
     p.point(x, y).point(-x, -y);
-  }),
+  }, { dx: -10, dy: -14 }),
 
   chord: circleFig('chord', 'A chord of a circle', 'A circle with a thick straight line joining two points on the circle. The line does not pass through the centre C. It is a chord.', ['red line: a chord'], (p) => {
     const [x1, y1] = onCircle(160);
@@ -327,7 +327,7 @@ export const FIGS = {
     p.line(2, 1, 4, 1, { cls: 'tangent' });
     p.point(2, 1);
     cap(p, 'centre (2, 1), radius 2', '(x - 2)\u00b2 + (y - 1)\u00b2 = 4');
-    return p.svg(o('circle-equation', 'The equation of a circle', 'A circle with centre (2, 1) and radius 2, drawn on axes. The centre is marked and a radius to the right is drawn. Its equation is (x - 2)^2 + (y - 1)^2 = 4.'));
+    return p.svg(o('circle-equation', 'The equation of a circle', 'A circle with centre (2, 1) and radius 2, drawn on axes. The centre is marked and a radius to the right is drawn. Its equation is x minus 2, all squared, plus y minus 1, all squared, equals 4.'));
   })(),
 
   'circle-general-form': (() => {
@@ -336,13 +336,13 @@ export const FIGS = {
     p.line(2, 1, 2 + 3 * Math.cos(0.9), 1 + 3 * Math.sin(0.9), { cls: 'tangent' });
     p.point(2, 1);
     cap(p, 'centre (2, 1), radius 3', 'x\u00b2 + y\u00b2 - 4x - 2y - 4 = 0');
-    return p.svg(o('circle-general-form', 'A circle from its general form', 'A circle with centre (2, 1) and radius 3. Its equation in general form is x^2 + y^2 - 4x - 2y - 4 = 0, which completing the square turns into (x - 2)^2 + (y - 1)^2 = 9.'));
+    return p.svg(o('circle-general-form', 'A circle from its general form', 'A circle with centre (2, 1) and radius 3. Its equation in general form is x squared plus y squared minus 4x minus 2y minus 4 equals 0, which completing the square turns into x minus 2, all squared, plus y minus 1, all squared, equals 9.'));
   })(),
 
   parameter: parabolaFig(
     'parameter',
     'A parameter',
-    'A curve drawn from x = 2t and y = t squared. Five points on it are marked and labelled with the value of the parameter t that gives them: t = -1, 0, 1, 2 and 3. As t grows, the point moves along the curve.',
+    'A curve drawn from x equals 2t and y equals t squared. Five points on it are marked and labelled with the value of the parameter t that gives them: t = -1, 0, 1, 2 and 3. As t grows, the point moves along the curve.',
     'x = 2t, y = t\u00b2',
     'each t gives one point',
   ),
@@ -353,13 +353,13 @@ export const FIGS = {
     const mark = [[0, 't = 0', 14, 30, 'start'], [Math.PI / 2, 't = \u03c0/2', 14, -6, 'start'], [Math.PI, 't = \u03c0', -14, 30, 'end'], [(3 * Math.PI) / 2, 't = 3\u03c0/2', 14, 22, 'start']];
     for (const [t, text, dx, dy, anchor] of mark) p.point(3 * Math.cos(t), 3 * Math.sin(t), { label: text, dx, dy, anchor, cls: 'small' });
     cap(p, 'x = 3 cos t, y = 3 sin t');
-    return p.svg(o('parametric-equations', 'Parametric equations of a circle', 'A circle of radius 3 centred on the origin, drawn from x = 3 cos t and y = 3 sin t. Four points are labelled with the parameter value that gives them: t = 0 on the right, pi over 2 at the top, pi on the left, and 3 pi over 2 at the bottom.'));
+    return p.svg(o('parametric-equations', 'Parametric equations of a circle', 'A circle of radius 3 centred on the origin, drawn from x equals 3 cos t and y equals 3 sin t. Four points are labelled with the parameter value that gives them: t = 0 on the right, pi over 2 at the top, pi on the left, and 3 pi over 2 at the bottom.'));
   })(),
 
   'cartesian-equation': parabolaFig(
     'cartesian-equation',
     'The Cartesian equation of a parametric curve',
-    'The curve given parametrically by x = 2t and y = t squared. After the parameter is eliminated, the same curve has the Cartesian equation y = x squared over 4, which is given in the caption.',
+    'The curve given parametrically by x equals 2t and y equals t squared. After the parameter is eliminated, the same curve has the Cartesian equation y equals x squared over 4, which is given in the caption.',
     'x = 2t, y = t\u00b2 becomes',
     'y = x\u00b2/4',
   ),

@@ -253,6 +253,8 @@ function linSeq(items) {
   items.forEach((n, i) => {
     const text = lin(n);
     const prev = items[i - 1];
+    // A fraction next to other terms must be bracketed, or "(1/2)x" reads as "1/2x" and "27^(2/3)" as "27^2/3".
+    if (n.k === 'func' && n.name === 'frac' && ((prev && prev.k !== 'op') || (items[i + 1] && items[i + 1].k !== 'op'))) { out += `(${text})`; return; }
     if (n.k === 'named' && SYMS[n.name][2] === 'op') { out += ` ${text} `; return; }
     if (n.k !== 'op') {
       const afterBigOperator = prev?.k === 'func' && ['int', 'sum', 'lim'].includes(prev.name);
@@ -291,7 +293,7 @@ function lin(n) {
 }
 
 function scriptLin(arg) {
-  if (arg.k === 'row') return arg.body.length === 1 ? lin(arg.body[0]) : `(${linSeq(arg.body)})`;
+  if (arg.k === 'row') return arg.body.length === 1 && !(arg.body[0].k === 'func' && arg.body[0].name === 'frac') ? lin(arg.body[0]) : `(${linSeq(arg.body)})`;
   return lin(arg);
 }
 

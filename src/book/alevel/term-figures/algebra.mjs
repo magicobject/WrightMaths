@@ -27,8 +27,8 @@ export const FIGS = {
     'root', 'Roots of a function', 'The curve y equals f of x crosses the x-axis at two points. Each is marked and labelled as a root: x equals 1 and x equals 3.',
   ),
   'completing-the-square': done(
-    pop({ xmin: -6, xmax: 0, ymin: -5, ymax: 4, xstep: 1, ystep: 1 }).curve((x) => (x + 3) * (x + 3) - 4)
-      .vline(-3).point(-3, -4, { label: 'vertex (-3, -4)', dx: 12, dy: 6 })
+    pop({ xmin: -6, xmax: 0, ymin: -6, ymax: 4, xstep: 1, ystep: 1 }).curve((x) => (x + 3) * (x + 3) - 4)
+      .vline(-3).point(-3, -4, { label: 'vertex (-3, -4)', dx: -12, dy: 30, anchor: 'end' })
       .text(-3, 2.3, 'y = (x + 3)^2 - 4', { cls: 'alt' }),
     'completing-the-square', 'Completed square and the vertex', 'The curve y equals (x plus 3) squared minus 4. Its lowest point, the vertex, is marked at (minus 3, minus 4) and a dashed vertical line passes through it.',
   ),
@@ -36,7 +36,7 @@ export const FIGS = {
     pop({ xmin: -2.4, xmax: 2.4, ymin: -6, ymax: 4, xstep: 1, ystep: 1 })
       .curve((x) => 0.8 * x * x - 1).curve((x) => 0.8 * x * x, { cls: 'curve-b' }).curve((x) => 0.8 * x * x + 1, { cls: 'curve-c' })
       .text(-2.3, -1.8, 'b^2 - 4ac is:', { cls: 'small', anchor: 'start' }).text(-2.3, -3.0, 'solid: > 0', { cls: 'small', anchor: 'start' }).text(-2.3, -4.2, 'dashed: = 0', { cls: 'small', anchor: 'start' }).text(-2.3, -5.4, 'dotted: < 0', { cls: 'small', anchor: 'start' }),
-    'discriminant', 'Three signs of the discriminant', 'Three U-shaped curves with the same shape, with a key on the picture. The solid one crosses the x-axis twice (discriminant positive, two roots). The dashed one just touches the x-axis (discriminant zero, one repeated root). The dotted one stays above the x-axis (discriminant negative, no real roots).',
+    'discriminant', 'Three signs of the discriminant', 'Three U-shaped curves with the same shape, with a key on the picture. The solid one crosses the x-axis twice (discriminant positive, two roots). The dashed one touches the x-axis at one point (discriminant zero, one repeated root). The dotted one stays above the x-axis (discriminant negative, no real roots).',
   ),
   'repeated-root': done(
     pop({ xmin: -4.4, xmax: 3, ymin: -3, ymax: 6, xstep: 1, ystep: 1 }).curve((x) => (x - 1) * (x - 1) * (x + 2))
@@ -56,7 +56,7 @@ export const FIGS = {
   ),
   'axis-of-symmetry': done(
     pop({ xmin: -1, xmax: 5, ymin: -2.5, ymax: 4.5, xstep: 1, ystep: 1 }).curve(quad).vline(2)
-      .point(1, 0, {}).point(3, 0, {}).text(2.1, 3.9, 'axis: x = 2', { cls: 'alt', anchor: 'start' }),
+      .point(1, 0, {}).point(3, 0, {}).text(2.1, 4.2, 'axis: x = 2', { cls: 'alt', anchor: 'start' }),
     'axis-of-symmetry', 'The axis of symmetry', 'The curve y equals x squared minus 4x plus 3 with a dashed vertical line, x equals 2, through its lowest point. The line splits the curve into two mirror-image halves. The two roots, 1 and 3, are marked and are the same distance from the line.',
   ),
   'quadratic-in-disguise': done(
@@ -65,19 +65,19 @@ export const FIGS = {
     'quadratic-in-disguise', 'A quartic with four roots', 'The curve y equals x to the power 4 minus 5x squared plus 4. It meets the x-axis at four marked points: x equals minus 2, minus 1, 1 and 2. Treating x squared as a new letter turns it into a quadratic.',
   ),
   'simultaneous-equations': done(
-    pop({ xmin: -3.2, xmax: 4.8, ymin: -6.5, ymax: 9, xstep: 1, ystep: 2 }).curve((x) => x * x - 2).straight(2, 1, { cls: 'curve-b' })
+    pop({ xmin: -3.2, xmax: 4.8, ymin: -6.5, ymax: 9, xstep: 1, ystep: 2 }).curve((x) => x * x - 2).curve((x) => 2 * x + 1, { cls: 'curve-b' })
       .point(-1, -1).point(3, 7)
-      .text(-1.3, 8, 'parabola', { cls: 'alt' }).text(3.8, 5.2, 'line', { cls: 'alt' }).text(-2.6, -5.4, 'meet at (-1, -1) and (3, 7)', { cls: 'small', anchor: 'start' }),
+      .text(-1.3, 8, 'parabola', { cls: 'alt' }).text(3.8, 5.2, 'line', { cls: 'alt' }).text(0.4, -5.4, 'meet at (-1, -1) and (3, 7)', { cls: 'small', anchor: 'start' }),
     'simultaneous-equations', 'Where two graphs meet', 'The parabola y equals x squared minus 2 (solid) and the straight line y equals 2x plus 1 (dashed) meet at two marked points, (minus 1, minus 1) and (3, 7). These two points are the solutions of the pair of equations.',
   ),
   inequality: done(
     pop({ xmin: -1, xmax: 5, ymin: -2.5, ymax: 4.5, xstep: 1, ystep: 1 }).shade(() => 0, quad, 1, 3)
       .curve(quad).text(2, 3.0, 'x^2 - 4x + 3 < 0', { cls: 'alt' }).text(2, 2.0, 'for 1 < x < 3', { cls: 'alt' }),
-    'inequality', 'A quadratic inequality', 'The curve y equals x squared minus 4x plus 3. The part of the curve that lies below the x-axis, between x equals 1 and x equals 3, is shaded. This is where the quadratic is less than zero.',
+    'inequality', 'A quadratic inequality', 'The curve y equals x squared minus 4x plus 3. The region between the curve and the x-axis, for x between 1 and 3, is shaded. This is where the quadratic is less than zero.',
   ),
   region: done(
     pop({ xmin: -3, xmax: 4, ymin: -4, ymax: 6, xstep: 1, ystep: 1 }).shade((x) => 6, (x) => 2 * x - 1, -3, 4)
-      .straight(2, -1, { cls: 'curve-b' }).vline(0, { cls: 'axis' }).hline(0, { cls: 'axis' }).text(-1.4, 3.6, 'y > 2x - 1', { cls: 'alt' }).text(2.0, -2.8, 'y = 2x - 1', { cls: 'small', anchor: 'start' }),
+      .curve((x) => 2 * x - 1, { cls: 'curve-b' }).vline(0, { cls: 'axis' }).hline(0, { cls: 'axis' }).text(-1.4, 3.6, 'y > 2x - 1', { cls: 'alt' }).text(2.0, -2.8, 'y = 2x - 1', { cls: 'small', anchor: 'start' }),
     'region', 'The region y greater than 2x minus 1', 'The straight line y equals 2x minus 1, drawn dashed because points on it are not included. The area above the line is shaded: these are the points where y is greater than 2x minus 1.',
   ),
   interval: line(
@@ -118,11 +118,11 @@ export const FIGS = {
   ),
   'reciprocal-graph': done(
     pop({ xmin: -4, xmax: 4, ymin: -4, ymax: 4, xstep: 1, ystep: 1 }).curve((x) => 1 / x).curve((x) => 1 / (x * x), { cls: 'curve-b' })
-      .text(2.2, 2.6, 'y = 1/x', { cls: 'alt', anchor: 'start' }).text(-1.0, 3.3, 'y = 1/x^2', { cls: 'alt', anchor: 'end' }),
+      .text(1.2, 1.6, 'y = 1/x', { cls: 'alt', anchor: 'start' }).text(-0.7, 3.4, 'y = 1/x^2', { cls: 'alt', anchor: 'end' }),
     'reciprocal-graph', 'Reciprocal graphs', 'The curve y equals 1 over x (solid) has one branch in the top right and one in the bottom left. The curve y equals 1 over x squared (dashed) has two branches that are both above the x-axis. Both curves get close to the two axes.',
   ),
   proportional: done(
-    pop({ xmin: -1, xmax: 5, ymin: -1, ymax: 7, xstep: 1, ystep: 1 }).straight(1.5, 0)
+    pop({ xmin: -1, xmax: 5, ymin: -1, ymax: 7, xstep: 1, ystep: 1 }).curve((x) => 1.5 * x)
       .point(0, 0, { label: 'origin', dx: 12, dy: 24 }).text(1.0, 5.2, 'y = kx', { cls: 'alt', anchor: 'start' }),
     'proportional', 'Direct proportion', 'A straight line through the origin, labelled y equals kx. A quantity that is proportional to another always gives a straight line through the origin.',
   ),

@@ -13,12 +13,12 @@ function familyFigure({ id, title, desc, highlight }) {
   const p = small({ xmin: -3, xmax: 3, ymin: -3, ymax: 9, xstep: 1, ystep: 2 });
   for (const c of [-2, 0, 2]) p.curve((x) => x * x + c, { cls: highlight === c ? 'curve' : 'curve-c' });
   if (highlight === undefined) {
-    p.text(0.15, 3.2, 'c=2', { cls: 'alt', anchor: 'start' });
-    p.text(0.15, 1.0, 'c=0', { cls: 'alt', anchor: 'start' });
-    p.text(0.15, -0.8, 'c=-2', { cls: 'alt', anchor: 'start' });
+    p.text(0.2, 2.7, 'c=2', { cls: 'alt small', anchor: 'start' });
+    p.text(0.2, 0.7, 'c=0', { cls: 'alt small', anchor: 'start' });
+    p.text(0.2, -1.3, 'c=-2', { cls: 'alt small', anchor: 'start' });
   } else {
-    p.point(1, 3, { label: '(1, 3)', dx: -12, dy: -16, anchor: 'end' });
-    p.text(0.3, 7.8, 'y = x^2 + 2', { cls: 'alt', anchor: 'start' });
+    p.point(1, 3, { label: '(1, 3)', dx: -6, dy: -18, anchor: 'end' });
+    p.text(1.95, 6.3, 'y = x^2 + 2', { cls: 'alt', anchor: 'end' });
   }
   return p.svg({ id, title, desc, cls: CLS });
 }
@@ -34,7 +34,7 @@ export const FIGS = {
     p.text(1, -0.2, 'a = 1', { cls: 'alt', dx: -6, dy: 52 });
     p.text(3, -0.2, 'b = 3', { cls: 'alt', dx: 6, dy: 52 });
     p.text(2, 0.7, 'value 19/3', { cls: 'alt' });
-    return p.svg({ id: 'tf-definite-integral', title: 'A definite integral between two limits', desc: 'The curve y = x squared over 2 plus 1. The region under the curve and above the x-axis, from the lower limit x equals 1 to the upper limit x equals 3, is shaded. The value of the definite integral is 19 over 3.', cls: CLS });
+    return p.svg({ id: 'tf-definite-integral', title: 'A definite integral between two limits', desc: 'The curve y equals half of x squared, plus 1. The region under the curve and above the x-axis, from the lower limit x equals 1 to the upper limit x equals 3, is shaded. The value of the definite integral is 19 over 3.', cls: CLS });
   })(),
 
   'area-under-curve': (() => {
@@ -43,18 +43,21 @@ export const FIGS = {
     p.curve(square);
     p.text(2, 2.2, 'area = 9', { cls: 'alt' });
     p.text(0.2, 8, 'y = x^2', { cls: 'alt', anchor: 'start' });
-    return p.svg({ id: 'tf-area-under-curve', title: 'The area under a curve', desc: 'The curve y = x squared. The region between the curve and the x-axis from x equals 0 to x equals 3 is shaded. Its area is 9 square units.', cls: CLS });
+    return p.svg({ id: 'tf-area-under-curve', title: 'The area under a curve', desc: 'The curve y equals x squared. The region between the curve and the x-axis from x equals 0 to x equals 3 is shaded. Its area is 9 square units.', cls: CLS });
   })(),
 
   'area-below-the-axis': (() => {
     const f = (x) => x * x - 4;
     const p = small({ xmin: -1, xmax: 4, ymin: -5, ymax: 6, xstep: 1, ystep: 1 });
     p.shade(() => 0, f, 0, 2);
-    p.shade(f, () => 0, 2, 3, { cls: 'shade-hatch' });
+    // The class shade-hatch points at #hatch, but each figure's pattern has its own id, so fill the stripes by hand.
+    const stripes = Array.from({ length: 31 }, (_, k) => 2 + k / 30).map((x) => [x, f(x)]).concat([[3, 0], [2, 0]]);
+    p.raw(`<polygon fill="url(#tf-area-below-the-axis-hatch)" stroke="none" points="${stripes.map(([x, y]) => `${p.X(x).toFixed(1)},${p.Y(y).toFixed(1)}`).join(' ')}"/>`);
     p.curve(f);
     p.text(1, -1.4, 'negative', { cls: 'alt' });
-    p.text(3.4, 1.4, 'positive', { cls: 'alt' });
-    return p.svg({ id: 'tf-area-below-the-axis', title: 'Area below the axis counts as negative', desc: 'The curve y = x squared minus 4 crosses the x-axis at x equals 2. From x equals 0 to 2 the region between the curve and the axis lies below the axis, and its integral is negative. From x equals 2 to 3 the region lies above the axis, shaded with stripes, and its integral is positive.', cls: CLS, hatch: true });
+    p.line(3.05, 1.5, 2.7, 1.5, { cls: 'guide' });
+    p.text(3.1, 1.2, 'positive', { cls: 'alt', anchor: 'start' });
+    return p.svg({ id: 'tf-area-below-the-axis', title: 'Area below the axis counts as negative', desc: 'The curve y equals x squared minus 4 crosses the x-axis at x equals 2. From x equals 0 to 2 the region between the curve and the axis lies below the axis, and its integral is negative. From x equals 2 to 3 the region lies above the axis, shaded with stripes, and its integral is positive.', cls: CLS, hatch: true });
   })(),
 
   'area-between-curves': (() => {
@@ -66,7 +69,7 @@ export const FIGS = {
     p.point(-1, 1, { label: '(-1, 1)', dx: -12, dy: -14, anchor: 'end' });
     p.point(2, 4, { label: '(2, 4)', dx: 12, dy: 6 });
     p.text(0.2, 1.2, 'area = 9/2', { cls: 'alt' });
-    return p.svg({ id: 'tf-area-between-curves', title: 'The area between two curves', desc: 'The parabola y = x squared (solid) and the line y = x plus 2 (dashed) meet at (-1, 1) and (2, 4). The region between them is shaded. The line is the upper curve there, and the area is 9 over 2.', cls: CLS });
+    return p.svg({ id: 'tf-area-between-curves', title: 'The area between two curves', desc: 'The parabola y equals x squared (solid) and the line y equals x plus 2 (dashed) meet at (minus 1, 1) and (2, 4). The region between them is shaded. The line is the upper curve there, and the area is 9 over 2.', cls: CLS });
   })(),
 
   'limit-of-a-sum': (() => {
@@ -84,19 +87,19 @@ export const FIGS = {
     p.curve(square);
     p.text(0.2, 8, 'y = x^2', { cls: 'alt', anchor: 'start' });
     p.text(1.1, 6, '6 strips', { cls: 'alt' });
-    return p.svg({ id: 'tf-limit-of-a-sum', title: 'Area as the sum of thin strips', desc: 'The curve y = x squared from x equals 0 to 3, with the area under it filled by 6 thin rectangular strips of width 0.5. The top of each strip is at its left edge, so each strip lies just under the curve. Thinner strips would fit the curve more closely.', cls: CLS });
+    return p.svg({ id: 'tf-limit-of-a-sum', title: 'Area as the sum of thin strips', desc: 'The curve y equals x squared from x equals 0 to 3, with the area under it filled by 6 thin rectangular strips of width 0.5. The height of each strip is the height of the curve at the strip\'s left edge, so each strip lies under the curve. Thinner strips would fit the curve more closely.', cls: CLS });
   })(),
 
   'family-of-solution-curves': familyFigure({
     id: 'tf-family-of-solution-curves',
     title: 'A family of solution curves',
-    desc: 'Three copies of the parabola y = x squared plus c, for c equal to 2, 0 and negative 2, each shifted up or down from the others. They are the general solution of dy by dx equals 2x.',
+    desc: 'Three copies of the parabola y equals x squared plus c, for c equal to 2, 0 and negative 2, each shifted up or down from the others. They are the general solution of dy by dx equals 2x.',
   }),
 
   'particular-solution': familyFigure({
     id: 'tf-particular-solution',
     title: 'One solution picked out of the family',
-    desc: 'The same three parabolas y = x squared plus c. The point (1, 3) is marked. Only the solid curve, y = x squared plus 2, passes through it, so that curve is the particular solution. The other two are dotted.',
+    desc: 'The same three parabolas y equals x squared plus c. The point (1, 3) is marked. Only the solid curve, y equals x squared plus 2, passes through it, so that curve is the particular solution. The other two are dotted.',
     highlight: 2,
   }),
 };

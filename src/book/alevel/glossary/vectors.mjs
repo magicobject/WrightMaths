@@ -43,7 +43,6 @@ export const TERMS = [
     example: [
       col(3, 2) + ' means 3 across and 2 up.',
       col(-1, 4) + ' means 1 to the left and 4 up.',
-      'A vector in three dimensions has three numbers: ' + col(2, -3, 5) + '.',
     ],
     watch: 'A column vector is a move, not a place. It is not a fraction and it is not the point (3, 2). The point (3, 2) is where you end up if you start at the origin.',
     see: ['component', 'i-j-notation', 'position-vector'],
@@ -56,7 +55,7 @@ export const TERMS = [
       'A vector of magnitude 10 at {m:30deg} above the x-axis has components {m:10 cos 30deg = 8.66} across and {m:10 sin 30deg = 5} up.',
     ],
     watch: 'Components can be negative. A negative x-component means the vector points to the left.',
-    flip: 'Putting the components back together with Pythagoras gives the {term:magnitude}.',
+    flip: 'Use Pythagoras on the components to find the {term:magnitude}.',
     see: ['column-vector', 'magnitude', 'direction-of-a-vector'],
   },
   {
@@ -71,7 +70,7 @@ export const TERMS = [
   },
   {
     id: 'unit-vector', term: 'Unit vector', strand: 'al-vectors', level: 'Y1', aka: ['hat', 'a hat', 'vector of length 1'],
-    def: 'A vector with magnitude 1. The unit vector in the direction of a is a divided by its magnitude, and is written with a small hat over the letter.',
+    def: 'A vector with magnitude 1. To find the unit vector in the direction of a, divide a by its magnitude. It is written as a with a small hat over it, and read "a hat".',
     example: [
       'For {m:a = 3i + 4j}: {m:abs(a) = 5}, so {m:hat(a) = frac(3i + 4j, 5) = 0.6i + 0.8j}.',
       'Check: {m:sqrt(0.6^2 + 0.8^2) = 1}.',
@@ -82,12 +81,12 @@ export const TERMS = [
   },
   {
     id: 'magnitude', term: 'Magnitude', strand: 'al-vectors', level: 'Y1', aka: ['modulus of a vector', 'length of a vector', 'size'],
-    def: 'The size, or length, of a vector. It comes from Pythagoras on the components, and it is never negative.',
+    def: 'The size, or length, of a vector. You find it by using Pythagoras\u2019 theorem on the components. It is never negative.',
     example: [
-      'For ' + col(3, 4) + ': {m:abs(a) = sqrt(3^2 + 4^2) = 5}.',
-      'For {m:2i - 3j + 5k}: {m:sqrt(2^2 + (-3)^2 + 5^2) = sqrt(38)}.',
+      'For a = ' + col(3, 4) + ': {m:abs(a) = sqrt(3^2 + 4^2) = 5}.',
+      'Read {m:abs(a)} as "the magnitude of a".',
     ],
-    watch: 'The signs disappear when you square. A magnitude is never negative. In general {m:abs(a + b)} is not {m:abs(a) + abs(b)}. They are equal only when a and b point the same way.',
+    watch: 'The signs disappear when you square. A magnitude is never negative. In general {m:abs(a + b)} is not {m:abs(a) + abs(b)}. The two sides are equal only when a and b point the same way.',
     see: ['component', 'unit-vector', 'distance-in-3d'],
   },
   {
@@ -103,7 +102,7 @@ export const TERMS = [
   },
   {
     id: 'vector-addition', term: 'Vector addition', strand: 'al-vectors', level: 'Y1', aka: ['triangle law', 'adding vectors'],
-    def: 'Adding vectors by adding their components. In a drawing, put the tail of the second arrow at the head of the first: the sum goes from the start of the first to the end of the second.',
+    def: 'Adding vectors by adding their components. In a drawing, start the second arrow at the head (the pointed end) of the first. The sum goes from the tail (the start) of the first arrow to the head of the second.',
     example: [
       col(3, 1) + ' + ' + col(2, 4) + ' = ' + col(5, 5) + '.',
       'In a triangle ABC, {m:vec(AB) + vec(BC) = vec(AC)}.',
@@ -121,10 +120,10 @@ export const TERMS = [
   },
   {
     id: 'vector-subtraction', term: 'Vector subtraction', strand: 'al-vectors', level: 'Y1', aka: ['subtracting vectors'],
-    def: 'Subtracting one vector from another by subtracting their components. It is the same as adding the negative of the vector.',
+    def: 'Finding the difference of two vectors by taking away their components one by one. It is the same as adding the negative of the vector you take away.',
     example: [
       col(5, 2) + ' &minus; ' + col(1, 4) + ' = ' + col(4, -2) + '.',
-      'With position vectors {m:vec(AB) = b - a}: the end minus the start.',
+      'With position vectors, {m:vec(AB) = b - a}. This is the end minus the start.',
     ],
     watch: 'The order matters. {m:b - a} is the vector from A to B. {m:a - b} is the vector from B to A. Subtract every component, not only the first.',
     see: ['vector-addition', 'negative-vector', 'position-vector'],
@@ -133,7 +132,7 @@ export const TERMS = [
     id: 'negative-vector', term: 'Negative of a vector', strand: 'al-vectors', level: 'Y1',
     def: 'A vector with the same magnitude as a but the opposite direction, written &minus;a.',
     example: [
-      'If a is ' + col(2, -3) + ', then -a is ' + col(-2, 3) + '.',
+      'If a is ' + col(2, -3) + ', then &minus;a is ' + col(-2, 3) + '.',
       '{m:vec(BA) = -vec(AB)}.',
     ],
     watch: 'Change the sign of every component. {m:a + (-a)} is the {term:zero-vector}.',
@@ -146,7 +145,7 @@ export const TERMS = [
       '3' + col(2, -1) + ' = ' + col(6, -3) + '.',
       '&minus;2' + col(2, -1) + ' = ' + col(-4, 2) + '. It is twice as long and points the opposite way.',
     ],
-    watch: 'Multiply every component, not just the first.',
+    watch: 'Multiply every component, not only the first.',
     flip: 'If two vectors are scalar multiples of each other, they are {term:parallel-vectors|parallel}.',
     see: ['scalar', 'parallel-vectors', 'unit-vector'],
   },
@@ -165,7 +164,7 @@ export const TERMS = [
     id: 'zero-vector', term: 'Zero vector', strand: 'al-vectors', level: 'Y1', aka: ['null vector'],
     def: 'The vector with no length, written as a bold 0. All its components are 0.',
     example: '{m:vec(AB) + vec(BA)} is the zero vector: you end up back where you started.',
-    watch: 'It is a vector, not just the number 0. It has no direction.',
+    watch: 'It is a vector. It is not the same thing as the number 0. It has no direction.',
     see: ['negative-vector'],
   },
   {
@@ -188,7 +187,7 @@ export const TERMS = [
   },
   {
     id: 'collinear', term: 'Collinear', strand: 'al-vectors', level: 'Y1', aka: ['on one line'],
-    def: 'Lying on one straight line. Points are collinear when they are all on the same line.',
+    def: 'Points that all lie on one straight line.',
     example: [
       'Show that A (1, 1), B (3, 2) and C (7, 4) are collinear.',
       '{m:vec(AB)} = ' + col(2, 1) + ' and {m:vec(BC)} = ' + col(4, 2) + ' = {m:2 vec(AB)}.',
@@ -199,7 +198,7 @@ export const TERMS = [
   },
   {
     id: 'dividing-in-a-ratio', term: 'Point dividing a line in a ratio', strand: 'al-vectors', level: 'Y1', aka: ['section formula', 'ratio', 'position vector of a point on a line'],
-    def: 'A point P on the line AB with AP : PB = m : n. Its position vector is found by moving from A the fraction m/(m + n) of the way to B.',
+    def: 'A point P on the line AB with AP : PB = m : n. To find its position vector, start at A and move the fraction m/(m + n) of the way to B.',
     example: [
       'If {m:AP : PB = m : n}, then {m:p = a + frac(m, m + n)(b - a) = frac(n a + m b, m + n)}.',
       'A (1, 2), B (7, 8), {m:AP : PB = 1 : 2}: {m:p = frac(2a + b, 3) = frac(1, 3)} ' + col(9, 12) + ' = ' + col(3, 4) + '.',
@@ -209,20 +208,20 @@ export const TERMS = [
   },
   {
     id: 'vector-proof', term: 'Vector proof', strand: 'al-vectors', level: 'Y1', aka: ['geometric proof', 'proof using vectors'],
-    def: 'A proof in geometry in which you write the sides of a shape as vectors, combine them, and show that two vectors are parallel, collinear or in a given ratio.',
+    def: 'A proof in geometry that uses vectors. Write the sides of a shape as vectors and combine them. Then show that two vectors are parallel, collinear or in a given ratio.',
     example: [
       'In triangle OAB, M is the midpoint of OA and N is the midpoint of OB. Let {m:vec(OA) = a} and {m:vec(OB) = b}.',
       '{m:vec(MN) = vec(MO) + vec(ON) = -frac(1, 2)a + frac(1, 2)b = frac(1, 2)(b - a) = frac(1, 2) vec(AB)}.',
       'So MN is parallel to AB and half its length.',
     ],
-    watch: 'Choose two vectors from one corner as a and b, and write every other vector in terms of them. Finish with a sentence that says what you have shown.',
+    watch: 'Choose two vectors from one corner as a and b, and write every other vector using them. Finish with a sentence that says what you have shown.',
     see: ['collinear', 'parallel-vectors', 'dividing-in-a-ratio', 'position-vector'],
   },
 
   // ---------- Vectors in three dimensions (Year 2) ----------
   {
     id: 'ijk-notation', term: 'i, j and k notation', strand: 'al-vectors', level: 'Y2', aka: ['unit vectors i j k'],
-    def: 'The way of writing three-dimensional vectors using three unit vectors at right angles: i along the x-axis, j along the y-axis and k along the z-axis.',
+    def: 'A way of writing three-dimensional vectors using three unit vectors at right angles: i along the x-axis, j along the y-axis and k along the z-axis.',
     example: [
       '{m:2i - 3j + 5k} = ' + col(2, -3, 5) + '.',
       'Its magnitude is {m:sqrt(2^2 + (-3)^2 + 5^2) = sqrt(38)}.',
@@ -234,7 +233,7 @@ export const TERMS = [
     id: 'three-d-axes', term: 'Three-dimensional axes', strand: 'al-vectors', level: 'Y2', aka: ['x y z axes', '3D coordinates', 'right-handed axes'],
     def: 'Three axes, x, y and z, all at right angles to each other and meeting at the origin. A point is given by three coordinates (x, y, z).',
     example: 'The point (2, 3, 4) is 2 along the x-axis, 3 along the y-axis and 4 up the z-axis. Its position vector is {m:2i + 3j + 4k}.',
-    watch: 'The usual layout is right-handed: if you turn from the x-axis to the y-axis the way a screw turns, the z-axis points the way the screw goes. Drawings of 3D axes show distances at an angle, so they are not to scale.',
+    watch: 'The usual layout is right-handed. Turn from the x-axis to the y-axis the way a screw turns. The z-axis points the way the screw moves. Drawings of 3D axes show distances at an angle, so they are not to scale.',
     see: ['ijk-notation', 'distance-in-3d', 'position-vector'],
   },
   {

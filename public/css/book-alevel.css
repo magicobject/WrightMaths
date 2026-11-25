@@ -80,7 +80,7 @@ math{font-size:1.18em;font-family:"Cambria Math","STIX Two Math","Latin Modern M
 .graph-svg .line{stroke:var(--ink);stroke-width:3.5;fill:none;stroke-linecap:round;}
 .graph-svg .guide{stroke:var(--ink-soft);stroke-width:2;fill:none;stroke-dasharray:7 6;}
 .graph-svg .shade{fill:var(--tint,#e4eefb);stroke:none;}
-.graph-svg .shade-hatch{fill:url(#hatch);stroke:none;}
+.graph-svg .shade-hatch{stroke:none;} /* its fill is an attribute on the shape: see shade() in figure-lib.mjs */
 .graph-svg .pt{fill:var(--c-oops);stroke:var(--white);stroke-width:2.5;}
 .graph-svg .pt-open{fill:var(--white);stroke:var(--c-oops);stroke-width:3;}
 .graph-svg .tangent{stroke:var(--c-oops);stroke-width:4;fill:none;}
