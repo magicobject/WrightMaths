@@ -16,6 +16,10 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.023</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Docs only: the A-level Pure Maths syllabus draft (<code>docs/alevel-pure-syllabus.md</code>) is now checked against the AQA, Edexcel, OCR A and OCR MEI specifications and the DfE content. Corrections: 47 topics (area between curves moved to Year 2), change of base and a few other items marked as beyond every board, the paper structures fixed, and the Eduqas entry removed (it offers no A-level Maths). No site change.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.022</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, Listen: some sentences were read by the device voice instead of the recorded one for up to a day after a release, because a browser kept an old copy of the list of recordings (<code>manifest.json</code>) and so did not know about newly recorded sentences. The list is now checked with the server every time (a tiny &ldquo;not modified&rdquo; reply when nothing has changed), and recordings themselves are kept for an hour instead of a week, so a re-recorded sentence is heard within the hour. Found on the &ldquo;Why mixed?&rdquo; sentence on the mixed practice page. The test server now starts with <code>node</code> directly instead of <code>npx</code>, which could take over a minute to resolve in a git worktree and time the tests out.</p>
       </li>
