@@ -109,7 +109,8 @@ if (command === 'status') {
   const units = await collectUnits();
   const manifest = buildManifest(clipFiles());
   const missing = new Set(missingUnits(units, manifest).map((u) => u.hash));
-  const sheet = scriptSheet(units).filter((r) => missing.has(r.hash));
+  const all = process.argv.includes('--all'); // every sentence, to re-make clips that already exist (after a change of gap or voice)
+  const sheet = scriptSheet(units).filter((r) => all || missing.has(r.hash));
   mkdirSync(WORK, { recursive: true });
   writeFileSync(join(WORK, 'script.json'), `${JSON.stringify(sheet, null, 2)}\n`);
   writeFileSync(join(WORK, 'script.txt'), sheet.map((r) => `${r.number}  ${r.text}`).join('\n\n') + '\n');
@@ -164,7 +165,7 @@ if (command === 'status') {
   console.log(`npm run book:audio -- <command>
 
   status      how many Listen sentences have a recording, and which recordings are out of date
-  todo        write audio-work/script.txt: the numbered sentences that still need recording
+  todo        write audio-work/script.txt: the numbered sentences that still need recording (--all: every sentence)
   review      write audio-work/review.html: every sentence as written beside what the voice is given, differences marked
   make [n]    make recordings with a speech engine. Set WM_TTS_CMD to the engine command, which reads the
               sentence on standard input and writes {out}; set WM_TTS_EXT (wav, mp3, m4a, ogg).

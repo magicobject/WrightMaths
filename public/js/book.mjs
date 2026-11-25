@@ -852,10 +852,12 @@ function stopListening() {
 function addListenButtons(root = document) {
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
   // The list of recordings is fetched on the first press of Listen, not on every page.
-  for (const node of root.querySelectorAll('.qtext, .key')) {
-    if (node.querySelector(':scope > .listen')) continue;
+  for (const node of root.querySelectorAll('.qtext, .key, .g-entry')) {
+    if (node.querySelector(':scope > .listen') || node.querySelector(':scope > h3 > .listen')) continue;
     const number = node.querySelector('.qnum')?.textContent;
-    const btn = el('button', { type: 'button', class: 'listen', 'aria-pressed': 'false', 'data-label': number ? `question ${number}` : 'this key idea', text: 'Listen' });
+    const isEntry = node.classList.contains('g-entry');
+    const entryName = isEntry ? node.querySelector('h3')?.firstChild?.textContent.trim() : '';
+    const btn = el('button', { type: 'button', class: 'listen', 'aria-pressed': 'false', 'data-label': isEntry ? `the glossary entry for ${entryName}` : number ? `question ${number}` : 'this key idea', text: 'Listen' });
     btn.setAttribute('aria-label', `Listen to ${btn.dataset.label}`);
     btn.addEventListener('click', async () => {
       // A press while a voice is loading is ignored, so three quick presses never give three overlapping clips.
@@ -880,7 +882,7 @@ function addListenButtons(root = document) {
       if (speak(text, end)) listenState(btn, 'playing');
       else end();
     });
-    node.append(btn);
+    (isEntry ? node.querySelector('h3') : node).append(btn);
   }
 }
 
