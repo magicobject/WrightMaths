@@ -279,10 +279,16 @@ export function renderPracticeTopics(graph) {
 // Words that are everywhere in questions or too general to be worth a pop-up on every use.
 export const NEVER_AUTO = new Set(['work-out', 'calculate', 'write-down', 'show-that', 'explain-command', 'term', 'round', 'operation', 'proof', 'unknown', 'sum', 'mean']);
 
+// Words in a term's brackets that are the entry's own qualifier or far too general to link on their own:
+// "Opposite (side)" and "Adjacent (side)" must not turn every "side" into a link, "Root (solution)" every "solution".
+const GENERIC_ALIASES = new Set(['side', 'solution', 'variable']);
+
 function termNames(g) {
   const plain = String(g.term).replace(/&[a-z]+;/gi, '');
   const main = plain.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
-  const inParens = [...plain.matchAll(/\(([^)]+)\)/g)].map((m) => m[1].trim());
+  // "(of a formula)" and "(the trig ratio)" describe the term; they are not another name for it.
+  const inParens = [...plain.matchAll(/\(([^)]+)\)/g)].map((m) => m[1].trim())
+    .filter((n) => !/^(of|the)\s/i.test(n) && !GENERIC_ALIASES.has(n.toLowerCase()));
   return [main, ...inParens]
     .filter((n) => n.length >= 3 && !/[.]/.test(n) && /^[A-Za-z' -]+$/.test(n))
     .map((n) => n.toLowerCase());

@@ -1715,3 +1715,11 @@ test.describe('term links mean the right thing', () => {
     }
   });
 });
+
+test.describe('calculator where a calculator is needed', () => {
+  test('rounded Pythagoras answers (for example question 10) offer the calculator', async ({ page }) => {
+    await page.goto('/books/gcse/pythagoras.html');
+    await expect(page.locator('[data-qid="pythagoras-10"] .calc-toggle')).toHaveCount(1);
+    await expect(page.locator('[data-qid="pythagoras-9"] .calc-toggle')).toHaveCount(1);
+  });
+});
