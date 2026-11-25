@@ -1621,3 +1621,21 @@ test.describe('round 6 engine: timed set', () => {
     }
   });
 });
+
+test.describe('glossary Listen', () => {
+  test('every glossary entry has a Listen button that reads the term, its meaning and examples, not the chips or links', async ({ page }) => {
+    await page.goto('/books/gcse/glossary.html');
+    const entries = await page.locator('.g-entry').count();
+    expect(entries).toBeGreaterThan(200);
+    await expect(page.locator('.g-entry > h3 > .listen')).toHaveCount(entries);
+    await expect(page.locator('#reflection .listen')).toHaveAttribute('aria-label', 'Listen to the glossary entry for Reflection');
+    const text = await page.evaluate(async () => {
+      const { unitText } = await import('/js/book-audio.mjs');
+      return unitText(document.getElementById('reflection')!);
+    });
+    expect(text).toMatch(/^Reflection\. A transformation that flips a shape over a mirror line\./);
+    expect(text).toContain('Reflect the point');
+    expect(text).toContain('The picture shows');
+    expect(text).not.toMatch(/Taught in|See also|Geometry/i);
+  });
+});

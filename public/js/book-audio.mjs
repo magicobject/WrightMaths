@@ -26,7 +26,15 @@ export function hashText(text) {
 /** The exact words for one Listen button: the question or key idea, plus what its picture shows. */
 export function unitText(node) {
   const clone = node.cloneNode(true);
+  const entry = node.matches?.('.g-entry');
+  // A glossary entry reads as: the term, its meaning, examples, watch-out and flip-it, then what its picture shows.
+  // The strand chips, "See also" and "Taught in" lines are for the eye and are left out.
+  if (entry) clone.querySelectorAll('.chip, .g-see, .g-used, .g-fig').forEach((n) => n.remove());
   clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
+  if (entry) {
+    clone.querySelector('h3')?.append('. ');
+    clone.querySelectorAll('p, .g-line, p > b').forEach((n) => n.append(' '));
+  }
   clone.querySelectorAll('.frac').forEach((f) => {
     const top = f.querySelector('.fn')?.textContent ?? '';
     const bottom = f.querySelector('.fd')?.textContent ?? '';
@@ -36,7 +44,9 @@ export function unitText(node) {
     const p = s.textContent.trim();
     s.replaceWith(p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
   });
-  const picture = node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
+  const picture = entry
+    ? node.querySelector('.g-fig svg')?.getAttribute('aria-label')
+    : node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;
   // data-say: the author's own words for the voice, read instead of the displayed words
   const said = node.getAttribute?.('data-say');
   return toSpoken(said ?? clone.textContent) + (picture ? ` The picture shows: ${toSpoken(picture)}` : '');
@@ -45,7 +55,7 @@ export function unitText(node) {
 /** Every Listen unit under a root: { hash, text }. Used by the page and by the tool that lists what needs recording. */
 export function speechUnits(root = document) {
   const seen = new Map();
-  for (const node of root.querySelectorAll('.qtext, .key')) {
+  for (const node of root.querySelectorAll('.qtext, .key, .g-entry')) {
     const text = unitText(node);
     if (text) seen.set(hashText(text), text);
   }
