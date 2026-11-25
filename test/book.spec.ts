@@ -28,7 +28,7 @@ test.describe('the GCSE book stays hidden', () => {
       await expect(page).toHaveTitle(new RegExp(bookPage.titleContains));
       await expect(page.locator('h1')).toHaveText(bookPage.heading);
       await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveCount(0);
-      await expect(page.locator('.legal .build-number')).toHaveText(/^Build \d{4}\.\d{2}\.\d{2}\.\d{3}$/);
+      await expect(page.locator('.legal .build-number')).toHaveCount(0);
     });
   }
 });

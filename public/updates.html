@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.019">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.020">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,12 +80,13 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.020</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Footer: the build number is gone from every page&rsquo;s footer (it still appears here, in the list below), and the &ldquo;Enhanced DBS check&rdquo; wording is gone from the footer too (it stays on the <a href="index.html">home page</a>). Pages touched: every page (shared footer).</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.019</span><span class="changelog-date">25 November 2026</span></div>
-
         <p>Fix: the <a href="404.html">404 page</a> now looks right at any depth. Its stylesheet, script and links were relative, so an unknown address such as <code>/books/gcse/bad</code> loaded them from the wrong folder and showed an unstyled page. They are now root-absolute, with a test for a deep unknown URL.</p>
-
         <p>Hidden GCSE book: a language review of the whole book (the glossary, the hub and guides, and all 49 topic pages), about 1,500 wording changes and no change to any maths or keyed answer. Instructions now name what to act on (&ldquo;Rotate triangle ABC&rdquo;, &ldquo;Find the length x&rdquo;); order, direction and units are stated (&ldquo;in order from smallest to largest&rdquo;, degrees and centimetres written out for the voice); &ldquo;top and bottom&rdquo; became numerator and denominator, linked to the glossary; probability questions say &ldquo;at random&rdquo;, &ldquo;fair&rdquo; and with or without replacement; terms are used consistently; filler such as &ldquo;just&rdquo; is gone; and some hints that were wrong or contradicted their key were corrected. Every question and glossary sentence whose wording changed was re-recorded (541 new clips, 540 old ones removed). Reviewed line by line by independent checkers; a short list of questions for the owner is in the pull request.</p>
-
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.017</span><span class="changelog-date">25 November 2026</span></div>
@@ -455,7 +456,7 @@
   <div class="wrap">
     <div class="fcol">
       <h2 class="fhead">Wright Maths Tuition</h2>
-      <p style="max-width:32ch;">Enhanced-DBS-checked maths tuition around Leominster and online — GCSE, A Level, IB and beyond.</p>
+      <p style="max-width:32ch;">Maths tuition around Leominster and online — GCSE, A Level, IB and beyond.</p>
     </div>
     <div class="fcol">
       <h2 class="fhead">Explore</h2>
@@ -479,10 +480,9 @@
     </div>
   </div>
   <div class="legal wrap">
-    <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.25.019</span>
+    <span>&copy; <span id="yr"></span> Wright Maths Tuition. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.019" defer></script>
+  <script src="js/main.js?v=2026.11.25.020" defer></script>
 </footer>
 </body>
 </html>
