@@ -75,7 +75,7 @@ export const TOPICS = [
   t('curve-sketching', 'Convexity and points of inflection', 'differentiation', 2, ['differentiation-rules'], 'Reading the shape from the derivatives, and the derivatives from the shape'),
 
   // Integration
-  t('integration-basics', 'Integration as reverse differentiation', 'integration', 1, ['differentiation-basics'], 'Differentiating and integrating undo each other'),
+  t('integration-basics', 'Integration as reverse differentiation', 'integration', 1, ['differentiation-basics'], 'Differentiating and integrating undo each other', { status: 'live', words: ['integrate', 'antiderivative', 'constant-of-integration', 'integrand', 'with-respect-to', 'integrate-powers'] }),
   t('definite-integrals', 'Definite integrals and area', 'integration', 1, ['integration-basics'], 'Finding an area from an integral, and an integral from an area'),
   t('area-between-curves', 'Area between curves and integration as a limit', 'integration', 2, ['definite-integrals'], 'The upper curve minus the lower curve, and the area it encloses'),
   t('integration-standard', 'Integrating standard functions', 'integration', 2, ['integration-basics', 'differentiation-standard'], 'Integrating a standard function, and checking by differentiating'),
