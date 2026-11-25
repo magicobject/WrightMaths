@@ -63,6 +63,7 @@ export const BOOK_PAGES: BookPage[] = [
   { path: '/books/gcse/stretch.html', titleContains: 'Stretch Papers', heading: /^Stretch papers for grades 7, 8 and 9$/ },
   { path: '/books/gcse/teachers.html', titleContains: 'For Teachers', heading: /Using the book in a classroom/ },
   { path: '/books/gcse/parents.html', titleContains: 'Parents and Carers', heading: /guide for parents and carers/i },
-  { path: '/books/gcse/raise-your-grade.html', titleContains: 'Raise Your Grade', heading: /shift your results to the right/i },
+  { path: '/books/gcse/how-to-use.html', titleContains: 'How to Use This Book', heading: /^How to use this book$/ },
+  { path: '/books/gcse/raise-your-grade.html', titleContains: 'Raise Your Grade', heading: /move up a grade/i },
   ...BOOK_TOPICS,
 ];

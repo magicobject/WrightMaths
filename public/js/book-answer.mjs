@@ -9,23 +9,38 @@
 const MINUS = /[−–—]/g;
 const UNITS = /\s*(cm³|cm\^3|cm3|m³|m\^3|m3|mm³|mm\^3|mm3|mm²|mm\^2|mm2|km²|km2|cm²|cm\^2|cm2|m²|m\^2|m2|litres?|ml|cm|mm|km|kg|m|g|l|degrees|deg|°c|°)$/;
 
-function clean(raw) {
+// Spoken and compound units. They are only stripped from a plain number ("1.98 seconds", "7.5 hours",
+// "8.83 m/s", "84 pounds"), so an algebra answer such as 3h or 2s is never cut short.
+const SPOKEN_UNITS = /\s*(g\/cm\^?3|g\/cm³|kg\/m\^?3|kg\/m³|m\/s\^?2|m\/s²|m\/s|km\/h|km\/hr|kmh|kph|mph|pounds?|quid|units?|seconds?|secs?|minutes?|mins?|hours?|hrs?|hr|h|s|metres?|meters?|centimetres?|millimetres?|kilometres?|kilograms?|grams?|miles?|pence|p)$/;
+const PLAIN_NUMBER = /^-?[\d.,\s/]+%?$/;
+
+/** The cleaned text of a typed answer and the unit that was stripped from its end ('' when none). */
+function cleanParts(raw) {
   // A student cannot need more than 200 characters; longer input is junk and must not freeze the tab.
-  return String(raw).slice(0, 200)
+  const text = String(raw).slice(0, 200)
     .trim()
     .toLowerCase()
     .replace(MINUS, '-')
     .replace(/×/g, '*')
     .replace(/÷/g, '/')
     .replace(/^£\s*/, '')
-    .replace(/^[a-z]\s*=\s*/, '')
-    .replace(/(?<=[a-z)])\.$/, '')
-    .replace(UNITS, '')
-    .trim();
+    .replace(/^[a-z]{1,2}\s*=\s*/, '') // "x = 5" and "AB = b - a"
+    .replace(/(?<=[a-z)])\.$/, '');
+  const spoken = SPOKEN_UNITS.exec(text);
+  if (spoken && PLAIN_NUMBER.test(text.slice(0, spoken.index).trim())) {
+    return { text: text.slice(0, spoken.index).trim(), unit: spoken[1] };
+  }
+  const written = UNITS.exec(text);
+  if (written) return { text: text.slice(0, written.index).trim(), unit: written[1] };
+  return { text: text.trim(), unit: '' };
+}
+
+function clean(raw) {
+  return cleanParts(raw).text;
 }
 
 /** Parse a typed number: 12, -3.5, 3/4, "1 1/2", 75%, £4.50, 12cm. Returns null if it is not a number. */
-export function parseNumber(raw) {
+export function parseNumber(raw, { decimalComma = false } = {}) {
   let s = clean(raw);
   if (s === '') return null;
   let percent = false;
@@ -34,6 +49,7 @@ export function parseNumber(raw) {
     s = s.slice(0, -1).trim();
   }
   s = s.replace(/^(\d{1,3}(?:,\d{3})+)(\.\d+)?$/, (m) => m.replaceAll(',', ''));
+  if (decimalComma) s = s.replace(/^(-?\d+),(\d{1,2})$/, '$1.$2'); // "5,60" is 5.60
   let value = null;
   let m;
   if ((m = s.match(/^(-?\d+)\s+(\d+)\s*\/\s*(\d+)$/))) {
@@ -93,6 +109,7 @@ export function textKey(raw) {
   let s = clean(raw)
     .replaceAll('²', '^2')
     .replaceAll('³', '^3')
+    .replace(/\b(?:square\s+)?root\s*(?:of\s+)?(\d+)/g, 'sqrt$1') // "2 root 3" means 2sqrt3
     .replace(/sqrt\s*(?:\(\s*(\d+)\s*\)|(\d+))/g, (_, a, b) => `√${a ?? b}`)
     .replace(/√\s*\(\s*(\d+)\s*\)/g, '√$1')
     .replace(/\((\d*√\d+)\)/g, '$1') // (3√2) means 3√2
@@ -113,14 +130,100 @@ export function textKey(raw) {
   return s.replace(/[\s*·]/g, '');
 }
 
-/** True when `input` matches any of `answers` under `mode`. */
-export function matches(input, answers, mode = 'value') {
+// ---------- units ----------
+// A typed unit is accepted only if the question (or its worked solution) uses a unit of the same kind:
+// "60 km" is not right where the question asks for metres. No unit typed is always fine.
+
+// [name, kind, spellings]: one-letter spellings only count in the question when a number sits just before them.
+const UNIT_TABLE = [
+  ['mm', 'length', 'mm,millimet(?:re|er)s?'], ['cm', 'length', 'cm,centimet(?:re|er)s?'],
+  ['m', 'length', 'm,met(?:re|er)s?'], ['km', 'length', 'km,kilomet(?:re|er)s?'],
+  ['g', 'mass', 'g,grams?,grammes?'], ['kg', 'mass', 'kg,kilograms?,kilogrammes?,kilos?'],
+  ['ml', 'capacity', 'ml,millilit(?:re|er)s?'], ['l', 'capacity', 'l,lit(?:re|er)s?'],
+  ['s', 'time', 's,secs?,seconds?'], ['min', 'time', 'min,mins,minutes?'], ['h', 'time', 'h,hrs?,hours?'],
+  ['mm2', 'area', 'mm2'], ['cm2', 'area', 'cm2'], ['m2', 'area', 'm2'], ['km2', 'area', 'km2'],
+  ['mm3', 'volume', 'mm3'], ['cm3', 'volume', 'cm3'], ['m3', 'volume', 'm3'],
+  ['m/s', 'speed', 'm/s,metres? per second'], ['km/h', 'speed', 'km/h,km/hr,kmh,kph,kilometres? per hour'], ['mph', 'speed', 'mph,miles per hour'],
+  ['g/cm3', 'density', 'g/cm3'], ['kg/m3', 'density', 'kg/m3'],
+].map(([name, kind, spellings]) => {
+  const spelt = spellings.split(',');
+  const edge = '(?<![a-z/\'\\u2019])';
+  const words = spelt.filter((x) => x.length > 1 || x.includes('(')).map((x) => `${edge}${x}(?![a-z0-9/])`);
+  const letters = spelt.filter((x) => x.length === 1).map((x) => `(?<=\\d\\s?)${x}(?![a-z0-9/'\\u2019])`);
+  return {
+    name, kind,
+    typed: new RegExp(`^(?:${spelt.join('|')})$`),
+    inText: new RegExp([...words, ...letters].join('|'), 'g'),
+  };
+});
+
+const squash = (text) => String(text).toLowerCase().replaceAll('²', '2').replaceAll('³', '3').replaceAll('^', '');
+
+function unitNamed(typedUnit) {
+  const t = squash(typedUnit).replace(/\s+/g, '');
+  return UNIT_TABLE.find((u) => u.typed.test(t)) ?? null;
+}
+
+/** True when a unit was typed after the number and the question does not use a unit of that kind. */
+export function unitMismatch(input, context) {
+  const typedUnit = cleanParts(input).unit;
+  if (typedUnit === '' || !context) return false;
+  const typed = unitNamed(typedUnit);
+  if (!typed) return false; // "units", "degrees", pounds and the like are never wrong
+  const text = squash(context);
+  const mentioned = UNIT_TABLE.filter((u) => text.search(u.inText) !== -1);
+  const sameKind = mentioned.filter((u) => u.kind === typed.kind);
+  if (sameKind.length > 0 && !sameKind.includes(typed)) return true;
+  // The last number-and-unit in the solution is the answer's own unit: a different kind of unit is wrong.
+  let last = null;
+  let lastAt = -1;
+  for (const u of mentioned) {
+    for (const hit of text.matchAll(new RegExp(`\\d\\s?(?:${u.inText.source})`, 'g'))) {
+      if (hit.index > lastAt) { lastAt = hit.index; last = u; }
+    }
+  }
+  return last !== null && last.kind !== typed.kind;
+}
+
+// A key written with a decimal comma or pair ("2,5") must stay a pair.
+const noCommaKeys = (list) => !list.some((a) => String(a).includes(','));
+// A typed percentage is a real answer only where the key is a fraction or a percentage itself.
+const bareKeys = (list) => list.every((a) => !/[/%]/.test(String(a)));
+const endsPercent = (text) => /%\s*$/.test(String(text).trim());
+const SYMBOLIC_ROOT = /^(?:sqrt|√)\s*\(?[a-z]/;
+const PLUS_OR_MINUS = /^(?:±|\+\s*\/?\s*-|plusorminus|plusminus)\s*/;
+
+/** For a typed value read with a decimal comma ("5,60"), the tip to show once it is accepted; otherwise null. */
+export function decimalCommaTip(input, answers) {
+  const list = Array.isArray(answers) ? answers : [answers];
+  const typed = cleanParts(input).text;
+  if (!noCommaKeys(list) || !/^-?\d+,\d{1,2}$/.test(typed)) return null;
+  return `Use a decimal point: ${typed.replace(',', '.')}`;
+}
+
+/**
+ * True when `input` matches any of `answers` under `mode`. `context` (optional) is the question and
+ * solution text: with it a typed unit must suit the question, and "10pi" is read as 10 where the question is about pi.
+ */
+export function matches(input, answers, mode = 'value', context = '') {
   if (String(input).length > 200) return false;
   const list = Array.isArray(answers) ? answers : [answers];
-  if (String(input).trim() === '') return false;
+  let typed = String(input);
+  if (typed.trim() === '') return false;
+  // A key such as 3h (algebra, not hours) keeps its letter: only the same written form is right.
+  if (list.some((a) => /^-?[\d.]+\s*[sh]$/i.test(String(a).trim()))) {
+    const plain = (t) => String(t).toLowerCase().replace(/\s+/g, '');
+    return list.some((a) => plain(a) === plain(typed));
+  }
+  if (context) {
+    if (unitMismatch(typed, context)) return false;
+    const pi = /^(.*\d)\s*(?:π|pi)$/i.exec(typed.trim());
+    if (pi && !list.some((a) => /π|pi/i.test(String(a))) && /π|\bpi\b/i.test(context)) typed = pi[1];
+  }
   if (mode === 'value') {
-    const n = parseNumber(input);
+    const n = parseNumber(typed, { decimalComma: noCommaKeys(list) });
     if (n !== null) {
+      if (endsPercent(typed) && bareKeys(list)) return false;
       for (const a of list) {
         const an = parseNumber(a);
         if (an !== null && close(n, an)) return true;
@@ -128,9 +231,12 @@ export function matches(input, answers, mode = 'value') {
       return false;
     }
   }
-  const key = textKey(input);
+  const key = textKey(typed);
   if (list.some((a) => textKey(a) === key)) return true;
-  return mode === 'exact' && list.some((a) => sameAlgebra(input, a) === 'same');
+  // x = +-sqrt(a) is a fuller answer than sqrt(a), and right where the key is a root of letters.
+  const sign = PLUS_OR_MINUS.exec(key);
+  if (sign && SYMBOLIC_ROOT.test(key.slice(sign[0].length)) && list.some((a) => textKey(a) === key.slice(sign[0].length))) return true;
+  return mode === 'exact' && list.some((a) => sameAlgebra(typed, a) === 'same');
 }
 
 // ---------- algebra written a different way ----------
@@ -260,8 +366,9 @@ export function sameAlgebra(input, key) {
     }
   } catch { return null; }
   const ambiguous = (t) => /\/\s*[0-9.]+[a-z]/.test(t);
-  if (ambiguous(a) && !ambiguous(b)) return null; // 2/3x could mean 2/(3x): not accepted for 2x/3
-  if (/[a-z)]\/|\/[(a-z]/.test(b) && [...a.replace(/\s+/g, '')].sort().join('') !== [...b.replace(/\s+/g, '')].sort().join('')) return a.includes('/') ? 'longer' : null; // an algebraic fraction must be the same pieces, not just equal in value
+  if (ambiguous(clean(input)) && !ambiguous(b)) return null; // 2/3x could mean 2/(3x): not accepted for 2x/3, but (2/3)x is clear
+  const decimalForm = a.includes('.') && !a.includes('/'); // 1.5x and 0.5(y-1) are the same value as 3x/2 and (y-1)/2
+  if (!decimalForm && /[a-z)]\/|\/[(a-z]/.test(b) && [...a.replace(/\s+/g, '')].sort().join('') !== [...b.replace(/\s+/g, '')].sort().join('')) return a.includes('/') ? 'longer' : null; // an algebraic fraction must be the same pieces, not just equal in value
   const bracketsA = (a.match(/\(/g) ?? []).length;
   const bracketsB = (b.match(/\(/g) ?? []).length;
   if (bracketsA > bracketsB) return 'longer'; // more bracketed than the key: for example a fraction that could still be cancelled
@@ -292,7 +399,7 @@ export function splitList(attr) {
  *  - right size, wrong sign
  *  - 10, 100, 1000 times too big or too small (a decimal point or a zero slipped)
  */
-/** How near a typed number is to the keyed answer: 'near' (within 2%), 'range' (within 25%), 'far', or null when it is not a number. */
+/** How near a typed number is to the keyed answer: 'near' (within 2%), 'range' (within 10%), 'far', or null when it is not a number. */
 export function closeness(input, answers) {
   const n = parseNumber(input);
   if (n === null) return null;
@@ -304,26 +411,51 @@ export function closeness(input, answers) {
     best = Math.min(best, Math.abs(n - a) / scale);
   }
   if (best <= 0.02) return 'near';
-  if (best <= 0.25) return 'range';
+  if (best <= 0.1) return 'range';
   return 'far';
 }
 
 /** A short, honest nudge for a wrong typed answer, or null to fall back to the generic one. */
-export function feedbackFor(input, answers) {
+export function feedbackFor(input, answers, context = '') {
   const list = Array.isArray(answers) ? answers : [answers];
   const numeric = list.length > 0 && list.every((a) => parseNumber(a) !== null);
   const typed = String(input).trim();
+  const typedValue = parseNumber(typed);
+  const keyValues = list.map((a) => parseNumber(a)).filter((x) => x !== null);
+  if (context && unitMismatch(typed, context) && typedValue !== null && keyValues.some((k) => close(typedValue, k))) return 'Check the unit. The number is right, but that unit does not fit the question.';
+  const spoken = /^(?:minus|negative)\s+(\d+(?:\.\d+)?)$/i.exec(typed);
+  if (numeric && spoken) return `Type a minus sign: -${spoken[1]}`;
   if (numeric && parseNumber(typed) === null && !/[0-9]/.test(typed)) return 'This answer is a number. Type digits, like 12.';
   if (/^\d+(\.\d+)?e[-+]?\d+$/i.test(typed)) return 'Write E6 as x10^6, like 4.6x10^6.';
   if (list.some((k) => sameAlgebra(typed, String(k)) === 'longer')) return 'That is equal to the answer, but it is not in the form asked for. Collect like terms or write it the way the question says.';
-  if (numeric && /%\s*$/.test(typed) && !list.some((a) => /%\s*$/.test(String(a)))) return 'Just the number, without the % sign.';
+  if (numeric && endsPercent(typed) && !list.some((a) => endsPercent(a))) {
+    return typedValue !== null && keyValues.some((k) => close(typedValue, k)) ? 'That is a percentage. Write it as a decimal.' : 'Just the number, without the % sign.';
+  }
   if (/^[a-z]\d+$/i.test(typed) && list.some((a) => String(a).includes('^'))) return 'Write a power with ^, like x^2.';
   const sign = diagnose(input, answers);
   if (sign) return sign;
+  if (digitsSwapped(typed, list)) return 'Check the order of your digits.';
   const c = closeness(input, answers);
   if (c === 'near') return 'Very near. Check the rounding or the number of decimal places asked for.';
-  if (c === 'range') return 'In the right area, but not yet. Have another go.';
+  if (c === 'range') return 'Close, but not yet. Have another go.';
   return null;
+}
+
+/** True when the typed digits are the keyed digits in a different order (0.53 for 0.35). */
+function digitsSwapped(typed, list) {
+  const digits = (t) => String(t).replace(/[^0-9]/g, '');
+  const sorted = (t) => [...digits(t)].sort().join('');
+  const n = parseNumber(typed);
+  if (n === null) return false;
+  return list.some((a) => {
+    const an = parseNumber(a);
+    return an !== null && !close(n, an) && digits(a).length >= 2 && new Set(digits(a)).size > 1 && digits(typed) !== digits(a) && sorted(typed) === sorted(a);
+  });
+}
+
+/** feedbackFor, but never empty: the wording to use where no step-by-step nudge is wanted (for example a timed set). */
+export function feedbackOrDefault(input, answers, context = '') {
+  return feedbackFor(input, answers, context) ?? 'Not yet. Read the question again, then have another go.';
 }
 
 export function diagnose(input, answers) {

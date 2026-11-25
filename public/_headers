@@ -29,3 +29,13 @@
 # (A browser that kept an old copy once broke the page: 'does not provide an export named feedbackFor'.)
 /js/book-*.mjs
   Cache-Control: no-cache
+
+# Recorded Listen audio. The list of recordings is fetched on the first press of Listen, so it may be a day old.
+# A clip's file name is a hash of the SENTENCE it says, not of the sound itself, so a re-recording of the same
+# sentence keeps its name: that is why the clips are cached for a week and are NOT marked "immutable" (a year-long
+# immutable copy of an old voice could never be replaced).
+/audio/book/manifest.json
+  Cache-Control: public, max-age=86400
+
+/audio/book/*.ogg
+  Cache-Control: public, max-age=604800

@@ -68,12 +68,15 @@ export function loadManifest() {
   return manifestPromise;
 }
 
-let current = null;
+let current = null; // { audio, onEnd } for the clip that is playing
 
+/** Stop the clip that is playing (if any) and tell whoever started it. True when something was stopped. */
 export function stopClip() {
   if (!current) return false;
-  current.pause();
+  const { audio, onEnd } = current;
   current = null;
+  audio.pause();
+  onEnd?.();
   return true;
 }
 
@@ -82,21 +85,25 @@ export const isClipPlaying = () => current !== null;
 /**
  * Play the recording for this text if there is one. Resolves true when a clip is
  * playing (the caller then says nothing itself), false when the caller should
- * fall back to the browser voice. `rate` is the student's reading speed.
+ * fall back to the browser voice. `rate` is the student's reading speed;
+ * `onEnd` is called once when the clip ends or is stopped.
  */
-export async function playClip(text, rate = 0.92) {
+export async function playClip(text, rate = 0.92, onEnd = null) {
   const manifest = await loadManifest();
   const file = clipFor(manifest, hashText(text));
   if (!file) return false;
   const audio = new Audio(`${AUDIO_DIR}${file}`);
   audio.playbackRate = Math.min(2, Math.max(0.5, rate / 0.92));
-  audio.addEventListener('ended', () => { if (current === audio) current = null; });
+  const mine = { audio, onEnd };
+  const finished = () => { if (current === mine) { current = null; onEnd?.(); } };
+  audio.addEventListener('ended', finished);
+  audio.addEventListener('error', finished);
   try {
-    current = audio;
+    current = mine;
     await audio.play();
     return true;
   } catch {
-    if (current === audio) current = null;
+    if (current === mine) current = null;
     return false;
   }
 }

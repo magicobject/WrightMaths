@@ -180,3 +180,98 @@ test('the built index has no HTML entities, no one-letter headings, no meta sect
   assert.equal(searchIndex('exponent', index, 3)[0].u, 'glossary.html#power');
   assert.equal(searchIndex('rationalise', index, 3)[0].u, 'glossary.html#rationalising');
 });
+
+// ---------- round 6: numbers, symbols, everyday words ----------
+
+import { cleanQuery, emptyAdvice } from '../public/js/book-search.mjs?m=2';
+import { SEARCH_SYNONYMS } from '../scripts/book-search-lib.mjs';
+
+test('cleanQuery turns % and the root sign into words, and drops bare numbers and "year 10"', () => {
+  assert.equal(cleanQuery('15% of 80'), 'percent of');
+  assert.equal(cleanQuery('increase by 20%'), 'increase by percent');
+  assert.equal(cleanQuery('year 10'), '');
+  assert.equal(cleanQuery('80'), '');
+  assert.equal(cleanQuery('\u221a'), 'sqrt');
+  assert.equal(cleanQuery('2x+3'), 'algebra');
+});
+
+test('the advice for an empty result is about the words for a number or %, about spelling otherwise', () => {
+  assert.match(emptyAdvice('15%'), /Try one word, like .percentages. or .ratio./);
+  assert.doesNotMatch(emptyAdvice('15%'), /spelling/);
+  assert.doesNotMatch(emptyAdvice('80'), /spelling/);
+  assert.match(emptyAdvice('zzzqq'), /Check the spelling/);
+});
+
+test('a short word is not found inside a longer one ("dice" is not "indices")', () => {
+  const list = [
+    { t: 'Powers and indices', u: 'indices.html', k: 'Topic' },
+    { t: 'Probability', u: 'probability-basics.html', k: 'Topic', y: SEARCH_SYNONYMS['probability-basics.html'] },
+  ];
+  assert.equal(searchIndex('dice', list)[0].u, 'probability-basics.html');
+  assert.ok(!searchIndex('dice', list).some((e) => e.u === 'indices.html'));
+});
+
+test('a heading with the same name does not outrank the topic page', () => {
+  const list = [
+    { t: 'Algebra', u: 'fractions.html#s-algebra', k: 'Section', p: 'Fractions' },
+    { t: 'Algebra basics', u: 'algebra-basics.html', k: 'Topic' },
+  ];
+  assert.equal(searchIndex('algebra', list)[0].u, 'algebra-basics.html');
+});
+
+test('everyday words find the right page in the real index', () => {
+  const file = new URL('../public/books/gcse/search-index.json', import.meta.url);
+  if (!existsSync(file)) return;
+  // The synonyms are added here as well, so this holds before and after the next build.
+  const index = JSON.parse(readFileSync(file, 'utf8')).map((e) => ({ ...e, y: SEARCH_SYNONYMS[e.u] ?? e.y }));
+  index.push({ t: 'How to use this book', u: 'how-to-use.html', k: 'Page', s: 'Book', y: SEARCH_SYNONYMS['how-to-use.html'] });
+  const top = (q) => searchIndex(q, index, 6)[0]?.u;
+  const expected = {
+    '15% of 80': 'percentages.html',
+    'increase by 20%': 'percentages.html',
+    '35%': 'percentages.html',
+    'multiplication': 'four-operations.html',
+    'long division': 'four-operations.html',
+    'times table': 'factors-multiples.html',
+    'get started': 'diagnostic.html',
+    'rearrange': 'rearranging-formulae.html',
+    '2x+3': 'algebra-basics.html',
+    'sqrt': 'surds.html',
+    'dice': 'probability-basics.html',
+    'hence': 'command-words.html',
+    'prove': 'command-words.html',
+    'upper quartile': 'histograms-cumulative-frequency.html',
+    'set homework': 'teachers.html',
+    'print': 'how-to-use.html',
+    'my daughter': 'parents.html',
+    'fractions of an amount': 'fractions.html',
+    'listen': 'how-to-use.html',
+    'dyslexia': 'how-to-use.html',
+    'screen reader': 'how-to-use.html',
+    'accessible': 'how-to-use.html',
+    'audio': 'how-to-use.html',
+  };
+  for (const [query, url] of Object.entries(expected)) {
+    if (query === 'hence' || query === 'prove') assert.ok([url, 'glossary.html#' + query].includes(top(query)), query);
+    else if (query === 'print') assert.ok(searchIndex(query, index, 6).slice(0, 2).some((e) => e.u === url), query);
+    else assert.equal(top(query), url, query);
+  }
+  assert.deepEqual(searchIndex('year 10', index), []);
+  assert.deepEqual(searchIndex('80', index), []);
+  assert.ok(!searchIndex('dice', index).some((e) => e.u === 'indices.html'));
+  // the VAT / discount / interest family reaches the percentage pages
+  for (const q of ['vat', 'discount', 'sale', 'interest', 'decrease by 10%']) {
+    assert.ok(searchIndex(q, index, 6).some((e) => e.u === 'percentages.html' || e.u === 'percentage-change.html'), q);
+  }
+});
+
+test('the index builder adds the everyday names to the page that answers them', () => {
+  const html = '<main></main>';
+  const out = buildSearchIndex({
+    pages: [{ href: 'percentages.html', title: 'Percentages', kind: 'Topic', sub: 'Number', html }, { href: 'zzz.html', title: 'Zzz', kind: 'Page', sub: 'Book', html }],
+    glossary: [], strands: {}, glossaryHref: 'glossary.html',
+  });
+  assert.match(out.find((e) => e.u === 'percentages.html').y, /vat/);
+  assert.equal(out.find((e) => e.u === 'zzz.html').y, undefined);
+  for (const href of Object.keys(SEARCH_SYNONYMS)) assert.match(href, /^[a-z-]+\.html$/);
+});

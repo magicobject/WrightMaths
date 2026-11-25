@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from './support/fixtures';
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
-const box = (page: import('@playwright/test').Page) => page.getByRole('combobox', { name: /Search this book/ });
+const box = (page: import('@playwright/test').Page) => page.getByRole('combobox', { name: /Search the whole book/ });
 const options = (page: import('@playwright/test').Page) => page.locator('form.book-search').getByRole('option'); // not the page's own <select> options
 
 test.describe('the book search box', () => {
@@ -92,7 +92,7 @@ test.describe('the book search box', () => {
 
   test('the placeholder fits a phone, and a swapped-letter typo and a question both work', async ({ page }) => {
     await page.goto('/books/gcse/index.html');
-    await expect(box(page)).toHaveAttribute('placeholder', 'Search this book');
+    await expect(box(page)).toHaveAttribute('placeholder', 'Search the whole book');
     await box(page).fill('circel theorem');
     await expect(options(page).first()).toHaveAttribute('href', /circle-theorems.html$/);
     await box(page).fill('where do I start');
@@ -207,4 +207,56 @@ test.describe('the book search box', () => {
       expect(results.violations.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
     });
   }
+});
+
+test.describe('round 6 search', () => {
+  test('"15% of 80" and "increase by 20%" reach Percentages, and the top topic says "Start here"', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('15% of 80');
+    await expect(options(page).first()).toHaveAttribute('href', /\/percentages\.html$/);
+    await expect(options(page).first()).toContainText('Start here');
+    await box(page).fill('increase by 20%');
+    await expect(options(page).first()).toHaveAttribute('href', /\/percentages\.html$/);
+    await box(page).fill('times table');
+    await expect(options(page).first()).toHaveAttribute('href', /\/(factors-multiples|four-operations)\.html$/);
+  });
+
+  test('a part of a page says "Jump to this part"', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('alternate segment');
+    await expect(options(page).filter({ hasText: 'Part of:' }).first().locator('.bs-badge')).toContainText('Jump to this part');
+  });
+
+  test('a number-only search gives advice about words, not spelling', async ({ page }) => {
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('80');
+    await expect(page.locator('.book-search-empty')).toContainText('Try one word, like');
+    await expect(page.locator('.book-search-empty')).not.toContainText('spelling');
+    await box(page).fill('zzzqqq');
+    await expect(page.locator('.book-search-empty')).toContainText('Check the spelling');
+  });
+
+  test('on a phone the first result sits at the top of the list (no blank line above it), and the count is still announced', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('/books/gcse/index.html');
+    await box(page).fill('circle');
+    await expect(options(page).first()).toBeVisible();
+    const list = (await page.getByRole('listbox').boundingBox())!;
+    const first = (await options(page).first().boundingBox())!;
+    expect(first.y - list.y).toBeLessThanOrEqual(12);
+    await expect(page.locator('.book-search-count')).toHaveText(/\d+ results?/);
+    await expect(page.getByRole('status')).toContainText(/\d+ results?/);
+  });
+
+  test('the glossary has its own, differently named, forgiving filter box', async ({ page }) => {
+    await page.goto('/books/gcse/glossary.html');
+    await expect(page.getByRole('combobox', { name: /Search the whole book/ })).toBeVisible();
+    const filter = page.getByLabel('Find a word in this glossary');
+    await expect(filter).toBeVisible();
+    await filter.fill('denominater');
+    await expect(page.locator('.g-entry:not([hidden]) h3', { hasText: 'Denominator' }).first()).toBeVisible();
+    await filter.fill('');
+    await filter.fill('numerators');
+    await expect(page.locator('.g-entry:not([hidden]) h3', { hasText: 'Numerator' }).first()).toBeVisible();
+  });
 });

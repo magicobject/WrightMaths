@@ -37,6 +37,16 @@ export const ROUTES = [
     ],
   },
   {
+    id: 'weak',
+    title: 'Two or three weak topics only (3 weeks)',
+    blurb: 'For a student who is wobbling on algebra and ratio and is fine with the rest. Three short blocks: algebra first, then ratio, then percentages, which uses both. Do about three 20-minute sessions on each. Stop and move on if the "Check your knowledge" questions at the end of a topic come out right.',
+    weeks: [
+      ['algebra-basics'],
+      ['ratio'],
+      ['percentages'],
+    ],
+  },
+  {
     id: 'top',
     title: 'Grade 7 to 9 top-up (6 weeks)',
     blurb: 'For students already secure at grade 6 who want the Higher material. Skip any topic you can already do.',

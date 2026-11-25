@@ -3,7 +3,7 @@
 //
 // Privacy: the index is one small file from this same site, fetched the first time the box is used (not on every
 // page load). The query is never stored, never sent anywhere and never put in the address.
-import { searchIndex } from './book-search.mjs?m=1';
+import { searchIndex, emptyAdvice } from './book-search.mjs?m=2';
 
 const MAX_RESULTS = 6;
 const KIND_LABEL = { Topic: 'Topic', Term: 'Word meaning', Page: 'Page' };
@@ -66,7 +66,7 @@ function init() {
     close();
     if (!results.length) {
       const message = document.createElement('span');
-      message.textContent = `Nothing matched \u201c${query}\u201d. Check the spelling, or try one word, like \u201ccircle\u201d. `;
+      message.textContent = `Nothing matched \u201c${query}\u201d. ${emptyAdvice(query)} `;
       const browse = document.createElement('a');
       browse.href = new URL('index.html', indexUrl).href;
       browse.textContent = 'Browse all topics';
@@ -90,7 +90,9 @@ function init() {
       link.setAttribute('aria-selected', 'false');
       link.tabIndex = -1;
       link.href = new URL(entry.u, indexUrl).href;
-      const badge = entry.k === 'Section' ? `Part of: ${entry.p}` : [KIND_LABEL[entry.k] ?? entry.k, entry.s].filter(Boolean).join(' \u00b7 ');
+      const badge = entry.k === 'Section'
+        ? `Jump to this part \u00b7 Part of: ${entry.p}`
+        : [i === 0 && entry.k === 'Topic' ? 'Start here' : '', KIND_LABEL[entry.k] ?? entry.k, entry.s].filter(Boolean).join(' \u00b7 ');
       link.append(line(`bs-badge bs-badge-${entry.k.toLowerCase()}`, badge), line('bs-title', entry.t));
       if (entry.d) link.append(line('bs-snippet', entry.d));
       item.append(link);

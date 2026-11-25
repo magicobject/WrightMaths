@@ -122,7 +122,7 @@ test('feedbackFor is honest about how far off an answer is', async () => {
   assert.equal(closeness('900', ['1000']), 'range');
   assert.equal(closeness('999', ['1000']), 'near');
   assert.equal(feedbackFor('7', ['1000']), null);
-  assert.match(feedbackFor('900', ['1000']), /right area/);
+  assert.match(feedbackFor('900', ['1000']), /Close, but not yet/);
   assert.match(feedbackFor('8.602', ['8.6']), /Very near/);
   assert.match(feedbackFor('5%', ['5']), /without the % sign/);
   assert.match(feedbackFor('abc', ['12']), /number/);
@@ -199,4 +199,145 @@ test('2/3x is ambiguous and is not accepted for 2x/3', () => {
   assert.ok(!matches('2/3x', ['2x/3'], 'exact'));
   assert.ok(matches('2x/3', ['2x/3'], 'exact'));
   assert.ok(matches('-1/2a+b', ['-1/2a+b'], 'exact'));
+});
+
+// ---------- round 6: units, percentages, decimal commas, algebra, typing ----------
+
+test('spoken units after a plain number are ignored', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  for (const typed of ['1.98 seconds', '1.98s', '1.98 sec', '1.98 secs', '1.98 second']) assert.ok(m(typed, ['1.98']), typed);
+  for (const typed of ['7.5 hours', '7.5h', '7.5 hrs', '7.5 hr', '7.5 hour']) assert.ok(m(typed, ['7.5']), typed);
+  for (const typed of ['6 minutes', '6 mins', '6 min']) assert.ok(m(typed, ['6']), typed);
+  for (const typed of ['8.83 m/s', '8.83m/s', '8.83 km/h', '8.83 mph']) assert.ok(m(typed, ['8.83']), typed);
+  assert.ok(m('10 units', ['10']));
+  assert.ok(m('10 unit', ['10']));
+  assert.ok(m('84 pounds', ['84']));
+  assert.ok(m('2.7 g/cm3', ['2.7']));
+  assert.ok(!m('1.99 seconds', ['1.98']));
+});
+
+test('a unit is not cut off an algebra answer such as 3h', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  assert.ok(!m('3', ['3h'], 'exact'));
+  assert.ok(m('3h', ['3h'], 'exact'));
+});
+
+const SPEED_Q = 'A runner goes at 12 m/s for 5 seconds. How far does she go? Answer in metres. D = S x T = 12 x 5 = 60 m.';
+const DENSITY_Q = 'A block of metal has a mass of 540 g and a volume of 200 cm3. What is its density? Answer in g/cm3. D = 540 / 200 = 2.7 g/cm3.';
+const MASS_Q = 'A metal has a density of 8 g/cm3. What is the mass of 25 cm3 of it? Answer in grams. M = 8 x 25 = 200 g.';
+const MPH_Q = 'A car travels 180 miles in 4 hours. What is its average speed in mph? S = 180 / 4 = 45 mph.';
+
+test('a typed unit must suit the question; no unit is always fine', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  assert.ok(m('60', ['60'], 'value', SPEED_Q));
+  assert.ok(m('60 m', ['60'], 'value', SPEED_Q));
+  assert.ok(m('60 metres', ['60'], 'value', SPEED_Q));
+  assert.ok(m('60m', ['60'], 'value', SPEED_Q));
+  assert.ok(!m('60 km', ['60'], 'value', SPEED_Q));
+  assert.ok(!m('60 seconds', ['60'], 'value', SPEED_Q));
+  assert.ok(m('2.7', ['2.7'], 'value', DENSITY_Q));
+  assert.ok(m('2.7 g/cm3', ['2.7'], 'value', DENSITY_Q));
+  assert.ok(!m('2.7 kg', ['2.7'], 'value', DENSITY_Q));
+  assert.ok(m('200 g', ['200'], 'value', MASS_Q));
+  assert.ok(m('200 grams', ['200'], 'value', MASS_Q));
+  assert.ok(!m('200 kg', ['200'], 'value', MASS_Q));
+  assert.ok(m('84 pounds', ['84'], 'value', 'A coat costs 70 pounds plus 20%. How much now?'));
+  assert.ok(m('10 units', ['10'], 'value', SPEED_Q));
+  assert.ok(!m('45 km/h', ['45'], 'value', MPH_Q));
+  assert.ok(m('45 mph', ['45'], 'value', MPH_Q));
+});
+
+test('a wrong unit gets an honest nudge, not a pass', async () => {
+  const { unitMismatch, feedbackFor: f } = await import('../public/js/book-answer.mjs');
+  assert.equal(unitMismatch('60 km', SPEED_Q), true);
+  assert.equal(unitMismatch('60', SPEED_Q), false);
+  assert.match(f('60 km', ['60'], SPEED_Q), /Check the unit/);
+  assert.doesNotMatch(f('61 km', ['60'], SPEED_Q) ?? '', /Check the unit/);
+});
+
+test('a percentage is not accepted where the key is a bare decimal or number', async () => {
+  const { matches: m, feedbackFor: f } = await import('../public/js/book-answer.mjs');
+  assert.ok(!m('35%', ['0.35']));
+  assert.ok(m('0.35', ['0.35']));
+  assert.ok(!m('108%', ['1.08']));
+  assert.ok(m('1.08', ['1.08']));
+  assert.ok(m('75%', ['3/4']), 'a fraction key still takes a percentage');
+  assert.ok(m('35%', ['35%', '35']));
+  assert.match(f('35%', ['0.35']), /percentage\. Write it as a decimal/);
+  assert.match(f('5%', ['5']), /without the % sign/);
+});
+
+test('a decimal comma is read as a decimal point, and thousands still work', async () => {
+  const { matches: m, decimalCommaTip } = await import('../public/js/book-answer.mjs');
+  assert.ok(m('5,60', ['5.6']));
+  assert.ok(m('5,6', ['5.6']));
+  assert.equal(parseNumber('1,250'), 1250);
+  assert.equal(parseNumber('1,250.5'), 1250.5);
+  assert.equal(decimalCommaTip('5,60', ['5.6']), 'Use a decimal point: 5.60');
+  assert.equal(decimalCommaTip('5.60', ['5.6']), null);
+  assert.equal(decimalCommaTip('1,250', ['1250']), null);
+  assert.ok(!m('2,50', ['2,5']), 'a keyed pair stays a pair');
+  assert.ok(m('2,5', ['2,5']));
+});
+
+test('equivalent algebra: bracketed fractions, decimal coefficients, two-letter prefixes', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  assert.ok(m('(2/3)x', ['2x/3', '(2x)/3'], 'exact'));
+  assert.ok(!m('2/3x', ['2x/3', '(2x)/3'], 'exact'), 'still ambiguous without brackets');
+  assert.ok(m('1.5x', ['3x/2', '(3x)/2'], 'exact'));
+  assert.ok(m('(3/2)x', ['3x/2', '(3x)/2'], 'exact'));
+  assert.ok(m('0.5(y-1)', ['(y-1)/2', 'y/2-1/2'], 'exact'));
+  assert.ok(m('0.5y-0.5', ['(y-1)/2', 'y/2-1/2'], 'exact'));
+  assert.ok(!m('0.5y-0.6', ['(y-1)/2', 'y/2-1/2'], 'exact'));
+  assert.ok(m('AB=b-a', ['-a+b', 'b-a'], 'exact'));
+  assert.ok(m('ab = b - a', ['-a+b', 'b-a'], 'exact'));
+  assert.ok(m('x = 5', ['5']));
+});
+
+test('plus or minus before a root of letters is accepted, however it is typed', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  for (const typed of ['±sqrt(a)', '+-sqrt(a)', '+/-sqrt(a)', 's = +-sqrt(a)', '±√a']) assert.ok(m(typed, ['sqrt(a)', '√a'], 'exact'), typed);
+  for (const typed of ['±sqrt(y-3)', '+-sqrt(y-3)', '+/-sqrt(y-3)']) assert.ok(m(typed, ['sqrt(y-3)', '√(y-3)'], 'exact'), typed);
+  assert.ok(!m('±sqrt(b)', ['sqrt(a)', '√a'], 'exact'));
+  assert.ok(!m('+-sqrt(5)', ['sqrt(5)'], 'exact'), 'a numeric root is not given a free pass');
+});
+
+test('roots and pi typed in words', async () => {
+  const { matches: m } = await import('../public/js/book-answer.mjs');
+  assert.ok(m('2 root 3', ['2sqrt(3)', '2√3'], 'exact'));
+  assert.ok(m('2 root3', ['2sqrt(3)', '2√3'], 'exact'));
+  assert.ok(m('2 square root 3', ['2sqrt(3)'], 'exact'));
+  const Q = 'A circle has a radius of 5 cm. Its circumference is ___π cm. Type the number that goes in front of the π.';
+  for (const typed of ['10', '10π', '10 π', '10pi', '10 pi']) assert.ok(m(typed, ['10'], 'value', Q), typed);
+  assert.ok(!m('11pi', ['10'], 'value', Q));
+  assert.ok(!m('10pi', ['10'], 'value', 'How many sides has a decagon? Type a number.'));
+  assert.ok(m('10pi', ['10pi'], 'exact'));
+});
+
+test('"minus 2" in words gets a nudge to type the sign', async () => {
+  const { matches: m, feedbackFor: f } = await import('../public/js/book-answer.mjs');
+  assert.equal(f('minus 2', ['-2']), 'Type a minus sign: -2');
+  assert.equal(f('negative 3.5', ['-3.5']), 'Type a minus sign: -3.5');
+  assert.ok(!m('minus 2', ['-2']));
+});
+
+test('the same digits in a different order get an order nudge', async () => {
+  const { feedbackFor: f } = await import('../public/js/book-answer.mjs');
+  assert.equal(f('0.53', ['0.35']), 'Check the order of your digits.');
+  assert.equal(f('53', ['35']), 'Check the order of your digits.');
+  assert.doesNotMatch(f('44', ['35']) ?? '', /order/);
+  assert.doesNotMatch(f('11', ['11']) ?? '', /order/);
+});
+
+test('feedbackOrDefault never returns an empty message', async () => {
+  const { feedbackOrDefault } = await import('../public/js/book-answer.mjs');
+  for (const [typed, key] of [['7', '1000'], ['zzz', 'x+1'], ['', '5'], ['5', '5']]) {
+    assert.ok(feedbackOrDefault(typed, [key]).length > 0, `${typed} vs ${key}`);
+  }
+});
+
+test('100 is not "close" to 84, but 900 is close to 1000', async () => {
+  const { closeness } = await import('../public/js/book-answer.mjs');
+  assert.equal(closeness('100', ['84']), 'far');
+  assert.equal(closeness('900', ['1000']), 'range');
 });
