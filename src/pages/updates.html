@@ -16,6 +16,10 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.012</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Test fix: &ldquo;a wrong typed answer in a timed set gets a message&rdquo; on <code>books/gcse/stretch.html</code> needs a question with a typed-answer box, but the five questions are drawn at random and about one set in forty has none. The test now draws a fresh set until it has one. No site change.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.011</span><span class="changelog-date">25 November 2026</span></div>
         <p>Test fix: the &ldquo;only the topics ticked are used&rdquo; check on <code>books/gcse/practice.html</code> read the question IDs before the new set had loaded, so it failed about one run in five. It now waits for the new set. No site change.</p>
       </li>

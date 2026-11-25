@@ -1603,8 +1603,13 @@ test.describe('round 6 engine: timed set', () => {
 
   test('a wrong typed answer in a timed set gets a message', async ({ page }) => {
     await page.goto('/books/gcse/stretch.html');
-    await page.getByRole('button', { name: /Start a timed set/ }).click();
+    // The five questions are drawn at random and about one set in forty has no typed-answer box, so draw again until one does.
     const typed = page.locator('.q:visible:has(.q-input)').first();
+    for (let attempt = 0; attempt < 10; attempt += 1) {
+      await page.getByRole('button', { name: /Start a timed set/ }).click();
+      if (await typed.count() > 0) break;
+      await page.getByRole('button', { name: 'Back to all questions' }).click();
+    }
     await typed.locator('.q-input').fill('123456.789');
     await typed.getByRole('button', { name: 'Check' }).click();
     await expect(typed.locator('.q-feedback.oops')).toHaveText(/\S/);
