@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildGraph, renderFraction, expandInline, addQuestionIds, countQuestions, buildAutoPatterns, autoLinkQuestionTerms } from '../scripts/book-lib.mjs';
+import { buildGraph, renderFraction, expandInline, addQuestionIds, countQuestions, buildAutoPatterns, autoLinkQuestionTerms, renderGlossaryPage } from '../scripts/book-lib.mjs';
 import { TOPICS } from '../src/book/topics.mjs';
 import { GLOSSARY } from '../src/book/glossary.mjs';
 
@@ -116,4 +116,17 @@ test('answer keys: plainText and extractKey read a question page', async () => {
   assert.deepEqual([k[0].answer, k[0].also, k[0].marks, k[0].scheme.length], ['15', ['15.0'], 2, 2]);
   assert.equal(k[1].answer, 'Right one');
   assert.match(k[2].answer, /mark scheme/);
+});
+
+test('glossary entries link the technical terms they use, once each and never to themselves', () => {
+  const strands = Object.fromEntries(['n', 'a', 'r', 'g', 'p', 's'].map((k) => [k, { short: k }]));
+  const { groups } = renderGlossaryPage(GLOSSARY, new Map(), new Map(), strands, {}, buildAutoPatterns(GLOSSARY));
+  const entry = (id) => groups.split('<article ').find((a) => a.startsWith(`class="g-entry`) && a.includes(`id="${id}"`)) ?? '';
+  // Rationalising mentions a surd, so it must link to Surd.
+  assert.match(entry('rationalising'), /\{term:surd\|surd\}/);
+  for (const g of GLOSSARY) {
+    const body = entry(g.id);
+    const ids = [...body.matchAll(/\{term:([a-z0-9-]+)/g)].map((m) => m[1]);
+    assert.ok(!ids.includes(g.id), `${g.id} links to itself`);
+  }
 });

@@ -23,6 +23,21 @@ const parallelPair = (extra) => svg('Two parallel lines crossed by a third line'
   `${line(10, 30, 150, 30)}${line(10, 72, 150, 72)}<polyline class="arrow" points="22,24 28,30 22,36"/><polyline class="arrow" points="22,66 28,72 22,78"/>`
   + `${line(52, 96, 112, 6)}${extra}`);
 
+// Reflection: the point (1, 2) in x = 3 goes to (5, 2); in y = x it goes to (2, 1). Grid unit = 24 px, origin (24, 142).
+const gx = (x) => 24 + x * 24;
+const gy = (y) => 142 - y * 24;
+const dot = (x, y, fill) => `<circle cx="${gx(x)}" cy="${gy(y)}" r="5" fill="${fill}" stroke="#0f2440" stroke-width="2"/>`;
+const reflectionFigure = svg('A grid showing the point (1, 2) reflected in the line x = 3 to (5, 2), and in the line y = x to (2, 1)',
+  `${[0, 1, 2, 3, 4, 5, 6, 7].map((x) => line(gx(x), gy(0), gx(x), gy(5), 'grid')).join('')}${[0, 1, 2, 3, 4, 5].map((y) => line(gx(0), gy(y), gx(7), gy(y), 'grid')).join('')}`
+  + `${line(gx(0), gy(0), gx(7), gy(0))}${line(gx(0), gy(0), gx(0), gy(5))}`
+  + `${[0, 1, 2, 3, 4, 5, 6, 7].map((x) => text(gx(x), gy(0) + 13, String(x), 'middle', 10)).join('')}${[1, 2, 3, 4, 5].map((y) => text(gx(0) - 6, gy(y) + 4, String(y), 'end', 10)).join('')}`
+  + `<line x1="${gx(3)}" y1="${gy(0)}" x2="${gx(3)}" y2="${gy(5)}" stroke="#a14400" stroke-width="3" stroke-dasharray="7 4"/>${text(gx(3), gy(5) - 4, 'x = 3', 'middle', 11)}`
+  + `<line x1="${gx(0)}" y1="${gy(0)}" x2="${gx(5)}" y2="${gy(5)}" stroke="#0a6a6a" stroke-width="3" stroke-dasharray="7 4"/>${text(gx(5) + 4, gy(5) + 4, 'y = x', 'start', 11)}`
+  + `<line x1="${gx(1)}" y1="${gy(2)}" x2="${gx(5)}" y2="${gy(2)}" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="2 3"/><line x1="${gx(1)}" y1="${gy(2)}" x2="${gx(2)}" y2="${gy(1)}" stroke="#0f2440" stroke-width="1.5" stroke-dasharray="2 3"/>`
+  + `${dot(1, 2, '#e5679a')}${dot(5, 2, '#4a8fdc')}${dot(2, 1, '#4a8fdc')}`
+  + `${text(gx(1) - 4, gy(2) - 9, '(1, 2)', 'middle', 11)}${text(gx(5), gy(2) - 9, '(5, 2)', 'middle', 11)}${text(gx(2) + 8, gy(1) + 17, '(2, 1)', 'middle', 11)}`,
+  200, 164);
+
 export const TERM_FIGURES = {
   'acute-angle': svg('An acute angle, less than 90 degrees', `${ray(30, 80, 110, 0)}${ray(30, 80, 100, 32)}${arc(30, 80, 32, 0, 32)}${text(100, 30, 'less than 90&deg;')}`),
   'right-angle': svg('A right angle, exactly 90 degrees', `${ray(40, 80, 100, 0)}${ray(40, 80, 70, 90)}${rightMark(40, 80)}${text(110, 40, '90&deg;')}`),
@@ -45,6 +60,7 @@ export const TERM_FIGURES = {
   'fraction': svg('A fraction shows parts of a whole', `<circle cx="55" cy="50" r="40" fill="#fff" stroke="#0f2440" stroke-width="3"/>${[0, 1, 2].map((i) => `<path d="M55 50 L${f(pt(55, 50, 40, 90 - i * 45)[0])} ${f(pt(55, 50, 40, 90 - i * 45)[1])} A40 40 0 0 0 ${f(pt(55, 50, 40, 45 - i * 45)[0])} ${f(pt(55, 50, 40, 45 - i * 45)[1])} Z" fill="#fbe3ee" stroke="#0f2440" stroke-width="2"/>`).join('')}${[3, 4, 5, 6, 7].map((i) => line(55, 50, ...pt(55, 50, 40, 90 - i * 45))).join('')}${text(125, 46, '3 of 8', 'middle', 15)}${text(125, 64, 'equal parts', 'middle', 11)}`),
   'numerator': svg('The numerator is the top number: how many parts you have', `${text(60, 40, '3', 'middle', 34)}${line(40, 50, 80, 50)}${text(60, 82, '8', 'middle', 34)}<text class="svg-t" style="font-size:12px" x="95" y="38">top: parts you have</text>`),
   'denominator': svg('The denominator is the bottom number: how many equal parts make the whole', `${text(60, 40, '3', 'middle', 34)}${line(40, 50, 80, 50)}${text(60, 82, '8', 'middle', 34)}<text class="svg-t" style="font-size:12px" x="95" y="80">bottom: parts in the whole</text>`),
+  'reflection': reflectionFigure,
   'number-line': svg('A number line with negative and positive numbers', `${line(10, 50, 150, 50)}${[-3, -2, -1, 0, 1, 2, 3].map((v, i) => `${line(25 + i * 18.4, 44, 25 + i * 18.4, 56)}${text(25 + i * 18.4, 74, String(v).replace('-', '−'), 'middle', 11)}`).join('')}${text(80, 24, 'smaller &larr; &rarr; bigger', 'middle', 11)}`),
   'negative-number': svg('Negative numbers are to the left of zero', `${line(10, 50, 150, 50)}${[-3, -2, -1, 0, 1, 2, 3].map((v, i) => `${line(25 + i * 18.4, 44, 25 + i * 18.4, 56)}${text(25 + i * 18.4, 74, String(v).replace('-', '−'), 'middle', 11)}`).join('')}<circle cx="43.4" cy="50" r="5" fill="#ad1f5c"/>${text(43.4, 30, '&minus;2', 'middle', 12)}`),
   'square-number': svg('A square number is the area of a square: 3 times 3 is 9', `${[0, 1, 2].map((r) => [0, 1, 2].map((c) => `<rect x="${35 + c * 26}" y="${12 + r * 26}" width="26" height="26" fill="#e4eefb" stroke="#0f2440" stroke-width="2"/>`).join('')).join('')}${text(125, 52, '3&sup2; = 9', 'middle', 15)}`),
