@@ -49,7 +49,7 @@ Minimums per topic page (the tests enforce them): at least 30 questions (`.q`), 
 
 Words `sin cos tan sec cosec cot arcsin arccos arctan ln log exp lim` are drawn upright. Any other run of letters is single-letter variables (`dx` is d and x).
 
-**Where it may and may not go.** `{m:}` works in lesson text, `qtext`, solutions, hints, wrong-answer messages and glossary `example`/`watch`/`flip`. It must **not** go in a glossary `def` (that is also the pop-up, which is plain text), in `data-answers`, or in an attribute.
+**Where it may and may not go.** `{m:}` works in lesson text, `qtext`, solutions, hints, wrong-answer messages and glossary `example`/`watch`/`flip`. It must **not** go in an HTML attribute at all (`data-why`, `data-answers`, `title`: the build fails if it finds it there; write plain text and entities such as `x&sup2;` instead). It must **not** go in a glossary `def` (that is also the pop-up, which is plain text).
 
 **Typed answers** are plain one-line text, not maths markup: `data-answers="x^2+5x+4"`. The checker (`public/js/book-answer.mjs`) understands single-letter variables, `+ - * / ^` and brackets, so equivalent algebra is accepted. **It does not understand function names** (`sin`, `ln`, `e^x`): for answers containing them, set `data-mode="exact"` and list every accepted written form, separated by `;`. Say in the question how the answer must be written ("Give your answer in the form ...").
 

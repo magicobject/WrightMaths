@@ -89,6 +89,9 @@ function renderBookContent(page, raw) {
       if (!questionCounts.has(id)) throw new Error(`qcount: "${id}" is not a live topic`);
       return String(questionCounts.get(id));
     });
+  // {m:...} inside an attribute (data-why, data-answers, title ...) would put MathML and quotes inside the quotes and silently break the page.
+  const inAttribute = html.match(/[\w-]+="[^"]*\{md?:[^"]*"/);
+  if (inAttribute) throw new Error(`${page.slug}: maths shorthand inside an attribute (use plain text and entities there): ${inAttribute[0].slice(0, 80)}`);
   html = expandFigures(html, page.slug);
   html = addHeadingIds(html);
   if (topic) html = autoLinkQuestionTerms(html, autoPatterns);

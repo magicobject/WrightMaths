@@ -299,6 +299,13 @@ export function enhanceQuestion(q, index) {
       const why = li.dataset.why;
       const btn = el('button', { type: 'button', class: 'mc-option' });
       btn.innerHTML = li.innerHTML;
+      // An option made only of maths has no name a screen reader can use: name it from the maths' own text alternative.
+      const plain = btn.cloneNode(true);
+      plain.querySelectorAll('math').forEach((m) => m.remove());
+      if (!plain.textContent.trim()) {
+        const alt = [...btn.querySelectorAll('math[alttext]')].map((m) => m.getAttribute('alttext')).join(' ');
+        if (alt) btn.setAttribute('aria-label', alt);
+      }
       // On screen the options are shuffled; a printed worksheet lists them in the written order, lettered A, B, C, D.
       const at = source.indexOf(li);
       btn.dataset.letter = String.fromCharCode(65 + at);
