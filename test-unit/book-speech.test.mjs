@@ -84,3 +84,10 @@ test('toSpoken says numbers as words, money as pounds and pence, and bearings di
   assert.equal(toSpoken('Type 045 for a bearing of 45°.'), 'Type zero four five for a bearing of forty-five degrees.');
   assert.equal(toSpoken('[3 marks] 20%'), '[three marks] twenty percent');
 });
+
+test('function notation is read as "f of x"', () => {
+  assert.equal(toSpoken('f(x) = 5x − 3. Work out f(4)'), 'f of x equals five x minus three. Work out f of four');
+  assert.equal(toSpoken('Find g(x + 1) when g(t) = t².'), 'Find g of (x plus one) when g of t equals t squared.');
+  assert.equal(toSpoken('f(−2)'), 'f of minus two');
+  assert.equal(toSpoken('a(b) and of(x)'), 'a(b) and of(x)');
+});
