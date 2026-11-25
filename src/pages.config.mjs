@@ -158,6 +158,7 @@ export const PAGES = [
   },
   {
     slug: '404',
+    base: '/', // served at any depth (e.g. /books/gcse/bad), so links and assets must be root-absolute
     title: 'Page Not Found | Wright Maths Tuition',
     description: "This page couldn't be found. Find your way back to Wright Maths Tuition's home, lessons, resources or contact page.",
     active: null,
