@@ -76,6 +76,6 @@ export const TERM_FIGURES = {
 };
 
 /** Small pictures for terms that appear on a page: [id, svg] pairs for ids that have one. */
-export function figuresFor(ids) {
-  return [...new Set(ids)].filter((id) => TERM_FIGURES[id]).map((id) => [id, TERM_FIGURES[id]]);
+export function figuresFor(ids, figures = TERM_FIGURES) {
+  return [...new Set(ids)].filter((id) => figures[id]).map((id) => [id, figures[id]]);
 }

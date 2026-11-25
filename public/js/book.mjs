@@ -16,7 +16,11 @@ import { isReviewMode, annotateForReview, startReviewMode } from './book-review.
 
 const REVIEW = isReviewMode(window.location.search);
 
-const STORE_KEY = 'wm-gcse-v1';
+// One script serves every book. A page says which book it belongs to (data-book-id, default "gcse") and whether
+// it has voice output (data-audio="off" means none at all). Each book keeps its own saved progress.
+const BOOK_ID = /^[a-z0-9-]{1,20}$/.test(document.querySelector('main.book')?.dataset.bookId ?? '') ? document.querySelector('main.book').dataset.bookId : 'gcse';
+const NO_AUDIO = document.querySelector('main.book')?.dataset.audio === 'off';
+const STORE_KEY = `wm-${BOOK_ID}-v1`;
 const CHEERS = ['Yes!', 'Spot on.', 'Nailed it.', 'Correct.', 'That is it.', 'Right, nice work.'];
 const NUDGES = [
   'Not this one yet. Have another go.',
@@ -591,7 +595,7 @@ function enhanceGlossary() {
 // ---------- reading options ----------
 // Size, an easy-read font stack, a tinted page and a reading ruler. Saved on this device only.
 
-const READ_KEY = 'wm-gcse-read';
+const READ_KEY = `wm-${BOOK_ID}-read`;
 
 function loadRead() {
   try {
@@ -645,7 +649,7 @@ function initReadingTools() {
   };
   row.append(toggle('easy', 'Easy-read font'), toggle('tint', 'Tinted page'), toggle('ruler', 'Reading ruler'));
   // For anyone who never uses Listen, or finds the buttons a distraction: hide them everywhere.
-  if ('speechSynthesis' in window) {
+  if (!NO_AUDIO && 'speechSynthesis' in window) {
     const hideListen = toggle('nolisten', 'Hide the Listen buttons');
     hideListen.addEventListener('click', () => { if (prefs.nolisten) stopListening(); });
     row.append(hideListen);
@@ -657,7 +661,7 @@ function initReadingTools() {
     row.querySelectorAll('[aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     persist();
   });
-  if ('speechSynthesis' in window) {
+  if (!NO_AUDIO && 'speechSynthesis' in window) {
     const voiceField = el('label', { class: 'read-select', text: 'Voice ' });
     const voiceSelect = el('select', { 'aria-label': 'Voice for Listen' });
     const fillVoices = () => {
@@ -760,7 +764,7 @@ function addFastRoute(main, after) {
     const h = find(re);
     if (h && h.id) bar.append(el('a', { href: `#${h.id}`, class: 'fast-link', text: label }));
   }
-  const FAST_KEY = 'wm-gcse-fast';
+  const FAST_KEY = `wm-${BOOK_ID}-fast`;
   const toggle = el('button', { type: 'button', class: 'fast-toggle', 'aria-pressed': 'false', text: 'Skip the basics' });
   const setFast = (on) => {
     main.classList.toggle('fast-route-on', on);
@@ -850,6 +854,7 @@ function stopListening() {
 }
 
 function addListenButtons(root = document) {
+  if (NO_AUDIO) return;
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
   // The list of recordings is fetched on the first press of Listen, not on every page.
   for (const node of root.querySelectorAll('.qtext, .key, .g-entry')) {
@@ -967,7 +972,7 @@ function startDiagnostic() {
     d.append(el('label', { class: 'sr-only', for: id, text: `Your answer to question ${i + 1}` }), input);
   });
   // A half-finished check is kept only until the tab is closed (sessionStorage), so a reload does not lose it.
-  const DRAFT_KEY = 'wm-gcse-diag-draft';
+  const DRAFT_KEY = `wm-${BOOK_ID}-diag-draft`;
   const readDraft = () => { try { const v = JSON.parse(window.sessionStorage.getItem(DRAFT_KEY) ?? '[]'); return Array.isArray(v) ? v : []; } catch { return []; } };
   const progress = el('p', { class: 'diag-progress', role: 'status', 'aria-live': 'polite' });
   root.querySelector('[data-diag-finish]').before(progress);
