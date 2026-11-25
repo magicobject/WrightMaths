@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.016">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.018">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,6 +80,18 @@
     </div>
     <ul class="changelog">
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.017</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Housekeeping: merged <code>main</code> again and repaired the changelog list, where two merged entries had lost the markup between them. No site change.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.015</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Housekeeping: <code>main</code> merged into the speech-rules branch (build 014 is that merge, no site change). Two entries below share the number 011, because two branches each took it; the test-fix entries 011 and 012 are the ones tagged <code>build-2026.11.25.011</code> and <code>.012</code>, and the glossary Listen entry is the other 011.</p>
+      </li>
+      <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.013</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book, Listen: the voice now says <code>fg(x)</code> as &ldquo;f of g of x&rdquo;, <code>f<sup>&minus;1</sup>(x)</code> as &ldquo;f inverse of x&rdquo; and <code>P(red)</code> as &ldquo;the probability of red&rdquo; (plain <code>f(x)</code> was already &ldquo;f of x&rdquo;). New <code>npm run book:audio -- review</code> writes a local page (<code>audio-work/review.html</code>, not part of the site) with every Listen sentence as written beside the words the voice is given, so they can be checked by reading. Pages touched: <code>books/gcse/functions-graphs.html</code>, <code>books/gcse/iteration.html</code>, <code>books/gcse/stretch.html</code> and the probability topics (their recordings of changed sentences need re-making; the browser voice reads them until then).</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.016</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, sine and cosine rules (<code>books/gcse/sine-cosine-rules.html</code>): where two questions asked for the name of the rule (&ldquo;Type sine or cosine&rdquo;), the words &ldquo;sine&rdquo; and &ldquo;cosine&rdquo; linked to the sine and cosine functions in the glossary; they now link to the Sine rule and Cosine rule entries. I checked every book page for the same fault (a short term linked where a longer one was meant, including &ldquo;X and Y rules&rdquo; lists) and found no other case; a test covers this one.</p>
       </li>
@@ -90,6 +102,8 @@
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.011</span><span class="changelog-date">25 November 2026</span></div>
         <p>Test fix: the &ldquo;only the topics ticked are used&rdquo; check on <code>books/gcse/practice.html</code> read the question IDs before the new set had loaded, so it failed about one run in five. It now waits for the new set. No site change.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.011</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book: every glossary entry (<code>books/gcse/glossary.html</code>) now has a Listen button. It reads the term, its meaning, its examples, the watch-out and the flip-it, then says what the picture shows; the strand label, &ldquo;See also&rdquo; and &ldquo;Taught in&rdquo; lines are left out. Like the rest of the book it plays the recorded voice, and the whole book has been re-recorded (3,563 clips, Piper &ldquo;alba&rdquo;) with a longer gap after every full stop and never after a decimal point; the glossary entries and the parents-guide sentence now have clips too. The parents guide describes the recorded voice accurately.</p>
       </li>
@@ -458,9 +472,9 @@
   </div>
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Enhanced DBS check held. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.11.25.016</span>
+    <span class="build-number">Build 2026.11.25.018</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.016" defer></script>
+  <script src="js/main.js?v=2026.11.25.018" defer></script>
 </footer>
 </body>
 </html>

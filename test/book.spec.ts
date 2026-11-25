@@ -1330,6 +1330,25 @@ test.describe('what the voice reads', () => {
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');
   });
+
+  test('a function with a power of minus one is "inverse", and other powers are untouched', async ({ page }) => {
+    await page.goto('/books/gcse/place-value.html');
+    const spoken = await page.evaluate(async () => {
+      const { unitText } = await import('/js/book-audio.mjs');
+      const make = (html: string) => {
+        const node = document.createElement('p');
+        node.className = 'qtext';
+        node.innerHTML = html;
+        return node;
+      };
+      return {
+        inverse: unitText(make('Find f<sup>&minus;1</sup>(x) and fg(x).')),
+        power: unitText(make('Work out 10<sup>&minus;1</sup> and x<sup>3</sup>.')),
+      };
+    });
+    expect(spoken.inverse).toBe('Find f inverse of x and f of g of x.');
+    expect(spoken.power).toBe('Work out ten to the power of minus one and x cubed.');
+  });
 });
 
 test.describe('round 6 engine and look', () => {

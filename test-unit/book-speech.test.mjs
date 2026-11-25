@@ -91,3 +91,22 @@ test('function notation is read as "f of x"', () => {
   assert.equal(toSpoken('f(−2)'), 'f of minus two');
   assert.equal(toSpoken('a(b) and of(x)'), 'a(b) and of(x)');
 });
+
+test('composites, inverses and probabilities are read the way a teacher says them', () => {
+  assert.equal(toSpoken('fg(x)'), 'f of g of x');
+  assert.equal(toSpoken('gf(2)'), 'g of f of two');
+  assert.equal(toSpoken('fg(x + 1)'), 'f of g of (x plus one)');
+  assert.equal(toSpoken('f(g(x))'), 'f of (g of x)');
+  assert.equal(toSpoken('f⁻¹(x)'), 'f inverse of x');
+  assert.equal(toSpoken('P(red)'), 'the probability of red');
+  assert.equal(toSpoken('P(A and B)'), 'the probability of A and B');
+  assert.equal(toSpoken('P(6) = 1/6'), 'the probability of six equals one over six');
+});
+
+test('only a lone f, g or h (or a pair) before a bracket is a function', () => {
+  assert.equal(toSpoken('a height h (in cm)'), 'a height h (in cm)');
+  assert.equal(toSpoken('6h(2 + 1)'), 'six h(two plus one)');
+  assert.equal(toSpoken('if(x)'), 'if(x)');
+  assert.equal(toSpoken('Sophia(x)'), 'Sophia(x)');
+  assert.equal(toSpoken('fgh(x)'), 'fgh(x)');
+});

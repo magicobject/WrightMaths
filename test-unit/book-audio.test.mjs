@@ -54,3 +54,19 @@ test('every recording in the shipped manifest exists as a file', () => {
     assert.ok(existsSync(new URL(file, dir)), `${file} is listed but missing`);
   }
 });
+
+test('the review page lists written and spoken words, marks the ones that differ, and escapes markup', async () => {
+  const { reviewPage, tidyDisplay } = await import('../scripts/book-audio-lib.mjs');
+  const html = reviewPage([
+    { page: 'functions-graphs', display: 'Work out  f(x)\n when x = 2', spoken: 'Work out f of x when x equals two', hash: 'a', says: false, recorded: true },
+    { page: 'place-value', display: 'Say hello', spoken: 'Say hello', hash: 'b', says: false, recorded: false },
+    { page: 'x', display: '<b>bold</b> & more', spoken: 'bold and more', hash: 'c', says: true, recorded: false },
+  ]);
+  assert.match(html, /3 sentences\. 2 use notation/);
+  assert.equal(tidyDisplay('a \n  b'), 'a b');
+  assert.match(html, /<tr class="notation" id="r1">/);
+  assert.match(html, /<tr class="plain" id="r2">/);
+  assert.doesNotMatch(html, /<b>bold<\/b>/);
+  assert.match(html, /&lt;b&gt;bold&lt;\/b&gt; &amp; more/);
+  assert.doesNotMatch(html, /https?:\/\//);
+});
