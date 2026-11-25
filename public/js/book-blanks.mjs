@@ -6,7 +6,7 @@
 // data-answers is a list split on ";" (same rule as .q). data-mode="exact" on the box makes written form matter.
 // Nothing typed here is stored or sent anywhere.
 
-import { matches, splitList, parseNumber } from './book-answer.mjs?m=39';
+import { matches, splitList, parseNumber } from './book-answer.mjs?m=40';
 
 /**
  * Gaps in one step that share the same key list of two or more different numbers (such as 5;9 and 5;9 in
