@@ -1621,3 +1621,34 @@ test.describe('round 6 engine: timed set', () => {
     }
   });
 });
+
+test.describe('"Now you finish it" gaps (pilot: fractions, averages)', () => {
+  test('the gaps become typed boxes; a wrong one is flagged, the right one locks, and the worked answer opens only when all are right', async ({ page }) => {
+    await page.goto('/books/gcse/fractions.html');
+    const box = page.locator('.worked.faded');
+    await expect(box.locator('.blank-input')).toHaveCount(2);
+    const details = box.locator('details.check-line');
+    await expect(details).not.toHaveAttribute('open', '');
+    await box.getByLabel('Gap 1 of 2').fill('11');
+    await box.getByLabel('Gap 2 of 2').fill('12');
+    await box.getByRole('button', { name: 'Check' }).click();
+    await expect(box.locator('.blank-status')).toContainText('1 of 2 right');
+    await expect(box.getByLabel('Gap 1 of 2')).toHaveAttribute('readonly', '');
+    await expect(box.getByLabel('Gap 2 of 2')).toHaveAttribute('aria-invalid', 'true');
+    await expect(details).not.toHaveAttribute('open', '');
+    await box.getByLabel('Gap 2 of 2').fill('11');
+    await page.keyboard.press('Enter');
+    await expect(box.locator('.blank-status')).toContainText('All 2 right');
+    await expect(details).toHaveAttribute('open', '');
+  });
+
+  test('an empty gap asks for an answer and a word gap accepts the word', async ({ page }) => {
+    await page.goto('/books/gcse/averages.html');
+    const box = page.locator('.worked.faded', { hasText: 'shoe shop' });
+    await box.getByRole('button', { name: 'Check' }).click();
+    await expect(box.locator('.blank-status')).toContainText('Fill in every gap');
+    await box.getByLabel('Gap 1 of 1').fill('Mode');
+    await box.getByRole('button', { name: 'Check' }).click();
+    await expect(box.locator('.blank-status')).toContainText('Right!');
+  });
+});

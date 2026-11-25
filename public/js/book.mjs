@@ -9,6 +9,7 @@ import { review, isDue, sanitize } from './book-queue.mjs?m=39';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
 import { splitSentences } from './book-speech.mjs?m=41';
 import { unitText, playClip, stopClip } from './book-audio.mjs?m=39';
+import { enhanceFaded } from './book-blanks.mjs?m=39';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
 import { parseRanges, rangeBanner } from './book-ranges.mjs?m=39';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs?m=39';
@@ -1316,6 +1317,7 @@ function start() {
   if (REVIEW) startReviewMode();
   initReadingTools();
   document.querySelectorAll('.q').forEach(enhanceQuestion);
+  if (!REVIEW) document.querySelectorAll('.worked.faded').forEach(enhanceFaded);
   addListenButtons();
   startPractice().catch((e) => console.error('practice failed', e));
   startDiagnostic();
