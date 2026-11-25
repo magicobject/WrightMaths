@@ -1,0 +1,47 @@
+<main class="book" data-book-page="glossary">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Glossary &middot; Years 1 and 2</span>
+      <h1>The language of A-level pure maths</h1>
+      <p class="lead">{glossary-count} terms in plain English, for Year 1 and Year 2 together. Each has an example, a warning about common slips where there is one, the reverse side of the idea, and where it is taught in this book.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Glossary</span></nav>
+
+    <div class="key">
+      <p><b>How to use it:</b> terms are in alphabetical order. Each entry shows <span class="chip chip-year">Year 1</span> or <span class="chip chip-year2">Year 2</span>. Choose an area of maths (such as Algebra and functions) to see one area, search for a word, or jump to a letter.</p>
+    </div>
+
+    <div class="g-tools">
+      <label for="g-filter">Show</label>
+      <select id="g-filter" data-glossary-filter>
+        <option value="all">All areas</option>
+        <option value="al-proof">Proof</option>
+        <option value="al-algebra">Algebra and functions</option>
+        <option value="al-coordinate">Coordinate geometry</option>
+        <option value="al-sequences">Sequences and series</option>
+        <option value="al-trigonometry">Trigonometry</option>
+        <option value="al-exponentials">Exponentials and logarithms</option>
+        <option value="al-differentiation">Differentiation</option>
+        <option value="al-integration">Integration</option>
+        <option value="al-numerical">Numerical methods</option>
+        <option value="al-vectors">Vectors</option>
+      </select>
+      <label for="g-search" class="g-search-label">Search</label>
+      <input id="g-search" type="search" placeholder="e.g. discriminant" data-glossary-search autocomplete="off">
+      <p class="g-count" role="status" data-glossary-status></p>
+    </div>
+
+    <p class="g-jump" aria-label="Jump to letter">Jump to: {glossary-jump}</p>
+
+    <div class="glossary">
+      {glossary-entries}
+    </div>
+  </div>
+</section>
+</main>

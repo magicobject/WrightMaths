@@ -1,0 +1,1452 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="quadratics">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra and functions &middot; Year 1</span>
+      <h1>Quadratics</h1>
+      <p class="lead">A quadratic has an x squared in it. This page gives you three ways to solve one, a quick test for how many roots it has, and a way to sketch its graph (draw its shape quickly).</p>
+      <p class="where-use"><b>Where you will use this:</b> finding the lowest or highest point of a curve. It also helps you find the centre of a circle (Circles) and factorise bigger polynomials (Polynomials). It helps with any problem where an area or a path length is squared.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Quadratics</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page starts from GCSE: expanding brackets (multiplying them out), factorising (writing as brackets multiplied together) and the quadratic formula. It also uses surds and fractional powers, which come from Indices and surds. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from GCSE?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-solving-by-factorising">Skip to the lesson</a></p>
+    <div class="q" data-answers="3 and 4;3,4;3 or 4;4 and 3;4,3;4 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-7x+12=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 8.</p>
+      <ol class="ladder"><li>You need two numbers. What must they multiply to? What must they add to?</li><li>They multiply to {m:12} and add to {m:-7}.</li><li>Write the two brackets, then set each bracket equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4 and -3;-4,-3;-4 or -3;-3 and -4;-3,-4;-3 or -4">You used the numbers in the brackets as the roots. Each root has the opposite sign to the number in its bracket: {m:(x-3)} is 0 when {m:x=3}, not when {m:x=-3}.</li>
+        <li data-if="3;4">That is one root. A quadratic like this has two. Each bracket gives one.</li>
+      </ul>
+      <div class="solution"><p>The numbers {m:-3} and {m:-4} multiply to {m:12} and add to {m:-7}. So {m:(x-3)(x-4)=0}, which gives {m:x=3} or {m:x=4}. Check: {m:3^2-21+12=0} and {m:4^2-28+12=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">The quadratic formula is {m:x=frac(-b plusminus sqrt(b^2-4ac),2a)}. The sign &plusmn; is read &ldquo;plus or minus&rdquo;. For {m:3x^2-5x+2=0}, what is the value of b?</p>
+      <ol class="ladder"><li>The general form is {m:ax^2+bx+c=0}. Which number sits in front of x?</li><li>Compare {m:ax^2+bx+c} with {m:3x^2-5x+2}, term by term.</li><li>Keep the sign. The term is {m:-5x}.</li></ol>
+      <ul class="wrong"><li data-if="5">The term is {m:-5x}, so b is negative: {m:b=-5}.</li><li data-if="3">That is a, the number in front of {m:x^2}. The letter b goes with x.</li></ul>
+      <div class="solution"><p>{m:3x^2-5x+2} matches {m:ax^2+bx+c} with {m:a=3}, {m:b=-5} and {m:c=2}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="x^2-3x-10;-10-3x+x^2" data-mode="exact">
+      <p class="qtext">Expand (multiply out the brackets) and simplify (collect like terms) {m:(x+2)(x-5)}. Type it like x^2+3x-2.</p>
+      <ol class="ladder"><li>Multiply every term in the first bracket by every term in the second.</li><li>You get four pieces: {m:x^2}, {m:-5x}, {m:2x} and {m:-10}.</li><li>Add the two x pieces together.</li></ol>
+      <ul class="wrong"><li data-if="x^2+3x-10;-10+3x+x^2">The x pieces are {m:-5x} and {m:2x}. They make {m:-3x}, not {m:3x}.</li><li data-if="x^2-3x+10;10-3x+x^2">The last piece is {m:2*(-5)=-10}. A plus times a minus is a minus.</li></ul>
+      <div class="solution"><p>{m:(x+2)(x-5)=x^2-5x+2x-10=x^2-3x-10}.</p></div>
+    </div>
+    <div class="q" data-answers="2sqrt(3);2sqrt3;2*sqrt(3)" data-mode="exact">
+      <p class="qtext">Write {m:sqrt(12)} in the form a{m:sqrt(3)}, where a is a whole number. Type it like 5sqrt(2).</p>
+      <ol class="ladder"><li>Find the biggest square number that divides 12.</li><li>{m:12=4*3}, so {m:sqrt(12)=sqrt(4)*sqrt(3)}.</li><li>What is {m:sqrt(4)}?</li></ol>
+      <ul class="wrong"><li data-if="4sqrt(3);4sqrt3">The square root of 4 is 2, not 4. So write {m:2sqrt(3)}.</li></ul>
+      <div class="solution"><p>{m:sqrt(12)=sqrt(4)*sqrt(3)=2sqrt(3)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^(1/2);x^0.5;x^(0.5);x^.5" data-mode="value">
+      <p class="qtext">Write {m:sqrt(x)} as a power of x. Type it like x^(1/3).</p>
+      <ol class="ladder"><li>A square root is the same as a power that is a fraction.</li><li>The root number goes on the bottom of the fraction. For a square root, that number is 2.</li></ol>
+      <ul class="wrong"><li data-if="x^2">A square root undoes squaring. Its power is {m:frac(1,2)}, not 2.</li><li data-if="x/2;0.5x">That halves x. A root is a power of {m:frac(1,2)}. The power is written small and raised, to the right of x.</li></ul>
+      <div class="solution"><p>{m:sqrt(x)=x^(frac(1,2))}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Solving by factorising</h2>
+    <p>A {term:quadratic} is an expression where the highest power of x is 2. An expression is numbers and letters with no equals sign, such as {m:3x+1}. An equation has an equals sign. The general form of a quadratic is {m:ax^2+bx+c}, where a, b and c are numbers and a is not 0.</p>
+    <p>A value of x that makes the quadratic equal to 0 is a {term:root}. To solve {m:ax^2+bx+c=0} means to find all of its roots. On a graph, the roots are the x-values where the curve meets the x-axis.</p>
+    <figure class="figure-lg">{fig:quadratics-roots}<figcaption>Look at the two points where the curve crosses the x-axis. They are at {m:x=-2} and {m:x=3}. These are the two roots of {m:x^2-x-6=0}.</figcaption></figure>
+    <p>To factorise an expression is to write it as brackets multiplied together. Factorising gives the roots because of one fact about zero.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if two numbers multiply to give 0, then at least one of them is 0. So {m:(x-p)(x-q)=0} means {m:x=p} or {m:x=q}.</p>
+    </div>
+    <p>Follow these steps.</p>
+    <ol>
+      <li>Move every term to one side, so that the other side is 0.</li>
+      <li>Factorise the quadratic.</li>
+      <li>Set each bracket equal to 0 and solve it.</li>
+      <li>Check each root in the original equation.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:x^2-x-6=0}.</p>
+      <ol class="steps">
+        <li>One side is already 0.</li>
+        <li>Find two numbers that multiply to {m:-6} and add to {m:-1}. They are {m:-3} and {m:2}. So {m:(x-3)(x+2)=0}.</li>
+        <li>Either {m:x-3=0} or {m:x+2=0}. So {m:x=3} or {m:x=-2}.</li>
+        <li>Check: {m:3^2-3-6=0} and {m:(-2)^2-(-2)-6=0}. Both are true.</li>
+      </ol>
+      <p>The curve in the figure meets the x-axis at exactly these two values.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: 0 is not on one side yet</h3>
+      <p>Solve {m:x^2=3x+10}.</p>
+      <ol class="steps">
+        <li>Subtract {m:3x} and {m:10} from both sides: {m:x^2-3x-10=0}.</li>
+        <li>The numbers {m:-5} and {m:2} multiply to {m:-10} and add to {m:-3}. So {m:(x-5)(x+2)=0}.</li>
+        <li>{m:x=5} or {m:x=-2}.</li>
+        <li>Check {m:x=5}: {m:25=15+10}. Check {m:x=-2}: {m:4=-6+10}. Both are true.</li>
+      </ol>
+    </div>
+    <div class="key"><p><b>Do not divide by x.</b> Look at {m:x^2=5x}. Dividing both sides by x gives {m:x=5} and loses the root {m:x=0}. You cannot divide by 0, and x could be 0 here. Subtract {m:5x} from both sides instead: {m:x^2-5x=0}, so {m:x(x-5)=0}, and {m:x=0} or {m:x=5}.</p></div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:x^2+2x-15=0}.</p>
+      <ol class="steps">
+        <li>The two numbers multiply to {m:-15} and add to {m:2}. They are <span class="blank" data-answers="5;-3">___</span> and <span class="blank" data-answers="5;-3">___</span>.</li>
+        <li>So {m:(x+5)(x-3)=0}.</li>
+        <li>The roots are {m:x=}<span class="blank" data-answers="-5;3">___</span> and {m:x=}<span class="blank" data-answers="-5;3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:5*(-3)=-15} and {m:5+(-3)=2}. So {m:(x+5)(x-3)=0}, which gives {m:x=-5} or {m:x=3}.</p></details>
+    </div>
+
+    <h3>When the number in front of x squared is not 1</h3>
+    <p>When a is not 1, use the {m:ac} method. It splits the middle term so that you can factorise in pairs.</p>
+    <ol>
+      <li>Multiply a and c.</li>
+      <li>Find two numbers that multiply to {m:ac} and add to b.</li>
+      <li>Split the middle term {m:bx} into two terms, using those two numbers.</li>
+      <li>Factorise the four terms in two pairs. Both pairs now share the same bracket.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:2x^2+x-6=0}.</p>
+      <ol class="steps">
+        <li>{m:a=2} and {m:c=-6}, so {m:ac=-12}.</li>
+        <li>Two numbers that multiply to {m:-12} and add to {m:1} are {m:4} and {m:-3}.</li>
+        <li>Split the middle term, {m:x}, into {m:4x-3x}: {m:2x^2+4x-3x-6=0}.</li>
+        <li>Factorise in pairs: {m:2x(x+2)-3(x+2)=0}. Both pairs share the bracket {m:(x+2)}, so {m:(2x-3)(x+2)=0}.</li>
+        <li>{m:2x-3=0} gives {m:x=frac(3,2)}. {m:x+2=0} gives {m:x=-2}.</li>
+        <li>Check {m:x=frac(3,2)}: {m:2*frac(9,4)+frac(3,2)-6=frac(9,2)+frac(3,2)-6=0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-roots-a}<figcaption>Look at the point on the right where the curve crosses the x-axis. One root of {m:2x^2+x-6=0} is a fraction, {m:frac(3,2)}. It comes from the bracket {m:(2x-3)}, so you divide by the 2.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:3x^2+7x+2=0}.</p>
+      <ol class="steps">
+        <li>{m:ac=3*2=}<span class="blank" data-answers="6">___</span>.</li>
+        <li>Two numbers that multiply to 6 and add to 7 are <span class="blank" data-answers="1;6">___</span> and <span class="blank" data-answers="1;6">___</span>.</li>
+        <li>Split the middle term and factorise in pairs: {m:3x^2+6x+x+2=3x(x+2)+1(x+2)=(3x+1)(x+2)}.</li>
+        <li>The root from the bracket {m:3x+1} is {m:x=}<span class="blank" data-answers="-1/3">___</span>. The root from the bracket {m:x+2} is {m:x=}<span class="blank" data-answers="-2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:3x+1=0} gives {m:x=-frac(1,3)} and {m:x+2=0} gives {m:x=-2}. Check {m:x=-2}: {m:12-14+2=0}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: solving by factorising</h2>
+    <div class="q" data-answers="3 and 5;3,5;3 or 5;5 and 3;5,3;5 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-8x+15=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 8.</p>
+      <ol class="ladder"><li>You need two numbers. What do they multiply to, and what do they add to?</li><li>They multiply to {m:15} and add to {m:-8}.</li><li>Write the two brackets, then set each equal to 0.</li></ol>
+      <ul class="wrong"><li data-if="-5 and -3;-5,-3;-5 or -3;-3 and -5;-3,-5;-3 or -5">You gave the numbers from the brackets, without changing their signs. The bracket {m:(x-3)} is 0 when {m:x=3}. Each root has the opposite sign to the number in its bracket.</li></ul>
+      <div class="solution"><p>{m:-3} and {m:-5} multiply to {m:15} and add to {m:-8}. So {m:(x-3)(x-5)=0} and {m:x=3} or {m:x=5}.</p></div>
+    </div>
+    <div class="q" data-answers="-5 and 2;-5,2;-5 or 2;2 and -5;2,-5;2 or -5" data-mode="value">
+      <p class="qtext">Solve {m:x^2+3x-10=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 8.</p>
+      <ol class="ladder"><li>What do the two numbers multiply to? What do they add to?</li><li>They multiply to {m:-10} and add to {m:3}.</li><li>The numbers are {m:5} and {m:-2}. Write the brackets and set each to 0.</li></ol>
+      <ul class="wrong"><li data-if="-2 and 5;-2,5;-2 or 5;5 and -2;5,-2;5 or -2">You used the numbers in the brackets as the roots. Each root has the opposite sign to the number in its bracket: {m:(x+5)} gives {m:x=-5}.</li></ul>
+      <div class="solution"><p>{m:(x+5)(x-2)=0}, so {m:x=-5} or {m:x=2}. Check: {m:25-15-10=0} and {m:4+6-10=0}.</p></div>
+    </div>
+    <div class="q" data-answers="0 and 5;0,5;0 or 5;5 and 0;5,0;5 or 0" data-mode="value">
+      <p class="qtext">Solve {m:x^2=5x}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Do not divide both sides by x. Why not?</li><li>Subtract {m:5x} from both sides, so that one side is 0.</li><li>Factorise {m:x^2-5x}. Both terms contain x.</li></ol>
+      <ul class="wrong"><li data-if="5">You divided both sides by x. That loses the root {m:x=0}, because x could be 0. Write {m:x(x-5)=0} instead.</li></ul>
+      <div class="solution"><p>{m:x^2-5x=0}, so {m:x(x-5)=0}. Then {m:x=0} or {m:x=5}. Check {m:x=0}: {m:0=0}. True.</p></div>
+    </div>
+    <div class="q" data-answers="-2 and 6;-2,6;-2 or 6;6 and -2;6,-2;6 or -2" data-mode="value">
+      <p class="qtext">Solve {m:x^2-4x=12}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>The zero idea only works when one side is 0. What must you do first?</li><li>Subtract 12 from both sides: {m:x^2-4x-12=0}.</li><li>Find two numbers that multiply to {m:-12} and add to {m:-4}.</li></ol>
+      <ul class="wrong"><li data-if="12 and 16;12,16;12 or 16;16 and 12;16,12;16 or 12">You wrote {m:x(x-4)=12} and set each factor equal to 12. That only works when the product is 0. Subtract 12 from both sides first.</li></ul>
+      <div class="solution"><p>{m:x^2-4x-12=0}, so {m:(x-6)(x+2)=0}. Then {m:x=6} or {m:x=-2}. Check {m:x=6}: {m:36-24=12}.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 1/2;-3 and 1/2;-3,1/2;1/2 or -3;1/2 and -3;1/2,-3;-3 or 0.5;0.5 or -3" data-mode="value">
+      <p class="qtext">Solve {m:2x^2+5x-3=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 3/4.</p>
+      <ol class="ladder"><li>The number in front of {m:x^2} is not 1, so use the {m:ac} method.</li><li>{m:ac=-6}. Which two numbers multiply to {m:-6} and add to 5?</li><li>Split {m:5x} into {m:6x-x}, then factorise in pairs.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3 or 1;-3 and 1;-3,1;1 or -3;1 and -3;1,-3">You did not divide by the 2. The bracket {m:(2x-1)} gives {m:2x=1}, so {m:x=frac(1,2)}.</li>
+        <li data-if="3 or -1/2;3 and -1/2;3,-1/2;-1/2 or 3;-1/2 and 3;-1/2,3">Both roots have the wrong sign. {m:(x+3)=0} gives {m:x=-3}, and {m:(2x-1)=0} gives {m:x=frac(1,2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x^2+6x-x-3=2x(x+3)-(x+3)=(2x-1)(x+3)}. So {m:x=frac(1,2)} or {m:x=-3}. Check {m:x=-3}: {m:18-15-3=0}.</p></div>
+    </div>
+    <div class="q" data-answers="1/3 or 2;1/3 and 2;1/3,2;2 or 1/3;2 and 1/3;2,1/3;0.333 or 2" data-mode="value">
+      <p class="qtext">Solve {m:3x^2-7x+2=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 3/4.</p>
+      <ol class="ladder"><li>Use the {m:ac} method. What is {m:ac}?</li><li>{m:ac=6}. Two numbers that multiply to 6 and add to {m:-7} are {m:-6} and {m:-1}.</li><li>Split {m:-7x} into {m:-6x-x}, then factorise in pairs.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 2;1 and 2;1,2;2 or 1;2 and 1;2,1">You did not divide by the 3. The bracket {m:(3x-1)} gives {m:3x=1}, so {m:x=frac(1,3)}.</li>
+        <li data-if="-2 or -1/3;-2 and -1/3;-2,-1/3;-1/3 or -2;-1/3 and -2;-1/3,-2">The roots are positive. {m:(3x-1)} is 0 when {m:x=frac(1,3)}, and {m:(x-2)} is 0 when {m:x=2}.</li>
+      </ul>
+      <div class="solution"><p>{m:3x^2-6x-x+2=3x(x-2)-(x-2)=(3x-1)(x-2)}. So {m:x=frac(1,3)} or {m:x=2}. Check {m:x=2}: {m:12-14+2=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many different roots does {m:x^2+4x+4=0} have?</p>
+      <ul class="options">
+        <li data-correct>One</li>
+        <li data-why="Both brackets are the same: (x+2)(x+2) = 0. Each gives x = &minus;2. That is one value, not two.">Two</li>
+        <li data-why="x = &minus;2 makes the left side 0: 4 &minus; 8 + 4 = 0. So there is a root.">None</li>
+      </ul>
+      <ol class="ladder"><li>Factorise the left side.</li><li>{m:x^2+4x+4=(x+2)(x+2)}.</li><li>Set each bracket to 0. Are the two answers different?</li></ol>
+      <div class="solution"><p>{m:(x+2)^2=0} gives only {m:x=-2}. This is a {term:repeated-root}: the curve touches the x-axis once and turns back.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Completing the square</h2>
+    <p>{term:completing-the-square|Completing the square} writes a quadratic in the form {m:(x+p)^2+q}, where p and q are numbers. We read {m:(x+p)^2} as &ldquo;x plus p, all squared&rdquo;. The picture below shows why this works.</p>
+    <p>Start with {m:x^2+6x}. The {m:x^2} term is a square of side x. The {m:6x} term is two strips, each x long and 3 wide.</p>
+    <figure class="figure-lg">{fig:quadratics-tiles}<figcaption>Look at the dashed corner. The solid tiles make {m:x^2+6x}. The dashed corner square, area 9, completes the big square of side {m:x+3}.</figcaption></figure>
+    <p>The big square has area {m:(x+3)^2}. That area is {m:x^2+6x} plus the corner, which has area 9. So {m:x^2+6x=(x+3)^2-9}. The {m:-9} takes away the corner that we added.</p>
+    <div class="key">
+      <p><b>Key idea:</b> halve the number in front of x. Write x plus that half in a bracket, and square the bracket. Then subtract the square of the half, so that the value does not change: {m:x^2+bx=(x+frac(b,2))^2-(frac(b,2))^2}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Write {m:x^2+6x+5} in the form {m:(x+p)^2+q}.</p>
+      <ol class="steps">
+        <li>Half of 6 is 3. So {m:x^2+6x=(x+3)^2-9}.</li>
+        <li>Add the 5: {m:x^2+6x+5=(x+3)^2-9+5=(x+3)^2-4}.</li>
+        <li>Check by expanding: {m:(x+3)^2-4=x^2+6x+9-4=x^2+6x+5}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative number in front of x</h3>
+      <p>Write {m:x^2-8x+3} in the form {m:(x+p)^2+q}.</p>
+      <ol class="steps">
+        <li>Half of {m:-8} is {m:-4}. So {m:x^2-8x=(x-4)^2-16}.</li>
+        <li>Add the 3: {m:x^2-8x+3=(x-4)^2-16+3=(x-4)^2-13}.</li>
+        <li>Check: {m:(x-4)^2-13=x^2-8x+16-13=x^2-8x+3}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:x^2+10x+7} in the form {m:(x+p)^2+q}.</p>
+      <ol class="steps">
+        <li>Half of 10 is <span class="blank" data-answers="5">___</span>.</li>
+        <li>So {m:x^2+10x=(x+5)^2-}<span class="blank" data-answers="25">___</span>.</li>
+        <li>Add the 7: {m:x^2+10x+7=(x+5)^2-25+7=(x+5)^2}<span class="blank" data-answers="-18;- 18">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(x+5)^2-25+7=(x+5)^2-18}. Check: {m:x^2+10x+25-18=x^2+10x+7}.</p></details>
+    </div>
+
+    <h3>What completing the square tells you</h3>
+    <p>The graph of a quadratic is a {term:parabola}. Its {term:vertex} is its turning point: the point where the curve stops going down and starts going up, or the other way round. The vertical line through the vertex is the {term:axis-of-symmetry}. This line splits the parabola into two mirror-image halves.</p>
+    <p>The square of any real number is never negative. So {m:(x+p)^2} is 0 when {m:x=-p}, and bigger than 0 everywhere else. So the lowest point of {m:y=(x+p)^2+q} is at {m:x=-p}, where {m:y=q}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=(x+p)^2+q} has its vertex at {m:(-p, q)}, and its axis of symmetry is the line {m:x=-p}. The x-coordinate of the vertex is {m:-p}, the opposite sign to the number in the bracket, because {m:(x+3)} is 0 when {m:x=-3}.</p>
+    </div>
+    <figure class="figure-lg">{fig:quadratics-shifted}<figcaption>Look at the lowest point of the solid curve. The curve {m:y=(x+3)^2-4} is the curve {m:y=x^2} moved 3 units to the left and 4 units down. The vertex moves from {m:(0, 0)} to {m:(-3, -4)}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the least value of {m:y=x^2+6x+5}, and the value of x where it happens.</p>
+      <ol class="steps">
+        <li>Complete the square: {m:y=(x+3)^2-4}.</li>
+        <li>{m:(x+3)^2} is never negative, and it is 0 when {m:x=-3}.</li>
+        <li>So the least value of y is {m:-4}, and it happens at {m:x=-3}. The vertex is {m:(-3, -4)}.</li>
+      </ol>
+    </div>
+
+    <h3>Solving by completing the square</h3>
+    <p>Complete the square, then rearrange to {m:(x+p)^2=k}. A positive k has two square roots, so write both.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:x^2+6x+5=0} by completing the square.</p>
+      <ol class="steps">
+        <li>{m:(x+3)^2-4=0}, so {m:(x+3)^2=4}.</li>
+        <li>The square roots of 4 are 2 and {m:-2}. So {m:x+3=2} or {m:x+3=-2}.</li>
+        <li>{m:x=-1} or {m:x=-5}. These are the same roots as in {m:(x+1)(x+5)=0}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exact answer</h3>
+      <p>Solve {m:x^2-4x-1=0}. Give exact roots.</p>
+      <ol class="steps">
+        <li>{m:x^2-4x-1=(x-2)^2-4-1=(x-2)^2-5}. So {m:(x-2)^2=5}.</li>
+        <li>{m:x-2=sqrt(5)} or {m:x-2=-sqrt(5)}.</li>
+        <li>{m:x=2+sqrt(5)} or {m:x=2-sqrt(5)}. This is also written {m:x=2~plusminus~sqrt(5)}, where the sign {m:plusminus} is read &ldquo;plus or minus&rdquo;.</li>
+        <li>As decimals, to 2 decimal places: {m:x=4.24} or {m:x=-0.24}.</li>
+      </ol>
+      <p>An exact root keeps the {term:surd} (a root sign, such as {m:sqrt(5)}, that cannot be written as a whole number or a fraction). It has no rounding error.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: completing the square</h2>
+    <div class="q" data-answers="(x+2)^2-7;-7+(x+2)^2" data-mode="exact">
+      <p class="qtext">Write {m:x^2+4x-3} in the form {m:(x+p)^2+q}. Type it like (x+1)^2-5.</p>
+      <ol class="ladder"><li>The form is a squared bracket plus a number. What goes in the bracket?</li><li>Halve the number in front of x. Half of 4 is 2.</li><li>{m:x^2+4x=(x+2)^2-4}. Now add the {m:-3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+4)^2-3;-3+(x+4)^2">You used 4, the whole number in front of x. Halve it first: the bracket is {m:(x+2)}.</li>
+        <li data-if="(x+2)^2-3;-3+(x+2)^2">You did not subtract the square of the half. {m:(x+2)^2} contains an extra 4, so subtract 4 as well: {m:-3-4=-7}.</li>
+        <li data-if="(x-2)^2-7;-7+(x-2)^2">{m:(x-2)^2} expands to {m:x^2-4x+4}. The 4x has the wrong sign. The bracket is {m:(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+4x=(x+2)^2-4}, so {m:x^2+4x-3=(x+2)^2-4-3=(x+2)^2-7}. Check: {m:x^2+4x+4-7=x^2+4x-3}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-3)^2-7;-7+(x-3)^2" data-mode="exact">
+      <p class="qtext">Write {m:x^2-6x+2} in the form {m:(x+p)^2+q}. Type it like (x+1)^2-5.</p>
+      <ol class="ladder"><li>Halve the number in front of x. Keep its sign.</li><li>Half of {m:-6} is {m:-3}, so the bracket is {m:(x-3)}.</li><li>{m:x^2-6x=(x-3)^2-9}. Now add the 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+3)^2-7;-7+(x+3)^2">The number in front of x is negative, so the bracket is {m:(x-3)}. {m:(x+3)^2} would give {m:+6x}.</li>
+        <li data-if="(x-3)^2-9;-9+(x-3)^2">You subtracted 9 but did not add the original 2. {m:-9+2=-7}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-6x+2=(x-3)^2-9+2=(x-3)^2-7}. Check: {m:x^2-6x+9-7=x^2-6x+2}.</p></div>
+    </div>
+    <div class="q" data-answers="(-4,-6);-4,-6" data-mode="exact">
+      <p class="qtext">Write down the coordinates of the vertex of {m:y=x^2+8x+10}. Type it like (1,-2).</p>
+      <ol class="ladder"><li>The vertex is the lowest point. Complete the square to find it.</li><li>{m:y=(x+4)^2-16+10}. Simplify it.</li><li>The vertex of {m:y=(x+p)^2+q} is {m:(-p, q)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(4,-6);4,-6">You used the number in the bracket as the x-coordinate. {m:(x+4)} is 0 when {m:x=-4}, so the x-coordinate has the opposite sign.</li>
+        <li data-if="(-4,10);-4,10">You did not subtract 16, the square of the half. {m:y=(x+4)^2-16+10=(x+4)^2-6}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=x^2+8x+10=(x+4)^2-16+10=(x+4)^2-6}. The vertex is {m:(-4, -6)}. Check: at {m:x=-4}, {m:y=16-32+10=-6}.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">Find the least value of {m:y=x^2-6x+4}.</p>
+      <ol class="ladder"><li>The least value is the y-coordinate of the vertex.</li><li>Complete the square: {m:x^2-6x=(x-3)^2-9}.</li><li>Add the 4. The least value is the number left over.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is where the least value happens, {m:x=3}. The question asks for the value of y there.</li>
+        <li data-if="5">You dropped the minus sign. The number left over is {m:-9+4=-5}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=(x-3)^2-9+4=(x-3)^2-5}. The least value is {m:-5}, when {m:x=3}. Check: {m:9-18+4=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="-7 or 1;-7 and 1;-7,1;1 or -7;1 and -7;1,-7" data-mode="value">
+      <p class="qtext">Solve {m:x^2+6x-7=0} by completing the square. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Complete the square, then get {m:(x+3)^2} on its own on one side.</li><li>{m:(x+3)^2-9-7=0}, so {m:(x+3)^2=16}.</li><li>The square roots of 16 are 4 and {m:-4}. Solve {m:x+3=4} and {m:x+3=-4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1 or 7;-1 and 7;-1,7;7 or -1;7 and -1;7,-1">You added 3 to the square roots. From {m:x+3=4} and {m:x+3=-4}, subtract 3 from both sides.</li>
+        <li data-if="1">You found one root. {m:x+3=-4} gives the second.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+3)^2=16}, so {m:x+3=4} or {m:x+3=-4}. Then {m:x=1} or {m:x=-7}. Check {m:x=-7}: {m:49-42-7=0}.</p></div>
+    </div>
+    <div class="q" data-answers="1+sqrt(6) or 1-sqrt(6);1-sqrt(6) or 1+sqrt(6);1+sqrt(6) and 1-sqrt(6);1-sqrt(6) and 1+sqrt(6);1+sqrt(6),1-sqrt(6);1-sqrt(6),1+sqrt(6);1+-sqrt(6);1&plusmn;sqrt(6)" data-mode="value">
+      <p class="qtext">Solve {m:x^2-2x-5=0} by completing the square. Give exact roots. Type both roots with &ldquo;or&rdquo; between them, like 2+sqrt(3) or 2-sqrt(3).</p>
+      <ol class="ladder"><li>Complete the square and get the squared bracket on its own.</li><li>{m:x^2-2x=(x-1)^2-1}. So {m:(x-1)^2-1-5=0}.</li><li>{m:(x-1)^2=6}. Take the square root of both sides, and write both signs.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1+sqrt(6) or -1-sqrt(6);-1-sqrt(6) or -1+sqrt(6);-1+sqrt(6) and -1-sqrt(6);-1-sqrt(6) and -1+sqrt(6);-1+sqrt(6),-1-sqrt(6);-1-sqrt(6),-1+sqrt(6)">{m:x-1=plusminus sqrt(6)}. Add 1 to both sides to get {m:x=1plusminus sqrt(6)}. You subtracted 1 instead.</li>
+        <li data-if="-1 or 3;-1 and 3;-1,3;3 or -1;3 and -1;3,-1">You made {m:(x-1)^2} equal to 4. Add 1 and 5 to both sides: {m:(x-1)^2-1-5=0} gives {m:(x-1)^2=6}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-1)^2-6=0}, so {m:(x-1)^2=6} and {m:x-1=sqrt(6)} or {m:x-1=-sqrt(6)}. The roots are {m:x=1+sqrt(6)} and {m:x=1-sqrt(6)}. Check with decimals: {m:x=3.449}: {m:11.9-6.9-5=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The curve {m:y=(x-2)^2+7} never meets the x-axis. Why?</p>
+      <ul class="options">
+        <li data-correct>A square is never negative, so {m:(x-2)^2+7} is always at least 7</li>
+        <li data-why="A positive number on its own does not stop a curve crossing the axis. The curve y = (x &minus; 2)&sup2; + 7 stays above the axis, because the squared bracket is never less than 0.">Because 7 is positive</li>
+        <li data-why="x = 2 makes the bracket 0, but then y is 0+7 = 7, not 0.">Because {m:(x-2)} is never 0</li>
+      </ul>
+      <ol class="ladder"><li>The curve meets the x-axis where {m:y=0}.</li><li>Can {m:(x-2)^2+7} be 0? What is the least value of {m:(x-2)^2}?</li></ol>
+      <div class="solution"><p>{m:(x-2)^2} is 0 or more, so {m:(x-2)^2+7} is 7 or more. It is never 0, so the curve never meets the x-axis. The vertex {m:(2, 7)} is the lowest point.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Completing the square when the number in front of x squared is not 1</h2>
+    <p>When a is not 1, write a outside a bracket that holds the {m:x^2} term and the x term. Then complete the square inside that bracket.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Write {m:2x^2+8x+3} in the form {m:a(x+p)^2+q}.</p>
+      <ol class="steps">
+        <li>Write 2 outside a bracket round the first two terms: {m:2(x^2+4x)+3}.</li>
+        <li>Complete the square inside the bracket: {m:x^2+4x=(x+2)^2-4}. So the expression is {m:2[(x+2)^2-4]+3}.</li>
+        <li>Multiply the {m:-4} by 2: {m:2(x+2)^2-8+3=2(x+2)^2-5}.</li>
+        <li>Check: {m:2(x^2+4x+4)-5=2x^2+8x+8-5=2x^2+8x+3}. The vertex is {m:(-2, -5)}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative number in front of x squared</h3>
+      <p>Write {m:1+4x-x^2} in the form {m:q-(x+p)^2}. Find its greatest value.</p>
+      <ol class="steps">
+        <li>Write the terms with the highest power first: {m:-x^2+4x+1}. Write {m:-1} outside a bracket round the first two terms: {m:-(x^2-4x)+1}.</li>
+        <li>Complete the square inside the bracket: {m:x^2-4x=(x-2)^2-4}. So the expression is {m:-[(x-2)^2-4]+1}.</li>
+        <li>Multiply the bracket by the minus sign: {m:-(x-2)^2+4+1=5-(x-2)^2}.</li>
+        <li>{m:(x-2)^2} is never negative, so {m:5-(x-2)^2} is at most 5. The greatest value is 5, when {m:x=2}.</li>
+      </ol>
+      <p>A parabola that opens downwards has a {term:maximum-point} at its vertex. Here it is {m:(2, 5)}.</p>
+      <figure class="figure-lg">{fig:quadratics-max}<figcaption>The curve {m:y=1+4x-x^2} opens downwards. Its maximum point is the vertex, {m:(2, 5)}.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:3x^2+12x+5} in the form {m:a(x+p)^2+q}.</p>
+      <ol class="steps">
+        <li>Write 3 outside a bracket round the first two terms: {m:3(x^2+4x)+5}.</li>
+        <li>Half of 4 is <span class="blank" data-answers="2">___</span>. So {m:x^2+4x=(x+2)^2-}<span class="blank" data-answers="4">___</span>.</li>
+        <li>Multiply the {m:-4} by 3, to get {m:-}<span class="blank" data-answers="12">___</span>.</li>
+        <li>So the expression is {m:3(x+2)^2-12+5=3(x+2)^2}<span class="blank" data-answers="-7;- 7">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:3(x+2)^2-7=3x^2+12x+12-7=3x^2+12x+5}. The vertex is {m:(-2, -7)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: when a is not 1</h2>
+    <div class="q" data-answers="2(x+3)^2-13;-13+2(x+3)^2" data-mode="exact">
+      <p class="qtext">Write {m:2x^2+12x+5} in the form {m:a(x+p)^2+q}. Type it like 3(x+1)^2-4.</p>
+      <ol class="ladder"><li>Write 2 outside a bracket round the first two terms.</li><li>{m:2(x^2+6x)+5}. Complete the square inside the bracket.</li><li>{m:x^2+6x=(x+3)^2-9}. Multiply the {m:-9} by 2 before you add 5.</li></ol>
+      <ul class="wrong">
+        <li data-if="2(x+3)^2-4;-4+2(x+3)^2">You did not multiply the {m:-9} by 2. The 2 outside the bracket multiplies everything inside: {m:2*(-9)=-18}.</li>
+        <li data-if="2(x+6)^2-67;-67+2(x+6)^2">You used 6, the whole number in front of x. Halve it first: the bracket is {m:(x+3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:2(x^2+6x)+5=2[(x+3)^2-9]+5=2(x+3)^2-18+5=2(x+3)^2-13}. Check: {m:2(x^2+6x+9)-13=2x^2+12x+5}.</p></div>
+    </div>
+    <div class="q" data-answers="3(x-1)^2+4;4+3(x-1)^2" data-mode="exact">
+      <p class="qtext">Write {m:3x^2-6x+7} in the form {m:a(x+p)^2+q}. Type it like 3(x+1)^2-4.</p>
+      <ol class="ladder"><li>Write 3 outside a bracket round the first two terms.</li><li>{m:3(x^2-2x)+7}. Half of {m:-2} is {m:-1}.</li><li>{m:x^2-2x=(x-1)^2-1}. Multiply the {m:-1} by 3, then add 7.</li></ol>
+      <ul class="wrong">
+        <li data-if="3(x-1)^2+6;6+3(x-1)^2">You did not multiply the {m:-1} by 3. It becomes {m:-3}, and {m:-3+7=4}.</li>
+        <li data-if="3(x+1)^2+4;4+3(x+1)^2">The number in front of x is negative, so the bracket is {m:(x-1)}.</li>
+      </ul>
+      <div class="solution"><p>{m:3(x^2-2x)+7=3[(x-1)^2-1]+7=3(x-1)^2-3+7=3(x-1)^2+4}. Check: {m:3(x^2-2x+1)+4=3x^2-6x+7}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the least value of {m:y=2x^2-8x+11}.</p>
+      <ol class="ladder"><li>Complete the square, then read off the least value.</li><li>{m:2(x^2-4x)+11=2[(x-2)^2-4]+11}.</li><li>Multiply the {m:-4} by 2 before you add 11.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is where the least value happens, {m:x=2}. The question asks for the least value of y.</li>
+        <li data-if="7">You did not multiply the {m:-4} by 2. It becomes {m:-8}, and {m:-8+11=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=2(x-2)^2-8+11=2(x-2)^2+3}. The least value is 3, when {m:x=2}. Check: {m:8-16+11=3}.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">Find the greatest value of {m:y=1+6x-x^2}.</p>
+      <ol class="ladder"><li>This curve opens downwards, so the vertex is a maximum point.</li><li>Write {m:-(x^2-6x)+1} and complete the square inside the bracket.</li><li>{m:-[(x-3)^2-9]+1}. Multiply the square bracket by {m:-1}. Change the sign of both terms inside it.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is where the greatest value happens, {m:x=3}. The question asks for the greatest value of y.</li>
+        <li data-if="-8">The minus sign outside the bracket also changes the {m:-9} inside it: {m:-(-9)=+9}. So {m:9+1=10}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=-[(x-3)^2-9]+1=10-(x-3)^2}. The greatest value is 10, when {m:x=3}. Check: {m:1+18-9=10}.</p></div>
+    </div>
+    <div class="q" data-answers="1 or 5;1 and 5;1,5;5 or 1;5 and 1;5,1" data-mode="value">
+      <p class="qtext">Solve {m:2x^2-12x+10=0} by completing the square. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Complete the square first, then get the squared bracket on its own.</li><li>{m:2(x-3)^2-18+10=0}, so {m:2(x-3)^2=8}.</li><li>Divide by 2 to get {m:(x-3)^2=4}. Then take both square roots.</li></ol>
+      <ul class="wrong"><li data-if="-5 or -1;-5 and -1;-5,-1;-1 or -5;-1 and -5;-1,-5">You subtracted 3 instead of adding it. {m:x-3=2} gives {m:x=5}, and {m:x-3=-2} gives {m:x=1}.</li></ul>
+      <div class="solution"><p>{m:2(x-3)^2-8=0}, so {m:(x-3)^2=4} and {m:x-3=2} or {m:x-3=-2}. Then {m:x=5} or {m:x=1}. Check {m:x=1}: {m:2-12+10=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. The quadratic formula</h2>
+    <p>Completing the square works on every quadratic. Do it once for the general quadratic {m:ax^2+bx+c=0}, and you get a formula that solves them all. Here is the proof: a set of steps that shows the result is always true. Each line follows from the one before.</p>
+    <p>Divide every term by a. This is allowed because a is not 0.</p>
+    {md:x^2+frac(b,a)x+frac(c,a)=0}
+    <p>Complete the square. Half of {m:frac(b,a)} is {m:frac(b,2a)}.</p>
+    {md:(x+frac(b,2a))^2-frac(b^2,4a^2)+frac(c,a)=0}
+    <p>Move the terms without x to the right. Give the two fractions the same bottom, {m:4a^2}.</p>
+    {md:(x+frac(b,2a))^2=frac(b^2-4ac,4a^2)}
+    <p>Take the square root of both sides. The sign {m:plusminus} gives both square roots. It also covers the fact that the square root of {m:4a^2} is {m:2a} if a is positive and {m:-2a} if a is negative.</p>
+    {md:x+frac(b,2a)=plusminus frac(sqrt(b^2-4ac),2a)}
+    <p>Subtract {m:frac(b,2a)} from both sides.</p>
+    {md:x=frac(-b plusminus sqrt(b^2-4ac),2a)}
+    <div class="key">
+      <p><b>Key idea:</b> the {term:quadratic-formula} says that the roots of {m:ax^2+bx+c=0} are {m:x=frac(-b plusminus sqrt(b^2-4ac),2a)}. The two roots are the same distance either side of the axis of symmetry {m:x=frac(-b,2a)}. Read the formula as: x equals minus b, plus or minus the square root of b squared minus 4ac, all over 2a.</p>
+    </div>
+    <figure class="figure-lg">{fig:quadratics-formula}<figcaption>Look at the two short thick lines on the x-axis. For {m:x^2-8x+13=0}, {m:frac(-b,2a)=4}. Each root is {m:sqrt(3)} away from the axis of symmetry, on either side, so the roots are {m:4-sqrt(3)} and {m:4+sqrt(3)}.</figcaption></figure>
+    <p>Follow these steps.</p>
+    <ol>
+      <li>Rearrange to the form {m:ax^2+bx+c=0}. Write down a, b and c, with their signs.</li>
+      <li>Replace a, b and c in the formula with their values. Put brackets round any negative number: for {m:b=-8}, {m:b^2=(-8)^2=64}.</li>
+      <li>Work out the number under the square root first.</li>
+      <li>Give exact roots (with a surd) unless the question asks for decimals.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example: an exact answer</h3>
+      <p>Solve {m:x^2-8x+13=0}. Give exact roots.</p>
+      <ol class="steps">
+        <li>{m:a=1}, {m:b=-8} and {m:c=13}.</li>
+        <li>{m:b^2-4ac=(-8)^2-4*1*13=64-52=12}.</li>
+        <li>{m:x=frac(8 plusminus sqrt(12),2)}. Simplify the surd: {m:sqrt(12)=2sqrt(3)}.</li>
+        <li>{m:x=frac(8 plusminus 2sqrt(3),2)=4 plusminus sqrt(3)}. So {m:x=4+sqrt(3)} or {m:x=4-sqrt(3)}.</li>
+      </ol>
+      <p>As decimals, to 3 significant figures, the roots are 5.73 and 2.27.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: decimal answers</h3>
+      <p>Solve {m:2x^2-5x-1=0}. Give your roots to 3 significant figures.</p>
+      <ol class="steps">
+        <li>{m:a=2}, {m:b=-5} and {m:c=-1}.</li>
+        <li>{m:b^2-4ac=25-4*2*(-1)=25+8=33}.</li>
+        <li>{m:x=frac(5 plusminus sqrt(33),4)}. A calculator gives {m:sqrt(33)=5.7446} (to 5 significant figures).</li>
+        <li>{m:x=frac(5+5.7446,4)=2.69} or {m:x=frac(5-5.7446,4)=-0.186}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:3x^2+2x-4=0}. Give your roots to 3 significant figures.</p>
+      <ol class="steps">
+        <li>{m:a=3}, {m:b=2} and {m:c=-4}.</li>
+        <li>{m:b^2-4ac=4-4*3*(-4)=4+48=}<span class="blank" data-answers="52">___</span>.</li>
+        <li>{m:x=frac(-2 plusminus sqrt(52),6)}. Use a calculator.</li>
+        <li>The roots are {m:x=}<span class="blank" data-answers="0.869;-1.54">___</span> and {m:x=}<span class="blank" data-answers="0.869;-1.54">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:sqrt(52)=7.2111}. So {m:x=frac(-2+7.2111,6)=0.869} and {m:x=frac(-2-7.2111,6)=-1.54}. Exactly, {m:x=frac(-1 plusminus sqrt(13),3)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw" data-calc="yes">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the quadratic formula</h2>
+    <div class="q" data-answers="-3.19 or -0.314;-3.19 and -0.314;-3.19,-0.314;-0.314 or -3.19;-0.314 and -3.19;-0.314,-3.19" data-mode="value">
+      <p class="qtext">Solve {m:2x^2+7x+2=0}. Give your roots to 3 significant figures. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1.23} or 4.56.</p>
+      <ol class="ladder"><li>Read off a, b and c. Then work out the number under the square root.</li><li>{m:a=2}, {m:b=7}, {m:c=2}. So {m:b^2-4ac=49-16=33}.</li><li>{m:x=frac(-7 plusminus sqrt(33),4)}. Use a calculator for each root.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.314 or 3.19;0.314 and 3.19;0.314,3.19;3.19 or 0.314;3.19 and 0.314;3.19,0.314">You used +7 at the start. The formula starts with {m:-b}. Here {m:b=7}, so the top is {m:-7 plusminus sqrt(33)}.</li>
+        <li data-if="-8.44 or -5.56;-8.44 and -5.56;-8.44,-5.56;-5.56 or -8.44;-5.56 and -8.44;-5.56,-8.44">You divided only the square root by 4. The whole top line is divided by {m:2a=4}. Put brackets round the top.</li>
+      </ul>
+      <div class="solution"><p>{m:x=frac(-7+5.7446,4)=-0.314} and {m:x=frac(-7-5.7446,4)=-3.19}. Check: {m:2(-0.314)^2+7(-0.314)+2=0.197-2.198+2=-0.001}, which is 0 to 3 decimal places.</p></div>
+    </div>
+    <div class="q" data-answers="(5+sqrt(13))/2 or (5-sqrt(13))/2;(5-sqrt(13))/2 or (5+sqrt(13))/2;(5+sqrt(13))/2 and (5-sqrt(13))/2;(5-sqrt(13))/2 and (5+sqrt(13))/2;(5+sqrt(13))/2,(5-sqrt(13))/2;(5-sqrt(13))/2,(5+sqrt(13))/2" data-mode="value">
+      <p class="qtext">Solve {m:x^2-5x+3=0}. Give exact roots. Type both roots with &ldquo;or&rdquo; between them, like (1+sqrt(5))/2 or (1-sqrt(5))/2.</p>
+      <ol class="ladder"><li>{m:a=1}, {m:b=-5}, {m:c=3}. Put brackets round {m:-5} when you square it.</li><li>{m:b^2-4ac=(-5)^2-4*1*3=25-12=13}.</li><li>{m:x=frac(5 plusminus sqrt(13),2)}. {m:sqrt(13)} cannot be simplified.</li></ol>
+      <ul class="wrong">
+        <li data-if="(-5+sqrt(13))/2 or (-5-sqrt(13))/2;(-5-sqrt(13))/2 or (-5+sqrt(13))/2;(-5+sqrt(13))/2 and (-5-sqrt(13))/2;(-5-sqrt(13))/2 and (-5+sqrt(13))/2;(-5+sqrt(13))/2,(-5-sqrt(13))/2;(-5-sqrt(13))/2,(-5+sqrt(13))/2">You used {m:-5} at the start. The formula starts with {m:-b}. Here {m:b=-5}, so {m:-b=5}.</li>
+        <li data-if="(5+sqrt(37))/2 or (5-sqrt(37))/2;(5-sqrt(37))/2 or (5+sqrt(37))/2;(5+sqrt(37))/2 and (5-sqrt(37))/2;(5-sqrt(37))/2 and (5+sqrt(37))/2;(5+sqrt(37))/2,(5-sqrt(37))/2;(5-sqrt(37))/2,(5+sqrt(37))/2">You added {m:4ac}. The formula subtracts it: {m:4ac=12}, so {m:b^2-4ac=25-12=13}, not {m:25+12}.</li>
+      </ul>
+      <div class="solution"><p>{m:x=frac(5 plusminus sqrt(13),2)}. The roots are {m:frac(5+sqrt(13),2)} and {m:frac(5-sqrt(13),2)}. Check with decimals: {m:x=4.303}: {m:18.5-21.5+3=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-0.39 or 1.72;-0.39 and 1.72;-0.39,1.72;1.72 or -0.39;1.72 and -0.39;1.72,-0.39" data-mode="value">
+      <p class="qtext">Solve {m:3x^2-4x-2=0}. Give your roots to 2 decimal places. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Read off a, b and c with their signs.</li><li>{m:a=3}, {m:b=-4}, {m:c=-2}. So {m:b^2-4ac=16+24=40}.</li><li>{m:x=frac(4 plusminus sqrt(40),6)}. Use a calculator for each root.</li></ol>
+      <ul class="wrong"><li data-if="-1.72 or 0.39;-1.72 and 0.39;-1.72,0.39;0.39 or -1.72;0.39 and -1.72;0.39,-1.72">Here {m:b=-4}, so {m:-b=+4}. You used {m:-4}.</li></ul>
+      <div class="solution"><p>{m:x=frac(4+6.3246,6)=1.72} and {m:x=frac(4-6.3246,6)=-0.39}. Check {m:x=1.72}: {m:3(1.72)^2-4(1.72)-2=8.875-6.88-2=-0.005}, which is close to 0 because of rounding.</p></div>
+    </div>
+    <div class="q" data-answers="-0.69 or 0.29;-0.69 and 0.29;-0.69,0.29;0.29 or -0.69;0.29 and -0.69;0.29,-0.69" data-mode="value">
+      <p class="qtext">Solve {m:5x^2+2x-1=0}. Give your roots to 2 decimal places. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Write a, b and c. Then find {m:b^2-4ac}.</li><li>{m:a=5}, {m:b=2}, {m:c=-1}. So {m:b^2-4ac=4+20=24}.</li><li>The bottom of the formula is {m:2a}. What is it here?</li></ol>
+      <ul class="wrong"><li data-if="-3.45 or 1.45;-3.45 and 1.45;-3.45,1.45;1.45 or -3.45;1.45 and -3.45;1.45,-3.45">You divided by 2. The bottom of the formula is {m:2a=10}.</li></ul>
+      <div class="solution"><p>{m:x=frac(-2 plusminus sqrt(24),10)}. {m:x=frac(-2+4.899,10)=0.29} and {m:x=frac(-2-4.899,10)=-0.69}. Check {m:x=0.29}: {m:0.42+0.58-1=0}.</p></div>
+    </div>
+    <div class="q" data-answers="1/2 or 3;1/2 and 3;1/2,3;3 or 1/2;3 and 1/2;3,1/2;0.5 or 3;3 or 0.5" data-mode="value">
+      <p class="qtext">Use the quadratic formula to solve {m:2x^2-7x+3=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 3/4.</p>
+      <ol class="ladder"><li>{m:a=2}, {m:b=-7}, {m:c=3}. Work out {m:b^2-4ac} first.</li><li>{m:b^2-4ac=49-24=25}. It is a square number.</li><li>{m:x=frac(7 plusminus 5,4)}. Work out each root.</li></ol>
+      <ul class="wrong"><li data-if="1 or 6;1 and 6;1,6;6 or 1;6 and 1;6,1">The bottom of the formula is {m:2a=4}, not 2. Divide each top line by 4.</li></ul>
+      <div class="solution"><p>{m:x=frac(7 plusminus 5,4)}, so {m:x=frac(12,4)=3} or {m:x=frac(2,4)=frac(1,2)}. Because {m:b^2-4ac} is a square number, the quadratic also factorises: {m:(2x-1)(x-3)=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The equation is {m:5-2x^2=3x}. Which of these has every term on one side, in the form {m:ax^2+bx+c=0}, ready for the formula?</p>
+      <ul class="options">
+        <li data-correct>It becomes {m:-2x^2-3x+5=0}</li>
+        <li data-why="Moving 3x to the left changes its sign: 5 &minus; 2x&sup2; &minus; 3x = 0. The x term is &minus;3x, not +3x.">It becomes {m:-2x^2+3x+5=0}</li>
+        <li data-why="All three terms must change sign together, or none of them. Here only the sign of the x&sup2; term has changed. The signs of the x term and the number have not.">It becomes {m:2x^2-3x+5=0}</li>
+      </ul>
+      <ol class="ladder"><li>Subtract {m:3x} from both sides, so that the right side is 0.</li><li>{m:5-2x^2-3x=0}. Now write the terms with the highest power of x first.</li></ol>
+      <div class="solution"><p>{m:5-2x^2-3x=0} is the same as {m:-2x^2-3x+5=0}, with {m:a=-2}, {m:b=-3} and {m:c=5}. Multiplying every term by {m:-1} would give {m:2x^2+3x-5=0}, which is also correct.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. The discriminant</h2>
+    <p>In the quadratic formula, the part under the square root is {m:b^2-4ac}. This part is called the {term:discriminant}. The discriminant tells you how many roots the equation has, before you solve it.</p>
+    <p>The formula needs the square root of the discriminant. A {term:real-number} is any number on the number line. The square root of a negative number is not a real number, so the formula gives no real root. That is why the sign of the discriminant matters.</p>
+    <h3>Positive: two different roots</h3>
+    <p>If {m:b^2-4ac>0} (read &ldquo;is greater than 0&rdquo;), the square root of {m:b^2-4ac} is a real number that is not 0. The sign {m:plusminus} then gives two different roots, and the curve crosses the x-axis twice.</p>
+    <figure class="figure-lg">{fig:quadratics-disc-two}<figcaption>Look at where the curve meets the x-axis. {m:y=x^2-8x+13} has {m:b^2-4ac=64-52=12}. This is positive, so the curve crosses the x-axis twice.</figcaption></figure>
+    <h3>Zero: one repeated root</h3>
+    <p>If {m:b^2-4ac=0}, then {m:plusminus 0} gives only one value. The equation has one {term:repeated-root}. The vertex lies on the x-axis, so the curve touches the axis and turns round.</p>
+    <figure class="figure-lg">{fig:quadratics-disc-one}<figcaption>Look at where the curve meets the x-axis. {m:y=x^2-8x+16=(x-4)^2} has {m:b^2-4ac=64-64=0}. The curve touches the x-axis at {m:x=4}.</figcaption></figure>
+    <h3>Negative: no real roots</h3>
+    <p>If {m:b^2-4ac<0} (read &ldquo;is less than 0&rdquo;), there is no real square root. The equation has no real roots, and the curve does not meet the x-axis.</p>
+    <figure class="figure-lg">{fig:quadratics-disc-none}<figcaption>Look at where the curve meets the x-axis. {m:y=x^2-8x+18} has {m:b^2-4ac=64-72=-8}. This is negative, so the curve never meets the x-axis.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> for {m:ax^2+bx+c=0}, work out {m:b^2-4ac}. If it is positive, there are two different real roots. If it is 0, there is one repeated root. If it is negative, there are no real roots.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>How many real roots has {m:2x^2-3x+4=0}?</p>
+      <ol class="steps">
+        <li>{m:a=2}, {m:b=-3} and {m:c=4}.</li>
+        <li>{m:b^2-4ac=(-3)^2-4*2*4=9-32=-23}.</li>
+        <li>The discriminant is negative, so the equation has no real roots. The curve does not meet the x-axis.</li>
+      </ol>
+    </div>
+    <h3>Finding an unknown number k</h3>
+    <p>Sometimes a quadratic contains an unknown number k. You are told how many roots it has, and asked for k. Write the discriminant using k, then use what you know about the discriminant.</p>
+    <div class="worked">
+      <h3>Worked example: equal roots</h3>
+      <p>The equation {m:x^2+kx+9=0} has equal roots. Find the possible values of k.</p>
+      <ol class="steps">
+        <li>Equal roots mean {m:b^2-4ac=0}. Here {m:a=1}, {m:b=k} and {m:c=9}.</li>
+        <li>{m:k^2-4*1*9=0}, so {m:k^2=36}.</li>
+        <li>{m:k=6} or {m:k=-6}.</li>
+        <li>Check: for {m:k=6}, {m:x^2+6x+9=(x+3)^2}. For {m:k=-6}, {m:x^2-6x+9=(x-3)^2}. Each has a repeated root.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two different roots</h3>
+      <p>Find the values of k for which {m:x^2+4x+k=0} has two different real roots.</p>
+      <ol class="steps">
+        <li>Two different roots mean {m:b^2-4ac>0}. Here {m:a=1}, {m:b=4} and {m:c=k}.</li>
+        <li>{m:16-4k>0}. Add {m:4k} to both sides: {m:16>4k}.</li>
+        <li>Divide both sides by 4: {m:4>k}. So {m:k<4}.</li>
+        <li>Check: for {m:k=0}, {m:x^2+4x=0} has roots 0 and {m:-4}. For {m:k=5}, {m:16-20=-4} is negative, so there are no real roots.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The equation {m:2x^2+12x+k=0} has equal roots. Find k.</p>
+      <ol class="steps">
+        <li>{m:b^2-4ac=12^2-4*2*k=144-}<span class="blank" data-answers="8">___</span>{m:k}.</li>
+        <li>Equal roots mean this is 0, so {m:144=8k} and {m:k=}<span class="blank" data-answers="18">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:4*2=8}, so {m:144-8k=0} gives {m:k=18}. Check: {m:2x^2+12x+18=2(x+3)^2}, which has a repeated root.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the discriminant</h2>
+    <div class="q" data-answers="-12" data-mode="value">
+      <p class="qtext">Work out the discriminant of {m:x^2+4x+7}.</p>
+      <ol class="ladder"><li>The discriminant is {m:b^2-4ac}. Read off a, b and c.</li><li>{m:a=1}, {m:b=4} and {m:c=7}.</li><li>Work out {m:b^2}, then {m:4ac}, then subtract.</li></ol>
+      <ul class="wrong"><li data-if="44">You added {m:4ac}. The formula subtracts it: {m:16-28}.</li><li data-if="12">You dropped the minus sign. {m:16-28=-12}.</li></ul>
+      <div class="solution"><p>{m:b^2-4ac=16-4*1*7=16-28=-12}. It is negative, so this quadratic has no real roots.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The discriminant of a quadratic is 0. What does its curve do?</p>
+      <ul class="options">
+        <li data-correct>It touches the x-axis at one point</li>
+        <li data-why="Two crossing points need a positive discriminant. With 0, the two roots are the same value.">It crosses the x-axis at two points</li>
+        <li data-why="A curve that misses the x-axis has a negative discriminant. With 0, it touches the x-axis once.">It does not meet the x-axis</li>
+      </ul>
+      <ol class="ladder"><li>With a discriminant of 0, the formula gives {m:plusminus 0}. How many different values is that?</li><li>The one repeated root is where the vertex sits.</li></ol>
+      <div class="solution"><p>The formula gives {m:x=frac(-b plusminus 0,2a)}, which is one value. The vertex is on the x-axis, so the curve touches it and turns round.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many different real roots has {m:3x^2-2x-5=0}?</p>
+      <ol class="ladder"><li>Work out the discriminant. Then decide from its sign.</li><li>{m:a=3}, {m:b=-2}, {m:c=-5}. Remember that c is negative, so {m:-4ac} is positive.</li><li>The product {m:-4*3*(-5)} is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">One root needs a discriminant of exactly 0. This one is positive, so there are two different roots.</li>
+        <li data-if="0">{m:-4ac=-4*3*(-5)=+60}. A minus times a minus is a plus, so the discriminant is {m:4+60=64}, which is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=4+60=64}. This is positive, so there are 2 different real roots. Check: {m:(3x-5)(x+1)=0} gives {m:x=frac(5,3)} or {m:x=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="-8 or 8;-8 and 8;-8,8;8 or -8;8 and -8;8,-8" data-mode="value">
+      <p class="qtext">The equation {m:x^2+kx+16=0} has equal roots. Find both possible values of k. Type them with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Equal roots mean the discriminant is 0.</li><li>{m:a=1}, {m:b=k}, {m:c=16}. So {m:b^2-4ac=k^2-64}.</li><li>Solve {m:k^2=64}. A positive number has two square roots.</li></ol>
+      <ul class="wrong">
+        <li data-if="8">{m:k^2=64} has two solutions. {m:(-8)^2=64} as well.</li>
+        <li data-if="-4 or 4;-4 and 4;-4,4;4 or -4;4 and -4;4,-4">{m:4ac=4*1*16=64}, not 16. So {m:k^2=64}.</li>
+      </ul>
+      <div class="solution"><p>{m:k^2-4*1*16=0}, so {m:k^2=64} and {m:k=8} or {m:k=-8}. Check: {m:x^2+8x+16=(x+4)^2}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The equation {m:kx^2-6x+3=0} has equal roots. Find the value of k. (The number k is not 0.)</p>
+      <ol class="ladder"><li>Equal roots mean {m:b^2-4ac=0}.</li><li>Here {m:a=k}, {m:b=-6} and {m:c=3}.</li><li>{m:(-6)^2-4*k*3=0}. Solve for k.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">{m:36-12k=0} gives {m:12k=36}, so k is positive.</li>
+        <li data-if="1/3">{m:12k=36}. Divide 36 by 12 to get k, not 12 by 36.</li>
+      </ul>
+      <div class="solution"><p>{m:36-12k=0}, so {m:12k=36} and {m:k=3}. Check: {m:3x^2-6x+3=3(x-1)^2}, which has a repeated root.</p></div>
+    </div>
+    <div class="q" data-answers="k&gt;9;9&lt;k" data-mode="exact">
+      <p class="qtext">Find the values of k for which {m:x^2+6x+k=0} has no real roots. Type your answer like k&lt;2.</p>
+      <ol class="ladder"><li>No real roots means the discriminant is negative.</li><li>{m:6^2-4*1*k<0}, so {m:36-4k<0}.</li><li>Add {m:4k} to both sides, then divide by 4.</li></ol>
+      <ul class="wrong"><li data-if="k&lt;9;9&gt;k">The inequality sign points the wrong way. Test {m:k=0}: {m:x^2+6x=0} has roots, so small k does not work.</li></ul>
+      <div class="solution"><p>{m:36-4k<0} gives {m:36<4k}, so {m:9<k}, which is {m:k>9}. Check {m:k=10}: {m:36-40=-4}, which is negative.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Sketching a quadratic</h2>
+    <p>A sketch is a quick drawing that shows the shape of a curve and its key points. You label the points with their coordinates. You do not plot a table of values.</p>
+    <p>Follow these steps.</p>
+    <ol>
+      <li><b>Shape.</b> If a is positive, the curve opens upwards. If a is negative, it opens downwards.</li>
+      <li><b>The {term:y-intercept}.</b> Put {m:x=0}. The point is {m:(0, c)}.</li>
+      <li><b>The {term:x-intercept|x-intercepts}.</b> Put {m:y=0} and solve. Use the discriminant to see how many there are. If it is negative, there are none.</li>
+      <li><b>The vertex.</b> The axis of symmetry is halfway between the roots, {m:x=frac(-b,2a)}. Put that value of x into the equation to find y. You can also complete the square.</li>
+      <li><b>Draw</b> a smooth curve through the points. Make it symmetrical about the axis.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Sketch {m:y=x^2-2x-3}. Label the intercepts and the vertex.</p>
+      <ol class="steps">
+        <li>Shape: the number in front of {m:x^2} is 1, which is positive, so the curve opens upwards.</li>
+        <li>y-intercept: {m:x=0} gives {m:y=-3}. The point is {m:(0, -3)}.</li>
+        <li>x-intercepts: {m:x^2-2x-3=0} gives {m:(x-3)(x+1)=0}, so {m:x=3} or {m:x=-1}. The points are {m:(3, 0)} and {m:(-1, 0)}.</li>
+        <li>Axis of symmetry: halfway between {m:-1} and 3 is {m:frac(-1+3,2)=1}. So the axis of symmetry is {m:x=1}. Put {m:x=1} into the equation: {m:y=1-2-3=-4}. The vertex is {m:(1, -4)}.</li>
+        <li>Draw the curve through these four points.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-sketch}<figcaption>Look at the four labelled points: two on the x-axis, one on the y-axis, and the vertex. This is the finished sketch of {m:y=x^2-2x-3}.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Sketch {m:y=-x^2+2x+8}. Find its key points.</p>
+      <ol class="steps">
+        <li>The number in front of {m:x^2} is negative, so the curve opens downwards.</li>
+        <li>y-intercept: {m:x=0} gives {m:y=}<span class="blank" data-answers="8">___</span>.</li>
+        <li>x-intercepts: Multiply both sides of {m:-x^2+2x+8=0} by {m:-1}: {m:x^2-2x-8=0}. So {m:(x-4)(x+2)=0}. The roots are {m:x=}<span class="blank" data-answers="4;-2">___</span> and {m:x=}<span class="blank" data-answers="4;-2">___</span>.</li>
+        <li>Axis of symmetry: {m:x=}<span class="blank" data-answers="1">___</span>. Then {m:y=-1+2+8=}<span class="blank" data-answers="9">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The y-intercept is {m:(0, 8)}, the x-intercepts are {m:(-2, 0)} and {m:(4, 0)}, and the vertex is {m:(1, 9)}. The vertex is the highest point.</p>
+      <figure class="figure-lg">{fig:quadratics-sketch-neg}<figcaption>Look at the four labelled points. This is the sketch of {m:y=-x^2+2x+8}.</figcaption></figure></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: sketching</h2>
+    <div class="q" data-answers="(0,-5);0,-5" data-mode="exact">
+      <p class="qtext">The curve {m:y=x^2-4x-5} crosses the y-axis. Write down the coordinates of that point. Type it like (1,-2).</p>
+      <ol class="ladder"><li>On the y-axis, what is the value of x?</li><li>Put {m:x=0} into the equation.</li></ol>
+      <ul class="wrong"><li data-if="(-5,0);-5,0">Coordinates are written (x, y). On the y-axis, x is 0, so the point is {m:(0, -5)}.</li></ul>
+      <div class="solution"><p>{m:x=0} gives {m:y=0-0-5=-5}. The point is {m:(0, -5)}. It is the constant term, c.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 5;-1 and 5;-1,5;5 or -1;5 and -1;5,-1" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2-4x-5} crosses the x-axis. Find the x-coordinates of the two points. Type them with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>On the x-axis, what is the value of y?</li><li>Solve {m:x^2-4x-5=0}.</li><li>The numbers are {m:-5} and 1: they multiply to {m:-5} and add to {m:-4}.</li></ol>
+      <ul class="wrong"><li data-if="-5 or 1;-5 and 1;-5,1;1 or -5;1 and -5;1,-5">You used the numbers in the brackets as the roots. The bracket {m:(x-5)} is 0 when {m:x=5}, so each root has the opposite sign to the number in its bracket.</li></ul>
+      <div class="solution"><p>{m:(x-5)(x+1)=0}, so {m:x=5} or {m:x=-1}. The points are {m:(-1, 0)} and {m:(5, 0)}.</p></div>
+    </div>
+    <div class="q" data-answers="x=2;2" data-mode="exact">
+      <p class="qtext">Write down the equation of the axis of symmetry of {m:y=x^2-4x-5}. Type it like x=3.</p>
+      <ol class="ladder"><li>The axis is halfway between the two x-intercepts.</li><li>The x-intercepts are {m:-1} and 5. Find the number halfway between them.</li></ol>
+      <ul class="wrong"><li data-if="-2">You have the wrong sign. Halfway between {m:-1} and 5 is {m:frac(-1+5,2)=2}. The formula agrees: {m:b=-4}, so {m:-b=4} and {m:frac(-b,2a)=frac(4,2)=2}.</li></ul>
+      <div class="solution"><p>{m:frac(-1+5,2)=2}. The axis of symmetry is {m:x=2}. Check with the formula: {m:frac(-b,2a)=frac(4,2)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="(2,-9);2,-9" data-mode="exact">
+      <p class="qtext">Write down the coordinates of the vertex of {m:y=x^2-4x-5}. Type it like (1,-2).</p>
+      <ol class="ladder"><li>The vertex is on the axis of symmetry. What is its x-coordinate?</li><li>The axis is {m:x=2}. Put {m:x=2} into the equation to find y.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2,-5);2,-5">You gave {m:-5}, which is the y-coordinate of the y-intercept, not of the vertex. Put {m:x=2} into the equation: {m:4-8-5}.</li>
+        <li data-if="(-2,-9);-2,-9">The axis is {m:x=2}, not {m:x=-2}. The number halfway between {m:-1} and 5 is 2.</li>
+      </ul>
+      <div class="solution"><p>At {m:x=2}, {m:y=4-8-5=-9}. The vertex is {m:(2, -9)}. Check by completing the square: {m:y=(x-2)^2-4-5=(x-2)^2-9}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement about {m:y=-x^2+6x-10} is true?</p>
+      <ul class="options">
+        <li data-correct>The curve lies completely below the x-axis</li>
+        <li data-why="The curve opens downwards, because the number in front of x&sup2; is negative. Its highest point is (3, &minus;1), below the axis.">The curve lies completely above the x-axis</li>
+        <li data-why="The discriminant is 36 &minus; 40 = &minus;4, which is negative. So there are no x-intercepts.">The curve crosses the x-axis twice</li>
+      </ul>
+      <ol class="ladder"><li>Does the curve open upwards or downwards?</li><li>Work out the discriminant to see whether it meets the x-axis.</li><li>Find the highest point by completing the square.</li></ol>
+      <div class="solution"><p>The discriminant is {m:36-4(-1)(-10)=36-40=-4}, so there are no x-intercepts. The curve opens downwards, and {m:y=-(x-3)^2-1}, so its highest point is {m:(3, -1)}. All of the curve is below the x-axis.</p></div>
+    </div>
+    <div class="q" data-answers="-4" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2+bx+c} crosses the x-axis at {m:(1, 0)} and {m:(5, 0)}. Find the least value of y.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-roots15}</figure>
+      <ol class="ladder"><li>The least value is at the vertex. Where is the axis of symmetry?</li><li>The axis is halfway between 1 and 5, so {m:x=3}.</li><li>The curve is {m:y=(x-1)(x-5)}. Put {m:x=3} into it.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the x-coordinate of the vertex. The question asks for the least value of y.</li>
+        <li data-if="5">You gave {m:c=1*5}, which is the value of y at {m:x=0}. The vertex is lower than that.</li>
+      </ul>
+      <div class="solution"><p>{m:y=(x-1)(x-5)}, because the number in front of {m:x^2} is 1. At {m:x=3}, {m:y=2*(-2)=-4}. The least value is {m:-4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>7. Quadratics in disguise</h2>
+    <p>Some equations are not quadratics in x, but they are quadratics in something else. They are {term:quadratic-in-disguise|quadratics in disguise}. An index (also called a power) is the small raised number, as in {m:x^2} or {m:x^(frac(1,2))}. Look for a power of x, and another power that is its square. For example, {m:x^4} is the square of {m:x^2}, and {m:x} is the square of {m:x^(frac(1,2))}. A {term:fractional-index} such as {m:frac(1,2)} means taking a root of a number: {m:x^(frac(1,2))=sqrt(x)}, the square root of x.</p>
+    <p>Follow these steps.</p>
+    <ol>
+      <li>Choose a new letter, u, for the smaller power. Choosing a new letter like this is called a substitution.</li>
+      <li>Rewrite the equation as a quadratic in u.</li>
+      <li>Solve for u.</li>
+      <li>Go back to x. For each value of u, solve for x.</li>
+      <li>Check each x in the original equation.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:x^4-5x^2+4=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^2}. Then {m:x^4=(x^2)^2=u^2}.</li>
+        <li>The equation becomes {m:u^2-5u+4=0}.</li>
+        <li>{m:(u-1)(u-4)=0}, so {m:u=1} or {m:u=4}.</li>
+        <li>Go back to x. {m:x^2=1} gives {m:x=1} or {m:x=-1}. {m:x^2=4} gives {m:x=2} or {m:x=-2}.</li>
+        <li>The equation has four roots: {m:-2}, {m:-1}, 1 and 2.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-disguise-u}<figcaption>Look at where the curve crosses the u-axis. The quadratic in u has roots {m:u=1} and {m:u=4}. These are the two values of {m:x^2}.</figcaption></figure>
+      <figure class="figure-lg">{fig:quadratics-disguise-x}<figcaption>Look at the four points where the curve crosses the x-axis. Each value of u gives two values of x, one positive and one negative. The curve is {m:y=x^4-5x^2+4}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: exact roots</h3>
+      <p>Solve {m:x^4-5x^2+6=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^2}. The equation becomes {m:u^2-5u+6=0}.</li>
+        <li>{m:(u-2)(u-3)=0}, so {m:u=2} or {m:u=3}.</li>
+        <li>{m:x^2=2} gives {m:x=sqrt(2)} or {m:x=-sqrt(2)}. {m:x^2=3} gives {m:x=sqrt(3)} or {m:x=-sqrt(3)}.</li>
+        <li>The four exact roots are {m:sqrt(2)}, {m:-sqrt(2)}, {m:sqrt(3)} and {m:-sqrt(3)}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a value of u that does not work</h3>
+      <p>Solve {m:x^4+x^2-6=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^2}. The equation becomes {m:u^2+u-6=0}.</li>
+        <li>{m:(u+3)(u-2)=0}, so {m:u=-3} or {m:u=2}.</li>
+        <li>{m:x^2=-3} has no real solution, because a square is never negative.</li>
+        <li>{m:x^2=2} gives {m:x=sqrt(2)} or {m:x=-sqrt(2)}.</li>
+        <li>The equation has two real roots: {m:sqrt(2)} and {m:-sqrt(2)}.</li>
+      </ol>
+    </div>
+    <h3>With fractional indices</h3>
+    <p>The same idea works when the powers are fractions. Remember that {m:x=(x^(frac(1,2)))^2}.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:x-5x^(frac(1,2))+4=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^(frac(1,2))}. Then {m:x=u^2}.</li>
+        <li>The equation becomes {m:u^2-5u+4=0}, so {m:(u-1)(u-4)=0}.</li>
+        <li>{m:u=1} or {m:u=4}.</li>
+        <li>Go back to x. {m:x^(frac(1,2))=1} gives {m:x=1^2=1}. {m:x^(frac(1,2))=4} gives {m:x=4^2=16}.</li>
+        <li>Check {m:x=16}: {m:16-5*4+4=0}. Check {m:x=1}: {m:1-5+4=0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-sqrt}<figcaption>Look at the two points where the curve crosses the x-axis. The curve {m:y=x-5x^(frac(1,2))+4} exists only for x of 0 or more. It crosses at {m:x=1} and {m:x=16}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a root that does not work</h3>
+      <p>Solve {m:x-3x^(frac(1,2))-4=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^(frac(1,2))}. The equation becomes {m:u^2-3u-4=0}, so {m:(u-4)(u+1)=0}.</li>
+        <li>{m:u=4} or {m:u=-1}.</li>
+        <li>{m:x^(frac(1,2))=4} gives {m:x=16}.</li>
+        <li>{m:x^(frac(1,2))=-1} has no solution. The power {m:x^(frac(1,2))} means the positive square root, which is never negative.</li>
+        <li>Check {m:x=16}: {m:16-12-4=0}. The only root is {m:x=16}.</li>
+      </ol>
+      <p>Suppose you squared {m:u=-1} anyway. You would get {m:x=1}. Check it: {m:1-3-4=-6}, not 0. Squaring can create a value that is not a root, so always check.</p>
+    </div>
+    <p>The letter u can also stand for a bracket. In {m:(x+1)^2-5(x+1)+6=0}, let {m:u=x+1}. Then {m:u^2-5u+6=0}, so {m:u=2} or {m:u=3}. That gives {m:x=1} or {m:x=2}.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:x^4-10x^2+9=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=x^2}. The equation becomes {m:u^2-10u+9=0}.</li>
+        <li>The numbers {m:-1} and <span class="blank" data-answers="-9">___</span> multiply to 9 and add to {m:-10}. So {m:u=1} or {m:u=}<span class="blank" data-answers="9">___</span>.</li>
+        <li>{m:x^2=1} gives {m:x=1} or {m:x=-1}. {m:x^2=9} gives {m:x=3} or {m:x=}<span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The four roots are {m:-3}, {m:-1}, 1 and 3. Check {m:x=3}: {m:81-90+9=0}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: quadratics in disguise</h2>
+    <div class="q" data-answers="-3 or -2 or 2 or 3;-3 and -2 and 2 and 3;-3,-2,2,3" data-mode="value">
+      <p class="qtext">Solve {m:x^4-13x^2+36=0}. Type all four roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Which power of x is the square of another? Let u stand for the smaller one.</li><li>Let {m:u=x^2}. Then {m:u^2-13u+36=0}.</li><li>{m:(u-4)(u-9)=0}. Now go back and solve for x, using both signs.</li></ol>
+      <ul class="wrong">
+        <li data-if="4 or 9;4 and 9;4,9;9 or 4;9 and 4;9,4">Those are the values of u. Go back to x: {m:x^2=4} and {m:x^2=9}.</li>
+        <li data-if="2 or 3;2 and 3;2,3;3 or 2;3 and 2;3,2">A positive number has two square roots. {m:x^2=4} gives {m:x=2} or {m:x=-2}, and the same for 9.</li>
+      </ul>
+      <div class="solution"><p>{m:(u-4)(u-9)=0}, so {m:x^2=4} or {m:x^2=9}. The roots are {m:-3}, {m:-2}, 2 and 3. Check {m:x=3}: {m:81-117+36=0}.</p></div>
+    </div>
+    <div class="q" data-calc="yes" data-answers="-2 or -1.73 or 1.73 or 2;-2 and -1.73 and 1.73 and 2;-2,-1.73,1.73,2" data-mode="value">
+      <p class="qtext">Solve {m:x^4-7x^2+12=0}. Give any root that is not a whole number to 3 significant figures. Type all four roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Let {m:u=x^2}, and solve the quadratic in u.</li><li>{m:u^2-7u+12=0} gives {m:(u-3)(u-4)=0}.</li><li>Go back to x. One value of u gives a surd, and the other gives a whole number.</li></ol>
+      <ul class="wrong">
+        <li data-if="3 or 4;3 and 4;3,4;4 or 3;4 and 3;4,3">Those are the values of u. Go back to x: {m:x^2=3} and {m:x^2=4}.</li>
+        <li data-if="1.73 or 2;1.73 and 2;1.73,2;2 or 1.73;2 and 1.73;2,1.73">You gave only the positive roots. Each value of {m:x^2} also gives a negative root.</li>
+      </ul>
+      <div class="solution"><p>{m:u=3} or {m:u=4}. {m:x^2=3} gives {m:x=plusminus 1.73} and {m:x^2=4} gives {m:x=plusminus 2}. The four roots are {m:-2}, {m:-1.73}, 1.73 and 2.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 1;-1 and 1;-1,1;1 or -1;1 and -1;1,-1" data-mode="value">
+      <p class="qtext">Solve {m:x^4+3x^2-4=0}. Give all the real roots. Type them with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Let {m:u=x^2}. Solve the quadratic in u.</li><li>{m:u^2+3u-4=0} gives {m:(u+4)(u-1)=0}.</li><li>Can {m:x^2} be negative? Decide which value of u to keep.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4 or 1;-4 and 1;-4,1;1 or -4;1 and -4;1,-4">Those are the values of u. {m:x^2=-4} has no real root, and {m:x^2=1} gives {m:x=1} or {m:x=-1}.</li>
+        <li data-if="1">{m:x^2=1} has two roots: {m:x=1} and {m:x=-1}.</li>
+      </ul>
+      <div class="solution"><p>{m:u=-4} or {m:u=1}. {m:x^2=-4} has no real solution. {m:x^2=1} gives {m:x=1} or {m:x=-1}. Check {m:x=1}: {m:1+3-4=0}.</p></div>
+    </div>
+    <div class="q" data-answers="4 or 16;4 and 16;4,16;16 or 4;16 and 4;16,4" data-mode="value">
+      <p class="qtext">Solve {m:x-6x^(frac(1,2))+8=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>{m:x} is the square of {m:x^(frac(1,2))}. Let {m:u=x^(frac(1,2))}.</li><li>The equation becomes {m:u^2-6u+8=0}, so {m:(u-2)(u-4)=0}.</li><li>Go back to x: {m:x=u^2}.</li></ol>
+      <ul class="wrong"><li data-if="2 or 4;2 and 4;2,4;4 or 2;4 and 2;4,2">Those are the values of u. Since {m:u=x^(frac(1,2))}, we have {m:x=u^2}: so {m:x=4} and {m:x=16}.</li></ul>
+      <div class="solution"><p>{m:u=2} gives {m:x=4}. {m:u=4} gives {m:x=16}. Check {m:x=16}: {m:16-24+8=0}. Check {m:x=4}: {m:4-12+8=0}.</p></div>
+    </div>
+    <div class="q" data-answers="25" data-mode="value">
+      <p class="qtext">Solve {m:x-3x^(frac(1,2))-10=0}.</p>
+      <ol class="ladder"><li>Let {m:u=x^(frac(1,2))}. Solve the quadratic in u.</li><li>{m:u^2-3u-10=0} gives {m:(u-5)(u+2)=0}.</li><li>Can {m:x^(frac(1,2))} be negative? Decide which value of u to keep.</li></ol>
+      <ul class="wrong">
+        <li data-if="4 or 25;4 and 25;4,25;25 or 4;25 and 4;25,4">{m:x^(frac(1,2))=-2} has no solution. Squaring gives {m:x=4}, but check it: {m:4-6-10=-12}, not 0.</li>
+        <li data-if="5">That is the value of u. Go back to x: {m:x=u^2=25}.</li>
+      </ul>
+      <div class="solution"><p>{m:u=5} or {m:u=-2}. {m:x^(frac(1,2))=5} gives {m:x=25}. {m:x^(frac(1,2))=-2} has no solution. Check {m:x=25}: {m:25-15-10=0}. The only root is 25.</p></div>
+    </div>
+    <div class="q" data-answers="-125 or 8;-125 and 8;-125,8;8 or -125;8 and -125;8,-125" data-mode="value">
+      <p class="qtext">Solve {m:x^(frac(2,3))+3x^(frac(1,3))-10=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>{m:x^(frac(2,3))=(x^(frac(1,3)))^2}. Let {m:u=x^(frac(1,3))}.</li><li>{m:u^2+3u-10=0} gives {m:(u+5)(u-2)=0}.</li><li>{m:x^(frac(1,3))} is the cube root of x. Cube both sides (raise each side to the power 3) to find x.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5 or 2;-5 and 2;-5,2;2 or -5;2 and -5;2,-5">Those are the values of u. Since {m:u=x^(frac(1,3))}, we have {m:x=u^3}.</li>
+        <li data-if="8">A cube root of a negative number is a real number: {m:(-5)^3=-125}. So {m:u=-5} also gives a root.</li>
+      </ul>
+      <div class="solution"><p>{m:u=-5} or {m:u=2}. {m:x=(-5)^3=-125} or {m:x=2^3=8}. Check {m:x=-125}: {m:25-15-10=0}. Check {m:x=8}: {m:4+6-10=0}.</p></div>
+    </div>
+    <div class="q" data-answers="1 or 2;1 and 2;1,2;2 or 1;2 and 1;2,1" data-mode="value">
+      <p class="qtext">Solve {m:(x+1)^2-5(x+1)+6=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>The bracket {m:(x+1)} appears twice. Let u stand for it.</li><li>{m:u^2-5u+6=0} gives {m:(u-2)(u-3)=0}.</li><li>Go back to x: {m:u=x+1}. Solve for x.</li></ol>
+      <ul class="wrong"><li data-if="2 or 3;2 and 3;2,3;3 or 2;3 and 2;3,2">Those are the values of u, which is {m:x+1}. Subtract 1: {m:x=u-1}.</li></ul>
+      <div class="solution"><p>{m:u=2} gives {m:x+1=2}, so {m:x=1}. {m:u=3} gives {m:x=2}. Check by expanding: {m:x^2+2x+1-5x-5+6=x^2-3x+2=(x-1)(x-2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>8. Problem solving with quadratics</h2>
+    <p>Many problems lead to a quadratic. Follow these steps.</p>
+    <ol>
+      <li>Draw a diagram, if there is a shape. Name the unknown with a letter.</li>
+      <li>Write an equation from the facts you are given.</li>
+      <li>Solve it.</li>
+      <li>Rule out any root that does not fit the situation. For example, a length cannot be negative.</li>
+      <li>Answer the question that was asked, with units, and check it.</li>
+    </ol>
+    <div class="worked">
+      <h3>Worked example: an area</h3>
+      <p>A rectangle is 3 m longer than it is wide. Its area is 40 m&sup2;. Find its width.</p>
+      <ol class="steps">
+        <li>Let the width be x metres. The length is {m:x+3} metres.</li>
+        <li>Area is length times width: {m:x(x+3)=40}, so {m:x^2+3x-40=0}.</li>
+        <li>{m:(x+8)(x-5)=0}, so {m:x=-8} or {m:x=5}.</li>
+        <li>A width cannot be negative. So {m:x=5}.</li>
+        <li>The width is 5 m and the length is 8 m. Check: {m:5*8=40}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-rect}<figcaption>Look at the labels on the sides. The rectangle has width x and length {m:x+3}. The equation comes from {m:"area"=40}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the greatest area</h3>
+      <p>A farmer has 40 m of fence. She uses it for three sides of a rectangular pen (a fenced area for animals). The fourth side is a wall. What is the greatest area the pen can have?</p>
+      <ol class="steps">
+        <li>Let each short side be x metres. The two short sides use {m:2x} of the fence, so the long side is {m:40-2x}.</li>
+        <li>The area is {m:A=x(40-2x)=40x-2x^2}.</li>
+        <li>Complete the square: {m:-2x^2+40x=-2(x^2-20x)=-2[(x-10)^2-100]=200-2(x-10)^2}.</li>
+        <li>{m:(x-10)^2} is never negative, so A is at most 200. It equals 200 when {m:x=10}.</li>
+        <li>The greatest area is 200 m&sup2;. The pen is 10 m by 20 m. Check: {m:10*20=200}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:quadratics-pen}<figcaption>Look at the labels on the sides. The thick lines are the 40 m of fence. The wall is the fourth side.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: show that</h3>
+      <p>{term:show-that|Show that} the equation {m:x^2+kx+(k-1)=0} has real roots for every value of k.</p>
+      <ol class="steps">
+        <li>{m:a=1}, {m:b=k} and {m:c=k-1}.</li>
+        <li>{m:b^2-4ac=k^2-4(k-1)=k^2-4k+4=(k-2)^2}.</li>
+        <li>A square is never negative, so {m:(k-2)^2} is 0 or more for every k.</li>
+        <li>A discriminant that is 0 or more means the equation has real roots. This is true for every value of k.</li>
+      </ol>
+      <p>To show a result, write every step. Start from the left side of the statement and work step by step to the right side. Do not start by assuming the result is true.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a root is given</h3>
+      <p>{m:x=3} is a root of {m:x^2+kx-21=0}. Find k, and find the other root.</p>
+      <ol class="steps">
+        <li>A root makes the equation true. Put {m:x=3} in: {m:9+3k-21=0}.</li>
+        <li>{m:3k=12}, so {m:k=4}.</li>
+        <li>The equation is {m:x^2+4x-21=0}, so {m:(x+7)(x-3)=0}.</li>
+        <li>The other root is {m:x=-7}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>{m:x=2} is a root of {m:x^2+kx-10=0}. Find k, and find the other root.</p>
+      <ol class="steps">
+        <li>Put {m:x=2} in: {m:4+2k-10=0}, so {m:2k=6} and {m:k=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>The equation is {m:x^2+3x-10=0}, so {m:(x+5)(x-2)=0}. The other root is {m:x=}<span class="blank" data-answers="-5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:4+2k-10=0} gives {m:k=3}. Then {m:(x+5)(x-2)=0} gives {m:x=-5} or {m:x=2}. Check {m:x=-5}: {m:25-15-10=0}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: problem solving</h2>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">A rectangle has width x metres and length {m:x+5} metres. Its area is 84 m&sup2;. Find the width, in metres.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-rect}</figure>
+      <ol class="ladder"><li>Area is length times width. Write an equation in x.</li><li>{m:x(x+5)=84}. Rearrange so that one side is 0.</li><li>{m:x^2+5x-84=0}. Factorise, then decide which root fits a width.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is the length, {m:x+5=12}. The question asks for the width, x.</li>
+        <li data-if="-12">{m:x=-12} solves the equation, but a width cannot be negative.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+5x-84=0}, so {m:(x+12)(x-7)=0} and {m:x=-12} or {m:x=7}. A width cannot be negative, so the width is 7 m. Check: the length is 12 m and {m:7*12=84}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">A right-angled triangle has sides of {m:x}, {m:x+7} and 13 centimetres. The side of length 13 cm is the longest. Find x.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-tri}</figure>
+      <ol class="ladder"><li>Use Pythagoras&rsquo; theorem: the squares of the two short sides add to the square of the longest side.</li><li>{m:x^2+(x+7)^2=13^2}. Expand and rearrange to equal 0.</li><li>{m:2x^2+14x-120=0}. Divide every term by 2, then factorise.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is the side {m:x+7=12}. The question asks for x.</li>
+        <li data-if="-12">{m:x=-12} solves the equation, but a length cannot be negative.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+x^2+14x+49=169}, so {m:x^2+7x-60=0} and {m:(x+12)(x-5)=0}. A length is positive, so {m:x=5}. The sides are 5, 12 and 13. Check: {m:25+144=169}.</p></div>
+    </div>
+    <div class="q" data-answers="450" data-mode="value">
+      <p class="qtext">A farmer has 60 m of fence. She uses it for three sides of a rectangular pen. The fourth side is a wall. Find the greatest area of the pen, in m&sup2;.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-pen}</figure>
+      <ol class="ladder"><li>Each short side is x. What is the length of the long side?</li><li>The long side is {m:60-2x}. So the area is {m:A=x(60-2x)=60x-2x^2}.</li><li>Complete the square, then read off the greatest value.</li></ol>
+      <ul class="wrong">
+        <li data-if="15">That is the width x that gives the greatest area. The question asks for the area.</li>
+        <li data-if="225">You did not multiply the 225 by 2. {m:-2[(x-15)^2-225]=-2(x-15)^2+450}.</li>
+      </ul>
+      <div class="solution"><p>{m:A=60x-2x^2=-2[(x-15)^2-225]=450-2(x-15)^2}. The greatest area is 450 m&sup2;, when {m:x=15}. The pen is 15 m by 30 m. Check: {m:15*30=450}.</p></div>
+    </div>
+    <div class="q" data-answers="7 and 13;7,13;7 or 13;13 and 7;13,7;13 or 7" data-mode="value">
+      <p class="qtext">Two positive numbers differ by 6. Their product is 91. Find the two numbers. Type them with &ldquo;and&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Call the smaller number x. What is the larger number?</li><li>The larger is {m:x+6}. Write {m:x(x+6)=91} and rearrange to equal 0.</li><li>{m:x^2+6x-91=0}. Factorise. Then use the fact that both numbers are positive.</li></ol>
+      <ul class="wrong"><li data-if="-13 and -7;-13,-7;-13 or -7;-7 and -13;-7,-13;-7 or -13">These also multiply to 91 and differ by 6, but the question says the numbers are positive.</li></ul>
+      <div class="solution"><p>{m:x^2+6x-91=0}, so {m:(x+13)(x-7)=0}. The smaller number is {m:x=7} (not {m:-13}, because it is positive). The larger is 13. Check: {m:7*13=91} and {m:13-7=6}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">{m:x=3} is a root of {m:x^2+kx-21=0}. Find the value of k.</p>
+      <ol class="ladder"><li>A root makes the equation true. What do you put in for x?</li><li>Put {m:x=3} into the equation.</li><li>{m:9+3k-21=0}. Solve for k.</li></ol>
+      <ul class="wrong">
+        <li data-if="-10">You added 21. The equation has {m:-21}, so {m:9+3k-21=0} gives {m:3k=12}.</li>
+        <li data-if="12">{m:3k=12}. Divide by 3 to get k.</li>
+      </ul>
+      <div class="solution"><p>{m:3^2+3k-21=0}, so {m:3k=12} and {m:k=4}. Check: {m:x^2+4x-21=(x+7)(x-3)}, which is 0 when {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="-7" data-mode="value">
+      <p class="qtext">{m:x=3} is a root of {m:x^2+kx-21=0}. Find the other root.</p>
+      <ol class="ladder"><li>First find k, by putting {m:x=3} into the equation.</li><li>{m:k=4}. So the equation is {m:x^2+4x-21=0}.</li><li>Factorise. One bracket gives {m:x=3}. What does the other give?</li></ol>
+      <ul class="wrong"><li data-if="7">You used the number in the bracket as the root. {m:(x+7)} is 0 when {m:x=-7}, so the root has the opposite sign.</li></ul>
+      <div class="solution"><p>{m:k=4}, so {m:x^2+4x-21=(x+7)(x-3)=0}. The roots are {m:x=-7} and {m:x=3}. The other root is {m:-7}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>Everything so far goes forwards: you are given a quadratic and you find its roots or its graph. Now reverse it. You are given the roots or the graph, and you build the quadratic.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the equation to its roots. Factorise, then set each bracket to 0.</p><p>{m:x^2-5x+6=0} becomes {m:(x-2)(x-3)=0}, so {m:x=2} or {m:x=3}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the roots to the equation. Make one bracket from each root, then expand.</p><p>The roots 2 and 3 give {m:(x-2)(x-3)=x^2-5x+6}.</p></div>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> a root {m:x=p} comes from the bracket {m:(x-p)}, so the root and the number in the bracket have opposite signs. For roots p and q, {m:(x-p)(x-q)=x^2-(p+q)x+pq}. The number in front of x is minus the sum of the roots (add the roots, then change the sign). The number with no x is the product of the roots (multiply them). If the number in front of {m:x^2} is not 1, multiply the whole expression by that number: {m:a(x-p)(x-q)}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from the roots</h3>
+      <p>Find a quadratic with whole numbers in front of each term, whose roots are {m:frac(1,2)} and {m:-3}.</p>
+      <ol class="steps">
+        <li>The roots give the brackets {m:(x-frac(1,2))} and {m:(x+3)}.</li>
+        <li>To remove the fraction, write {m:(x-frac(1,2))} as {m:frac(1,2)(2x-1)}. Multiplying by a number stretches the curve up or down but does not move the roots. So multiply by 2 and use {m:(2x-1)(x+3)}.</li>
+        <li>Expand: {m:2x^2+6x-x-3=2x^2+5x-3}.</li>
+        <li>Check: {m:x=frac(1,2)} gives {m:frac(1,2)+frac(5,2)-3=0}. {m:x=-3} gives {m:18-15-3=0}.</li>
+      </ol>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the equation to the graph. Find the intercepts and the vertex, then sketch.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the graph to the equation. Use the roots to write the brackets, then use one more point to find the number a.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a graph</h3>
+      <p>A parabola crosses the x-axis at {m:(1, 0)} and {m:(4, 0)}. It also passes through {m:(0, 8)}. Find its equation.</p>
+      <figure class="figure-lg">{fig:quadratics-from-graph}<figcaption>Look at the two points on the x-axis and the point on the y-axis. The roots give the brackets. The point {m:(0, 8)} gives the number a.</figcaption></figure>
+      <ol class="steps">
+        <li>The roots are 1 and 4, so {m:y=a(x-1)(x-4)}.</li>
+        <li>The curve passes through {m:(0, 8)}. Put {m:x=0} and {m:y=8} in: {m:8=a(-1)(-4)=4a}.</li>
+        <li>So {m:a=2} and {m:y=2(x-1)(x-4)}.</li>
+        <li>Expand: {m:y=2x^2-10x+8}. Check: at {m:x=0}, {m:y=8}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from the vertex</h3>
+      <p>A parabola has its vertex at {m:(1, 2)} and passes through {m:(3, 10)}. Find its equation.</p>
+      <ol class="steps">
+        <li>The vertex is {m:(1, 2)}, so {m:y=a(x-1)^2+2}.</li>
+        <li>Put {m:x=3} and {m:y=10} in: {m:10=a(2)^2+2}, so {m:4a=8}.</li>
+        <li>So {m:a=2} and {m:y=2(x-1)^2+2}. Expanded, this is {m:y=2x^2-4x+4}.</li>
+      </ol>
+    </div>
+    <p><b>Try it:</b> write a quadratic with roots 1 and 6. Then check your answer: the number in front of x should be minus the sum of the roots, and the number with no x should be their product.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="x^2-3x-4;-4-3x+x^2" data-mode="exact">
+      <p class="qtext">A quadratic has roots {m:x=4} and {m:x=-1}. The number in front of {m:x^2} is 1. Write the quadratic as {m:x^2+bx+c}. Type it like x^2+3x-10.</p>
+      <ol class="ladder"><li>A root {m:x=p} comes from the bracket {m:(x-p)}.</li><li>The brackets are {m:(x-4)} and {m:(x+1)}.</li><li>Expand them and join the like terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+3x-4;-4+3x+x^2">That has roots {m:-4} and 1. A root of 4 comes from the bracket {m:(x-4)}.</li>
+        <li data-if="x^2-3x+4;4-3x+x^2">You used +4 for the last number. The last number is the product of the roots: {m:4*(-1)=-4}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-4)(x+1)=x^2+x-4x-4=x^2-3x-4}. Check: the sum of the roots is 3, and minus 3 is the number in front of x. The product is {m:-4}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+7x+10;10+7x+x^2" data-mode="exact">
+      <p class="qtext">A quadratic has roots {m:x=-5} and {m:x=-2}. The number in front of {m:x^2} is 1. Write the quadratic as {m:x^2+bx+c}. Type it like x^2+3x-10.</p>
+      <ol class="ladder"><li>The roots are negative. What are the brackets?</li><li>{m:x=-5} comes from {m:(x+5)}. {m:x=-2} comes from {m:(x+2)}.</li><li>Expand {m:(x+5)(x+2)}.</li></ol>
+      <ul class="wrong"><li data-if="x^2-7x+10;10-7x+x^2">That has roots 5 and 2. A root of {m:-5} comes from the bracket {m:(x+5)}.</li></ul>
+      <div class="solution"><p>{m:(x+5)(x+2)=x^2+7x+10}. Check: the sum of the roots is {m:-7}, so the number in front of x is {m:+7}. The product is 10.</p></div>
+    </div>
+    <div class="q" data-answers="3x^2+x-2;-2+x+3x^2" data-mode="exact">
+      <p class="qtext">A quadratic has roots {m:x=frac(2,3)} and {m:x=-1}. Write the quadratic as {m:ax^2+bx+c}, where a, b and c are whole numbers and a is positive and as small as possible. Type it like 2x^2+3x-5.</p>
+      <ol class="ladder"><li>The root {m:x=-1} comes from {m:(x+1)}. The root {m:x=frac(2,3)} comes from a bracket with a whole number in front of x.</li><li>{m:3x=2} gives {m:3x-2=0}. So the bracket is {m:(3x-2)}.</li><li>Expand {m:(3x-2)(x+1)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x^2-x-2;-2-x+3x^2">That has roots 1 and {m:-frac(2,3)}. Both roots have the wrong sign. {m:x=-1} comes from {m:(x+1)}.</li>
+        <li data-if="x^2+x/3-2/3;x^2+1/3x-2/3">That has the right roots, but a is 1, and the question asks for whole numbers. Multiply every term by 3.</li>
+      </ul>
+      <div class="solution"><p>{m:(3x-2)(x+1)=3x^2+3x-2x-2=3x^2+x-2}. Check {m:x=frac(2,3)}: {m:frac(4,3)+frac(2,3)-2=0}. Check {m:x=-1}: {m:3-1-2=0}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-6x+7;7-6x+x^2" data-mode="exact">
+      <p class="qtext">A quadratic has roots {m:x=3+sqrt(2)} and {m:x=3-sqrt(2)}. The number in front of {m:x^2} is 1. Write the quadratic as {m:x^2+bx+c}. Type it like x^2+3x-10.</p>
+      <ol class="ladder"><li>Use the sum and the product of the roots. Add them, then multiply them.</li><li>The sum is {m:(3+sqrt(2))+(3-sqrt(2))=6}.</li><li>The product is {m:(3+sqrt(2))(3-sqrt(2))}. The middle terms cancel. Then {m:b=-}sum and {m:c=}product.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2-6x+11;11-6x+x^2">The product is {m:9-2=7}. The surd terms multiply to {m:-2}, not {m:+2}.</li>
+        <li data-if="x^2+6x+7;7+6x+x^2">The number in front of x is minus the sum of the roots: {m:-6}.</li>
+      </ul>
+      <div class="solution"><p>The sum is 6 and the product is {m:3^2-(sqrt(2))^2=9-2=7}. So the quadratic is {m:x^2-6x+7}. Check with the formula: the roots of {m:x^2-6x+7=0} are {m:frac(6 plusminus sqrt(8),2)=3 plusminus sqrt(2)}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^2-4x-6;-6-4x+2x^2" data-mode="exact">
+      <p class="qtext">The graph crosses the x-axis at {m:(-1, 0)} and {m:(3, 0)} and the y-axis at {m:(0, -6)}. Find its equation in the form {m:y=ax^2+bx+c}. Type the right-hand side, like 2x^2+3x-5.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-graph}</figure>
+      <ol class="ladder"><li>The roots give the brackets. Write {m:y=a(x+1)(x-3)}.</li><li>Use the point {m:(0, -6)} to find a.</li><li>{m:-6=a(1)(-3)}. Then expand your equation.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2-2x-3;-3-2x+x^2">The roots are right, but the curve must pass through {m:(0, -6)}. This one passes through {m:(0, -3)}. Find a: {m:-6=a(1)(-3)}.</li>
+        <li data-if="2x^2+4x-6;-6+4x+2x^2">That has roots {m:-3} and 1. The root 3 comes from {m:(x-3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=a(x+1)(x-3)}. At {m:(0, -6)}: {m:-6=a*1*(-3)}, so {m:a=2}. Then {m:y=2(x+1)(x-3)=2x^2-4x-6}. Check: at {m:x=0}, {m:y=-6}.</p></div>
+    </div>
+    <div class="q" data-answers="2(x-2)^2-3;-3+2(x-2)^2" data-mode="exact">
+      <p class="qtext">The graph has its vertex at {m:(2, -3)} and passes through {m:(0, 5)}. Find its equation in the form {m:y=a(x+p)^2+q}. Type the right-hand side, like 3(x+1)^2-4.</p>
+      <figure class="qfig-lg">{fig:quadratics-q-vertex}</figure>
+      <ol class="ladder"><li>The vertex gives p and q. Write {m:y=a(x-2)^2-3}.</li><li>Put {m:x=0} and {m:y=5} into it to find a.</li><li>{m:5=a(-2)^2-3}. Solve for a.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-2)^2-3;-3+(x-2)^2">With {m:a=1}, the curve passes through {m:(0, 1)}, not {m:(0, 5)}. Find a: {m:5=4a-3}.</li>
+        <li data-if="2(x+2)^2-3;-3+2(x+2)^2">The vertex is at {m:x=2}, so the bracket is {m:(x-2)}. The number in the bracket has the opposite sign to the x-coordinate of the vertex.</li>
+      </ul>
+      <div class="solution"><p>{m:5=a(0-2)^2-3=4a-3}, so {m:4a=8} and {m:a=2}. Then {m:y=2(x-2)^2-3}. Check: at {m:x=2}, {m:y=-3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ravi says:</b> {m:x^2-3x=10}, so {m:x(x-3)=10}, so {m:x=10} or {m:x-3=10}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>A product of 10 does not make a factor equal to 10. Only a product of 0 does</li>
+        <li data-why="x&sup2; &minus; 3x = x(x &minus; 3) is a correct factorisation. The mistake is in the next step.">{m:x(x-3)} is not a factorisation of {m:x^2-3x}</li>
+        <li data-why="Dividing by x does not help, and it could lose the root x = 0.">He should have divided both sides by x</li>
+      </ul>
+      <ol class="ladder"><li>Why does the zero idea work? What is special about 0?</li><li>Try {m:x=10} in the original equation.</li></ol>
+      <div class="solution"><p>Many pairs of numbers multiply to 10. Only 0 forces a factor to be 0. Subtract 10 from both sides first: {m:x^2-3x-10=0}, so {m:(x-5)(x+2)=0} and {m:x=5} or {m:x=-2}. Check {m:x=10}: {m:100-30=70}, not 10.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ella says:</b> {m:x^2-9=0}, so {m:x=3}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She lost the root {m:x=-3}</li>
+        <li data-why="Test x = 3: 9 &minus; 9 = 0. It is a root. The problem is that there is another one.">{m:x=3} is not a root</li>
+        <li data-why="x&sup2; = 9 has solutions. The square roots of 9 are 3 and &minus;3.">{m:x^2=9} has no solutions</li>
+      </ul>
+      <ol class="ladder"><li>Test {m:x=-3} in the equation.</li><li>How many numbers square to 9?</li></ol>
+      <div class="solution"><p>{m:(-3)^2=9} as well as {m:3^2=9}. So {m:x=3} or {m:x=-3}. Factorising shows it: {m:(x-3)(x+3)=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Tom says:</b> {m:x^2+6x+1=(x+3)^2+1}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not subtract 9. The correct form is {m:(x+3)^2-8}</li>
+        <li data-why="Half of 6 is 3, so the bracket (x+3) is correct. The mistake is in the number outside.">The bracket should be {m:(x-3)}</li>
+        <li data-why="Test x = 0: the left side is 1, and the right side is 9+1 = 10. They are not equal.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>Expand {m:(x+3)^2+1}. Does it equal {m:x^2+6x+1}?</li><li>{m:(x+3)^2} contains an extra 9. What must you do about it?</li></ol>
+      <div class="solution"><p>{m:(x+3)^2+1=x^2+6x+10}, not {m:x^2+6x+1}. Subtract the extra 9: {m:x^2+6x+1=(x+3)^2-9+1=(x+3)^2-8}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Leo says:</b> in {m:2x^2-3x-5=0}, {m:b=-3}, so {m:b^2=-9}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>A negative number squared is positive: {m:(-3)^2=9}</li>
+        <li data-why="b = &minus;3 is correct. The coefficient of x is &minus;3.">{m:b} is {m:3}, not {m:-3}</li>
+        <li data-why="b&sup2; always means b multiplied by itself, even when b is negative.">{m:b^2} means minus b times b</li>
+      </ul>
+      <ol class="ladder"><li>What is {m:(-3)*(-3)}?</li><li>Put brackets round a negative number when you square it.</li></ol>
+      <div class="solution"><p>{m:(-3)^2=(-3)(-3)=9}. So {m:b^2-4ac=9-4*2*(-5)=9+40=49}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Aisha says:</b> {m:x-5x^(frac(1,2))+4=0}. Let {m:u=x^(frac(1,2))}. Then {m:u=1} or {m:u=4}, so {m:x=1} or {m:x=4}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The values 1 and 4 are values of u, not of x. Since {m:x=u^2}, the roots are 1 and 16</li>
+        <li data-why="Both values of u are positive, so both work. The mistake is the last step.">{m:u=4} does not work</li>
+        <li data-why="The substitution u = x to the power one half is correct, because x = u&sup2;. The mistake is after solving for u.">She should have let {m:u=x}</li>
+      </ul>
+      <ol class="ladder"><li>Test {m:x=4} in the original equation.</li><li>What is {m:x^(frac(1,2))} when {m:x=4}?</li></ol>
+      <div class="solution"><p>Test {m:x=4}: {m:4-5*2+4=-2}, not 0. Since {m:u=x^(frac(1,2))}, we have {m:x=u^2}: {m:u=1} gives {m:x=1} and {m:u=4} gives {m:x=16}. Check {m:x=16}: {m:16-20+4=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw" data-calc="yes">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="-3/2 or 3/2;-3/2 and 3/2;-3/2,3/2;3/2 or -3/2;3/2 and -3/2;3/2,-3/2;-1.5 or 1.5;1.5 or -1.5" data-mode="value">
+      <p class="qtext">Solve {m:4x^2-9=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 3/4.</p>
+      <ol class="ladder"><li>Get {m:x^2} on its own first.</li><li>{m:x^2=frac(9,4)}. How many numbers square to {m:frac(9,4)}?</li><li>Take the square root of the top and of the bottom. Use both signs.</li></ol>
+      <ul class="wrong">
+        <li data-if="3/2;1.5">{m:x^2=frac(9,4)} has two square roots. {m:(-frac(3,2))^2} is also {m:frac(9,4)}.</li>
+        <li data-if="-9/4 or 9/4;-9/4 and 9/4;-9/4,9/4;9/4 or -9/4;9/4 and -9/4;9/4,-9/4">The square root of {m:frac(9,4)} is {m:frac(3,2)}. You must take the root of both the top and the bottom.</li>
+      </ul>
+      <div class="solution"><p>{m:4x^2=9}, so {m:x^2=frac(9,4)} and {m:x=frac(3,2)} or {m:x=-frac(3,2)}. Check: {m:4*frac(9,4)-9=0}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the least value of {m:y=x^2-8x+19}.</p>
+      <ol class="ladder"><li>Complete the square. The least value is the number left over.</li><li>{m:x^2-8x=(x-4)^2-16}.</li><li>Add the 19: {m:-16+19}.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is where the least value happens, {m:x=4}. The question asks for the value of y.</li>
+        <li data-if="-3">You have the wrong sign. {m:-16+19=3}, which is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:y=(x-4)^2-16+19=(x-4)^2+3}. The least value is 3, when {m:x=4}. The discriminant is {m:64-76=-12}, so the curve never reaches the x-axis. Both results match: the curve never reaches the x-axis, and its least value of y is above 0.</p></div>
+    </div>
+    <div class="q" data-answers="-1+sqrt(2) or -1-sqrt(2);-1-sqrt(2) or -1+sqrt(2);-1+sqrt(2) and -1-sqrt(2);-1-sqrt(2) and -1+sqrt(2);-1+sqrt(2),-1-sqrt(2);-1-sqrt(2),-1+sqrt(2)" data-mode="value">
+      <p class="qtext">Solve {m:x^2+2x-1=0}. Give exact roots in their simplest form. Type both roots with &ldquo;or&rdquo; between them, like 2+sqrt(3) or 2-sqrt(3).</p>
+      <ol class="ladder"><li>You can use the formula or complete the square.</li><li>{m:(x+1)^2-1-1=0}, so {m:(x+1)^2=2}.</li><li>Take both square roots, then subtract 1 from both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="1+sqrt(2) or 1-sqrt(2);1-sqrt(2) or 1+sqrt(2);1+sqrt(2) and 1-sqrt(2);1-sqrt(2) and 1+sqrt(2);1+sqrt(2),1-sqrt(2);1-sqrt(2),1+sqrt(2)">You added 1. Subtract 1 from both sides: {m:x+1=plusminus sqrt(2)} gives {m:x=-1 plusminus sqrt(2)}.</li>
+        <li data-if="(-2+sqrt(8))/2 or (-2-sqrt(8))/2;(-2-sqrt(8))/2 or (-2+sqrt(8))/2">That is correct but not in its simplest form. {m:sqrt(8)=2sqrt(2)}, so cancel the 2.</li>
+      </ul>
+      <div class="solution"><p>{m:x=frac(-2 plusminus sqrt(8),2)=frac(-2 plusminus 2sqrt(2),2)=-1 plusminus sqrt(2)}. Check with decimals: {m:x=0.414}: {m:0.171+0.828-1=0}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">How many different real roots has {m:4x^2-12x+9=0}?</p>
+      <ol class="ladder"><li>Work out the discriminant.</li><li>{m:a=4}, {m:b=-12}, {m:c=9}. {m:b^2=144}.</li><li>{m:4ac=4*4*9}. Compare it with {m:b^2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">Two roots need a positive discriminant. Here {m:b^2-4ac=144-144=0}.</li>
+        <li data-if="0">No real roots needs a negative discriminant. Here it is exactly 0, which gives one root.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=144-144=0}, so there is 1 repeated root. Check: {m:4x^2-12x+9=(2x-3)^2}, so {m:x=frac(3,2)} only.</p></div>
+    </div>
+    <div class="q" data-answers="-4 or -1 or 1 or 4;-4 and -1 and 1 and 4;-4,-1,1,4" data-mode="value">
+      <p class="qtext">Solve {m:x^4-17x^2+16=0}. Type all four roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Let {m:u=x^2}.</li><li>{m:u^2-17u+16=0} gives {m:(u-1)(u-16)=0}.</li><li>Go back to x. Each positive value of {m:x^2} gives two roots.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 16;1 and 16;1,16;16 or 1;16 and 1;16,1">Those are the values of u. Go back to x: {m:x^2=1} and {m:x^2=16}.</li>
+        <li data-if="1 or 4;1 and 4;1,4;4 or 1;4 and 1;4,1">Each value of {m:x^2} has a negative root as well: {m:x=-1} and {m:x=-4}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2=1} or {m:x^2=16}, so {m:x=plusminus 1} or {m:x=plusminus 4}. The four roots are {m:-4}, {m:-1}, 1 and 4. Check {m:x=4}: {m:256-272+16=0}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Find the greatest value of {m:y=3-2x-x^2}.</p>
+      <ol class="ladder"><li>The number in front of {m:x^2} is negative, so the vertex is a maximum point.</li><li>Write {m:-(x^2+2x)+3} and complete the square inside the bracket.</li><li>{m:x^2+2x=(x+1)^2-1}. Remember the minus sign outside the bracket: it changes the sign of both terms inside.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the value of y when {m:x=0}. The greatest value is higher.</li>
+        <li data-if="-1">That is the x-coordinate of the vertex, {m:x=-1}. The question asks for the value of y.</li>
+      </ul>
+      <div class="solution"><p>{m:y=-[(x+1)^2-1]+3=4-(x+1)^2}. The greatest value is 4, when {m:x=-1}. Check: {m:3+2-1=4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method, A1 is a mark for a correct answer, and B1 is a mark for a correct fact or value. &ldquo;Hence&rdquo; means: use your answer to the part before.</p>
+    <div class="q" data-answers="-2/3 or 1/2;-2/3 and 1/2;-2/3,1/2;1/2 or -2/3;1/2 and -2/3;1/2,-2/3" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] Solve {m:6x^2+x-2=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-1} or 3/4. (No calculator.)</p>
+      <ol class="ladder"><li>The number in front of {m:x^2} is not 1. Which method do you use?</li><li>{m:ac=-12}. Two numbers that multiply to {m:-12} and add to 1 are 4 and {m:-3}.</li><li>Split: {m:6x^2+4x-3x-2}. Factorise in pairs.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1/2 or 2/3;-1/2 and 2/3;-1/2,2/3;2/3 or -1/2;2/3 and -1/2;2/3,-1/2">Both roots have the wrong sign. {m:(2x-1)} is 0 when {m:x=frac(1,2)}, and {m:(3x+2)} is 0 when {m:x=-frac(2,3)}.</li>
+        <li data-if="-2 or 1;-2 and 1;-2,1;1 or -2;1 and -2;1,-2">You did not divide by the number in front of x. {m:2x-1=0} gives {m:2x=1}, so {m:x=frac(1,2)}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:6x^2+4x-3x-2=2x(3x+2)-(3x+2)=(2x-1)(3x+2)}. So {m:x=frac(1,2)} or {m:x=-frac(2,3)}. Check {m:x=frac(1,2)}: {m:frac(3,2)+frac(1,2)-2=0}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for splitting the middle term, {m:x}, into {m:4x-3x} (or {m:-3x+4x}), or for another correct start to factorising</li>
+          <li><b>M1</b> for factorising: {m:(2x-1)(3x+2)=0}</li>
+          <li><b>A1</b> for {m:x=frac(1,2)} and {m:x=-frac(2,3)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(x-5)^2-18;-18+(x-5)^2" data-mode="exact" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] Write {m:x^2-10x+7} in the form {m:(x+p)^2+q}. Type it like (x+1)^2-5.</p>
+      <ol class="ladder"><li>Halve the number in front of x. Keep its sign.</li><li>{m:x^2-10x=(x-5)^2-25}.</li><li>Add the 7.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+5)^2-18;-18+(x+5)^2">The number in front of x is {m:-10}, so the bracket is {m:(x-5)}.</li>
+        <li data-if="(x-5)^2+7;7+(x-5)^2">You did not subtract 25, the square of the half. {m:-25+7=-18}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2-10x+7=(x-5)^2-25+7=(x-5)^2-18}. Check: {m:x^2-10x+25-18=x^2-10x+7}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:(x-5)^2} and subtracting 25</li>
+          <li><b>A1</b> for {m:(x-5)^2-18}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(5,-18);5,-18" data-mode="exact" data-marks="1">
+      <p class="qtext"><b>(b)</b> [1 mark] Write down the coordinates of the vertex of {m:y=x^2-10x+7}. Type it like (1,-2).</p>
+      <ol class="ladder"><li>Use your answer to (a).</li><li>The vertex of {m:y=(x+p)^2+q} is {m:(-p, q)}.</li></ol>
+      <ul class="wrong"><li data-if="(-5,-18);-5,-18">You used the number in the bracket as the x-coordinate. {m:(x-5)} is 0 when {m:x=5}, so the x-coordinate has the opposite sign.</li></ul>
+      <div class="solution">
+        <p>{m:y=(x-5)^2-18}, so the vertex is {m:(5, -18)}.</p>
+        <ul class="markscheme"><li><b>B1</b> for {m:(5, -18)}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="5+3sqrt(2) or 5-3sqrt(2);5-3sqrt(2) or 5+3sqrt(2);5+3sqrt(2) and 5-3sqrt(2);5-3sqrt(2) and 5+3sqrt(2);5+3sqrt(2),5-3sqrt(2);5-3sqrt(2),5+3sqrt(2)" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(c)</b> [2 marks] Hence solve {m:x^2-10x+7=0}. Give your roots as exact values in their simplest form. Type both roots with &ldquo;or&rdquo; between them, like 2+3sqrt(2) or 2-3sqrt(2).</p>
+      <ol class="ladder"><li>&ldquo;Hence&rdquo; means use your answer to (a).</li><li>{m:(x-5)^2-18=0}, so {m:(x-5)^2=18}.</li><li>Take both square roots. Then simplify {m:sqrt(18)}.</li></ol>
+      <ul class="wrong"><li data-if="5+sqrt(18) or 5-sqrt(18);5-sqrt(18) or 5+sqrt(18);5+sqrt(18) and 5-sqrt(18);5-sqrt(18) and 5+sqrt(18);5+sqrt(18),5-sqrt(18);5-sqrt(18),5+sqrt(18)">That is correct but not in its simplest form. {m:sqrt(18)=sqrt(9)*sqrt(2)=3sqrt(2)}.</li></ul>
+      <div class="solution">
+        <p>{m:(x-5)^2=18}, so {m:x-5=plusminus sqrt(18)=plusminus 3sqrt(2)}. The roots are {m:x=5+3sqrt(2)} and {m:x=5-3sqrt(2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:(x-5)^2=18} and taking the square root of both sides</li>
+          <li><b>A1</b> for {m:5+3sqrt(2)} and {m:5-3sqrt(2)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-1 or 4;-1 and 4;-1,4;4 or -1;4 and -1;4,-1" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The equation {m:x^2+2kx+(3k+4)=0} has equal roots. Find the possible values of k. Type them with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>Equal roots mean {m:b^2-4ac=0}. Read off a, b and c in terms of k.</li><li>{m:a=1}, {m:b=2k}, {m:c=3k+4}. Write {m:(2k)^2-4(3k+4)=0}.</li><li>Expand and simplify. You get a quadratic in k. Solve it.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is one value. The equation in k is a quadratic, so it has two solutions.</li>
+        <li data-if="-4 or 1;-4 and 1;-4,1;1 or -4;1 and -4;1,-4">You used the numbers in the brackets as the roots. {m:(k-4)} is 0 when {m:k=4}, so each root has the opposite sign to the number in its bracket.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:(2k)^2-4(3k+4)=0} gives {m:4k^2-12k-16=0}, so {m:k^2-3k-4=0} and {m:(k-4)(k+1)=0}. So {m:k=4} or {m:k=-1}. Check {m:k=4}: {m:x^2+8x+16=(x+4)^2}. Check {m:k=-1}: {m:x^2-2x+1=(x-1)^2}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for using {m:b^2-4ac=0} with {m:b=2k} and {m:c=3k+4}</li>
+          <li><b>A1</b> for {m:4k^2-12k-16=0} (or {m:k^2-3k-4=0})</li>
+          <li><b>M1</b> for solving the quadratic in k</li>
+          <li><b>A1</b> for {m:k=-1} and {m:k=4}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="9 or 16;9 and 16;9,16;16 or 9;16 and 9;16,9" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Solve {m:x-7x^(frac(1,2))+12=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first.</p>
+      <ol class="ladder"><li>This is a quadratic in disguise. Which power of x is the square of another power?</li><li>Let {m:u=x^(frac(1,2))}. Then {m:u^2-7u+12=0}.</li><li>{m:(u-3)(u-4)=0}. Since {m:x=u^2}, square each value of u.</li></ol>
+      <ul class="wrong"><li data-if="3 or 4;3 and 4;3,4;4 or 3;4 and 3;4,3">Those are the values of u. Since {m:u=x^(frac(1,2))}, we have {m:x=u^2}.</li></ul>
+      <div class="solution">
+        <p>Let {m:u=x^(frac(1,2))}, so {m:u^2-7u+12=0} and {m:(u-3)(u-4)=0}. {m:u=3} gives {m:x=9}. {m:u=4} gives {m:x=16}. Check {m:x=9}: {m:9-21+12=0}. Check {m:x=16}: {m:16-28+12=0}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for a substitution (a new letter) that gives a quadratic, such as {m:u^2-7u+12=0}</li>
+          <li><b>M1</b> for solving it: {m:u=3} and {m:u=4}</li>
+          <li><b>M1</b> for squaring to get x</li>
+          <li><b>A1</b> for {m:x=9} and {m:x=16}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="80x-2x^2;-2x^2+80x" data-mode="exact" data-marks="2">
+      <p class="qtext">A farmer has 80 m of fence. She uses it for three sides of a rectangular field. The fourth side is a wall. Each of the two sides next to the wall is x metres long. <b>(a)</b> [2 marks] Find the area A as an expression that contains x. Expand the brackets. Type the x term first, like 5x-3x^2.</p>
+      <ol class="ladder"><li>Two sides use {m:2x} of the fence. What is left for the third side?</li><li>The third side is {m:80-2x}.</li><li>Area is length times width. Expand your answer.</li></ol>
+      <ul class="wrong"><li data-if="80x-x^2;-x^2+80x">The third side is {m:80-2x}, because two sides of length x use up {m:2x}. Not {m:80-x}.</li></ul>
+      <div class="solution">
+        <p>The third side is {m:80-2x}. So {m:A=x(80-2x)=80x-2x^2}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for the third side {m:80-2x}</li>
+          <li><b>B1</b> for {m:A=x(80-2x)=80x-2x^2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="800" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] Use completing the square to find the greatest possible area of the field, in m&sup2;.</p>
+      <ol class="ladder"><li>Write {m:80x-2x^2} with the {m:x^2} term first, and write {m:-2} outside a bracket round the first two terms.</li><li>{m:-2(x^2-40x)}. Complete the square inside the bracket.</li><li>{m:x^2-40x=(x-20)^2-400}. Multiply the {m:-400} by {m:-2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="20">That is the value of x that gives the greatest area. The question asks for the area.</li>
+        <li data-if="400">You did not multiply the 400 by 2. {m:-2[(x-20)^2-400]=-2(x-20)^2+800}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:80x-2x^2=-2(x^2-40x)=-2[(x-20)^2-400]=800-2(x-20)^2}. The greatest area is 800 m&sup2;, when {m:x=20}. The field is 20 m by 40 m. Check: {m:20*40=800}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for taking out {m:-2} and completing the square: {m:-2[(x-20)^2-400]}</li>
+          <li><b>A1</b> for {m:800-2(x-20)^2}</li>
+          <li><b>A1</b> for the greatest area, 800</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="k^2-4k+4;4-4k+k^2;4+k^2-4k;k^2+4-4k;-4k+k^2+4;-4k+4+k^2" data-mode="exact" data-marks="2">
+      <p class="qtext">The equation {m:x^2+kx+(k-1)=0} has discriminant D. <b>(a)</b> [2 marks] Find D in terms of k. Expand and simplify it. Type it like k^2+3k-5.</p>
+      <ol class="ladder"><li>Read off a, b and c in terms of k.</li><li>{m:a=1}, {m:b=k}, {m:c=k-1}. So {m:D=k^2-4(k-1)}.</li><li>Multiply out the bracket. Remember that {m:-4(k-1)} changes the sign of both terms in the bracket.</li></ol>
+      <ul class="wrong"><li data-if="k^2-4k-4;-4-4k+k^2;-4k+k^2-4">You did not multiply the {m:-1} by {m:-4}. {m:-4(k-1)=-4k+4}.</li></ul>
+      <div class="solution">
+        <p>{m:D=k^2-4*1*(k-1)=k^2-4k+4}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:k^2-4(k-1)}</li>
+          <li><b>A1</b> for {m:k^2-4k+4}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="2">
+      <p class="qtext"><b>(b)</b> [2 marks] Hence show that the equation {m:x^2+kx+(k-1)=0} has real roots for every value of k. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>&ldquo;Hence&rdquo; means use your answer to (a).</li><li>Factorise {m:k^2-4k+4}. It is a perfect square (a bracket multiplied by itself).</li><li>What do you know about a square? What does that say about the discriminant?</li></ol>
+      <div class="solution">
+        <p>{m:D=k^2-4k+4=(k-2)^2}. A square is never negative, so {m:D>=0} for every k. A discriminant of 0 or more means the equation has real roots, for every value of k.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:D=(k-2)^2}</li>
+          <li><b>A1</b> for a reason ({m:(k-2)^2} is never negative, so {m:D>=0}) and the conclusion: real roots for every k</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The zero idea.</b> Zero times any number is 0. A product of two numbers is 0 only when one of them is 0. So we first rearrange so that one side is 0.</li>
+      <li><b>Completing the square.</b> {m:(x+p)^2} is the area of a square of side {m:x+p}. Its pieces are {m:x^2}, two strips of {m:px} and a corner of {m:p^2}. Completing the square adds the missing corner, and then takes it away again.</li>
+      <li><b>The vertex.</b> In {m:(x+p)^2+q} the bracket is never negative. So the lowest value is q, when the bracket is 0. That is why the vertex is {m:(-p, q)}.</li>
+      <li><b>The formula.</b> The quadratic formula is what you get when you complete the square once for the general quadratic {m:ax^2+bx+c}. The letters a, b and c stand for any numbers, so it works for all of them.</li>
+      <li><b>The discriminant.</b> It is the number under the square root in the formula. The square root of a negative number is not real. The square root of 0 gives one value. The square root of a positive number gives two values, one positive and one negative.</li>
+      <li><b>Quadratics in disguise.</b> The equation really is a quadratic in u, so every method for quadratics works on it. The only extra step is going back from u to x.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Using the number in the bracket as the root. The bracket {m:(x-3)} gives {m:x=3}.</li>
+      <li>Using the zero idea when the other side is not 0.</li>
+      <li>Dividing both sides by x, and losing the root {m:x=0}.</li>
+      <li>Giving one root when there are two. Write {m:x=3} or {m:x=-3}.</li>
+      <li>Reading the vertex of {m:(x+3)^2-4} as {m:(3, -4)}. It is {m:(-3, -4)}.</li>
+      <li>In completing the square with a not 1, forgetting to multiply the number you subtract inside the bracket by a.</li>
+      <li>In the formula, forgetting brackets round a negative b, or forgetting to divide the whole top line by {m:2a}.</li>
+      <li>Stopping at the values of u in a quadratic in disguise, or giving only the positive roots.</li>
+      <li>Keeping a root that does not fit: a negative length, or a value of u that would make {m:x^(frac(1,2))} negative.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="quadratics">
+      <li><label><input type="checkbox"> solve a quadratic by factorising, including when the number in front of {m:x^2} is not 1</label></li>
+      <li><label><input type="checkbox"> complete the square, and read off the vertex and the least or greatest value</label></li>
+      <li><label><input type="checkbox"> solve a quadratic by completing the square and by the formula, with exact or decimal roots</label></li>
+      <li><label><input type="checkbox"> use the discriminant to say how many roots there are, and to find an unknown k</label></li>
+      <li><label><input type="checkbox"> sketch a quadratic, labelling the intercepts, the vertex and the axis of symmetry</label></li>
+      <li><label><input type="checkbox"> solve a quadratic in disguise, including with fractional indices, and check the answers</label></li>
+      <li><label><input type="checkbox"> build a quadratic from its roots, or from its graph</label></li>
+      <li><label><input type="checkbox"> turn a problem into a quadratic, solve it, and reject roots that do not fit</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
