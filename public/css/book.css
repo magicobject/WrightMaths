@@ -632,3 +632,6 @@ section[hidden]{display:none !important;}
   .print-sheet .mc-option.is-right::after,.print-sheet .mc-option.is-wrong::after{content:none;}
   .print-sheet .q{min-height:12em;padding-bottom:5em;}
 }
+
+/* Reflection figure grid lines (decorative; the labelled points carry the meaning). */
+.geo-svg .grid{stroke:#c3ccd8;stroke-width:1;fill:none;}

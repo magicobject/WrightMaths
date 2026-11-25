@@ -181,7 +181,7 @@ ${rows.join('\n')}
     </ol>`;
 }
 
-export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}) {
+export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}, patterns = []) {
   const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
   const byId = new Map(glossary.map((g) => [g.id, g]));
   const letters = [...new Set(sorted.map((g) => g.term[0].toUpperCase()))];
@@ -194,12 +194,15 @@ export function renderGlossaryPage(glossary, usage, graph, strands, figures = {}
       : '';
     const see = (g.see ?? []).filter((s) => byId.has(s))
       .map((s) => `<a href="#${s}">${byId.get(s).term}</a>`).join(', ');
+    // Technical words used inside an entry link to their own entries (first use only, never to itself).
+    const already = new Set([g.id]);
+    const link = (t) => (t ? linkTermsInText(t, patterns, already) : t);
     const parts = [
-      `<p class="g-def">${g.def}</p>`,
+      `<p class="g-def">${link(g.def)}</p>`,
       figures[g.id] ? `<div class="g-fig">${figures[g.id]}</div>` : '',
-      g.example ? (Array.isArray(g.example) ? `<p class="g-example"><b>Examples:</b>${g.example.map((line) => `<span class="g-line">${line}</span>`).join('')}</p>` : `<p class="g-example"><b>Example:</b> ${g.example}</p>`) : '',
-      g.watch ? `<p class="g-watch"><b>Watch out:</b> ${g.watch}</p>` : '',
-      g.flip ? `<p class="g-flip"><b>Flip it:</b> ${g.flip}</p>` : '',
+      g.example ? (Array.isArray(g.example) ? `<p class="g-example"><b>Examples:</b>${g.example.map((line) => `<span class="g-line">${link(line)}</span>`).join('')}</p>` : `<p class="g-example"><b>Example:</b> ${link(g.example)}</p>`) : '',
+      g.watch ? `<p class="g-watch"><b>Watch out:</b> ${link(g.watch)}</p>` : '',
+      g.flip ? `<p class="g-flip"><b>Flip it:</b> ${link(g.flip)}</p>` : '',
       see ? `<p class="g-see"><b>See also:</b> ${see}</p>` : '',
       usedHtml,
     ].filter(Boolean).join('\n          ');
@@ -284,26 +287,33 @@ export function buildAutoPatterns(glossary) {
  * Only plain text is touched: tags, entities and existing {..} shorthands are left alone.
  */
 export function autoLinkQuestionTerms(html, patterns) {
-  return html.replace(/(<p class="qtext">)([\s\S]*?)(<\/p>)/g, (whole, open, inner, close) => {
-    const already = new Set([...inner.matchAll(/\{term:([a-z0-9-]+)/g)].map((m) => m[1]));
-    let parts = inner.split(/(<[^>]+>|\{[^}]*\}|&[a-z#0-9]+;)/i);
-    for (const { id, re } of patterns) {
-      if (already.has(id)) continue;
-      for (let i = 0; i < parts.length; i += 1) {
-        const piece = parts[i];
-        if (!piece || /^(<|\{|&)/.test(piece)) continue;
-        const m = re.exec(piece);
-        if (!m) continue;
-        const before = piece.slice(0, m.index);
-        const matched = piece.slice(m.index, m.index + m[0].length);
-        const after = piece.slice(m.index + m[0].length);
-        parts.splice(i, 1, before, `{term:${id}|${matched}}`, after);
-        already.add(id);
-        break;
-      }
+  return html.replace(/(<p class="qtext">)([\s\S]*?)(<\/p>)/g, (whole, open, inner, close) => open + linkTermsInText(inner, patterns) + close);
+}
+
+/**
+ * Link the first use of each glossary term inside one piece of page source as {term:id|text}.
+ * `already` is a Set of term ids not to link (ids already linked, or the entry's own id); it is added to
+ * as terms are linked, so passing the same Set for several pieces links each term once across them.
+ */
+export function linkTermsInText(inner, patterns, already = new Set()) {
+  for (const m of inner.matchAll(/\{term:([a-z0-9-]+)/g)) already.add(m[1]);
+  const parts = inner.split(/(<[^>]+>|\{[^}]*\}|&[a-z#0-9]+;)/i);
+  for (const { id, re } of patterns) {
+    if (already.has(id)) continue;
+    for (let i = 0; i < parts.length; i += 1) {
+      const piece = parts[i];
+      if (!piece || /^(<|\{|&)/.test(piece)) continue;
+      const m = re.exec(piece);
+      if (!m) continue;
+      const before = piece.slice(0, m.index);
+      const matched = piece.slice(m.index, m.index + m[0].length);
+      const after = piece.slice(m.index + m[0].length);
+      parts.splice(i, 1, before, `{term:${id}|${matched}}`, after);
+      already.add(id);
+      break;
     }
-    return open + parts.join('') + close;
-  });
+  }
+  return parts.join('');
 }
 
 
