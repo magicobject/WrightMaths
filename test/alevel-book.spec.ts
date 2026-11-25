@@ -97,3 +97,17 @@ test.describe('the A-level glossary', () => {
     for (const entry of await visible.all()) await expect(entry).toHaveAttribute('data-strand', 'al-differentiation');
   });
 });
+
+test.describe('A-level question figures', () => {
+  test('the answer box comes after a large question figure, not before it', async ({ page }) => {
+    for (const topic of ALEVEL_TOPICS) {
+      await page.goto(topic.path);
+      const figures = page.locator('.q > .qfig-lg');
+      for (let i = 0; i < await figures.count(); i += 1) {
+        const next = await figures.nth(i).evaluate((fig) => fig.nextElementSibling?.tagName ?? '');
+        expect(['FORM', 'BUTTON', 'UL', 'DIV'], `${topic.path}: what follows figure ${i + 1}`).toContain(next);
+        expect(await figures.nth(i).evaluate((fig) => (fig.previousElementSibling?.tagName === 'FORM'))).toBe(false);
+      }
+    }
+  });
+});

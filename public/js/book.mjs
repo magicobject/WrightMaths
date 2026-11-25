@@ -340,7 +340,7 @@ export function enhanceQuestion(q, index) {
         say('q-feedback', 'Mark scheme shown. Tick each mark you earned.');
       }
     });
-    (q.querySelector(':scope > .qfig') ?? text ?? q).after(reveal);
+    (q.querySelector(':scope > .qfig, :scope > .qfig-lg') ?? text ?? q).after(reveal);
     reveal.after(feedback);
   } else {
     const answers = splitList(q.dataset.answers);
@@ -402,7 +402,7 @@ export function enhanceQuestion(q, index) {
         failure(feedbackOrDefault(value, answers, unitContext));
       }
     });
-    (q.querySelector(':scope > .qfig') ?? text ?? q).after(form);
+    (q.querySelector(':scope > .qfig, :scope > .qfig-lg') ?? text ?? q).after(form);
     form.after(feedback);
   }
 
