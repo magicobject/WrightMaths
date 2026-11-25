@@ -341,3 +341,12 @@ test('100 is not "close" to 84, but 900 is close to 1000', async () => {
   assert.equal(closeness('100', ['84']), 'far');
   assert.equal(closeness('900', ['1000']), 'range');
 });
+
+test('two or more answers asked for as "1 or 5" are accepted in any order with any usual separator', () => {
+  const key = ['1 or 5', '5 or 1'];
+  for (const typed of ['1 5', '5 1', '1,5', '1, 5', '1;5', '5 and 1', '1 & 5', 'x = 1 or x = 5', '1 or 5']) assert.equal(matches(typed, key, 'exact'), true, typed);
+  for (const typed of ['1', '15', '1 1', '1 6', '1 5 7', '5']) assert.equal(matches(typed, key, 'exact'), false, typed);
+  // A coordinate pair is not an "or" list: order still matters there.
+  assert.equal(matches('4 -4', ['4,-4', '(4, -4)'], 'exact'), true);
+  assert.equal(matches('-4 4', ['4,-4', '(4, -4)'], 'exact'), false);
+});
