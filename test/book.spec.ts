@@ -359,9 +359,13 @@ test.describe('mixed practice', () => {
     for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
     await page.locator('input[name="practice-topic"][value="pythagoras"]').check();
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
-    const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
-    expect(ids.length).toBe(5);
-    for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+    // The press deals asynchronously (it fetches the ticked topic first), so wait until the set on screen is the new one:
+    // reading it straight away can still catch the five dealt when the page loaded.
+    await expect(async () => {
+      const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
+      expect(ids.length).toBe(5);
+      for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+    }).toPass({ timeout: 20_000 });
   });
 
   test('finishing any question records a practice day on this device, once a day', async ({ page }) => {
@@ -1619,6 +1623,24 @@ test.describe('round 6 engine: timed set', () => {
       const overlap = t.x < clock.x + clock.width && t.x + t.width > clock.x && t.y < clock.y + clock.height && t.y + t.height > clock.y;
       expect(overlap, 'the clock covers a Uses tag').toBe(false);
     }
+  });
+});
+
+test.describe('glossary Listen', () => {
+  test('every glossary entry has a Listen button that reads the term, its meaning and examples, not the chips or links', async ({ page }) => {
+    await page.goto('/books/gcse/glossary.html');
+    const entries = await page.locator('.g-entry').count();
+    expect(entries).toBeGreaterThan(200);
+    await expect(page.locator('.g-entry > h3 > .listen')).toHaveCount(entries);
+    await expect(page.locator('#reflection .listen')).toHaveAttribute('aria-label', 'Listen to the glossary entry for Reflection');
+    const text = await page.evaluate(async () => {
+      const { unitText } = await import('/js/book-audio.mjs');
+      return unitText(document.getElementById('reflection')!);
+    });
+    expect(text).toMatch(/^Reflection\. A transformation that flips a shape over a mirror line\./);
+    expect(text).toContain('Reflect the point');
+    expect(text).toContain('The picture shows');
+    expect(text).not.toMatch(/Taught in|See also|Geometry/i);
   });
 });
 
