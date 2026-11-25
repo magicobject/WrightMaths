@@ -1049,7 +1049,7 @@ export const GLOSSARY = [
   },
   {
     id: 'median', term: 'Median', strand: 's', level: 'F', aka: ['average middle value'],
-    def: 'The middle value when the data are in order. With two middle values, take the number halfway between them.',
+    def: 'The middle value when the data are in order from smallest to largest. With two middle values, take the number halfway between them.',
     example: '2, 3, 7, 8, 20: the median is 7. For 2, 3, 7, 8 the median is 5.',
     see: ['mean', 'mode'],
   },
