@@ -74,7 +74,7 @@ export function clipFor(manifest, hash) {
 
 let manifestPromise = null;
 export function loadManifest() {
-  manifestPromise ??= fetch(`${AUDIO_DIR}manifest.json`, { credentials: 'omit' })
+  manifestPromise ??= fetch(`${AUDIO_DIR}manifest.json`, { credentials: 'omit', cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : {}))
     .catch(() => ({}));
   return manifestPromise;
