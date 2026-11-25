@@ -1722,4 +1722,24 @@ test.describe('calculator where a calculator is needed', () => {
     await expect(page.locator('[data-qid="pythagoras-10"] .calc-toggle')).toHaveCount(1);
     await expect(page.locator('[data-qid="pythagoras-9"] .calc-toggle')).toHaveCount(1);
   });
+
+  test('the sine and cosine rules page gives a scientific calculator, on questions and on "Now you finish it" boxes', async ({ page }) => {
+    await page.goto('/books/gcse/sine-cosine-rules.html');
+    const q = page.locator('[data-qid="sine-cosine-rules-24"]');
+    await q.locator('.calc-toggle').click();
+    await expect(q.getByRole('button', { name: 'sin, sine', exact: true })).toBeVisible();
+    const box = page.locator('.worked.faded').first();
+    await box.locator('.calc-toggle').click();
+    await expect(box.getByRole('button', { name: 'cos, cosine', exact: true })).toBeVisible();
+  });
+
+  test('a "Now you finish it" box with typed gaps accepts the right answers (sine rule, first box)', async ({ page }) => {
+    await page.goto('/books/gcse/sine-cosine-rules.html');
+    const box = page.locator('.worked.faded').first();
+    const inputs = box.locator('.blank-input');
+    await expect(inputs).toHaveCount(5);
+    for (const [i, v] of ['36', '52', '36', '52', '7.5'].entries()) await inputs.nth(i).fill(v);
+    await box.getByRole('button', { name: 'Check' }).click();
+    await expect(box.locator('.blank-status')).toContainText('All 5 right');
+  });
 });

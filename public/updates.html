@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2026.11.25.033">
+<link rel="stylesheet" href="css/style.css?v=2026.11.25.034">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,6 +116,10 @@
         <p>Groundwork for a hidden A-level Pure Maths book (no page of it is linked from the site yet): the book build now handles more than one book, with its own topic graph (47 topics, Year 1 and Year 2), ten colour-coded areas, a Year 1 + Year 2 glossary, native-MathML maths and large-diagram styles, and no voice output at all. A starter hub, glossary and how-to page are built under <code>/books/a-level/</code>. The Books page now shows three &ldquo;Coming soon&rdquo; cards: A-level Year 1, Year 2 and Further Pure. GCSE book pages are unchanged, except that a stray &ldquo;&amp;rArr;&rdquo; in one teacher answer key now shows as an arrow.</p>
       </li>
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.024</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book: (1) the calculator on the sine and cosine rules page, and on every other question that uses sin, cos or tan (bearings, the stretch questions), is now the scientific one with sin, cos, tan and their inverses, not the basic one. (2) Every &ldquo;Now you finish it&rdquo; box now has a typed answer box for every gap; 19 of them (algebraic fractions, circle theorems, circles, functions, histograms, iteration, sine and cosine rules, surds, trigonometry, vectors) showed only ___ with nowhere to type. The ones that need a calculator (sine and cosine rules, trigonometry, circles, iteration) now offer one too. Tests check every box and the keypad choice.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.023</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book: (1) the word &ldquo;side&rdquo; no longer links to the Opposite or Adjacent glossary entries wherever it appears (it did, on every page that said &ldquo;which side&rdquo;); &ldquo;solution&rdquo; and &ldquo;variable&rdquo; likewise no longer link, and the bracketed qualifiers in a term&rsquo;s name (&ldquo;of a circle&rdquo;, &ldquo;of a formula&rdquo;, &ldquo;the trig ratio&rdquo;) are not treated as names. A bare &ldquo;opposite&rdquo; or &ldquo;adjacent&rdquo; still links. (2) The calculator is now offered on 89 questions that ask for a rounded answer to a number of decimal places or significant figures and could not be done without one (Pythagoras including question 10, circles, bearings, loci, a few surds and others), and on two sine and cosine rule questions that mention the calculator. Tests added for both.</p>
       </li>
@@ -141,16 +145,16 @@
         <p>Housekeeping: merged <code>main</code> again and repaired the changelog list, where two merged entries had lost the markup between them. No site change.</p>
       </li>
       <li>
+        <div class="changelog-meta"><span class="changelog-build">2026.11.25.016</span><span class="changelog-date">25 November 2026</span></div>
+        <p>Hidden GCSE book, sine and cosine rules (<code>books/gcse/sine-cosine-rules.html</code>): where two questions asked for the name of the rule (&ldquo;Type sine or cosine&rdquo;), the words &ldquo;sine&rdquo; and &ldquo;cosine&rdquo; linked to the sine and cosine functions in the glossary; they now link to the Sine rule and Cosine rule entries. I checked every book page for the same fault (a short term linked where a longer one was meant, including &ldquo;X and Y rules&rdquo; lists) and found no other case; a test covers this one.</p>
+      </li>
+      <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.015</span><span class="changelog-date">25 November 2026</span></div>
         <p>Housekeeping: <code>main</code> merged into the speech-rules branch (build 014 is that merge, no site change). Two entries below share the number 011, because two branches each took it; the test-fix entries 011 and 012 are the ones tagged <code>build-2026.11.25.011</code> and <code>.012</code>, and the glossary Listen entry is the other 011.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.013</span><span class="changelog-date">25 November 2026</span></div>
         <p>Hidden GCSE book, Listen: the voice now says <code>fg(x)</code> as &ldquo;f of g of x&rdquo;, <code>f<sup>&minus;1</sup>(x)</code> as &ldquo;f inverse of x&rdquo; and <code>P(red)</code> as &ldquo;the probability of red&rdquo; (plain <code>f(x)</code> was already &ldquo;f of x&rdquo;). New <code>npm run book:audio -- review</code> writes a local page (<code>audio-work/review.html</code>, not part of the site) with every Listen sentence as written beside the words the voice is given, so they can be checked by reading. Pages touched: <code>books/gcse/functions-graphs.html</code>, <code>books/gcse/iteration.html</code>, <code>books/gcse/stretch.html</code> and the probability topics (their recordings of changed sentences need re-making; the browser voice reads them until then).</p>
-      </li>
-      <li>
-        <div class="changelog-meta"><span class="changelog-build">2026.11.25.016</span><span class="changelog-date">25 November 2026</span></div>
-        <p>Hidden GCSE book, sine and cosine rules (<code>books/gcse/sine-cosine-rules.html</code>): where two questions asked for the name of the rule (&ldquo;Type sine or cosine&rdquo;), the words &ldquo;sine&rdquo; and &ldquo;cosine&rdquo; linked to the sine and cosine functions in the glossary; they now link to the Sine rule and Cosine rule entries. I checked every book page for the same fault (a short term linked where a longer one was meant, including &ldquo;X and Y rules&rdquo; lists) and found no other case; a test covers this one.</p>
       </li>
       <li>
         <div class="changelog-meta"><span class="changelog-build">2026.11.25.012</span><span class="changelog-date">25 November 2026</span></div>
@@ -530,7 +534,7 @@
   <div class="legal wrap">
     <span>&copy; <span id="yr"></span> Wright Maths Tuition. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
   </div>
-  <script src="js/main.js?v=2026.11.25.033" defer></script>
+  <script src="js/main.js?v=2026.11.25.034" defer></script>
 </footer>
 </body>
 </html>
