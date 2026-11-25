@@ -1729,7 +1729,7 @@ export const GLOSSARY = [
     "strand": "p",
     "level": "F",
     "def": "An estimate of a probability from an experiment: the number of times something happened divided by the number of trials.",
-    "example": "A drawing pin lands point up 18 times in 50 drops. Relative frequency = 18 &divide; 50 = 0.36.",
+    "example": "A dropped drawing pin lands point up 18 times in 50 drops. Relative frequency = 18 &divide; 50 = 0.36.",
     "watch": "More trials give a better estimate. A few trials can be very misleading.",
     "flip": "If you know the probability, expected number = probability &times; number of trials.",
     "see": [
@@ -2619,7 +2619,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "A transformation that slides every point the same distance in the same direction. The shape does not turn, flip or change size.",
     "example": [
-      "Translate (2, 3) by the column vector with 4 on top and 1 underneath: add 4 to x and 1 to y, giving (6, 4)."
+      "Translate the point (2, 3) by the column vector with 4 on top and 1 underneath: add 4 to x and 1 to y, giving (6, 4)."
     ],
     "watch": "The top number of the vector is the move across (negative is left). The bottom number is the move up (negative is down).",
     "flip": "From a shape and its image, find the vector: image point minus object point.",
@@ -2652,7 +2652,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "A transformation that flips a shape over a mirror line. Each point and its image are the same distance from the line, on opposite sides.",
     "example": [
-      "Reflect (1, 2) in the line x = 3: the point is 2 left of the line, so the image is 2 right, at (5, 2).",
+      "Reflect the point (1, 2) in the line x = 3: the point is 2 left of the line, so the image is 2 right, at (5, 2).",
       "In the line y = x, the coordinates swap: (1, 2) goes to (2, 1)."
     ],
     "watch": "A point on the mirror line stays where it is.",
@@ -2670,7 +2670,7 @@ export const GLOSSARY = [
     "level": "F",
     "def": "A transformation that turns a shape about a fixed point called the centre. To describe it you give the angle, the direction (clockwise or anticlockwise) and the centre.",
     "example": [
-      "Rotate (2, 1) by 90&deg; clockwise about the origin: (x, y) goes to (y, &minus;x), giving (1, &minus;2).",
+      "Rotate the point (2, 1) by 90&deg; clockwise about the origin: (x, y) goes to (y, &minus;x), giving (1, &minus;2).",
       "A half turn about the origin: (x, y) goes to (&minus;x, &minus;y)."
     ],
     "watch": "A 90&deg; turn clockwise is the same as 270&deg; anticlockwise.",

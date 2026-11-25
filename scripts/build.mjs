@@ -241,7 +241,7 @@ for (const page of ordered) {
   if (isBook && !merged.keyTopic) {
     content = renderBookContent(merged, content);
     if (merged.book === 'glossary') {
-      const { jump, groups, count } = renderGlossaryPage(GLOSSARY, usage, graph, STRANDS, TERM_FIGURES);
+      const { jump, groups, count } = renderGlossaryPage(GLOSSARY, usage, graph, STRANDS, TERM_FIGURES, autoPatterns);
       content = content
         .replace('{glossary-jump}', () => jump)
         .replace('{glossary-entries}', () => expandInline(groups, { glossaryById, page: 'glossary' }))
