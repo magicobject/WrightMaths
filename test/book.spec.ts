@@ -359,9 +359,12 @@ test.describe('mixed practice', () => {
     for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
     await page.locator('input[name="practice-topic"][value="pythagoras"]').check();
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
-    const ids = await page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
-    expect(ids.length).toBe(5);
-    for (const id of ids) expect(id).toMatch(/^pythagoras-/);
+    // Dealing is asynchronous (the topic pages are fetched), so wait for the new set instead of reading the old one.
+    const readIds = () => page.locator('[data-practice-set] .q').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid ?? ''));
+    await expect.poll(async () => {
+      const ids = await readIds();
+      return ids.length === 5 && ids.every((id) => /^pythagoras-/.test(id));
+    }).toBe(true);
   });
 
   test('finishing any question records a practice day on this device, once a day', async ({ page }) => {
