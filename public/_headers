@@ -30,12 +30,14 @@
 /js/book-*.mjs
   Cache-Control: no-cache
 
-# Recorded Listen audio. The list of recordings is fetched on the first press of Listen, so it may be a day old.
-# A clip's file name is a hash of the SENTENCE it says, not of the sound itself, so a re-recording of the same
-# sentence keeps its name: that is why the clips are cached for a week and are NOT marked "immutable" (a year-long
-# immutable copy of an old voice could never be replaced).
+# Recorded Listen audio. A clip's file name is a hash of the SENTENCE it says, not of the sound itself, so a
+# re-recording of the same sentence keeps its name and a clip cannot be marked "immutable".
+# The list of recordings (manifest.json) must never be stale: a browser holding an old copy does not know about
+# sentences recorded since, so Listen would fall back to the device voice for them. "no-cache" means the browser
+# checks with the server every time (a tiny "not modified" reply when nothing changed).
 /audio/book/manifest.json
-  Cache-Control: public, max-age=86400
+  Cache-Control: no-cache
 
+# Clips are cached for an hour, so a re-recorded sentence is heard within the hour.
 /audio/book/*.ogg
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=3600

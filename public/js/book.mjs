@@ -8,7 +8,7 @@ import { matches, rightValueWrongForm, splitList, diagnose, feedbackOrDefault, d
 import { review, isDue, sanitize } from './book-queue.mjs?m=39';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
 import { splitSentences } from './book-speech.mjs?m=42';
-import { unitText, playClip, stopClip } from './book-audio.mjs?m=40';
+import { unitText, playClip, stopClip } from './book-audio.mjs?m=42';
 import { enhanceFaded } from './book-blanks.mjs?m=39';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
 import { parseRanges, rangeBanner } from './book-ranges.mjs?m=39';
