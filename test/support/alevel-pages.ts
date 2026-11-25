@@ -11,6 +11,7 @@ export const ALEVEL_HUB_PAGES: BookPage[] = [
 // Live topic pages are added here as each one is released (and only then: a page in this list must exist).
 export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/books/a-level/integration-basics.html', titleContains: 'Integration as reverse differentiation', heading: /^Integration as reverse differentiation$/ },
+  { path: '/books/a-level/differentiation-basics.html', titleContains: 'Differentiation from first principles', heading: /^Differentiation from first principles$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];

@@ -67,7 +67,7 @@ export const TOPICS = [
   t('exp-modelling', 'Exponential modelling', 'exponentials', 1, ['exponentials-logs', 'straight-lines'], 'Predicting from a model, and finding the model from data'),
 
   // Differentiation
-  t('differentiation-basics', 'Differentiation from first principles', 'differentiation', 1, ['graph-transformations', 'indices-surds'], 'From a curve to its gradient, and from a gradient back to the curve'),
+  t('differentiation-basics', 'Differentiation from first principles', 'differentiation', 1, ['graph-transformations', 'indices-surds'], 'From a curve to its gradient, and from a gradient back to the curve', { status: 'live', words: ['gradient-of-curve', 'chord-of-curve', 'limit', 'first-principles', 'derivative', 'power-rule'] }),
   t('differentiation-applications', 'Tangents, normals and stationary points', 'differentiation', 1, ['differentiation-basics', 'straight-lines'], 'Finding where the gradient is zero, and deciding whether that point is a top, a bottom or neither'),
   t('differentiation-standard', 'Differentiating standard functions', 'differentiation', 2, ['differentiation-basics', 'exponentials-logs', 'trig-compound', 'radians'], 'Differentiating a function, and recognising what was differentiated'),
   t('differentiation-rules', 'The chain, product, quotient and inverse rules', 'differentiation', 2, ['differentiation-standard'], 'Taking a function apart to differentiate it, and building it back up'),
