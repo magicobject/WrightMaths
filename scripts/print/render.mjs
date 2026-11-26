@@ -63,6 +63,7 @@ function runsFor(runs, ctx, st = {}) {
       out.push(...runsFor(r.runs, ctx, st));
       const target = ctx.byId.get(hrefToId(r.href));
       if (target) out.push(new TextRun({ text: ` (Chapter ${target.num})`, size, font: FONT }));
+      else if (hrefToId(r.href) === 'glossary') out.push(new TextRun({ text: ' (see the Glossary)', size, font: FONT }));
       else ctx.deadRefs.push({ page: ctx.page, href: r.href, text: runsToText(r.runs) });
     } else {
       out.push(new TextRun({

@@ -2637,7 +2637,7 @@ export const GLOSSARY = [
     "def": "Two numbers written one above the other in brackets. The top number is the move across, and the bottom number is the move up or down.",
     "example": [
       "A move of 3 right and 2 down is the column vector with 3 on top and &minus;2 underneath.",
-      "In text we type it as (3, -2)."
+      "In a line of text it is written (3, -2)."
     ],
     "watch": "Across first, then up: the same order as coordinates.",
     "see": [

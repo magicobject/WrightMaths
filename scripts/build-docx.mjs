@@ -26,6 +26,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PAPERS = [
   { id: 'foundation', title: 'Practice papers for grades 4 to 6' },
   { id: 'stretch', title: 'Grade 7 to 9 stretch papers' },
+  // Not a paper, but every topic's exam section points to it ("Question words explained"), so it is printed as the last chapter.
+  { id: 'command-words', title: 'Question words explained' },
 ];
 const COLOUR_WORDS = /\b(red|blue|green|yellow|pink|orange|purple|brown|teal|gold)\b/i;
 const PLACEHOLDER = /\[[A-Z][A-Z ]*[A-Z]\]/g;

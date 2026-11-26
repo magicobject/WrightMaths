@@ -55,3 +55,21 @@ test('headings that are only about typing are dropped', () => {
   assert.equal(dropHeading('How to type surds'), true);
   assert.equal(dropHeading('Types of triangle'), false);
 });
+
+test('a sentence about calculator keys is kept, and calculator words are not reported', async () => {
+  const { stripScreenWording, reportScreenWords } = await import('../scripts/print-rules.mjs');
+  const runs = [{ t: 'Use Ans: type 1 =, then (Ans + 10) ÷ 3 = = =. Type your answer to 2 d.p.' }];
+  const { runs: out } = stripScreenWording(runs);
+  assert.match(out.map((r) => r.t).join(''), /Use Ans: type 1 =/);
+  assert.doesNotMatch(out.map((r) => r.t).join(''), /Type your answer/);
+  assert.deepEqual(reportScreenWords('Keep all the digits with the Ans button.'), []);
+  assert.deepEqual(reportScreenWords('A Fibonacci-type sequence adds the last two terms.'), []);
+  assert.deepEqual(reportScreenWords('You can type either 045 or 45 in the answer box.').map((h) => h.word), ['type', 'answer box']);
+});
+
+test('a calculator sentence that also talks about the answer box is still screen talk', async () => {
+  const { stripScreenWording, reportScreenWords } = await import('../scripts/print-rules.mjs');
+  const { runs } = stripScreenWording([{ t: 'Use your calculator, then type the answer in the answer box. Next.' }]);
+  assert.doesNotMatch(runs.map((r) => r.t).join(''), /answer box/);
+  assert.equal(reportScreenWords('These are quick checks with an answer box.').length, 1);
+});
