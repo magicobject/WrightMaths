@@ -38,7 +38,7 @@ export function placeholdersIn(strings) {
   return found;
 }
 
-export const PROPERTIES = { creator: '[IMPRINT]', lastModifiedBy: '[IMPRINT]', title: '[TITLE]', subject: 'GCSE Maths', description: 'GCSE maths book, print edition' };
+export const PROPERTIES = { creator: 'Greg Wright', lastModifiedBy: 'Greg Wright', title: 'GCSE Mathematics', subject: 'GCSE Maths', description: 'GCSE maths book, print edition' };
 
 export function parseArgs(argv) {
   const opts = { pages: null, mono: false, release: false, noHints: false, noSlips: false, out: join(root, 'dist/gcse-book.docx'), report: join(root, 'dist/print-report.json') };

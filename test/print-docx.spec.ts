@@ -34,7 +34,9 @@ test.describe('the Word build', () => {
     expect(xml).toMatch(/w:pgSz w:w="12240" w:h="15840"/);
     expect(xml).not.toContain('w:hyperlink');
     // the author is the imprint placeholder, never a username
-    expect(strFromU8(files['docProps/core.xml'])).toMatch(/<dc:creator>\[IMPRINT\]<\/dc:creator>/);
+    // the author is the book's author, never the computer's username
+    expect(strFromU8(files['docProps/core.xml'])).toMatch(/<dc:creator>Greg Wright<\/dc:creator>/);
+    if (process.env.USERNAME) expect(strFromU8(files['docProps/core.xml'])).not.toContain(process.env.USERNAME);
   });
 
   test('it has chapters, answers, hints, glossary, index, contents and equations', () => {
@@ -106,17 +108,19 @@ test.describe('the Word build', () => {
     expect(report.figuresBelow300ppi).toEqual([]);
     expect(report.stats.figures).toBeGreaterThan(20);
     expect(report.stats.minFigurePpi).toBeGreaterThanOrEqual(300);
-    // the front matter placeholders are still placeholders: never invented
-    expect(Object.keys(report.placeholders)).toEqual(expect.arrayContaining(['[TITLE]', '[AUTHOR]', '[ISBN]', '[IMPRINT]']));
+    // what Greg has given is filled in; the rest are still placeholders: never invented
+    expect(Object.keys(report.placeholders)).toEqual(expect.arrayContaining(['[SUBTITLE]', '[EDITION]', '[RIGHTS STATEMENT]', '[ISBN]', '[IMPRINT]']));
+    expect(Object.keys(report.placeholders)).not.toContain('[TITLE]');
+    expect(Object.keys(report.placeholders)).not.toContain('[AUTHOR]');
   });
 
-  test('placeholders in the document properties (core.xml) are counted, so --release sees them', () => {
+  test('the document properties carry the real title and author, with no placeholder', () => {
     const core = strFromU8(files['docProps/core.xml']);
-    expect(core).toContain('[IMPRINT]');
-    expect(core).toContain('[TITLE]');
-    // [IMPRINT]: once on the front page, twice in the properties (author and last modified by)
-    expect(report.placeholders['[IMPRINT]']).toBe(3);
-    expect(report.placeholders['[TITLE]']).toBe(2);
+    expect(core).toContain('GCSE Mathematics');
+    expect(core).toContain('Greg Wright');
+    expect(core).not.toContain('[');
+    // [IMPRINT] is now only on the copyright page
+    expect(report.placeholders['[IMPRINT]']).toBe(1);
   });
 
   test('--release refuses a build that still has placeholders', () => {
