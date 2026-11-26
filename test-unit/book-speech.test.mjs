@@ -119,6 +119,9 @@ test('coordinates are said "three comma four", with minus signs spoken', () => {
 
 test('the letter A is said as a letter name, never as the article', () => {
   assert.equal(toSpoken('A = 3'), 'eigh equals three');
+  assert.equal(toSpoken('Type it like 3k-7.'), 'Type it like three k minus seven.');
+  assert.equal(toSpoken('Type it like x^2+3x-10.'), 'Type it like x squared plus three x minus ten.');
+  assert.equal(toSpoken('Write a × a as simply as possible.'), 'Write eigh times eigh as simply as possible.');
   assert.equal(toSpoken('Pipe A fills a tank.'), 'Pipe eigh fills a tank.');
   assert.equal(toSpoken('a + b and 3a'), 'eigh plus b and three eigh');
   assert.equal(toSpoken('A tube of blue paint costs 4 pounds.'), 'A tube of blue paint costs four pounds.');
