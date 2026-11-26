@@ -28,6 +28,6 @@ export default defineConfig({
     env: { PORT: String(PORT) },
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
-    timeout: 30_000,
+    timeout: 90_000, // the build (about 15s, longer on a busy machine) runs before the server starts
   },
 });
