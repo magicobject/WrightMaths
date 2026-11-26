@@ -1,0 +1,1021 @@
+<main class="book strand-al-proof" data-book-page="topic" data-topic="proof-methods">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Proof &middot; Year 1</span>
+      <h1>Proof: direct, exhaustion, counterexample</h1>
+      <p class="lead">A pattern that works for ten numbers might fail on the eleventh. A proof is an argument that works for every number at once. This page shows you three tools. Proof by deduction uses algebra to cover every case in one go. Proof by exhaustion splits the cases up and checks each one. A counterexample is a single example that shows a claim is false. You will also learn the signs that mathematicians use to join the steps.</p>
+      <p class="where-use"><b>Where you will use this:</b> in every &ldquo;show that&rdquo; and &ldquo;prove that&rdquo; question, in any topic. It comes back in Proof by contradiction, and in the proof of the sum of an arithmetic series. It also helps you decide whether a claim is worth proving or worth testing.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Proof: direct, exhaustion, counterexample</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses GCSE algebra: expanding brackets, factorising, and simple equations. In section 3 it also uses completing the square, which is explained again as it is used. The full method is in <a href="quadratics.html">Quadratics</a>. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-what-a-proof-is">Skip to the lesson</a></p>
+    <div class="q" data-answers="n^2+2n+1;n^2+1+2n;2n+n^2+1;1+2n+n^2" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(n+1)^2}. Type it like n^2+3n+2.</p>
+      <ol class="ladder"><li>{m:(n+1)^2} means {m:(n+1)(n+1)}.</li><li>Multiply every term in the first bracket by every term in the second.</li><li>The two middle terms are both {m:n}. Add them.</li></ol>
+      <ul class="wrong">
+        <li data-if="n^2+1;1+n^2">That is {m:n^2+1^2}. You must multiply out the whole bracket: there is a middle term as well.</li>
+        <li data-if="n^2+n+1;n^2+1+n">There are two middle terms, {m:n} and {m:n}. They add to {m:2n}.</li>
+      </ul>
+      <div class="solution"><p>{m:(n+1)(n+1)=n^2+n+n+1=n^2+2n+1}. Check with {m:n=3}: {m:4^2=16} and {m:9+6+1=16}.</p></div>
+    </div>
+    <div class="q" data-answers="n(n-1);n(-1+n);(n-1)n;(-1+n)n" data-mode="exact">
+      <p class="qtext">Factorise {m:n^2-n}. Type it like n(n+4).</p>
+      <ol class="ladder"><li>Both terms contain n.</li><li>Take n out as a common factor.</li><li>{m:n^2-n=n*n-n*1}. What is left inside the bracket?</li></ol>
+      <ul class="wrong">
+        <li data-if="n(n+1);n(1+n)">The second term is {m:-n}, not {m:+n}. Taking out n leaves {m:n-1}.</li>
+        <li data-if="n-1;-1+n">You took out n but did not write it. The answer is n multiplied by the bracket.</li>
+      </ul>
+      <div class="solution"><p>{m:n^2-n=n(n-1)}. Check with {m:n=5}: {m:5^2-5=20} and {m:5*4=20}.</p></div>
+    </div>
+    <div class="q" data-answers="23" data-mode="value">
+      <p class="qtext">A {term:prime-number|prime number} has exactly two factors: 1 and itself. What is the smallest prime number greater than 20?</p>
+      <ol class="ladder"><li>Check 21, then 22, then 23.</li><li>21 is {m:3*7}. 22 is even.</li><li>Does 23 divide by 2, 3 or 5?</li></ol>
+      <ul class="wrong"><li data-if="21">{m:3*7=21}, so 21 has four factors: 1, 3, 7 and 21. It is not prime.</li><li data-if="22">22 is even, so it divides by 2. It is not prime.</li></ul>
+      <div class="solution"><p>21 is {m:3*7} and 22 is {m:2*11}. The number 23 does not divide by 2, 3 or 5, and {m:5*5=25} is already above 23. So 23 is prime.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="2n+1;1+2n" data-mode="exact">
+      <p class="qtext">An {term:even-number|even number} can be written {m:2n}, where n is an integer. Write down an expression for the odd number that comes straight after {m:2n}. Type it like 3n+4.</p>
+      <ol class="ladder"><li>An odd number is one more than an even number.</li><li>Add 1 to {m:2n}.</li></ol>
+      <ul class="wrong"><li data-if="2n+2;2+2n">That is the next even number. An odd number is one more than an even number, so add 1, not 2.</li></ul>
+      <div class="solution"><p>The number straight after {m:2n} is {m:2n+1}. It is one more than an even number, so it is odd.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">{m:x^2+6x+10=(x+3)^2+k}. Find k.</p>
+      <ol class="ladder"><li>Expand {m:(x+3)^2}.</li><li>{m:(x+3)^2=x^2+6x+9}.</li><li>What must you add to {m:x^2+6x+9} to get {m:x^2+6x+10}?</li></ol>
+      <ul class="wrong"><li data-if="10">You have not allowed for the 9 that the bracket already gives. {m:(x+3)^2} contains {m:+9}.</li><li data-if="-1">The bracket gives 9 and you need 10, so you add 1. A negative k would give 8.</li></ul>
+      <div class="solution"><p>{m:(x+3)^2=x^2+6x+9}, so {m:x^2+6x+10=(x+3)^2+1}. Check with {m:x=0}: {m:10=9+1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Is 91 a prime number?</p>
+      <ul class="options">
+        <li data-why="91 is not prime. Test 7: 7 times 13 is 91, so 91 has more than two factors.">Yes, because it is not even and not a multiple of 3 or 5</li>
+        <li data-correct>No, because 91 is 7 times 13</li>
+        <li data-why="91 is odd, so it does not divide by 2. It is not prime for a different reason: it divides by 7.">No, because 91 is even</li>
+      </ul>
+      <ol class="ladder"><li>Try dividing 91 by 7.</li><li>What is {m:7*13}?</li></ol>
+      <div class="solution"><p>{m:7*13=91}, so 91 has the factors 1, 7, 13 and 91. It is not prime. This is a common trap: 91 passes the checks for 2, 3 and 5.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. What a proof is</h2>
+    <p>A {term:statement} is a sentence that is true or false. &ldquo;The sum of two even numbers is even&rdquo; is a statement about every pair of even numbers. You could check ten pairs, or a thousand, and still not know it holds for the next pair.</p>
+    <p>A {term:proof} is a chain of steps that shows a statement is true in every possible case. Each step follows from the one before. Checking examples is not a proof. It only gives you evidence.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a proof has three parts.</p>
+      <ul class="tick">
+        <li><b>Assumptions.</b> What you start from. These are the facts you are given and the meanings of the words. For example, an even number is 2 times an integer.</li>
+        <li><b>Steps.</b> Each line follows from the line before. You can give the reason for each one.</li>
+        <li><b>Conclusion.</b> A sentence that says what you have shown, in the words of the question.</li>
+      </ul>
+    </div>
+    <p>Four signs help you write the steps. Learn what each one says.</p>
+    <ul class="tick">
+      <li>The sign &rArr; means {term:implies|implies}. &ldquo;A &rArr; B&rdquo; reads &ldquo;if A is true, then B is true&rdquo;.</li>
+      <li>The sign &lArr; points the other way. &ldquo;A &lArr; B&rdquo; reads &ldquo;A is true if B is true&rdquo;.</li>
+      <li>The sign &hArr; means {term:if-and-only-if|if and only if}. It says that both directions hold, so A and B are either both true or both false.</li>
+      <li>The sign &there4; means {term:therefore|therefore}. It joins a reason to the result that follows.</li>
+    </ul>
+    <p>The {term:converse} of &ldquo;if A, then B&rdquo; is &ldquo;if B, then A&rdquo;. A true statement can have a false converse. So you must check each direction on its own.</p>
+    <div class="worked">
+      <h3>Worked example: the three parts of a proof</h3>
+      <p>Prove that the sum of two even numbers is even.</p>
+      <ol class="steps">
+        <li><b>Assumption.</b> Let the two even numbers be {m:2a} and {m:2b}, where a and b are integers. An even number is 2 times an integer.</li>
+        <li><b>Step.</b> Add them: {m:2a+2b=2(a+b)}.</li>
+        <li><b>Step.</b> The sum {m:a+b} of two integers is an integer.</li>
+        <li><b>Conclusion.</b> The sum is 2 times an integer, so it is even. &there4; the sum of two even numbers is even.</li>
+      </ol>
+      <!-- No figure: a proof is a chain of written steps, so there is no natural picture. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: one direction only</h3>
+      <p>Is it correct to write {m:x=4} &rArr; {m:x^2=16}? Is it correct to write {m:x=4} &lArr; {m:x^2=16}?</p>
+      <ol class="steps">
+        <li>If {m:x=4}, then {m:x^2=4^2=16}. So {m:x=4} &rArr; {m:x^2=16} is true.</li>
+        <li>Now try the other direction. If {m:x^2=16}, then x could be 4 or {m:-4}. The value {m:x=-4} makes {m:x^2=16} true and {m:x=4} false.</li>
+        <li>So {m:x=4} &lArr; {m:x^2=16} is false.</li>
+        <li>Only one direction holds, so you must not write &hArr;.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: both directions</h3>
+      <p>Solve {m:3x-1=11}, and show that each line follows from the line before it and leads back to it.</p>
+      <ol class="steps">
+        <li>Add 1 to both sides: {m:3x-1=11} &hArr; {m:3x=12}. Subtracting 1 undoes it.</li>
+        <li>Divide both sides by 3: {m:3x=12} &hArr; {m:x=4}. Multiplying by 3 undoes it.</li>
+        <li>Every step can be undone, so &hArr; is correct. The equation {m:3x-1=11} is true if and only if {m:x=4}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find every x with {m:x^2=25}, and say which direction of {m:x=5} &hArr; {m:x^2=25} fails.</p>
+      <ol class="steps">
+        <li>If {m:x=5} then {m:x^2=25}. This direction is true.</li>
+        <li>If {m:x^2=25} then {m:x=5} or {m:x=}<span class="blank" data-answers="-5">___</span>. So the other direction is false.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(-5)^2=25}, so {m:x=-5} is also a solution. {m:x=5} &rArr; {m:x^2=25} is true. {m:x^2=25} &rArr; {m:x=5} is false, so &hArr; is wrong.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the language of proof</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a proof that the sum of two even numbers is even?</p>
+      <ul class="options">
+        <li data-correct>Write the numbers as 2a and 2b, then add them to get 2(a + b), which is 2 times an integer</li>
+        <li data-why="Three examples are evidence, not a proof. The statement is about every pair of even numbers, and three pairs cannot cover them all.">Check 2 + 4, 6 + 8 and 10 + 12. Each sum is even</li>
+        <li data-why="Even a hundred pairs is only a finite list. A proof must cover every pair of even numbers, and there are infinitely many.">Check every pair of even numbers up to 100. Each sum is even</li>
+      </ul>
+      <ol class="ladder"><li>A proof must cover every case, not only the ones you tried.</li><li>Which answer uses letters, so that it works for any even numbers?</li></ol>
+      <div class="solution"><p>Letters stand for any even numbers, so the algebra covers every pair at once. Examples can only support the statement.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which sign correctly joins {m:x=2} and {m:x^2=4}, with {m:x=2} on the left?</p>
+      <ul class="options">
+        <li data-correct>The sign &rArr;, because if x is 2 then {m:x^2} is 4, but x could also be {m:-2}</li>
+        <li data-why="&hArr; needs both directions. Test x = &minus;2: x squared is 4, but x is not 2. So the reverse direction fails.">The sign &hArr;, because the two equations say the same thing</li>
+        <li data-why="&lArr; says x = 2 is true if x squared = 4. The value x = &minus;2 makes x squared = 4 true and x = 2 false, so this is not correct.">The sign &lArr;, because {m:x^2=4} leads to {m:x=2}</li>
+      </ul>
+      <ol class="ladder"><li>Test each direction on its own.</li><li>Is there a value of x that makes {m:x^2=4} true but {m:x=2} false?</li></ol>
+      <div class="solution"><p>{m:x=2} &rArr; {m:x^2=4} holds. The other direction fails for {m:x=-2}. Only the sign &rArr; is correct.</p></div>
+    </div>
+    <div class="q" data-answers="-7" data-mode="value">
+      <p class="qtext">{m:x^2=49} is true when {m:x=7} or {m:x=k}. Find k.</p>
+      <ol class="ladder"><li>A square number has two square roots, one positive and one negative.</li><li>What number, multiplied by itself, gives 49 and is not 7?</li></ol>
+      <ul class="wrong"><li data-if="7">That is the first solution. The question asks for the other one.</li><li data-if="49">49 is the value of {m:x^2}, not of x.</li></ul>
+      <div class="solution"><p>{m:(-7)^2=49}, so {m:k=-7}. This is why {m:x^2=49} does not imply {m:x=7}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What does the sign &there4; mean in a proof?</p>
+      <ul class="options">
+        <li data-why="&there4; points to a result that follows. It does not say that something is true by definition, and it is not an equals sign.">It means &ldquo;is equal to&rdquo;</li>
+        <li data-correct>It means &ldquo;therefore&rdquo;: what comes after it follows from what came before</li>
+        <li data-why="This is the meaning of &hArr;, not &there4;. The sign &there4; goes one way only, from reasons to a result.">It means &ldquo;if and only if&rdquo;</li>
+      </ul>
+      <ol class="ladder"><li>Look at where the sign goes in a proof: between the reason and the result.</li></ol>
+      <div class="solution"><p>The sign &there4; is read &ldquo;therefore&rdquo;. For example: {m:2x=8}, &there4; {m:x=4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which pair of statements can be joined by the sign &hArr;?</p>
+      <ul class="options">
+        <li data-why="Test x = &minus;3: x squared is 9, but x is not 3. The two statements are not equivalent.">{m:x^2=9} and {m:x=3}</li>
+        <li data-why="Test x = 3: the second statement is true and the first is false. Both directions must hold for &hArr;.">{m:x>2} and {m:x>5}</li>
+        <li data-correct>{m:x+5=9} and {m:x=4}</li>
+      </ul>
+      <ol class="ladder"><li>For each pair, look for a value that makes one statement true and the other false.</li><li>Only a pair with no such value can use &hArr;.</li></ol>
+      <div class="solution"><p>{m:x+5=9} and {m:x=4} are true for exactly the same values of x, so &hArr; is correct. The other pairs have a value of x that fits one statement and not the other: {m:x=-3} for the first pair, and {m:x=3} for the second.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is the converse of &ldquo;if n is a multiple of 6, then n is even&rdquo;?</p>
+      <ul class="options">
+        <li data-why="This is a different statement: it negates both parts. The converse swaps the two parts but keeps them as they are.">If n is not a multiple of 6, then n is not even</li>
+        <li data-correct>If n is even, then n is a multiple of 6</li>
+        <li data-why="This says that an odd number is not a multiple of 6. It is a true statement, but it is not the converse: the converse swaps the two parts.">If n is odd, then n is not a multiple of 6</li>
+      </ul>
+      <ol class="ladder"><li>The converse swaps the &ldquo;if&rdquo; part and the &ldquo;then&rdquo; part.</li></ol>
+      <div class="solution"><p>The original statement is true. Its converse is false: 4 is even and is not a multiple of 6.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Proof by deduction with integers</h2>
+    <p>{term:proof-by-deduction|Proof by deduction} starts from known facts and uses algebra to reach the result. To prove something about all {term:integer|integers} of one kind, write them with letters.</p>
+    <div class="key">
+      <p><b>Key idea:</b> write each kind of number with a letter.</p>
+      <ul class="tick">
+        <li>An {term:even-number|even number} is {m:2n}. An {term:odd-number|odd number} is {m:2n+1}. Here n is any integer.</li>
+        <li>{term:consecutive-integers|Consecutive integers} are {m:n}, {m:n+1}, {m:n+2}, and so on.</li>
+        <li>A {term:multiple} of 3 is {m:3n}. A multiple of 8 is {m:8n}.</li>
+        <li>Use a <b>different letter</b> for each number that can vary independently. Two even numbers are {m:2a} and {m:2b}, not {m:2n} and {m:2n}.</li>
+      </ul>
+    </div>
+    <p>At the end, show that your result has the form you need. For &ldquo;is even&rdquo;, write it as 2 times an integer. For &ldquo;is a multiple of 3&rdquo;, write it as 3 times an integer. Then say so in a sentence.</p>
+    <div class="worked">
+      <h3>Worked example: two odd numbers</h3>
+      <p>Prove that the sum of two odd numbers is even.</p>
+      <ol class="steps">
+        <li>Let the numbers be {m:2a+1} and {m:2b+1}, where a and b are integers. They use different letters because they can be different numbers.</li>
+        <li>Add them: {m:(2a+1)+(2b+1)=2(a+b+1)}.</li>
+        <li>The number {m:a+b+1} is an integer, so the sum is 2 times an integer.</li>
+        <li>Conclusion: the sum of two odd numbers is even.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: factorise first</h3>
+      <p>Prove that {m:n^2-n} is even for every integer n.</p>
+      <ol class="steps">
+        <li>Factorise: {m:n^2-n=n(n-1)}.</li>
+        <li>The numbers n and {m:n-1} are consecutive integers. Consecutive integers alternate between even and odd. So one of them is even.</li>
+        <li>An even number times any integer is even. Write the even factor as 2k. Then the product is {m:2k*m=2km}, which is 2 times an integer.</li>
+        <li>Conclusion: {m:n^2-n} is even for every integer n. Check with {m:n=6}: {m:6^2-6=30}, which is even.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: consecutive integers</h3>
+      <p>Prove that the sum of any three consecutive integers is a multiple of 3.</p>
+      <ol class="steps">
+        <li>Let the integers be n, {m:n+1} and {m:n+2}.</li>
+        <li>Add them: {m:n+(n+1)+(n+2)=3n+3}.</li>
+        <li>Factorise: {m:3n+3=3(n+1)}.</li>
+        <li>The number {m:n+1} is an integer, so the sum is 3 times an integer. It is a multiple of 3.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: squares</h3>
+      <p>Prove that the square of an odd number is odd.</p>
+      <ol class="steps">
+        <li>Let the odd number be {m:2n+1}.</li>
+        <li>Square it: {m:(2n+1)^2=4n^2+4n+1}.</li>
+        <li>Take out a factor of 2 from the first two terms: {m:4n^2+4n+1=2(2n^2+2n)+1}.</li>
+        <li>The number {m:2n^2+2n} is an integer, so the result is 2 times an integer plus 1. It is odd.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a harder form</h3>
+      <p>Prove that {m:(2n+1)^2-1} is a multiple of 8 for every integer n.</p>
+      <ol class="steps">
+        <li>Expand and simplify: {m:(2n+1)^2-1=4n(n+1)}.</li>
+        <li>The numbers n and {m:n+1} are consecutive, so one of them is even. So {m:n(n+1)=2k} for some integer k.</li>
+        <li>Then {m:4n(n+1)=4*2k=8k}.</li>
+        <li>Conclusion: {m:(2n+1)^2-1} is a multiple of 8. Check with {m:n=3}: {m:7^2-1=48}, and {m:48=8*6}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that the sum of two consecutive odd numbers is a multiple of 4.</p>
+      <ol class="steps">
+        <li>Let the odd numbers be {m:2n+1} and {m:2n+}<span class="blank" data-answers="3">___</span>.</li>
+        <li>Add them: {m:(2n+1)+(2n+3)=4n+}<span class="blank" data-answers="4">___</span>.</li>
+        <li>Factorise: {m:4n+4=4(n+1)}. This is 4 times an integer.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The next odd number after {m:2n+1} is {m:2n+3}. The sum is {m:(2n+1)+(2n+3)=4n+4=4(n+1)}, which is a multiple of 4. Check with 5 and 7: {m:5+7=12}, and {m:12=4*3}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: deduction with integers</h2>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">Two odd numbers are {m:2a+1} and {m:2b+1}. Their sum is {m:2(a+b+k)}. Find k.</p>
+      <ol class="ladder"><li>Add the two numbers: {m:2a+1+2b+1}.</li><li>The two ones add to 2.</li><li>Take out a factor of 2.</li></ol>
+      <ul class="wrong"><li data-if="2">The ones add to 2, but once you take out a factor of 2 from {m:2a+2b+2}, a 1 is left inside the bracket.</li><li data-if="0">The two ones do not disappear. {m:2a+1+2b+1=2a+2b+2}.</li></ul>
+      <div class="solution"><p>{m:(2a+1)+(2b+1)=2a+2b+2=2(a+b+1)}, so {m:k=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which pair of expressions stands for two <b>different</b> odd numbers that could be any odd numbers?</p>
+      <ul class="options">
+        <li data-why="Both expressions use the same letter, so they are the same number. The sum would only prove a result about one number added to itself.">{m:2n+1} and {m:2n+1}</li>
+        <li data-why="The number 2n + 2 is even, not odd. Any pair of odd numbers needs the form 2 times an integer, plus 1, for both.">{m:2n+1} and {m:2n+2}</li>
+        <li data-correct>{m:2a+1} and {m:2b+1}</li>
+      </ul>
+      <ol class="ladder"><li>Each number needs its own letter.</li><li>Each odd number is 2 times an integer, plus 1.</li></ol>
+      <div class="solution"><p>The letters a and b can be different integers, so {m:2a+1} and {m:2b+1} stand for any two odd numbers.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The sum of three consecutive even numbers {m:2n}, {m:2n+2} and {m:2n+4} is {m:2n+(2n+2)+(2n+4)=6n+6}. The sum is always a multiple of what number? Give the largest such number from this working.</p>
+      <ol class="ladder"><li>Factorise {m:6n+6}.</li><li>{m:6n+6=6(n+1)}.</li></ol>
+      <ul class="wrong"><li data-if="2;3">That is true, but it is not the largest. {m:6n+6=6(n+1)}, so it is a multiple of 6.</li><li data-if="12">Test n = 1: the numbers are 2, 4 and 6 and their sum is 12. But n = 2 gives 4, 6 and 8, with sum 18, which is not a multiple of 12.</li></ul>
+      <div class="solution"><p>{m:6n+6=6(n+1)}, so the sum is a multiple of 6. Check: {m:2+4+6=12} and {m:4+6+8=18}. Both are multiples of 6.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You prove that the product of an even number and an odd number is even. Which line of working is correct?</p>
+      <ul class="options">
+        <li data-why="The two numbers use the same letter n, so this only covers an even number times the next odd number. Different letters are needed.">Use {m:2n*(2n+1)=4n^2+2n=2(2n^2+n)}</li>
+        <li data-correct>{m:2a*(2b+1)=4ab+2a=2(2ab+a)}, which is 2 times an integer</li>
+        <li data-why="This multiplies the even number by 2 and the odd number by 1 without using letters. A proof must work for every even and every odd number.">{m:2*3=6}, so the product is even</li>
+      </ul>
+      <ol class="ladder"><li>Use a different letter for each number.</li><li>An even number is {m:2a}. An odd number is {m:2b+1}.</li></ol>
+      <div class="solution"><p>{m:2a(2b+1)=4ab+2a=2(2ab+a)}. The bracket is an integer, so the product is even.</p></div>
+    </div>
+    <div class="q" data-answers="2n+1;1+2n" data-mode="exact">
+      <p class="qtext">The difference between the squares of two consecutive integers is {m:(n+1)^2-n^2}. Simplify it. Type it like 3n+4.</p>
+      <ol class="ladder"><li>Expand {m:(n+1)^2}: it is {m:n^2+2n+1}.</li><li>Subtract {m:n^2}.</li></ol>
+      <ul class="wrong"><li data-if="1">You subtracted {m:n^2} from {m:n^2}, but {m:(n+1)^2} is {m:n^2+2n+1}, not {m:n^2+1}.</li><li data-if="2n">The expansion of {m:(n+1)^2} ends in {m:+1}. The answer is {m:2n+1}.</li></ul>
+      <div class="solution"><p>{m:(n+1)^2-n^2=n^2+2n+1-n^2=2n+1}. This is 2 times an integer plus 1, so it is odd. Check: {m:6^2-5^2=11}.</p></div>
+    </div>
+    <div class="q" data-type="show">
+      <p class="qtext">Prove that the sum of any three consecutive integers is a multiple of 3. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Write the three integers with one letter.</li><li>Add them and simplify.</li><li>Show the result is 3 times an integer.</li></ol>
+      <div class="solution"><p>Let the integers be n, {m:n+1} and {m:n+2}. Their sum is {m:n+(n+1)+(n+2)=3n+3=3(n+1)}. The number {m:n+1} is an integer, so the sum is a multiple of 3.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The sum of two consecutive odd numbers is {m:4n+4}, which is a multiple of 4. The sum of two consecutive even numbers {m:2n+(2n+2)} is {m:4n+2}. What remainder does {m:4n+2} leave when you divide by 4?</p>
+      <ol class="ladder"><li>Write {m:4n+2} as 4 times something plus a remainder.</li><li>{m:4n} is a multiple of 4.</li></ol>
+      <ul class="wrong"><li data-if="0">A remainder of 0 would mean a multiple of 4. But {m:4n+2} leaves 2 left over: for example {m:2+4=6}, and 6 is not a multiple of 4.</li><li data-if="4">A remainder is always less than the number you divide by. The remainder is 2.</li></ul>
+      <div class="solution"><p>{m:4n+2=4n+2}, and {m:4n} is a multiple of 4. So the remainder is 2. Check: {m:2+4=6}, and 6 leaves remainder 2 when divided by 4.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Proving identities and that an expression is always positive</h2>
+    <p>Many proofs are about algebra, not about integers. The command words {term:show-that|show that} mean you must write every step. When you show that two expressions are equal for every value of the letters, you prove an {term:identity-sign|identity}. Start with one side. Change it step by step until it equals the other side. Do not work on both sides at once.</p>
+    <p>To show that an expression is always positive, use {term:completing-the-square|completing the square}. It writes the expression as a square plus a number. A square is never negative, so the expression is at least that number.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a square is never negative.</p>
+      <ul class="tick">
+        <li>For every real number x, {m:(x-p)^2>=0}. It equals 0 only when {m:x=p}.</li>
+        <li>So {m:(x-p)^2+q} is at least q. If q is positive, the expression is always positive.</li>
+        <li>For a negative x squared term, write {m:-(x-p)^2+q}. It is at most q. If q is negative, the expression is always negative.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an identity</h3>
+      <p>Show that {m:(n+3)^2-(n-3)^2} is equal to {m:12n} for every n.</p>
+      <ol class="steps">
+        <li>Expand each bracket: {m:(n+3)^2=n^2+6n+9} and {m:(n-3)^2=n^2-6n+9}.</li>
+        <li>Subtract. Take care with the signs: {m:(n^2+6n+9)-(n^2-6n+9)=12n}.</li>
+        <li>The left side simplifies to {m:12n}, which is the right side. So {m:(n+3)^2-(n-3)^2=12n} for every n.</li>
+        <li>Check with {m:n=2}: {m:5^2-(-1)^2=24}, and {m:12*2=24}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: always positive</h3>
+      <p>Prove that {m:x^2-6x+10} is positive for every real value of x.</p>
+      <ol class="steps">
+        <li>Complete the square: {m:x^2-6x+10=(x-3)^2+1}. Check: {m:(x-3)^2=x^2-6x+9}, and adding 1 gives 10.</li>
+        <li>A square is never negative, so {m:(x-3)^2>=0} for every real x.</li>
+        <li>Add 1: {m:(x-3)^2+1>=1}.</li>
+        <li>Conclusion: the expression is at least 1, so it is positive for every real x. Its lowest value is 1, when {m:x=3}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:proof-methods-always-positive}<figcaption>Look at the lowest point of the curve, at {m:(3, 1)}. It is above the x-axis. Every other point is higher, so the expression is never 0 or negative.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: always negative</h3>
+      <p>Prove that {m:-x^2+4x-5} is negative for every real value of x.</p>
+      <ol class="steps">
+        <li>Take out the minus sign from the first two terms and complete the square: {m:-x^2+4x-5=-(x-2)^2-1}. Check: {m:-(x-2)^2=-x^2+4x-4}, and subtracting 1 gives {m:-5}.</li>
+        <li>A square is never negative, so {m:-(x-2)^2<=0}.</li>
+        <li>Subtract 1: {m:-(x-2)^2-1<=-1}.</li>
+        <li>Conclusion: the expression is at most {m:-1}, so it is negative for every real x.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a claim that fails</h3>
+      <p>Is it true that {m:x^2+4x+3} is positive for every real x?</p>
+      <ol class="steps">
+        <li>Complete the square: {m:x^2+4x+3=(x+2)^2-1}.</li>
+        <li>The square {m:(x+2)^2} can be 0, so the expression can be as low as {m:-1}.</li>
+        <li>Try {m:x=-2}: {m:(-2)^2+4*(-2)+3=-1}. This is negative.</li>
+        <li>The claim is false, and {m:x=-2} is a counterexample.</li>
+      </ol>
+      <!-- No figure: the always-positive figure above shows the idea. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that {m:x^2-4x+7} is positive for every real x.</p>
+      <ol class="steps">
+        <li>Complete the square: {m:x^2-4x+7=(x-2)^2+}<span class="blank" data-answers="3">___</span>.</li>
+        <li>Since {m:(x-2)^2>=0}, the expression is at least <span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(x-2)^2=x^2-4x+4}, so {m:x^2-4x+7=(x-2)^2+3}. The expression is at least 3, so it is positive for every real x.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: identities and always positive</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">{m:x^2-10x+30=(x-5)^2+k}. Find k.</p>
+      <ol class="ladder"><li>Expand {m:(x-5)^2}.</li><li>{m:(x-5)^2=x^2-10x+25}.</li><li>What must you add to 25 to get 30?</li></ol>
+      <ul class="wrong"><li data-if="30">The bracket already gives {m:+25}. You add only the difference.</li><li data-if="-5">The bracket gives 25 and you need 30, so you add 5. A negative k would give 20.</li></ul>
+      <div class="solution"><p>{m:x^2-10x+30=(x-5)^2+5}. Check with {m:x=0}: {m:30=25+5}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">Find the lowest value of {m:x^2-6x+10}.</p>
+      <ol class="ladder"><li>Write it as {m:(x-3)^2+1}.</li><li>The smallest value of a square is 0.</li></ol>
+      <ul class="wrong"><li data-if="3">That is the value of x where the lowest value happens. The lowest value of the expression is 1.</li><li data-if="10">That is the value when {m:x=0}. It is not the lowest value.</li></ul>
+      <div class="solution"><p>{m:(x-3)^2+1} is smallest when the square is 0, at {m:x=3}. The lowest value is 1. Check: {m:3^2-6*3+10=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You have shown that {m:x^2-4x+7=(x-2)^2+3}. Which sentence completes the proof that {m:x^2-4x+7} is always positive?</p>
+      <ul class="options">
+        <li data-why="The term x squared has a positive coefficient, but that alone does not make the expression positive. The positive number at the end matters here.">The coefficient of {m:x^2} is positive, so the expression is always positive</li>
+        <li data-why="The square (x &minus; 2) squared is not always 0. It is 0 only when x = 2. Otherwise it is positive.">The square is always 0, so the expression equals 3</li>
+        <li data-correct>The square is never negative, so the expression is at least 3</li>
+      </ul>
+      <ol class="ladder"><li>What do you know about a square of a real number?</li><li>Add 3 to something that is at least 0.</li></ol>
+      <div class="solution"><p>A square is at least 0, so {m:(x-2)^2+3>=3}. This shows the expression is positive for every real x.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">{m:-x^2+6x-10=-(x-3)^2+c}. Find c.</p>
+      <ol class="ladder"><li>Expand {m:-(x-3)^2}: it is {m:-x^2+6x-9}.</li><li>What must you add to {m:-9} to get {m:-10}?</li></ol>
+      <ul class="wrong"><li data-if="1">The bracket gives {m:-9}, and you need {m:-10}. So you add {m:-1}, not 1.</li><li data-if="-10">The bracket already gives {m:-9}. You add only the difference.</li></ul>
+      <div class="solution"><p>{m:-(x-3)^2=-x^2+6x-9}. To reach {m:-10} you add {m:-1}. So {m:c=-1}, and the expression is at most {m:-1}. It is always negative.</p></div>
+    </div>
+    <div class="q" data-type="show">
+      <p class="qtext">Show that {m:(2n+3)^2-(2n-3)^2=24n}. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Expand each bracket on its own.</li><li>{m:(2n+3)^2=4n^2+12n+9}.</li><li>Subtract carefully, changing every sign of the second bracket.</li></ol>
+      <div class="solution"><p>{m:(2n+3)^2-(2n-3)^2=(4n^2+12n+9)-(4n^2-12n+9)=24n}. Check with {m:n=1}: {m:5^2-(-1)^2=24}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">{m:3x^2-12x+14=3(x-2)^2+2}. Find the lowest value of {m:3x^2-12x+14}.</p>
+      <ol class="ladder"><li>The smallest value of {m:3(x-2)^2} is 0.</li><li>What is left?</li></ol>
+      <ul class="wrong"><li data-if="14">That is the value when {m:x=0}. It is not the lowest value.</li><li data-if="6">You multiplied the number at the end by 3. The square term is multiplied by 3, and the +2 is already outside it.</li></ul>
+      <div class="solution"><p>{m:3(x-2)^2>=0}, so the expression is at least 2. The lowest value is 2, when {m:x=2}. Check: {m:3*4-12*2+14=2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Proof by exhaustion</h2>
+    <p>{term:proof-by-exhaustion|Proof by exhaustion} splits every possibility into a small number of cases, then checks each case. The cases must cover everything, with no gaps. There are two kinds.</p>
+    <ul class="tick">
+      <li><b>A short list of values.</b> For example, all the numbers from 91 to 99. You check each one.</li>
+      <li><b>Cases that cover every integer.</b> For example, every integer is {m:3k}, {m:3k+1} or {m:3k+2}, where k is an integer. This gives three cases, and it covers infinitely many integers.</li>
+    </ul>
+    <p>The second kind works by the remainder on division. Dividing by 3 leaves remainder 0, 1 or 2. So every integer fits exactly one of the three forms.</p>
+    <div class="key">
+      <p><b>Key idea:</b> exhaustion works when you can list the cases and each one can be checked.</p>
+      <ul class="tick">
+        <li>Say how you split the cases, and why they cover every possibility.</li>
+        <li>Check every case. Do not stop at the ones that work.</li>
+        <li>Finish with a sentence that says the statement is true in all cases.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a short list</h3>
+      <p>Prove that 97 is the only prime number between 90 and 100.</p>
+      <ol class="steps">
+        <li>The even numbers 92, 94, 96 and 98 divide by 2, so they are not prime.</li>
+        <li>The odd numbers left are 91, 93, 95, 97 and 99.</li>
+        <li>{m:7*13=91}, {m:3*31=93}, {m:5*19=95} and {m:9*11=99}. So 91, 93, 95 and 99 are not prime.</li>
+        <li>For 97: it does not divide by 2, 3, 5 or 7. The next prime is 11, and {m:11*11=121} is already above 97. If 97 had a factor other than 1 and itself, one factor would be at most 9. So 97 is prime.</li>
+        <li>Conclusion: every number from 91 to 99 has been checked, and only 97 is prime.</li>
+      </ol>
+      <!-- No figure: the working is a list of cases, and a table of divisions would not show anything the steps do not. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: cases that cover every integer</h3>
+      <p>Prove that the square of any integer is either a multiple of 3 or one more than a multiple of 3.</p>
+      <ol class="steps">
+        <li>Every integer is {m:3k}, {m:3k+1} or {m:3k+2}, for some integer k. These three cases cover every integer.</li>
+        <li>Case 1: {m:(3k)^2=9k^2=3(3k^2)}. This is a multiple of 3.</li>
+        <li>Case 2: {m:(3k+1)^2=9k^2+6k+1=3(3k^2+2k)+1}. This is one more than a multiple of 3.</li>
+        <li>Case 3: {m:(3k+2)^2=9k^2+12k+4=3(3k^2+4k+1)+1}. This is one more than a multiple of 3.</li>
+        <li>Conclusion: in every case the square is a multiple of 3 or one more than a multiple of 3. Check with {m:n=5}: {m:5^2=25=3*8+1}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: three consecutive integers</h3>
+      <p>Prove that {m:n^3-n} is a multiple of 3 for every integer n.</p>
+      <ol class="steps">
+        <li>Factorise: {m:n^3-n=n(n-1)(n+1)}. These are three consecutive integers multiplied together.</li>
+        <li>Case 1: {m:n=3k}. Then the factor n is a multiple of 3, so the product is too.</li>
+        <li>Case 2: {m:n=3k+1}. Then {m:n-1=3k} is a multiple of 3.</li>
+        <li>Case 3: {m:n=3k+2}. Then {m:n+1=3k+3=3(k+1)} is a multiple of 3.</li>
+        <li>Conclusion: in every case one factor is a multiple of 3, so {m:n^3-n} is a multiple of 3. Check with {m:n=4}: {m:4^3-4=60}, and {m:60=3*20}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the last digit of a square</h3>
+      <p>Show that no square number ends in 7.</p>
+      <ol class="steps">
+        <li>The last digit of a square depends only on the last digit of the number. There are ten possible last digits, 0 to 9.</li>
+        <li>Square each last digit and look at the last digit of the result: {m:0^2=0}, {m:1^2=1}, {m:2^2=4}, {m:3^2=9}, {m:4^2=16}, {m:5^2=25}, {m:6^2=36}, {m:7^2=49}, {m:8^2=64} and {m:9^2=81}.</li>
+        <li>The last digits that appear are 0, 1, 4, 9, 6, 5, 6, 9, 4 and 1. That is the set 0, 1, 4, 5, 6 and 9.</li>
+        <li>Conclusion: the digit 7 does not appear, so no square number ends in 7. The same is true of 2, 3 and 8.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that when a square number is divided by 4, the remainder is never 2 or 3.</p>
+      <ol class="steps">
+        <li>Every integer is even or odd. Case 1: {m:n=2k}. Then {m:n^2=4k^2}, which leaves remainder <span class="blank" data-answers="0">___</span> when divided by 4.</li>
+        <li>Case 2: {m:n=2k+1}. Then {m:(2k+1)^2=4k^2+4k+1=4(k^2+k)+1}, which leaves remainder <span class="blank" data-answers="1">___</span> when divided by 4.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>Case 1 leaves remainder 0. Case 2 leaves remainder 1. These cases cover every integer, so a square leaves remainder 0 or 1 when divided by 4, and never 2 or 3.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: exhaustion</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">How many primes are there between 30 and 50?</p>
+      <ol class="ladder"><li>List the numbers from 31 to 49. Cross out the even ones.</li><li>Check 33, 35, 39, 45 and 49 for factors of 3, 5 and 7.</li><li>Test the rest: 31, 37, 41, 43 and 47.</li></ol>
+      <ul class="wrong"><li data-if="4">One prime is missing. Check 31, 37, 41, 43 and 47 for the full list.</li><li data-if="6">One number on your list is not prime. Check 49: it is {m:7*7}.</li></ul>
+      <div class="solution"><p>The odd numbers are 31, 33, 35, 37, 39, 41, 43, 45, 47 and 49. Here {m:3*11=33}, {m:5*7=35}, {m:3*13=39}, {m:5*9=45} and {m:7*7=49}. The primes are 31, 37, 41, 43 and 47. That is 5 primes.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many primes are there between 60 and 70?</p>
+      <ol class="ladder"><li>Cross out the even numbers.</li><li>Check 63, 65 and 69.</li><li>Test 61, 67.</li></ol>
+      <ul class="wrong"><li data-if="3">Check 69. It is {m:3*23}, so it is not prime.</li><li data-if="1">There are two. Check both 61 and 67.</li></ul>
+      <div class="solution"><p>The odd numbers are 61, 63, 65, 67 and 69. Here {m:7*9=63}, {m:5*13=65} and {m:3*23=69}. The primes are 61 and 67. That is 2 primes.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">How many different last digits can a square number have?</p>
+      <ol class="ladder"><li>The last digit of a square depends only on the last digit of the number.</li><li>Square each of the digits 0 to 9 and note the last digit.</li><li>Count the different last digits, not the squares.</li></ol>
+      <ul class="wrong"><li data-if="10">Some digits give the same last digit. For example {m:4^2=16} and {m:6^2=36} both end in 6.</li><li data-if="5">One last digit is missing from your count. The digits are 0, 1, 4, 5, 6 and 9.</li></ul>
+      <div class="solution"><p>The last digits of {m:0^2} to {m:9^2} are 0, 1, 4, 9, 6, 5, 6, 9, 4, 1. The different ones are 0, 1, 4, 5, 6 and 9. That is 6 last digits.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You want to split the integers into cases by their remainder when divided by 3. Which set of cases covers every integer?</p>
+      <ul class="options">
+        <li data-why="An integer such as 5 is neither 3k nor 3k + 1. The case 3k + 2 is missing.">Two cases: {m:3k} and {m:3k+1}</li>
+        <li data-correct>Three cases: {m:3k}, {m:3k+1} and {m:3k+2}</li>
+        <li data-why="The integer 5 is neither a multiple of 2 nor a multiple of 3. These cases leave gaps, and they also overlap at 6.">Two cases: {m:2k} and {m:3k}</li>
+      </ul>
+      <ol class="ladder"><li>Divide an integer by 3. What remainders are possible?</li></ol>
+      <div class="solution"><p>The remainder on division by 3 is 0, 1 or 2. These give the forms {m:3k}, {m:3k+1} and {m:3k+2}. Every integer fits exactly one of them.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student checks {m:n^2+n} for every n from 1 to 10 and finds that every result is even. Why is this not a proof that {m:n^2+n} is even for every integer n?</p>
+      <ul class="options">
+        <li data-correct>There are infinitely many integers, and ten values do not cover them all</li>
+        <li data-why="A hundred values is also a finite list. No finite list of examples covers every integer, however long it is.">Ten values is too few, but a hundred values would be a proof</li>
+        <li data-why="n = 11 gives 11 squared plus 11, which is 132, an even number. The statement is true. The problem is the method, not the statement.">The result is odd when {m:n=11}</li>
+      </ul>
+      <ol class="ladder"><li>How many integers are there?</li><li>Can a finite list of examples cover all of them?</li></ol>
+      <div class="solution"><p>Examples support a statement, but they cannot prove it for every integer. Exhaustion needs cases that cover every integer, such as n even and n odd. Here {m:11^2+11=132}, which is even, so the statement is true. It needs a proof.</p></div>
+    </div>
+    <div class="q" data-type="show">
+      <p class="qtext">Prove that a square number never leaves remainder 2 when divided by 3. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Split the integers into three cases by the remainder on division by 3.</li><li>Square each case and write it as a multiple of 3 plus a number.</li></ol>
+      <div class="solution"><p>Every integer is {m:3k}, {m:3k+1} or {m:3k+2}. Then {m:(3k)^2=9k^2=3(3k^2)} leaves remainder 0. And {m:(3k+1)^2=9k^2+6k+1=3(3k^2+2k)+1} leaves remainder 1. And {m:(3k+2)^2=9k^2+12k+4=3(3k^2+4k+1)+1} leaves remainder 1. The remainder is always 0 or 1, never 2.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Disproof by counterexample</h2>
+    <p>A statement that says &ldquo;for every number&rdquo; is false if one number breaks it. That number is a {term:counterexample}. One counterexample is enough to disprove a statement. A thousand examples that work do not prove it.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a counterexample must do two things.</p>
+      <ul class="tick">
+        <li>It must satisfy the conditions of the claim. If the claim is about integers, a counterexample must be an integer.</li>
+        <li>It must make the claim false. Show the working that proves this.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a pattern that fails late</h3>
+      <p>Claim: {m:n^2+n+41} is prime for every positive integer n. Disprove it.</p>
+      <ol class="steps">
+        <li>Test small values: {m:n=1} gives 43, {m:n=2} gives 47, {m:n=3} gives 53, and {m:n=4} gives 61. All are prime. The claim looks true.</li>
+        <li>It keeps working. In fact it gives a prime for every n from 1 to 39.</li>
+        <li>Try {m:n=40}: {m:40^2+40+41=1681}.</li>
+        <li>But {m:41*41=1681}, so 1681 has the factor 41. It is not prime.</li>
+        <li>Conclusion: {m:n=40} is a counterexample, so the claim is false.</li>
+      </ol>
+      <p>This example shows why checking is not proving. The claim works for 39 values in a row.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a counterexample must fit the claim</h3>
+      <p>Claim: for every integer n, {m:n^2>n}. Disprove it.</p>
+      <ol class="steps">
+        <li>Try {m:n=0}: {m:0^2=0}, and 0 is not greater than 0. The claim fails.</li>
+        <li>Conclusion: {m:n=0} is a counterexample, so the claim is false.</li>
+        <li>Do not use {m:n=0.5}, although {m:0.5^2=0.25} is less than 0.5. The claim is about integers, and 0.5 is not an integer. It does not satisfy the conditions of the claim.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: squares and order</h3>
+      <p>Claim: if {m:a^2>b^2}, then {m:a>b}. Disprove it.</p>
+      <ol class="steps">
+        <li>You need two numbers whose squares are in one order and whose own values are in the other order.</li>
+        <li>Try {m:a=-3} and {m:b=2}. Then {m:(-3)^2=9} and {m:2^2=4}. So {m:a^2>b^2}.</li>
+        <li>But {m:-3<2}, so a is not greater than b.</li>
+        <li>Conclusion: {m:a=-3}, {m:b=2} is a counterexample, so the claim is false.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Claim: {m:n^2+n+17} is prime for every positive integer n. Show that it is false with {m:n=16}.</p>
+      <ol class="steps">
+        <li>Work out {m:16^2+16+17=}<span class="blank" data-answers="289">___</span>.</li>
+        <li>Then {m:17*17=289}, so 289 has the factor <span class="blank" data-answers="17">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:16^2+16+17=256+16+17=289}. Since {m:17*17=289}, the number 289 is not prime. So {m:n=16} is a counterexample.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: counterexamples</h2>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Claim: {m:6n+1} is prime for every positive integer n. Find the smallest positive integer that disproves it.</p>
+      <ol class="ladder"><li>Work out {m:6n+1} for n equal to 1, then 2, then 3, and so on.</li><li>Stop at the first value that is not prime.</li></ol>
+      <ul class="wrong"><li data-if="3">{m:6*3+1=19}, which is prime. So {m:n=3} does not break the claim.</li><li data-if="5">{m:6*5+1=31} is prime, and it is not the first failure. Check {m:n=4}.</li></ul>
+      <div class="solution"><p>{m:6*1+1=7}, {m:6*2+1=13} and {m:6*3+1=19} are all prime. But {m:6*4+1=25}, and {m:5*5=25}. So the smallest positive integer that disproves it is 4.</p></div>
+    </div>
+    <div class="q" data-answers="16" data-mode="value">
+      <p class="qtext">Claim: {m:n^2+n+17} is prime for every positive integer n. Find the smallest positive integer that disproves it.</p>
+      <ol class="ladder"><li>Try values of n in turn, from 1 upwards.</li><li>The expression is prime for a long run of values.</li><li>A factor of 17 will appear when {m:n^2+n} is a multiple of 17.</li></ol>
+      <ul class="wrong"><li data-if="17">At {m:n=17}, {m:17^2+17+17=323=17*19}, so 17 also breaks the claim. But a smaller value does too: check {m:n=16}.</li><li data-if="15">{m:15^2+15+17=257}, which is prime. So {m:n=15} does not break the claim.</li></ul>
+      <div class="solution"><p>{m:16^2+16+17=289}, and {m:17*17=289}. The expression is prime for {m:n=1} to {m:n=15}. So the smallest positive integer that disproves it is 16.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Claim: {m:2^n-1} is prime for every integer n greater than 1. Find the smallest positive integer that disproves it.</p>
+      <ol class="ladder"><li>Work out {m:2^n-1} for n equal to 2, then 3, then 4, and so on.</li><li>{m:2^2-1=3} and {m:2^3-1=7}.</li></ol>
+      <ul class="wrong"><li data-if="3">{m:2^3-1=7}, which is prime. So {m:n=3} does not break the claim.</li><li data-if="1">The claim is about integers greater than 1. So {m:n=1} does not satisfy the conditions.</li></ul>
+      <div class="solution"><p>{m:2^2-1=3} and {m:2^3-1=7} are prime. But {m:2^4-1=15}, and {m:3*5=15}. So the smallest positive integer that disproves it is 4.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">Claim: {m:n^2>n} for every positive integer n. Find the smallest positive integer that disproves it.</p>
+      <ol class="ladder"><li>Try {m:n=1}.</li><li>Is {m:1^2} greater than 1?</li></ol>
+      <ul class="wrong"><li data-if="0">The claim is about positive integers, and 0 is not positive. The conditions of the claim rule it out.</li><li data-if="2">{m:2^2=4}, which is greater than 2. So {m:n=2} does not break the claim.</li></ul>
+      <div class="solution"><p>{m:1^2=1}, and 1 is not greater than 1. So {m:n=1} breaks the claim. It is the smallest positive integer.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Claim: the sum of any two prime numbers is even. Which example is a counterexample?</p>
+      <ul class="options">
+        <li data-correct>{m:2+3=5}, because 5 is odd</li>
+        <li data-why="3 + 5 = 8 is even. It fits the claim, so it cannot disprove it.">{m:3+5=8}, because 8 is even</li>
+        <li data-why="9 is not a prime number, so this example does not satisfy the conditions of the claim.">{m:9+10=19}, because 19 is odd</li>
+      </ul>
+      <ol class="ladder"><li>A counterexample must use two primes.</li><li>It must also give a sum that is not even.</li></ol>
+      <div class="solution"><p>Both 2 and 3 are primes, and {m:2+3=5} is odd. So the claim is false. The prime 2 is the only even prime, which is why it often provides counterexamples.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Claim: if {m:x^2>9}, then {m:x>3}. Which value of x is a counterexample?</p>
+      <ul class="options">
+        <li data-why="x = 4 gives 16, which is greater than 9, and 4 is greater than 3. It fits the claim, so it cannot disprove it.">The value {m:x=4}</li>
+        <li data-why="x = &minus;2 gives 4, which is not greater than 9. The first part of the claim is not true, so this value does not meet the conditions.">The value {m:x=-2}</li>
+        <li data-correct>The value {m:x=-4}</li>
+      </ul>
+      <ol class="ladder"><li>The value must make {m:x^2>9} true.</li><li>It must also make {m:x>3} false.</li></ol>
+      <div class="solution"><p>{m:(-4)^2=16}, which is greater than 9. But {m:-4} is not greater than 3. So {m:x=-4} is a counterexample.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many counterexamples do you need to disprove a statement?</p>
+      <ul class="options">
+        <li data-why="Ten is more than you need. A single counterexample already makes the statement false.">Ten, so that the pattern is clear</li>
+        <li data-correct>One, as long as it satisfies the claim&rsquo;s conditions and breaks the claim</li>
+        <li data-why="You never need every counterexample. A single one is enough to disprove a statement.">Every number that breaks the claim</li>
+      </ul>
+      <ol class="ladder"><li>The claim says it holds for every case.</li><li>How many cases does it take to break &ldquo;every&rdquo;?</li></ol>
+      <div class="solution"><p>One failed case is enough, because the claim said it works for every case. This is why disproof is shorter than proof.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: always true, or one example that is false</h2>
+    <p>A claim about every number has two possible outcomes. It is always true, and you need a proof. Or it is false, and you need one counterexample. The two jobs are opposites. Do not try to do both at once.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>Proving a claim is always true. Write a general argument with letters, or split into cases, so that every case is covered.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>Disproving a claim. Find one case that satisfies the conditions and breaks the claim. Show the working.</p></div>
+    </div>
+    <p>How do you tell which job you have? Test a few small values first. If one fails, you have a counterexample and you can stop. If they all work, look for a reason. A reason might become a proof.</p>
+    <div class="worked">
+      <h3>Worked example: prove or disprove</h3>
+      <p>Claim: the sum of any four consecutive integers is a multiple of 4. Decide whether it is true.</p>
+      <ol class="steps">
+        <li>Test: {m:1+2+3+4=10}. The number 10 is not a multiple of 4.</li>
+        <li>So the claim is false, and {m:1+2+3+4} is a counterexample.</li>
+        <li>You can also see why. In general, {m:n+(n+1)+(n+2)+(n+3)=4n+6}.</li>
+        <li>This leaves remainder 2 when divided by 4, for every n. So it is never a multiple of 4.</li>
+      </ol>
+      <p>Compare this with three consecutive integers, which add to {m:3n+3=3(n+1)}. That sum is always a multiple of 3, and it can be proved.</p>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a true statement to its consequence: if A is true, then B is true.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>The converse: if B is true, then A is true. It needs its own proof, or its own counterexample.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a statement and its converse</h3>
+      <p>Statement: if n is a multiple of 6, then n is a multiple of 3. Is its converse true?</p>
+      <ol class="steps">
+        <li>The statement is true. If {m:n=6k}, then {m:n=3(2k)}, which is a multiple of 3.</li>
+        <li>The converse is: if n is a multiple of 3, then n is a multiple of 6.</li>
+        <li>Try {m:n=9}. It is a multiple of 3, and {m:9/6=1.5}, so it is not a multiple of 6.</li>
+        <li>Conclusion: the converse is false, with counterexample 9. So you cannot join the two statements with &hArr;.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Claim: the sum of any four consecutive odd numbers is a multiple of 8. Which decision and reason is correct?</p>
+      <ul class="options">
+        <li data-correct>True. {m:(2n+1)+(2n+3)+(2n+5)+(2n+7)=8n+16=8(n+2)}</li>
+        <li data-why="1 + 3 + 5 + 7 = 16, and 16 is 8 times 2. It is a multiple of 8, so it does not disprove the claim.">False. {m:1+3+5+7=16}, which is not a multiple of 8</li>
+        <li data-why="Two examples support the claim but cannot prove it. A proof must use letters so that it covers every set of four odd numbers.">True, because {m:1+3+5+7} and {m:3+5+7+9} both work</li>
+      </ul>
+      <ol class="ladder"><li>Write the four numbers with one letter.</li><li>Add them and factorise.</li></ol>
+      <div class="solution"><p>{m:(2n+1)+(2n+3)+(2n+5)+(2n+7)=8n+16=8(n+2)}. The number {m:n+2} is an integer, so the sum is a multiple of 8. The claim is true. Check: {m:1+3+5+7=16} and {m:3+5+7+9=24}, and both are multiples of 8.</p></div>
+    </div>
+    <div class="q" data-answers="26" data-mode="value">
+      <p class="qtext">The four consecutive integers starting at 5 are 5, 6, 7 and 8. What is their sum?</p>
+      <ol class="ladder"><li>Add the four numbers.</li><li>{m:5+6=11} and {m:7+8=15}.</li></ol>
+      <ul class="wrong"><li data-if="24">That is a multiple of 4, but it is not the sum. {m:5+6+7+8=26}.</li></ul>
+      <div class="solution"><p>{m:5+6+7+8=26}. Check with the formula {m:4n+6=4*5+6=26}. And 26 is not a multiple of 4.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The statement is: if n is a multiple of 10, then n is even. Which number shows that its converse is false?</p>
+      <ul class="options">
+        <li data-why="20 is a multiple of 10 and it is even. It fits the converse, so it cannot show the converse is false.">20</li>
+        <li data-correct>4</li>
+        <li data-why="7 is odd, so the &ldquo;if n is even&rdquo; part of the converse is false for 7. A counterexample must make that part true.">7</li>
+      </ul>
+      <ol class="ladder"><li>The converse is: if n is even, then n is a multiple of 10.</li><li>Find a number that is even but not a multiple of 10.</li></ol>
+      <div class="solution"><p>The number 4 is even, but it is not a multiple of 10. So the converse is false, even though the original statement is true.</p></div>
+    </div>
+    <div class="q" data-answers="-10" data-mode="value">
+      <p class="qtext">{m:x=10} &rArr; {m:x^2=100} is true. {m:x^2=100} is also true for {m:x=k}. Find k, with k different from 10.</p>
+      <ol class="ladder"><li>Which other number squares to 100?</li></ol>
+      <ul class="wrong"><li data-if="100">That is the value of {m:x^2}, not of x.</li><li data-if="50">You halved 100. The number must multiply by itself to give 100.</li></ul>
+      <div class="solution"><p>{m:(-10)^2=100}, so {m:k=-10}. This is why the converse of {m:x=10} &rArr; {m:x^2=100} is false.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which sign should join &ldquo;n is a multiple of 6&rdquo; and &ldquo;n is even and n is a multiple of 3&rdquo;?</p>
+      <ul class="options">
+        <li data-correct>&hArr;, because each statement says the same thing</li>
+        <li data-why="The reverse also holds. A number that is even and a multiple of 3 is a multiple of 6. So &rArr; alone leaves out a true direction.">&rArr; only, because the reverse is false</li>
+        <li data-why="The forward direction also holds. A multiple of 6 is even and is a multiple of 3. So &lArr; alone leaves out a true direction.">&lArr; only, because the forward direction is false</li>
+      </ul>
+      <ol class="ladder"><li>Test each direction on its own.</li><li>Is a multiple of 6 always even, and always a multiple of 3?</li><li>Is a number that is even and a multiple of 3 always a multiple of 6?</li></ol>
+      <div class="solution"><p>{m:6k=2*3k} is even and a multiple of 3. The other way, a number that is a multiple of 3 and even is 3 times an even number, so it is {m:3*2m=6m}. Both directions hold, so &hArr; is correct.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Claim: if n is a prime number, then n is odd. Give the counterexample.</p>
+      <ol class="ladder"><li>You need a prime number that is not odd.</li><li>Is there an even prime?</li></ol>
+      <ul class="wrong"><li data-if="4">4 is {m:2*2}, so it is not prime. It does not satisfy the conditions of the claim.</li><li data-if="1">1 is not prime. It has only one factor, so it does not satisfy the conditions of the claim. It is also odd.</li></ul>
+      <div class="solution"><p>The number 2 is prime, because its only factors are 1 and 2. It is even. So the claim is false, with counterexample 2.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Priya says:</b> &ldquo;I tried {m:n^2+n+41} for {m:n=1,2,3,4,5}. All are prime. That proves it is always prime.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Five prime results do not prove anything. The claim is false: n = 40 gives 1681, which is 41 times 41.">She should have tried five more values, and then it would be a proof</li>
+        <li data-correct>Examples cannot prove a statement about every n. The claim fails at {m:n=40}</li>
+        <li data-why="n = 5 is a positive integer, so her values were allowed. The problem is that examples cannot prove a statement about all n.">She used values of n that were not allowed</li>
+      </ul>
+      <ol class="ladder"><li>Does a list of examples cover every positive integer?</li><li>Try {m:n=40}.</li></ol>
+      <div class="solution"><p>{m:40^2+40+41=1681=41*41}, so the claim is false. Priya&rsquo;s five examples support it, but no number of examples proves it.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> &ldquo;Two even numbers are {m:2n} and {m:2n}. Their sum is {m:4n}, so the sum of two even numbers is always a multiple of 4.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Adding 2n and 2n does give 4n. The addition is right. The problem is the choice of letters.">He added the numbers wrongly: {m:2n+2n} is not {m:4n}</li>
+        <li data-correct>He used the same letter for both numbers, so he only proved it for a number added to itself</li>
+        <li data-why="Even numbers are written 2 times an integer, so 2n is right. The mistake is using the same letter twice.">He should have written an even number as {m:2n+1}</li>
+      </ul>
+      <ol class="ladder"><li>Test the claim with 2 and 4. What is their sum?</li><li>Look at the two letters Sam used.</li></ol>
+      <div class="solution"><p>{m:2+4=6}, which is not a multiple of 4. Two different even numbers need different letters: {m:2a+2b=2(a+b)}. The sum is even, but it is not always a multiple of 4.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Mia says:</b> &ldquo;To disprove &lsquo;if {m:x>2} then {m:x^2>10}&rsquo; I use {m:x=1}. Then {m:1^2=1}, which is not greater than 10.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="1 squared is 1, and 1 is not greater than 10. Her arithmetic is right. The problem is that x = 1 is not greater than 2.">Her arithmetic is wrong: {m:1^2} is greater than 10</li>
+        <li data-why="Negative numbers are not the problem here. The value must satisfy x &gt; 2, so a negative value would not do either.">She should have used a negative value of x</li>
+        <li data-correct>{m:x=1} does not satisfy {m:x>2}, so it does not meet the conditions of the claim</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:x=1} greater than 2?</li><li>A counterexample must satisfy the &ldquo;if&rdquo; part of the claim.</li></ol>
+      <div class="solution"><p>The claim only talks about x greater than 2. A valid counterexample is {m:x=3}: {m:3>2}, but {m:3^2=9}, which is not greater than 10.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Tom says:</b> &ldquo;Every integer is {m:3k} or {m:3k+1}. {m:(3k)^2=3(3k^2)} and {m:(3k+1)^2=3(3k^2+2k)+1}. So a square leaves remainder 0 or 1 when divided by 3.&rdquo; The conclusion is true. What went wrong with his proof?</p>
+      <ul class="options">
+        <li data-why="His expansions are right: (3k + 1) squared is 9k squared plus 6k plus 1. The fault is in his list of cases.">His algebra for {m:(3k+1)^2} is wrong</li>
+        <li data-correct>His cases leave a gap. Integers of the form {m:3k+2} are not covered</li>
+        <li data-why="Exhaustion with cases is a valid method here. The problem is that his cases do not cover every integer.">Proof by exhaustion cannot be used for integers</li>
+      </ul>
+      <ol class="ladder"><li>Is 5 of the form {m:3k} or {m:3k+1}?</li><li>A proof by exhaustion must cover every case.</li></ol>
+      <div class="solution"><p>The integer 5 is {m:3*1+2}, so it falls in neither case. Adding the third case, {m:(3k+2)^2=9k^2+12k+4=3(3k^2+4k+1)+1}, completes the proof.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Anna says:</b> &ldquo;{m:x=3} &hArr; {m:x^2=9}, so I can solve {m:x^2=9} by writing {m:x=3}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Writing &hArr; between an equation and its square root is exactly the issue: the squaring cannot be undone. But squaring is not forbidden. The sign &hArr; is the problem.">Squaring is never allowed in a proof</li>
+        <li data-correct>The direction {m:x^2=9} &rArr; {m:x=3} is false, because {m:x=-3} also works</li>
+        <li data-why="3 squared is 9, so the first direction is true. The fault is in the other direction.">The direction {m:x=3} &rArr; {m:x^2=9} is false</li>
+      </ul>
+      <ol class="ladder"><li>Test each direction on its own.</li><li>Find another value of x that makes {m:x^2=9} true.</li></ol>
+      <div class="solution"><p>{m:(-3)^2=9}, so {m:x=-3} also satisfies {m:x^2=9}. Only {m:x=3} &rArr; {m:x^2=9} holds. The correct solution is {m:x=3} or {m:x=-3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Raj says:</b> &ldquo;{m:x^2+4x+3=(x+2)^2+3}. A square is at least 0, so the expression is at least 3. It is always positive.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="A square is never negative, so that step is correct. The mistake is in the completed square.">A square can be negative</li>
+        <li data-correct>The completed square is wrong. It should be {m:(x+2)^2-1}, so the expression can be negative</li>
+        <li data-why="Completing the square is a valid method here. The fault is the number he added.">Completing the square cannot show a quadratic is positive</li>
+      </ul>
+      <ol class="ladder"><li>Expand {m:(x+2)^2+3}. Does it equal {m:x^2+4x+3}?</li><li>Try {m:x=-2} in the original expression.</li></ol>
+      <div class="solution"><p>{m:(x+2)^2+3=x^2+4x+7}, not {m:x^2+4x+3}. The correct form is {m:(x+2)^2-1}. At {m:x=-2} the original expression is {m:4-8+3=-1}, which is negative.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="40" data-mode="value">
+      <p class="qtext">Claim: {m:n^2+n+41} is prime for every positive integer n. Find the smallest positive integer that disproves it.</p>
+      <ol class="ladder"><li>The expression is prime for many values. The first failure needs a factor of 41.</li><li>That happens when {m:n^2+n} is a multiple of 41.</li><li>Try {m:n=40}.</li></ol>
+      <ul class="wrong"><li data-if="41">At {m:n=41}, {m:41^2+41+41=1763=41*43}, so 41 also breaks the claim. But a smaller value does too: check {m:n=40}.</li><li data-if="39">{m:39^2+39+41=1601}, which is prime. So {m:n=39} does not break the claim.</li></ul>
+      <div class="solution"><p>{m:40^2+40+41=1681}, and {m:41*41=1681}. It is prime for {m:n=1} to {m:n=39}. So the smallest positive integer that disproves it is 40.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which method suits &ldquo;show that no square number ends in 7&rdquo;?</p>
+      <ul class="options">
+        <li data-correct>Proof by exhaustion: check the ten possible last digits of a number</li>
+        <li data-why="A counterexample disproves a statement. This statement is true, so you cannot find a counterexample, and you need a proof.">A counterexample: find a square number that ends in 7</li>
+        <li data-why="Squaring 1 to 10 gives ten examples. The statement covers every square number, so examples are evidence, not a proof.">Check the squares of 1 to 10, then stop</li>
+      </ul>
+      <ol class="ladder"><li>Is the statement true or false?</li><li>Only a finite number of last digits is possible.</li></ol>
+      <div class="solution"><p>The last digit of a square depends only on the last digit of the number. There are ten cases, and none gives 7.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which method suits the claim &ldquo;every odd number greater than 1 is prime&rdquo;?</p>
+      <ul class="options">
+        <li data-why="The claim is false, so you cannot prove it. Try a few odd numbers and you will find one that breaks it.">Proof by deduction, using {m:2n+1}</li>
+        <li data-correct>A counterexample: test a few odd numbers until one is not prime</li>
+        <li data-why="There are infinitely many odd numbers, and the claim is false, so no proof can exist. A single counterexample settles it.">Proof by exhaustion: check all odd numbers</li>
+      </ul>
+      <ol class="ladder"><li>Test 3, 5, 7, 9 in turn.</li></ol>
+      <div class="solution"><p>The numbers 3, 5 and 7 are prime, but 9 is {m:3*3}. So 9 is a counterexample, and the claim is false.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Claim: every odd number greater than 1 is prime. Give the smallest counterexample.</p>
+      <ol class="ladder"><li>Test the odd numbers 3, 5, 7, 9 in turn.</li></ol>
+      <ul class="wrong"><li data-if="1">The claim is about odd numbers greater than 1, so 1 does not satisfy the conditions.</li><li data-if="15">15 is not prime ({m:3*5=15}), but a smaller odd number also fails.</li></ul>
+      <div class="solution"><p>The numbers 3, 5 and 7 are prime. And {m:3*3=9}, so 9 is the smallest odd number greater than 1 that is not prime.</p></div>
+    </div>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext">The sum of three consecutive integers starting at n is {m:3n+3}. Find the sum when the integers are 9, 10 and 11.</p>
+      <ol class="ladder"><li>Put {m:n=9} into {m:3n+3}.</li><li>Or add 9, 10 and 11 directly.</li></ol>
+      <ul class="wrong"><li data-if="27">That is {m:3*9}. You forgot to add the 3.</li><li data-if="33">That is {m:3*10+3}. The first integer is 9, so {m:n=9}.</li></ul>
+      <div class="solution"><p>{m:3*9+3=30}. Check: {m:9+10+11=30}. And {m:30=3*10}, a multiple of 3.</p></div>
+    </div>
+    <div class="q" data-answers="168" data-mode="value">
+      <p class="qtext">{m:(2n+1)^2-1=4n(n+1)}. Find the value of {m:(2n+1)^2-1} when {m:n=6}.</p>
+      <ol class="ladder"><li>Put {m:n=6} into {m:4n(n+1)}.</li><li>{m:6+1=7}.</li></ol>
+      <ul class="wrong"><li data-if="156">That is {m:13^2-13}. The expression ends in {m:-1}, so it is {m:13^2-1}.</li><li data-if="24">That is {m:4*6}. You forgot the factor {m:n+1}.</li></ul>
+      <div class="solution"><p>{m:4*6*7=168}. Check: {m:13^2-1=168}. And {m:168=8*21}, a multiple of 8.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">{m:x^2-8x+20=(x-4)^2+4}. Find the lowest value of {m:x^2-8x+20}.</p>
+      <ol class="ladder"><li>The smallest value of {m:(x-4)^2} is 0.</li></ol>
+      <ul class="wrong"><li data-if="20">That is the value when {m:x=0}. It is not the lowest value.</li><li data-if="-4">The number outside the bracket is {m:+4}, so the lowest value is 4, not {m:-4}.</li></ul>
+      <div class="solution"><p>{m:(x-4)^2>=0}, so the expression is at least 4. The lowest value is 4, when {m:x=4}. Check: {m:4^2-8*4+20=4}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">How many primes are there between 90 and 100?</p>
+      <ol class="ladder"><li>Cross out the even numbers.</li><li>Check 91, 93, 95 and 99 for factors.</li></ol>
+      <ul class="wrong"><li data-if="2">One of your primes is not prime. Check 91: it is {m:7*13}.</li><li data-if="0">One number from 91 to 99 is prime. Check 97.</li></ul>
+      <div class="solution"><p>{m:7*13=91}, {m:3*31=93}, {m:5*19=95} and {m:9*11=99}. The number 97 is prime. So there is 1 prime between 90 and 100.</p></div>
+    </div>
+    <div class="q" data-type="show">
+      <p class="qtext">Prove that the sum of the squares of two consecutive integers is odd. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Write the integers as n and {m:n+1}.</li><li>Expand {m:n^2+(n+1)^2}.</li><li>Write the result as 2 times an integer plus 1.</li></ol>
+      <div class="solution"><p>{m:n^2+(n+1)^2=n^2+n^2+2n+1}, which simplifies to {m:2n^2+2n+1}. This is {m:2(n^2+n)+1}. The number {m:n^2+n} is an integer, so the result is odd. Check with 3 and 4: {m:9+16=25}, which is odd.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper. For the proofs, open the mark scheme and tick each mark you earned. For the typed answer, type it, then read the mark scheme. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement.</p>
+    <div class="q" data-type="show" data-marks="3">
+      <p class="qtext">[3 marks] Prove that the sum of any three consecutive even numbers is a multiple of 6. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Write the first even number as {m:2n}. What is the next one?</li><li>The three numbers are {m:2n}, {m:2n+2} and {m:2n+4}.</li><li>Add them and take out a factor of 6.</li></ol>
+      <div class="solution">
+        <p>Let the numbers be {m:2n}, {m:2n+2} and {m:2n+4}, where n is an integer. Then {m:2n+(2n+2)+(2n+4)=6n+6=6(n+1)}. The number {m:n+1} is an integer, so the sum is a multiple of 6.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for three consecutive even numbers in terms of n, such as {m:2n}, {m:2n+2} and {m:2n+4}</li>
+          <li><b>M1</b> for adding them: {m:6n+6}</li>
+          <li><b>A1</b> for {m:6(n+1)} and a conclusion that says it is a multiple of 6 because {m:n+1} is an integer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value" data-marks="2">
+      <p class="qtext">[2 marks] Mia claims that {m:n^2+n+1} is prime for every positive integer n. Find the smallest positive integer n that shows Mia is wrong.</p>
+      <ol class="ladder"><li>Work out {m:n^2+n+1} for n equal to 1, then 2, then 3, and so on.</li><li>{m:n=1} gives 3, {m:n=2} gives 7 and {m:n=3} gives 13.</li></ol>
+      <ul class="wrong"><li data-if="3">{m:3^2+3+1=13}, which is prime. So {m:n=3} does not show Mia is wrong.</li><li data-if="5">{m:5^2+5+1=31}, which is prime. Also, {m:n=5} is not the smallest value that breaks the claim: check {m:n=4}.</li></ul>
+      <div class="solution">
+        <p>{m:1+1+1=3}, {m:4+2+1=7} and {m:9+3+1=13} are all prime. But {m:4^2+4+1=21}, and {m:3*7=21}. So the smallest positive integer that shows Mia is wrong is 4.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for substituting values of n, with {m:n=4} giving {m:4^2+4+1=21}</li>
+          <li><b>A1</b> for {m:n=4}, with a reason: {m:21=3*7} is not prime</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="4">
+      <p class="qtext">[4 marks] Prove that the square of any odd number is of the form {m:8k+1}, where k is an integer. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Write the odd number as {m:2n+1} and square it.</li><li>{m:(2n+1)^2=4n^2+4n+1=4n(n+1)+1}.</li><li>What do you know about {m:n(n+1)}?</li></ol>
+      <div class="solution">
+        <p>Let the odd number be {m:2n+1}. Then {m:(2n+1)^2=4n^2+4n+1=4n(n+1)+1}. The numbers n and {m:n+1} are consecutive, so one is even and {m:n(n+1)=2k} for some integer k. So {m:(2n+1)^2=4*2k+1=8k+1}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for an odd number as {m:2n+1}</li>
+          <li><b>M1</b> for expanding: {m:4n^2+4n+1}</li>
+          <li><b>M1</b> for {m:4n(n+1)+1} and for saying that {m:n(n+1)} is even because it is a product of consecutive integers</li>
+          <li><b>A1</b> for {m:8k+1} and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="3">
+      <p class="qtext">[3 marks] Prove that {m:2x^2-12x+19} is positive for every real value of x. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Take out a factor of 2 from the first two terms.</li><li>{m:2x^2-12x=2(x^2-6x)}. Complete the square inside the bracket.</li><li>What do you know about a square?</li></ol>
+      <div class="solution">
+        <p>{m:2x^2-12x+19=2(x-3)^2+1}. Check: {m:2(x-3)^2=2x^2-12x+18}, and adding 1 gives 19. A square is never negative, so {m:2(x-3)^2>=0} and the expression is at least 1. It is positive for every real x.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:2(x-3)^2}</li>
+          <li><b>A1</b> for {m:2(x-3)^2+1}</li>
+          <li><b>A1</b> for a conclusion: a square is at least 0, so the expression is at least 1, so it is positive</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="4">
+      <p class="qtext">[4 marks] Prove that when the square of an integer is divided by 5, the remainder is 0, 1 or 4. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Split the integers into cases by their remainder when divided by 5.</li><li>There are five cases: {m:5k}, {m:5k+1}, {m:5k+2}, {m:5k+3} and {m:5k+4}.</li><li>Square each one and write it as a multiple of 5 plus a number.</li></ol>
+      <div class="solution">
+        <p>Every integer is {m:5k}, {m:5k+1}, {m:5k+2}, {m:5k+3} or {m:5k+4}. Then {m:(5k)^2=25k^2=5(5k^2)}, remainder 0. Also {m:(5k+1)^2=25k^2+10k+1=5(5k^2+2k)+1}, remainder 1. Also {m:(5k+2)^2=25k^2+20k+4=5(5k^2+4k)+4}, remainder 4. Also {m:(5k+3)^2=25k^2+30k+9=5(5k^2+6k+1)+4}, remainder 4. Also {m:(5k+4)^2=25k^2+40k+16=5(5k^2+8k+3)+1}, remainder 1. Every case leaves 0, 1 or 4.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for five cases that cover every integer</li>
+          <li><b>M1</b> for squaring each case</li>
+          <li><b>A1</b> for writing each as a multiple of 5 plus a remainder</li>
+          <li><b>A1</b> for remainders 0, 1, 4, 4, 1 and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Letters cover every case.</b> When you write an even number as {m:2n}, the letter n stands for every integer at once. So one calculation with n is a calculation for all of them.</li>
+      <li><b>One counterexample is enough.</b> A statement that says &ldquo;every&rdquo; fails the moment one case fails. This is why a counterexample is shorter than a proof.</li>
+      <li><b>Examples are not a proof.</b> A list of examples only tests the cases you chose. The expression {m:n^2+n+41} gives a prime for 39 values in a row, then fails.</li>
+      <li><b>Exhaustion needs cases with no gaps.</b> Every integer leaves remainder 0, 1 or 2 when divided by 3. So the three forms {m:3k}, {m:3k+1} and {m:3k+2} cover every integer.</li>
+      <li><b>A square is never negative.</b> Multiplying two numbers with the same sign gives a positive number. Zero times zero is zero. This is why {m:(x-3)^2+1} is at least 1.</li>
+      <li><b>Only one direction.</b> Squaring both sides of an equation loses information, because {m:3} and {m:-3} give the same square. So {m:x=3} &rArr; {m:x^2=9}, but the reverse fails.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Treating a list of examples as a proof.</li>
+      <li>Using the same letter for two numbers that can differ, such as {m:2n} and {m:2n} for two even numbers.</li>
+      <li>Writing &hArr; when only &rArr; holds, especially after squaring both sides.</li>
+      <li>Leaving a gap in a proof by exhaustion, such as missing the case {m:3k+2}.</li>
+      <li>Using a counterexample that does not satisfy the conditions of the claim, such as a fraction when the claim is about integers.</li>
+      <li>Giving a counterexample without the working that shows it breaks the claim.</li>
+      <li>Working on both sides of an identity at once. Start with one side, and change it until it equals the other.</li>
+      <li>Completing the square with the wrong number at the end. Expand your answer to check it.</li>
+      <li>Stopping a proof without a conclusion. Say what you have shown, in the words of the question.</li>
+      <li>Assuming the converse of a true statement is true.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="proof-methods">
+      <li><label><input type="checkbox"> describe the assumptions, steps and conclusion of a proof, and use &rArr;, &lArr;, &hArr; and &there4; correctly</label></li>
+      <li><label><input type="checkbox"> write even, odd, consecutive and multiple numbers with letters, and prove a result about integers by deduction</label></li>
+      <li><label><input type="checkbox"> prove an identity, and use completing the square to show that an expression is always positive or always negative</label></li>
+      <li><label><input type="checkbox"> prove a statement by exhaustion, with cases that leave no gaps</label></li>
+      <li><label><input type="checkbox"> find a counterexample that satisfies the conditions of a claim, and show the working that breaks it</label></li>
+      <li><label><input type="checkbox"> decide whether a claim needs a proof or a counterexample, and say why the converse of a true statement may be false</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
