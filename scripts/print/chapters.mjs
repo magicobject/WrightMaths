@@ -8,10 +8,13 @@ export function chapterOrder(graph) {
     .sort((a, b) => a.layer - b.layer || a.title.localeCompare(b.title));
 }
 
-/** The chapter list: every live topic, then the two mixed-practice papers. Each gets a number from 1. */
-export function buildChapters(graph, papers) {
+/**
+ * The chapter list: every live topic, then the mixed-practice papers. Each gets a number from 1.
+ * `tier: 'foundation'` keeps only the Foundation topics (tier 'F'); order and layers still come from the whole graph.
+ */
+export function buildChapters(graph, papers, { tier = null } = {}) {
   const entries = [
-    ...chapterOrder(graph).map((t) => ({ id: t.id, title: t.title, kind: 'topic', words: t.words ?? [] })),
+    ...chapterOrder(graph).filter((t) => tier !== 'foundation' || t.tier === 'F').map((t) => ({ id: t.id, title: t.title, kind: 'topic', words: t.words ?? [] })),
     ...papers.map((p) => ({ id: p.id, title: p.shortTitle ?? p.title, kind: 'paper', words: [] })),
   ];
   return entries.map((e, i) => ({ ...e, num: i + 1 }));

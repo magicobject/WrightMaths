@@ -8,6 +8,7 @@
     "book:audio": "node scripts/book-audio.mjs",
     "book:review": "node scripts/audio-review.mjs",
     "book:docx": "npm run build && node scripts/build-docx.mjs",
+    "book:docx:both": "npm run build && node scripts/build-docx.mjs --tier foundation && node scripts/build-docx.mjs --tier higher",
     "book:pdf-check": "node scripts/pdf-check.mjs",
     "test": "npm run build && npm run test:unit && playwright test",
     "test:unit": "node --test test-unit/*.test.mjs",

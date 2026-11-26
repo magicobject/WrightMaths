@@ -115,3 +115,58 @@ The build does not silently rewrite maths text. Instead, a source attribute deci
 2. Colour or black and white, and the trim size.
 3. Whether the Hints section is in the book. It adds pages, and so cost.
 4. Which front-matter pages to include: the parents and teachers pages are left out by default.
+
+## Two paperbacks: the Foundation book and the Higher book (26 Nov 2026)
+
+One volume would be over KDP's page limit (828 pages black and white, 600 standard colour), so the book is published as **two paperbacks from the one source**. The whole-book build above is unchanged and is still the default.
+
+```
+npm run book:docx -- --tier foundation     dist/gcse-foundation.docx   (report: dist/print-report-foundation.json)
+npm run book:docx -- --tier higher         dist/gcse-higher.docx       (report: dist/print-report-higher.json)
+npm run book:docx:both                     builds the two in turn
+```
+
+`--pages`, `--mono`, `--release`, `--no-hints` and `--out` work with `--tier` as before. KDP assigns an ISBN to each book, so `[ISBN]` stays the one placeholder in both.
+
+| | Foundation book | Higher book |
+| --- | --- | --- |
+| Chapters | live topics with tier `F` in `src/book/topics.mjs`, in the usual order (layer, then title), then "Practice papers for grades 4 to 6", then "Question words explained" | every live topic, then "Grade 7 to 9 stretch papers", then "Question words explained" |
+| Content | all Higher content cut out (below) | everything, Higher sections and chips included |
+| Glossary | entries whose `level` is not `H` | every entry |
+| Index, Answers, Hints | only for what is printed | as the whole book |
+| Subtitle and title property | "Foundation", "GCSE Mathematics: Foundation" | "Higher", "GCSE Mathematics: Higher" |
+
+The whole-book build keeps "Foundation and Higher". Chapter numbers count from 1 in each book, so Chapter 7 in the Foundation book is not Chapter 7 in the Higher book.
+
+### What counts as Higher (Foundation book)
+
+The rules are in `scripts/print/tier.mjs`, one function each, and unit tested.
+
+1. **A heading with the Higher chip.** The heading and everything after it up to the next heading of the same or a higher level goes. An h2 takes its h3s and its questions with it (this is the "Check your knowledge: ... Higher" sets). An h3 with the chip ends at the next h3 or h2. The cut never crosses into a sibling section, and a section left empty goes too.
+2. **A question with the chip in its question text,** or with `data-tier="H"` on its `<div class="q">`. That one question goes.
+3. **Words inside a sentence marked `<span data-tier="H">...</span>`.** Used where a sentence is Foundation but has a Higher part (two "I can..." items in `indices.html`). The web page looks exactly as before.
+4. **Any other paragraph or list item that carries the chip or the word "Higher"** loses that sentence ("The sections marked Higher are for the Higher tier.", "Higher tier: the next question.", "(Higher) find arc lengths ..." in the "I can..." lists). A paragraph or item that is left empty goes.
+
+After the cuts the build checks the Foundation chapters again. A chip or the word "Higher" still in a paragraph outside a question is listed in the report as `higherLeftovers`, and `--release` fails if that list is not empty. (A hint or solution may say "higher" in the everyday sense, so questions are only checked for the chip.)
+
+`data-tier="H"` is the way to say "this is Higher" where there is no chip. It was added to seven questions in `squares-roots.html` and two in `pythagoras.html` that sat under a "Higher tier: ..." note but had no chip of their own, so they would have been printed in the Foundation book.
+
+### Question numbers
+
+* **Higher book and whole book:** unchanged. Question 7.12 is question 12 of Chapter 7 on the web page (`data-qid`) and in the teacher key.
+* **Foundation book:** the questions that are left are numbered again **from 1 in printed order within each chapter, with no gaps**. Question 7.12 is the 12th question printed in Chapter 7 of the Foundation book. The chapter, the Answers section and the Hints section all use this number, so they always agree. It no longer matches the web page or the teacher key for a chapter that had Higher questions removed (the report says how many were left out). The web number is kept in the tree as `webN` in case a table is ever wanted.
+
+### References to a chapter in the other book
+
+A cross-reference ("see Fractions") or a "Uses:" line that points at a topic not in this book prints "(in the Higher book)" (in the Higher book, "(in the Foundation book)") instead of a chapter number, and is not counted as a dead reference. A reference to a page that is in neither book is still reported.
+
+### The report
+
+Each build's report adds `stats.tier`, `stats.questionsLeftOutAsHigher`, `stats.questionsPrinted`, `stats.figures` and `stats.pagesEstimate`.
+
+The **page estimate** (`scripts/print/estimate.mjs`) is worked out from the word counts and figure heights, about 420 words a page in the chapters and 520 in the answers and hints. There is no Word-to-PDF converter here, so it is a planning figure, good to about 20%. The real count is the exported PDF: run `npm run book:pdf-check` on it.
+
+### Tests
+
+* `test-unit/print-tier.test.mjs`: the Higher rules (section by h2, h3, single question, nested sections, sentence cuts, words marked `data-tier`), the numbering, the chapter and glossary lists for each book, the front-matter wording and the command line.
+* `test/print-tier.spec.ts`: builds a small Foundation book and a small Higher book from `indices`, `rearranging-formulae` and `squares-roots`, and checks that no Higher label, section or question survives in the first, that every printed question has an answer numbered the same, that the Higher book keeps everything, and the subtitle and title property of each.
