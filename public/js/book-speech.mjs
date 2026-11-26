@@ -174,7 +174,7 @@ export function sayLetterA(text) {
     if (prevWord && NUMBER_WORDS.has(prevWord) && prev[2].trim() === '' && (nextWord === undefined && !/^[A-Za-z]/.test(after.trim()) || nextWord && OPERATOR_WORDS.has(nextWord))) return sayIt(); // "3a"
     if (prevWord && ['equals', 'times', 'comma', 'vector', 'plus', 'minus', 'over'].includes(prevWord) && prev[2].trim() === '') {
       const ends = nextWord === undefined && !/^[A-Za-z]/.test(after.trim());
-      if (ends || (nextWord && (OPERATOR_WORDS.has(nextWord) || nextWord.length === 1))) return sayIt();
+      if (ends || (nextWord && (OPERATOR_WORDS.has(nextWord) || nextWord.length === 1 || nextWord === 'as'))) return sayIt(); // "a times a as simply as possible"
     }
     return letter;
   });
@@ -188,6 +188,7 @@ export function toSpoken(text) {
   let out = coordinatesToWords(text);
   // The pronunciation table runs twice so a function inside a function, f(g(x)), is reached from the inside out.
   for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
+  out = out.replace(/(?<=[A-Za-z)])-(?=\d)/g, ' minus '); // "3k-7", "x^2-4" and "(x+1)^2-5" are subtractions, not hyphens
   out = out
     .replace(/\bx0\b/g, 'x nought') // iteration: x0, x1, xn, x(n+1)
     .replace(/\bx([1-9])\b/g, 'x $1')
