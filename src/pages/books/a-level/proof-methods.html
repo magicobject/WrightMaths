@@ -182,7 +182,7 @@
       <p class="qtext">Which pair of statements can be joined by the sign &hArr;?</p>
       <ul class="options">
         <li data-why="Test x = &minus;3: x squared is 9, but x is not 3. The two statements are not equivalent.">{m:x^2=9} and {m:x=3}</li>
-        <li data-why="Test x = 3: the second statement is true and the first is false. Both directions must hold for &hArr;.">{m:x>2} and {m:x>5}</li>
+        <li data-why="Test x = 3: the first statement is true and the second is false. Both directions must hold for &hArr;.">{m:x>2} and {m:x>5}</li>
         <li data-correct>{m:x+5=9} and {m:x=4}</li>
       </ul>
       <ol class="ladder"><li>For each pair, look for a value that makes one statement true and the other false.</li><li>Only a pair with no such value can use &hArr;.</li></ol>
@@ -197,6 +197,103 @@
       </ul>
       <ol class="ladder"><li>The converse swaps the &ldquo;if&rdquo; part and the &ldquo;then&rdquo; part.</li></ol>
       <div class="solution"><p>The original statement is true. Its converse is false: 4 is even and is not a multiple of 6.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1b. The language of sets</h2>
+    <p>Proofs often talk about a collection of numbers. A <b>set</b> is a collection of things, and each thing in it is an <b>element</b>. {term:set-notation|Set notation} writes a set with curly brackets. You can list the elements, such as &#123;1, 2, 3&#125;. Or you can give a rule, such as &#123;{m:x}: {m:x>2}&#125;. The colon reads &ldquo;such that&rdquo;. Order and repeats do not matter.</p>
+    <div class="key">
+      <p><b>Key idea:</b> five signs.</p>
+      <ul class="tick">
+        <li>The sign &isin; means {term:element-of|&ldquo;is an element of&rdquo;}. Write {m:3} &isin; &#123;1, 2, 3&#125;. The sign &notin; means &ldquo;is not an element of&rdquo;.</li>
+        <li>The sign &cup; is the {term:union|union}. A &cup; B holds everything that is in A or in B or in both.</li>
+        <li>The sign &cap; is the {term:intersection|intersection}. A &cap; B holds only what is in both A and B.</li>
+        <li>The sign &empty; is the {term:empty-set|empty set}. It is the set with no elements.</li>
+        <li>An {term:interval-notation|interval} such as [&minus;1, 4) is also a set: all the numbers from {m:-1} up to, but not including, 4.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an equation and its solution set</h3>
+      <p>Join {m:x^2=4} and the set &#123;{m:-2}, 2&#125; with the right sign.</p>
+      <ol class="steps">
+        <li>If {m:x^2=4}, then {m:x=2} or {m:x=-2}. So x is an element of &#123;{m:-2}, 2&#125;.</li>
+        <li>If x is an element of &#123;{m:-2}, 2&#125;, then {m:x^2=4}, because {m:(-2)^2=4} and {m:2^2=4}.</li>
+        <li>Both directions hold, so {m:x^2=4} &hArr; {m:x} &isin; &#123;{m:-2}, 2&#125;.</li>
+      </ol>
+      <p>Compare {m:x=2} &rArr; {m:x} &isin; &#123;{m:-2}, 2&#125;. This one is true, but the reverse is false: {m:x=-2} is in the set and is not 2. So you cannot write &hArr; there.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: union and intersection</h3>
+      <p>Let A be &#123;1, 2, 3, 4, 5, 6&#125; and B be &#123;2, 4, 6, 8, 10&#125;. Find A &cap; B and A &cup; B.</p>
+      <ol class="steps">
+        <li>The elements in both sets are 2, 4 and 6. So A &cap; B is &#123;2, 4, 6&#125;.</li>
+        <li>Everything in either set is 1, 2, 3, 4, 5, 6, 8 and 10. List each element once. So A &cup; B is &#123;1, 2, 3, 4, 5, 6, 8, 10&#125;.</li>
+        <li>Check the counts: A has 6 elements and B has 5. The intersection has 3, so the union has {m:6+5-3=8}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the empty set</h3>
+      <p>Find the set &#123;{m:x}: {m:x^2<0}&#125;, where x is a real number.</p>
+      <ol class="steps">
+        <li>A square of a real number is never negative, so no real x has {m:x^2<0}.</li>
+        <li>The set has no elements. It is the empty set, &empty;.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:x^2=9} as a statement about a set.</p>
+      <ol class="steps">
+        <li>The solutions are {m:x=3} and {m:x=}<span class="blank" data-answers="-3">___</span>.</li>
+        <li>So {m:x^2=9} &hArr; {m:x} &isin; &#123;{m:-3}, 3&#125;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(-3)^2=9} and {m:3^2=9}, and no other number squares to 9. So {m:x^2=9} &hArr; {m:x} &isin; &#123;{m:-3}, 3&#125;.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: sets</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Let A be &#123;2, 4, 6, 8&#125; and B be &#123;4, 8, 12&#125;. How many elements are in the intersection A &cap; B?</p>
+      <ol class="ladder"><li>The intersection holds only what is in both sets.</li><li>Which numbers are in A and also in B?</li></ol>
+      <ul class="wrong"><li data-if="5">That counts the elements of the union. The intersection holds only what is in both sets.</li><li data-if="3">B has 3 elements, but the number 12 is not in A.</li></ul>
+      <div class="solution"><p>The numbers in both sets are 4 and 8. So A &cap; B is &#123;4, 8&#125;, with 2 elements.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Let A be &#123;2, 4, 6, 8&#125; and B be &#123;4, 8, 12&#125;. How many elements are in the union A &cup; B?</p>
+      <ol class="ladder"><li>The union holds everything in either set.</li><li>List each element once, even if it is in both sets.</li></ol>
+      <ul class="wrong"><li data-if="7">That counts 4 and 8 twice. List each element once.</li><li data-if="2">That is the size of the intersection. The union holds everything in either set.</li></ul>
+      <div class="solution"><p>A &cup; B is &#123;2, 4, 6, 8, 12&#125;, with 5 elements. Check: {m:4+3-2=5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is correct?</p>
+      <ul class="options">
+        <li data-why="The number &minus;3 also squares to 9, so x = 3 alone leaves out a solution. The set must hold both numbers.">{m:x^2=9} &hArr; {m:x} &isin; &#123;3&#125;, because 3 squared is 9</li>
+        <li data-correct>{m:x^2=9} &hArr; {m:x} &isin; &#123;{m:-3}, 3&#125;, because both directions hold</li>
+        <li data-why="Test x = &minus;3: it is in the set, but it is not equal to 3. So the two statements are not equivalent.">{m:x=3} &hArr; {m:x} &isin; &#123;{m:-3}, 3&#125;, because 3 is in the set</li>
+      </ul>
+      <ol class="ladder"><li>Which numbers satisfy {m:x^2=9}?</li><li>Check each direction on its own.</li></ol>
+      <div class="solution"><p>The numbers that satisfy {m:x^2=9} are exactly {m:-3} and 3, so the set &#123;{m:-3}, 3&#125; matches the equation in both directions.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement about the set &#123;1, 3, 5&#125; is correct?</p>
+      <ul class="options">
+        <li data-correct>5 &isin; &#123;1, 3, 5&#125;, because 5 is an element of the set</li>
+        <li data-why="5 is an element of the set, so it is correct to write that it is in the set. The sign &notin; would be wrong here.">5 &notin; &#123;1, 3, 5&#125;, because 5 is not an element of the set</li>
+        <li data-why="The union sign joins two sets. The number 5 is not a set, so it cannot be joined with one.">5 &cup; &#123;1, 3, 5&#125;, because the union joins them</li>
+      </ul>
+      <ol class="ladder"><li>Is 5 one of the listed elements?</li><li>The sign &isin; goes between an element and a set.</li></ol>
+      <div class="solution"><p>The set lists 5, so 5 &isin; &#123;1, 3, 5&#125;. The union sign goes between two sets.</p></div>
+    </div>
+    <div class="q" data-answers="0" data-mode="value">
+      <p class="qtext">How many elements does the set &#123;{m:x}: {m:x^2<0}&#125; have, where x is a real number?</p>
+      <ol class="ladder"><li>Can the square of a real number be negative?</li></ol>
+      <ul class="wrong"><li data-if="1">Even one element would need a real number with a negative square. There is none.</li></ul>
+      <div class="solution"><p>A square of a real number is never negative, so the set is the empty set &empty;. It has 0 elements.</p></div>
     </div>
   </div>
 </section>
@@ -1007,6 +1104,7 @@
     <h2>I can&hellip;</h2>
     <ul class="checklist" data-checklist="proof-methods">
       <li><label><input type="checkbox"> describe the assumptions, steps and conclusion of a proof, and use &rArr;, &lArr;, &hArr; and &there4; correctly</label></li>
+      <li><label><input type="checkbox"> use the set signs &isin;, &cup;, &cap; and &empty; and write the solutions of an equation as a set</label></li>
       <li><label><input type="checkbox"> write even, odd, consecutive and multiple numbers with letters, and prove a result about integers by deduction</label></li>
       <li><label><input type="checkbox"> prove an identity, and use completing the square to show that an expression is always positive or always negative</label></li>
       <li><label><input type="checkbox"> prove a statement by exhaustion, with cases that leave no gaps</label></li>

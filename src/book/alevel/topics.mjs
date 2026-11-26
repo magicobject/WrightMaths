@@ -27,7 +27,7 @@ const t = (id, title, strand, year, needs, flip, extra = {}) => ({ id, title, st
 
 export const TOPICS = [
   // Proof
-  t('proof-methods', 'Proof: direct, exhaustion, counterexample', 'proof', 1, [], 'Proving a statement is always true, and finding one example that shows it is false', { aka: 'proof prove deduction exhaustion counterexample disprove implies if and only if therefore even odd consecutive integers', status: 'live', words: ['statement', 'proof', 'proof-by-deduction', 'proof-by-exhaustion', 'counterexample', 'implies', 'if-and-only-if', 'therefore', 'converse', 'even-number', 'odd-number', 'consecutive-integers', 'multiple', 'square-number', 'completing-the-square'] }),
+  t('proof-methods', 'Proof: direct, exhaustion, counterexample', 'proof', 1, [], 'Proving a statement is always true, and finding one example that shows it is false', { aka: 'proof prove deduction exhaustion counterexample disprove implies if and only if therefore even odd consecutive integers', status: 'live', words: ['statement', 'proof', 'proof-by-deduction', 'proof-by-exhaustion', 'counterexample', 'implies', 'if-and-only-if', 'therefore', 'converse', 'even-number', 'odd-number', 'consecutive-integers', 'multiple', 'square-number', 'completing-the-square', 'set-notation', 'element-of', 'union', 'intersection', 'empty-set'] }),
   t('proof-contradiction', 'Proof by contradiction', 'proof', 2, ['proof-methods'], 'Assuming the opposite and showing that it cannot be true'),
 
   // Algebra and functions

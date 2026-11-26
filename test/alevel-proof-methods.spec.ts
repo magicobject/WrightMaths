@@ -209,3 +209,53 @@ test('a defined word is linked with its plain name, with no bracketed extra in t
   expect(texts.length).toBeGreaterThan(15);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);
 });
+
+// ---- "which pair can be joined by <=>": the reason on each wrong option must name a value that really separates the pair ----
+test('the pairs offered for the equivalence sign are checked by computation, and each reason names a separating value', () => {
+  const GRID = Array.from({ length: 241 }, (_, i) => -30 + i * 0.25);
+  const pairs: { first: (x: number) => boolean; second: (x: number) => boolean; witness: number | null; page: string }[] = [
+    { first: (x) => x * x === 9, second: (x) => x === 3, witness: -3, page: '{m:x^2=9} and {m:x=3}' },
+    { first: (x) => x > 2, second: (x) => x > 5, witness: 3, page: '{m:x>2} and {m:x>5}' },
+    { first: (x) => x + 5 === 9, second: (x) => x === 4, witness: null, page: '{m:x+5=9} and {m:x=4}' },
+  ];
+  const q = questions().find((x) => x.qtext.includes('Which pair of statements can be joined'));
+  expect(q).toBeTruthy();
+  for (const p of pairs) {
+    expect(q!.block, p.page).toContain(p.page);
+    if (p.witness === null) expect(GRID.every((x) => p.first(x) === p.second(x))).toBe(true);
+    else {
+      expect(p.first(p.witness) !== p.second(p.witness), p.page).toBe(true);
+      expect(q!.block).toContain(`Test x = ${p.witness < 0 ? '&minus;' : ''}${Math.abs(p.witness)}`);
+    }
+  }
+  // the x > 2 and x > 5 reason: at x = 3 the first is true and the second is false
+  expect(q!.block).toContain('Test x = 3: the first statement is true and the second is false.');
+});
+
+test('the page teaches set language: the element, union, intersection and empty-set signs are all used', () => {
+  expect(SOURCE).toContain('&isin;');
+  expect(SOURCE).toMatch(/&cup;/);
+  expect(SOURCE).toMatch(/&cap;/);
+  expect(SOURCE).toContain('&empty;');
+  // the set questions, recomputed
+  const A = new Set([2, 4, 6, 8]);
+  const B = new Set([4, 8, 12]);
+  const inter = [...A].filter((x) => B.has(x));
+  const union = new Set([...A, ...B]);
+  const find = (t: string) => questions().find((x) => x.qtext.includes(t))?.answers;
+  expect(find('in the intersection')).toEqual([String(inter.length)]);
+  expect(find('in the union')).toEqual([String(union.size)]);
+  const S1 = new Set([1, 2, 3, 4, 5, 6]);
+  const S2 = new Set([2, 4, 6, 8, 10]);
+  expect([...S1].filter((x) => S2.has(x))).toEqual([2, 4, 6]);
+  expect(new Set([...S1, ...S2]).size).toBe(8);
+});
+
+test('the always-positive figure keeps a single label, clear of the curve', async () => {
+  const { FIGURES } = await import('../src/book/alevel/figures/proof-methods.mjs');
+  const svg: string = FIGURES['proof-methods-always-positive']();
+  // only the drawn labels (the <text> elements) are counted: the description may still say the curve is above the axis
+  const labels = [...svg.matchAll(/<text[^>]*>([\s\S]*?)<\/text>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
+  expect(labels.filter((t) => t.includes('above the x-axis'))).toEqual([]);
+  expect(labels.filter((t) => t.includes('lowest point'))).toEqual(['lowest point (3, 1)']);
+});

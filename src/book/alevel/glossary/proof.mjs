@@ -232,6 +232,17 @@ export const TERMS = [
     see: ['integer', 'proof-by-exhaustion'],
   },
   {
+    id: 'empty-set',
+    term: 'empty set (\u2205)',
+    strand: 'al-proof',
+    level: 'Y1',
+    def: 'The set with no elements. It is written with the sign \u2205.',
+    example: ['&#123;{m:x}: {m:x^2<0}&#125; is the empty set when x is a real number, because a square is never negative.', 'The intersection of {m:x>3} and {m:x<2} is the empty set: no number is in both.'],
+    watch: 'The empty set is a set, so it is not the same as the number 0. It has 0 elements.',
+    see: ['set-notation', 'intersection', 'element-of'],
+    aka: ['null set'],
+  },
+  {
     id: 'lowest-terms',
     term: 'lowest terms',
     strand: 'al-proof',

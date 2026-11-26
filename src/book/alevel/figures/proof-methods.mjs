@@ -17,8 +17,9 @@ export const FIGURES = {
     const p = plane({ grid: false, ticks: false, tickLabels: false, top: 96, height: 500, xmin: -1, xmax: 7, ymin: -2, ymax: 14 });
     p.note(64, 50, 'y = x^2 - 6x + 10 = (x - 3)^2 + 1', { cls: 'alt' });
     p.curve((x) => a * x * x + b * x + c);
-    p.point(vx, vy, { label: `lowest point (${vx}, ${vy})`, dx: 0, dy: -24, anchor: 'middle' });
-    p.text(5.6, 1.4, 'above the x-axis', { cls: 'alt', anchor: 'middle' });
+    p.line(vx, vy + 0.4, vx, 6, { cls: 'guide' }); // a guide up the axis of symmetry to the label, which sits in the clear space inside the curve
+    p.point(vx, vy);
+    p.text(vx, 6.6, `lowest point (${vx}, ${vy})`, { cls: 'alt', anchor: 'middle' });
     return finish(p, {
       id: 'proof-methods-always-positive',
       title: 'The graph of y = x squared minus 6x plus 10',
