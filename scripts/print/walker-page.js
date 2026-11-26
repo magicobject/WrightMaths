@@ -14,7 +14,7 @@
   // Screen-only parts that print CSS does not hide because they are built by script (and so are absent here), or only clipped.
   const SKIP_CLASS = ['sr-only', 'sr', 'listen', 'btn', 'crumbs', 'progress-line', 'hero-actions', 'read-tools', 'toc', 'fast-route', 'to-top', 'next-up', 'eyebrow', 'q-help', 'q-form', 'g-tools', 'q-calc'];
   const SKIP_TAG = new Set(['nav', 'button', 'noscript', 'script', 'style', 'template', 'select']);
-  const TRANSPARENT_DIV = ['wrap', 'narrow', 'section-head', 'flip-grid', 'flip-side', 'qtable', 'qtable-wide', 'pairs', 'dq'];
+  const TRANSPARENT_DIV = ['wrap', 'narrow', 'section-head', 'flip-grid', 'flip-side', 'qtable', 'qtable-wide', 'pairs', 'dq', 'grid'];
   const SECTION_KINDS = ['hero', 'ckw', 'flip-section', 'exam-section', 'section-alt', 'print-title', 'print-copyright', 'print-how'];
   const P_KINDS = ['lead', 'intro', 'muted', 'sum-line', 'where-use', 'qtext', 'ar-keys'];
   const LIST_KINDS = ['facts', 'tick', 'traps', 'checklist', 'needs', 'steps', 'markscheme', 'method', 'legend'];
@@ -196,7 +196,9 @@
     if (skip(el)) return [];
     if (el.hasAttribute('data-print')) {
       const text = el.getAttribute('data-print');
-      return text ? [{ t: 'p', cls: '', runs: [{ t: text }] }] : [];
+      // a retitled box heading (<p><b>..</b></p>) stays bold
+      const bold = el.children.length === 1 && tagOf(el.children[0]) === 'b' && el.textContent.trim() === el.children[0].textContent.trim();
+      return text ? [{ t: 'p', cls: '', runs: [{ t: text, ...(bold ? { b: true } : {}) }] }] : [];
     }
     if (/^h[1-6]$/.test(tag)) return [{ t: 'h', level: Number(tag[1]), id: el.id, runs: runsOf(el) }];
     if (tag === 'p') {
@@ -233,6 +235,7 @@
       if (el.className && !kind) note(el, 'block');
       return [{ t: 'section', kind, blocks: flow(el) }];
     }
+    if (tag === 'article' && has(el, 'card')) return [{ t: 'box', kind: 'key', blocks: flow(el) }]; // the Question words cards
     if (tag === 'div') {
       if (has(el, 'worked')) return [{ t: 'box', kind: has(el, 'faded') ? 'faded' : 'worked', blocks: flow(el) }];
       if (has(el, 'key')) return [{ t: 'box', kind: 'key', blocks: flow(el) }];

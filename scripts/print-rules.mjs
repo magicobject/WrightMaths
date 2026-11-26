@@ -28,16 +28,24 @@ export const HEADING_RULES = [
   { id: 'typing-heading', re: /^(?:units and typing|typing\b.*|how to type\b.*)$/i, why: 'a heading about typing answers' },
 ];
 
+// A sentence about keys on a real calculator ("type 3 =, then use Ans") is kept whole.
+export const CALCULATOR = /\bAns\b|calculator/i;
+// ...unless it also talks about the screen, which is never calculator advice.
+export const SCREEN_EVEN_WITH_CALCULATOR = /answer box|in the box|\bclick|\bpaste/i;
+
 // What still gets reported if it survives the rules above.
-export const SCREEN_WORDS = /\b(?:type|typed|typing|click|clicked|tap|taps|button|buttons|scroll|scrolling)\b/i;
+export const SCREEN_WORDS = /\b(?:type|typed|typing|click|clicked|tap|taps|button|buttons|scroll|scrolling|answer box|answer boxes)\b/i;
 
 // Words that look like screen talk but are not. Each entry says why.
 export const ALLOWED = [
   { re: /\btype of\b|\btypes of\b/i, why: 'ordinary English: a type of triangle or number' },
   { re: /\b(?:circle|triangle|number|graph|shape|quadrilateral|angle) type\b/i, why: 'ordinary English: the type of a shape' },
   { re: /\binverse button\b|\bshift button\b|\bequals button\b/i, why: 'a key on a real calculator' },
-  { re: /\b(?:a|the|each|hot|cold|mixer|dripping|water|leaking|two|one) taps?\b/i, why: 'a water tap' },
-  { re: /^Typing vectors$/, why: 'source data-print to be added after the minor-fix PRs land (vectors.html "Typing vectors" box)' },
+  { re: /\b(?:a|the|each|hot|cold|mixer|dripping|water|leaking|two|one|faster|slower|same|first|second) taps?\b/i, why: 'a water tap' },
+  { re: /\bAns\b|calculator|\b(?:sin|cos|tan)\^-1|\b(?:undo|inverse \w+|cube root) button\b|which button undoes|angle you typed|I typed \(/i, why: 'keys pressed on a real calculator' },
+  { re: /\bFibonacci-type\b/i, why: 'the name of a kind of sequence' },
+  { re: /coins for every click|You click \d/i, why: 'a story about a computer game, not an instruction to the reader' },
+  { re: /type a fraction on one line/i, why: 'advice about writing a fraction on one line, for calculators and computers alike' },
   { re: /\bbuttons\b/i, why: 'buttons in a bag, a probability context' },
   { re: /\b(?:\d+|many|of|400|sold|in every \d+) taps\b|\btaps (?:sold|are|were)\b/i, why: 'water taps in a probability question' },
   { re: /(?:[^ -~]|pi) button/i, why: 'the pi key on a real calculator' },
@@ -69,7 +77,8 @@ export function stripScreenWording(runs) {
   const cut = []; // [start, end, rule]
   for (const [a, b] of sentenceRanges(flat)) {
     const sentence = flat.slice(a, b).replaceAll(SENTINEL, 'X');
-    const rule = SENTENCE_RULES.find((r) => r.re.test(sentence));
+    // Keys pressed on a real calculator are print content, not screen talk: never remove them.
+    const rule = CALCULATOR.test(sentence) && !SCREEN_EVEN_WITH_CALCULATOR.test(sentence) ? undefined : SENTENCE_RULES.find((r) => r.re.test(sentence));
     if (rule) cut.push([a, b, rule.id]);
   }
   for (const rule of CLAUSE_RULES) {
