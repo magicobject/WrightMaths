@@ -358,8 +358,10 @@ const NAMED_ENTITIES = {
 
 /** Plain text of a fragment of page source: shorthands and tags removed, entities decoded. */
 export function plainText(html) {
+  // Maths is set aside first and put back last: its text can hold < and >, which the tag strip would take for a tag.
+  const maths = [];
   return String(html)
-    .replace(/\{md?:([^{}]+)\}/g, (_, body) => toLinear(body))
+    .replace(/\{md?:([^{}]+)\}/g, (_, body) => `\u0001${maths.push(toLinear(body)) - 1}\u0002`)
     .replace(/\{frac:([^}]*?)\/([^}/]*)\}/g, (_, t, u) => `${/^[\w.]+$/.test(t.trim()) ? t.trim() : `(${t.trim()})`}/${/^[\w.]+$/.test(u.trim()) ? u.trim() : `(${u.trim()})`}`)
     .replace(/\{term:[^|}]*\|([^}]*)\}/g, '$1')
     .replace(/\{term:([^}]*)\}/g, '$1')
@@ -369,6 +371,7 @@ export function plainText(html) {
     .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
     .replace(/&([a-zA-Z0-9]+);/g, (m, name) => NAMED_ENTITIES[name] ?? m)
+    .replace(/\u0001(\d+)\u0002/g, (_, i) => maths[Number(i)])
     .replace(/\s+/g, ' ')
     .trim();
 }
