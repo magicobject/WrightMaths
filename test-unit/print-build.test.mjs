@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { extractKey, keyAnswer } from '../scripts/book-lib.mjs';
 import { answerRuns, optionLetter, prettySymbols } from '../scripts/print/answers.mjs';
 import { buildChapters, chapterOrder, hrefToId } from '../scripts/print/chapters.mjs';
-import { answerLineRuns, cleanTree, renderBlocks, shorthandRuns } from '../scripts/print/render.mjs';
+import { answerLineRuns, cleanTree, featuresFor, hintsFor, renderBlocks, shorthandRuns, solutionFor } from '../scripts/print/render.mjs';
 import { collect, parseArgs, placeholdersIn, PROPERTIES, releaseProblems } from '../scripts/build-docx.mjs';
 import { buildGraph } from '../scripts/book-lib.mjs';
 import { runsToText } from '../scripts/print/omml.mjs';
+import { estimatePages } from '../scripts/print/estimate.mjs';
 
 // ----- keyAnswer: the one answer rule -----
 
@@ -141,4 +142,70 @@ test('--release fails on any placeholder or non-empty report', () => {
   const clean = { unknown: [], screenWording: [], screenOnlyQuestions: [], deadRefs: [], placeholders: {}, colourWordsInMono: [], figuresBelow300ppi: [], frontNeedsEdit: [], blockedRequests: [] };
   assert.deepEqual(releaseProblems(clean), []);
   assert.deepEqual(releaseProblems({ ...clean, placeholders: { '[TITLE]': 1 }, deadRefs: [{}] }), ['deadRefs', 'placeholders']);
+});
+
+// ----- short answers and the first hint -----
+
+const para = (t) => ({ t: 'p', runs: [{ t }] });
+const scheme = { t: 'list', kind: 'markscheme', items: [[para('M1 for method')], [para('A1 for 7')]] };
+
+test('short answers: the answer line is the same for every question type, and the worked solution goes', () => {
+  const opt = (t, correct = false) => ({ runs: [{ t }], correct });
+  const typed = { n: 1, type: 'typed', answers: '5/8;0.625', options: [], solution: [para('5 + 3 = 8')] };
+  const mc = { n: 2, type: 'mc', answers: '', options: [opt('3/5'), opt('4/7', true)], solution: [para('because')] };
+  assert.equal(runsToText(answerLineRuns(typed)), '5/8  (also accept: 0.625)');
+  assert.equal(runsToText(answerLineRuns(mc)), 'B  4/7');
+  assert.deepEqual(solutionFor(typed, true), { blocks: [], fallback: false });
+  assert.deepEqual(solutionFor(mc, true), { blocks: [], fallback: false });
+  // full answers keep everything
+  assert.deepEqual(solutionFor(typed, false).blocks, typed.solution);
+});
+
+test('short answers: an exam question keeps its mark scheme and loses the working', () => {
+  const exam = { n: 3, type: 'typed', marks: 2, answers: '7', options: [], solution: [para('Working: 3 + 4 = 7'), scheme] };
+  assert.deepEqual(solutionFor(exam, true), { blocks: [scheme], fallback: false });
+});
+
+test('short answers: a "show that" question has the mark scheme; with none it keeps its worked solution and is counted', () => {
+  const withScheme = { n: 4, type: 'show', answers: '', options: [], solution: [para('Proof'), scheme] };
+  const without = { n: 5, type: 'show', answers: '', options: [], solution: [para('Proof: x = 2')] };
+  const empty = { n: 6, type: 'show', answers: '', options: [], solution: [] };
+  assert.deepEqual(solutionFor(withScheme, true), { blocks: [scheme], fallback: false });
+  assert.deepEqual(solutionFor(without, true), { blocks: without.solution, fallback: true });
+  assert.deepEqual(solutionFor(empty, true), { blocks: [], fallback: false });
+});
+
+test('first hint: only the first clue of a ladder; all of them otherwise', () => {
+  const q = { ladder: [[para('one')], [para('two')], [para('three')]] };
+  assert.deepEqual(hintsFor(q, true), [[para('one')]]);
+  assert.equal(hintsFor(q, false).length, 3);
+  assert.deepEqual(hintsFor({ ladder: [] }, true), []);
+});
+
+test('options: a tier book is short by default, the whole book is full by default, and the flags override', () => {
+  const on = (o) => [o.shortAnswers, o.firstHint];
+  assert.deepEqual(on(parseArgs([])), [false, false]);
+  assert.deepEqual(on(parseArgs(['--short-answers'])), [true, false]);
+  assert.deepEqual(on(parseArgs(['--first-hint'])), [false, true]);
+  assert.deepEqual(on(parseArgs(['--tier', 'foundation'])), [true, true]);
+  assert.deepEqual(on(parseArgs(['--tier', 'higher'])), [true, true]);
+  assert.deepEqual(on(parseArgs(['--tier', 'higher', '--full-answers'])), [false, true]);
+  assert.deepEqual(on(parseArgs(['--tier', 'higher', '--all-hints'])), [true, false]);
+  assert.deepEqual(on(parseArgs(['--tier', 'foundation', '--full-answers', '--all-hints'])), [false, false]);
+  const noHints = parseArgs(['--tier', 'foundation', '--no-hints', '--no-slips']);
+  assert.deepEqual([noHints.noHints, noHints.noSlips, noHints.shortAnswers], [true, true, true]);
+});
+
+test('the front matter features say what the build prints', () => {
+  assert.deepEqual(featuresFor({}), ['hints', 'all-hints', 'full-answers', 'slips']);
+  assert.deepEqual(featuresFor({ shortAnswers: true, firstHint: true }), ['hints', 'first-hint', 'short-answers', 'no-slips']);
+  assert.deepEqual(featuresFor({ noHints: true, noSlips: true }), ['no-hints', 'full-answers', 'no-slips']);
+});
+
+test('the page estimate counts lines when answers are short', () => {
+  const words = { front: 0, chapters: 0, answers: 100, hints: 100, glossary: 0 };
+  const byWords = estimatePages({ words });
+  const byLines = estimatePages({ words, lines: { answers: 840, hints: 420 } });
+  assert.equal(byLines.answers - byWords.answers, 19); // 840 lines at 42 a page is 20 pages, not 1
+  assert.equal(byLines.hints - byWords.hints, 9);
 });

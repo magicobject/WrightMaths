@@ -10,7 +10,10 @@
   Front matter for the printed GCSE book (npm run book:docx). Print-only: nothing here is on the website.
   The words in [SQUARE BRACKETS] are placeholders for Greg and are never invented here. Fill them in this file, then rebuild.
   "How to use this book" is written for paper: there is nothing about screens, buttons or typing in it.
-  It mentions the Hints section and the "If you got..." lines in the answers; if you build with --no-hints or --no-slips the build says so.
+  Parts that depend on how the book is built carry data-print-if="...": the element is printed only when every word is in force.
+  The words (featuresFor in scripts/print/render.mjs): hints | no-hints, all-hints | first-hint (with hints), full-answers | short-answers,
+  slips | no-slips. A tier book is short-answers and first-hint unless built with --full-answers or --all-hints.
+  Whatever the build leaves out, this text must not mention; the build reports frontNeedsEdit if it does.
 -->
 <main class="book">
 
@@ -31,7 +34,7 @@
 <section class="print-how">
   <h2>How to use this book</h2>
   <div class="key">
-    <p><b>The short version:</b> work through a chapter in order. Do the questions on paper. Check each answer at the back. If you are stuck, use the hints. Nothing in this book needs a computer.</p>
+    <p><b>The short version:</b> work through a chapter in order. Do the questions on paper. Check each answer at the back. <span data-print-if="hints">If you are stuck, use the hints. </span>Nothing in this book needs a computer.</p>
   </div>
 
   <h3>How a chapter is laid out</h3>
@@ -45,19 +48,26 @@
   </ul>
 
   <h3>Question numbers</h3>
-  <p>Question 7.12 is question 12 in Chapter 7. Its answer is in the Answers section at the back under 7.12, and its hints are in the Hints section under 7.12. The mixed practice papers at the end of the chapters are numbered in the same way.</p>
+  <p>Question 7.12 is question 12 in Chapter 7. Its answer is in the Answers section at the back under 7.12<span data-print-if="hints all-hints">, and its hints are in the Hints section under 7.12</span><span data-print-if="hints first-hint">, and its hint is in the Hints section under 7.12</span>. The mixed practice papers at the end of the chapters are numbered in the same way.</p>
 
-  <h3>When you are stuck: the hints</h3>
+  <h3 data-print-if="hints">When you are stuck: the hints</h3>
+  <h3 data-print-if="no-hints">When you are stuck</h3>
   <ol>
     <li>Read the question again and say what it is asking.</li>
-    <li>Turn to the Hints section and read Hint 1 only. Try again.</li>
-    <li>Still stuck? Read Hint 2, and so on. Each hint gives away a little more.</li>
-    <li>Last of all, read the worked answer. Then cover it up and try the question again on a fresh line.</li>
+    <li data-print-if="hints all-hints">Turn to the Hints section and read Hint 1 only. Try again.</li>
+    <li data-print-if="hints first-hint">Turn to the Hints section and read the hint for that question. Try again.</li>
+    <li data-print-if="hints all-hints">Still stuck? Read Hint 2, and so on. Each hint gives away a little more.</li>
+    <li data-print-if="hints first-hint">Still stuck? Look back at the worked example in the chapter, then try again.</li>
+    <li data-print-if="no-hints">Look back at the worked example in the chapter, then try again.</li>
+    <li data-print-if="full-answers">Last of all, read the worked answer. Then cover it up and try the question again on a fresh line.</li>
+    <li data-print-if="short-answers">Last of all, check the answer at the back, then look back at the worked example in the chapter and try the question again on a fresh line.</li>
   </ol>
-  <p>Using a hint is not cheating. It is how you learn.</p>
+  <p data-print-if="hints">Using a hint is not cheating. It is how you learn.</p>
 
   <h3>Checking your answers</h3>
-  <p>The Answers section gives the answer and a short worked solution for every question. Many answers also have lines that begin &ldquo;If you got&hellip;&rdquo;. These explain the slip that gives a wrong answer, so you can see what went wrong.</p>
+  <p data-print-if="full-answers">The Answers section gives the answer and a short worked solution for every question.</p>
+  <p data-print-if="full-answers slips">Many answers also have lines that begin &ldquo;If you got&hellip;&rdquo;. These explain the slip that gives a wrong answer, so you can see what went wrong.</p>
+  <p data-print-if="short-answers">The Answers section gives the answer to every question. Questions with marks also show the mark scheme.</p>
   <p>For questions with marks, write your working first, then mark yourself against the mark scheme. M marks are for a correct method, A marks for an accurate answer, B marks are independent marks (no method is needed), and C marks are for explaining clearly.</p>
   <p>For &ldquo;Now you finish it&rdquo;, the Answers section gives the missing numbers in the order the gaps appear, then a short check.</p>
 

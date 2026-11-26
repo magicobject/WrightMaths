@@ -1,4 +1,4 @@
-(function walkPage() {
+(function walkPage(features = []) {
   // Runs inside the page (JavaScript off, print media, light scheme). It turns <main> into a JSON tree.
   // It handles a closed set of elements; anything else is recorded in `unknown`, and a test fails if that list is not empty.
   // Anything the existing @media print CSS hides (display:none) is skipped, so that stylesheet decides what is screen-only.
@@ -20,7 +20,12 @@
   const LIST_KINDS = ['facts', 'tick', 'traps', 'checklist', 'needs', 'steps', 'markscheme', 'method', 'legend'];
   const BLOCK_TAGS = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'dl', 'table', 'figure', 'div', 'section', 'aside', 'details', 'article', 'hr']);
 
+  // data-print-if="short-answers first-hint" keeps an element only when every named feature is in force for this build
+  // (the print-only front matter says what the build does: see featuresFor in scripts/print/render.mjs).
+  const wanted = (el) => (el.getAttribute('data-print-if') || '').split(/\s+/).filter(Boolean).every((f) => features.includes(f));
+
   function skip(el) {
+    if (el.hasAttribute('data-print-if') && !wanted(el)) return true;
     if (SKIP_TAG.has(tagOf(el)) || el.hidden) return true;
     if (SKIP_CLASS.some((c) => has(el, c))) return true;
     return getComputedStyle(el).display === 'none';

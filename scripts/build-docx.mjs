@@ -8,6 +8,10 @@
 //   --mono        greyscale figures and box shading
 //   --release     fail if any placeholder or any report is not empty
 //   --no-hints    leave the Hints section out        --no-slips   leave the "If you got..." lines out
+//   --short-answers   the Answers print the answer line and any mark scheme, not the worked solution or the "If you got..." lines
+//   --first-hint      the Hints print only the first clue of each ladder
+//                     Both are ON by default for a --tier book (the page count matters for KDP); opt out with
+//                     --full-answers and --all-hints. The whole book keeps full answers and hints unless asked.
 //   --out FILE    where to write the .docx           --report FILE   where to write the report
 
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
@@ -22,7 +26,7 @@ import { estimatePages, wordsIn } from './print/estimate.mjs';
 import { chipsLeft, dropHigher, glossaryForBook, keepOnlyHigher, papersForTier, renumberQuestions, retitleFront, termsUsed, TIER_LABEL, TIERS } from './print/tier.mjs';
 import { capturePage, openBrowser } from './print/capture.mjs';
 import { patchSettings } from './print/docx-settings.mjs';
-import { allTexts, buildDocument, cleanTree, makeContext } from './print/render.mjs';
+import { allTexts, buildDocument, cleanTree, featuresFor, hintsFor, makeContext, solutionFor } from './print/render.mjs';
 import { startServer } from './print/server.mjs';
 import { reportScreenWords } from './print-rules.mjs';
 
@@ -47,7 +51,8 @@ export const PROPERTIES = { creator: 'Greg Wright', lastModifiedBy: 'Greg Wright
 export const propertiesFor = (tier) => (tier ? { ...PROPERTIES, title: `${PROPERTIES.title}: ${TIER_LABEL[tier]}` } : PROPERTIES);
 
 export function parseArgs(argv) {
-  const opts = { pages: null, tier: null, mono: false, release: false, noHints: false, noSlips: false, out: null, report: null };
+  const opts = { pages: null, tier: null, mono: false, release: false, noHints: false, noSlips: false, shortAnswers: false, firstHint: false, out: null, report: null };
+  const asked = new Set();
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--pages') opts.pages = argv[(i += 1)].split(',').map((s) => s.trim()).filter(Boolean);
@@ -58,10 +63,14 @@ export function parseArgs(argv) {
     else if (a === '--release') opts.release = true;
     else if (a === '--no-hints') opts.noHints = true;
     else if (a === '--no-slips') opts.noSlips = true;
+    else if (['--short-answers', '--full-answers', '--first-hint', '--all-hints'].includes(a)) asked.add(a);
     else if (a === '--out') opts.out = resolve(argv[(i += 1)]);
     else if (a === '--report') opts.report = resolve(argv[(i += 1)]);
     else throw new Error(`unknown option ${a}`);
   }
+  // a single-tier book is short by default (Greg, 26 Nov 2026); the whole book is full unless asked
+  opts.shortAnswers = !asked.has('--full-answers') && (Boolean(opts.tier) || asked.has('--short-answers'));
+  opts.firstHint = !asked.has('--all-hints') && (Boolean(opts.tier) || asked.has('--first-hint'));
   opts.out ??= join(root, opts.tier ? `dist/gcse-${opts.tier}.docx` : 'dist/gcse-book.docx');
   opts.report ??= join(root, opts.tier ? `dist/print-report-${opts.tier}.json` : 'dist/print-report.json');
   return opts;
@@ -94,9 +103,10 @@ async function gather(opts, chosen, ctx) {
   const unknown = [];
   const mismatches = [];
   let walkedTotal = 0;
+  const features = featuresFor(opts);
   const walk = async (url, name) => {
     ctx.page = name;
-    const tree = await capturePage(browser, `http://127.0.0.1:${server.port}${url}`, name === 'front' ? tidyFront : tidy);
+    const tree = await capturePage(browser, `http://127.0.0.1:${server.port}${url}`, name === 'front' ? tidyFront : tidy, features);
     for (const u of tree.unknown) unknown.push({ page: name, ...u });
     return tree;
   };
@@ -138,9 +148,12 @@ function findings(opts, front, chosen, ctx, unknown, blocked) {
   for (const c of chosen) scan(c.id, c.tree.blocks);
   const screenOnly = chosen.flatMap((c) => collect(c.tree.blocks, (n) => n.t === 'q' && n.screenOnly).map((q) => ({ page: c.id, question: q.n, why: q.screenOnly })));
   const frontText = [...allTexts(front.tree.blocks)].join(' ');
+  // front.html has variants (data-print-if) for every option; this catches a variant that was missed
   const frontNeedsEdit = [
     ...(opts.noHints && /Hints section/.test(frontText) ? ['front.html mentions the Hints section, but this build has none'] : []),
-    ...(opts.noSlips && /If you got/.test(frontText) ? ['front.html mentions the "If you got" lines, but this build has none'] : []),
+    ...((opts.noSlips || opts.shortAnswers) && /If you got/.test(frontText) ? ['front.html mentions the "If you got" lines, but this build has none'] : []),
+    ...(opts.shortAnswers && /worked (answer|solution)/i.test(frontText) ? ['front.html mentions worked solutions, but this build has short answers'] : []),
+    ...(opts.firstHint && /Hint 2/.test(frontText) ? ['front.html mentions more than one hint, but this build has only the first'] : []),
   ];
   const removed = {};
   for (const r of ctx.removed) removed[r.rule] = (removed[r.rule] ?? 0) + 1;
@@ -196,7 +209,7 @@ export async function buildDocx(opts) {
 
   const glossary = glossaryForBook(GLOSSARY, opts.tier, termsUsed(chosen.map((c) => c.tree.blocks)));
   const glossaryById = new Map(glossary.map((g) => [g.id, g]));
-  const ctx = makeContext({ chapters: referable, glossaryById, mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, elsewhere, elsewhereLabel });
+  const ctx = makeContext({ chapters: referable, glossaryById, mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, shortAnswers: opts.shortAnswers, firstHint: opts.firstHint, elsewhere, elsewhereLabel });
   ctx.tier = opts.tier;
   ctx.removed = walkCtx.removed;
 
@@ -209,6 +222,9 @@ export async function buildDocx(opts) {
   const questions = walkedTotal;
   const kept = chosen.reduce((n, c) => n + collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body)).length, 0);
   const figures = ctx.figureLog.length;
+  report.shortAnswerFallbacks = opts.shortAnswers
+    ? chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body) && !x.screenOnly && solutionFor(x, true).fallback).map((q) => ({ page: c.id, question: q.webN ?? q.n })))
+    : [];
   report.stats = {
     tier: opts.tier ?? 'whole book',
     chapters: chosen.length,
@@ -219,8 +235,9 @@ export async function buildDocx(opts) {
     minFigurePpi: figures ? Math.min(...ctx.figureLog.map((f) => f.ppi)) : null,
     docxBytes: statSync(opts.out).size,
     seconds: Number(((Date.now() - started) / 1000).toFixed(1)),
+    shortAnswerFallbacks: report.shortAnswerFallbacks.length,
     pagesEstimate: pageEstimate(chosen, front, glossary, ctx, opts),
-    options: { mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, release: opts.release, pages: opts.pages },
+    options: { mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, shortAnswers: opts.shortAnswers, firstHint: opts.firstHint, release: opts.release, pages: opts.pages },
   };
   report.questionIds = chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body)).map((q) => `${c.id}-${q.webN ?? q.n}`));
   report.needsSourceChange = [
@@ -239,15 +256,23 @@ export async function buildDocx(opts) {
 /** A rough page count from the trees (see scripts/print/estimate.mjs). The word counts are of what is printed, in each part. */
 function pageEstimate(chosen, front, glossary, ctx, opts) {
   const questions = chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body) && !x.screenOnly));
-  const answerParts = questions.map((q) => [q.solution, q.wrong, q.options.map((o) => ({ runs: [{ t: o.why }] }))]);
-  const hintParts = questions.map((q) => q.ladder);
+  // what the chapters hold, whether or not it is printed there (the walker keeps the solutions, wrong-answer lines and ladders on each question)
+  const fullParts = questions.map((q) => [q.solution, q.wrong, q.options.map((o) => ({ runs: [{ t: o.why }] })), q.ladder]);
+  const slips = !opts.noSlips && !opts.shortAnswers;
+  const answerParts = questions.map((q) => [solutionFor(q, opts.shortAnswers).blocks, slips ? [q.wrong, q.options.map((o) => ({ runs: [{ t: o.why }] }))] : []]);
+  const hintParts = questions.map((q) => hintsFor(q, opts.firstHint));
   const answers = wordsIn(answerParts) + questions.length * 4;
   const hints = opts.noHints ? 0 : wordsIn(hintParts) + questions.length * 2;
-  const chapterWords = wordsIn(chosen.map((c) => c.tree.blocks)) - wordsIn(answerParts) - wordsIn(hintParts);
+  const chapterWords = wordsIn(chosen.map((c) => c.tree.blocks)) - wordsIn(fullParts);
+  // lines: one per answer plus one per block (list item) printed under it; one per question that has a hint
+  const countLines = (blocks) => blocks.reduce((n, b) => n + (b.t === 'list' ? b.items.length : 1), 0);
+  const answerLines = questions.reduce((n, q) => n + 1 + countLines(solutionFor(q, opts.shortAnswers).blocks) + (slips ? q.wrong.length : 0), 0);
+  const hintLines = opts.noHints ? 0 : questions.reduce((n, q) => n + hintsFor(q, opts.firstHint).length, 0);
   const headings = chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'h' && x.level === 2)).length;
   const glossaryWords = wordsIn(glossary.map((g) => [{ runs: [{ t: [g.term, g.def, g.watch, ...(Array.isArray(g.example) ? g.example : [g.example])].filter(Boolean).join(' ') }] }]));
   return estimatePages({
     words: { front: wordsIn([front.tree.blocks]), chapters: Math.max(0, chapterWords), answers, hints, glossary: glossaryWords },
+    lines: { answers: answerLines, hints: hintLines },
     figureHeightIn: ctx.figureLog.reduce((n, f) => n + f.heightIn, 0) / 2, // the figure log counts a figure in the chapter and again where its answer is printed
     chapterCount: chosen.length,
     tocEntries: chosen.length + headings + 4,
