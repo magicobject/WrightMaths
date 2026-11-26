@@ -109,9 +109,8 @@ test.describe('the Word build', () => {
     expect(report.stats.figures).toBeGreaterThan(20);
     expect(report.stats.minFigurePpi).toBeGreaterThanOrEqual(300);
     // what Greg has given is filled in; the rest are still placeholders: never invented
-    expect(Object.keys(report.placeholders)).toEqual(expect.arrayContaining(['[SUBTITLE]', '[EDITION]', '[RIGHTS STATEMENT]', '[ISBN]', '[IMPRINT]']));
-    expect(Object.keys(report.placeholders)).not.toContain('[TITLE]');
-    expect(Object.keys(report.placeholders)).not.toContain('[AUTHOR]');
+    // (the ISBN comes from KDP at title setup)
+    expect(Object.keys(report.placeholders).sort()).toEqual(['[ISBN]', '[SUBTITLE]']);
   });
 
   test('the document properties carry the real title and author, with no placeholder', () => {
@@ -119,8 +118,6 @@ test.describe('the Word build', () => {
     expect(core).toContain('GCSE Mathematics');
     expect(core).toContain('Greg Wright');
     expect(core).not.toContain('[');
-    // [IMPRINT] is now only on the copyright page
-    expect(report.placeholders['[IMPRINT]']).toBe(1);
   });
 
   test('--release refuses a build that still has placeholders', () => {
