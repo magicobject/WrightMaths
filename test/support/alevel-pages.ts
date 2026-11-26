@@ -10,6 +10,7 @@ export const ALEVEL_HUB_PAGES: BookPage[] = [
 
 // Live topic pages are added here as each one is released (and only then: a page in this list must exist).
 export const ALEVEL_TOPICS: BookPage[] = [
+  { path: '/books/a-level/indices-surds.html', titleContains: 'Indices and surds', heading: /^Indices and surds$/ },
   { path: '/books/a-level/integration-basics.html', titleContains: 'Integration as reverse differentiation', heading: /^Integration as reverse differentiation$/ },
   { path: '/books/a-level/differentiation-basics.html', titleContains: 'Differentiation from first principles', heading: /^Differentiation from first principles$/ },
   { path: '/books/a-level/quadratics.html', titleContains: 'Quadratics', heading: /^Quadratics$/ },
