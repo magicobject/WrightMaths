@@ -11,7 +11,7 @@ test.describe('the GCSE book stays hidden', () => {
     for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
       // Greg's decision (24 Nov 2026): Books is in the main menu (and so the footer); the GCSE book is one click further on.
-      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to more than the Books page`).toHaveCount(['/404.html', '/updates.html'].includes(sitePage.path) ? 3 : 2);
+      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to more than the Books page`).toHaveCount(sitePage.path === '/404.html' ? 3 : 2);
       if (sitePage.path !== '/books/') {
         await expect(page.locator('a[href*="gcse"]'), `${sitePage.path} links straight to the book`).toHaveCount(0);
       }

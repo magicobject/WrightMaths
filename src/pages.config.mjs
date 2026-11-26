@@ -51,13 +51,6 @@ export const PAGES = [
     cta: { href: 'tel:+447449301083', text: 'Call now' },
   },
   {
-    slug: 'updates',
-    title: 'Site Updates | Wright Maths Tuition',
-    description: 'Internal build changelog for wrightmaths.uk — not linked from anywhere on the site.',
-    active: null,
-    robots: 'noindex',
-  },
-  {
     slug: 'books/index',
     title: 'Maths Books | Wright Maths Tuition',
     description: 'Free online maths books written by a tutor, starting with a GCSE maths book built from the ground up.',

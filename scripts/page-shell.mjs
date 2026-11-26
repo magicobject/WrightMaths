@@ -2,7 +2,8 @@
 // scripts/build.mjs (the site and the GCSE book) and scripts/build-alevel.mjs (the A-level book) both use it,
 // so a change to the header or footer is made once.
 
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
+import { randomBytes } from 'node:crypto';
 import { join } from 'node:path';
 
 // Links that already point somewhere absolute are left alone; site-relative
@@ -10,11 +11,12 @@ import { join } from 'node:path';
 const isAbsolute = (href) => /^(tel:|mailto:|https?:|#|\/)/.test(href);
 export const withBase = (href, base) => (isAbsolute(href) ? href : `${base}${href}`);
 
-export function readBuildNumber(root) {
-  const file = join(root, 'build-number.json');
-  if (!existsSync(file)) return '0000.00.00.000';
-  const { date, build } = JSON.parse(readFileSync(file, 'utf8'));
-  return `${date}.${String(build).padStart(3, '0')}`;
+// The cache-busting token on css/js links ("style.css?v=...") is made fresh each time the site is built and is never
+// committed (public/*.html is not in git). WM_BUILD_ID pins it, for example to compare two builds.
+let buildId;
+export function readBuildId() {
+  buildId ??= process.env.WM_BUILD_ID || randomBytes(4).toString('hex');
+  return buildId;
 }
 
 export function loadShell(root) {
@@ -23,7 +25,7 @@ export function loadShell(root) {
     pageTemplate: read('templates/page.html'),
     headerTemplate: read('templates/header.html').trimEnd(),
     footerTemplate: read('templates/footer.html').trimEnd(),
-    buildNumber: readBuildNumber(root),
+    buildId: readBuildId(),
   };
 }
 
@@ -34,7 +36,7 @@ export function loadShell(root) {
  * searchBox: HTML for the header search box ('' when not a book page).
  */
 export function renderShell({ shell, nav, merged, content, isBook, searchBox = '' }) {
-  const { pageTemplate, headerTemplate, footerTemplate, buildNumber } = shell;
+  const { pageTemplate, headerTemplate, footerTemplate, buildId } = shell;
   const base = merged.base ?? '';
   const cta = merged.cta ?? { href: 'contact.html', text: 'Get in touch' };
 
@@ -59,13 +61,13 @@ export function renderShell({ shell, nav, merged, content, isBook, searchBox = '
     extraHead += `<link rel="canonical" href="https://wrightmaths.uk/${canonicalPath}">\n`;
   }
   for (const css of merged.extraCss ?? []) {
-    extraHead += `<link rel="stylesheet" href="${base}${css}?v={{BUILD_NUMBER}}">\n`;
+    extraHead += `<link rel="stylesheet" href="${base}${css}?v={{BUILD_ID}}">\n`;
   }
   for (const js of merged.extraBootScripts ?? []) {
-    extraHead += `<script src="${base}${js}?v={{BUILD_NUMBER}}"></script>\n`;
+    extraHead += `<script src="${base}${js}?v={{BUILD_ID}}"></script>\n`;
   }
   const extraScripts = (merged.extraModuleScripts ?? [])
-    .map((js) => `\n<script type="module" src="${base}${js}?v={{BUILD_NUMBER}}"></script>`)
+    .map((js) => `\n<script type="module" src="${base}${js}?v={{BUILD_ID}}"></script>`)
     .join('');
 
   // Book pages load no third-party fonts: a child's IP address must not go to Google. They use the system font stack.
@@ -89,5 +91,5 @@ export function renderShell({ shell, nav, merged, content, isBook, searchBox = '
     .replace('{{FOOTER}}', () => footer)
     .replace('{{EXTRA_SCRIPTS}}', () => extraScripts)
     .replaceAll('{{BASE}}', base)
-    .replaceAll('{{BUILD_NUMBER}}', buildNumber);
+    .replaceAll('{{BUILD_ID}}', buildId);
 }

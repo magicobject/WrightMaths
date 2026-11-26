@@ -1,6 +1,9 @@
 {
   "name": "wrightmaths",
   "compatibility_date": "2026-08-20",
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"

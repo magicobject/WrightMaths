@@ -4,10 +4,9 @@
   "description": "Wright Maths Tuition static site — feature tests for nav, page content and 404 handling.",
   "private": true,
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks",
     "build": "node scripts/build.mjs",
     "book:audio": "node scripts/book-audio.mjs",
-    "test": "npm run test:unit && playwright test",
+    "test": "npm run build && npm run test:unit && playwright test",
     "test:unit": "node --test test-unit/*.test.mjs",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",

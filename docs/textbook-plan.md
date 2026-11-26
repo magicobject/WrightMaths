@@ -139,7 +139,7 @@ The audience is children. Keep it simple and safe:
 | 4. Higher tier extras | Surds, circle theorems, vectors, histograms, etc. | Whole specification covered |
 | 5. Print edition | Typeset, proofread, index, answers, covers; sale route | Decision by Greg on route and price |
 
-Each topic follows the repo's rules: own branch and PR, `/updates` entry, build tag, `npm test` and `npm audit --omit=dev` green. Maths content and question generators are reviewed by someone other than the author (tester agent, plus Greg for maths accuracy), since "no agent checks its own work".
+Each topic follows the repo's rules: own branch and PR, `npm test` and `npm audit --omit=dev` green. Maths content and question generators are reviewed by someone other than the author (tester agent, plus Greg for maths accuracy), since "no agent checks its own work".
 
 ## 11. Risks
 
