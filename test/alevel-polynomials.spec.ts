@@ -86,6 +86,7 @@ const SOLVE: [string, (x: number) => number][] = [
   ['Find the whole numbers p from {m:-3} to 3', (x) => x ** 3 - 2 * x ** 2 - 5 * x + 6],
   ['Solve {m:x^3+x^2-14x-24=0}', (x) => x ** 3 + x * x - 14 * x - 24],
   ['Solve {m:x^3-5x^2+8x-4=0}', (x) => x ** 3 - 5 * x ** 2 + 8 * x - 4],
+  ['Solve the quartic equation {m:x^4+x^3-7x^2-x+6=0}', (x) => x ** 4 + x ** 3 - 7 * x ** 2 - x + 6],
   ['Solve {m:x^3-4x^2-11x+30=0}', (x) => x ** 3 - 4 * x ** 2 - 11 * x + 30],
   ['Given that {m:(x-3)} is a factor of {m:f(x)}, solve', (x) => x ** 3 + 4 * x ** 2 - 11 * x - 30],
   ['Show that {m:(x+2)} is a factor of {m:f(x)}. Hence solve', (x) => x ** 3 - 5 * x ** 2 - 2 * x + 24],
@@ -99,6 +100,23 @@ test('every typed list of solutions is exactly the set of whole-number roots of 
     const inRange = fragment.startsWith('Find the whole numbers') ? roots.filter((r) => r >= -3 && r <= 3) : roots;
     expect(typed, fragment).toEqual(inRange);
   }
+});
+
+test('the quartic is covered: a worked example, a question with four solutions, and an "I can"', () => {
+  expect(SOURCE).toContain('Worked example: a quartic');
+  expect(SOURCE).toMatch(/\{m:x\^4\+x\^3-7x\^2-x\+6=\(x-1\)\(x-2\)\(x\+1\)\(x\+3\)\}/);
+  const f = (x: number) => (x - 1) * (x - 2) * (x + 1) * (x + 3);
+  expect(XS.every((x) => closeTo(f(x), x ** 4 + x ** 3 - 7 * x ** 2 - x + 6))).toBe(true);
+  expect(find('Solve the quartic equation').answers[0].split(' or ')).toHaveLength(4);
+  expect(SOURCE).toMatch(/<input type="checkbox"> factorise and solve a quartic/);
+});
+
+test('every "factorise completely" question asks for linear brackets only, and says so when a quadratic bracket is typed', () => {
+  const complete = QUESTIONS.filter((q) => /Factorise \{m:[^}]*\} completely/.test(q.qtext));
+  expect(complete).toHaveLength(5);
+  const marked = [...SOURCE.matchAll(/<div class="q"[^>]*data-complete="linear"/g)];
+  expect(marked).toHaveLength(5);
+  for (const q of complete) expect(SOURCE).toContain(`data-answers="${q.answers[0]}" data-mode="exact" data-complete="linear"`);
 });
 
 // ---- an unknown coefficient k: f(p) = 0 is linear in k, so solve it directly ----
@@ -178,6 +196,19 @@ test('the figure captions and descriptions name the roots the curves have', asyn
   expect([g(1), g(-2), g(0)]).toEqual([0, 0, 2]); // touches at 1, crosses at -2, meets the y-axis at (0, 2)
   expect(((x: number) => (x + 1) * (x - 2) * (x - 3))(0)).toBe(6);
   for (const id of Object.keys(FIGURES)) expect(FIGURES[id](), id).toContain('<desc');
+});
+
+test('in the browser, a partial factorisation is refused with a hint and the full one is accepted', async ({ page }) => {
+  await page.goto('/books/a-level/polynomials.html');
+  const q = page.locator('.q[data-complete="linear"]').first();
+  const input = q.locator('input.q-input');
+  await input.fill('(x-1)(x^2+3x+2)');
+  await q.locator('.btn-check').click();
+  await expect(q.locator('.q-feedback')).toContainText('Factorise the quadratic as well.');
+  await input.fill('(x+2)(x-1)(x+1)');
+  await q.locator('.btn-check').click();
+  await expect(q.locator('.q-feedback')).not.toContainText('Factorise the quadratic as well.');
+  await expect(q).toHaveClass(/q-done|solved|correct/);
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {

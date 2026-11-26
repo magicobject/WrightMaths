@@ -24,7 +24,7 @@ export const FIGURES = {
     band(p, 'y = x^3 + 2x^2 - 5x - 6', 'not to scale');
     p.curve(f);
     p.point(-3, 0, { label: '(-3, 0)', dx: -16, dy: -16, anchor: 'end' });
-    p.point(-1, 0, { label: '(-1, 0)', dx: 18, dy: -16 });
+    p.point(-1, 0, { label: '(-1, 0)', dx: 26, dy: -16 });
     p.point(2, 0, { label: '(2, 0)', dx: -16, dy: -16, anchor: 'end' });
     p.point(0, -6, { label: '(0, -6)', dx: -16, dy: 28, anchor: 'end' });
     return finish(p, {
