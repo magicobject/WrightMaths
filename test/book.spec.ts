@@ -142,6 +142,42 @@ test.describe('the book is well formed', () => {
   });
 });
 
+test.describe('the book source proofreads clean', () => {
+  const SRC = join(__dirname, '..', 'src', 'pages', 'books', 'gcse');
+  const sources = readdirSync(SRC).filter((f) => f.endsWith('.html')).map((f) => ({ f, html: readFileSync(join(SRC, f), 'utf8') }));
+  const key = (s: string) =>
+    s.replace(/<[^>]+>|&deg;|°|\s/g, '').replace(/&radic;|√/g, 'sqrt').replace(/&minus;|−/g, '-').replace(/\.$/, '').toLowerCase();
+
+  test('no format example ("like 3/5") is the answer to its own question', () => {
+    const giveaways: string[] = [];
+    for (const { f, html } of sources) {
+      for (const q of html.matchAll(/<div class="q"[^>]*data-answers="([^"]*)"[^>]*>[\s\S]*?<p class="qtext">([\s\S]*?)<\/p>/g)) {
+        const answers = q[1].split(/[;|]/).map(key);
+        for (const like of q[2].matchAll(/like ([^\s,<]+(?: = [^\s,<]+)?)/g)) {
+          if (answers.includes(key(like[1]))) giveaways.push(`${f}: "like ${like[1]}"`);
+        }
+      }
+    }
+    expect(giveaways).toEqual([]);
+  });
+
+  test('no double-escaped entity (it would show as "&pound;" on the page)', () => {
+    const hits = sources.flatMap(({ f, html }) => (html.match(/&amp;[a-z]+;/g) ?? []).map((m) => `${f}: ${m}`));
+    expect(hits).toEqual([]);
+  });
+
+  test('a figure whose description mentions a dashed line draws one', () => {
+    const missing: string[] = [];
+    for (const { f, html } of sources) {
+      for (const svg of html.matchAll(/<svg[\s\S]*?<\/svg>/g)) {
+        const desc = svg[0].match(/<desc[^>]*>([^<]*)<\/desc>/)?.[1] ?? '';
+        if (/dashed/i.test(desc) && !/dasharray|class="[^"]*dash/.test(svg[0])) missing.push(`${f}: ${desc.slice(0, 60)}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+});
+
 test.describe('the glossary', () => {
   test('is generated with plenty of terms, each with a definition and an example', async ({ page }) => {
     await page.goto('/books/gcse/glossary.html');
