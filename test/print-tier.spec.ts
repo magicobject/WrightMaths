@@ -135,6 +135,7 @@ test.describe('the Foundation book', () => {
     // the Foundation parts of the same pages stay
     for (const kept of ['Square numbers', 'Standard form', 'Rearranging']) expect(chapterText, kept).toContain(kept);
     expect(b.report.higherLeftovers).toEqual([]);
+    expect(b.report.termsNotInGlossary).toEqual([]);
     expect(b.report.stats.questionsInOtherBook).toBeGreaterThan(20);
   });
 
@@ -230,7 +231,7 @@ test.describe('the Higher book', () => {
   });
 
   test('the reports are empty', () => {
-    for (const key of ['unknown', 'screenWording', 'screenOnlyQuestions', 'deadRefs', 'figuresBelow300ppi', 'blockedRequests', 'higherLeftovers']) expect(b.report[key], key).toEqual([]);
+    for (const key of ['unknown', 'screenWording', 'screenOnlyQuestions', 'deadRefs', 'figuresBelow300ppi', 'blockedRequests', 'higherLeftovers', 'termsNotInGlossary']) expect(b.report[key], key).toEqual([]);
   });
 });
 

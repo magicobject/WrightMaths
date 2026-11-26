@@ -26,3 +26,21 @@ test('every question graded 7 or more outside stretch.html is marked Higher (chi
   }
   assert.deepEqual(bad, []);
 });
+
+test('a Foundation section never points the reader at a Higher section that is cut from the Foundation book', async () => {
+  const { readdirSync, readFileSync } = await import('node:fs');
+  const dir = new URL('../src/pages/books/gcse/', import.meta.url);
+  const higher = (s) => /chip chip-higher/.test(s.slice(0, s.indexOf('</h2>')));
+  const bad = [];
+  for (const f of readdirSync(dir).filter((n) => n.endsWith('.html') && n !== 'stretch.html')) {
+    const parts = readFileSync(new URL(f, dir), 'utf8').split(/(?=<h2)/);
+    parts.forEach((part, i) => {
+      // the next lesson section: practice sets (Check your knowledge) in between do not count
+      const next = parts.slice(i + 1).find((p) => !/^<h2[^>]*>\s*Check your knowledge/.test(p));
+      if (higher(part) || !next || !higher(next)) return;
+      const foundationText = part.replace(/<span data-tier="H">[\s\S]*?<\/span>/g, '');
+      if (/\b(?:next|following) section\b|\bsection below\b/i.test(foundationText)) bad.push(f);
+    });
+  }
+  assert.deepEqual(bad, []);
+});

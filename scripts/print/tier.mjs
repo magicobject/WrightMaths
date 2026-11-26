@@ -217,9 +217,9 @@ export function termsUsed(node, found = new Set()) {
   return found;
 }
 
-/** The glossary for a book. Foundation: the entries that are not Higher only. Higher: the Higher-only entries and any term a printed chapter uses. */
+/** The glossary for a book. Foundation: the entries that are not Higher only, plus any word a printed chapter links. Higher: the Higher-only entries and any term a printed chapter uses. */
 export function glossaryForBook(glossary, tier, usedIds = new Set()) {
-  if (tier === 'foundation') return glossary.filter((g) => g.level !== 'H');
+  if (tier === 'foundation') return glossary.filter((g) => g.level !== 'H' || usedIds.has(g.id)); // a word the book links must be in its glossary
   if (tier === 'higher') return glossary.filter((g) => g.level === 'H' || usedIds.has(g.id));
   return glossary;
 }

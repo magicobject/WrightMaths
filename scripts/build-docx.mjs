@@ -156,6 +156,8 @@ function findings(opts, front, chosen, ctx, unknown, blocked) {
     frontNeedsEdit,
     removedSentenceCounts: removed,
     blockedRequests: blocked,
+    // every word a printed chapter links must have an entry in this book's glossary
+    termsNotInGlossary: (() => { const g = new Set(glossaryForBook(GLOSSARY, opts.tier, termsUsed(chosen.map((c) => c.tree.blocks))).map((e) => e.id)); return chosen.flatMap((c) => [...termsUsed(c.tree.blocks)].filter((id) => !g.has(id)).map((term) => ({ page: c.id, term }))); })(),
     higherLeftovers: opts.tier === 'foundation' ? [front, ...chosen].flatMap((c) => chipsLeft(c.tree.blocks).map(() => ({ page: c.id ?? 'front' }))) : [],
   };
 }
@@ -224,6 +226,7 @@ export async function buildDocx(opts) {
     ...report.screenWording.map((s) => `${s.page}: "${s.context.trim()}" mentions "${s.word}": give it data-print or reword it`),
     ...report.deadRefs.map((r) => `${r.page}: "${r.text}" links to ${r.href}, which is not in the printed book`),
     ...report.screenOnlyQuestions.map((q) => `${q.page} question ${q.question}: ${q.why}; needs a print version`),
+    ...(report.termsNotInGlossary ?? []).map((h) => `${h.page}: links the glossary word "${h.term}", which is not in this book's glossary`),
     ...report.higherLeftovers.map((h) => `${h.page}: a Higher label is left in the Foundation book`),
     ...report.unknown.map((u) => `${u.page}: unsupported ${u.tag}${u.cls ? `.${u.cls}` : ''} "${u.text}"`),
   ];
@@ -255,7 +258,7 @@ function pageEstimate(chosen, front, glossary, ctx, opts) {
 export function releaseProblems(report) {
   const problems = [];
   const nonEmpty = (name, v) => { if (Array.isArray(v) ? v.length : Object.keys(v).length) problems.push(name); };
-  for (const key of ['unknown', 'screenWording', 'screenOnlyQuestions', 'deadRefs', 'placeholders', 'colourWordsInMono', 'figuresBelow300ppi', 'frontNeedsEdit', 'blockedRequests', 'higherLeftovers']) nonEmpty(key, report[key] ?? []);
+  for (const key of ['unknown', 'screenWording', 'screenOnlyQuestions', 'deadRefs', 'placeholders', 'colourWordsInMono', 'figuresBelow300ppi', 'frontNeedsEdit', 'blockedRequests', 'higherLeftovers', 'termsNotInGlossary']) nonEmpty(key, report[key] ?? []);
   return problems;
 }
 
@@ -266,7 +269,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   console.log(`wrote ${docx} (${(s.docxBytes / 1e6).toFixed(1)} MB): ${s.chapters} chapters, ${s.questionsPrinted} of ${s.questionsWalked} questions, ${s.figures} figures, in ${s.seconds}s`);
   const p = s.pagesEstimate;
   console.log(`rough page estimate (about 20% either way): ${p.total} (front ${p.front}, contents ${p.contents}, chapters ${p.chapters}, answers ${p.answers}, hints ${p.hints}, glossary ${p.glossary}, index ${p.index})`);
-  console.log(`reports: unknown ${report.unknown.length}, screen wording ${report.screenWording.length}, screen-only questions ${report.screenOnlyQuestions.length}, dead references ${report.deadRefs.length}, placeholders ${Object.keys(report.placeholders).length}, Higher labels left ${report.higherLeftovers.length}`);
+  console.log(`reports: unknown ${report.unknown.length}, screen wording ${report.screenWording.length}, screen-only questions ${report.screenOnlyQuestions.length}, dead references ${report.deadRefs.length}, placeholders ${Object.keys(report.placeholders).length}, Higher labels left ${report.higherLeftovers.length}, glossary words missing ${(report.termsNotInGlossary ?? []).length}`);
   if (opts.release) {
     const problems = releaseProblems(report);
     if (problems.length) {
