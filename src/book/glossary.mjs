@@ -538,15 +538,15 @@ export const GLOSSARY = [
     see: ['divisible', 'digit'],
   },
   {
-    id: 'carry-borrow', term: 'Carrying and borrowing', strand: 'n', level: 'F',
-    def: 'In written addition you <b>carry</b> a ten into the next column when a column adds to 10 or more. In written subtraction you <b>borrow</b> a ten from the next column when you cannot subtract.',
+    id: 'carry-borrow', term: 'Carrying and exchanging', strand: 'n', level: 'F', aka: ['borrowing borrow'],
+    def: 'In written addition you <b>carry</b> a ten into the next column when a column adds to 10 or more. In written subtraction you <b>exchange</b> (some people say <b>borrow</b>) a ten from the next column when you cannot subtract.',
     example: '8 + 4 = 12: write 2, carry 1 to the tens column.',
-    watch: 'Borrowing here means taking a ten from the next column, not asking a friend.',
+    watch: 'Exchanging (or borrowing) here means taking a ten from the next column, not asking a friend.',
     see: ['place-value'],
   },
   {
     id: 'irrational', term: 'Irrational number', strand: 'n', level: 'H',
-    def: 'A number that cannot be written as a fraction. Its decimal never ends and never repeats.',
+    def: 'A number that cannot be written as a fraction with whole numbers on the top and bottom. Its decimal never ends and never repeats.',
     example: '&radic;2 = 1.41421&hellip; and &pi; are irrational. 0.333&hellip; is not irrational: it repeats, and equals {frac:1/3}.',
     watch: 'A decimal that goes on for ever is not always irrational. Repeating decimals are fractions.',
     see: ['surd', 'square-root'],
@@ -2780,7 +2780,7 @@ export const GLOSSARY = [
     "term": "Construction",
     "strand": "g",
     "level": "F",
-    "def": "An accurate drawing made with only a ruler, a protractor and compasses. The construction arcs and lines are kept to show the method.",
+    "def": "An accurate drawing made with a ruler (a straight edge) and compasses, and a protractor when an angle is given in degrees. The construction arcs and lines are kept to show the method.",
     "example": [
       "Drawing a triangle from its three sides, with arcs from each end of the base.",
       "Drawing the bisector of an angle with equal arcs."
@@ -3045,7 +3045,7 @@ export const GLOSSARY = [
   },
   {
     "id": "axis-of-symmetry",
-    "term": "Line of symmetry (of a parabola)",
+    "term": "Axis of symmetry (of a parabola)",
     "strand": "a",
     "level": "H",
     "def": "The vertical line through the turning point of a parabola. The curve is a mirror image of itself on either side of it.",

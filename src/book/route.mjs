@@ -5,7 +5,7 @@ export const ROUTES = [
   {
     id: 'resit',
     title: 'Resit to a grade 4 (8 weeks)',
-    blurb: 'For anyone who needs a grade 4 and has a fixed date. Foundation topics only, in the order that works best. Do the Find my gaps check first and start where it points.',
+    blurb: 'For anyone who needs a grade 4 and has a fixed date. Foundation topics only, in the order that works best. In week 8, start with the grade 4 questions in the practice papers. Do the Find my gaps check first and start where it points.',
     weeks: [
       ['place-value', 'four-operations'],
       ['negative-numbers', 'order-of-operations'],
