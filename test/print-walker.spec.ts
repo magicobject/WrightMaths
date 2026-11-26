@@ -8,8 +8,8 @@ import { test, expect } from '@playwright/test';
 const ROOT = join(__dirname, '..');
 type Node = { t?: string; x?: string; kind?: string; n?: number; runs?: Node[]; blocks?: Node[]; body?: Node[]; [k: string]: unknown };
 
-function walk(path: string, features = '') {
-  const out = execFileSync('node', ['scripts/print/walk-page.mjs', path, features], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+function walk(path: string, features = '', vocabulary = '') {
+  const out = execFileSync('node', ['scripts/print/walk-page.mjs', path, features, vocabulary], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   return JSON.parse(out) as { blocks: Node[]; unknown: { tag: string }[]; qCount: number; jsRan: string | null; blocked: string[]; figures: Record<string, { pxWidth: number; cssWidth: number }> };
 }
 function* all(nodes: Node[] | undefined): Generator<Node> {
@@ -57,6 +57,12 @@ test.describe('the print walker', () => {
     expect(shown('alpha')).toEqual(['Only with alpha.', 'Item with alpha', 'Item always']);
     expect(shown('beta')).toEqual(['and beta only', 'Item always']);
     expect(shown('alpha,beta')).toEqual(['Only with alpha.', 'Only with alpha and beta.', 'and beta only', 'Item with alpha', 'Item always']);
+  });
+
+  test('a data-print-if word outside the vocabulary goes to the unknown report instead of silently dropping content', () => {
+    expect(walk('/__fixtures/print-if.html', 'alpha', 'alpha,beta').unknown).toEqual([]);
+    const unknown = walk('/__fixtures/print-if.html', 'alpha', 'alpha').unknown as { cls?: string }[];
+    expect(unknown.map((u) => u.cls)).toEqual(['data-print-if=beta', 'data-print-if=beta']);
   });
 
   test('maths: fractions, column vectors, powers and subscripts, blanks', () => {

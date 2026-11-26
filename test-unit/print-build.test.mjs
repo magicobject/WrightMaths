@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { extractKey, keyAnswer } from '../scripts/book-lib.mjs';
 import { answerRuns, optionLetter, prettySymbols } from '../scripts/print/answers.mjs';
 import { buildChapters, chapterOrder, hrefToId } from '../scripts/print/chapters.mjs';
-import { answerLineRuns, cleanTree, featuresFor, hintsFor, renderBlocks, shorthandRuns, solutionFor } from '../scripts/print/render.mjs';
+import { answerLineRuns, cleanTree, FEATURE_VOCABULARY, featuresFor, hintsFor, renderBlocks, shorthandRuns, solutionFor } from '../scripts/print/render.mjs';
 import { collect, parseArgs, placeholdersIn, PROPERTIES, releaseProblems } from '../scripts/build-docx.mjs';
 import { buildGraph } from '../scripts/book-lib.mjs';
 import { runsToText } from '../scripts/print/omml.mjs';
+import { readFileSync } from 'node:fs';
 import { estimatePages } from '../scripts/print/estimate.mjs';
 
 // ----- keyAnswer: the one answer rule -----
@@ -208,4 +209,20 @@ test('the page estimate counts lines when answers are short', () => {
   const byLines = estimatePages({ words, lines: { answers: 840, hints: 420 } });
   assert.equal(byLines.answers - byWords.answers, 19); // 840 lines at 42 a page is 20 pages, not 1
   assert.equal(byLines.hints - byWords.hints, 9);
+});
+
+test('a fallback "show that" question says the worked answer follows, not the mark scheme', () => {
+  const show = { n: 5, type: 'show', answers: '', options: [] };
+  assert.equal(runsToText(answerLineRuns(show)), 'Written answer: see the mark scheme');
+  assert.equal(runsToText(answerLineRuns(show, { fallback: true })), 'Written answer: see the worked answer below.');
+});
+
+test('every data-print-if word in front.html is in the vocabulary, and featuresFor only uses the vocabulary', () => {
+  const html = readFileSync(new URL('../src/print/gcse/front.html', import.meta.url), 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+  const words = [...html.matchAll(/data-print-if="([^"]*)"/g)].flatMap((m) => m[1].split(/\s+/).filter(Boolean));
+  assert.ok(words.length > 10);
+  assert.deepEqual([...new Set(words)].filter((w) => !FEATURE_VOCABULARY.includes(w)), []);
+  for (const noHints of [false, true]) for (const noSlips of [false, true]) for (const shortAnswers of [false, true]) for (const firstHint of [false, true]) {
+    assert.deepEqual(featuresFor({ noHints, noSlips, shortAnswers, firstHint }).filter((w) => !FEATURE_VOCABULARY.includes(w)), []);
+  }
 });

@@ -32,13 +32,13 @@ export async function openBrowser({ port, mono = false }) {
  * Walk one page. Returns { title, blocks, unknown, qCount, figures: Map(id -> {png, pxWidth, pxHeight, cssWidth}) }.
  * `features` are the words the page's data-print-if attributes ask for. `shape(blocks)` may change the tree first (cleaning, dropping the Higher parts), so only the figures that stay are screenshotted.
  */
-export async function capturePage({ page, mono }, url, shape = (blocks) => blocks, features = []) {
+export async function capturePage({ page, mono }, url, shape = (blocks) => blocks, features = [], vocabulary = null) {
   const response = await page.goto(url, { waitUntil: 'load' });
   if (!response?.ok()) throw new Error(`could not open ${url} (${response?.status()})`);
   // page.addStyleTag hangs with JavaScript off; evaluate does not.
   const css = `html,body{background:#fff !important;}${mono ? 'svg{filter:grayscale(1);}' : ''}`;
   await page.evaluate(`(() => { const s = document.createElement('style'); s.textContent = ${JSON.stringify(css)}; document.head.append(s); })()`);
-  const walked = await page.evaluate(`${WALKER}(${JSON.stringify(features)})`);
+  const walked = await page.evaluate(`${WALKER}(${JSON.stringify(features)}, ${JSON.stringify(vocabulary)})`);
   const tree = { ...walked, blocks: shape(walked.blocks) };
   const figures = new Map();
   for (const block of allFigs(tree.blocks)) {

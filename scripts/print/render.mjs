@@ -355,7 +355,7 @@ export function chapterBody(chapter, ctx) {
 }
 
 /** The answer line of a question as runs. Every type goes through keyAnswer, the rule the teacher keys use. */
-export function answerLineRuns(q) {
+export function answerLineRuns(q, { fallback = false } = {}) {
   const correct = q.options.findIndex((o) => o.correct);
   if (q.type === 'mc' && correct < 0) throw new Error(`question ${q.n} is multiple choice but no option has data-correct`);
   const { answer, also } = keyAnswer({
@@ -364,7 +364,8 @@ export function answerLineRuns(q) {
     answers: q.answers,
   });
   if (q.type === 'mc') return [{ t: `${optionLetter(correct)}  `, b: true }, ...q.options[correct].runs];
-  if (q.type === 'show') return [{ t: answer }];
+  // short answers: a written question with no mark scheme is followed by its worked solution, so the line must not point to a mark scheme
+  if (q.type === 'show') return [{ t: fallback ? 'Written answer: see the worked answer below.' : answer }];
   const runs = answerRuns(answer);
   if (also.length) runs.push({ t: '  (also accept: ' }, ...also.flatMap((a, i) => [...(i ? [{ t: ', ' }] : []), ...answerRuns(a)]), { t: ')' });
   return runs;
@@ -386,6 +387,9 @@ export function solutionFor(q, shortAnswers) {
 /** The ladder steps a build prints for a question: all of them, or only the first clue. */
 export const hintsFor = (q, firstHint) => (firstHint ? q.ladder.slice(0, 1) : q.ladder);
 
+/** Every word data-print-if may use; featuresFor picks the ones in force. The walker reports any other word. */
+export const FEATURE_VOCABULARY = ['hints', 'no-hints', 'all-hints', 'first-hint', 'full-answers', 'short-answers', 'slips', 'no-slips'];
+
 /** The words the front matter's data-print-if attributes ask for, from the options in force. */
 export function featuresFor({ noHints = false, noSlips = false, shortAnswers = false, firstHint = false }) {
   return [
@@ -399,8 +403,8 @@ export function featuresFor({ noHints = false, noSlips = false, shortAnswers = f
 function answerParagraphs(q, ctx, label) {
   const small = { size: SMALL, after: 60 };
   const out = [];
-  const answerRunsOut = answerLineRuns(q);
-  const { blocks: solution } = solutionFor(q, ctx.shortAnswers);
+  const { blocks: solution, fallback } = solutionFor(q, ctx.shortAnswers);
+  const answerRunsOut = answerLineRuns(q, { fallback });
   out.push(para([new TextRun({ text: label, bold: true, size: BODY, font: FONT }), new TextRun({ text: '	', size: BODY }), ...runsFor(answerRunsOut, ctx, { size: BODY })], { after: 40 }, { indentLeft: 600, hanging: 600, keepNext: solution.length > 0, keepLines: true }));
   if (solution.length) out.push(...renderBlocks(solution, ctx, { ...small, indent: 600 }));
   if (!ctx.noSlips && !ctx.shortAnswers) {

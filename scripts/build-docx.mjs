@@ -26,7 +26,7 @@ import { estimatePages, wordsIn } from './print/estimate.mjs';
 import { chipsLeft, dropHigher, glossaryForBook, keepOnlyHigher, papersForTier, renumberQuestions, retitleFront, termsUsed, TIER_LABEL, TIERS } from './print/tier.mjs';
 import { capturePage, openBrowser } from './print/capture.mjs';
 import { patchSettings } from './print/docx-settings.mjs';
-import { allTexts, buildDocument, cleanTree, featuresFor, hintsFor, makeContext, solutionFor } from './print/render.mjs';
+import { allTexts, buildDocument, cleanTree, FEATURE_VOCABULARY, featuresFor, hintsFor, makeContext, solutionFor } from './print/render.mjs';
 import { startServer } from './print/server.mjs';
 import { reportScreenWords } from './print-rules.mjs';
 
@@ -106,7 +106,7 @@ async function gather(opts, chosen, ctx) {
   const features = featuresFor(opts);
   const walk = async (url, name) => {
     ctx.page = name;
-    const tree = await capturePage(browser, `http://127.0.0.1:${server.port}${url}`, name === 'front' ? tidyFront : tidy, features);
+    const tree = await capturePage(browser, `http://127.0.0.1:${server.port}${url}`, name === 'front' ? tidyFront : tidy, features, FEATURE_VOCABULARY);
     for (const u of tree.unknown) unknown.push({ page: name, ...u });
     return tree;
   };
@@ -152,7 +152,7 @@ function findings(opts, front, chosen, ctx, unknown, blocked) {
   const frontNeedsEdit = [
     ...(opts.noHints && /Hints section/.test(frontText) ? ['front.html mentions the Hints section, but this build has none'] : []),
     ...((opts.noSlips || opts.shortAnswers) && /If you got/.test(frontText) ? ['front.html mentions the "If you got" lines, but this build has none'] : []),
-    ...(opts.shortAnswers && /worked (answer|solution)/i.test(frontText) ? ['front.html mentions worked solutions, but this build has short answers'] : []),
+    ...(opts.shortAnswers && /read the worked answer|short worked solution/i.test(frontText) ? ['front.html mentions worked solutions, but this build has short answers'] : []),
     ...(opts.firstHint && /Hint 2/.test(frontText) ? ['front.html mentions more than one hint, but this build has only the first'] : []),
   ];
   const removed = {};
@@ -223,7 +223,7 @@ export async function buildDocx(opts) {
   const kept = chosen.reduce((n, c) => n + collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body)).length, 0);
   const figures = ctx.figureLog.length;
   report.shortAnswerFallbacks = opts.shortAnswers
-    ? chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body) && !x.screenOnly && solutionFor(x, true).fallback).map((q) => ({ page: c.id, question: q.webN ?? q.n })))
+    ? chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body) && !x.screenOnly && solutionFor(x, true).fallback).map((q) => ({ page: c.id, question: q.webN ?? q.n, printed: `${c.num}.${q.n}` })))
     : [];
   report.stats = {
     tier: opts.tier ?? 'whole book',

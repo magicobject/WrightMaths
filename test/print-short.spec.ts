@@ -112,7 +112,7 @@ test.describe('the short Foundation book (the default for a tier book)', () => {
   test('the front matter describes the short book: one hint, no worked answers, no "If you got"', () => {
     const front = chaptersOf(shortBook().paragraphs).join('\n');
     expect(front).toContain('read the hint for that question');
-    expect(front).not.toMatch(/If you got|Hint 1|Hint 2|worked answer|short worked solution/);
+    expect(front).not.toMatch(/If you got|Hint 1|Hint 2|read the worked answer|short worked solution/);
     expect(front).toContain('The Answers section gives the answer to every question.');
     expect(shortBook().report.frontNeedsEdit).toEqual([]);
   });
@@ -134,7 +134,7 @@ test.describe('the short Foundation book (the default for a tier book)', () => {
     expect(part(b.paragraphs, 'Hints').some((p) => /Hint 2: /.test(p))).toBe(true);
     const front = chaptersOf(b.paragraphs).join('\n');
     expect(front).toMatch(/Hint 1 only/);
-    expect(front).toMatch(/worked answer/);
+    expect(front).toMatch(/read the worked answer/);
     expect(front).toMatch(/If you got/);
     expect(b.report.frontNeedsEdit).toEqual([]);
     expect(b.report.stats.options).toMatchObject({ shortAnswers: false, firstHint: false });
@@ -161,6 +161,53 @@ test.describe('the short Foundation book (the default for a tier book)', () => {
     const asked = build('whole-short', ['--pages', 'fractions', '--short-answers', '--first-hint']);
     expect(part(asked.paragraphs, 'Answers').filter((p) => /^If you got /.test(p))).toEqual([]);
     expect(part(asked.paragraphs, 'Hints').filter((p) => /Hint \d/.test(p))).toEqual([]);
+  });
+});
+
+test.describe('the fallback and mixed options', () => {
+  test.setTimeout(240_000);
+
+  test('a "show that" question with no mark scheme says the worked answer follows, and the worked answer is printed', () => {
+    const b = build('fallback', ['--tier', 'foundation', '--pages', 'direct-inverse-proportion']);
+    const fallbacks = b.report.shortAnswerFallbacks as { page: string; question: number; printed: string }[];
+    expect(fallbacks.length).toBeGreaterThan(0);
+    expect(b.report.stats.shortAnswerFallbacks).toBe(fallbacks.length);
+    const answers = part(b.paragraphs, 'Answers');
+    for (const f of fallbacks) {
+      expect(f.page).toBe('direct-inverse-proportion');
+      const at = answers.findIndex((p) => p.startsWith(`${f.printed}|\t|`));
+      expect(at, `${f.printed} has an answer`).toBeGreaterThanOrEqual(0);
+      expect(answers[at]).toBe(`${f.printed}|\t|Written answer: see the worked answer below.`);
+      const next = answers[at + 1] ?? '';
+      expect(next, 'the worked answer follows').not.toMatch(/^\d+\.\d+\|\t\||^Chapter \d+:|^Now you finish it/);
+      expect(next.length).toBeGreaterThan(10);
+    }
+    // a show-that question that has a mark scheme still points to it, and no fallback question does
+    expect(answers.filter((p) => /see the mark scheme/.test(p)).every((p) => !fallbacks.some((f) => p.startsWith(`${f.printed}|`)))).toBe(true);
+    expect(b.report.frontNeedsEdit).toEqual([]);
+  });
+
+  test('full answers with the first hint: the front matter says one hint and the worked answer, with no contradiction', () => {
+    const b = build('full-first', ['--tier', 'foundation', '--pages', 'fractions', '--full-answers']);
+    const front = chaptersOf(b.paragraphs).join('\n');
+    expect(front).toContain('read the hint for that question');
+    expect(front).toContain('read the worked answer');
+    expect(front).toContain('The Answers section gives the answer and a short worked solution for every question.');
+    expect(front).toMatch(/If you got/);
+    expect(front).not.toMatch(/Hint 1|Hint 2|The Answers section gives the answer to every question/);
+    expect(b.report.frontNeedsEdit).toEqual([]);
+  });
+
+  test('short answers with all the hints: the front matter says Hint 2 and no worked answer, with no contradiction', () => {
+    const b = build('short-all', ['--tier', 'foundation', '--pages', 'fractions', '--all-hints']);
+    const front = chaptersOf(b.paragraphs).join('\n');
+    expect(front).toContain('read Hint 1 only');
+    expect(front).toContain('Read Hint 2');
+    expect(front).toContain('The Answers section gives the answer to every question.');
+    expect(front).not.toMatch(/read the worked answer|short worked solution|If you got|read the hint for that question/);
+    expect(b.report.frontNeedsEdit).toEqual([]);
+    expect(part(b.paragraphs, 'Hints').some((p) => /Hint 2: /.test(p))).toBe(true);
+    expect(part(b.paragraphs, 'Answers').filter((p) => /^If you got /.test(p))).toEqual([]);
   });
 });
 
