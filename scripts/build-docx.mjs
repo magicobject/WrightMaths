@@ -19,7 +19,7 @@ import { GLOSSARY } from '../src/book/glossary.mjs';
 import { buildGraph, extractKey } from './book-lib.mjs';
 import { buildChapters } from './print/chapters.mjs';
 import { estimatePages, wordsIn } from './print/estimate.mjs';
-import { chipsLeft, dropHigher, glossaryForTier, papersForTier, renumberQuestions, retitleFront, TIER_LABEL, TIERS } from './print/tier.mjs';
+import { chipsLeft, dropHigher, glossaryForBook, keepOnlyHigher, papersForTier, renumberQuestions, retitleFront, termsUsed, TIER_LABEL, TIERS } from './print/tier.mjs';
 import { capturePage, openBrowser } from './print/capture.mjs';
 import { patchSettings } from './print/docx-settings.mjs';
 import { allTexts, buildDocument, cleanTree, makeContext } from './print/render.mjs';
@@ -79,13 +79,21 @@ const read = (path) => readFileSync(join(root, path), 'utf8');
 
 /** Open every page, walk it, check it. Returns what the renderer needs, plus the walker's own findings. */
 async function gather(opts, chosen, ctx) {
-  // what each page becomes before its figures are photographed: screen wording out, and in the Foundation book the Higher parts too
-  const tidy = (blocks) => (opts.tier === 'foundation' ? dropHigher(cleanTree(blocks, ctx)) : cleanTree(blocks, ctx));
+  // What each page becomes before its figures are photographed: screen wording out; in the Foundation book the Higher parts too;
+  // in the Higher book a Foundation topic shrinks to its Higher parts only.
+  const kindOf = new Map(chosen.map((c) => [c.id, c.kind]));
+  const tidy = (blocks) => {
+    const clean = cleanTree(blocks, ctx);
+    if (opts.tier === 'foundation') return dropHigher(clean);
+    if (opts.tier === 'higher' && kindOf.get(ctx.page) === 'part') return keepOnlyHigher(clean);
+    return clean;
+  };
   const tidyFront = (blocks) => cleanTree(blocks, ctx); // the title page says "Foundation and Higher" until it is retitled
   const server = await startServer({ '/__front/': join(root, 'src/print/gcse'), '/': join(root, 'public') });
   const browser = await openBrowser({ port: server.port, mono: opts.mono });
   const unknown = [];
   const mismatches = [];
+  let walkedTotal = 0;
   const walk = async (url, name) => {
     ctx.page = name;
     const tree = await capturePage(browser, `http://127.0.0.1:${server.port}${url}`, name === 'front' ? tidyFront : tidy);
@@ -100,11 +108,12 @@ async function gather(opts, chosen, ctx) {
       const expected = extractKey(read(`src/pages/books/gcse/${c.id}.html`)).length;
       if (t.qCount !== expected) mismatches.push({ page: c.id, walker: t.qCount, extractKey: expected });
       Object.assign(c, { tree: { blocks: t.blocks }, figures: t.figures, qCount: t.qCount });
-      // A Foundation chapter loses its Higher questions, so what is left is numbered again from 1, in printed order.
-      // The Higher book and the whole book keep the web numbers (7.12 is question 12 on the page and in the teacher key).
-      if (opts.tier === 'foundation') renumberQuestions(c.tree.blocks);
+      walkedTotal += t.qCount;
+      // Each chapter of a single-tier book is numbered from 1 in printed order, with no gaps, because part of a page was cut.
+      // The whole book keeps the web numbers (7.12 is question 12 on the page and in the teacher key).
+      if (opts.tier) renumberQuestions(c.tree.blocks);
     }
-    return { front, unknown, mismatches, blocked: browser.blocked };
+    return { front, unknown, mismatches, blocked: browser.blocked, walkedTotal };
   } finally {
     await browser.close();
     await server.close();
@@ -155,20 +164,38 @@ export async function buildDocx(opts) {
   const started = Date.now();
   const topics = TOPICS.map((t) => ({ ...t }));
   const graph = buildGraph(topics, { hasPage: (id) => existsSync(join(root, `src/pages/books/gcse/${id}.html`)) });
-  const all = buildChapters(graph, papersForTier(PAPERS, opts.tier), { tier: opts.tier });
-  const wholeBook = buildChapters(graph, PAPERS);
-  // chapters of the other book, so a reference to one says "(in the Higher book)" and is not reported as dead
-  const elsewhere = new Map(wholeBook.filter((c) => !all.some((a) => a.id === c.id)).map((c) => [c.id, c.title]));
-  const elsewhereLabel = opts.tier === 'foundation' ? 'in the Higher book' : 'in the Foundation book';
+  // A Foundation topic gets a chapter in the Higher book only if it has Higher material. The page source says which can (a chip or
+  // a data-tier marker); the walk below drops any that turn out to have none, and the chapters are numbered after that.
+  const hasHigherMarker = (id) => /chip-higher|data-tier="H"/.test(read(`src/pages/books/gcse/${id}.html`));
+  const higherParts = new Set(opts.tier === 'higher' ? topics.filter((t) => t.status === 'live' && t.tier === 'F' && hasHigherMarker(t.id)).map((t) => t.id) : []);
+  let all = buildChapters(graph, papersForTier(PAPERS, opts.tier), { tier: opts.tier, higherParts });
   for (const id of opts.pages ?? []) if (!all.some((c) => c.id === id)) throw new Error(`--pages: "${id}" is not a chapter`);
-  const chosen = opts.pages ? all.filter((c) => opts.pages.includes(c.id)) : all;
+  let chosen = opts.pages ? all.filter((c) => opts.pages.includes(c.id)) : all;
   if (!existsSync(join(root, 'public/books/gcse/fractions.html'))) throw new Error('public/ is not built: run npm run build first');
 
-  const glossary = glossaryForTier(GLOSSARY, opts.tier);
-  const glossaryById = new Map(glossary.map((g) => [g.id, g]));
-  const ctx = makeContext({ chapters: all, glossaryById, mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, elsewhere, elsewhereLabel });
-  const { front, unknown, mismatches, blocked } = await gather(opts, chosen, ctx);
+  const walkCtx = { page: '', removed: [] };
+  const { front, unknown, mismatches, blocked, walkedTotal } = await gather(opts, chosen, walkCtx);
   if (mismatches.length) throw new Error(`question count differs from the teacher key: ${JSON.stringify(mismatches)}`);
+
+  // a Foundation topic with nothing Higher in it has no chapter in the Higher book; then every chapter counts from 1
+  const empty = (c) => c.kind === 'part' && !c.tree.blocks.length;
+  all = all.filter((c) => !chosen.includes(c) || !empty(c));
+  chosen = chosen.filter((c) => !empty(c));
+  all.forEach((c, i) => { c.num = i + 1; });
+  for (const c of chosen) {
+    if (c.kind === 'part') c.tree.blocks.unshift({ t: 'p', cls: 'intro', runs: [{ t: `The Higher parts of ${c.title}. The rest of this topic is in the Foundation book.` }] });
+  }
+
+  // chapters of the other book (and a Foundation topic's own basics, seen from the Higher book), so a reference to one says
+  // "(in the Higher book)" or "(in the Foundation book)" instead of a chapter number, and is not reported as dead
+  const referable = all.filter((c) => c.kind !== 'part');
+  const elsewhere = new Map(buildChapters(graph, PAPERS).filter((c) => !referable.some((a) => a.id === c.id)).map((c) => [c.id, c.title]));
+  const elsewhereLabel = opts.tier === 'foundation' ? 'in the Higher book' : 'in the Foundation book';
+
+  const glossary = glossaryForBook(GLOSSARY, opts.tier, termsUsed(chosen.map((c) => c.tree.blocks)));
+  const glossaryById = new Map(glossary.map((g) => [g.id, g]));
+  const ctx = makeContext({ chapters: referable, glossaryById, mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, elsewhere, elsewhereLabel });
+  ctx.removed = walkCtx.removed;
 
   const report = findings(opts, front, chosen, ctx, unknown, blocked);
   const doc = buildDocument({ front, chapters: chosen, glossary, ctx, properties: propertiesFor(opts.tier) });
@@ -176,14 +203,14 @@ export async function buildDocx(opts) {
   mkdirSync(dirname(opts.out), { recursive: true });
   writeFileSync(opts.out, buffer);
 
-  const questions = chosen.reduce((n, c) => n + c.qCount, 0);
+  const questions = walkedTotal;
   const kept = chosen.reduce((n, c) => n + collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body)).length, 0);
   const figures = ctx.figureLog.length;
   report.stats = {
     tier: opts.tier ?? 'whole book',
     chapters: chosen.length,
     questionsWalked: questions,
-    questionsLeftOutAsHigher: questions - kept,
+    questionsInOtherBook: questions - kept,
     questionsPrinted: kept - report.screenOnlyQuestions.length,
     figures,
     minFigurePpi: figures ? Math.min(...ctx.figureLog.map((f) => f.ppi)) : null,
@@ -192,6 +219,7 @@ export async function buildDocx(opts) {
     pagesEstimate: pageEstimate(chosen, front, glossary, ctx, opts),
     options: { mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, release: opts.release, pages: opts.pages },
   };
+  report.questionIds = chosen.flatMap((c) => collect(c.tree.blocks, (x) => x.t === 'q' && Array.isArray(x.body)).map((q) => `${c.id}-${q.webN ?? q.n}`));
   report.needsSourceChange = [
     ...report.screenWording.map((s) => `${s.page}: "${s.context.trim()}" mentions "${s.word}": give it data-print or reword it`),
     ...report.deadRefs.map((r) => `${r.page}: "${r.text}" links to ${r.href}, which is not in the printed book`),

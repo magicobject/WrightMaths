@@ -6,7 +6,7 @@ import { buildChapters } from '../scripts/print/chapters.mjs';
 import { estimatePages, wordCount } from '../scripts/print/estimate.mjs';
 import { parseArgs, propertiesFor } from '../scripts/build-docx.mjs';
 import { runsToText } from '../scripts/print/omml.mjs';
-import { chipsLeft, dropChipSentence, dropHigher, glossaryForTier, papersForTier, renumberQuestions, retitleFront } from '../scripts/print/tier.mjs';
+import { chipsLeft, dropChipSentence, dropHigher, glossaryForBook, keepOnlyHigher, papersForTier, termsUsed, renumberQuestions, retitleFront } from '../scripts/print/tier.mjs';
 
 const chip = { t: 'Higher', b: true, chip: true };
 const h = (level, text, withChip = false) => ({ t: 'h', level, runs: [{ t: `${text} ` }, ...(withChip ? [chip] : [])] });
@@ -90,20 +90,24 @@ test('questions are numbered again from 1 in printed order, and the web number i
 const topic = (id, title, tier, needs = []) => ({ id, title, strand: 'n', tier, status: 'live', needs });
 const PAPERS = [{ id: 'foundation', title: 'F paper' }, { id: 'stretch', title: 'H paper' }, { id: 'command-words', title: 'Words' }];
 
-test('the Foundation book has the tier F topics, the foundation papers and the question words; the Higher book has every topic and the stretch papers', () => {
+test('the Foundation book has the tier F topics and papers; the Higher book has the tier H topics, a part chapter for each Foundation topic with Higher material, and the stretch papers', () => {
   const graph = buildGraph([topic('a', 'Ants', 'F'), topic('b', 'Bats', 'H', ['a']), topic('c', 'Cats', 'F', ['a'])]);
   const f = buildChapters(graph, papersForTier(PAPERS, 'foundation'), { tier: 'foundation' });
   assert.deepEqual(f.map((c) => [c.num, c.id]), [[1, 'a'], [2, 'c'], [3, 'foundation'], [4, 'command-words']]);
-  const higher = buildChapters(graph, papersForTier(PAPERS, 'higher'), { tier: 'higher' });
-  assert.deepEqual(higher.map((c) => [c.num, c.id]), [[1, 'a'], [2, 'b'], [3, 'c'], [4, 'stretch'], [5, 'command-words']]);
+  const higher = buildChapters(graph, papersForTier(PAPERS, 'higher'), { tier: 'higher', higherParts: new Set(['c']) });
+  assert.deepEqual(higher.map((c) => [c.num, c.id, c.kind]), [[1, 'b', 'topic'], [2, 'c', 'part'], [3, 'stretch', 'paper'], [4, 'command-words', 'paper']]);
+  assert.deepEqual(buildChapters(graph, papersForTier(PAPERS, 'higher'), { tier: 'higher' }).map((c) => c.id), ['b', 'stretch', 'command-words']);
   assert.deepEqual(buildChapters(graph, papersForTier(PAPERS, null)).map((c) => c.id), ['a', 'b', 'c', 'foundation', 'stretch', 'command-words']);
 });
 
-test('the Foundation glossary leaves out the Higher-only entries', () => {
-  const g = [{ id: 'a', level: 'F' }, { id: 'b', level: 'H' }];
-  assert.deepEqual(glossaryForTier(g, 'foundation').map((x) => x.id), ['a']);
-  assert.deepEqual(glossaryForTier(g, 'higher').map((x) => x.id), ['a', 'b']);
-  assert.deepEqual(glossaryForTier(g, null).map((x) => x.id), ['a', 'b']);
+test('the Foundation glossary leaves out the Higher-only entries; the Higher glossary has them plus any term a printed chapter uses', () => {
+  const g = [{ id: 'a', level: 'F' }, { id: 'b', level: 'H' }, { id: 'c', level: 'F' }];
+  assert.deepEqual(glossaryForBook(g, 'foundation').map((x) => x.id), ['a', 'c']);
+  assert.deepEqual(glossaryForBook(g, 'higher', new Set(['c'])).map((x) => x.id), ['b', 'c']);
+  assert.deepEqual(glossaryForBook(g, 'higher').map((x) => x.id), ['b']);
+  assert.deepEqual(glossaryForBook(g, null).map((x) => x.id), ['a', 'b', 'c']);
+  const tree = [{ t: 'p', runs: [{ t: 'x', term: 'a' }, { t: 'y' }] }, { t: 'box', blocks: [{ t: 'p', runs: [{ t: 'z', term: 'c' }] }] }];
+  assert.deepEqual([...termsUsed(tree)].sort(), ['a', 'c']);
 });
 
 test('the subtitle and the title property say which book it is; the whole book keeps "Foundation and Higher"', () => {
@@ -135,4 +139,64 @@ test('the page estimate grows with words and figures and always has a total', ()
   assert.equal(small.total, small.front + small.contents + small.chapters + small.answers + small.hints + small.glossary + small.index);
   assert.equal(big.chapters - small.chapters, 10);
   assert.equal(estimatePages({ words: { front: 0, chapters: 0, answers: 0, hints: 0, glossary: 0 } }).hints, 0);
+});
+
+test('ordinary prose that says "higher" is kept; only real Higher markers are cut', () => {
+  const kept = dropHigher([p('Higher value minus lower value. It is the gap.'), p('A higher number is further right.')]);
+  assert.deepEqual(texts(kept), ['Higher value minus lower value. It is the gap.', 'A higher number is further right.']);
+  assert.equal(chipsLeft(kept).length, 0);
+  for (const marker of ['(Higher) find arcs.', 'Higher only: proof.', 'Higher parts add volumes.', 'The sections marked Higher go further.']) {
+    assert.deepEqual(dropHigher([p(marker)]), [], marker);
+  }
+});
+
+test('a note that starts "Higher tier:" is cut whole, so no orphan sentence is left behind', () => {
+  const out = dropHigher([p('Keep.'), p('Higher tier: because both sides are equal we write it with the identity sign. See Identity in the glossary.')]);
+  assert.deepEqual(texts(out), ['Keep.']);
+});
+
+// ----- the Higher book: the other half -----
+
+const ids = (blocks) => {
+  const out = [];
+  const walk = (x) => {
+    if (Array.isArray(x)) return x.forEach(walk);
+    if (!x || typeof x !== 'object') return;
+    if (x.t === 'q' && Array.isArray(x.body)) { out.push(x.n); return; }
+    Object.values(x).forEach(walk);
+  };
+  walk(blocks);
+  return out;
+};
+
+test('keepOnlyHigher keeps a chip section whole, a lone Higher question under its heading, and Higher list items; Foundation text goes', () => {
+  const blocks = [
+    h(2, 'Basics'), p('foundation text'), q(1, 'foundation q'),
+    h(2, 'Going further'), p('more foundation'), q(2, 'higher q', true), q(3, 'tagged', false, { higher: true }), q(4, 'foundation too'),
+    h(2, 'Proof', true), p('higher text'), h(3, 'inside'), q(5, 'in a higher section'),
+    h(2, 'Next'), p('foundation again'),
+    { t: 'section', blocks: [h(2, 'I can'), { t: 'list', kind: 'checklist', items: [[p('do the basics')], [p('(Higher) do the hard part')], [{ t: 'p', runs: [{ t: 'work with indices' }, { t: ', and (Higher) fractional ones', hi: true }] }]] }] },
+  ];
+  const out = keepOnlyHigher(blocks);
+  assert.deepEqual(texts(out.slice(0, 5)), ['Going further', 'Q2', 'Q3', 'Proof Higher', 'higher text']);
+  assert.deepEqual(ids(out), [2, 3, 5]);
+  const list = out.at(-1).blocks.find((b) => b.t === 'list');
+  assert.deepEqual(list.items.map((item) => texts(item)[0]), ['(Higher) do the hard part', '(Higher) fractional ones']);
+  assert.ok(!JSON.stringify(out).includes('foundation text'));
+});
+
+test('a container with nothing Higher in it is left out of the Higher part', () => {
+  assert.deepEqual(keepOnlyHigher([{ t: 'section', kind: 'hero', blocks: [h(1, 'Title'), p('x')] }]), []);
+});
+
+test('the two books split the questions exactly: every question is in one and only one', () => {
+  const blocks = [
+    { t: 'section', blocks: [h(2, 'A'), q(1, 'a'), q(2, 'b', true), h(2, 'Check your knowledge: more', true), q(3, 'c'), q(4, 'd')] },
+    { t: 'section', blocks: [h(2, 'B'), { t: 'box', blocks: [q(5, 'e'), q(6, 'f', false, { higher: true })] }, q(7, 'g')] },
+    { t: 'recap', blocks: [q(8, 'h'), h(3, 'Stretch', true), q(9, 'i')] },
+  ];
+  const foundation = ids(dropHigher(blocks));
+  const higher = ids(keepOnlyHigher(blocks));
+  assert.deepEqual(foundation.filter((n) => higher.includes(n)), []);
+  assert.deepEqual([...foundation, ...higher].sort((a, b) => a - b), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
 });

@@ -24,7 +24,9 @@ export function isHigherQuestion(q) {
   return q.higher === true || q.body.some((b) => b.t === 'qtext' && hasChip(b.runs));
 }
 
-const HIGHER_WORD = /\bHigher\b/;
+// Only the page's own ways of saying "this is Higher". Everyday uses ("Higher value minus lower value") are not markers.
+const HIGHER_WORD = /\(Higher\)|\bHigher (?:tier|only|parts?|chip|sections?)\b|\bmarked Higher\b|\bFoundation and Higher\b|\bfor Higher\b/;
+const HIGHER_NOTE = /^\s*Higher tier:/;
 const lengthOf = (r) => (typeof r.t === 'string' ? r.t.length : 1); // a fraction or a gap counts as one character
 
 /** Where the first Higher marker is, as a character position in the runs' text: a chip, or the word "Higher" in plain text. -1 if none. */
@@ -84,6 +86,8 @@ function keepBlock(b) {
   if (!b || typeof b !== 'object') return b;
   if (isQuestion(b)) return isHigherQuestion(b) ? null : b;
   let node = b;
+  // a note that starts "Higher tier:" is about Higher content only, and goes whole (so nothing like "See Identity" is left behind)
+  if (b.t === 'p' && Array.isArray(b.runs) && HIGHER_NOTE.test(runsToText(b.runs))) return null;
   if (Array.isArray(b.runs) && b.t === 'p') {
     // words marked data-tier="H" go; then any sentence still carrying a chip or the word "Higher" goes
     const runs = dropChipSentence(b.runs.filter((r) => !r.hi));
@@ -144,6 +148,82 @@ export function retitleFront(blocks, tier) {
   return walk(blocks);
 }
 
+/**
+ * The other half of dropHigher: only the Higher material of a Foundation topic, for the Higher book.
+ * Same rules, so a question or section is in exactly one of the two books.
+ *   a heading with the chip      that heading and its whole section (up to a heading of the same or a higher level)
+ *   a Higher question            that question, under the nearest h2 so it has a heading
+ *   a list item that is Higher   the item ("(Higher) find arc lengths ..."), or the words marked data-tier="H"
+ * Foundation text, and the notes about Higher ("Higher tier: the next question.") are not Higher material and are left out.
+ * A container with nothing Higher in it is left out.
+ */
+export function keepOnlyHigher(blocks) {
+  const out = [];
+  let capture = null; // level of the chip heading whose section is being kept
+  let context = null; // the latest ordinary h2, put in front of the first Higher thing under it
+  let contextShown = true;
+  const push = (b) => {
+    if (context && !contextShown) { out.push(context); contextShown = true; }
+    out.push(b);
+  };
+  for (const b of blocks) {
+    if (b && b.t === 'h') {
+      if (hasChip(b.runs)) { capture = b.level; out.push(b); continue; }
+      if (capture !== null && b.level <= capture) capture = null;
+      if (capture === null) {
+        if (b.level <= 2) { context = b; contextShown = false; }
+        continue;
+      }
+    }
+    if (capture !== null) { out.push(b); continue; }
+    const part = higherPartOf(b);
+    if (part) push(part);
+  }
+  return out;
+}
+
+const trimLead = (runs) => {
+  const out = runs.map((r) => ({ ...r, hi: undefined }));
+  if (out.length && typeof out[0].t === 'string') out[0].t = out[0].t.replace(/^[\s,]*(?:and\s+)?/, '');
+  return out.filter((r) => r.x || r.t);
+};
+
+function higherPartOf(b) {
+  if (!b || typeof b !== 'object') return null;
+  if (isQuestion(b)) return isHigherQuestion(b) ? b : null;
+  if (b.t === 'list') {
+    const items = [];
+    for (const item of b.items) {
+      const whole = item.length && dropHigher(item).length === 0; // every sentence of the item was a Higher one
+      if (whole) { items.push(item); continue; }
+      const words = item.filter((x) => x.t === 'p' && Array.isArray(x.runs) && x.runs.some((r) => r.hi)).map((x) => ({ ...x, runs: trimLead(x.runs.filter((r) => r.hi)) }));
+      if (words.length) items.push(words);
+    }
+    return items.length ? { ...b, items } : null;
+  }
+  if (Array.isArray(b.blocks)) {
+    const blocks = keepOnlyHigher(b.blocks);
+    return blocks.length ? { ...b, blocks } : null;
+  }
+  return null;
+}
+
+/** The glossary ids used (as {term:} links) anywhere in some trees. */
+export function termsUsed(node, found = new Set()) {
+  if (Array.isArray(node)) { for (const n of node) termsUsed(n, found); return found; }
+  if (!node || typeof node !== 'object') return found;
+  if (typeof node.term === 'string' && node.t !== undefined) found.add(node.term);
+  for (const v of Object.values(node)) if (typeof v === 'object') termsUsed(v, found);
+  return found;
+}
+
+/** The glossary for a book. Foundation: the entries that are not Higher only. Higher: the Higher-only entries and any term a printed chapter uses. */
+export function glossaryForBook(glossary, tier, usedIds = new Set()) {
+  if (tier === 'foundation') return glossary.filter((g) => g.level !== 'H');
+  if (tier === 'higher') return glossary.filter((g) => g.level === 'H' || usedIds.has(g.id));
+  return glossary;
+}
+
 /** Which of the chapters belong in a book. A topic is in the Foundation book when its tier is 'F'; the Higher book has them all. */
 export function topicsForTier(topics, tier) {
   return tier === 'foundation' ? topics.filter((t) => t.tier === 'F') : topics;
@@ -155,7 +235,3 @@ export function papersForTier(papers, tier) {
   return papers.filter((p) => p.id === 'command-words' || p.id === (tier === 'foundation' ? 'foundation' : 'stretch'));
 }
 
-/** The glossary for a book: Foundation leaves out the entries that are Higher only. */
-export function glossaryForTier(glossary, tier) {
-  return tier === 'foundation' ? glossary.filter((g) => g.level !== 'H') : glossary;
-}

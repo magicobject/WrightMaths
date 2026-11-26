@@ -12,9 +12,15 @@ export function chapterOrder(graph) {
  * The chapter list: every live topic, then the mixed-practice papers. Each gets a number from 1.
  * `tier: 'foundation'` keeps only the Foundation topics (tier 'F'); order and layers still come from the whole graph.
  */
-export function buildChapters(graph, papers, { tier = null } = {}) {
+// tier 'higher' keeps the Higher topics (tier H) in full and, for each Foundation topic in higherParts, a short chapter (kind 'part')
+// of just its Higher material. Order and layers always come from the whole graph.
+export function buildChapters(graph, papers, { tier = null, higherParts = new Set() } = {}) {
+  const inBook = (t) => (tier === 'foundation' ? t.tier === 'F' : tier === 'higher' ? t.tier === 'H' || higherParts.has(t.id) : true);
   const entries = [
-    ...chapterOrder(graph).filter((t) => tier !== 'foundation' || t.tier === 'F').map((t) => ({ id: t.id, title: t.title, kind: 'topic', words: t.words ?? [] })),
+    ...chapterOrder(graph).filter(inBook).map((t) => {
+      const part = tier === 'higher' && t.tier === 'F';
+      return { id: t.id, title: t.title, kind: part ? 'part' : 'topic', words: part ? [] : t.words ?? [] };
+    }),
     ...papers.map((p) => ({ id: p.id, title: p.shortTitle ?? p.title, kind: 'paper', words: [] })),
   ];
   return entries.map((e, i) => ({ ...e, num: i + 1 }));
