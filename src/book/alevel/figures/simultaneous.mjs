@@ -11,12 +11,12 @@ const BOTTOM = 52;
 const ROW = 38; // the height of one row of the key
 
 /** A plane with no grid and no scale numbers and the SAME scale on both axes. `keys` is how many key rows sit above the graph. */
-function eq({ xmin, xmax, ymid, keys = 2, height = 620, ...rest }) {
+function eq({ xmin, xmax, ymid, keys = 2, height = 620, width = W, ...rest }) {
   const top = 36 + ROW * (keys - 1) + 62;
-  const w = W - LEFT - RIGHT;
+  const w = width - LEFT - RIGHT;
   const h = height - top - BOTTOM;
   const yr = ((xmax - xmin) * h) / w;
-  return plane({ grid: false, ticks: false, tickLabels: false, width: W, height, top, xmin, xmax, ymin: ymid - yr / 2, ymax: ymid + yr / 2, ...rest });
+  return plane({ grid: false, ticks: false, tickLabels: false, width, height, top, xmin, xmax, ymin: ymid - yr / 2, ymax: ymid + yr / 2, ...rest });
 }
 
 /** The key: a sample of each style, then what it is. rows: [[class, text], ...] */
@@ -31,6 +31,9 @@ function key(p, rows) {
 /** Labels get a halo in the page colour, so a label that crosses an axis or a guide line stays readable. */
 const HALO = 'paint-order:stroke;stroke:var(--paper);stroke-width:8px;stroke-linejoin:round';
 const finish = (p, meta) => p.svg(meta).replace(/<text class="svg-t([^>]*)>([\s\S]*?)<\/text>/g, (whole, attrs, body) => (body.includes('<tspan') ? whole : `<text style="${HALO}" class="svg-t${attrs}>${body}</text>`));
+
+/** Every plain line (class "line") in the picture, including its sample in the key, is drawn dash-dot. */
+const dashDot = (svg) => svg.replaceAll('<line class="line"', '<line class="line" style="stroke-dasharray:18 7 4 7"');
 
 const circle = (p, a, b, r, cls = 'curve') => p.parametric((t) => a + r * Math.cos(t), (t) => b + r * Math.sin(t), 0, 2 * Math.PI, { cls });
 
@@ -100,11 +103,12 @@ export const FIGURES = {
     p.straight(2, -4, { cls: 'curve-b' });
     p.straight(2, -7, { cls: 'line' });
     p.point(2, 0, { label: '(2, 0)', dx: 16, dy: 28 });
-    return finish(p, {
+    // The line that misses is dash-dot, so the three lines and the curve differ by pattern as well as colour.
+    return dashDot(finish(p, {
       id: 'simultaneous-cases',
       title: 'A curve and three parallel lines: cuts twice, touches once, misses',
-      desc: 'A solid U-shaped curve, y equals x squared minus 2x. Three parallel lines rise to the right with gradient 2. The highest, dotted, cuts the curve at two points. The middle one, dashed, touches the curve at one point, (2, 0), and is a tangent. The lowest, solid, stays below the curve and does not meet it.',
-    });
+      desc: 'A solid U-shaped curve, y equals x squared minus 2x. Three parallel lines rise to the right with gradient 2. The highest, dotted, cuts the curve at two points. The middle one, dashed, touches the curve at one point, (2, 0), and is a tangent. The lowest, dash-dot, stays below the curve and does not meet it.',
+    }));
   },
 
   // ---- 4. setting up from a problem ----
@@ -146,7 +150,7 @@ export const FIGURES = {
 
   // ---- question figure ----
   'simultaneous-q-meet': () => {
-    const p = eq({ xmin: -6, xmax: 6, ymid: 0.8 });
+    const p = eq({ xmin: -6, xmax: 6, ymid: 0.8, width: 470, height: 500 }); // narrower picture: its labels stay larger on a phone
     key(p, [['curve', 'y = x^2 - 4'], ['curve-b', 'y = x + 2']]);
     p.curve((x) => x * x - 4, { cls: 'curve' });
     p.straight(1, 2, { cls: 'curve-b' });
