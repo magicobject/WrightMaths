@@ -1351,8 +1351,27 @@ test.describe('what the voice reads', () => {
         plain: unitText(make('What is 4,872 &divide; 24 in a 6 m pole?')),
         angles: unitText(make('Key idea: a triangle totals 180&deg;.')),
         override: unitText(make('x&sup2; &minus; 5x', 'x squared minus five x')),
+        labels: unitText(make('<span class="chip chip-higher">Higher</span> [4 marks] Find x.')),
+        tags: unitText(make('<span class="qtag qtag-marks">[3 marks]</span><span class="qtag qtag-calc">Calculator</span><span class="qtag qtag-grade">Grade 4</span> Find y.')),
+        midSentence: unitText(make('Find x. [2 marks]')),
+        brackets: unitText(make('x&sup2; &minus; 9 = (x + 3)(x &minus; 3)')),
+        numberBracket: unitText(make('Expand 3(x + 4).')),
+        letters: unitText(make('Find a. OA = a and OB = b. The side a along the bottom. On a plan, d = ab.')),
+        iteration: unitText(make('x0 = 4 and xn + 1 = 2xn &minus; 1. Find x3.')),
+        stdForm: unitText(make('Type it like 3.2x10^-5.')),
+        part: unitText(make('<b>(a)</b> [1 mark] Find z. <a class="qtag qtag-from" href="fractions.html">Uses: Fractions</a>')),
       };
     });
+    // Labels at the start of a question are for the eye; Listen reads just the question.
+    expect(spoken.labels).toBe('Find x.');
+    expect(spoken.tags).toBe('Find y.');
+    expect(spoken.midSentence).toBe('Find x. [two marks]');
+    expect(spoken.part).toBe('Find z.');
+    expect(spoken.numberBracket).toBe('Expand three times (x plus four).');
+    expect(spoken.letters).toBe('Find eigh. OA equals eigh and OB equals b. The side eigh along the bottom. On a plan, d equals eigh bee.');
+    expect(spoken.iteration).toBe('x nought equals four and x n plus one equals two x n minus one. Find x three.');
+    expect(spoken.stdForm).toBe('Type it like three point two times ten to the power of minus five.');
+    expect(spoken.brackets).toBe('x squared minus nine equals (x plus three) times (x minus three)');
     expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');

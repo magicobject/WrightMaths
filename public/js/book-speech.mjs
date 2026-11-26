@@ -40,7 +40,9 @@ const SYMBOLS = [
   [/³/g, ' cubed'],
   [/\^2/g, ' squared'],
   [/\^3/g, ' cubed'],
+  [/∛/g, ' cube root of '],
   [/√/g, ' square root of '],
+  [/x10\^(-?)/g, (m, neg) => ` times ten to the power of ${neg ? 'minus ' : ''}`], // typed standard form, "3.2x10^5"
   [/°C/g, ' degrees Celsius'],
   [/°/g, ' degrees'],
   [/£\s?(\d+(?:[.,]\d+)*)/g, (match, amount) => {
@@ -135,7 +137,8 @@ const LETTER_A = 'eigh';
 const OPERATOR_WORDS = new Set(['equals', 'plus', 'minus', 'times', 'over', 'squared', 'cubed', 'comma', 'divided']);
 const AFTER_OPERATOR_OK = new Set([...'abcdefghijklmnopqrstuvwxyz']);
 const NUMBER_WORDS = new Set([...SMALL, ...TENS.filter(Boolean)]);
-const A_STARTS_A_NAME = new Set(['is', 'are', 'and', 'has', 'lies', 'to', 'then', 'be', ...OPERATOR_WORDS]);
+const A_AFTER_SIGN = new Set(['is', 'and', 'means', 'comes', 'gives', 'to', 'has', 'when', 'where']);
+const A_STARTS_A_NAME =new Set(['is', 'are', 'and', 'has', 'lies', 'to', 'then', 'be', ...OPERATOR_WORDS]);
 
 /**
  * The letter A (a variable, a point or a label) is said as the letter name, never as the article:
@@ -154,6 +157,13 @@ export function sayLetterA(text) {
     const next2 = nextWord ? next?.[3]?.toLowerCase() : undefined;
     const sentenceStart = !prev || /[.?!:]/.test(prev[2]);
     const sayIt = () => LETTER_A;
+    // The article never comes straight before a stop or comma, or straight after a bracket: "find a.", "side a,", "(3 + 2) times a"
+    if (letter === 'a' && /^\s*([.,;:?!)]|$)/.test(after) && !/\b(of|in|on|at)\s*$/i.test(before)) return sayIt();
+    // "side a along the bottom", "in terms of a and b"
+    if (letter === 'a' && prevWord === 'side' && prev[2].trim() === '') return sayIt();
+    if (letter === 'a' && nextWord === 'and' && /^\s*and\s+[a-z]\b(?![\w'-])/.test(after)) return sayIt();
+    // After a sign, "a" followed by is/and/means... is the letter: "times a is written", "OA equals a and"
+    if (letter === 'a' && prevWord && ['equals', 'times'].includes(prevWord) && prev[2].trim() === '' && nextWord && A_AFTER_SIGN.has(nextWord)) return sayIt();
     if (letter === 'A') {
       if (!sentenceStart) return sayIt();
       return nextWord && A_STARTS_A_NAME.has(nextWord) ? sayIt() : letter; // "A tube of paint" is the article
@@ -179,6 +189,15 @@ export function toSpoken(text) {
   // The pronunciation table runs twice so a function inside a function, f(g(x)), is reached from the inside out.
   for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
   out = out.replace(/(?<=[A-Za-z)])-(?=\d)/g, ' minus '); // "3k-7", "x^2-4" and "(x+1)^2-5" are subtractions, not hyphens
+  out = out
+    .replace(/\bx0\b/g, 'x nought') // iteration: x0, x1, xn, x(n+1)
+    .replace(/\bx([1-9])\b/g, 'x $1')
+    .replace(/(\b|(?<=\d))xn\b/g, ' x n')
+    .replace(/\bab\b/g, 'eigh bee') // letters side by side multiply: say each letter
+    .replace(/\bxy\b/g, 'x y')
+    .replace(/\)\(/g, ') times (') // (x + 2)(x + 3): brackets side by side multiply
+    .replace(/(\d|\b[a-z])\(/g, '$1 times (') // 3(x + 4), n(n + 1)
+    .replace(/\)([a-z])\b/g, ') times $1'); // (3 + 2)a
   out = sayLetterA(numbersToWords(out));
   return out
     .replace(/[“”]/g, '') // quotation marks are not spoken

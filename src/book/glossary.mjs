@@ -823,7 +823,7 @@ export const GLOSSARY = [
   },
   {
     id: 'radius', term: 'Radius', strand: 'g', level: 'F',
-    def: 'The distance from the centre of a circle to its edge. The plural is radii.',
+    def: 'Any straight line from the centre of a circle to its circumference. The plural is radii. Its length is also called the radius.',
     example: 'The circle x&sup2; + y&sup2; = 25 has centre (0, 0) and radius 5.',
     see: ['diameter', 'chord'],
   },

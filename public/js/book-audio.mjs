@@ -3,7 +3,7 @@
 // old recording stop matching (the browser voice reads it instead) and the build
 // tooling lists it as needing a new one. Clips are plain files on this site:
 // nothing is fetched from anywhere else.
-import { toSpoken } from './book-speech.mjs?m=42';
+import { toSpoken } from './book-speech.mjs?m=44';
 
 export const AUDIO_DIR = '/audio/book/';
 export const AUDIO_TYPES = ['mp3', 'm4a', 'ogg', 'wav'];
@@ -23,6 +23,26 @@ export function hashText(text) {
   return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
 }
 
+const MARKS_LABEL = /^\s*((\[\d+ marks?\]|\(\w\))\s*)+/i;
+
+/**
+ * Labels at the start of a question ("[3 marks]", the Higher chip, the marks, calculator and
+ * grade tags) are for the eye: Listen reads just the question. There can be several in a row.
+ */
+function dropLeadingLabels(el) {
+  // Tags anywhere in the question ("Uses: Fractions" links, calculator, grade) are for the eye too.
+  el.querySelectorAll('.qtag').forEach((n) => n.remove());
+  for (;;) {
+    const n = el.firstChild;
+    if (!n) return;
+    if (n.nodeType === 3) {
+      const rest = n.textContent.replace(MARKS_LABEL, '').replace(/^\s+/, '');
+      if (rest) { n.textContent = rest; if (!MARKS_LABEL.test(rest)) return; } else n.remove();
+    } else if (n.nodeType === 1 && (n.matches('.chip, .qtag') || /^\s*\(\w\)\s*$/.test(n.textContent))) n.remove(); // a part letter, <b>(a)</b>
+    else return;
+  }
+}
+
 /** The exact words for one Listen button: the question or key idea, plus what its picture shows. */
 export function unitText(node) {
   const clone = node.cloneNode(true);
@@ -31,6 +51,7 @@ export function unitText(node) {
   // The strand chips, "See also" and "Taught in" lines are for the eye and are left out.
   if (entry) clone.querySelectorAll('.chip, .g-see, .g-used, .g-fig').forEach((n) => n.remove());
   clone.querySelectorAll('.listen, .qnum, .term-pop').forEach((n) => n.remove());
+  if (!entry) dropLeadingLabels(clone);
   if (entry) {
     clone.querySelector('h3')?.append('. ');
     clone.querySelectorAll('p, .g-line, p > b').forEach((n) => n.append(' '));

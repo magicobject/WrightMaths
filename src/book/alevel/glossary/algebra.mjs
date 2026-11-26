@@ -84,6 +84,17 @@ export const TERMS = [
     flip: 'Multiplying an expression by its conjugate always gives a difference of two squares: {m:(a+b)(a-b)=a^2-b^2}.',
     see: ['rationalise-denominator', 'surd'],
   },
+  {
+    id: 'like-surds',
+    term: 'like surds',
+    strand: 'al-algebra',
+    level: 'Y1',
+    def: 'Surds with the same root part once each is fully simplified, such as 2 root 3 and 5 root 3. You can add or subtract like surds, as you add like terms in algebra.',
+    example: ['{m:2sqrt(3)+5sqrt(3)=7sqrt(3)}', '{m:sqrt(8)+sqrt(18)=2sqrt(2)+3sqrt(2)=5sqrt(2)}. Simplify first to see that they are alike.'],
+    watch: '{m:sqrt(2)+sqrt(3)} cannot be combined. It is not {m:sqrt(5)}. Check with a calculator: 1.41 + 1.73 = 3.15, but {m:sqrt(5)} is 2.24.',
+    see: ['surd', 'rationalise-denominator'],
+    aka: ['similar surds'],
+  },
   // ---------- Quadratics ----------
   {
     id: 'quadratic',

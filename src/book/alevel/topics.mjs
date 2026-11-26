@@ -31,7 +31,7 @@ export const TOPICS = [
   t('proof-contradiction', 'Proof by contradiction', 'proof', 2, ['proof-methods'], 'Assuming the opposite and showing that it cannot be true'),
 
   // Algebra and functions
-  t('indices-surds', 'Indices and surds', 'algebra', 1, [], 'Writing a root as a power, and a power as a root'),
+  t('indices-surds', 'Indices and surds', 'algebra', 1, [], 'Writing a root as a power, and a power as a root', { aka: 'powers roots surds rationalise denominator fractional index negative index exact', status: 'live', words: ['index', 'laws-of-indices', 'negative-index', 'fractional-index', 'surd', 'like-surds', 'rationalise-denominator', 'conjugate-surd'] }),
   t('quadratics', 'Quadratics', 'algebra', 1, ['indices-surds'], 'Solving a quadratic, and building a quadratic from its solutions', { aka: 'quadratic equation completing the square discriminant factorise formula', status: 'live', words: ['quadratic', 'root', 'completing-the-square', 'quadratic-formula', 'discriminant', 'vertex'] }),
   t('simultaneous', 'Simultaneous equations', 'algebra', 1, ['quadratics'], 'Solving two equations together, and seeing where two graphs cross'),
   t('inequalities', 'Inequalities', 'algebra', 1, ['quadratics'], 'Solving an inequality, and shading the region it describes'),

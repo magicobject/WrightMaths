@@ -53,6 +53,8 @@ Words `sin cos tan sec cosec cot arcsin arccos arctan ln log exp lim` are drawn 
 
 **Typed answers** are plain one-line text, not maths markup: `data-answers="x^2+5x+4"`. The checker (`public/js/book-answer.mjs`) understands single-letter variables, `+ - * / ^` and brackets, so equivalent algebra is accepted. **It does not understand function names** (`sin`, `ln`, `e^x`): for answers containing them, set `data-mode="exact"` and list every accepted written form, separated by `;`. Say in the question how the answer must be written ("Give your answer in the form ...").
 
+**Multiple-choice options.** Each option is a button, so its visible text must be words: an option made only of `{m:...}` fails axe (`label-content-name-mismatch`, because the button's name is the maths text alternative). Write the option in words ("x squared plus 2x plus 1") or put words around the maths. Every `data-why` value must be one closing-quoted line with no `<` or `>` (a build lint and `test/alevel-mc.spec.ts` check this, and that each multiple-choice question has 3 options and exactly one `data-correct`).
+
 ## Figures
 
 Every figure is generated from the function that defines it (`src/book/alevel/figure-lib.mjs`), so a picture cannot disagree with its equation.
