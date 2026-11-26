@@ -136,6 +136,12 @@ test.describe('the Foundation book', () => {
     for (const kept of ['Square numbers', 'Standard form', 'Rearranging']) expect(chapterText, kept).toContain(kept);
     expect(b.report.higherLeftovers).toEqual([]);
     expect(b.report.termsNotInGlossary).toEqual([]);
+    // words that are only ever Higher content never reach the Foundation glossary (Greg, 26 Nov 2026)
+    const g0 = b.paragraphs.findIndex((p) => p === 'Glossary');
+    const g1 = b.paragraphs.findIndex((p, i) => i > g0 && p === 'Index');
+    expect(g0).toBeGreaterThan(0);
+    const glossaryHeads = b.paragraphs.slice(g0, g1).map((p) => p.split('|')[0].trim());
+    for (const word of ['Cosine rule', 'Sine rule', 'Surd', 'Identity (≡)']) expect(glossaryHeads, word).not.toContain(word);
     expect(b.report.stats.questionsInOtherBook).toBeGreaterThan(20);
   });
 

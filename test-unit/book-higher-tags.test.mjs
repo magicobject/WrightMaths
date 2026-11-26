@@ -39,7 +39,7 @@ test('a Foundation section never points the reader at a Higher section that is c
       const next = parts.slice(i + 1).find((p) => !/^<h2[^>]*>\s*Check your knowledge/.test(p));
       if (higher(part) || !next || !higher(next)) return;
       const foundationText = part.replace(/<span data-tier="H">[\s\S]*?<\/span>/g, '');
-      if (/\b(?:next|following) section\b|\bsection below\b/i.test(foundationText)) bad.push(f);
+      if (/\b(?:next|following) sections?\b|\bsection below\b/i.test(foundationText)) bad.push(f);
     });
   }
   assert.deepEqual(bad, []);
