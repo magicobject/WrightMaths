@@ -389,3 +389,9 @@ test('ordinary algebra answers are still accepted in other written forms', () =>
   assert.equal(matches('3x^2+5', ['5+3x^2'], 'exact'), true);
   assert.equal(matches('2(x+1)', ['2x+2'], 'exact'), false, 'not expanded');
 });
+
+test('a rationalised surd is accepted in its other written forms when the key lists them', () => {
+  const keys = ['sqrt(5)/5', '(1/5)sqrt(5)', '1/5*sqrt(5)'];
+  for (const typed of keys) assert.ok(matches(typed, keys, 'exact'), typed);
+  assert.ok(!matches('sqrt(5)', keys, 'exact'));
+});
