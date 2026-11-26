@@ -1,0 +1,1184 @@
+<main class="book strand-al-coordinate" data-book-page="topic" data-topic="straight-lines">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Coordinate geometry &middot; Year 1</span>
+      <h1>Straight lines</h1>
+      <p class="lead">A straight line has the same steepness everywhere. This page gives you three ways to write its equation. You will test for parallel and perpendicular lines. You will also find the length and the middle of a line segment (a piece of a line between two points).</p>
+      <p class="where-use"><b>Where you will use this:</b> in Circles, where the radius is a distance and a tangent is a line at right angles to it. Also in Differentiation, where a tangent and a normal are straight lines. It helps whenever one thing changes at a steady rate, such as a taxi fare or a leaking tank.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Straight lines</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page starts from GCSE: plotting points, finding the gradient of a line, and using Pythagoras&rsquo; theorem. It also uses surds (square roots that do not come out exactly), such as {m:sqrt(52)}. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from GCSE?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-the-gradient-and-the-equation-y-mx-c">Skip to the lesson</a></p>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the gradient of the line through the points {m:(1, 2)} and {m:(3, 8)}.</p>
+      <ol class="ladder"><li>The gradient is the change in y divided by the change in x.</li><li>From {m:(1, 2)} to {m:(3, 8)}, y changes by {m:8-2} and x changes by {m:3-1}.</li><li>Divide the change in y by the change in x.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/3">You divided the change in x by the change in y. The gradient has y on the top.</li>
+        <li data-if="6">That is only the change in y. Divide it by the change in x, which is 2.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(8-2, 3-1)=frac(6, 2)=3}. The line goes up 3 for every 1 across.</p></div>
+    </div>
+    <div class="q" data-answers="y=2x+4;2x+4" data-mode="exact">
+      <p class="qtext">Make y the subject of {m:3y=6x+12}. Type it like y=2x-1.</p>
+      <ol class="ladder"><li>Make y the subject means get y on its own on one side.</li><li>y is multiplied by 3. Divide both sides by 3.</li><li>Divide every term on the right by 3, not just one of them.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=6x+12;6x+12">You have not divided yet. Divide both sides by 3.</li>
+        <li data-if="y=2x+12;2x+12">You divided {m:6x} by 3 but not 12. Divide every term on the right.</li>
+      </ul>
+      <div class="solution"><p>Divide both sides by 3: {m:y=frac(6x, 3)+frac(12, 3)=2x+4}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve {m:2x+3=11}.</p>
+      <ol class="ladder"><li>Undo the +3 first.</li><li>Subtract 3 from both sides to get {m:2x=8}.</li><li>Then divide both sides by 2.</li></ol>
+      <ul class="wrong"><li data-if="7">You added 3 to both sides. To undo +3, subtract 3.</li></ul>
+      <div class="solution"><p>{m:2x=11-3=8}, so {m:x=4}. Check: {m:2*4+3=11}.</p></div>
+    </div>
+    <div class="q" data-answers="3x-12;-12+3x" data-mode="exact">
+      <p class="qtext">Expand (multiply out the brackets) {m:3(x-4)}. Type it like 2x+5.</p>
+      <ol class="ladder"><li>Multiply every term inside the bracket by 3.</li><li>{m:3*x=3x}. Now work out {m:3*(-4)}.</li></ol>
+      <ul class="wrong"><li data-if="3x-4;-4+3x">You multiplied only the x. Multiply the {m:-4} by 3 as well.</li><li data-if="3x+12;12+3x">A plus times a minus is a minus. {m:3*(-4)=-12}.</li></ul>
+      <div class="solution"><p>{m:3(x-4)=3x-12}.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">A right-angled triangle has two short sides of 5 cm and 12 cm. Find the length of the longest side, in cm.</p>
+      <ol class="ladder"><li>Pythagoras&rsquo; theorem: the square of the longest side is the sum of the squares of the other two.</li><li>{m:5^2+12^2=25+144}.</li><li>Take the square root of the total.</li></ol>
+      <ul class="wrong"><li data-if="17">That is {m:5+12}. Square each side first, add, then take the square root.</li><li data-if="169">That is the square of the longest side. Take the square root to get the length.</li></ul>
+      <div class="solution"><p>{m:5^2+12^2=169} and {m:sqrt(169)=13}. The longest side is 13 cm.</p></div>
+    </div>
+    <div class="q" data-answers="3sqrt(5);3sqrt5;3*sqrt(5)" data-mode="exact">
+      <p class="qtext">Write {m:sqrt(45)} in the form a{m:sqrt(5)}, where a is a whole number. Type it like 5sqrt(2).</p>
+      <ol class="ladder"><li>Find the biggest square number that divides 45.</li><li>{m:45=9*5}, so {m:sqrt(45)=sqrt(9)*sqrt(5)}.</li><li>What is {m:sqrt(9)}?</li></ol>
+      <ul class="wrong"><li data-if="9sqrt(5);9sqrt5;9*sqrt(5)">The square root of 9 is 3, not 9. Take the root of the 9 as well.</li></ul>
+      <div class="solution"><p>{m:sqrt(45)=sqrt(9)*sqrt(5)=3sqrt(5)}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. The gradient and the equation y = mx + c</h2>
+    <p>The {term:gradient} of a line measures how steep it is. It is the change in y divided by the change in x, between any two points on the line. Many people call these two changes &ldquo;rise&rdquo; (how far up) and &ldquo;run&rdquo; (how far across).</p>
+    <figure class="figure-lg">{fig:straight-lines-gradient}<figcaption>Look at the dashed steps from A to B. The line goes across 2 and up 4, so its gradient is {m:frac(4, 2)=2}. It goes up 2 for every 1 across.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the gradient of the line through {m:(x_1, y_1)} and {m:(x_2, y_2)} is {m:m=frac(y_2-y_1, x_2-x_1)}. Read {m:x_1} as &ldquo;x one&rdquo;. The small numbers only label the two points. Use the same order on the top and the bottom.</p>
+    </div>
+    <p>The sign of the gradient tells you the direction. A line that goes up to the right has a positive gradient. A line that goes down to the right has a negative gradient. A horizontal line has gradient 0.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the gradient of the line through {m:(-2, 5)} and {m:(4, -1)}.</p>
+      <ol class="steps">
+        <li>Call the first point {m:(x_1, y_1)=(-2, 5)} and the second {m:(x_2, y_2)=(4, -1)}.</li>
+        <li>The change in y is {m:-1-5=-6}.</li>
+        <li>The change in x is {m:4-(-2)=6}. Subtracting a negative number adds.</li>
+        <li>{m:m=frac(-6, 6)=-1}.</li>
+      </ol>
+      <p>The gradient is negative, so the line goes down to the right. It goes down 1 for every 1 across.</p>
+    </div>
+    <p>A straight line has an equation. The line with gradient m that crosses the y-axis at the point {m:(0, c)} has the equation {m:y=mx+c}. The point {m:(0, c)} is the {term:y-intercept}. This is the form {term:equation-of-a-line|y = mx + c}.</p>
+    <figure class="figure-lg">{fig:straight-lines-mc}<figcaption>Look at the point where the line meets the y-axis. It is {m:(0, 3)}, so {m:c=3}. The dashed steps go across 1 and down 2, so {m:m=-2}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> in {m:y=mx+c}, the number in front of x is the gradient and the number on its own is where the line crosses the y-axis. The equation must have y on its own on one side before you read off m and c.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: read off m and c</h3>
+      <p>Find the gradient and the y-intercept of the line {m:2y+6x=10}.</p>
+      <ol class="steps">
+        <li>Get y on its own. Subtract {m:6x} from both sides: {m:2y=-6x+10}.</li>
+        <li>Divide every term by 2: {m:y=-3x+5}.</li>
+        <li>The gradient is {m:m=-3}. The y-intercept is {m:(0, 5)}.</li>
+      </ol>
+      <p>The gradient is not 6. The 6 was only the number before you divided by 2.</p>
+    </div>
+    <p>Two kinds of line do not fit {m:y=mx+c}. A horizontal line has the equation {m:y=k}, where k is a number, and its gradient is 0. A vertical line has the equation {m:x=k}. A vertical line has no gradient. Its change in x is 0, and you cannot divide by 0.</p>
+    <figure class="figure-lg">{fig:straight-lines-axis-parallel}<figcaption>Look at the two lines. The solid line {m:y=3} is level, so its gradient is 0. The dashed line {m:x=-2} is upright, so it has no gradient.</figcaption></figure>
+    <p>A point is on a line when its coordinates fit the equation. To test a point, put its x-value into the equation and see whether you get its y-value.</p>
+    <div class="worked">
+      <h3>Worked example: is the point on the line?</h3>
+      <p>Is the point {m:(3, 7)} on the line {m:y=2x+1}? Is the point {m:(2, 6)}?</p>
+      <ol class="steps">
+        <li>For {m:(3, 7)}: put in {m:x=3}. {m:2*3+1=7}, which equals the y-value. So the point is on the line.</li>
+        <li>For {m:(2, 6)}: put in {m:x=2}. {m:2*2+1=5}, which is not 6. So the point is not on the line.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the gradient of the line through {m:(2, 7)} and {m:(5, 1)}.</p>
+      <ol class="steps">
+        <li>The change in y is {m:1-7=}<span class="blank" data-answers="-6">___</span>.</li>
+        <li>The change in x is {m:5-2=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>So {m:m=}<span class="blank" data-answers="-2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(1-7, 5-2)=frac(-6, 3)=-2}. The line goes down 2 for every 1 across.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the gradient and y = mx + c</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the gradient of the line through {m:(2, 3)} and {m:(6, 11)}.</p>
+      <ol class="ladder"><li>Find the change in y, then the change in x.</li><li>The change in y is {m:11-3}. The change in x is {m:6-2}.</li><li>Divide the change in y by the change in x.</li></ol>
+      <ul class="wrong"><li data-if="1/2;0.5">You divided the change in x by the change in y. The gradient has the change in y on the top.</li><li data-if="8">That is the change in y only. Divide it by the change in x, which is 4.</li></ul>
+      <div class="solution"><p>{m:frac(11-3, 6-2)=frac(8, 4)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Find the gradient of the line through {m:(-1, 4)} and {m:(3, -4)}.</p>
+      <ol class="ladder"><li>The change in y is {m:-4-4}.</li><li>The change in x is {m:3-(-1)}. Take care with the double minus.</li><li>Divide the change in y by the change in x.</li></ol>
+      <ul class="wrong"><li data-if="-4">The change in x is {m:3-(-1)=4}, not 2. Subtracting a negative number adds.</li><li data-if="2">The line goes down to the right, so the gradient is negative.</li></ul>
+      <div class="solution"><p>{m:frac(-4-4, 3-(-1))=frac(-8, 4)=-2}.</p></div>
+    </div>
+    <div class="q" data-answers="1/2;0.5" data-mode="value">
+      <p class="qtext">Find the gradient of the line shown. Give it as a fraction or a decimal.</p>
+      <figure class="qfig-lg">{fig:straight-lines-q-line}</figure>
+      <ol class="ladder"><li>Read the coordinates of the two marked points.</li><li>Go from {m:(-2, -1)} to {m:(4, 2)}. How far does y change? How far does x change?</li><li>Divide the change in y by the change in x.</li></ol>
+      <ul class="wrong"><li data-if="2">You divided the change in x by the change in y. The change in y goes on the top.</li><li data-if="3">That is the change in y only. Divide it by the change in x, which is 6.</li></ul>
+      <div class="solution"><p>{m:frac(2-(-1), 4-(-2))=frac(3, 6)=frac(1, 2)}. The line goes up 1 for every 2 across.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Find the gradient of the line {m:2y=8x-6}.</p>
+      <ol class="ladder"><li>The equation must have y on its own before you read off the gradient.</li><li>Divide every term by 2.</li><li>Now read the number in front of x.</li></ol>
+      <ul class="wrong"><li data-if="8">That is the number before you divided by 2. Divide every term by 2 first: {m:y=4x-3}.</li><li data-if="2">That is the number in front of y. Divide by it, then read the number in front of x.</li></ul>
+      <div class="solution"><p>Dividing by 2 gives {m:y=4x-3}. The gradient is 4.</p></div>
+    </div>
+    <div class="q" data-answers="y=3x-4;3x-4;-4+3x;y=-4+3x" data-mode="exact">
+      <p class="qtext">A line has gradient 3 and crosses the y-axis at {m:(0, -4)}. Write its equation in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>Write {m:y=mx+c}. What number is m? What number is c?</li><li>m is the gradient and c is the y-coordinate of the y-intercept.</li><li>c is {m:-4}. Keep the sign.</li></ol>
+      <ul class="wrong"><li data-if="y=-4x+3;-4x+3;3-4x">You swapped the two numbers. The gradient 3 goes in front of x.</li><li data-if="y=3x+4;3x+4">The y-intercept is {m:(0, -4)}, so c is {m:-4}, not 4.</li></ul>
+      <div class="solution"><p>{m:m=3} and {m:c=-4}, so {m:y=3x-4}. Check: at {m:x=0}, {m:y=-4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these lines has gradient {m:-3}?</p>
+      <ul class="options">
+        <li data-correct>The line {m:y=5-3x}</li>
+        <li data-why="This line has gradient 3 (positive). The minus sign is on the 5, not on the 3.">The line {m:y=3x-5}</li>
+        <li data-why="This line has gradient 5. The number in front of x is 5. The &minus;3 is the y-intercept.">The line {m:y=5x-3}</li>
+      </ul>
+      <ol class="ladder"><li>Find the number in front of x in each line.</li><li>Reorder {m:y=5-3x} as {m:y=-3x+5} if that helps.</li></ol>
+      <div class="solution"><p>{m:y=5-3x} is {m:y=-3x+5}. The number in front of x is {m:-3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Is the point {m:(2, 9)} on the line {m:y=4x+1}?</p>
+      <ul class="options">
+        <li data-correct>Yes, because {m:4*2+1=9}</li>
+        <li data-why="4 &times; 2 + 1 = 8 + 1 = 9, not 8. The y-value 9 fits.">No, because {m:4*2+1=8}</li>
+        <li data-why="A point is on a line when its coordinates fit the equation. Whether 9 is a multiple of 4 does not matter. Put x = 2 into the equation.">No, because 9 is not a multiple of 4</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=2} into the equation.</li><li>Does the answer equal the y-value, 9?</li></ol>
+      <div class="solution"><p>When {m:x=2}, {m:y=4*2+1=9}. The point {m:(2, 9)} is on the line.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What is the gradient of the line {m:x=5}?</p>
+      <ul class="options">
+        <li data-correct>It has no gradient, because it is vertical</li>
+        <li data-why="A gradient of 0 belongs to a horizontal line such as y = 5. The line x = 5 is vertical.">The gradient is 0</li>
+        <li data-why="The 5 tells you where the line crosses the x-axis. It is not the gradient.">The gradient is 5</li>
+      </ul>
+      <ol class="ladder"><li>Picture the line {m:x=5}. Every point on it has x-coordinate 5.</li><li>Is the line level or upright? What is its change in x?</li></ol>
+      <div class="solution"><p>The line {m:x=5} is vertical. Its change in x is 0, and you cannot divide by 0. So it has no gradient.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. The equation of a line through a point</h2>
+    <p>Often you do not know where the line crosses the y-axis. You know its gradient and one point on it instead. Then it is easier to use the {term:point-gradient-form|point-gradient form}.</p>
+    <p>Let {m:(x_1, y_1)} be the point you know. Let {m:(x, y)} be any other point on the line. The gradient between them is m, so {m:frac(y-y_1, x-x_1)=m}. Multiply both sides by {m:x-x_1} to get the key idea below.</p>
+    <figure class="figure-lg">{fig:straight-lines-point-gradient}<figcaption>Look at the point P and the dashed steps to Q. The gradient is {m:frac(-6, 2)=-3}. The line through P with this gradient has the equation {m:y-4=-3(x-1)}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the line with gradient m through the point {m:(x_1, y_1)} has the equation {m:y-y_1=m(x-x_1)}. Subtract the coordinates of the point from x and y. Then expand the bracket and rearrange if you want {m:y=mx+c}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the equation of the line with gradient 3 through {m:(2, 5)}. Give it in the form {m:y=mx+c}.</p>
+      <ol class="steps">
+        <li>Put {m:m=3}, {m:x_1=2} and {m:y_1=5} into the formula: {m:y-5=3(x-2)}.</li>
+        <li>Expand the bracket: {m:y-5=3x-6}.</li>
+        <li>Add 5 to both sides: {m:y=3x-1}.</li>
+        <li>Check the point: when {m:x=2}, {m:y=3*2-1=5}. This matches.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative coordinate</h3>
+      <p>Find the equation of the line with gradient {m:-2} through {m:(-1, 4)}.</p>
+      <ol class="steps">
+        <li>The point has {m:x_1=-1}, so {m:x-x_1=x-(-1)=x+1}. The formula gives {m:y-4=-2(x+1)}.</li>
+        <li>Expand the bracket: {m:y-4=-2x-2}.</li>
+        <li>Add 4 to both sides: {m:y=-2x+2}.</li>
+        <li>Check the point: when {m:x=-1}, {m:y=-2*(-1)+2=4}. This matches.</li>
+      </ol>
+    </div>
+    <p>When you are given two points, first find the gradient. Then use either point in the formula. Both points give the same line.</p>
+    <figure class="figure-lg">{fig:straight-lines-two-points}<figcaption>Look at the points A and B. The line through them goes across 2 and up 4, so its gradient is 2. It crosses the y-axis at {m:(0, 3)}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: through two points</h3>
+      <p>Find the equation of the line through {m:A(1, 5)} and {m:B(3, 9)}.</p>
+      <ol class="steps">
+        <li>Find the gradient: {m:m=frac(9-5, 3-1)=frac(4, 2)=2}.</li>
+        <li>Use point A in the formula: {m:y-5=2(x-1)}.</li>
+        <li>Expand: {m:y-5=2x-2}, so {m:y=2x+3}.</li>
+        <li>Check with point B, which you did not use: {m:2*3+3=9}. This matches.</li>
+      </ol>
+      <p>Using B instead gives {m:y-9=2(x-3)}, which also simplifies to {m:y=2x+3}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the equation of the line with gradient 5 through {m:(2, 1)}.</p>
+      <ol class="steps">
+        <li>The formula gives y &minus; <span class="blank" data-answers="1">___</span> = <span class="blank" data-answers="5">___</span>(x &minus; <span class="blank" data-answers="2">___</span>).</li>
+        <li>Expand the bracket: {m:y-1=5x-10}.</li>
+        <li>Add 1 to both sides: {m:y=5x-}<span class="blank" data-answers="9">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:y-1=5(x-2)=5x-10}, so {m:y=5x-9}. Check: at {m:x=2}, {m:y=10-9=1}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the equation of a line through a point</h2>
+    <div class="q" data-answers="y=4x-5;4x-5;-5+4x;y=-5+4x" data-mode="exact">
+      <p class="qtext">Find the equation of the line with gradient 4 through {m:(2, 3)}. Give it in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>Use {m:y-y_1=m(x-x_1)}. What are m, {m:x_1} and {m:y_1}?</li><li>{m:y-3=4(x-2)}. Expand the bracket.</li><li>{m:y-3=4x-8}. Now add 3 to both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=4x+3;4x+3;3+4x">The y-coordinate of the point is 3, but that is not c. Expand the bracket and add 3 to both sides.</li>
+        <li data-if="y=4x+1;4x+1;1+4x">You multiplied only the x by 4. {m:4(x-2)=4x-8}, not {m:4x-2}.</li>
+        <li data-if="y=4x+11;4x+11;11+4x">The point is {m:(2, 3)}, so the bracket is {m:(x-2)}, not {m:(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:y-3=4(x-2)=4x-8}, so {m:y=4x-5}. Check: when {m:x=2}, {m:y=8-5=3}.</p></div>
+    </div>
+    <div class="q" data-answers="y=-3x+2;-3x+2;2-3x;y=2-3x" data-mode="exact">
+      <p class="qtext">Find the equation of the line with gradient {m:-3} through {m:(2, -4)}. Give it in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>The point has {m:y_1=-4}. So {m:y-y_1} is {m:y-(-4)}.</li><li>{m:y+4=-3(x-2)}. Expand the bracket.</li><li>{m:y+4=-3x+6}. Subtract 4 from both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=-3x+10;-3x+10;10-3x">The point is {m:(2, -4)}, so the left side is {m:y-(-4)=y+4}, not {m:y-4}.</li>
+        <li data-if="y=-3x-10;-3x-10;-10-3x">The x-coordinate of the point is 2, so the bracket is {m:(x-2)}, not {m:(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:y-(-4)=-3(x-2)}, so {m:y+4=-3x+6} and {m:y=-3x+2}. Check: when {m:x=2}, {m:y=-6+2=-4}.</p></div>
+    </div>
+    <div class="q" data-answers="y=3x-5;3x-5;-5+3x;y=-5+3x" data-mode="exact">
+      <p class="qtext">Find the equation of the line through {m:(2, 1)} and {m:(5, 10)}. Give it in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>Find the gradient first.</li><li>{m:m=frac(10-1, 5-2)}. Then use one of the points in {m:y-y_1=m(x-x_1)}.</li><li>{m:y-1=3(x-2)}. Expand, then add 1 to both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=3x-1;3x-1;-1+3x">You multiplied only the x by 3. {m:3(x-2)=3x-6}, not {m:3x-2}.</li>
+        <li data-if="y=3x-6;3x-6;-6+3x">You expanded correctly, but you forgot to add the 1 back to both sides: {m:y=3x-6+1}.</li>
+      </ul>
+      <div class="solution"><p>{m:m=frac(10-1, 5-2)=3}. Then {m:y-1=3(x-2)=3x-6}, so {m:y=3x-5}. Check with {m:(5, 10)}: {m:15-5=10}.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">A line has gradient 4 and passes through {m:(2, 3)}. Find the y-coordinate of the point on the line where {m:x=5}.</p>
+      <ol class="ladder"><li>Write the equation with {m:y-y_1=m(x-x_1)}.</li><li>{m:y-3=4(x-2)}. Put in {m:x=5}.</li><li>{m:y-3=4*3}. Then add 3 to both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is {m:y-3}. Add the 3 back to both sides.</li>
+        <li data-if="23">That uses {m:y=4x+3}. The 3 is the y-coordinate of the point, not the y-intercept.</li>
+      </ul>
+      <div class="solution"><p>{m:y-3=4(5-2)=12}, so {m:y=15}. Going across 3 from the point, the line goes up {m:4*3=12}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which equation is the line with gradient 5 through {m:(3, -2)}?</p>
+      <ul class="options">
+        <li data-correct>The line {m:y+2=5(x-3)}</li>
+        <li data-why="The point is (3, &minus;2), so the left side is y &minus; (&minus;2) = y + 2. This option has y &minus; 2.">The line {m:y-2=5(x-3)}</li>
+        <li data-why="The x-coordinate of the point is 3, so the bracket is (x &minus; 3). This option has (x + 3).">The line {m:y+2=5(x+3)}</li>
+      </ul>
+      <ol class="ladder"><li>Subtract the point&rsquo;s coordinates: {m:y-y_1} and {m:x-x_1}.</li><li>Here {m:x_1=3} and {m:y_1=-2}. Take care with the signs.</li></ol>
+      <div class="solution"><p>{m:y-(-2)=5(x-3)}, which is {m:y+2=5(x-3)}.</p></div>
+    </div>
+    <div class="q" data-answers="(-1,3);-1,3" data-mode="exact">
+      <p class="qtext">Write down the coordinates of a point on the line {m:y-3=2(x+1)}. Use the numbers in the equation, and type it like (4,-5).</p>
+      <ol class="ladder"><li>The equation is in the form {m:y-y_1=m(x-x_1)}.</li><li>The left side is {m:y-3}, so {m:y_1=3}.</li><li>The bracket is {m:x+1=x-(-1)}, so {m:x_1=-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(1,3);1,3">The bracket {m:(x+1)} is {m:x-(-1)}, so {m:x_1=-1}, not 1.</li>
+        <li data-if="(3,-1);3,-1">You swapped the coordinates. The x-coordinate comes first.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+1)=(x-(-1))} gives {m:x_1=-1}, and {m:y-3} gives {m:y_1=3}. The point is {m:(-1, 3)}. Check: {m:3-3=2*(-1+1)} is {m:0=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. The general form ax + by + c = 0</h2>
+    <p>Exam questions often say &ldquo;give your answer in the form {m:ax+by+c=0}, where a, b and c are integers&rdquo;. An integer is a whole number. It can be positive, negative or zero. This is the {term:general-form-of-a-line|general form} of a line. Everything is on one side and the other side is 0.</p>
+    <p>Follow these steps to reach the general form.</p>
+    <ol>
+      <li>If there are fractions, multiply every term by a number that clears them.</li>
+      <li>Move every term to one side, so that the other side is 0.</li>
+      <li>If you can, make the number in front of x positive.</li>
+    </ol>
+    <p>If a, b and c all divide by the same number, divide through by it. Then they have no common factor.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Write {m:y=frac(3, 4)x-2} in the form {m:ax+by+c=0}, where a, b and c are integers.</p>
+      <ol class="steps">
+        <li>Multiply every term by 4 to clear the fraction: {m:4y=3x-8}.</li>
+        <li>Move every term to the right side, so that the left side is 0: {m:0=3x-4y-8}.</li>
+        <li>The answer is {m:3x-4y-8=0}.</li>
+      </ol>
+      <p>Check with a point on the original line. When {m:x=4}, {m:y=3-2=1}. Then {m:12-4-8=0}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: through two points</h3>
+      <p>Find the equation of the line through {m:(2, -1)} and {m:(8, 3)}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers.</p>
+      <ol class="steps">
+        <li>The gradient is {m:frac(3-(-1), 8-2)=frac(4, 6)=frac(2, 3)}.</li>
+        <li>Use the point {m:(2, -1)}: {m:y+1=frac(2, 3)(x-2)}.</li>
+        <li>Multiply every term by 3: {m:3y+3=2(x-2)=2x-4}.</li>
+        <li>Move every term to one side: {m:0=2x-3y-4-3}, which is {m:2x-3y-7=0}.</li>
+        <li>Check both points. {m:(2, -1)}: {m:4+3-7=0}. {m:(8, 3)}: {m:16-9-7=0}.</li>
+      </ol>
+    </div>
+    <p>To read information from {m:ax+by+c=0}, rearrange it into {m:y=mx+c} form. That gives {m:y=-frac(a, b)x-frac(c, b)}. So the gradient is {m:-frac(a, b)}. In this form, the letter c is not the y-intercept. The y-intercept is {m:-frac(c, b)}.</p>
+    <p>You can also find where the line meets each axis. Put {m:y=0} to find the {term:x-intercept}. Put {m:x=0} to find the y-intercept.</p>
+    <figure class="figure-lg">{fig:straight-lines-general}<figcaption>Look at the two points where the line meets the axes. They are {m:(4, 0)} and {m:(0, 3)}. Join them to draw the line {m:3x+4y-12=0}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: gradient and intercepts</h3>
+      <p>Find the gradient and the two intercepts of {m:3x+4y-12=0}.</p>
+      <ol class="steps">
+        <li>Rearrange: {m:4y=-3x+12}, so {m:y=-frac(3, 4)x+3}. The gradient is {m:-frac(3, 4)}.</li>
+        <li>Put {m:y=0}: {m:3x-12=0}, so {m:x=4}. The x-intercept is {m:(4, 0)}.</li>
+        <li>Put {m:x=0}: {m:4y-12=0}, so {m:y=3}. The y-intercept is {m:(0, 3)}.</li>
+      </ol>
+      <p>The line goes down to the right, which matches a negative gradient.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the gradient and the y-intercept of {m:4x+2y-10=0}.</p>
+      <ol class="steps">
+        <li>Subtract {m:4x} and add 10 to both sides: {m:2y=}<span class="blank" data-answers="-4">___</span>{m:x+10}.</li>
+        <li>Divide every term by 2: {m:y=}<span class="blank" data-answers="-2">___</span>{m:x+}<span class="blank" data-answers="5">___</span>.</li>
+        <li>The gradient is {m:-2} and the y-intercept is {m:(0, 5)}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:2y=-4x+10}, so {m:y=-2x+5}. Check with the formula: {m:-frac(a, b)=-frac(4, 2)=-2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the general form</h2>
+    <div class="q" data-answers="2x-y-5=0;2x-5-y=0;-y+2x-5=0;-y-5+2x=0;-5+2x-y=0;-5-y+2x=0" data-mode="exact">
+      <p class="qtext">Write {m:y=2x-5} in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Move every term to one side so that the other side is 0.</li><li>Move y to the right: {m:0=2x-y-5}.</li><li>Write it with the 0 on the right, and check that the number in front of x is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2x+y+5=0;y-2x+5=0;5+y-2x=0">That is the right line, but the number in front of x is negative. Multiply every term by {m:-1}.</li>
+        <li data-if="2x-y+5=0;2x+5-y=0">The check fails: {m:2x-y+5=0} gives {m:y=2x+5}. The 5 must stay {m:-5}.</li>
+      </ul>
+      <div class="solution"><p>Move y across: {m:0=2x-y-5}, so {m:2x-y-5=0}. Check: {m:y=2x-5} gives {m:2x-(2x-5)-5=0}.</p></div>
+    </div>
+    <div class="q" data-answers="2x-5y+5=0;2x+5-5y=0;-5y+2x+5=0;-5y+5+2x=0;5+2x-5y=0;5-5y+2x=0" data-mode="exact">
+      <p class="qtext">Write {m:y=frac(2, 5)x+1} in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Multiply every term by 5 to clear the fraction.</li><li>{m:5y=2x+5}.</li><li>Move every term to one side so that the other side is 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x-5y+1=0;2x+1-5y=0">You multiplied the first two terms by 5 but not the 1. Multiply every term: {m:5*1=5}.</li>
+      </ul>
+      <div class="solution"><p>Multiply by 5: {m:5y=2x+5}. Then {m:0=2x-5y+5}, so {m:2x-5y+5=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-5/2;-2.5" data-mode="value">
+      <p class="qtext">Find the gradient of the line {m:5x+2y-8=0}. Give it as a fraction or a decimal.</p>
+      <ol class="ladder"><li>Rearrange into {m:y=mx+c} form.</li><li>{m:2y=-5x+8}.</li><li>Divide every term by 2, then read the number in front of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="5/2;2.5">Check the sign. {m:2y=-5x+8}, so the number in front of x is negative.</li>
+        <li data-if="-2/5;-0.4">You divided the wrong way round. The gradient is {m:-frac(a, b)=-frac(5, 2)}.</li>
+        <li data-if="-5">You have not divided by 2 yet. Divide every term by 2.</li>
+      </ul>
+      <div class="solution"><p>{m:2y=-5x+8}, so {m:y=-frac(5, 2)x+4}. The gradient is {m:-frac(5, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The line {m:2x+3y-12=0} crosses the x-axis at the point {m:(p, 0)}. Find p.</p>
+      <ol class="ladder"><li>On the x-axis, the y-coordinate is 0.</li><li>Put {m:y=0} into the equation.</li><li>{m:2x-12=0}. Solve for x.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the y-intercept (put {m:x=0}). For the x-axis, put {m:y=0}.</li>
+        <li data-if="-6">Check the sign. {m:2x-12=0} gives {m:2x=12}, so x is positive.</li>
+      </ul>
+      <div class="solution"><p>Put {m:y=0}: {m:2x-12=0}, so {m:x=6}. The line crosses the x-axis at {m:(6, 0)}, so {m:p=6}.</p></div>
+    </div>
+    <div class="q" data-answers="(0,4);0,4" data-mode="exact">
+      <p class="qtext">Find the coordinates of the y-intercept of the line {m:3x-2y+8=0}. Type it like (0,5).</p>
+      <ol class="ladder"><li>On the y-axis, the x-coordinate is 0.</li><li>Put {m:x=0} into the equation.</li><li>{m:-2y+8=0}. Solve for y.</li></ol>
+      <ul class="wrong">
+        <li data-if="(0,-4);0,-4">Check the sign. {m:-2y+8=0} gives {m:8=2y}, so y is positive.</li>
+        <li data-if="(0,8);0,8">The 8 is not the y-intercept here. In this form you must solve {m:-2y+8=0}.</li>
+      </ul>
+      <div class="solution"><p>Put {m:x=0}: {m:-2y+8=0}, so {m:y=4}. The y-intercept is {m:(0, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="2x-3y+1=0;2x+1-3y=0;-3y+2x+1=0;-3y+1+2x=0;1+2x-3y=0;1-3y+2x=0" data-mode="exact">
+      <p class="qtext">Find the equation of the line through {m:(1, 1)} and {m:(4, 3)}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Find the gradient. It is a fraction.</li><li>{m:y-1=frac(2, 3)(x-1)}. Multiply every term by 3.</li><li>{m:3y-3=2x-2}. Move every term to one side.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x-3y-1=0;2x-1-3y=0">Check with the point {m:(1, 1)}: {m:2-3-1=-2}, not 0. From {m:3y-3=2x-2}, the numbers give {m:0=2x-3y+1}.</li>
+        <li data-if="3x-2y-1=0;3x-1-2y=0">You divided the change in x by the change in y. The gradient is {m:frac(2, 3)}, not {m:frac(3, 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:m=frac(3-1, 4-1)=frac(2, 3)}. Then {m:y-1=frac(2, 3)(x-1)}, so {m:3y-3=2x-2} and {m:2x-3y+1=0}. Check {m:(4, 3)}: {m:8-9+1=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these points is on the line {m:2x-y-3=0}?</p>
+      <ul class="options">
+        <li data-correct>The point {m:(2, 1)}</li>
+        <li data-why="Put x = 1 and y = 2 in: 2 &minus; 2 &minus; 3 = &minus;3, not 0.">The point {m:(1, 2)}</li>
+        <li data-why="Put x = 3 and y = &minus;3 in: 6 + 3 &minus; 3 = 6, not 0.">The point {m:(3, -3)}</li>
+      </ul>
+      <ol class="ladder"><li>Put the x-value and the y-value of a point into {m:2x-y-3}.</li><li>The point is on the line when the result is 0.</li></ol>
+      <div class="solution"><p>For {m:(2, 1)}: {m:2*2-1-3=0}. So {m:(2, 1)} is on the line.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Parallel and perpendicular lines</h2>
+    <p>{term:parallel-lines|Parallel lines} never meet. They are equally steep, so they have the same gradient.</p>
+    <figure class="figure-lg">{fig:straight-lines-parallel}<figcaption>Look at the dashed steps on each line. Both go across 1 and up 2. Both lines have gradient 2, so they are parallel. They cross the y-axis at different points.</figcaption></figure>
+    <p>Two lines are {term:perpendicular} when they meet at a right angle (90 degrees). Their gradients are linked. Take the gradient of one line, turn it upside down and change its sign. The result is the {term:negative-reciprocal|negative reciprocal}. It is the gradient of a perpendicular line.</p>
+    <figure class="figure-lg">{fig:straight-lines-perp}<figcaption>Look at the small square where the two lines cross. It marks a right angle. The gradients are 2 and {m:-frac(1, 2)}. Multiply them: {m:2*(-frac(1, 2))=-1}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> two lines are parallel when their gradients are equal: {m:m_1=m_2}. Two lines that are not horizontal or vertical are perpendicular when {m:m_1*m_2=-1}. That means {m:m_2=-frac(1, m_1)}. Always put each equation in the form {m:y=mx+c} before you compare gradients.</p>
+    </div>
+    <p>A horizontal line is perpendicular to a vertical line. The rule {m:m_1*m_2=-1} does not cover this case, because a vertical line has no gradient.</p>
+    <div class="worked">
+      <h3>Worked example: a parallel line</h3>
+      <p>Find the equation of the line parallel to {m:y=3x+1} that passes through {m:(2, 4)}.</p>
+      <ol class="steps">
+        <li>The gradient of {m:y=3x+1} is 3. A parallel line has the same gradient, 3.</li>
+        <li>Use the point-gradient form: {m:y-4=3(x-2)}.</li>
+        <li>Expand: {m:y-4=3x-6}, so {m:y=3x-2}.</li>
+        <li>Check the point: when {m:x=2}, {m:y=6-2=4}. This matches.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: are these lines parallel?</h3>
+      <p>Are the lines {m:2y=4x+6} and {m:4x-2y+1=0} parallel?</p>
+      <ol class="steps">
+        <li>Divide the first by 2: {m:y=2x+3}. Its gradient is 2.</li>
+        <li>Rearrange the second: {m:2y=4x+1}, so {m:y=2x+frac(1, 2)}. Its gradient is 2.</li>
+        <li>The gradients are equal, so the lines are parallel.</li>
+      </ol>
+      <p>They are two different lines, because their y-intercepts differ: 3 and {m:frac(1, 2)}. The 4 in front of x in each equation is not the gradient. Both equations had to be rearranged first.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a perpendicular line</h3>
+      <p>Find the equation of the line perpendicular to {m:y=2x+1} that passes through {m:(4, 3)}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers.</p>
+      <ol class="steps">
+        <li>The gradient of {m:y=2x+1} is 2. The perpendicular gradient is {m:-frac(1, 2)}.</li>
+        <li>Use the point-gradient form: {m:y-3=-frac(1, 2)(x-4)}.</li>
+        <li>Multiply every term by 2: {m:2y-6=-(x-4)=-x+4}.</li>
+        <li>Move every term to one side: {m:x+2y-10=0}.</li>
+        <li>Check the point {m:(4, 3)}: {m:4+6-10=0}. Check the gradients: {m:2*(-frac(1, 2))=-1}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the gradient from the general form</h3>
+      <p>Find the gradient of a line perpendicular to {m:3x+5y-2=0}.</p>
+      <ol class="steps">
+        <li>The gradient of {m:3x+5y-2=0} is {m:-frac(a, b)=-frac(3, 5)}.</li>
+        <li>Turn it upside down: {m:-frac(5, 3)}. Change the sign: {m:frac(5, 3)}.</li>
+        <li>Check: {m:-frac(3, 5)*frac(5, 3)=-1}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A line has gradient 5. Find the gradient of a line perpendicular to it.</p>
+      <ol class="steps">
+        <li>Turn 5 upside down. The reciprocal of 5 is <span class="blank" data-answers="1/5;0.2">___</span>.</li>
+        <li>Change the sign. The negative reciprocal is <span class="blank" data-answers="-1/5;-0.2">___</span>.</li>
+        <li>Check: {m:5*(-frac(1, 5))=-1}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The reciprocal of 5 is {m:frac(1, 5)}. The negative reciprocal is {m:-frac(1, 5)}. The product is {m:5*(-frac(1, 5))=-1}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: parallel and perpendicular lines</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these lines is parallel to {m:y=3x-2}?</p>
+      <ul class="options">
+        <li data-correct>The line {m:y=3x+5}</li>
+        <li data-why="This line has gradient 2, not 3. Having the same y-intercept does not make lines parallel.">The line {m:y=2x-2}</li>
+        <li data-why="Rearrange it: y = x/3 + 2. Its gradient is one third, not 3.">The line {m:3y=x+6}</li>
+      </ul>
+      <ol class="ladder"><li>Parallel lines have the same gradient. What is the gradient of {m:y=3x-2}?</li><li>Put each option in the form {m:y=mx+c} and read its gradient.</li></ol>
+      <div class="solution"><p>{m:y=3x+5} has gradient 3, the same as {m:y=3x-2}. The other lines have gradients 2 and {m:frac(1, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the gradient of any line parallel to {m:4y-12x+5=0}.</p>
+      <ol class="ladder"><li>A parallel line has the same gradient. Find the gradient of this line.</li><li>Add {m:12x} to both sides and subtract 5: {m:4y=12x-5}.</li><li>Divide every term by 4, then read the number in front of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is the number before you divided by 4. Divide every term by 4 first.</li>
+        <li data-if="-3">Moving {m:-12x} to the other side makes it {m:+12x}. So the gradient is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:4y=12x-5}, so {m:y=3x-frac(5, 4)}. The gradient is 3.</p></div>
+    </div>
+    <div class="q" data-answers="-1/4;-0.25" data-mode="value">
+      <p class="qtext">Find the gradient of a line perpendicular to {m:y=4x+7}. Give it as a fraction or a decimal.</p>
+      <ol class="ladder"><li>The gradient of {m:y=4x+7} is 4.</li><li>Turn 4 upside down. Then change the sign.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/4;0.25">That is the reciprocal. Change the sign as well to get the negative reciprocal.</li>
+        <li data-if="-4">You changed the sign but did not turn 4 upside down.</li>
+      </ul>
+      <div class="solution"><p>The reciprocal of 4 is {m:frac(1, 4)}. The negative reciprocal is {m:-frac(1, 4)}. Check: {m:4*(-frac(1, 4))=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="3/2;1.5" data-mode="value">
+      <p class="qtext">Find the gradient of a line perpendicular to {m:y=-frac(2, 3)x+1}. Give it as a fraction or a decimal.</p>
+      <ol class="ladder"><li>The gradient is {m:-frac(2, 3)}.</li><li>Turn the fraction upside down.</li><li>Then change the sign. A negative becomes positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3/2;-1.5">You turned the fraction upside down but kept the minus sign. Change the sign too.</li>
+        <li data-if="2/3">You changed the sign but did not turn the fraction upside down.</li>
+      </ul>
+      <div class="solution"><p>Turn {m:-frac(2, 3)} upside down: {m:-frac(3, 2)}. Change the sign: {m:frac(3, 2)}. Check: {m:-frac(2, 3)*frac(3, 2)=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The lines {m:y=2x+3} and {m:ky=x-4} are perpendicular. Find the value of k.</p>
+      <ol class="ladder"><li>Write {m:ky=x-4} in the form {m:y=mx+c}. Divide every term by k.</li><li>Its gradient is {m:frac(1, k)}. The other gradient is 2.</li><li>Perpendicular lines have gradients that multiply to {m:-1}. Solve {m:2*frac(1, k)=-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">Check the sign. The gradients must multiply to {m:-1}, so {m:frac(2, k)=-1}.</li>
+        <li data-if="-1/2;-0.5">That is the gradient needed. But k is not the gradient. The gradient of {m:ky=x-4} is {m:frac(1, k)}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=frac(1, k)x-frac(4, k)}, so the gradient is {m:frac(1, k)}. {m:2*frac(1, k)=-1} gives {m:2=-k}, so {m:k=-2}. Check: {m:frac(1, k)=-frac(1, 2)} and {m:2*(-frac(1, 2))=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="y=2x-5;2x-5;-5+2x;y=-5+2x" data-mode="exact">
+      <p class="qtext">Find the equation of the line through {m:(3, 1)} parallel to {m:y=2x+5}. Give it in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>What gradient does a parallel line have?</li><li>Use {m:y-y_1=m(x-x_1)} with the point {m:(3, 1)}.</li><li>{m:y-1=2(x-3)}. Expand, then add 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=2x+1;2x+1;1+2x">The 1 is the y-coordinate of the point, not c. Use {m:y-1=2(x-3)} and expand.</li>
+        <li data-if="y=2x+5;2x+5;5+2x">That is the original line. Parallel lines have different y-intercepts. Check: {m:2*3+5=11}, not 1.</li>
+        <li data-if="y=2x-2;2x-2;-2+2x">You multiplied only the x by 2. {m:2(x-3)=2x-6}, not {m:2x-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:y-1=2(x-3)=2x-6}, so {m:y=2x-5}. Check: when {m:x=3}, {m:y=6-5=1}.</p></div>
+    </div>
+    <div class="q" data-answers="x-3y-3=0;x-3-3y=0;-3y+x-3=0;-3y-3+x=0;-3+x-3y=0;-3-3y+x=0" data-mode="exact">
+      <p class="qtext">Find the equation of the line through {m:(6, 1)} perpendicular to {m:y=-3x+2}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>The gradient of {m:y=-3x+2} is {m:-3}. Find the negative reciprocal.</li><li>{m:y-1=frac(1, 3)(x-6)}. Multiply every term by 3.</li><li>{m:3y-3=x-6}. Move every term to one side.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x+y-19=0;3x-19+y=0;y+3x-19=0;y-19+3x=0;-19+3x+y=0;-19+y+3x=0">That line is parallel to the original, with gradient {m:-3}. For a perpendicular line, turn the gradient upside down and change the sign.</li>
+        <li data-if="x+3y-9=0;x-9+3y=0;3y+x-9=0;3y-9+x=0;-9+x+3y=0;-9+3y+x=0">You turned the gradient upside down but kept the minus sign: {m:-frac(1, 3)}. Change the sign: {m:frac(1, 3)}.</li>
+      </ul>
+      <div class="solution"><p>The perpendicular gradient is {m:frac(1, 3)}. {m:y-1=frac(1, 3)(x-6)}, so {m:3y-3=x-6} and {m:x-3y-3=0}. Check {m:(6, 1)}: {m:6-3-3=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Distance, midpoint and perpendicular bisector</h2>
+    <p>A {term:line-segment|line segment} is the part of a line between two end points. It has a length and a middle.</p>
+    <p>The {term:midpoint} of a line segment is the point exactly halfway along it. To find it, take the average of the two x-coordinates and the average of the two y-coordinates.</p>
+    <figure class="figure-lg">{fig:straight-lines-midpoint}<figcaption>Look at the point M. Its x-coordinate, 2, is halfway between {m:-1} and 5. Its y-coordinate, 6, is halfway between 2 and 10.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the midpoint of {m:(x_1, y_1)} and {m:(x_2, y_2)} is {m:(frac(x_1+x_2, 2), frac(y_1+y_2, 2))}. Add the coordinates, then halve. Do not subtract.</p>
+    </div>
+    <p>The {term:distance|distance} between two points is the length of the line segment that joins them. Draw a right-angled triangle on the segment. The two short sides are the change in x and the change in y. Pythagoras&rsquo; theorem gives the longest side.</p>
+    <figure class="figure-lg">{fig:straight-lines-distance}<figcaption>Look at the triangle. The short sides are 6 across and 8 up. So {m:AB^2=6^2+8^2=100}, and AB is 10.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the distance between {m:(x_1, y_1)} and {m:(x_2, y_2)} is {m:d=sqrt((x_2-x_1)^2+(y_2-y_1)^2)}. Square each change first. A squared number is never negative, so the order of the points does not matter.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the midpoint and the distance of the line segment from {m:A(-1, 2)} to {m:B(5, 10)}.</p>
+      <ol class="steps">
+        <li>Midpoint: {m:(frac(-1+5, 2), frac(2+10, 2))=(2, 6)}.</li>
+        <li>The change in x is {m:5-(-1)=6}. The change in y is {m:10-2=8}.</li>
+        <li>Distance: {m:d=sqrt(6^2+8^2)=sqrt(36+64)=sqrt(100)=10}.</li>
+      </ol>
+      <p>The segment is 10 units long and its middle is the point {m:(2, 6)}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exact distance</h3>
+      <p>Find the exact distance between {m:A(1, 4)} and {m:B(5, -2)}. Give your answer as a surd in its simplest form.</p>
+      <ol class="steps">
+        <li>The change in x is {m:5-1=4}. The change in y is {m:-2-4=-6}.</li>
+        <li>{m:d=sqrt(4^2+(-6)^2)=sqrt(16+36)=sqrt(52)}.</li>
+        <li>Simplify: {m:52=4*13}, so {m:sqrt(52)=2sqrt(13)}.</li>
+      </ol>
+      <p>The exact distance is {m:2sqrt(13)}, which is about 7.21 to 2 decimal places.</p>
+    </div>
+    <p>The {term:perpendicular-bisector} of a line segment cuts it in half and meets it at a right angle. So it needs two facts. It passes through the midpoint, and its gradient is the negative reciprocal of the gradient of the segment.</p>
+    <figure class="figure-lg">{fig:straight-lines-bisector}<figcaption>Look at the dashed line. It passes through M, the midpoint of AB, and crosses AB at a right angle. The matching tick marks show that AM and MB are equal.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a perpendicular bisector</h3>
+      <p>Find the equation of the perpendicular bisector of {m:A(1, 4)} and {m:B(5, -2)}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers.</p>
+      <ol class="steps">
+        <li>The midpoint is {m:(frac(1+5, 2), frac(4+(-2), 2))=(3, 1)}.</li>
+        <li>The gradient of AB is {m:frac(-2-4, 5-1)=-frac(6, 4)=-frac(3, 2)}.</li>
+        <li>The perpendicular gradient is the negative reciprocal: {m:frac(2, 3)}.</li>
+        <li>Use the point-gradient form through the midpoint: {m:y-1=frac(2, 3)(x-3)}.</li>
+        <li>Multiply every term by 3: {m:3y-3=2x-6}. So {m:2x-3y-3=0}.</li>
+        <li>Check the midpoint: {m:6-3-3=0}. Check the gradients: {m:-frac(3, 2)*frac(2, 3)=-1}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the midpoint of {m:(2, -5)} and {m:(8, 1)}.</p>
+      <ol class="steps">
+        <li>The x-coordinate is {m:frac(2+8, 2)=}<span class="blank" data-answers="5">___</span>.</li>
+        <li>The y-coordinate is {m:frac(-5+1, 2)=}<span class="blank" data-answers="-2">___</span>.</li>
+        <li>The midpoint is {m:(5, -2)}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(2+8, 2)=5} and {m:frac(-5+1, 2)=-2}. The midpoint is {m:(5, -2)}. It is 3 across and 3 up from the first point, and 3 across and 3 up to the second.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: distance, midpoint and perpendicular bisector</h2>
+    <div class="q" data-answers="(5,2);5,2" data-mode="exact">
+      <p class="qtext">Find the midpoint of {m:(2, 6)} and {m:(8, -2)}. Type it like (3,-1).</p>
+      <ol class="ladder"><li>Add the two x-coordinates and halve the total.</li><li>Do the same with the two y-coordinates.</li><li>{m:frac(2+8, 2)} and {m:frac(6+(-2), 2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(10,4);10,4">You added but did not halve. Divide each total by 2.</li>
+        <li data-if="(3,-4);3,-4">That is half of each change. For the midpoint, add the coordinates instead of subtracting.</li>
+      </ul>
+      <div class="solution"><p>{m:(frac(2+8, 2), frac(6-2, 2))=(5, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the distance between {m:(1, 2)} and {m:(4, 6)}.</p>
+      <ol class="ladder"><li>Find the change in x and the change in y.</li><li>The changes are 3 and 4. Square each one.</li><li>Add the squares, then take the square root.</li></ol>
+      <ul class="wrong">
+        <li data-if="7">That is {m:3+4}. Square each change, add them, then take the square root.</li>
+        <li data-if="25">That is the square of the distance. Take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:d=sqrt(3^2+4^2)=sqrt(25)=5}.</p></div>
+    </div>
+    <div class="q" data-answers="6sqrt(2);6sqrt2;6*sqrt(2)" data-mode="exact">
+      <p class="qtext">Find the exact distance between {m:(0, 5)} and {m:(6, -1)}. Give your answer as a surd in its simplest form. Type it like 5sqrt(2).</p>
+      <ol class="ladder"><li>The change in x is 6. The change in y is {m:-1-5}.</li><li>{m:d=sqrt(6^2+(-6)^2)=sqrt(72)}.</li><li>Find the biggest square number that divides 72.</li></ol>
+      <ul class="wrong">
+        <li data-if="sqrt(72);sqrt72">The value is right, but you must simplify it. {m:72=36*2}.</li>
+      </ul>
+      <div class="solution"><p>{m:d=sqrt(36+36)=sqrt(72)=sqrt(36*2)=6sqrt(2)}.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">The distance between {m:(2, 1)} and {m:(8, k)} is 10. Given that {m:k>1}, find k.</p>
+      <ol class="ladder"><li>Write the distance formula and put in the numbers: {m:sqrt(6^2+(k-1)^2)=10}.</li><li>Square both sides: {m:36+(k-1)^2=100}.</li><li>{m:(k-1)^2=64}. Take the square root, then use {m:k>1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-7">That is the other solution of {m:(k-1)^2=64}. The question says {m:k>1}, so reject it.</li>
+        <li data-if="8">That is {m:k-1}. Add 1 to get k.</li>
+      </ul>
+      <div class="solution"><p>{m:36+(k-1)^2=100}, so {m:(k-1)^2=64} and {m:k-1=8} or {m:k-1=-8}. That gives {m:k=9} or {m:k=-7}. Only {m:k=9} has {m:k>1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which point is the midpoint of the line segment from {m:(-4, 1)} to {m:(2, 7)}?</p>
+      <ul class="options">
+        <li data-correct>The point {m:(-1, 4)}</li>
+        <li data-why="This is half of each change, (2 &minus; (&minus;4))/2 and (7 &minus; 1)/2. For a midpoint, add the coordinates.">The point {m:(3, 3)}</li>
+        <li data-why="This adds the coordinates but does not halve them: &minus;4 + 2 = &minus;2 and 1 + 7 = 8. Halve each total.">The point {m:(-2, 8)}</li>
+      </ul>
+      <ol class="ladder"><li>Add the x-coordinates and halve. Then do the same for y.</li><li>{m:frac(-4+2, 2)} and {m:frac(1+7, 2)}.</li></ol>
+      <div class="solution"><p>{m:(frac(-4+2, 2), frac(1+7, 2))=(-1, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The points are {m:A(1, 3)} and {m:B(5, 5)}. Find the gradient of the perpendicular bisector of AB.</p>
+      <ol class="ladder"><li>The perpendicular bisector is perpendicular to AB. First find the gradient of AB.</li><li>{m:frac(5-3, 5-1)=frac(1, 2)}.</li><li>Find the negative reciprocal.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">Check the sign. The negative reciprocal of {m:frac(1, 2)} is negative.</li>
+        <li data-if="-1/2;-0.5">You changed the sign but did not turn the fraction upside down.</li>
+        <li data-if="1/2;0.5">That is the gradient of AB. The bisector is perpendicular, so you need the negative reciprocal.</li>
+      </ul>
+      <div class="solution"><p>The gradient of AB is {m:frac(1, 2)}. The negative reciprocal is {m:-2}. Check: {m:frac(1, 2)*(-2)=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="2x+3y-5=0;2x-5+3y=0;3y+2x-5=0;3y-5+2x=0;-5+2x+3y=0;-5+3y+2x=0" data-mode="exact">
+      <p class="qtext">Find the equation of the perpendicular bisector of {m:A(-1, -2)} and {m:B(3, 4)}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Find the midpoint of AB, and the gradient of AB.</li><li>The midpoint is {m:(1, 1)}. The gradient of AB is {m:frac(6, 4)=frac(3, 2)}, so the perpendicular gradient is {m:-frac(2, 3)}.</li><li>{m:y-1=-frac(2, 3)(x-1)}. Multiply every term by 3 and rearrange.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x-2y-1=0;3x-1-2y=0;-2y+3x-1=0;-2y-1+3x=0;-1+3x-2y=0;-1-2y+3x=0">That line goes through the midpoint but has the gradient of AB. The bisector needs the negative reciprocal.</li>
+        <li data-if="2x+3y+8=0;2x+8+3y=0;3y+2x+8=0;3y+8+2x=0;8+2x+3y=0;8+3y+2x=0">That line passes through A, not through the midpoint. Use the midpoint {m:(1, 1)}.</li>
+      </ul>
+      <div class="solution"><p>The midpoint is {m:(1, 1)}. The gradient of AB is {m:frac(3, 2)}, so the bisector has gradient {m:-frac(2, 3)}. {m:y-1=-frac(2, 3)(x-1)} gives {m:3y-3=-2x+2}, so {m:2x+3y-5=0}. Check {m:(1, 1)}: {m:2+3-5=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Modelling with straight lines</h2>
+    <p>Many real situations change at a steady rate. A taxi fare rises by the same amount for each kilometre. A tank leaks the same volume each minute. A straight-line equation that describes such a situation is a {term:linear-model}.</p>
+    <p>In a linear model, the gradient is the rate of change. Its units are the units of y per unit of x, such as pounds per hour. The y-intercept is the starting value, when x is 0.</p>
+    <figure class="figure-lg">{fig:straight-lines-model}<figcaption>Look at the start of the line. It begins at {m:(0, 40)}: the plumber charges 40 pounds before any work. Each extra hour adds 30 pounds, so the gradient is 30 pounds per hour.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> to build a linear model, find the gradient (the rate) and a starting value. Write the equation with letters that fit the situation. Then say what each number means, with its units, and say what you have assumed.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A plumber charges a call-out fee of 40 pounds plus 30 pounds for each hour of work. The cost is C pounds for t hours. Write a model, and find the cost of 2.5 hours.</p>
+      <ol class="steps">
+        <li>The model is {m:C=40+30t}.</li>
+        <li>Put in {m:t=2.5}: {m:C=40+30*2.5=40+75=115}.</li>
+        <li>The cost of 2.5 hours is 115 pounds.</li>
+      </ol>
+      <p>The 40 is the call-out fee, in pounds. The 30 is the cost of each hour, in pounds per hour. The model assumes that the hourly rate stays the same. It only makes sense when {m:t>=0}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: building the model from two readings</h3>
+      <p>Water leaks from a tank at a steady rate. At 2 minutes the tank holds 50 litres. At 5 minutes it holds 38 litres. Find a model for the volume V litres at time t minutes. When is the tank empty?</p>
+      <ol class="steps">
+        <li>The gradient is {m:frac(38-50, 5-2)=frac(-12, 3)=-4}. The tank loses 4 litres each minute.</li>
+        <li>Use the point-gradient form: {m:V-50=-4(t-2)}, so {m:V=-4t+58}.</li>
+        <li>At the start, {m:t=0}, the tank held 58 litres.</li>
+        <li>The tank is empty when {m:V=0}: {m:0=-4t+58}, so {m:t=14.5}.</li>
+      </ol>
+      <p>The tank is empty after 14.5 minutes. The model is only valid until then. After that it would give a negative volume, which is impossible.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A phone plan costs 12 pounds a month plus 0.05 pounds for each text. The monthly cost is {m:C=12+0.05n} pounds for n texts. Find the cost for 140 texts.</p>
+      <ol class="steps">
+        <li>The cost of the texts is {m:0.05*140=}<span class="blank" data-answers="7">___</span> pounds.</li>
+        <li>Add the fixed charge: {m:12+7=}<span class="blank" data-answers="19">___</span> pounds.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:C=12+0.05*140=12+7=19}. The cost is 19 pounds.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: modelling</h2>
+    <div class="q" data-answers="13;13.00" data-mode="value">
+      <p class="qtext">A taxi charges 4 pounds to start and 1.50 pounds for each kilometre. Find the cost of a 6 km journey, in pounds.</p>
+      <ol class="ladder"><li>Write a model. Use C for the cost and d for the distance.</li><li>{m:C=4+1.5d}. Put in {m:d=6}.</li></ol>
+      <ul class="wrong">
+        <li data-if="9">That is only the cost of the distance. Add the 4 pounds to start.</li>
+        <li data-if="5.5">You added 4 and 1.5. The 1.5 is the cost of each kilometre, so multiply it by 6 first.</li>
+      </ul>
+      <div class="solution"><p>{m:C=4+1.5*6=4+9=13}. The journey costs 13 pounds.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A gym charges {m:C=25+8n} pounds for n classes. What does the number 8 mean?</p>
+      <ul class="options">
+        <li data-correct>The cost of each class, in pounds</li>
+        <li data-why="That is the 25. It is the cost when n = 0, so it is the value without any classes.">The cost when no classes are attended</li>
+        <li data-why="The letter n is the number of classes. The 8 is the number multiplied by n.">The number of classes attended</li>
+      </ul>
+      <ol class="ladder"><li>The gradient is the rate: how much C changes for each increase of 1 in n.</li><li>Which number is multiplied by n?</li></ol>
+      <div class="solution"><p>The 8 is the gradient. Each extra class adds 8 pounds to the cost.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">A candle burns at a steady rate. It is 30 cm tall after 1 hour and 24 cm tall after 2 hours. Find the gradient of the model of height against time, in cm per hour.</p>
+      <ol class="ladder"><li>The gradient is the change in height divided by the change in time.</li><li>The height changes from 30 to 24. The time changes from 1 to 2.</li></ol>
+      <ul class="wrong"><li data-if="6">The candle gets shorter, so the height falls. The gradient is negative.</li></ul>
+      <div class="solution"><p>{m:frac(24-30, 2-1)=-6}. The height falls by 6 cm each hour.</p></div>
+    </div>
+    <div class="q" data-answers="h=-6t+36;-6t+36;36-6t;h=36-6t" data-mode="exact">
+      <p class="qtext">The candle in the last question has height h cm after t hours, and the gradient is {m:-6}. Write h in terms of t, in the form h = mt + c. Type it like h=2t+5.</p>
+      <ol class="ladder"><li>Use the point-gradient form with the point {m:(1, 30)}.</li><li>{m:h-30=-6(t-1)}. Expand the bracket.</li><li>{m:h-30=-6t+6}. Add 30 to both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="h=-6t+30;-6t+30;30-6t">The 30 cm is the height after 1 hour, not the starting height. Use {m:h-30=-6(t-1)} and expand.</li>
+        <li data-if="h=-6t+24;-6t+24;24-6t">The 24 cm is the height after 2 hours, not the starting height. Use a point and the gradient, then expand.</li>
+      </ul>
+      <div class="solution"><p>{m:h-30=-6(t-1)=-6t+6}, so {m:h=-6t+36}. Check: when {m:t=2}, {m:h=-12+36=24}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Use the model {m:h=-6t+36} to find how many hours the candle takes to burn out. The candle has burnt out when {m:h=0}.</p>
+      <ol class="ladder"><li>Put {m:h=0} into the model.</li><li>{m:0=-6t+36}. Solve for t.</li></ol>
+      <ul class="wrong"><li data-if="36">That is the starting height in cm, not a time. Solve {m:0=-6t+36} for t.</li></ul>
+      <div class="solution"><p>{m:0=-6t+36} gives {m:6t=36}, so {m:t=6}. The candle burns out after 6 hours.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which assumption does the model {m:C=25+8n} make?</p>
+      <ul class="options">
+        <li data-correct>Every class costs the same amount</li>
+        <li data-why="The 25 is a fixed charge. The model treats it as the same every month.">The fixed charge changes each month</li>
+        <li data-why="The 8 is the cost of a class, not a limit. The model works for any number of classes.">Nobody attends more than 8 classes</li>
+      </ul>
+      <ol class="ladder"><li>A straight line has the same gradient everywhere.</li><li>What does the gradient mean in this model?</li></ol>
+      <div class="solution"><p>The gradient is the cost of a class, and it is the same everywhere on a straight line. So the model assumes that every class costs the same.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>So far you have gone from facts about a line to its equation. Now go both ways. You can draw the graph from an equation. You can also find the equation from a graph.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the equation to the graph. Find where the line meets each axis, mark those two points, and join them.</p><p>{m:y=2x-3} meets the y-axis at {m:(0, -3)}. Put {m:y=0} to get {m:x=frac(3, 2)}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the graph to the equation. Read two points, find the gradient, then use the point-gradient form.</p><p>The points {m:(0, -2)} and {m:(4, 0)} give the gradient {m:frac(2, 4)=frac(1, 2)}.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:straight-lines-draw}<figcaption>Look at the two marked points. They are the y-intercept and the x-intercept of {m:y=2x-3}. Join them to draw the line.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from a graph</h3>
+      <p>A line crosses the y-axis at {m:(0, -2)} and the x-axis at {m:(4, 0)}. Find its equation in the form {m:ax+by+c=0}, where a, b and c are integers.</p>
+      <figure class="figure-lg">{fig:straight-lines-from-graph}<figcaption>Look at the two marked points. Use them to find the gradient. One of them is the y-intercept, so you can write the equation at once.</figcaption></figure>
+      <ol class="steps">
+        <li>The gradient is {m:frac(0-(-2), 4-0)=frac(2, 4)=frac(1, 2)}.</li>
+        <li>The y-intercept is {m:-2}, so {m:y=frac(1, 2)x-2}.</li>
+        <li>Multiply every term by 2: {m:2y=x-4}.</li>
+        <li>Move every term to one side: {m:x-2y-4=0}.</li>
+        <li>Check the other point: {m:(4, 0)} gives {m:4-0-4=0}.</li>
+      </ol>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From two end points to the midpoint. Add the coordinates and halve.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the midpoint M and one end point A to the other end point B. Double the midpoint and subtract A: {m:B=2M-A}, coordinate by coordinate.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from the midpoint to an end point</h3>
+      <p>The midpoint of AB is {m:M(3, 2)}. The point A is {m:(1, -1)}. Find B.</p>
+      <ol class="steps">
+        <li>From A to M, x goes up by 2 and y goes up by 3.</li>
+        <li>Take the same steps again from M. The x-coordinate is {m:2*3-1=5}. The y-coordinate is {m:2*2-(-1)=5}.</li>
+        <li>So B is {m:(5, 5)}.</li>
+        <li>Check: the midpoint of {m:(1, -1)} and {m:(5, 5)} is {m:(frac(1+5, 2), frac(-1+5, 2))=(3, 2)}.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="y=-2x+4;-2x+4;4-2x;y=4-2x" data-mode="exact">
+      <p class="qtext">A line crosses the y-axis at {m:(0, 4)} and the x-axis at {m:(2, 0)}. Write its equation in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>Find the gradient from the two points.</li><li>From {m:(0, 4)} to {m:(2, 0)}, y changes by {m:-4} and x changes by 2.</li><li>The y-intercept is 4, so c is 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=2x+4;2x+4;4+2x">The line goes down to the right, so its gradient is negative.</li>
+        <li data-if="y=-1/2x+4;y=-0.5x+4;y=-x/2+4;-1/2x+4;-0.5x+4;-x/2+4;4-x/2;4-0.5x">You divided the change in x by the change in y. The gradient is {m:frac(-4, 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:m=frac(0-4, 2-0)=-2} and {m:c=4}, so {m:y=-2x+4}. Check: at {m:x=2}, {m:y=-4+4=0}.</p></div>
+    </div>
+    <div class="q" data-answers="y=-3x+10;-3x+10;10-3x;y=10-3x" data-mode="exact">
+      <p class="qtext">Find the equation of the line shown, in the form y = mx + c. Type it like y=2x+1.</p>
+      <figure class="qfig-lg">{fig:straight-lines-q-from-graph}</figure>
+      <ol class="ladder"><li>Read the two marked points and find the gradient.</li><li>From {m:(1, 7)} to {m:(3, 1)}, y changes by {m:-6} and x changes by 2.</li><li>Use {m:y-7=-3(x-1)} and expand.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=-3x+7;-3x+7;7-3x">The 7 is the y-coordinate of the point {m:(1, 7)}, not the y-intercept. Expand {m:y-7=-3(x-1)}.</li>
+        <li data-if="y=3x+4;3x+4;4+3x">The line goes down to the right, so its gradient is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:m=frac(1-7, 3-1)=-3}. Then {m:y-7=-3(x-1)=-3x+3}, so {m:y=-3x+10}. Check {m:(3, 1)}: {m:-9+10=1}.</p></div>
+    </div>
+    <div class="q" data-answers="(7,-7);7,-7" data-mode="exact">
+      <p class="qtext">The midpoint of AB is {m:M(4, -1)}. The point A is {m:(1, 5)}. Find the coordinates of B. Type it like (3,-1).</p>
+      <ol class="ladder"><li>From A to M, how far does x change? How far does y change?</li><li>Take the same steps again from M.</li><li>Or use {m:B=2M-A}, coordinate by coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2.5,2);2.5,2">That is the midpoint of A and M. You need the point as far beyond M as A is before it.</li>
+        <li data-if="(3,-6);3,-6">That is the step from A to M. Take that step again from M, not from the origin.</li>
+      </ul>
+      <div class="solution"><p>{m:B=2M-A=(2*4-1, 2*(-1)-5)=(7, -7)}. Check: {m:(frac(1+7, 2), frac(5+(-7), 2))=(4, -1)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The line through {m:(1, 2)} and {m:(3, 6)} has gradient 2. Which equation describes the same line?</p>
+      <ul class="options">
+        <li data-correct>The line {m:y-6=2(x-3)}</li>
+        <li data-why="This line has gradient 2, but it passes through (3, 2). On the line through (1, 2) and (3, 6), the point with x = 3 is (3, 6).">The line {m:y-2=2(x-3)}</li>
+        <li data-why="This line goes through (1, 6), not (1, 2). It also has gradient 3, not 2.">The line {m:y-6=3(x-1)}</li>
+      </ul>
+      <ol class="ladder"><li>The point-gradient form can use either point.</li><li>Check that the point and the gradient both match.</li></ol>
+      <div class="solution"><p>Use the point {m:(3, 6)} and gradient 2: {m:y-6=2(x-3)}. It simplifies to {m:y=2x}. Using {m:(1, 2)} gives {m:y-2=2(x-1)}, which is also {m:y=2x}.</p></div>
+    </div>
+    <div class="q" data-answers="2x-3y-6=0;2x-6-3y=0;-3y+2x-6=0;-3y-6+2x=0;-6+2x-3y=0;-6-3y+2x=0" data-mode="exact">
+      <p class="qtext">A line crosses the x-axis at {m:(3, 0)} and the y-axis at {m:(0, -2)}. Write its equation in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Find the gradient from the two points.</li><li>From {m:(0, -2)} to {m:(3, 0)}, y changes by 2 and x changes by 3. The y-intercept is {m:-2}.</li><li>{m:y=frac(2, 3)x-2}. Multiply every term by 3 and rearrange.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x-2y-4=0;3x-4-2y=0;-2y+3x-4=0;-2y-4+3x=0;-4+3x-2y=0;-4-2y+3x=0">You used the change in x over the change in y. The gradient is {m:frac(2, 3)}, not {m:frac(3, 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:m=frac(0-(-2), 3-0)=frac(2, 3)}, so {m:y=frac(2, 3)x-2}. Multiply by 3: {m:3y=2x-6}, so {m:2x-3y-6=0}. Check {m:(3, 0)}: {m:6-0-6=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Priya says:</b> the gradient through {m:(1, 5)} and {m:(4, -1)} is {m:frac(4-1, -1-5)=frac(3, -6)=-frac(1, 2)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She put the change in x on the top. The change in y goes on the top</li>
+        <li data-why="Either order is fine if the top and the bottom use the same order. Her top and bottom used different orders.">She should have subtracted in the other order</li>
+        <li data-why="A line that goes down to the right has a negative gradient. A negative answer is fine.">A gradient cannot be negative</li>
+      </ul>
+      <ol class="ladder"><li>The gradient is the change in y divided by the change in x.</li><li>Which change is on the top in Priya&rsquo;s working?</li></ol>
+      <div class="solution"><p>The gradient is {m:frac(-1-5, 4-1)=frac(-6, 3)=-2}. Priya divided the change in x by the change in y.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> the line {m:2x+3y=12} has gradient 2. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He read the number in front of x without rearranging to {m:y=mx+c} first</li>
+        <li data-why="Dividing 12 by 3 gives 4, which is the y-intercept. It is not the gradient.">He should have divided 12 by 3</li>
+        <li data-why="The number in front of y is 3. Rearranging gives y = &minus;(2/3)x + 4, so the gradient is not 3 either.">He should have used the number in front of y</li>
+      </ul>
+      <ol class="ladder"><li>The gradient is the number in front of x when y is on its own.</li><li>Rearrange {m:2x+3y=12} to get y on its own.</li></ol>
+      <div class="solution"><p>{m:3y=-2x+12}, so {m:y=-frac(2, 3)x+4}. The gradient is {m:-frac(2, 3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Mia says:</b> a line perpendicular to {m:y=3x+1} has gradient {m:-3}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She changed the sign but did not turn the 3 upside down</li>
+        <li data-why="Equal gradients make lines parallel. Perpendicular lines have different gradients.">Perpendicular lines have the same gradient</li>
+        <li data-why="1/3 is the reciprocal, but 3 &times; 1/3 = 1, not &minus;1. The sign must change as well.">The gradient should be {m:frac(1, 3)}</li>
+      </ul>
+      <ol class="ladder"><li>Perpendicular gradients multiply to {m:-1}.</li><li>Multiply Mia&rsquo;s gradient by 3. Do you get {m:-1}?</li></ol>
+      <div class="solution"><p>{m:3*(-3)=-9}, not {m:-1}. The negative reciprocal of 3 is {m:-frac(1, 3)}, and {m:3*(-frac(1, 3))=-1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Leo says:</b> the midpoint of {m:(2, 3)} and {m:(6, 9)} is {m:(frac(6-2, 2), frac(9-3, 2))=(2, 3)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He subtracted the coordinates. A midpoint needs the sum of each pair</li>
+        <li data-why="Halving is right. Halfway means half of the total of the two coordinates. The mistake is subtracting.">He should not have halved</li>
+        <li data-why="Add the x-coordinates together and the y-coordinates together, separately. Never mix x with y.">He should have added an x-coordinate to a y-coordinate</li>
+      </ul>
+      <ol class="ladder"><li>The midpoint is the average of the two x-coordinates, and the average of the two y-coordinates.</li><li>An average adds, then divides.</li></ol>
+      <div class="solution"><p>The midpoint is {m:(frac(2+6, 2), frac(3+9, 2))=(4, 6)}. Leo found half of each change instead.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="y=4x+11;4x+11;11+4x;y=11+4x" data-mode="exact">
+      <p class="qtext">Find the equation of the line with gradient 4 through {m:(-2, 3)}. Give it in the form y = mx + c. Type it like y=2x+1.</p>
+      <ol class="ladder"><li>The point has {m:x_1=-2}, so {m:x-x_1=x+2}.</li><li>{m:y-3=4(x+2)}. Expand the bracket.</li><li>{m:y-3=4x+8}. Add 3 to both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="y=4x-5;4x-5;-5+4x">The point is {m:(-2, 3)}, so the bracket is {m:(x+2)}, not {m:(x-2)}.</li>
+        <li data-if="y=4x+5;4x+5;5+4x">You multiplied only the x by 4. {m:4(x+2)=4x+8}, not {m:4x+2}.</li>
+      </ul>
+      <div class="solution"><p>{m:y-3=4(x-(-2))=4x+8}, so {m:y=4x+11}. Check: when {m:x=-2}, {m:y=-8+11=3}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Find the gradient of the line through {m:(-3, 2)} and {m:(1, -6)}.</p>
+      <ol class="ladder"><li>The change in y is {m:-6-2}.</li><li>The change in x is {m:1-(-3)}.</li><li>Divide the change in y by the change in x.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">Check the change in x. {m:1-(-3)=4}, not {m:-2}. Subtracting a negative number adds.</li>
+        <li data-if="2">The line goes down to the right, so the gradient is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(-6-2, 1-(-3))=frac(-8, 4)=-2}.</p></div>
+    </div>
+    <div class="q" data-answers="(-2,5);-2,5" data-mode="exact">
+      <p class="qtext">Find the midpoint of {m:(-5, 2)} and {m:(1, 8)}. Type it like (3,-1).</p>
+      <ol class="ladder"><li>Add the two x-coordinates and halve.</li><li>{m:frac(-5+1, 2)}. Then do the same for y.</li></ol>
+      <ul class="wrong">
+        <li data-if="(-4,10);-4,10">You added but did not halve. Divide each total by 2.</li>
+        <li data-if="(3,3);3,3">That is half of each change. For the midpoint, add the coordinates instead of subtracting.</li>
+      </ul>
+      <div class="solution"><p>{m:(frac(-5+1, 2), frac(2+8, 2))=(-2, 5)}.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">Find the distance between {m:(-1, -2)} and {m:(4, 10)}.</p>
+      <ol class="ladder"><li>The change in x is {m:4-(-1)}. The change in y is {m:10-(-2)}.</li><li>Square each change, add them, then take the square root.</li></ol>
+      <ul class="wrong">
+        <li data-if="17">That is {m:5+12}. Square each change, add, then take the square root.</li>
+        <li data-if="169">That is the square of the distance. Take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:d=sqrt(5^2+12^2)=sqrt(25+144)=sqrt(169)=13}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Are the lines {m:3x+2y-6=0} and {m:6x+4y+1=0} parallel?</p>
+      <ul class="options">
+        <li data-correct>Yes, because both have gradient {m:-frac(3, 2)}</li>
+        <li data-why="Compare gradients after rearranging. The first has gradient &minus;3/2. The second has gradient &minus;6/4, which is also &minus;3/2.">No, because the numbers in the two equations are different</li>
+        <li data-why="The y-intercepts differ: the first is 3 and the second is &minus;1/4. So they are two different parallel lines.">They are the same line</li>
+      </ul>
+      <ol class="ladder"><li>The gradient of {m:ax+by+c=0} is {m:-frac(a, b)}.</li><li>Find the gradient of each line.</li></ol>
+      <div class="solution"><p>The first gradient is {m:-frac(3, 2)}. The second is {m:-frac(6, 4)=-frac(3, 2)}. The gradients are equal, so the lines are parallel. Their y-intercepts differ, so they are not the same line.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The line through {m:(1, 3)} and {m:(k, 11)} has gradient 4. Find k.</p>
+      <ol class="ladder"><li>Write the gradient: {m:frac(11-3, k-1)=4}.</li><li>{m:frac(8, k-1)=4}. Multiply both sides by {m:k-1}.</li><li>{m:8=4(k-1)}. Solve for k.</li></ol>
+      <ul class="wrong"><li data-if="9">That is {m:k-1=8}. Divide 8 by 4 first: {m:k-1=2}.</li></ul>
+      <div class="solution"><p>{m:8=4(k-1)} gives {m:k-1=2}, so {m:k=3}. Check: {m:frac(11-3, 3-1)=frac(8, 2)=4}.</p></div>
+    </div>
+    <div class="q" data-answers="x-2y-7=0;x-7-2y=0;-2y+x-7=0;-2y-7+x=0;-7+x-2y=0;-7-2y+x=0" data-mode="exact">
+      <p class="qtext">Find the equation of the line through {m:(3, -2)} perpendicular to {m:2x+y-1=0}. Give it in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>The gradient of {m:2x+y-1=0} is {m:-frac(a, b)=-2}.</li><li>The perpendicular gradient is {m:frac(1, 2)}. Use {m:y+2=frac(1, 2)(x-3)}.</li><li>Multiply every term by 2: {m:2y+4=x-3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x-y-8=0;2x-8-y=0;-y+2x-8=0;-y-8+2x=0;-8+2x-y=0;-8-y+2x=0">You changed the sign of {m:-2} but did not turn it upside down. That gives gradient 2, not {m:frac(1, 2)}.</li>
+        <li data-if="x+2y+1=0;x+1+2y=0;2y+x+1=0;2y+1+x=0;1+x+2y=0;1+2y+x=0">You turned the gradient upside down but kept the minus sign. That gives {m:-frac(1, 2)}. Change the sign.</li>
+      </ul>
+      <div class="solution"><p>The gradient of the given line is {m:-2}, so the perpendicular gradient is {m:frac(1, 2)}. {m:y+2=frac(1, 2)(x-3)} gives {m:2y+4=x-3}, so {m:x-2y-7=0}. Check {m:(3, -2)}: {m:3+4-7=0}.</p></div>
+    </div>
+    <div class="q" data-answers="40" data-mode="value">
+      <p class="qtext">A water butt holds 120 litres. It loses 3 litres each day at a steady rate. After how many days is it empty?</p>
+      <ol class="ladder"><li>Write a model for the volume V litres after t days.</li><li>{m:V=120-3t}. The butt is empty when {m:V=0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="360">You multiplied 120 by 3. Solve {m:0=120-3t} instead.</li>
+        <li data-if="117">That is the volume after 1 day. Find the time when the volume is 0.</li>
+      </ul>
+      <div class="solution"><p>{m:0=120-3t} gives {m:3t=120}, so {m:t=40}. The water butt is empty after 40 days.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method, A1 is a mark for a correct answer, and B1 is a mark for a correct fact or value. &ldquo;Hence&rdquo; means: use your answer to the part before.</p>
+    <div class="q" data-answers="2x+y-9=0;2x-9+y=0;y+2x-9=0;y-9+2x=0;-9+2x+y=0;-9+y+2x=0" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The line l passes through {m:A(1, 7)} and {m:B(5, -1)}. Find an equation for l in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>Find the gradient of AB first.</li><li>The gradient is {m:frac(-1-7, 5-1)=-2}. Use {m:y-7=-2(x-1)}.</li><li>Expand, then move every term to one side.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x+y+9=0;2x+9+y=0;y+2x+9=0;y+9+2x=0;9+2x+y=0;9+y+2x=0">Check with A: {m:2+7+9=18}, not 0. From {m:y-7=-2x+2}, the numbers give {m:2x+y-9=0}.</li>
+        <li data-if="x+2y-15=0;x-15+2y=0;2y+x-15=0;2y-15+x=0;-15+x+2y=0;-15+2y+x=0">You divided the change in x by the change in y. Check with B: {m:5-2-15=-12}, not 0. The gradient of AB is {m:-2}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:m=frac(-1-7, 5-1)=-2}. Then {m:y-7=-2(x-1)=-2x+2}, so {m:y=-2x+9} and {m:2x+y-9=0}. Check B: {m:10-1-9=0}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the gradient {m:-2}</li>
+          <li><b>M1</b> for {m:y-7=-2(x-1)} (or {m:y+1=-2(x-5)})</li>
+          <li><b>A1</b> for {m:2x+y-9=0}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-3/4;-0.75" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] The line l has equation {m:3x+4y=7}. Find the gradient of l. Give it as a fraction or a decimal.</p>
+      <ol class="ladder"><li>Rearrange so that y is on its own.</li><li>{m:4y=-3x+7}. Divide every term by 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="3/4;0.75">Check the sign. {m:4y=-3x+7}, so the number in front of x is negative.</li>
+        <li data-if="-4/3">You divided the wrong way round. The gradient is {m:-frac(3, 4)}.</li>
+        <li data-if="3">That is the number in front of x before you divided by 4. Divide every term by 4 first.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:4y=-3x+7}, so {m:y=-frac(3, 4)x+frac(7, 4)}. The gradient is {m:-frac(3, 4)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for rearranging to {m:y=mx+c} form, or for using {m:-frac(a, b)}</li>
+          <li><b>A1</b> for {m:-frac(3, 4)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4x-3y-27=0;4x-27-3y=0;-3y+4x-27=0;-3y-27+4x=0;-27+4x-3y=0;-27-3y+4x=0" data-mode="exact" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] The line m is perpendicular to l and passes through {m:(6, -1)}. Hence find an equation for m in the form {m:ax+by+c=0}, where a, b and c are integers with no common factor and a is positive. Type it like 3x+2y-7=0.</p>
+      <ol class="ladder"><li>The gradient of l is {m:-frac(3, 4)}. What is the negative reciprocal?</li><li>{m:y+1=frac(4, 3)(x-6)}. Multiply every term by 3.</li><li>{m:3y+3=4x-24}. Move every term to one side.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x+4y-14=0;3x-14+4y=0;4y+3x-14=0;4y-14+3x=0;-14+3x+4y=0;-14+4y+3x=0">That line is parallel to l, with gradient {m:-frac(3, 4)}. For a perpendicular line, turn the gradient upside down and change the sign.</li>
+        <li data-if="3x-4y-22=0;3x-22-4y=0;-4y+3x-22=0;-4y-22+3x=0;-22+3x-4y=0;-22-4y+3x=0">You changed the sign but did not turn the fraction upside down. The perpendicular gradient is {m:frac(4, 3)}.</li>
+      </ul>
+      <div class="solution">
+        <p>The gradient of m is {m:frac(4, 3)}. {m:y-(-1)=frac(4, 3)(x-6)}, so {m:3y+3=4x-24} and {m:4x-3y-27=0}. Check {m:(6, -1)}: {m:24+3-27=0}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for the perpendicular gradient {m:frac(4, 3)}</li>
+          <li><b>M1</b> for {m:y+1=frac(4, 3)(x-6)}</li>
+          <li><b>A1</b> for {m:4x-3y-27=0}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Triangle ABC has {m:A(0, 1)}, {m:B(4, 3)} and {m:C(2, 7)}. The angle at B is a right angle. Find the area of triangle ABC.</p>
+      <figure class="qfig-lg">{fig:straight-lines-q-triangle}</figure>
+      <ol class="ladder"><li>The angle at B is a right angle, so AB and BC are the base and the height.</li><li>Find the lengths AB and BC with the distance formula.</li><li>The area of a triangle is half the base times the height.</li></ol>
+      <ul class="wrong">
+        <li data-if="20">That is base times height. The area of a triangle is half of that.</li>
+        <li data-if="5">Check the lengths. {m:AB=sqrt(20)=2sqrt(5)} and {m:BC=2sqrt(5)}. Half of their product is 10.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:AB=sqrt(4^2+2^2)=sqrt(20)} and {m:BC=sqrt((-2)^2+4^2)=sqrt(20)}. The area is {m:frac(1, 2)*sqrt(20)*sqrt(20)=frac(1, 2)*20=10}. Check the right angle: the gradient of AB is {m:frac(1, 2)}, the gradient of BC is {m:-2}, and {m:frac(1, 2)*(-2)=-1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for a method to find the length of AB or BC</li>
+          <li><b>A1</b> for both lengths {m:sqrt(20)} or {m:2sqrt(5)}</li>
+          <li><b>M1</b> for {m:frac(1, 2)*AB*BC}</li>
+          <li><b>A1</b> for 10</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(3,5);3,5" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] ABCD is a parallelogram, with the corners in this order. The points are {m:A(1, 1)}, {m:B(5, 2)} and {m:C(7, 6)}. Find the coordinates of D. Type it like (3,-1).</p>
+      <figure class="qfig-lg">{fig:straight-lines-q-parallelogram}</figure>
+      <ol class="ladder"><li>The diagonals of a parallelogram cross at their midpoints. Which two points make a diagonal with A and C?</li><li>Find the midpoint of AC. It is also the midpoint of BD.</li><li>Use {m:D=2M-B}, coordinate by coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="(11,7);11,7">That point is {m:B+C-A}, which is opposite A. D is opposite B.</li>
+        <li data-if="(-1,-3);-1,-3">That point is {m:A+B-C}, which is opposite C. D is opposite B.</li>
+        <li data-if="(4,3.5);4,3.5">That is the midpoint of AC, where the diagonals cross. D is the other end of the diagonal that starts at B.</li>
+      </ul>
+      <div class="solution">
+        <p>The midpoint of AC is {m:(frac(1+7, 2), frac(1+6, 2))=(4, 3.5)}. This is also the midpoint of BD, so {m:D=(2*4-5, 2*3.5-2)=(3, 5)}. Check: the step from A to B is {m:(4, 1)}, and the step from D to C is {m:(7-3, 6-5)=(4, 1)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the midpoint of AC, {m:(4, 3.5)}</li>
+          <li><b>M1</b> for using it as the midpoint of BD</li>
+          <li><b>A1</b> for {m:(3, 5)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="40" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] A company hires out vans. The cost is linear in the number of days. Hiring a van for 3 days costs 150 pounds, and for 5 days costs 230 pounds. Find the daily rate, in pounds per day.</p>
+      <ol class="ladder"><li>The daily rate is the gradient of the model.</li><li>The cost changes from 150 to 230. The days change from 3 to 5.</li></ol>
+      <ul class="wrong"><li data-if="80">That is the change in cost only. Divide by the change in days, which is 2.</li></ul>
+      <div class="solution">
+        <p>{m:frac(230-150, 5-3)=frac(80, 2)=40}. The daily rate is 40 pounds per day.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(230-150, 5-3)}</li>
+          <li><b>A1</b> for 40</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="30" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(b)</b> [2 marks] Hence find the fixed charge, in pounds. This is the cost with 0 days.</p>
+      <ol class="ladder"><li>Write the model {m:C=40d+c}. Use one of the readings.</li><li>For 3 days, {m:150=40*3+c}.</li></ol>
+      <ul class="wrong"><li data-if="110">That takes off only one day, 40 pounds. The 150 pounds covers 3 days at 40 pounds each.</li></ul>
+      <div class="solution">
+        <p>{m:150=40*3+c} gives {m:c=150-120=30}. Check with 5 days: {m:40*5+30=230}. The fixed charge is 30 pounds.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:150-3*40} (or {m:C-150=40(d-3)} with {m:d=0})</li>
+          <li><b>A1</b> for 30</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The gradient.</b> A straight line has the same steepness everywhere. So any two points on it give the same {m:frac(y_2-y_1, x_2-x_1)}.</li>
+      <li><b>The point-gradient form.</b> Take any point {m:(x, y)} on the line. The gradient from {m:(x_1, y_1)} to it is m, so {m:frac(y-y_1, x-x_1)=m}. Multiply both sides by {m:x-x_1}.</li>
+      <li><b>Perpendicular gradients.</b> A line with gradient m goes across 1 and up m. Turn that step through a quarter turn. It becomes across {m:-m} and up 1. Its gradient is {m:frac(1, -m)=-frac(1, m)}.</li>
+      <li><b>The distance.</b> The change in x and the change in y are the two short sides of a right-angled triangle. The distance is the longest side, so Pythagoras gives it.</li>
+      <li><b>The midpoint.</b> Halfway between two numbers is their average. The x and y directions are independent, so you average each one on its own.</li>
+      <li><b>The perpendicular bisector.</b> Every point on it is the same distance from A as from B. That is why it must pass through the midpoint and meet the segment at a right angle.</li>
+      <li><b>Linear models.</b> A straight line has a constant gradient. So a linear model has a constant rate of change. That is the assumption you are making.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Putting the change in x on top of the gradient. The change in y goes on top.</li>
+      <li>Reading the gradient from an equation that is not in the form {m:y=mx+c}. Rearrange first.</li>
+      <li>Mixing the order of the points. Use the same order on the top and the bottom.</li>
+      <li>Forgetting the double minus. {m:3-(-1)=4}, not 2.</li>
+      <li>Writing {m:(x+1)} where the point has {m:x_1=1}. Subtract the point: {m:(x-1)}.</li>
+      <li>In {m:ax+by+c=0}, reading c as the y-intercept. It is {m:-frac(c, b)}.</li>
+      <li>Turning the gradient upside down but keeping the sign, or changing the sign but not turning it upside down.</li>
+      <li>Using the midpoint formula with a minus instead of a plus.</li>
+      <li>Stopping at {m:d^2} and forgetting the square root in the distance formula.</li>
+      <li>Giving a model's answer with no units, or outside the range where the model makes sense.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="straight-lines">
+      <li><label><input type="checkbox"> find the gradient of a line from two points, and read the gradient and y-intercept from an equation</label></li>
+      <li><label><input type="checkbox"> write the equation of a line from a gradient and a point, or from two points</label></li>
+      <li><label><input type="checkbox"> write a line in the form {m:ax+by+c=0} with integers, and find its gradient and intercepts</label></li>
+      <li><label><input type="checkbox"> use equal gradients for parallel lines and {m:m_1*m_2=-1} for perpendicular lines</label></li>
+      <li><label><input type="checkbox"> find the midpoint and the length of a line segment, and the equation of its perpendicular bisector</label></li>
+      <li><label><input type="checkbox"> build and use a straight-line model, and say what the gradient and intercept mean</label></li>
+      <li><label><input type="checkbox"> find a line from its graph, and draw a line from its equation</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
