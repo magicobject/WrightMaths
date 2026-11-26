@@ -395,3 +395,16 @@ test('a rationalised surd is accepted in its other written forms when the key li
   for (const typed of keys) assert.ok(matches(typed, keys, 'exact'), typed);
   assert.ok(!matches('sqrt(5)', keys, 'exact'));
 });
+
+test('a labelled pair is read in the order x, y; a bare reversed pair is still wrong', () => {
+  const keys = ['(3,5)', '3,5', 'x=3,y=5'];
+  for (const typed of ['y=5, x=3', 'x=3 and y=5', '(x=3,y=5)', 'x=3,y=5.', 'x = 3, y = 5', '(y=5; x=3)', 'x=3 y=5']) assert.ok(matches(typed, keys, 'exact'), typed);
+  for (const typed of ['(5,3)', '5,3', 'x=5,y=3', 'y=3,x=5', 'x=3,y=6']) assert.ok(!matches(typed, keys, 'exact'), typed);
+  assert.ok(matches('(-1, 4)', ['(-1,4)', 'x=-1,y=4'], 'exact'));
+  assert.ok(matches('y=4, x=-1', ['(-1,4)', 'x=-1,y=4'], 'exact'));
+});
+
+test('a full stop after a digit is ignored', () => {
+  assert.ok(matches('12.', ['12'], 'value'));
+  assert.ok(matches('x=3,y=5.', ['(3,5)'], 'exact'));
+});
