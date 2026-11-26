@@ -120,7 +120,10 @@ test('options: defaults and flags', () => {
 
 test('placeholders in the document properties stop --release even when the pages have none', () => {
   const clean = { unknown: [], screenWording: [], screenOnlyQuestions: [], deadRefs: [], placeholders: {}, colourWordsInMono: [], figuresBelow300ppi: [], frontNeedsEdit: [], blockedRequests: [] };
-  const inProperties = placeholdersIn(Object.values(PROPERTIES));
+  // The real properties are filled in (Greg, 26 Nov 2026); a placeholder there would still be counted.
+  assert.deepEqual(placeholdersIn(Object.values(PROPERTIES)), {});
+  assert.equal(PROPERTIES.creator, 'Greg Wright');
+  const inProperties = placeholdersIn(['[IMPRINT]', '[IMPRINT]', 'x', '[TITLE]']);
   assert.deepEqual(inProperties, { '[IMPRINT]': 2, '[TITLE]': 1 });
   assert.deepEqual(releaseProblems({ ...clean, placeholders: inProperties }), ['placeholders']);
 });
