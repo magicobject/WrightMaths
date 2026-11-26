@@ -128,3 +128,13 @@ test('the letter A is said as a letter name, never as the article', () => {
   assert.equal(toSpoken('Use a minus sign, plus a bit.'), 'Use a minus sign, plus a bit.');
   assert.equal(toSpoken('The picture shows: A function machine.'), 'The picture shows: A function machine.');
 });
+
+test('a ratio is said with "to", but a sentence colon and a clock time are left alone', () => {
+  assert.equal(toSpoken('Simplify 2 : 6.'), 'Simplify two to six.');
+  assert.equal(toSpoken('like 4:5'), 'like four to five');
+  assert.equal(toSpoken('Share it in the ratio 1 : 2 : 5.'), 'Share it in the ratio one to two to five.');
+  assert.match(toSpoken('A map has a scale of 1 : 50 000.'), /one to fifty thousand/);
+  assert.match(toSpoken('1 : 2.5'), /one to two point five/);
+  assert.doesNotMatch(toSpoken('5 less than 8 is 3: 8 − 5'), / to /);
+  assert.doesNotMatch(toSpoken('It starts at 10:20.'), / to /);
+});

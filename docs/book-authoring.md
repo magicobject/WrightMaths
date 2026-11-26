@@ -189,4 +189,5 @@ These live in code (`public/js/book-speech.mjs`, `public/js/book-audio.mjs`, `sc
 - **Column vectors:** the stacked numbers are said "vector minus one, two", with a slight pause (a comma) between the two (`unitText`, from the vector's `aria-label`).
 - **Every clip** is re-recorded when these change: `python scripts/piper-batch.py --voice <onnx> --redo-before <Unix time you start>` (like `--redo`, but a stopped run restarts with the same value and skips what is already done), then `npm run book:audio -- prune`.
 - **Check afterwards:** `npm run book:audio -- all`, `python scripts/audio-check.py` (transcribes each clip and compares it with its text), then `npm run book:review`, which builds the page for listening and flagging.
+- **Ratios** (26 Nov 2026): "2 : 3" and "2:3" are said "two to three", and "1 : 2 : 5" is "one to two to five" (`ratiosToWords`). A colon with a space only after it is a sentence colon and is left alone, and so is a clock time such as 09:15.
 - **Not decided:** times such as 09:15 are spoken "zero nine:fifteen" (Greg's call how they should sound).
