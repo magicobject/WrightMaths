@@ -284,7 +284,7 @@ test.describe('questions', () => {
     await page.goto('/books/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only the final answer counts/ }).click();
-    await expect(q.locator('.q-feedback')).toContainText('Not this one yet');
+    await expect(q.locator('.q-feedback')).toContainText('A mark scheme gives separate marks for correct method');
     await q.getByRole('button', { name: /Method marks/ }).click();
     await expect(q).toHaveClass(/q-correct/);
     await expect(q.locator('.solution')).toBeVisible();
