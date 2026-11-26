@@ -15,6 +15,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/books/a-level/differentiation-basics.html', titleContains: 'Differentiation from first principles', heading: /^Differentiation from first principles$/ },
   { path: '/books/a-level/quadratics.html', titleContains: 'Quadratics', heading: /^Quadratics$/ },
   { path: '/books/a-level/straight-lines.html', titleContains: 'Straight lines', heading: /^Straight lines$/ },
+  { path: '/books/a-level/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
