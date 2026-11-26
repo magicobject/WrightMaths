@@ -240,7 +240,7 @@ export const TERMS = [
     id: 'distance-in-3d', term: 'Distance in three dimensions', strand: 'al-vectors', level: 'Y2', aka: ['length of a line in 3D'],
     def: 'The distance between two points in space. It is the square root of the sum of the squares of the differences in x, y and z.',
     example: [
-      '{m:d = sqrt((x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2)}.',
+      '{md:d = sqrt((x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2)}',
       'From (1, 2, 3) to (4, 6, 15): the differences are 3, 4 and 12, so {m:d = sqrt(9 + 16 + 144) = sqrt(169) = 13}.',
     ],
     watch: 'Square each difference before you add. The distance is the magnitude of the vector between the points.',

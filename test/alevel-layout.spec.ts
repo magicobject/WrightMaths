@@ -8,6 +8,9 @@ test.describe('A-level pages at 320px', () => {
     test(`${bookPage.path} does not scroll sideways`, async ({ page }) => {
       await page.setViewportSize({ width: 320, height: 800 });
       await page.goto(bookPage.path);
+      // Hints, solutions, wrong-answer notes and options are hidden until a student asks: show them so they are measured.
+      await page.addStyleTag({ content: '.ladder, .wrong, .options, .solution, [hidden] { display: block !important; visibility: visible !important; }' });
+      await page.evaluate(() => document.querySelectorAll('details').forEach((d) => { d.open = true; }));
       const wide = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,
         // elements wider than the screen that are not inside a box that scrolls on its own

@@ -319,30 +319,60 @@ function linFunc({ name, args }) {
 
 /** The <math> element for one {m:...} shorthand. `display` puts it on its own line. */
 export function toMathML(src, { display = false } = {}) {
-  const tree = parse(src);
-  const alt = esc(linSeq(tree)).replaceAll('"', '&quot;');
-  return `<math${display ? ' display="block"' : ''} alttext="${alt}">${mlSeq(tree)}</math>`;
+  return mathElement(parse(src), display);
 }
 
-// A long inline equation cannot wrap inside one <math>, so on a phone it would push the page wider than the screen.
-// Inline maths longer than this is cut into several <math> elements with a <wbr> between them, so the line can break
-// after an equals or times sign, or before a plus or minus that is not inside brackets or a fraction.
-const WRAP_AFTER_LENGTH = 14;
+/**
+ * One <math> element. A `continuation` is the second or later piece of a split formula: if it starts with an operator
+ * (= + -), that operator is an infix one, so it keeps infix spacing, and its text alternative keeps the space after it
+ * ("- 4", not "-4"). A leading sign on a whole formula, such as the minus in -3, is NOT touched.
+ */
+function mathElement(tree, display = false, continuation = false) {
+  const startsWithOperator = continuation && tree[0]?.k === 'op';
+  const alt = startsWithOperator ? `${lin(tree[0])} ${linSeq(tree.slice(1))}`.trim() : linSeq(tree);
+  const body = startsWithOperator ? mlSeq(tree).replace(/^<mo>/, '<mo form="infix">') : mlSeq(tree);
+  return `<math${display ? ' display="block"' : ''} alttext="${esc(alt).replaceAll('"', '&quot;')}">${body}</math>`;
+}
 
-/** The <math> element(s) for one inline {m:...}: one element, or several joined by <wbr> when it is long. */
-export function toInlineMathML(src) {
+/**
+ * Inline maths for running text. A formula with equals signs is cut before each top-level "=" into separate <math>
+ * elements joined by a space, so a long chain such as a = b = c wraps at an equals sign on a narrow screen instead of
+ * running off the line (a <math> element never breaks inside itself). Punctuation straight after the formula goes
+ * inside a no-break .mw span with the last piece, so it can never land alone on a line.
+ */
+const LONG_PIECE = 16; // characters of plain text; shorter pieces stay in one <math>
+
+export function toInlineMathML(src, punct = '') {
   const tree = parse(src);
-  if (linSeq(tree).length < WRAP_AFTER_LENGTH) return toMathML(src);
-  const pieces = [[]];
-  tree.forEach((n, i) => {
-    const sign = n.k === 'op' && (n.lin === '+' || n.lin === '-') && i > 0 && tree[i - 1].k !== 'op';
-    if (sign) pieces.push([]);
-    pieces[pieces.length - 1].push(n);
-    if (n.k === 'op' && (n.lin === '=' || n.lin === '*') && i < tree.length - 1) pieces.push([]);
+  if (linSeq(tree).length <= LONG_PIECE) return punct ? `<span class="mw">${mathElement(tree)}${punct}</span>` : mathElement(tree); // short: never split
+  const pieces = [];
+  let current = [];
+  for (const node of tree) {
+    if (node.k === 'op' && node.v === '=' && current.length) { pieces.push(current); current = []; }
+    current.push(node);
+  }
+  pieces.push(current);
+  // A long piece may also break before a top-level + or -, or between two brackets, as printed maths does.
+  const wrapped = pieces.flatMap((piece) => {
+    if (linSeq(piece).length <= LONG_PIECE) return [piece];
+    const parts = [];
+    let part = [];
+    piece.forEach((node, i) => {
+      const before = piece[i - 1];
+      // never after another operator (a sign), quoted text, a limits sign (int, sum, lim) or a function name (sin, ln, ...): the sign belongs to what follows
+      const signOfNext = !before || before.k === 'op' || before.k === 'word' || before.k === 'text' || (before.k === 'func' && ['int', 'sum', 'lim'].includes(before.name));
+      const binary = node.k === 'op' && (node.v === '+' || node.v === '−') && part.length && !signOfNext;
+      const betweenBrackets = node.k === 'group' && before?.k === 'group'; // (x - 2)(x + 1): break between the brackets
+      if (binary || betweenBrackets) { parts.push(part); part = []; }
+      part.push(node);
+    });
+    parts.push(part);
+    return parts;
   });
-  if (pieces.length < 2) return toMathML(src);
-  const one = (items, at) => `<math alttext="${esc(linSeq(items)).replaceAll('"', '&quot;')}">${at ? mlSeq(items).replace(/^<mo>/, '<mo form="infix">') : mlSeq(items)}</math>`;
-  return pieces.map((items, at) => one(items, at)).join('<wbr>');
+  const html = wrapped.map((piece, i) => mathElement(piece, false, i > 0));
+  const last = html.pop();
+  const tail = punct ? `<span class="mw">${last}${punct}</span>` : last;
+  return [...html, tail].join(' ');
 }
 
 /** Plain text of the same shorthand, for answer keys, search and pop-up definitions. */
@@ -354,7 +384,7 @@ export function toLinear(src) {
 export function expandMath(html) {
   return html
     .replace(/\{md:([^{}]+)\}/g, (_, body) => `<span class="eq">${toMathML(body, { display: true })}</span>`)
-    .replace(/\{m:([^{}]+)\}/g, (_, body) => toInlineMathML(body));
+    .replace(/\{m:([^{}]+)\}(?:([.,;:!?)]+)(?!\w))?/g, (_, body, punct) => toInlineMathML(body, punct ?? ''));
 }
 
 /** Replace every {m:...} / {md:...} with its plain-text form (no MathML). */

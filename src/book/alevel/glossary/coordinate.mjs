@@ -120,7 +120,7 @@ export const TERMS = [
     def: 'The length of the straight line between two points. It comes from Pythagoras\u2019 theorem on the horizontal and vertical steps between them.',
     example: [
       'From (1, 1) to (5, 4): across 4 and up 3, so {m:d = sqrt(4^2 + 3^2) = sqrt(25) = 5}.',
-      'The general formula is {m:d = sqrt((x_2 - x_1)^2 + (y_2 - y_1)^2)}.',
+      'The general formula is {md:d = sqrt((x_2 - x_1)^2 + (y_2 - y_1)^2)}',
     ],
     watch: 'Square each step before you add. The square of a negative step is positive, so the order of the points does not matter. The distance is never negative.',
     see: ['line-segment', 'midpoint', 'radius'],
