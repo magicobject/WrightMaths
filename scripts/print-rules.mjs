@@ -37,6 +37,7 @@ export const ALLOWED = [
   { re: /\b(?:circle|triangle|number|graph|shape|quadrilateral|angle) type\b/i, why: 'ordinary English: the type of a shape' },
   { re: /\binverse button\b|\bshift button\b|\bequals button\b/i, why: 'a key on a real calculator' },
   { re: /\b(?:a|the|each|hot|cold|mixer|dripping|water|leaking|two|one) taps?\b/i, why: 'a water tap' },
+  { re: /^Typing vectors$/, why: 'source data-print to be added after the minor-fix PRs land (vectors.html "Typing vectors" box)' },
   { re: /\bbuttons\b/i, why: 'buttons in a bag, a probability context' },
   { re: /\b(?:\d+|many|of|400|sold|in every \d+) taps\b|\btaps (?:sold|are|were)\b/i, why: 'water taps in a probability question' },
   { re: /(?:[^ -~]|pi) button/i, why: 'the pi key on a real calculator' },

@@ -38,7 +38,7 @@ test.describe('the Word build', () => {
   });
 
   test('it has chapters, answers, hints, glossary, index, contents and equations', () => {
-    for (const title of ['Fractions', 'Percentages', 'Vectors']) expect(paragraphs.some((p) => p.includes(`Chapter`) && p.endsWith(`|${title}`) || p.endsWith(`|\t|${title}`)), title).toBe(true);
+    for (const title of ['Fractions', 'Percentages', 'Vectors']) expect(paragraphs.some((p) => /^Chapter \d+\|\t\|/.test(p) && p.endsWith(`|${title}`)), title).toBe(true);
     for (const part of ['Answers', 'Hints', 'Glossary', 'Index', 'Contents']) expect(paragraphs, part).toContain(part);
     expect(xml).toMatch(/ TOC \\o /);
     expect(xml).toMatch(/ INDEX \\c /);
@@ -51,14 +51,40 @@ test.describe('the Word build', () => {
     const asked = new Set<string>();
     const answered = new Set<string>();
     const hinted = new Set<string>();
+    const answerText = new Map<string, string>();
     let part = 'chapters';
     for (const p of paragraphs) {
       if (p === 'Answers' || p === 'Hints' || p === 'Glossary') part = p;
       const m = /^(\d+\.\d+)\|\t\|(.*)/.exec(p);
       if (!m) continue;
       if (part === 'chapters') asked.add(m[1]);
-      else if (part === 'Answers') answered.add(m[1]);
+      else if (part === 'Answers') { answered.add(m[1]); answerText.set(m[1], m[2]); }
       else if (part === 'Hints') hinted.add(m[1]);
+    }
+    // the printed answer of every question is the teacher key's answer (multiple choice: the same option text, and its letter)
+    const chapterNo = new Map<string, string>();
+    for (const p of paragraphs) { const c = /^Chapter (\d+)\|\t\|(.*)$/.exec(p); if (c) chapterNo.set(c[2], c[1]); }
+    const norm = (s: string) => s.replace(/sqrt|pi/g, '').replace(/[^0-9a-z]/gi, '').toLowerCase();
+    for (const [id, title] of [['fractions', 'Fractions'], ['percentages', 'Percentages'], ['vectors', 'Vectors']]) {
+      const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', `${id}.html`), 'utf8');
+      const parts = raw.split(/(?=<div class="q")/).filter((q) => q.startsWith('<div class="q"'));
+      expect(parts.length, id).toBeGreaterThan(30);
+      parts.forEach((part, i) => {
+        const printed = answerText.get(`${chapterNo.get(title)}.${i + 1}`) ?? '';
+        const type = /data-type="(\w+)"/.exec(part.split('>')[0])?.[1];
+        if (type === 'mc') {
+          const lis = (/<ul class="options">([\s\S]*?)<\/ul>/.exec(part)?.[1] ?? '').split('<li').slice(1);
+          const at = lis.findIndex((li) => li.startsWith(' data-correct') || li.startsWith(' data-correct>'));
+          const optionText = lis[at].replace(/^[^>]*>/, '').replace(/<\/li>[\s\S]*$/, '').replace(/\{frac:([^/]*)\/([^}]*)\}/g, '$1$2').replace(/<[^>]+>/g, '').replace(/&#?[a-z0-9]+;/gi, '');
+          expect(printed.split('|')[0].trim(), `${id} q${i + 1} letter`).toBe(String.fromCharCode(65 + at));
+          expect(norm(printed.split('|').slice(1).join('')), `${id} q${i + 1} option text`).toBe(norm(optionText));
+        } else if (type === 'show') {
+          expect(printed.toLowerCase(), `${id} q${i + 1}`).toContain('mark scheme');
+        } else {
+          const first = (/data-answers="([^"]*)"/.exec(part.split('>')[0])?.[1] ?? '').split(';')[0];
+          expect(norm(printed).startsWith(norm(first)), `${id} q${i + 1}: printed "${printed}" for key "${first}"`).toBe(true);
+        }
+      });
     }
     expect(asked.size).toBe(report.stats.questionsPrinted);
     expect([...asked].filter((q) => !answered.has(q))).toEqual([]);
@@ -73,9 +99,8 @@ test.describe('the Word build', () => {
 
   test('the reports are empty for these pages, and the figures are 300 ppi or more', () => {
     expect(report.unknown).toEqual([]);
-    // vectors.html has a "Typing vectors" box that needs a data-print in the source (listed in the report for the content owner)
-    expect(report.screenWording.filter((s: { page: string }) => s.page !== 'vectors')).toEqual([]);
-    expect(report.screenWording.filter((s: { page: string }) => s.page === 'vectors').map((s: { context: string }) => s.context)).toEqual(['Typing vectors']);
+    // (vectors.html's "Typing vectors" box is allowlisted in scripts/print-rules.mjs until its source gets a data-print)
+    expect(report.screenWording).toEqual([]);
     expect(report.screenOnlyQuestions).toEqual([]);
     expect(report.blockedRequests).toEqual([]);
     expect(report.figuresBelow300ppi).toEqual([]);
@@ -83,6 +108,15 @@ test.describe('the Word build', () => {
     expect(report.stats.minFigurePpi).toBeGreaterThanOrEqual(300);
     // the front matter placeholders are still placeholders: never invented
     expect(Object.keys(report.placeholders)).toEqual(expect.arrayContaining(['[TITLE]', '[AUTHOR]', '[ISBN]', '[IMPRINT]']));
+  });
+
+  test('placeholders in the document properties (core.xml) are counted, so --release sees them', () => {
+    const core = strFromU8(files['docProps/core.xml']);
+    expect(core).toContain('[IMPRINT]');
+    expect(core).toContain('[TITLE]');
+    // [IMPRINT]: once on the front page, twice in the properties (author and last modified by)
+    expect(report.placeholders['[IMPRINT]']).toBe(3);
+    expect(report.placeholders['[TITLE]']).toBe(2);
   });
 
   test('--release refuses a build that still has placeholders', () => {

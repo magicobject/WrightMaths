@@ -29,7 +29,14 @@ const PAPERS = [
 ];
 const COLOUR_WORDS = /\b(red|blue|green|yellow|pink|orange|purple|brown|teal|gold)\b/i;
 const PLACEHOLDER = /\[[A-Z][A-Z ]*[A-Z]\]/g;
-const PROPERTIES = { creator: '[IMPRINT]', lastModifiedBy: '[IMPRINT]', title: '[TITLE]', subject: 'GCSE Maths', description: 'GCSE maths book, print edition' };
+/** Count the [PLACEHOLDER] markers in a list of strings. */
+export function placeholdersIn(strings) {
+  const found = {};
+  for (const s of strings) for (const p of String(s).match(PLACEHOLDER) ?? []) found[p] = (found[p] ?? 0) + 1;
+  return found;
+}
+
+export const PROPERTIES = { creator: '[IMPRINT]', lastModifiedBy: '[IMPRINT]', title: '[TITLE]', subject: 'GCSE Maths', description: 'GCSE maths book, print edition' };
 
 export function parseArgs(argv) {
   const opts = { pages: null, mono: false, release: false, noHints: false, noSlips: false, out: join(root, 'dist/gcse-book.docx'), report: join(root, 'dist/print-report.json') };
@@ -98,6 +105,8 @@ function findings(opts, front, chosen, ctx, unknown, blocked) {
     }
   };
   scan('front', front.tree.blocks);
+  // the document properties (author, title) are part of the file too: a placeholder there must stop --release
+  for (const [p, n] of Object.entries(placeholdersIn(Object.values(PROPERTIES)))) placeholders[p] = (placeholders[p] ?? 0) + n;
   for (const c of chosen) scan(c.id, c.tree.blocks);
   const screenOnly = chosen.flatMap((c) => collect(c.tree.blocks, (n) => n.t === 'q' && n.screenOnly).map((q) => ({ page: c.id, question: q.n, why: q.screenOnly })));
   const frontText = [...allTexts(front.tree.blocks)].join(' ');

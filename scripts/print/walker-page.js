@@ -14,10 +14,10 @@
   // Screen-only parts that print CSS does not hide because they are built by script (and so are absent here), or only clipped.
   const SKIP_CLASS = ['sr-only', 'sr', 'listen', 'btn', 'crumbs', 'progress-line', 'hero-actions', 'read-tools', 'toc', 'fast-route', 'to-top', 'next-up', 'eyebrow', 'q-help', 'q-form', 'g-tools', 'q-calc'];
   const SKIP_TAG = new Set(['nav', 'button', 'noscript', 'script', 'style', 'template', 'select']);
-  const TRANSPARENT_DIV = ['wrap', 'narrow', 'section-head', 'flip-grid', 'flip-side', 'qtable', 'qtable-wide', 'pairs'];
+  const TRANSPARENT_DIV = ['wrap', 'narrow', 'section-head', 'flip-grid', 'flip-side', 'qtable', 'qtable-wide', 'pairs', 'dq'];
   const SECTION_KINDS = ['hero', 'ckw', 'flip-section', 'exam-section', 'section-alt', 'print-title', 'print-copyright', 'print-how'];
-  const P_KINDS = ['lead', 'intro', 'muted', 'sum-line', 'where-use', 'qtext'];
-  const LIST_KINDS = ['facts', 'tick', 'traps', 'checklist', 'needs', 'steps', 'markscheme'];
+  const P_KINDS = ['lead', 'intro', 'muted', 'sum-line', 'where-use', 'qtext', 'ar-keys'];
+  const LIST_KINDS = ['facts', 'tick', 'traps', 'checklist', 'needs', 'steps', 'markscheme', 'method', 'legend'];
   const BLOCK_TAGS = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'dl', 'table', 'figure', 'div', 'section', 'aside', 'details', 'article', 'hr']);
 
   function skip(el) {

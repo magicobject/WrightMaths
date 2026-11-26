@@ -30,5 +30,5 @@ export async function startServer(mounts) {
     }
   });
   await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
-  return { port: server.address().port, close: () => new Promise((ok) => server.close(ok)) };
+  return { port: server.address().port, host: server.address().address, close: () => new Promise((ok) => server.close(ok)) };
 }

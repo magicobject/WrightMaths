@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { extractKey, keyAnswer } from '../scripts/book-lib.mjs';
 import { answerRuns, optionLetter, prettySymbols } from '../scripts/print/answers.mjs';
 import { buildChapters, chapterOrder, hrefToId } from '../scripts/print/chapters.mjs';
-import { cleanTree, shorthandRuns } from '../scripts/print/render.mjs';
-import { collect, parseArgs, releaseProblems } from '../scripts/build-docx.mjs';
+import { answerLineRuns, cleanTree, renderBlocks, shorthandRuns } from '../scripts/print/render.mjs';
+import { collect, parseArgs, placeholdersIn, PROPERTIES, releaseProblems } from '../scripts/build-docx.mjs';
 import { buildGraph } from '../scripts/book-lib.mjs';
 import { runsToText } from '../scripts/print/omml.mjs';
 
@@ -91,6 +91,18 @@ test('shorthandRuns keeps the glossary maths: {frac:} becomes a fraction, <sup> 
   assert.equal(runsToText(runs), '3/8 of a m^2 \u00a35');
 });
 
+test('the renderer throws instead of dropping things: an unknown node, a figure with no screenshot', () => {
+  const ctx = { page: 'p', figures: new Map(), byId: new Map(), deadRefs: [], figureLog: [], chapter: { num: 1 } };
+  assert.throws(() => renderBlocks([{ t: 'mystery' }], ctx), /cannot print a "mystery" node/);
+  assert.throws(() => renderBlocks([{ t: 'fig', figs: [{ id: 9, cssWidth: 100 }] }], ctx), /figure 9 on p has no screenshot/);
+  assert.doesNotThrow(() => renderBlocks([{ t: 'check', blocks: [] }, { t: 'hr' }], ctx));
+});
+
+test('glossary text keeps bold and italic', () => {
+  const runs = shorthandRuns('a <b>bold</b> and <i>slanted</i> word');
+  assert.deepEqual(runs.filter((r) => r.b || r.i).map((r) => [r.t, Boolean(r.b)]), [['bold', true], ['slanted', false]]);
+});
+
 test('collect finds nodes anywhere in a tree', () => {
   const tree = [{ t: 'box', blocks: [{ t: 'q', n: 1 }, { t: 'section', blocks: [{ t: 'q', n: 2 }] }] }];
   assert.deepEqual(collect(tree, (n) => n.t === 'q').map((q) => q.n), [1, 2]);
@@ -104,6 +116,22 @@ test('options: defaults and flags', () => {
   assert.deepEqual([o.mono, o.noHints, o.noSlips, o.release], [true, true, true, true]);
   assert.match(o.out, /dist[\\/]gcse-book\.docx$/);
   assert.throws(() => parseArgs(['--nope']), /unknown option/);
+});
+
+test('placeholders in the document properties stop --release even when the pages have none', () => {
+  const clean = { unknown: [], screenWording: [], screenOnlyQuestions: [], deadRefs: [], placeholders: {}, colourWordsInMono: [], figuresBelow300ppi: [], frontNeedsEdit: [], blockedRequests: [] };
+  const inProperties = placeholdersIn(Object.values(PROPERTIES));
+  assert.deepEqual(inProperties, { '[IMPRINT]': 2, '[TITLE]': 1 });
+  assert.deepEqual(releaseProblems({ ...clean, placeholders: inProperties }), ['placeholders']);
+});
+
+test('the answer line of every question type goes through keyAnswer', () => {
+  const opt = (t, correct = false) => ({ runs: [{ t }], correct });
+  const mc = { n: 1, type: 'mc', answers: '', options: [opt('3/5'), opt('4/7', true)] };
+  assert.equal(runsToText(answerLineRuns(mc)), 'B  4/7');
+  assert.equal(runsToText(answerLineRuns({ n: 2, type: 'show', answers: '', options: [] })), keyAnswer({ type: 'show' }).answer);
+  assert.equal(runsToText(answerLineRuns({ n: 3, type: 'typed', answers: '5/8;0.625', options: [] })), '5/8  (also accept: 0.625)');
+  assert.throws(() => answerLineRuns({ n: 4, type: 'mc', answers: '', options: [opt('x')] }), /no option has data-correct/);
 });
 
 test('--release fails on any placeholder or non-empty report', () => {

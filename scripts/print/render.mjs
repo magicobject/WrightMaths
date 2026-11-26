@@ -157,7 +157,7 @@ function renderTable(b, ctx, st) {
 function renderFigure(b, ctx, st) {
   return b.figs.flatMap((fig) => {
     const img = ctx.figures.get(fig.id);
-    if (!img) return [];
+    if (!img) throw new Error(`figure ${fig.id} on ${ctx.page} has no screenshot`);
     const placedIn = Math.min(Math.floor(fig.cssWidth) / 100, MAX_FIGURE_IN); // a 3x screenshot placed at css width / 100 in is 300 ppi
     const widthPx = Math.round(placedIn * 96);
     const heightPx = Math.round(widthPx * (img.pxHeight / img.pxWidth));
@@ -253,8 +253,11 @@ export function renderBlocks(blocks, ctx, st = {}, lead = []) {
       out.push(...renderBlocks(b.blocks, ctx, st));
     } else if (b.t === 'qtext') {
       out.push(para(runsFor(b.runs, ctx, st), st));
+    } else if (b.t === 'check' || b.t === 'hr') {
+      // the faded examples' answers are printed in the Answers section (which counts them); a rule has no print form
+    } else {
+      throw new Error(`cannot print a "${b.t}" node on ${ctx.page}`);
     }
-    // 'check' blocks (the faded examples' answers) and 'hr' are not part of the chapter text: the answers section prints them.
   }
   if (pending.length) out.push(para(pending, st));
   return out;
@@ -296,7 +299,7 @@ export function* allTexts(node) {
 function* questionsOf(node) {
   if (Array.isArray(node)) { for (const n of node) yield* questionsOf(n); return; }
   if (!node || typeof node !== 'object') return;
-  if (node.t === 'q') { yield node; return; }
+  if (node.t === 'q' && Array.isArray(node.body)) { yield node; return; }
   for (const v of Object.values(node)) if (typeof v === 'object') yield* questionsOf(v);
 }
 
@@ -321,7 +324,7 @@ function* blanksOf(node) {
 function* checksOf(node) {
   if (Array.isArray(node)) { for (const n of node) yield* checksOf(n); return; }
   if (!node || typeof node !== 'object') return;
-  if (node.t === 'check') { yield node.blocks; return; }
+  if (node.t === 'check' && Array.isArray(node.blocks)) { yield node.blocks; return; }
   for (const v of Object.values(node)) if (typeof v === 'object') yield* checksOf(v);
 }
 
@@ -342,24 +345,26 @@ export function chapterBody(chapter, ctx) {
   return out;
 }
 
-function answerParagraphs(q, ctx, label) {
-  const small = { size: SMALL, after: 60 };
+/** The answer line of a question as runs. Every type goes through keyAnswer, the rule the teacher keys use. */
+export function answerLineRuns(q) {
+  const correct = q.options.findIndex((o) => o.correct);
+  if (q.type === 'mc' && correct < 0) throw new Error(`question ${q.n} is multiple choice but no option has data-correct`);
   const { answer, also } = keyAnswer({
     type: q.type,
-    correct: '',
+    correct: q.type === 'mc' ? plainText(runsToText(q.options[correct].runs)) : '',
     answers: q.answers,
   });
+  if (q.type === 'mc') return [{ t: `${optionLetter(correct)}  `, b: true }, ...q.options[correct].runs];
+  if (q.type === 'show') return [{ t: answer }];
+  const runs = answerRuns(answer);
+  if (also.length) runs.push({ t: '  (also accept: ' }, ...also.flatMap((a, i) => [...(i ? [{ t: ', ' }] : []), ...answerRuns(a)]), { t: ')' });
+  return runs;
+}
+
+function answerParagraphs(q, ctx, label) {
+  const small = { size: SMALL, after: 60 };
   const out = [];
-  let answerRunsOut;
-  if (q.type === 'mc') {
-    const i = q.options.findIndex((o) => o.correct);
-    answerRunsOut = i < 0 ? [{ t: '?' }] : [{ t: `${optionLetter(i)}  `, b: true }, ...q.options[i].runs];
-  } else if (q.type === 'show') {
-    answerRunsOut = [{ t: 'See the mark scheme' }];
-  } else {
-    answerRunsOut = answerRuns(answer);
-    if (also.length) answerRunsOut.push({ t: '  (also accept: ' }, ...also.flatMap((a, i) => [...(i ? [{ t: ', ' }] : []), ...answerRuns(a)]), { t: ')' });
-  }
+  const answerRunsOut = answerLineRuns(q);
   out.push(para([new TextRun({ text: label, bold: true, size: BODY, font: FONT }), new TextRun({ text: '\t', size: BODY }), ...runsFor(answerRunsOut, ctx, { size: BODY })], { after: 40 }, { indentLeft: 600, hanging: 600, keepNext: q.solution.length > 0, keepLines: true }));
   if (q.solution.length) out.push(...renderBlocks(q.solution, ctx, { ...small, indent: 600 }));
   if (!ctx.noSlips) {
@@ -387,12 +392,16 @@ export function chapterAnswers(chapter, ctx) {
     if (q.screenOnly) continue;
     out.push(...answerParagraphs(q, ctx, `${chapter.num}.${q.n}`));
   }
+  let printedChecks = 0;
   for (const f of fadedOf(chapter.tree.blocks)) {
+    printedChecks += [...checksOf(f.blocks)].length;
     const blanks = [...blanksOf(f.blocks)].filter(Boolean);
     out.push(para([new TextRun({ text: `Now you finish it${f.section ? ` (in \u201c${f.section}\u201d)` : ''}`, bold: true, size: BODY, font: FONT })], { after: 40 }, { keepNext: true }));
     if (blanks.length) out.push(para([new TextRun({ text: `Gaps, in order: ${blanks.map((b) => plainText(b)).join(', ')}`, size: SMALL, font: FONT })], { after: 40 }, { indentLeft: 600 }));
     for (const blocks of checksOf(f.blocks)) out.push(...renderBlocks(blocks, ctx, { size: SMALL, after: 60, indent: 600 }));
   }
+  const totalChecks = [...checksOf(chapter.tree.blocks)].length;
+  if (printedChecks !== totalChecks) throw new Error(`${chapter.id}: ${totalChecks} answer checks in the page but ${printedChecks} printed (a check-line outside a faded example?)`);
   return out;
 }
 
@@ -422,7 +431,7 @@ const dec = (t) => {
 /** Page shorthand ({frac:a/b}, <sup>) -> runs, so the glossary keeps its maths. */
 export function shorthandRuns(text) {
   const out = [];
-  const re = /\{frac:([^}]*)\}|<sup>([^<]*)<\/sup>|<sub>([^<]*)<\/sub>/g;
+  const re = /\{frac:([^}]*)\}|<sup>([^<]*)<\/sup>|<sub>([^<]*)<\/sub>|<b>([^<]*)<\/b>|<i>([^<]*)<\/i>/g;
   let last = 0;
   for (let m = re.exec(text); m; m = re.exec(text)) {
     if (m.index > last) out.push({ t: dec(text.slice(last, m.index)) });
@@ -430,7 +439,9 @@ export function shorthandRuns(text) {
       const at = [...m[1]].findIndex((ch, i) => ch === '/' && m[1][i - 1] !== '<');
       out.push({ x: 'frac', num: shorthandRuns(m[1].slice(0, at).trim()), den: shorthandRuns(m[1].slice(at + 1).trim()) });
     } else if (m[2] !== undefined) out.push({ t: dec(m[2]), sup: true });
-    else out.push({ t: dec(m[3]), sub: true });
+    else if (m[3] !== undefined) out.push({ t: dec(m[3]), sub: true });
+    else if (m[4] !== undefined) out.push({ t: dec(m[4]), b: true });
+    else out.push({ t: dec(m[5]), i: true });
     last = m.index + m[0].length;
   }
   if (last < text.length) out.push({ t: dec(text.slice(last)) });

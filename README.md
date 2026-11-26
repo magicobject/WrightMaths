@@ -63,10 +63,10 @@ The whole book can be built as one Word file, ready to turn into a PDF for Amazo
 **Steps (plain English)**
 
 1. In a terminal in this folder run `npm run book:docx`. It takes a few minutes and writes `dist/gcse-book.docx` and `dist/print-report.json`. (`dist/` is never committed.)
-2. Open `dist/gcse-book.docx` in Word. Word asks whether to update the fields in the document: say **Yes**. That fills in the Contents, the Index and the page numbers. If it does not ask, press Ctrl+A then F9.
+2. Open `dist/gcse-book.docx` in Word. Word asks "This document contains fields that may refer to other files. Do you want to update the fields?": answer **Yes**. That fills in the Contents, the Index and the page numbers. If it does not ask, press Ctrl+A then F9.
 3. Look through it. **Never fix anything in Word**: every fix goes in `src/` (or `src/print/gcse/front.html` for the front pages), then rebuild, or the next build loses it.
 4. Choose File > Save as, pick PDF, click Options, and tick **ISO 19005-1 compliant (PDF/A)**. Save it.
-5. Run `npm run book:pdf-check -- path/to/the.pdf`. It checks the page size, the page count against KDP's limit (`--limit 776` or `--limit 600` for other ink and paper), "Error!" text, a filled-in Contents and Index, and the PDF/A marker. It does not yet check embedded fonts or image resolution (a TODO in `scripts/print/pdf-check-lib.mjs`).
+5. Run `npm run book:pdf-check -- path/to/the.pdf`. It checks the page size, the page count against KDP's limit (`--limit 776` or `--limit 600` for other ink and paper), "Error!" text, a filled-in Contents and Index, and the PDF/A marker. It also checks that every font is embedded and every image is 300 ppi or more.
 
 **Options** (add after `npm run book:docx --`): `--mono` greyscale figures and boxes; `--no-hints` leaves out the Hints section; `--no-slips` leaves out the "If you got..." lines; `--release` fails unless every placeholder and every report is empty; `--pages fractions,percentages` builds only those chapters.
 
