@@ -462,7 +462,7 @@ export function glossaryBlocks(glossary, ctx) {
   const out = [];
   for (const g of [...glossary].sort((a, b) => a.term.localeCompare(b.term))) {
     const small = { size: SMALL, after: 40 };
-    out.push(para([new TextRun({ text: g.term, bold: true, size: BODY, font: FONT }), new TextRun({ text: `  ${g.level === 'H' ? '(Higher)' : ''}`, size: SMALL, font: FONT })], { after: 20 }, { keepNext: true }));
+    out.push(para([new TextRun({ text: g.term, bold: true, size: BODY, font: FONT }), new TextRun({ text: `  ${g.level === 'H' && ctx.tier !== 'foundation' ? '(Higher)' : ''}`, size: SMALL, font: FONT })], { after: 20 }, { keepNext: true }));
     out.push(para(runsFor(shorthandRuns(g.def), ctx, small), small, { indentLeft: 360, keepNext: true }));
     const examples = Array.isArray(g.example) ? g.example : [g.example].filter(Boolean);
     for (const ex of examples) out.push(para([new TextRun({ text: 'Example: ', italics: true, size: SMALL, font: FONT }), ...runsFor(shorthandRuns(ex), ctx, small)], small, { indentLeft: 360 }));

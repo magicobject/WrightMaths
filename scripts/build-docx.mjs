@@ -197,6 +197,7 @@ export async function buildDocx(opts) {
   const glossary = glossaryForBook(GLOSSARY, opts.tier, termsUsed(chosen.map((c) => c.tree.blocks)));
   const glossaryById = new Map(glossary.map((g) => [g.id, g]));
   const ctx = makeContext({ chapters: referable, glossaryById, mono: opts.mono, noHints: opts.noHints, noSlips: opts.noSlips, elsewhere, elsewhereLabel });
+  ctx.tier = opts.tier;
   ctx.removed = walkCtx.removed;
 
   const report = findings(opts, front, chosen, ctx, unknown, blocked);
