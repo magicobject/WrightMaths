@@ -67,3 +67,29 @@ test('a fraction next to other terms is bracketed in the plain-text form', () =>
   assert.equal(toLinear('x = frac(a, b)'), 'x = a/b');
   assert.equal(toLinear('frac(x + 1, x - 2)'), '(x + 1)/(x - 2)');
 });
+
+test('only the continuation piece of a split formula gets infix spacing; a leading sign is left alone', () => {
+  assert.ok(!toMathML('-3').includes('form="infix"'));
+  const out = expandMath('<p>{m:(x+3)^2-4=x^2+6x+9-4=x^2+6x+5}</p>');
+  assert.ok(!out.split('<math ')[1].includes('form="infix"'), 'the first piece');
+  assert.ok(out.split('<math ').slice(2).every((piece) => piece.includes('<mo form="infix">')), 'every later piece');
+});
+
+test('a continuation piece keeps the space after its operator in the text alternative', () => {
+  const out = expandMath('<p>{m:x^2+6x+9-4=x^2+6x+9-4-(-4)}</p>');
+  assert.match(out, /alttext="= x\^2"/);
+  assert.match(out, /alttext="\+ 6x"/);
+  assert.match(out, /alttext="- 4"/);
+});
+
+test('a formula is never split after an integral sign or a function name', () => {
+  const integral = expandMath('<p>{m:int() -2x dx=-x^2}</p>');
+  assert.ok(!/alttext="-2x/.test(integral.replace(/alttext="integral of -2x/, '')), 'the sign stays with its term');
+  assert.doesNotMatch(integral, /<math alttext="integral[^"]*">[^]*<\/math> <math alttext="-/);
+  const trig = expandMath('<p>{m:sin x -cos x +tan x +ln x -sin x}</p>');
+  assert.doesNotMatch(trig, /<math alttext="[^"]*(sin|cos|tan|ln)">/);
+});
+
+test('punctuation is only attached to a formula when it is not the start of a word or number', () => {
+  assert.match(expandMath('<p>{m:x}.5 m</p>'), /<\/math>\.5 m/);
+});

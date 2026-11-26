@@ -322,8 +322,17 @@ export function toMathML(src, { display = false } = {}) {
   return mathElement(parse(src), display);
 }
 
-// A piece that starts with an operator (the second half of a split formula) keeps the spacing of an infix operator.
-const mathElement = (tree, display = false) => `<math${display ? ' display="block"' : ''} alttext="${esc(linSeq(tree)).replaceAll('"', '&quot;')}">${mlSeq(tree).replace(/^<mo>/, '<mo form="infix">')}</math>`;
+/**
+ * One <math> element. A `continuation` is the second or later piece of a split formula: if it starts with an operator
+ * (= + -), that operator is an infix one, so it keeps infix spacing, and its text alternative keeps the space after it
+ * ("- 4", not "-4"). A leading sign on a whole formula, such as the minus in -3, is NOT touched.
+ */
+function mathElement(tree, display = false, continuation = false) {
+  const startsWithOperator = continuation && tree[0]?.k === 'op';
+  const alt = startsWithOperator ? `${lin(tree[0])} ${linSeq(tree.slice(1))}`.trim() : linSeq(tree);
+  const body = startsWithOperator ? mlSeq(tree).replace(/^<mo>/, '<mo form="infix">') : mlSeq(tree);
+  return `<math${display ? ' display="block"' : ''} alttext="${esc(alt).replaceAll('"', '&quot;')}">${body}</math>`;
+}
 
 /**
  * Inline maths for running text. A formula with equals signs is cut before each top-level "=" into separate <math>
@@ -349,15 +358,18 @@ export function toInlineMathML(src, punct = '') {
     const parts = [];
     let part = [];
     piece.forEach((node, i) => {
-      const binary = node.k === 'op' && (node.v === '+' || node.v === '−') && part.length && piece[i - 1].k !== 'op';
-      const betweenBrackets = node.k === 'group' && piece[i - 1]?.k === 'group'; // (x - 2)(x + 1): break between the brackets
+      const before = piece[i - 1];
+      // never after another operator (a sign), a limits sign (int, sum, lim) or a function name (sin, ln, ...): the sign belongs to what follows
+      const signOfNext = !before || before.k === 'op' || before.k === 'word' || (before.k === 'func' && ['int', 'sum', 'lim'].includes(before.name));
+      const binary = node.k === 'op' && (node.v === '+' || node.v === '−') && part.length && !signOfNext;
+      const betweenBrackets = node.k === 'group' && before?.k === 'group'; // (x - 2)(x + 1): break between the brackets
       if (binary || betweenBrackets) { parts.push(part); part = []; }
       part.push(node);
     });
     parts.push(part);
     return parts;
   });
-  const html = wrapped.map((piece) => mathElement(piece));
+  const html = wrapped.map((piece, i) => mathElement(piece, false, i > 0));
   const last = html.pop();
   const tail = punct ? `<span class="mw">${last}${punct}</span>` : last;
   return [...html, tail].join(' ');
@@ -372,7 +384,7 @@ export function toLinear(src) {
 export function expandMath(html) {
   return html
     .replace(/\{md:([^{}]+)\}/g, (_, body) => `<span class="eq">${toMathML(body, { display: true })}</span>`)
-    .replace(/\{m:([^{}]+)\}([.,;:!?)]+)?/g, (_, body, punct) => toInlineMathML(body, punct ?? ''));
+    .replace(/\{m:([^{}]+)\}(?:([.,;:!?)]+)(?!\w))?/g, (_, body, punct) => toInlineMathML(body, punct ?? ''));
 }
 
 /** Replace every {m:...} / {md:...} with its plain-text form (no MathML). */
