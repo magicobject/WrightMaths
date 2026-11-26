@@ -25,7 +25,7 @@ function cleanParts(raw) {
     .replace(/÷/g, '/')
     .replace(/^£\s*/, '')
     .replace(/^[a-z]{1,2}\s*=\s*/, '') // "x = 5" and "AB = b - a"
-    .replace(/(?<=[a-z)])\.$/, '');
+    .replace(/(?<=[a-z)\d])\.$/, '');
   const spoken = SPOKEN_UNITS.exec(text);
   if (spoken && PLAIN_NUMBER.test(text.slice(0, spoken.index).trim())) {
     return { text: text.slice(0, spoken.index).trim(), unit: spoken[1] };
@@ -213,6 +213,15 @@ function numberList(text) {
 const LIST_WORD = /(?<![a-z])(?:or|and)(?![a-z])/i;
 const sameNumbers = (a, b) => Boolean(a && b) && a.length === b.length && a.every((n, i) => close(n, b[i]));
 
+// A pair written with its letters: optional brackets, letter = number, a separator (comma, semicolon, "and" or a space),
+// letter = number, and an optional full stop. Returned as "3,5" with the letters in alphabetical order (x before y), or null.
+const LABELLED_PAIR = /^\(?\s*([a-z])\s*=\s*(-?[\d./]+)\s*(?:,|;|\band\b|\s)\s*([a-z])\s*=\s*(-?[\d./]+)\s*\)?\.?$/;
+export function labelledPair(raw) {
+  const m = LABELLED_PAIR.exec(String(raw).slice(0, 200).trim().toLowerCase().replace(MINUS, '-'));
+  if (!m || m[1] === m[3]) return null;
+  return [[m[1], m[2]], [m[3], m[4]]].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map((item) => item[1]).join(',');
+}
+
 /**
  * True when `input` matches any of `answers` under `mode`. `context` (optional) is the question and
  * solution text: with it a typed unit must suit the question, and "10pi" is read as 10 where the question is about pi.
@@ -246,6 +255,9 @@ export function matches(input, answers, mode = 'value', context = '') {
   // Several numbers asked for as "1 or 5" are right in any order and with any usual separator: "1 5", "1, 5", "5 and 1", "x = 1 or x = 5".
   const typedNumbers = numberList(typed);
   if (typedNumbers && list.some((a) => LIST_WORD.test(String(a)) && sameNumbers(typedNumbers, numberList(a)))) return true;
+  // A labelled pair such as "y=5, x=3", "x=3 and y=5" or "(x=3,y=5)" is read in the order x, y, then compared with the keys.
+  const pair = labelledPair(typed);
+  if (pair) return list.some((a) => textKey(labelledPair(a) ?? a) === textKey(pair));
   const key = textKey(typed);
   if (list.some((a) => textKey(a) === key)) return true;
   // x = +-sqrt(a) is a fuller answer than sqrt(a), and right where the key is a root of letters.
