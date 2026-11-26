@@ -213,7 +213,7 @@ export const FIGURES = {
     return finish(p, {
       id: 'inequalities-line-parabola',
       title: 'The parabola y = x squared and three parallel lines y = 2x + k',
-      desc: 'The parabola y = x squared and three parallel lines with gradient 2. The dashed line, with k = 3, crosses the parabola at two points. The solid line, with k = -1, just touches the parabola at (1, 1). The dotted line, with k = -5, is below the parabola and does not meet it.',
+      desc: 'The parabola y = x squared and three parallel lines with gradient 2. The dashed line, with k = 3, crosses the parabola at two points. The solid line, with k = -1, touches the parabola at one point, (1, 1). The dotted line, with k = -5, is below the parabola and does not meet it.',
     });
   },
 
