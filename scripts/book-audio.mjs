@@ -121,6 +121,13 @@ if (command === 'status') {
   mkdirSync(WORK, { recursive: true });
   writeFileSync(join(WORK, 'review.html'), reviewPage(rows, { generated: new Date().toISOString().slice(0, 10) }));
   console.log(`${rows.length} sentences. Open audio-work/review.html to read what the voice is given beside what is written.`);
+} else if (command === 'all') {
+  // Every sentence, recorded or not, for checking the recordings (scripts/audio-check.py).
+  const sheet = scriptSheet(await collectUnits());
+  mkdirSync(WORK, { recursive: true });
+  writeFileSync(join(WORK, 'all.json'), `${JSON.stringify(sheet, null, 2)}
+`);
+  console.log(`${sheet.length} sentences written to audio-work/all.json`);
 } else if (command === 'make') {
   const template = process.env.WM_TTS_CMD;
   const ext = (process.env.WM_TTS_EXT ?? 'wav').toLowerCase();

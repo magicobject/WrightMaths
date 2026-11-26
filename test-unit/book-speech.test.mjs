@@ -99,7 +99,7 @@ test('composites, inverses and probabilities are read the way a teacher says the
   assert.equal(toSpoken('f(g(x))'), 'f of (g of x)');
   assert.equal(toSpoken('f⁻¹(x)'), 'f inverse of x');
   assert.equal(toSpoken('P(red)'), 'the probability of red');
-  assert.equal(toSpoken('P(A and B)'), 'the probability of A and B');
+  assert.equal(toSpoken('P(A and B)'), 'the probability of eigh and B');
   assert.equal(toSpoken('P(6) = 1/6'), 'the probability of six equals one over six');
 });
 
@@ -109,4 +109,19 @@ test('only a lone f, g or h (or a pair) before a bracket is a function', () => {
   assert.equal(toSpoken('if(x)'), 'if(x)');
   assert.equal(toSpoken('Sophia(x)'), 'Sophia(x)');
   assert.equal(toSpoken('fgh(x)'), 'fgh(x)');
+});
+
+test('coordinates are said "three comma four", with minus signs spoken', () => {
+  assert.equal(toSpoken('Plot (3, 4) and (-2, 5).'), 'Plot three comma four and minus two comma five.');
+  assert.equal(toSpoken('Point A(1, 1) goes to (5, -1).'), 'Point eigh one comma one goes to five comma minus one.');
+  assert.equal(toSpoken('Find f(x, y).'), 'Find f of (x, y).', 'a function of two letters is still a function');
+});
+
+test('the letter A is said as a letter name, never as the article', () => {
+  assert.equal(toSpoken('A = 3'), 'eigh equals three');
+  assert.equal(toSpoken('Pipe A fills a tank.'), 'Pipe eigh fills a tank.');
+  assert.equal(toSpoken('a + b and 3a'), 'eigh plus b and three eigh');
+  assert.equal(toSpoken('A tube of blue paint costs 4 pounds.'), 'A tube of blue paint costs four pounds.');
+  assert.equal(toSpoken('Use a minus sign, plus a bit.'), 'Use a minus sign, plus a bit.');
+  assert.equal(toSpoken('The picture shows: A function machine.'), 'The picture shows: A function machine.');
 });

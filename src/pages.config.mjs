@@ -79,6 +79,16 @@ export const PAGES = [
     canonicalPath: 'books/gcse/',
   },
   {
+    slug: 'books/gcse/audio-review',
+    title: 'Listen Recordings Review | Wright Maths Tuition',
+    description: 'Private working page for listening to the GCSE book recordings and flagging any that sound wrong. Not linked from anywhere.',
+    active: null,
+    base: '../../',
+    robots: 'noindex, nofollow',
+    extraCss: ['css/audio-review.css'],
+    extraModuleScripts: ['js/audio-review.mjs'],
+  },
+  {
     slug: 'books/gcse/glossary',
     searchWords: 'dictionary words definitions terms vocabulary',
     book: 'glossary',

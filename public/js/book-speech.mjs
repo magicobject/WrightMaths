@@ -35,6 +35,7 @@ const SYMBOLS = [
   [/</g, ' is less than '],
   [/>/g, ' is greater than '],
   [/=/g, ' equals '],
+  [/(?<=\s)-(?=\s)/g, ' minus '],
   [/²/g, ' squared'],
   [/³/g, ' cubed'],
   [/\^2/g, ' squared'],
@@ -120,15 +121,64 @@ export function numbersToWords(text) {
   });
 }
 
+
+// Coordinates and other bracketed pairs: "(3, 4)" is "three comma four", "(-2, 5)" is "minus two comma five".
+const COORD_ITEM = String.raw`[-−–]?\d[\d.]*|[A-Za-z]`;
+const COORDINATE = new RegExp(String.raw`(?<![a-z0-9])\(\s*(${COORD_ITEM})\s*,\s*(${COORD_ITEM})(?:\s*,\s*(${COORD_ITEM}))?\s*\)`, 'g');
+const minusWord = (item) => item.replace(/^[-−–]/, 'minus ');
+export function coordinatesToWords(text) {
+  return String(text).replace(COORDINATE, (match, a, b, c) => ` ${[a, b, c].filter((x) => x !== undefined).map(minusWord).join(' comma ')} `);
+}
+
+// Piper reads a bare "A" as the article "uh" and "ay" as "eye". "eigh" is the letter name, as in "hay" without the h.
+const LETTER_A = 'eigh';
+const OPERATOR_WORDS = new Set(['equals', 'plus', 'minus', 'times', 'over', 'squared', 'cubed', 'comma', 'divided']);
+const AFTER_OPERATOR_OK = new Set([...'abcdefghijklmnopqrstuvwxyz']);
+const NUMBER_WORDS = new Set([...SMALL, ...TENS.filter(Boolean)]);
+const A_STARTS_A_NAME = new Set(['is', 'are', 'and', 'has', 'lies', 'to', 'then', 'be', ...OPERATOR_WORDS]);
+
+/**
+ * The letter A (a variable, a point or a label) is said as the letter name, never as the article:
+ * "A equals three", "pipe A", "a plus b", "vector a" but not "a tube of paint" or "plus a bit".
+ */
+export function sayLetterA(text) {
+  return String(text).replace(/\b[Aa]\b/g, (letter, offset, whole) => {
+    const before = whole.slice(0, offset);
+    const after = whole.slice(offset + 1);
+    if (/^\.[A-Za-z]/.test(after) || /^[-'’]?\w/.test(after) && !/^-\w/.test(after)) return letter; // "a.m.", "a's"
+    const prev = /([A-Za-z]+)([^A-Za-z]*)$/.exec(before);
+    const next = /^([^A-Za-z]*)([A-Za-z]+)?(?:[^A-Za-z]+([A-Za-z]+))?/.exec(after);
+    const prevWord = prev?.[1]?.toLowerCase();
+    const nextGap = next?.[1] ?? '';
+    const nextWord = nextGap.trim() === '' ? next?.[2]?.toLowerCase() : undefined;
+    const next2 = nextWord ? next?.[3]?.toLowerCase() : undefined;
+    const sentenceStart = !prev || /[.?!:]/.test(prev[2]);
+    const sayIt = () => LETTER_A;
+    if (letter === 'A') {
+      if (!sentenceStart) return sayIt();
+      return nextWord && A_STARTS_A_NAME.has(nextWord) ? sayIt() : letter; // "A tube of paint" is the article
+    }
+    const nextIsOperator = nextWord && OPERATOR_WORDS.has(nextWord)
+      && (nextWord !== 'plus' && nextWord !== 'minus' || (next2 && (AFTER_OPERATOR_OK.has(next2) || NUMBER_WORDS.has(next2))));
+    if (nextIsOperator) return sayIt();
+    if (prevWord && NUMBER_WORDS.has(prevWord) && prev[2].trim() === '' && (nextWord === undefined && !/^[A-Za-z]/.test(after.trim()) || nextWord && OPERATOR_WORDS.has(nextWord))) return sayIt(); // "3a"
+    if (prevWord && ['equals', 'times', 'comma', 'vector', 'plus', 'minus', 'over'].includes(prevWord) && prev[2].trim() === '') {
+      const ends = nextWord === undefined && !/^[A-Za-z]/.test(after.trim());
+      if (ends || (nextWord && (OPERATOR_WORDS.has(nextWord) || nextWord.length === 1))) return sayIt();
+    }
+    return letter;
+  });
+}
+
 /**
  * Plain text in, text for a voice out. A "?" is kept as a "?": voices raise their
  * pitch for it, and saying the words "question mark" is never wanted.
  */
 export function toSpoken(text) {
-  let out = String(text);
+  let out = coordinatesToWords(text);
   // The pronunciation table runs twice so a function inside a function, f(g(x)), is reached from the inside out.
   for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
-  out = numbersToWords(out);
+  out = sayLetterA(numbersToWords(out));
   return out
     .replace(/[“”]/g, '') // quotation marks are not spoken
     .replace(/[‘’]/g, "'")

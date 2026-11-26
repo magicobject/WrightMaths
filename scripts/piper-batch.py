@@ -40,6 +40,7 @@ def main():
     ap.add_argument('--quality', type=float, default=0.85, help='Ogg compression 0 to 1: 0.85 is about 40 kbps')
     ap.add_argument('--gap', type=float, default=0.45, help='extra seconds of silence after each full stop (the spoken text never has a decimal point: 0.5 is "zero point five")')
     ap.add_argument('--redo', action='store_true', help='make clips again even when a good file exists (after changing --gap or the voice)')
+    ap.add_argument('--redo-before', type=float, default=0, help='record again any clip last written before this Unix time (after a change to how sentences are spoken); clips made since are kept, so a stopped run can be restarted with the same value')
     ap.add_argument('--limit', type=int, default=0, help='stop after this many new clips (0 = all)')
     args = ap.parse_args()
 
@@ -52,7 +53,7 @@ def main():
     seconds = 0.0
     for row in rows:
         path = os.path.join(args.out, f"{row['hash']}.ogg")
-        if not args.redo and os.path.exists(path) and is_good(path):
+        if not args.redo and os.path.exists(path) and is_good(path) and os.path.getmtime(path) >= args.redo_before:
             skipped += 1
             continue
         # One sentence at a time, with a little extra silence after each full stop. The text is the spoken text, so a

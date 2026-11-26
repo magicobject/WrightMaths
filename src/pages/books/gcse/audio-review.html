@@ -1,0 +1,29 @@
+<section class="hero" style="padding:40px 0 32px;">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Working page</span>
+      <h1>Listen recordings review</h1>
+      <p class="lead">Listen to each recording and flag the ones that sound wrong. Your marks are kept only in this browser. This page is not linked from anywhere.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="ar-bar">
+      <label>Show
+        <select id="ar-filter">
+          <option value="suspicious">Suspicious first (not yet reviewed)</option>
+          <option value="unreviewed">Not yet reviewed, in book order</option>
+          <option value="flagged">Flagged</option>
+          <option value="ok">Marked OK</option>
+          <option value="all">Everything, in book order</option>
+        </select>
+      </label>
+      <button type="button" id="ar-export">Download flagged list</button>
+      <p class="ar-keys" id="ar-count" role="status">Loading the recordings&hellip;</p>
+      <p class="ar-keys">Keys: <kbd>j</kbd> next, <kbd>k</kbd> previous (each plays), <kbd>space</kbd> play or stop, <kbd>o</kbd> mark OK and play next, <kbd>f</kbd> flag, <kbd>n</kbd> add a note.</p>
+    </div>
+    <div id="ar-list"></div>
+  </div>
+</section>
