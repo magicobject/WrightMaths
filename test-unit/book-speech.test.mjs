@@ -89,7 +89,7 @@ test('function notation is read as "f of x"', () => {
   assert.equal(toSpoken('f(x) = 5x − 3. Work out f(4)'), 'f of x equals five x minus three. Work out f of four');
   assert.equal(toSpoken('Find g(x + 1) when g(t) = t².'), 'Find g of (x plus one) when g of t equals t squared.');
   assert.equal(toSpoken('f(−2)'), 'f of minus two');
-  assert.equal(toSpoken('a(b) and of(x)'), 'a(b) and of(x)');
+  assert.equal(toSpoken('a(b) and of(x)'), 'eigh times (b) and of(x)'); // a letter or number before a bracket multiplies
 });
 
 test('composites, inverses and probabilities are read the way a teacher says them', () => {
