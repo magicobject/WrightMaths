@@ -102,6 +102,9 @@ function quadGraph({ id, r1, r2, a = 1, xmin, xmax, ymin, ymax, text, sign, betw
   return finish(p, { id, title, desc });
 }
 
+/** The quadratic drawn by 'inequalities-no-roots': y = a x^2 + b x + c with k = -2 in x^2 + kx + 9. A test checks the page text against it. */
+export const NO_ROOTS = { a: 1, b: -2, c: 9 };
+
 export const FIGURES = {
   // ---- number lines ----
   'inequalities-nl-open': () => nl({
@@ -172,15 +175,19 @@ export const FIGURES = {
   }),
 
   'inequalities-no-roots': () => {
-    const p = sketch({ xmin: -3, xmax: 5, ymin: -3, ymax: 13 });
-    band(p, 720, 'y = x^2 - 2x + 5', 'discriminant = -16');
-    p.curve(parab(1, -2, 5));
-    p.point(1, 4, { label: '(1, 4)', dx: 0, dy: -24, anchor: 'middle' });
-    p.text(1, 1.5, 'never meets the x-axis', { cls: 'alt', anchor: 'middle' });
+    const { a, b, c } = NO_ROOTS;
+    const disc = b * b - 4 * a * c; // the number printed on the picture is worked out here, so it cannot be wrong
+    const vx = -b / (2 * a);
+    const vy = c - (b * b) / (4 * a);
+    const p = sketch({ xmin: -3, xmax: 5, ymin: -3, ymax: 15 });
+    band(p, 720, `y = x^2 - 2x + ${c}`, `discriminant = ${disc}`);
+    p.curve(parab(a, b, c));
+    p.point(vx, vy, { label: `(${vx}, ${vy})`, dx: 0, dy: -24, anchor: 'middle' });
+    p.text(1, 2.5, 'never meets the x-axis', { cls: 'alt', anchor: 'middle' });
     return finish(p, {
       id: 'inequalities-no-roots',
-      title: 'The graph of y = x squared minus 2x plus 5',
-      desc: 'An upward-opening parabola with its lowest point at (1, 4). The whole curve is above the x-axis and never touches it, so the quadratic has no real roots. Its discriminant is negative 16.',
+      title: 'The graph of y = x squared minus 2x plus 9',
+      desc: `An upward-opening parabola with its lowest point at (${vx}, ${vy}). The whole curve is above the x-axis and never touches it, so the quadratic has no real roots. Its discriminant is negative ${-disc}.`,
     });
   },
 
@@ -252,7 +259,7 @@ export const FIGURES = {
     return finish(p, {
       id: 'inequalities-region-two',
       title: 'The region where x is at least 0, x + y is at most 4 and y is more than x',
-      desc: 'A triangle with corners at (0, 0), (0, 4) and (2, 2), hatched. Its left edge is the y-axis, drawn solid, for x at least 0. Its lower right edge is the solid line x + y = 4. Its other edge is the dashed line y = x, so points on that edge are not included.',
+      desc: 'A triangle with corners at (0, 0), (0, 4) and (2, 2), hatched. Its left edge is the y-axis, drawn solid, for x at least 0. Its upper right edge is the solid line x + y = 4. Its lower right edge is the dashed line y = x, so points on that edge are not included.',
     });
   },
 
@@ -344,7 +351,7 @@ export const FIGURES = {
     return finish(p, {
       id: 'inequalities-q-points',
       title: 'A hatched region with four marked points',
-      desc: 'Two lines meet at (3, 2). One is dashed and rises to the right. The other is solid and falls to the right. The wedge between them, on the left of where they meet, is hatched. Point A is on the dashed line. Point B is inside the wedge. Point C is on the solid line. Point D is outside the wedge, above the solid line.',
+      desc: 'Two lines meet at (3, 2). One is dashed and rises to the right. The other is solid and falls to the right. The wedge between them, on the left of where they meet, is hatched. Four points are marked A to D.',
     });
   },
 };
