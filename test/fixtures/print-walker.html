@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Print walker fixture</title>
+<link rel="stylesheet" href="/css/book.css">
+<!-- a request to another site: the Word build must block it -->
+<link rel="stylesheet" href="https://example.invalid/outside.css">
+<script>document.documentElement.setAttribute('data-js', 'ran');</script>
+</head>
+<body>
+<main id="main" class="book">
+<section class="hero book-hero">
+  <div class="wrap">
+    <span class="eyebrow">Number</span>
+    <h1>Fixture topic</h1>
+    <p class="lead">A lead with a fraction <span class="frac"><span class="fn">3</span><span class="sr"> over </span><span class="fd">4</span></span> and x<sup>2</sup> and H<sub>2</sub>O.</p>
+    <p class="progress-line" data-topic-progress>progress words</p>
+    <div class="hero-actions"><a class="btn btn-gold" href="#lesson">Start button</a></div>
+  </div>
+</section>
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs"><a href="index.html">Crumb</a></nav>
+    <p><a href="#lesson">Skip to the lesson</a></p>
+    <aside class="bys"><h2>Before you start</h2><ul class="needs"><li class="live"><a href="fractions.html">Fractions</a> <span class="chip chip-number">Number</span></li><li><a href="route.html">A screen page</a></li></ul></aside>
+    <aside class="words-strip"><h2>Words you need</h2><dl><dt><a class="term" href="glossary.html#fraction" data-term="fraction">Fraction</a></dt><dd>A part of a whole.</dd></dl></aside>
+    <h2 id="lesson">The lesson</h2>
+    <p>Move by <span role="img" aria-label="column vector 4 over minus 1" style="display:inline-flex;flex-direction:column;"><span aria-hidden="true">4</span><span aria-hidden="true">&minus;1</span></span> then pause<span class="sr-only"> (screen reader only)</span>.</p>
+    <p data-print="Printed instead">Screen words that should not print.</p>
+    <p data-print="">Nothing should print here.</p>
+    <p>Keep this. <span data-print="">Type it like 3/8.</span></p>
+    <ul class="tick"><li>One</li><li>Two <span class="chip chip-higher">Higher</span></li></ul>
+    <ul class="checklist"><li><label><input type="checkbox"> I can add fractions</label></li></ul>
+    <ol class="steps"><li>First step</li><li>Second with <b>bold</b> and <i>italic</i></li></ol>
+    <table><caption>A table</caption><thead><tr><th scope="col">x</th><th scope="col">y</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table>
+    <figure class="figure"><svg viewBox="0 0 100 50" role="img" aria-labelledby="f-t f-d"><title id="f-t">A box</title><desc id="f-d">A plain box with no label.</desc><rect x="5" y="5" width="90" height="40" fill="#fbe3ee" stroke="#0f2440"/></svg></figure>
+    <div class="key"><p><b>Key idea:</b> a key box.</p></div>
+    <div class="worked"><h3>Worked example</h3><ol class="steps"><li>Step</li></ol></div>
+    <div class="worked faded"><h3>Now you finish it</h3><p>6 + 5 = <span class="blank" data-answers="11">___</span></p><details class="check-line"><summary>Check my answer</summary><p>11.</p></details></div>
+    <details class="recap"><summary>Quick recap (skip if you are happy)</summary>
+      <div class="q" data-qid="fixture-1" data-answers="56" data-mode="value"><p class="qtext">Work out 7 &times; 8.</p><ol class="ladder"><li>Say it out loud.</li></ol><div class="solution"><p>56.</p></div></div>
+    </details>
+    <div class="q" data-qid="fixture-2" data-type="mc">
+      <p class="qtext"><span class="qtag qtag-marks">[2 marks]</span> <span class="qtag qtag-calc">Non-calculator</span> <span class="qtag qtag-grade">Grade 4</span> Which is bigger? <a class="qtag qtag-from" href="fractions.html">Uses: Fractions</a></p>
+      <ul class="options"><li data-correct>3/5</li><li data-why="Use a common denominator.">4/7</li></ul>
+      <ol class="ladder"><li>Same denominator.</li><li>Compare.</li></ol>
+      <ul class="wrong"><li data-if="21/35">That is only one of them.</li></ul>
+      <div class="solution"><p>3/5 = 21/35.</p><ul class="markscheme"><li><b>M1</b> for 21/35</li></ul></div>
+    </div>
+    <div class="q" data-qid="fixture-3" data-answers="1/2">
+      <ul class="facts"><li>A fact</li></ul>
+      <p class="qtext">Half of one, as <span class="frac"><span class="fn">x</span><span class="sr"> over </span><span class="fd">y</span></span>?</p>
+      <figure class="figure qfig"><svg viewBox="0 0 100 50" role="img" aria-labelledby="g-t g-d"><title id="g-t">Second box</title><desc id="g-d">Another box.</desc><rect x="5" y="5" width="90" height="40" fill="#cde" stroke="#0f2440"/></svg></figure>
+      <div class="solution"><p>One half.</p></div>
+    </div>
+    <div class="q" data-qid="fixture-4" data-type="drag"><p class="qtext">Drag the cards into order.</p><div class="solution"><p>Done.</p></div></div>
+    <p class="listen">Listen words (hidden in print)</p>
+    <marquee>Not on the list</marquee>
+  </div>
+</section>
+</main>
+</body>
+</html>

@@ -375,6 +375,18 @@ export function plainText(html) {
 
 const esc = (t) => String(t).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
+/**
+ * The one rule for "what is the answer to this question". `type` is the question's data-type
+ * (mc, show or absent), `correct` the text of the option marked data-correct and `answers` the
+ * raw data-answers string. The teacher answer keys (extractKey) and the Word build both use it.
+ */
+export function keyAnswer({ type, correct = '', answers = '' }) {
+  if (type === 'mc') return { answer: correct, also: [] };
+  if (type === 'show') return { answer: 'Written answer: see the mark scheme', also: [] };
+  const list = plainText(answers).split(';').map((x) => x.trim()).filter(Boolean);
+  return { answer: list[0] ?? '', also: list.slice(1) };
+}
+
 /** One entry per question on a topic page: number, text, answer, marks and mark scheme. */
 export function extractKey(raw) {
   const parts = raw.split(/(?=<div class="q")/).filter((p) => p.startsWith('<div class="q"'));
@@ -386,17 +398,11 @@ export function extractKey(raw) {
     const qtext = plainText(/<p class="qtext">([\s\S]*?)<\/p>/.exec(part)?.[1] ?? '').replace(/^\[\d+ marks?\]\s*/, '');
     // Only a figure inside the question itself (before its solution): the text after the last question of a set belongs to the next section.
     const figure = plainText(/<figure[^>]*>[\s\S]*?<svg[\s\S]*?<title[^>]*>([\s\S]*?)<\/title>/.exec(part.split('<div class="solution">')[0])?.[1] ?? '');
-    let answer = '';
-    let also = [];
-    if (type === 'mc') {
-      answer = plainText(/<li data-correct[^>]*>([\s\S]*?)<\/li>/.exec(part)?.[1] ?? '');
-    } else if (type === 'show') {
-      answer = 'Written answer: see the mark scheme';
-    } else {
-      const list = plainText(attr('data-answers') ?? '').split(';').map((x) => x.trim()).filter(Boolean);
-      answer = list[0] ?? '';
-      also = list.slice(1);
-    }
+    const { answer, also } = keyAnswer({
+      type,
+      correct: plainText(/<li data-correct[^>]*>([\s\S]*?)<\/li>/.exec(part)?.[1] ?? ''),
+      answers: attr('data-answers') ?? '',
+    });
     const solution = /<div class="solution">([\s\S]*?)<\/div>\s*<\/div>/.exec(part)?.[1] ?? /<div class="solution">([\s\S]*?)<\/div>/.exec(part)?.[1] ?? '';
     const scheme = [...solution.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => plainText(m[1]));
     const working = plainText(solution.replace(/<ul class="markscheme">[\s\S]*?<\/ul>/, ''));
