@@ -132,6 +132,18 @@ export function coordinatesToWords(text) {
   return String(text).replace(COORDINATE, (match, a, b, c) => ` ${[a, b, c].filter((x) => x !== undefined).map(minusWord).join(' comma ')} `);
 }
 
+// Ratios: "2 : 3" and "2:3" are "2 to 3", "1 : 2 : 5" is "1 to 2 to 5" (Greg, 26 Nov 2026). The colon has the same
+// spacing on both sides, so a sentence colon ("is 3: 8 minus 5") is left alone. A clock time such as 09:15 is not a
+// ratio and is left alone too (how times sound is still undecided).
+const RATIO_NUM = String.raw`\d+(?:[ ,]\d{3})*(?:\.\d+)?`;
+const RATIO = new RegExp(String.raw`(?<![\d.:])${RATIO_NUM}(?:(?: : |:)${RATIO_NUM})+(?![\d:])`, 'g');
+export function ratiosToWords(text) {
+  return String(text).replace(RATIO, (match) => {
+    if (/^\d{1,2}:\d{2}$/.test(match) && Number(match.split(':')[0]) < 24) return match;
+    return match.split(/ : |:/).join(' to ');
+  });
+}
+
 // Piper reads a bare "A" as the article "uh" and "ay" as "eye". "eigh" is the letter name, as in "hay" without the h.
 const LETTER_A = 'eigh';
 const OPERATOR_WORDS = new Set(['equals', 'plus', 'minus', 'times', 'over', 'squared', 'cubed', 'comma', 'divided']);
@@ -185,7 +197,7 @@ export function sayLetterA(text) {
  * pitch for it, and saying the words "question mark" is never wanted.
  */
 export function toSpoken(text) {
-  let out = coordinatesToWords(text);
+  let out = ratiosToWords(coordinatesToWords(text));
   // The pronunciation table runs twice so a function inside a function, f(g(x)), is reached from the inside out.
   for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
   out = out.replace(/(?<=[A-Za-z)])-(?=\d)/g, ' minus '); // "3k-7", "x^2-4" and "(x+1)^2-5" are subtractions, not hyphens
