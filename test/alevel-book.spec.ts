@@ -6,12 +6,17 @@ import { ALEVEL_PAGES, ALEVEL_TOPICS } from './support/alevel-pages';
 
 const PUBLIC = join(__dirname, '..', 'public');
 
-test.describe('the A-level book stays hidden', () => {
-  test('no page on the main site, and not the Books page, links to it; the sitemap and robots.txt never mention it', async ({ page }) => {
-    for (const sitePage of [...ALL_PAGES, { path: '/books/' }, { path: '/404.html' }]) {
+test.describe('the A-level book is an early preview: linked only from the Books page, never indexed', () => {
+  test('only the Books page links to it, once, to its home page; the sitemap and robots.txt never mention it', async ({ page }) => {
+    const toBook = 'a:not([href^="http"])[href*="a-level"], a:not([href^="http"])[href*="alevel"]';
+    for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
+      if (sitePage.path === '/books/' || sitePage.path === '/books') continue;
       await page.goto(sitePage.path);
-      await expect(page.locator('a:not([href^="http"])[href*="a-level"], a:not([href^="http"])[href*="alevel"]'), `${sitePage.path} links to the A-level book`).toHaveCount(0);
+      await expect(page.locator(toBook), `${sitePage.path} links to the A-level book`).toHaveCount(0);
     }
+    await page.goto('/books/');
+    await expect(page.locator(toBook), 'the Books page links to the A-level preview once').toHaveCount(1);
+    await expect(page.locator(toBook)).toHaveAttribute('href', 'a-level/');
     for (const file of ['sitemap.xml', 'robots.txt']) {
       expect(readFileSync(join(PUBLIC, file), 'utf8'), file).not.toMatch(/a-level\/|alevel/i);
     }

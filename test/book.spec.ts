@@ -818,13 +818,16 @@ test.describe('the Books page', () => {
     await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
-    // Three "Coming soon" cards: A-level Year 1, A-level Year 2 and Further Pure. None links to a book (the A-level book stays hidden).
-    for (const name of ['A-level Pure Maths, Year 1', 'A-level Pure Maths, Year 2', 'Further Pure Maths']) {
+    // A-level Year 1 is an early preview with one link to its home page. Year 2 and Further Pure are "Coming soon" and link to Contact.
+    const year1 = page.locator('.card', { hasText: 'A-level Pure Maths, Year 1' });
+    await expect(year1).toContainText('Early preview');
+    await expect(year1.getByRole('link', { name: /Open the early preview/ })).toHaveAttribute('href', 'a-level/');
+    for (const name of ['A-level Pure Maths, Year 2', 'Further Pure Maths']) {
       const card = page.locator('.card', { hasText: name });
       await expect(card, name).toContainText('Coming soon');
       await expect(card.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
     }
-    await expect(page.locator('a[href*="a-level"]')).toHaveCount(0);
+    await expect(page.locator('a[href*="a-level"]')).toHaveCount(1);
     await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
     await expect(page).toHaveURL(/\/books\/gcse\/$/);
     const response = await page.goto('/this-page-does-not-exist.html');

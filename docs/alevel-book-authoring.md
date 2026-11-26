@@ -1,6 +1,6 @@
 # Writing for the A-level book
 
-The book lives at `/books/a-level/` (hidden pilot: not linked from the site, not in the sitemap, `noindex`). The content plan is [alevel-pure-syllabus.md](alevel-pure-syllabus.md): 47 topics, 10 areas, Year 1 and Year 2, checked against the AQA, Edexcel, OCR A and OCR MEI specifications. **Read [book-authoring.md](book-authoring.md) first**: the A-level book works the same way as the GCSE book. This guide lists only what is different or new.
+The book lives at `/books/a-level/` (early preview since 26 Nov 2026, at Greg's request: linked only from the Books page, never from the nav or other pages, not in the sitemap, every page `noindex`; `test/alevel-book.spec.ts` enforces this). The content plan is [alevel-pure-syllabus.md](alevel-pure-syllabus.md): 47 topics, 10 areas, Year 1 and Year 2, checked against the AQA, Edexcel, OCR A and OCR MEI specifications. **Read [book-authoring.md](book-authoring.md) first**: the A-level book works the same way as the GCSE book. This guide lists only what is different or new.
 
 ## What is different from the GCSE book
 
