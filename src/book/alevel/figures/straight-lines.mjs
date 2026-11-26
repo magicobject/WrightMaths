@@ -220,7 +220,7 @@ export const FIGURES = {
     tick(4, -0.5);
     p.point(1, 4, { label: 'A (1, 4)', dx: 14, dy: -12 });
     p.point(5, -2, { label: 'B (5, -2)', dx: 14, dy: 8 });
-    p.point(3, 1, { label: 'M', dx: -16, dy: 36, anchor: 'end' });
+    p.point(3, 1, { label: 'M', dx: -18, dy: -10, anchor: 'end' });
     p.text(6.2, 3.1, 'bisector', { cls: 'alt', anchor: 'middle', dx: 4, dy: -30 });
     return finish(p, {
       id: 'straight-lines-bisector',
@@ -231,13 +231,13 @@ export const FIGURES = {
 
   // ---- modelling ----
   'straight-lines-model': () => {
-    const p = plane({ grid: false, ticks: false, tickLabels: false, top: 96, height: 520, xmin: -0.4, xmax: 4.5, ymin: -20, ymax: 190, right: 160, xlabel: 't (hours)', ylabel: 'C (£)' });
-    band(p, 'C = 40 + 30t', 'gradient: £30 for each hour');
+    const p = plane({ grid: false, ticks: false, tickLabels: false, top: 96, height: 520, xmin: -0.4, xmax: 4.5, ymin: -20, ymax: 190, right: 160, xlabel: 't (hours)', ylabel: 'C (pounds)' });
+    band(p, 'C = 40 + 30t', 'gradient: 30 pounds for each hour');
     p.line(0, 40, 4, 160, { cls: 'curve', clip: false });
     p.line(1, 70, 2, 70, { cls: 'guide' });
     p.line(2, 70, 2, 100, { cls: 'guide' });
     p.text(1.5, 70, 'across 1 hour', { cls: 'alt', dy: 36 });
-    p.text(2, 85, 'up £30', { cls: 'alt', anchor: 'start', dx: 14, dy: 8 });
+    p.text(2, 85, 'up 30 pounds', { cls: 'alt', anchor: 'start', dx: 14, dy: 8 });
     p.point(0, 40, { label: '(0, 40): the call-out fee', dx: 16, dy: 40 });
     return finish(p, {
       id: 'straight-lines-model',

@@ -384,7 +384,8 @@ export function extractKey(raw) {
     const type = attr('data-type');
     const marks = Number(attr('data-marks') ?? 0) || 0;
     const qtext = plainText(/<p class="qtext">([\s\S]*?)<\/p>/.exec(part)?.[1] ?? '').replace(/^\[\d+ marks?\]\s*/, '');
-    const figure = plainText(/<figure[^>]*>[\s\S]*?<svg[\s\S]*?<title[^>]*>([\s\S]*?)<\/title>/.exec(part)?.[1] ?? '');
+    // Only a figure inside the question itself (before its solution): the text after the last question of a set belongs to the next section.
+    const figure = plainText(/<figure[^>]*>[\s\S]*?<svg[\s\S]*?<title[^>]*>([\s\S]*?)<\/title>/.exec(part.split('<div class="solution">')[0])?.[1] ?? '');
     let answer = '';
     let also = [];
     if (type === 'mc') {
