@@ -1,0 +1,1148 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="inequalities">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra and functions &middot; Year 1</span>
+      <h1>Inequalities</h1>
+      <p class="lead">An equation says two things are equal. An inequality says one is bigger than the other. Its answer is usually a whole range of values, not one number. This page shows you how to solve linear and quadratic inequalities. You will write answers on a number line, in set notation and in interval notation. You will also shade regions on a graph.</p>
+      <p class="where-use"><b>Where you will use this:</b> in the discriminant, to find the values of k for which a quadratic has real roots. Also in Differentiation, to find where a curve is rising. It comes back in The modulus function. It helps whenever a question asks for &ldquo;the values of x for which&rdquo;.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Inequalities</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses <a href="quadratics.html">Quadratics</a>: factorising, finding roots and the discriminant. It also uses <a href="straight-lines.html">Straight lines</a>: drawing a line from its equation. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-linear-inequalities">Skip to the lesson</a></p>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Solve {m:3x+5=20}.</p>
+      <ol class="ladder"><li>Undo the +5 first.</li><li>Subtract 5 from both sides to get {m:3x=15}.</li><li>Then divide both sides by 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="15">That is the value of 3x. Divide both sides by 3 to find x.</li>
+        <li data-if="25/3;8.33;8.3;8.333">You added 5 to both sides. To undo +5, subtract 5.</li>
+      </ul>
+      <div class="solution"><p>{m:3x=20-5=15}, so {m:x=5}. Check: {m:3*5+5=20}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-2)(x-3);(x-3)(x-2)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^2-5x+6}. Type it like (x+1)(x-4).</p>
+      <ol class="ladder"><li>Find two numbers that multiply to 6 and add to {m:-5}.</li><li>Both numbers must be negative, because they add to a negative number and multiply to a positive one.</li><li>Write {m:(x+a)(x+b)} with those two numbers.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+2)(x+3);(x+3)(x+2)">That expands to {m:x^2+5x+6}. The numbers must add to {m:-5}, so they are both negative.</li>
+        <li data-if="(x-1)(x-6);(x-6)(x-1)">Those numbers multiply to 6, but they add to {m:-7}, not {m:-5}.</li>
+      </ul>
+      <div class="solution"><p>{m:-2*(-3)=6} and {m:-2+(-3)=-5}. So {m:x^2-5x+6=(x-2)(x-3)}.</p></div>
+    </div>
+    <div class="q" data-answers="-7" data-mode="value">
+      <p class="qtext">Which is smaller, {m:-2} or {m:-7}? Type the number.</p>
+      <ol class="ladder"><li>Picture a number line. Smaller numbers are further to the left.</li><li>Is {m:-7} to the left or to the right of {m:-2}?</li></ol>
+      <ul class="wrong"><li data-if="-2">{m:-2} is closer to zero, so it is the larger one. {m:-7} is further left on the number line.</li></ul>
+      <div class="solution"><p>{m:-7} is to the left of {m:-2}, so {m:-7<-2}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="-1 and 5;-1,5;-1 or 5;5 and -1;5,-1;5 or -1" data-mode="value">
+      <p class="qtext">Solve {m:x^2-4x-5=0}. Type both roots with &ldquo;or&rdquo; between them, smallest first, like {m:-2} or 6.</p>
+      <ol class="ladder"><li>Factorise the left side. You need two numbers that multiply to {m:-5} and add to {m:-4}.</li><li>They are 1 and {m:-5}, so {m:(x+1)(x-5)=0}.</li><li>Set each bracket equal to 0.</li></ol>
+      <ul class="wrong"><li data-if="1 and -5;1,-5;1 or -5;-5 and 1;-5,1;-5 or 1">You used the numbers in the brackets as the roots. {m:(x+1)} is 0 when {m:x=-1}, not when {m:x=1}.</li></ul>
+      <div class="solution"><p>{m:(x+1)(x-5)=0} gives {m:x=-1} or {m:x=5}. Check: {m:1+4-5=0} and {m:25-20-5=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-11" data-mode="value">
+      <p class="qtext">Find the discriminant of {m:x^2+3x+5}.</p>
+      <ol class="ladder"><li>The discriminant is {m:b^2-4ac}.</li><li>Here {m:a=1}, {m:b=3} and {m:c=5}.</li><li>Work out {m:9-4*1*5}.</li></ol>
+      <ul class="wrong"><li data-if="29">You added. The formula has a minus: {m:b^2-4ac=9-20}.</li><li data-if="11">The sign is wrong. {m:9-20} is negative.</li></ul>
+      <div class="solution"><p>{m:b^2-4ac=3^2-4*1*5=9-20=-11}. It is negative, so the quadratic has no real roots.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The line {m:y=2x-1} passes through a point with {m:x=3}. Find the y-coordinate of that point.</p>
+      <ol class="ladder"><li>Put {m:x=3} into the equation.</li><li>Work out {m:2*3-1}.</li></ol>
+      <ul class="wrong"><li data-if="6">You forgot the {m:-1}. Work out {m:2*3} and then subtract 1.</li><li data-if="7">The equation has {m:-1}, not {m:+1}. Subtract 1.</li></ul>
+      <div class="solution"><p>{m:y=2*3-1=5}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Linear inequalities</h2>
+    <p>An {term:inequality} compares two values. It says one is less than, or greater than, the other. There are four signs. The sign {m:<} means less than. The sign {m:>} means greater than. The sign {m:<=} means less than or equal to. The sign {m:>=} means greater than or equal to.</p>
+    <p>A {term:strict-inequality|strict inequality} uses {m:<} or {m:>}. The end value is not a solution. The signs {m:<=} and {m:>=} do include the end value.</p>
+    <p>To solve an inequality is to find every value of x that makes it true. A linear inequality has x to the power 1 only, with no {m:x^2}. You solve it like a linear equation. You do the same to both sides.</p>
+    <div class="key">
+      <p><b>Key idea:</b> three rules keep an inequality true.</p>
+      <ul class="tick">
+        <li>Add or subtract the same number on both sides. The sign stays.</li>
+        <li>Multiply or divide both sides by a positive number. The sign stays.</li>
+        <li>Multiply or divide both sides by a negative number. The sign <b>reverses</b>.</li>
+      </ul>
+    </div>
+    <p>To see why, start with the true statement {m:-2<3}. Multiply both sides by {m:-1}. The two numbers become 2 and {m:-3}. Now 2 is the greater number, so you must write {m:2>-3}. Multiplying by a negative number swaps the order of numbers on the number line.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Solve {m:4x-3<9}.</p>
+      <ol class="steps">
+        <li>Add 3 to both sides: {m:4x<12}.</li>
+        <li>Divide both sides by 4. It is positive, so the sign stays: {m:x<3}.</li>
+        <li>Check a value: {m:x=0} gives {m:-3}, which is less than 9. The value {m:x=3} gives 9, which is not less than 9.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-nl-open}<figcaption>Look at the open circle at 3. It shows that 3 is not a solution. The thick line shows every number below 3.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative number</h3>
+      <p>Solve {m:7-2x>=1}.</p>
+      <ol class="steps">
+        <li>Subtract 7 from both sides: {m:-2x>=-6}.</li>
+        <li>Divide both sides by {m:-2}. It is negative, so the sign reverses: {m:x<=3}.</li>
+        <li>Check a value: {m:x=0} gives 7, which is at least 1. The value {m:x=4} gives {m:-1}, which is not at least 1.</li>
+      </ol>
+      <p>You can avoid dividing by a negative number. Add {m:2x} to both sides to get {m:7>=1+2x}. Then {m:6>=2x}, so {m:3>=x}. This says the same as {m:x<=3}.</p>
+      <figure class="figure-lg">{fig:inequalities-nl-closed}<figcaption>Look at the filled circle at 3. It shows that 3 is a solution. The thick line shows every number below 3.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: brackets</h3>
+      <p>Solve {m:3(x+2)-2(x-1)>11}.</p>
+      <ol class="steps">
+        <li>Expand each bracket: {m:3x+6-2x+2>11}. Note that {m:-2*(-1)=+2}.</li>
+        <li>Collect like terms: {m:x+8>11}.</li>
+        <li>Subtract 8 from both sides: {m:x>3}.</li>
+        <li>Check: {m:x=4} gives {m:3*6-2*3=12}, which is greater than 11. The value {m:x=3} gives 11, which is not greater than 11.</li>
+      </ol>
+      <!-- No figure: the answer x > 3 has the same number-line shape as the figure above, mirrored. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: fractions</h3>
+      <p>Solve {m:frac(2x-1, 3)>=frac(x+2, 2)}.</p>
+      <ol class="steps">
+        <li>The smallest number that 3 and 2 both divide into is 6. Multiply both sides by 6. It is positive, so the sign stays.</li>
+        <li>{m:6*frac(2x-1, 3)=2(2x-1)} and {m:6*frac(x+2, 2)=3(x+2)}. So {m:2(2x-1)>=3(x+2)}.</li>
+        <li>Expand: {m:4x-2>=3x+6}.</li>
+        <li>Subtract {m:3x} and add 2: {m:x>=8}.</li>
+        <li>Check: {m:x=8} gives {m:frac(15, 3)=5} on the left and {m:frac(10, 2)=5} on the right. They are equal, as {m:>=} allows.</li>
+      </ol>
+      <!-- No figure: the working is all in the algebra. The picture of the answer is a filled circle at 8 with a thick line to the right. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:5-3x<14}.</p>
+      <ol class="steps">
+        <li>Subtract 5 from both sides: {m:-3x<}<span class="blank" data-answers="9">___</span>.</li>
+        <li>Divide both sides by {m:-3}. The sign reverses. So {m:x>}<span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:-3x<9}, so {m:x>-3}. Check: {m:x=0} gives 5, which is less than 14. The value {m:x=-4} gives 17, which is not less than 14.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: linear inequalities</h2>
+    <div class="q" data-answers="x&gt;3;3&lt;x" data-mode="exact">
+      <p class="qtext">Solve {m:5x-4>11}. Type your answer like x&gt;2.</p>
+      <ol class="ladder"><li>Add 4 to both sides.</li><li>{m:5x>15}. Now divide both sides by 5.</li><li>5 is positive, so the sign stays.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;3;3&gt;x">You reversed the sign. Dividing by 5, a positive number, keeps it.</li>
+        <li data-if="x&gt;15;15&lt;x">That is {m:5x>15}. Divide both sides by 5 to get x on its own.</li>
+      </ul>
+      <div class="solution"><p>{m:5x>15}, so {m:x>3}. Check: {m:x=4} gives {m:5*4-4=16}, which is greater than 11.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;=-3;-3&lt;=x" data-mode="exact">
+      <p class="qtext">Solve {m:2-5x<=17}. Type your answer like x&lt;=2 or x&gt;=2.</p>
+      <ol class="ladder"><li>Subtract 2 from both sides.</li><li>{m:-5x<=15}. Divide both sides by {m:-5}.</li><li>{m:-5} is negative, so the sign reverses.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;=-3;-3&gt;=x">You did not reverse the sign. Dividing by {m:-5}, a negative number, reverses it.</li>
+        <li data-if="x&gt;=3;3&lt;=x">{m:15} divided by {m:-5} is {m:-3}, not 3.</li>
+      </ul>
+      <div class="solution"><p>{m:-5x<=15}, so {m:x>=-3}. Check: {m:x=0} gives 2, which is at most 17. The value {m:x=-4} gives 22, which is not.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Solve {m:-3x<12}. Which answer is correct?</p>
+      <ul class="options">
+        <li data-why="Dividing by &minus;3 reverses the sign. Test x = &minus;5: &minus;3 &times; &minus;5 = 15, which is not less than 12.">The solution is {m:x<-4}</li>
+        <li data-correct>The solution is {m:x>-4}</li>
+        <li data-why="12 divided by &minus;3 is &minus;4, not 4. Test x = 0: &minus;3 &times; 0 = 0, which is less than 12. So 0 is a solution, but this answer leaves it out.">The solution is {m:x>4}</li>
+      </ul>
+      <ol class="ladder"><li>Divide both sides by {m:-3}.</li><li>The number you divide by is negative. What happens to the sign?</li></ol>
+      <div class="solution"><p>Divide both sides by {m:-3} and reverse the sign: {m:x>-4}. Check: {m:x=0} gives 0, which is less than 12.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;=11;11&gt;=x" data-mode="exact">
+      <p class="qtext">Solve {m:3(x-2)<=2x+5}. Type your answer like x&lt;=2 or x&gt;=2.</p>
+      <ol class="ladder"><li>Expand the bracket first.</li><li>{m:3(x-2)=3x-6}. So {m:3x-6<=2x+5}.</li><li>Subtract {m:2x} from both sides, then add 6.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;=7;7&gt;=x">You multiplied only the x by 3. {m:3(x-2)=3x-6}, not {m:3x-2}.</li>
+        <li data-if="x&lt;=-1;-1&gt;=x">You subtracted 6 from 5. Moving {m:-6} across means adding 6: {m:5+6=11}.</li>
+      </ul>
+      <div class="solution"><p>{m:3x-6<=2x+5} gives {m:x<=11}. Check: {m:x=11} gives {m:27} on the left and {m:27} on the right.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;-9;-9&lt;x" data-mode="exact">
+      <p class="qtext">Solve {m:frac(x+1, 2)>frac(x-3, 3)}. Type your answer like x&gt;2.</p>
+      <ol class="ladder"><li>Multiply both sides by 6. It is positive, so the sign stays.</li><li>{m:6*frac(x+1, 2)=3(x+1)} and {m:6*frac(x-3, 3)=2(x-3)}.</li><li>Solve {m:3(x+1)>2(x-3)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;-9;-9&gt;x">You reversed the sign. You multiplied by 6, a positive number, so the sign stays.</li>
+        <li data-if="x&gt;-4;-4&lt;x">You multiplied only the x by 3 and by 2. Multiply the whole bracket: {m:3(x+1)=3x+3}.</li>
+      </ul>
+      <div class="solution"><p>{m:3x+3>2x-6}, so {m:x>-9}. Check: {m:x=-8} gives {m:frac(-7, 2)=-3.5} and {m:frac(-11, 3)}, about {m:-3.67}. The first is greater.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">An {term:integer} is a whole number, such as {m:-2}, 0 or 7. Find the smallest integer that satisfies {m:5x-7>20}.</p>
+      <ol class="ladder"><li>Solve the inequality first.</li><li>{m:5x>27}, so {m:x>5.4}.</li><li>Which whole number is the first one above 5.4?</li></ol>
+      <ul class="wrong">
+        <li data-if="5">Test it: {m:5*5-7=18}, which is not greater than 20. The first whole number above 5.4 is 6.</li>
+        <li data-if="5.4;27/5">That is the boundary value. The question asks for a whole number above it.</li>
+      </ul>
+      <div class="solution"><p>{m:5x>27} gives {m:x>5.4}. The smallest integer above 5.4 is 6. Check: {m:5*6-7=23}, which is greater than 20.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why does {m:-2x<8} become {m:x>-4}?</p>
+      <ul class="options">
+        <li data-correct>Dividing by a negative number reverses the order</li>
+        <li data-why="Dividing by a positive number keeps the sign. Only a negative number reverses it.">The sign always reverses when you divide both sides by any number</li>
+        <li data-why="Which side the 8 is on does not matter. The sign reverses because you divide by a negative number.">The number 8 is on the right, so the sign has to reverse</li>
+      </ul>
+      <ol class="ladder"><li>Look at the number you divide both sides by.</li><li>Is it positive or negative?</li></ol>
+      <div class="solution"><p>You divide both sides by {m:-2}, which is negative. Dividing by a negative number swaps the order of numbers on the number line, so {m:<} becomes {m:>}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Number lines, set notation and interval notation</h2>
+    <p>An {term:inequality} such as {m:x<3} has many solutions. There are three ways to write them all down. Each way shows the same numbers.</p>
+    <p>On a <b>number line</b>, a filled circle means the end value is included. An open circle means it is not. A thick line shows every number that is a solution. The arrowheads show that the line carries on.</p>
+    <p>The word <b>and</b> joins two inequalities that must both be true at once. The numbers {m:x>=-1} and {m:x<4} are both true from {m:-1} up to just below 4. Write this as one chain: {m:-1<=x<4}. Put the smaller number on the left. Make both signs point the same way.</p>
+    <p>The word <b>or</b> joins two inequalities where at least one must be true. For example, {m:x<-2} or {m:x>=3}. You cannot write this as one chain. No number is both less than {m:-2} and at least 3.</p>
+    <p><b>Set notation</b> describes a collection of numbers with a rule. It uses curly brackets. The colon reads &ldquo;such that&rdquo;. So &#123;{m:x}: {m:x<3}&#125; reads &ldquo;the set of all x such that x is less than 3&rdquo;. Here x is any {term:real-number|real number}, that is any number on the number line.</p>
+    <p>The {term:union|union sign} {m:union} joins two sets into one. It means &ldquo;or&rdquo;. The {term:intersection|intersection sign} {m:intersect} keeps only what is in both sets. It means &ldquo;and&rdquo;.</p>
+    <p><b>Interval notation</b> writes the two end values in brackets. An {term:interval} is all the numbers between two end values. A square bracket means the end value is included. A round bracket means it is not. The sign for infinity, &infin;, is not a number, so it always has a round bracket.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the same numbers, written four ways.</p>
+      <ul class="tick">
+        <li>{m:x<3}: &#123;{m:x}: {m:x<3}&#125; and (&minus;&infin;, 3).</li>
+        <li>{m:x>=-1}: &#123;{m:x}: {m:x>=-1}&#125; and [&minus;1, &infin;).</li>
+        <li>{m:-1<=x<4}: &#123;{m:x}: {m:-1<=x<4}&#125; and [&minus;1, 4).</li>
+        <li>{m:x<-2} or {m:x>=3}: &#123;{m:x}: {m:x<-2}&#125; {m:union} &#123;{m:x}: {m:x>=3}&#125; and (&minus;&infin;, &minus;2) &cup; [3, &infin;).</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: and</h3>
+      <p>Write {m:-1<=x<4} on a number line, in set notation and in interval notation.</p>
+      <ol class="steps">
+        <li>The left sign is {m:<=}, so {m:-1} is included. Draw a filled circle at {m:-1}.</li>
+        <li>The right sign is {m:<}, so 4 is not included. Draw an open circle at 4.</li>
+        <li>Draw a thick line between the two circles.</li>
+        <li>Set notation: &#123;{m:x}: {m:-1<=x<4}&#125;.</li>
+        <li>Interval notation: [&minus;1, 4). The square bracket goes with the included end. The round bracket goes with the end that is left out.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-nl-and}<figcaption>Look at the two circles. The filled one at {m:-1} is included. The open one at 4 is not. The thick line joins them.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: or</h3>
+      <p>Write &ldquo;{m:x<-2} or {m:x>=3}&rdquo; on a number line, in set notation and in interval notation.</p>
+      <ol class="steps">
+        <li>For {m:x<-2}, draw an open circle at {m:-2} and a thick line going left.</li>
+        <li>For {m:x>=3}, draw a filled circle at 3 and a thick line going right.</li>
+        <li>Set notation: &#123;{m:x}: {m:x<-2}&#125; {m:union} &#123;{m:x}: {m:x>=3}&#125;.</li>
+        <li>Interval notation: (&minus;&infin;, &minus;2) &cup; [3, &infin;).</li>
+      </ol>
+      <p>The numbers from {m:-2} to 3 are not shaded. They are not solutions.</p>
+      <figure class="figure-lg">{fig:inequalities-nl-or}<figcaption>Look at the two separate pieces. The left piece stops at an open circle. The right piece starts at a filled circle.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: both inequalities must be true</h3>
+      <p>Find the values of x that satisfy both {m:2x-1>3} and {m:3x+2<=17}.</p>
+      <ol class="steps">
+        <li>Solve the first: {m:2x>4}, so {m:x>2}.</li>
+        <li>Solve the second: {m:3x<=15}, so {m:x<=5}.</li>
+        <li>Both must be true, so you need the numbers in both sets. These are the numbers above 2 that are also at most 5.</li>
+        <li>Write one chain: {m:2<x<=5}. In interval notation this is (2, 5].</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-nl-pair}<figcaption>Look at where the two conditions overlap. The open circle at 2 is not included. The filled circle at 5 is included.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a solution to an interval</h3>
+      <p>Solve {m:7-2x>=1} and write the answer in interval notation.</p>
+      <ol class="steps">
+        <li>From section 1, {m:x<=3}.</li>
+        <li>The numbers go on for ever to the left, so the interval starts at {m:-infinity}. Infinity always has a round bracket.</li>
+        <li>The value 3 is included, so it has a square bracket.</li>
+        <li>Interval notation: (&minus;&infin;, 3].</li>
+      </ol>
+      <!-- No new figure: the number line for x <= 3 is in section 1. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write the interval [&minus;2, 5) as an inequality.</p>
+      <ol class="steps">
+        <li>The left end value is <span class="blank" data-answers="-2">___</span>. Its bracket is square, so x can equal it.</li>
+        <li>The right end value is <span class="blank" data-answers="5">___</span>. Its bracket is round, so x cannot equal it.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The inequality is {m:-2<=x<5}. The square bracket becomes {m:<=}. The round bracket becomes {m:<}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: number lines and notation</h2>
+    <div class="q" data-answers="x&gt;=-1;-1&lt;=x" data-mode="exact">
+      <p class="qtext">Write the inequality shown on the number line. Use x. Type it like x&lt;2 or x&gt;=2.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-nl-ray}</figure>
+      <ol class="ladder"><li>Is the circle filled or open? A filled circle means the end value is included.</li><li>Which way does the thick line go? Right means greater.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;-1;-1&lt;x">The circle is filled, so {m:-1} is included. Use {m:>=}, not {m:>}.</li>
+        <li data-if="x&lt;=-1;-1&gt;=x">The thick line goes to the right, where the numbers are greater. Use {m:>=}.</li>
+      </ul>
+      <div class="solution"><p>The filled circle at {m:-1} means {m:-1} is included. The line goes right, so {m:x>=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="-3&lt;x&lt;=2;2&gt;=x&gt;-3;x&gt;-3 and x&lt;=2" data-mode="exact">
+      <p class="qtext">Write the inequality shown on the number line as one chain, with the smaller number on the left. Use x. Type it like 1&lt;x&lt;=4.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-nl-interval}</figure>
+      <ol class="ladder"><li>Look at each circle on its own. Is it filled or open?</li><li>An open circle goes with {m:<}. A filled circle goes with {m:<=}.</li><li>Put the left circle&rsquo;s number first.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3&lt;=x&lt;2">You swapped the circles. The open circle is at {m:-3} and the filled circle is at 2.</li>
+        <li data-if="-3&lt;x&lt;2">The circle at 2 is filled, so 2 is included. Use {m:<=} on that side.</li>
+      </ul>
+      <div class="solution"><p>The open circle at {m:-3} gives {m:-3<x}. The filled circle at 2 gives {m:x<=2}. Together: {m:-3<x<=2}.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;-1 or x&gt;=4;x&gt;=4 or x&lt;-1" data-mode="exact">
+      <p class="qtext">Write the inequality shown on the number line. Use x and the word or. Type it like x&lt;-3 or x&gt;=2.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-nl-or}</figure>
+      <ol class="ladder"><li>There are two separate pieces. Write one inequality for each.</li><li>The left piece stops at an open circle. The right piece starts at a filled circle.</li><li>Join the two with the word or.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;=-1 or x&gt;4;x&gt;4 or x&lt;=-1">You swapped the circles. The open circle is at {m:-1} and the filled circle is at 4.</li>
+        <li data-if="4&lt;=x&lt;-1;-1&gt;x&gt;=4">No number is both at least 4 and less than {m:-1}. Two separate pieces need the word or.</li>
+      </ul>
+      <div class="solution"><p>The left piece is {m:x<-1}, with an open circle. The right piece is {m:x>=4}, with a filled circle. Together: {m:x<-1} or {m:x>=4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the interval notation for {m:-2<x<=5}?</p>
+      <ul class="options">
+        <li data-why="This interval is [&minus;2, 5), which means x is at least &minus;2 and less than 5. The brackets are the wrong way round.">The interval [&minus;2, 5)</li>
+        <li data-why="This interval is (&minus;2, 5), which leaves out 5. The inequality has less than or equal to 5, so 5 is included.">The interval (&minus;2, 5)</li>
+        <li data-correct>The interval (&minus;2, 5]</li>
+      </ul>
+      <ol class="ladder"><li>Deal with each end on its own.</li><li>{m:-2<x} leaves out {m:-2}. {m:x<=5} includes 5.</li></ol>
+      <div class="solution"><p>{m:-2} is left out, so it has a round bracket. 5 is included, so it has a square bracket. The interval is (&minus;2, 5].</p></div>
+    </div>
+    <div class="q" data-answers="2&lt;x&lt;=5;5&gt;=x&gt;2;x&gt;2 and x&lt;=5" data-mode="exact">
+      <p class="qtext">Find the values of x that satisfy both {m:2x-1>3} and {m:3x+2<=17}. Give your answer as one chain, with the smaller number on the left. Type it like 1&lt;x&lt;=4.</p>
+      <ol class="ladder"><li>Solve each inequality on its own.</li><li>{m:2x>4} gives {m:x>2}. {m:3x<=15} gives {m:x<=5}.</li><li>Both must be true. Join them into one chain.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;2 or x&lt;=5;x&lt;=5 or x&gt;2">The word and means both must be true at once. With or, every number would work. Use one chain.</li>
+        <li data-if="2&lt;x&lt;5">The second inequality has {m:<=}, so 5 is included. Check: {m:3*5+2=17}, which is at most 17.</li>
+      </ul>
+      <div class="solution"><p>{m:x>2} and {m:x<=5} together give {m:2<x<=5}. Check: {m:x=5} gives {m:2*5-1=9}, which is greater than 3, and {m:3*5+2=17}, which is at most 17.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these numbers is a solution of {m:x<-2} or {m:x>=3}?</p>
+      <ul class="options">
+        <li data-correct>The number 3</li>
+        <li data-why="The number 0 is not less than &minus;2, and it is not at least 3. It lies between the two pieces, so it is not a solution.">The number 0</li>
+        <li data-why="The sign in x &lt; &minus;2 is strict, so &minus;2 is not included. The number &minus;2 is also not at least 3.">The number {m:-2}</li>
+      </ul>
+      <ol class="ladder"><li>Test each number in both inequalities.</li><li>A number works if it fits at least one of them.</li></ol>
+      <div class="solution"><p>The number 3 gives {m:3>=3}, which is true. The number 0 fits neither. The number {m:-2} fits neither, because {m:-2<-2} is false.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">How many integers x satisfy {m:-2<=x<3}?</p>
+      <ol class="ladder"><li>List the whole numbers. Start at the left end.</li><li>{m:-2<=x} includes {m:-2}. {m:x<3} leaves out 3.</li><li>The list is {m:-2}, {m:-1}, 0 and so on. Count it.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">You included 3. The sign is {m:<}, so 3 is not a solution.</li>
+        <li data-if="4">You left out {m:-2}. The sign is {m:<=}, so {m:-2} is a solution.</li>
+      </ul>
+      <div class="solution"><p>The integers are {m:-2}, {m:-1}, 0, 1 and 2. There are 5 of them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Quadratic inequalities</h2>
+    <p>A {term:quadratic} inequality has an {m:x^2} term, for example {m:x^2-x-6<0}. You cannot solve it by doing the same to both sides. Use the graph instead. <a href="quadratics.html">Quadratics</a> showed how to find the {term:root|roots} and sketch the parabola.</p>
+    <p>The reason is that a curve cannot go from below the x-axis to above it without crossing. So the expression {m:x^2-x-6} can change sign only at its roots. Between two neighbouring roots it keeps one sign.</p>
+    <p>The values of x where the two sides are equal are the {term:critical-values}. They mark where the answer starts and stops.</p>
+    <div class="key">
+      <p><b>Key idea:</b> solve a quadratic inequality in five steps.</p>
+      <ol class="steps">
+        <li>Rearrange so that one side is 0.</li>
+        <li>Solve the matching equation. Its roots are the critical values.</li>
+        <li>Sketch the parabola. Mark the critical values on the x-axis.</li>
+        <li>Read the graph. For &ldquo;greater than 0&rdquo;, take where the curve is above the axis. For &ldquo;less than 0&rdquo;, take where it is below.</li>
+        <li>Write the answer. The critical values are included only if the sign is {m:<=} or {m:>=}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: between the roots</h3>
+      <p>Solve {m:x^2-x-6<0}.</p>
+      <ol class="steps">
+        <li>One side is already 0.</li>
+        <li>Factorise: {m:(x+2)(x-3)=0}. The critical values are {m:x=-2} and {m:x=3}.</li>
+        <li>The {m:x^2} term is positive, so the parabola opens upward. It crosses the axis at {m:-2} and 3.</li>
+        <li>&ldquo;Less than 0&rdquo; asks where the curve is below the axis. That is between the roots.</li>
+        <li>The sign is strict, so the roots are left out: {m:-2<x<3}.</li>
+        <li>Check: {m:x=0} gives {m:-6}, which is less than 0.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-quad-between}<figcaption>Look at the hatched part. The curve is below the x-axis only between {m:x=-2} and {m:x=3}. The open circles show that those two values are left out.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: outside the roots</h3>
+      <p>Solve {m:x^2-4x-5>0}.</p>
+      <ol class="steps">
+        <li>Factorise: {m:(x+1)(x-5)=0}. The critical values are {m:x=-1} and {m:x=5}.</li>
+        <li>The parabola opens upward and crosses the axis at {m:-1} and 5.</li>
+        <li>&ldquo;Greater than 0&rdquo; asks where the curve is above the axis. That is to the left of {m:-1} and to the right of 5.</li>
+        <li>These are two separate pieces, so use or: {m:x<-1} or {m:x>5}.</li>
+        <li>Check: {m:x=0} gives {m:-5}, which is not greater than 0, so 0 is correctly left out. The value {m:x=6} gives 7, which is greater than 0.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-quad-outside}<figcaption>Look at the two hatched parts. The curve is above the x-axis to the left of {m:x=-1} and to the right of {m:x=5}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: rearrange first, and include the roots</h3>
+      <p>Solve {m:x^2+2x>=8}.</p>
+      <ol class="steps">
+        <li>Subtract 8 from both sides so that one side is 0: {m:x^2+2x-8>=0}.</li>
+        <li>Factorise: {m:(x+4)(x-2)=0}. The critical values are {m:x=-4} and {m:x=2}.</li>
+        <li>The parabola opens upward. It is above or on the axis outside the roots.</li>
+        <li>The sign is {m:>=}, so the roots are included: {m:x<=-4} or {m:x>=2}.</li>
+        <li>Check the end value: {m:x=-4} gives {m:16-8=8}, which is equal to 8, as {m:>=} allows.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-quad-closed}<figcaption>Look at the filled circles. They show that {m:x=-4} and {m:x=2} are included. The hatched parts are where the curve is on or above the axis.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative x squared term</h3>
+      <p>Solve {m:12-x-x^2>0}.</p>
+      <ol class="steps">
+        <li>Take out a factor of {m:-1}: {m:12-x-x^2=-(x^2+x-12)=-(x+4)(x-3)}. The critical values are {m:x=-4} and {m:x=3}.</li>
+        <li>The {m:x^2} term is negative, so the parabola opens <b>downward</b>.</li>
+        <li>&ldquo;Greater than 0&rdquo; asks where the curve is above the axis. For a downward parabola, that is between the roots.</li>
+        <li>The sign is strict: {m:-4<x<3}.</li>
+        <li>Check: {m:x=0} gives 12, which is greater than 0.</li>
+      </ol>
+      <p>Another way is to multiply both sides by {m:-1}. This reverses the sign and gives {m:x^2+x-12<0}. It has the same answer.</p>
+      <figure class="figure-lg">{fig:inequalities-quad-down}<figcaption>Look at the curve. It opens downward, so it is above the axis between the roots {m:x=-4} and {m:x=3}.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:x^2-3x-4<0}.</p>
+      <ol class="steps">
+        <li>Find two numbers that multiply to {m:-4} and add to {m:-3}. They are 1 and <span class="blank" data-answers="-4">___</span>.</li>
+        <li>So {m:(x+1)(x-4)=0}. The critical values are {m:-1} and 4.</li>
+        <li>The parabola opens upward. Less than 0 means below the axis, which is between the roots.</li>
+        <li>Check {m:x=0}: {m:0-0-4=}<span class="blank" data-answers="-4">___</span>, which is less than 0. So 0 is in the solution.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(x+1)(x-4)=0} gives the critical values {m:-1} and 4. The solution is {m:-1<x<4}.</p></details>
+      <!-- No new figure: the shape is the same as the first worked example in this section, with roots -1 and 4. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: quadratic inequalities</h2>
+    <div class="q" data-answers="2&lt;x&lt;3" data-mode="exact">
+      <p class="qtext">Solve {m:x^2-5x+6<0}. Type your answer like 1&lt;x&lt;4.</p>
+      <ol class="ladder"><li>Factorise the left side to find the critical values.</li><li>{m:(x-2)(x-3)=0}. The critical values are 2 and 3.</li><li>Less than 0 means the curve is below the axis. Which part is that?</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;2 or x&gt;3;x&gt;3 or x&lt;2">That is where the curve is above the axis. &ldquo;Less than 0&rdquo; needs the part below it.</li>
+        <li data-if="-3&lt;x&lt;-2">{m:(x-2)(x-3)=0} gives {m:x=2} and {m:x=3}, not {m:-2} and {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x-3)<0} when the curve is below the axis, between 2 and 3. So {m:2<x<3}. Check: {m:x=2.5} gives {m:6.25-12.5+6=-0.25}.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;-5 or x&gt;3;x&gt;3 or x&lt;-5" data-mode="exact">
+      <p class="qtext">Solve {m:x^2+2x-15>0}. Type your answer like x&lt;-1 or x&gt;4.</p>
+      <ol class="ladder"><li>Find two numbers that multiply to {m:-15} and add to 2.</li><li>They are 5 and {m:-3}, so {m:(x+5)(x-3)=0}.</li><li>Greater than 0 means the curve is above the axis. Which parts are those?</li></ol>
+      <ul class="wrong">
+        <li data-if="-5&lt;x&lt;3;3&gt;x&gt;-5">That is where the curve is below the axis. &ldquo;Greater than 0&rdquo; needs the parts above it.</li>
+        <li data-if="x&lt;-3 or x&gt;5;x&gt;5 or x&lt;-3">You used the numbers in the brackets as the roots. {m:(x+5)=0} gives {m:x=-5}, not 5.</li>
+      </ul>
+      <div class="solution"><p>The roots are {m:-5} and 3. The curve is above the axis outside them: {m:x<-5} or {m:x>3}. Check: {m:x=0} gives {m:-15}, so 0 is correctly left out.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;-1 or x&gt;3;x&gt;3 or x&lt;-1" data-mode="exact">
+      <p class="qtext">The graph of {m:y=x^2-2x-3} is shown. Use it to solve {m:x^2-2x-3>0}. Type your answer like x&lt;-5 or x&gt;2.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-quad}</figure>
+      <ol class="ladder"><li>Read the x-coordinates where the curve meets the x-axis.</li><li>Greater than 0 means the curve is above the axis.</li><li>The curve is above the axis in two separate pieces.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1&lt;x&lt;3;3&gt;x&gt;-1">That is where the curve is below the axis. &ldquo;Greater than 0&rdquo; needs the parts above it.</li>
+        <li data-if="x&lt;=-1 or x&gt;=3;x&gt;=3 or x&lt;=-1">The inequality is strict. At {m:x=-1} and {m:x=3} the curve is exactly on the axis, which is not greater than 0.</li>
+      </ul>
+      <div class="solution"><p>The curve meets the axis at {m:x=-1} and {m:x=3}. It is above the axis to the left of {m:-1} and to the right of 3. So {m:x<-1} or {m:x>3}.</p></div>
+    </div>
+    <div class="q" data-answers="1&lt;=x&lt;=3;3&gt;=x&gt;=1" data-mode="exact">
+      <p class="qtext">Solve {m:x^2-4x+3<=0}. Type your answer like 1&lt;=x&lt;=4.</p>
+      <ol class="ladder"><li>Factorise: you need two numbers that multiply to 3 and add to {m:-4}.</li><li>{m:(x-1)(x-3)=0}. The critical values are 1 and 3.</li><li>The sign is {m:<=}. Are the critical values included?</li></ol>
+      <ul class="wrong">
+        <li data-if="1&lt;x&lt;3;3&gt;x&gt;1">The sign is {m:<=}, so the critical values are included. Use {m:<=} on both sides.</li>
+        <li data-if="x&lt;=1 or x&gt;=3;x&gt;=3 or x&lt;=1">That is where the curve is above the axis. &ldquo;At most 0&rdquo; needs the part on or below it.</li>
+      </ul>
+      <div class="solution"><p>The curve is on or below the axis from 1 to 3, including both ends. So {m:1<=x<=3}. Check: {m:x=1} gives {m:1-4+3=0}.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;=-5 or x&gt;=2;x&gt;=2 or x&lt;=-5" data-mode="exact">
+      <p class="qtext">Solve {m:x^2+3x>=10}. Type your answer like x&lt;=-1 or x&gt;=4.</p>
+      <ol class="ladder"><li>Rearrange so that one side is 0.</li><li>{m:x^2+3x-10>=0}. Factorise: {m:(x+5)(x-2)}.</li><li>The sign is {m:>=}. Take the parts on or above the axis.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5&lt;=x&lt;=2;2&gt;=x&gt;=-5">That is where the curve is on or below the axis. {m:>=} needs the parts on or above it.</li>
+        <li data-if="x&lt;=5 or x&gt;=-2;x&gt;=-2 or x&lt;=5">You used the numbers in the brackets as the roots. {m:(x+5)=0} gives {m:x=-5}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+5)(x-2)>=0} outside the roots {m:-5} and 2, including them. So {m:x<=-5} or {m:x>=2}. Check: {m:x=2} gives {m:4+6=10}.</p></div>
+    </div>
+    <div class="q" data-answers="-5&lt;x&lt;3;3&gt;x&gt;-5" data-mode="exact">
+      <p class="qtext">Solve {m:15-2x-x^2>0}. Type your answer like -2&lt;x&lt;6.</p>
+      <ol class="ladder"><li>Take out a factor of {m:-1}: {m:15-2x-x^2=-(x^2+2x-15)}.</li><li>{m:x^2+2x-15=(x+5)(x-3)}. The critical values are {m:-5} and 3.</li><li>The {m:x^2} term is negative, so the parabola opens downward. Where is it above the axis?</li></ol>
+      <ul class="wrong"><li data-if="x&lt;-5 or x&gt;3;x&gt;3 or x&lt;-5">That would be right for {m:x^2+2x-15>0}. Here the {m:x^2} term is negative, so the curve opens downward and is above the axis between the roots.</li></ul>
+      <div class="solution"><p>The curve opens downward, so it is above the axis between its roots {m:-5} and 3. So {m:-5<x<3}. Check: {m:x=0} gives 15, which is greater than 0.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Solve {m:x^2>9}. Which answer is correct?</p>
+      <ul class="options">
+        <li data-why="The number 0 is between &minus;3 and 3, and 0 squared is 0, which is not greater than 9. Between the roots the curve is below the axis.">x is between {m:-3} and 3, with neither end included</li>
+        <li data-correct>x is less than {m:-3}, or x is greater than 3</li>
+        <li data-why="This misses the negative solutions. Test x = &minus;4: &minus;4 squared is 16, which is greater than 9. Taking the square root of both sides loses these.">x is greater than 3, and there are no other solutions</li>
+      </ul>
+      <ol class="ladder"><li>Rearrange to {m:x^2-9>0} and factorise.</li><li>{m:(x+3)(x-3)>0}. The curve is above the axis outside the roots.</li></ol>
+      <div class="solution"><p>{m:x^2-9=(x+3)(x-3)}. The curve is above the axis outside {m:-3} and 3, so {m:x<-3} or {m:x>3}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Only one integer n satisfies {m:n^2-6n+8<0}. Find it.</p>
+      <ol class="ladder"><li>Solve {m:n^2-6n+8<0} first.</li><li>{m:(n-2)(n-4)=0}. Less than 0 means between the roots.</li><li>Which whole number is strictly between 2 and 4?</li></ol>
+      <ul class="wrong"><li data-if="2;4">Test it: {m:2^2-12+8=0}, and {m:4^2-24+8=0}. Both give 0, which is not less than 0. The roots are left out.</li></ul>
+      <div class="solution"><p>{m:(n-2)(n-4)<0} gives {m:2<n<4}. The only integer strictly between 2 and 4 is 3. Check: {m:9-18+8=-1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Inequalities and the discriminant</h2>
+    <p>The {term:discriminant} of {m:ax^2+bx+c} is {m:b^2-4ac}. <a href="quadratics.html">Quadratics</a> showed that its sign tells you how many real roots a {term:quadratic} has.</p>
+    <ul class="tick">
+      <li>{m:b^2-4ac>0}: two different real roots. The graph crosses the x-axis twice.</li>
+      <li>{m:b^2-4ac=0}: one repeated root. The graph just touches the x-axis.</li>
+      <li>{m:b^2-4ac<0}: no real roots. The graph does not meet the x-axis.</li>
+    </ul>
+    <p>Sometimes a quadratic contains an unknown such as k. Then the discriminant is an expression in k. To find the values of k you want, solve an inequality in k.</p>
+    <div class="key">
+      <p><b>Key idea:</b> write the condition on the discriminant as an inequality. Then solve it for k. &ldquo;No real roots&rdquo; means {m:b^2-4ac<0}. &ldquo;Two different real roots&rdquo; means {m:b^2-4ac>0}. &ldquo;At least one real root&rdquo; means {m:b^2-4ac>=0}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: no real roots</h3>
+      <p>Find the values of k for which {m:x^2+kx+9=0} has no real roots.</p>
+      <ol class="steps">
+        <li>Here {m:a=1}, {m:b=k} and {m:c=9}. The discriminant is {m:k^2-4*1*9=k^2-36}.</li>
+        <li>No real roots means the discriminant is negative: {m:k^2-36<0}.</li>
+        <li>Factorise: {m:(k-6)(k+6)<0}. The critical values are {m:k=-6} and {m:k=6}.</li>
+        <li>This is a quadratic inequality in k that opens upward. Less than 0 means between the roots: {m:-6<k<6}.</li>
+        <li>Check: {m:k=0} gives {m:x^2+9=0}, which has no real roots. The value {m:k=7} gives a discriminant of {m:49-36=13}, which is positive. So 7 is correctly left out.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-no-roots}<figcaption>Look at the curve for {m:k=-2}. This value is inside {m:-6<k<6}. The curve never touches the x-axis, and its discriminant is {m:4-20=-16}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where a line meets a curve</h3>
+      <p>Find the values of k for which the line {m:y=2x+k} meets the curve {m:y=x^2} at two different points.</p>
+      <ol class="steps">
+        <li>Where they meet, the y-values are equal: {m:x^2=2x+k}.</li>
+        <li>Rearrange to get 0 on one side: {m:x^2-2x-k=0}.</li>
+        <li>Here {m:a=1}, {m:b=-2} and {m:c=-k}. The discriminant is {m:4-4*1*(-k)=4+4k}.</li>
+        <li>Two different points need a positive discriminant: {m:4+4k>0}.</li>
+        <li>Subtract 4 and divide by 4. The 4 is positive, so the sign stays: {m:k>-1}.</li>
+      </ol>
+      <p>When {m:k=-1} the discriminant is 0, so the line just touches the curve. It is a tangent. When {m:k<-1} the line misses the curve. See <a href="straight-lines.html">Straight lines</a> for the equation {m:y=mx+c} of a line.</p>
+      <figure class="figure-lg">{fig:inequalities-line-parabola}<figcaption>Look at the three lines with the same gradient. The dashed one crosses the curve twice. The solid one touches it once. The dotted one misses it.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the x squared term must not vanish</h3>
+      <p>Find the values of k for which {m:kx^2+4x+1=0} has two different real roots.</p>
+      <ol class="steps">
+        <li>This is only a quadratic if {m:k != 0}. If {m:k=0}, the equation is {m:4x+1=0}, which has one root.</li>
+        <li>Here {m:a=k}, {m:b=4} and {m:c=1}. The discriminant is {m:16-4k}.</li>
+        <li>Two different roots need {m:16-4k>0}. Subtract 16: {m:-4k>-16}.</li>
+        <li>Divide both sides by {m:-4}. It is negative, so the sign reverses: {m:k<4}.</li>
+        <li>Remove the case {m:k=0}. The answer is {m:k<4} with {m:k != 0}.</li>
+      </ol>
+      <!-- No figure: the answer is a range of k, and the working is all algebra. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the values of k for which {m:x^2-6x+k=0} has two different real roots.</p>
+      <ol class="steps">
+        <li>Here {m:a=1}, {m:b=-6} and {m:c=k}. The discriminant is {m:36-}<span class="blank" data-answers="4">___</span>{m:k}.</li>
+        <li>Two different roots need {m:36-4k>0}. So {m:-4k>-36}. Divide by {m:-4} and reverse the sign: {m:k<}<span class="blank" data-answers="9">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The answer is {m:k<9}. Check: {m:k=0} gives {m:x^2-6x=0}, which has the two roots 0 and 6.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the discriminant</h2>
+    <div class="q" data-answers="k^2-64" data-mode="exact">
+      <p class="qtext">Write the discriminant of {m:2x^2+kx+8} in terms of k. Type it like k^2-5.</p>
+      <ol class="ladder"><li>The discriminant is {m:b^2-4ac}.</li><li>Here {m:a=2}, {m:b=k} and {m:c=8}.</li><li>Work out {m:4ac=4*2*8}.</li></ol>
+      <ul class="wrong">
+        <li data-if="k^2-32">You left out a. The formula is {m:b^2-4ac}, and a is 2: {m:4*2*8=64}.</li>
+        <li data-if="k^2+64">The formula has a minus before {m:4ac}: {m:b^2-4ac}.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=k^2-4*2*8=k^2-64}.</p></div>
+    </div>
+    <div class="q" data-answers="-3&lt;k&lt;3;3&gt;k&gt;-3" data-mode="exact">
+      <p class="qtext">Find the values of k for which {m:x^2+2kx+9=0} has no real roots. Type your answer like -2&lt;k&lt;5.</p>
+      <ol class="ladder"><li>Here {m:a=1}, {m:b=2k} and {m:c=9}. Write {m:b^2-4ac}.</li><li>{m:(2k)^2-36=4k^2-36}. No real roots means this is negative.</li><li>Divide by 4, then solve {m:k^2<9}.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&lt;-3 or k&gt;3;k&gt;3 or k&lt;-3">That is where the discriminant is positive, which gives two real roots. No real roots needs it negative.</li>
+        <li data-if="-3&lt;=k&lt;=3;3&gt;=k&gt;=-3">At {m:k=3} the discriminant is 0, which gives one repeated real root. No real roots needs a strictly negative discriminant.</li>
+      </ul>
+      <div class="solution"><p>{m:4k^2-36<0} gives {m:k^2<9}, so {m:-3<k<3}. Check: {m:k=0} gives {m:x^2+9=0}, which has no real roots.</p></div>
+    </div>
+    <div class="q" data-answers="k&lt;4;4&gt;k" data-mode="exact">
+      <p class="qtext">Find the values of k for which {m:x^2-4x+k=0} has two different real roots. Type your answer like k&lt;2.</p>
+      <ol class="ladder"><li>Here {m:a=1}, {m:b=-4} and {m:c=k}. The discriminant is {m:16-4k}.</li><li>Two different roots need {m:16-4k>0}.</li><li>Solve this linear inequality. Divide by a negative number at some point.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&gt;4;4&lt;k">You did not reverse the sign. {m:-4k>-16}, and dividing by {m:-4} gives {m:k<4}.</li>
+        <li data-if="k&lt;=4;4&gt;=k">At {m:k=4} the discriminant is 0, which gives one repeated root. Two different roots need a strict inequality.</li>
+      </ul>
+      <div class="solution"><p>{m:16-4k>0} gives {m:-4k>-16}, so {m:k<4}. Check: {m:k=0} gives {m:x^2-4x=0}, which has the two roots 0 and 4.</p></div>
+    </div>
+    <div class="q" data-answers="k&lt;=9;9&gt;=k" data-mode="exact">
+      <p class="qtext">Find the values of k for which {m:x^2+6x+k=0} has at least one real root. Type your answer like k&lt;=2 or k&gt;=2.</p>
+      <ol class="ladder"><li>At least one real root means one or two roots. The discriminant is zero or positive.</li><li>The discriminant is {m:36-4k}. Write {m:36-4k>=0}.</li><li>Divide by {m:-4} at the right moment.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&lt;9;9&gt;k">The question allows a single repeated root. That happens when the discriminant is 0, at {m:k=9}. Use {m:<=}.</li>
+        <li data-if="k&gt;=9;9&lt;=k">You did not reverse the sign. {m:-4k>=-36}, and dividing by {m:-4} gives {m:k<=9}.</li>
+      </ul>
+      <div class="solution"><p>{m:36-4k>=0} gives {m:-4k>=-36}, so {m:k<=9}. Check: {m:k=9} gives {m:x^2+6x+9=(x+3)^2}, which has one repeated root.</p></div>
+    </div>
+    <div class="q" data-answers="k&gt;11/4;k&gt;2.75;11/4&lt;k;2.75&lt;k" data-mode="exact">
+      <p class="qtext">The line {m:y=x+k} and the curve {m:y=x^2+3} meet at two different points. Find the values of k. Type your answer like k&gt;3/2 or k&gt;1.5.</p>
+      <ol class="ladder"><li>Set the y-values equal: {m:x^2+3=x+k}.</li><li>Rearrange to {m:x^2-x+(3-k)=0}. Find its discriminant.</li><li>{m:(-1)^2-4*1*(3-k)=4k-11}. Two points need this to be positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&lt;11/4;k&lt;2.75;11/4&gt;k;2.75&gt;k">That is the condition for no meeting points. Two different points need a positive discriminant, {m:4k-11>0}.</li>
+        <li data-if="k&lt;-11/4;k&lt;-2.75;-11/4&gt;k;-2.75&gt;k">Moving {m:x+k} to the left gives a constant term {m:3-k}, not {m:3+k}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-x+(3-k)=0} has discriminant {m:1-4(3-k)=4k-11}. This is positive when {m:k>frac(11, 4)}, which is {m:k>2.75}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The equation {m:x^2+4x+k=0} has no real roots. Which condition on k is correct?</p>
+      <ul class="options">
+        <li data-why="The discriminant is 16 &minus; 4k. You need it negative, so &minus;4k &lt; &minus;16. Dividing by &minus;4 reverses the sign, so k is greater than 4.">The value of k is less than 4</li>
+        <li data-why="The discriminant is 16 &minus; 4k, not 16 + 4k. The k term has a minus sign.">The value of k is greater than {m:-4}</li>
+        <li data-correct>The value of k is greater than 4</li>
+      </ul>
+      <ol class="ladder"><li>No real roots means the discriminant is negative.</li><li>The discriminant is {m:16-4k}. Write {m:16-4k<0}.</li></ol>
+      <div class="solution"><p>{m:16-4k<0} gives {m:-4k<-16}. Divide by {m:-4} and reverse the sign: {m:k>4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Regions on a graph</h2>
+    <p>An inequality in x and y describes a {term:region} of the graph. A region is a set of points. Every point in the region makes the inequality true.</p>
+    <p>The edge of the region is its {term:boundary}. To find the boundary, replace the inequality sign with an equals sign. For {m:y>2x-1} the boundary is the line {m:y=2x-1}. Draw it as in <a href="straight-lines.html">Straight lines</a>.</p>
+    <p>A {term:strict-inequality|strict inequality} uses {m:<} or {m:>}. Points on its boundary are not included, so draw the boundary <b>dashed</b>. An inequality with {m:<=} or {m:>=} includes its boundary, so draw it <b>solid</b>.</p>
+    <p>A line splits the graph into two sides. All the points on one side make the inequality true. All the points on the other side make it false. So one test point tells you which side to shade.</p>
+    <div class="key">
+      <p><b>Key idea:</b> shade a region in four steps.</p>
+      <ol class="steps">
+        <li>Replace the sign with an equals sign. Draw the boundary.</li>
+        <li>Make the boundary dashed for {m:<} or {m:>}. Make it solid for {m:<=} or {m:>=}.</li>
+        <li>Choose a test point that is not on the boundary. The origin {m:(0, 0)} is the easiest, unless the boundary passes through it.</li>
+        <li>Put the test point into the inequality. If it is true, shade the side with the test point. If it is false, shade the other side.</li>
+      </ol>
+    </div>
+    <p>In this book a region is hatched, with diagonal lines. In your own work, read the question. Some questions ask you to shade the region you want. Others ask you to shade the region you do not want.</p>
+    <div class="worked">
+      <h3>Worked example: a dashed line</h3>
+      <p>Show the region {m:y>2x-1} on a graph.</p>
+      <ol class="steps">
+        <li>The boundary is {m:y=2x-1}. It passes through {m:(0, -1)} and {m:(1, 1)}.</li>
+        <li>The sign is {m:>}, which is strict. Draw the line dashed.</li>
+        <li>Test the origin: {m:0>2*0-1} is {m:0>-1}, which is true. So shade the side with the origin.</li>
+        <li>That is the side above the line.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-region-dashed}<figcaption>Look at the hatched side above the dashed line. The point {m:(0, 0)} is in the region. The point {m:(1, 1)} is on the dashed line, so it is not.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a solid curve</h3>
+      <p>Show the region {m:y<=4-x^2} on a graph.</p>
+      <ol class="steps">
+        <li>The boundary is {m:y=4-x^2}. It is a parabola that opens downward, with its highest point at {m:(0, 4)}.</li>
+        <li>The sign is {m:<=}, which includes the boundary. Draw the curve solid.</li>
+        <li>Test the origin: {m:0<=4-0} is {m:0<=4}, which is true. So shade the side with the origin.</li>
+        <li>That is the side below the curve, which is the inside of the parabola.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-region-solid}<figcaption>Look at the hatched side below the solid curve. The highest point {m:(0, 4)} is on the curve, so it is in the region.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: three conditions at once</h3>
+      <p>Show the region where {m:x>=0}, {m:y>x} and {m:x+y<=4} are all true.</p>
+      <ol class="steps">
+        <li>Draw the three boundaries: {m:x=0} (the y-axis), {m:y=x} and {m:x+y=4}.</li>
+        <li>{m:x>=0} and {m:x+y<=4} include their boundaries, so draw them solid. {m:y>x} is strict, so draw {m:y=x} dashed.</li>
+        <li>Test the point {m:(1, 2)}: {m:1>=0} is true, {m:2>1} is true and {m:1+2<=4} is true. So it is in the region.</li>
+        <li>The region is the triangle with corners {m:(0, 0)}, {m:(0, 4)} and {m:(2, 2)}.</li>
+        <li>Corners on the dashed line are not included. So {m:(0, 0)} and {m:(2, 2)} are not in the region, but {m:(0, 4)} is.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-region-two}<figcaption>Look at the hatched triangle. Its left side and its lower right side are solid. Its third side is dashed.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Draw the boundary of the region {m:y>=-x+4}.</p>
+      <ol class="steps">
+        <li>The boundary is {m:y=-x+4}. When {m:x=0}, {m:y=}<span class="blank" data-answers="4">___</span>.</li>
+        <li>When {m:x=4}, {m:y=}<span class="blank" data-answers="0">___</span>. Join the two points.</li>
+        <li>The sign is {m:>=}, so the line is solid. The origin gives {m:0>=4}, which is false, so shade the side without the origin.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The line passes through {m:(0, 4)} and {m:(4, 0)}. It is solid. Shade the side away from the origin, which is above the line.</p></details>
+      <!-- No new figure: the line is the same as the one in Worked example 3 of this section, apart from its position. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: regions</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">The region is {m:y>=3x-2}. Should its boundary line be solid or dashed?</p>
+      <ul class="options">
+        <li data-correct>Solid, because points on the line are included</li>
+        <li data-why="A dashed line shows that points on the line are left out. The sign here includes equal to, so they are in.">Dashed, because points on the line are included</li>
+        <li data-why="The type of line depends only on the sign, not on where the shading goes. The sign includes equal to, so the line is solid.">Solid, because the shading is above the line</li>
+      </ul>
+      <ol class="ladder"><li>Look at the sign. Is it strict?</li><li>Strict signs are dashed. Signs with equal to are solid.</li></ol>
+      <div class="solution"><p>The sign {m:>=} includes equal to, so points on the line are in the region. Draw the line solid.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which inequality describes the hatched region?</p>
+      <figure class="qfig-lg">{fig:inequalities-q-region-solid}</figure>
+      <ul class="options">
+        <li data-why="With this sign the boundary would be dashed. The figure shows a solid line, so points on it are included.">The region where {m:y<3-x}</li>
+        <li data-correct>The region where {m:y<=3-x}</li>
+        <li data-why="The hatching is below the line, where y is smaller. This sign would hatch the other side. Test (0, 0): it is in the hatched region, but 0 is not at least 3.">The region where {m:y>=3-x}</li>
+      </ul>
+      <ol class="ladder"><li>The line passes through {m:(0, 3)} and {m:(3, 0)}. Its equation is {m:y=3-x}.</li><li>Is the line solid or dashed? Is the hatching above or below it?</li></ol>
+      <div class="solution"><p>The boundary is {m:y=3-x}. It is solid, so the sign includes equal to. The origin is in the hatched region and {m:0<=3-0} is true. So the region is {m:y<=3-x}.</p></div>
+    </div>
+    <div class="q" data-answers="y&gt;x-2;x-2&lt;y;y&gt;-2+x;-2+x&lt;y" data-mode="exact">
+      <p class="qtext">Write an inequality for the hatched region. Start with y, and use the form y&gt;mx+c or y&lt;mx+c. Type it like y&lt;2x+1.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-region-dashed}</figure>
+      <ol class="ladder"><li>Find the boundary. It passes through {m:(0, -2)} and {m:(2, 0)}. What are its gradient and y-intercept?</li><li>The line is dashed. Is the sign strict?</li><li>The hatching is above the line. Is y greater or less than the line?</li></ol>
+      <ul class="wrong">
+        <li data-if="y&lt;x-2;x-2&gt;y;y&lt;-2+x;-2+x&gt;y">The hatching is above the line, where y is greater than the line&rsquo;s value. Use {m:>}.</li>
+        <li data-if="y&gt;=x-2;x-2&lt;=y;y&gt;=-2+x;-2+x&lt;=y">The line is dashed, so points on it are not included. Use {m:>}, not {m:>=}.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:frac(0-(-2), 2-0)=1} and the y-intercept is {m:-2}, so the boundary is {m:y=x-2}. It is dashed and the hatching is above it. So {m:y>x-2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Is the point {m:(2, 5)} in the region {m:y<=x^2+1}?</p>
+      <ul class="options">
+        <li data-why="Test the point: x squared plus 1 is 4 + 1 = 5, and y is 5. So 5 is equal to 5, which fits less than or equal to.">No, because 5 is not less than 5, so the point is outside</li>
+        <li data-why="A point on the boundary is in the region when the sign includes equal to. This sign does, so the point counts.">No, because the point is on the curve, not inside it</li>
+        <li data-correct>Yes, because 5 equals 5 and the boundary counts</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=2} into {m:x^2+1}.</li><li>Compare the answer with the y-value 5. Does the sign allow equality?</li></ol>
+      <div class="solution"><p>{m:x^2+1=4+1=5}, and {m:5<=5} is true. The sign {m:<=} includes the boundary, so {m:(2, 5)} is in the region.</p></div>
+    </div>
+    <div class="q" data-answers="BC;B,C;B and C;B C" data-mode="exact">
+      <p class="qtext">Look at the hatched region. Which of the points A, B, C and D are in it? A point on a dashed boundary is not in the region. A point on a solid boundary is. Type the letters in alphabetical order, like AD.</p>
+      <figure class="qfig-lg">{fig:inequalities-q-points}</figure>
+      <ol class="ladder"><li>Check each point in turn. Is it inside the hatching, on a line or outside?</li><li>Look at which kind of line each point is on.</li></ol>
+      <ul class="wrong">
+        <li data-if="ABC;A,B,C;A B C">The point A is on the dashed line. Points on a dashed boundary are not in the region.</li>
+        <li data-if="B">The point C is on the solid line. Points on a solid boundary are in the region.</li>
+      </ul>
+      <div class="solution"><p>The point A is on the dashed line, so it is out. The point B is inside the hatching, so it is in. The point C is on the solid line, so it is in. The point D is outside, above the solid line. The answer is B and C.</p></div>
+    </div>
+    <div class="q" data-answers="k&lt;3;3&gt;k" data-mode="exact">
+      <p class="qtext">The point {m:(k, 5)} is in the region {m:y>2x-1}. Find the possible values of k. Type your answer like k&lt;2.</p>
+      <ol class="ladder"><li>Put {m:x=k} and {m:y=5} into the inequality.</li><li>You get {m:5>2k-1}. Solve it for k.</li><li>Add 1, then divide by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&gt;3;3&lt;k">Check the direction: {m:6>2k} means 2k is less than 6. So k is less than 3.</li>
+        <li data-if="k&lt;=3;3&gt;=k">The region {m:y>2x-1} is strict, so a point with {m:k=3} is on the dashed line and is not included.</li>
+      </ul>
+      <div class="solution"><p>{m:5>2k-1} gives {m:6>2k}, so {m:3>k}. That is {m:k<3}. Check: {m:k=2} gives the point {m:(2, 5)}, and {m:5>2*2-1=3}.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">A region is defined by {m:x>=1}, {m:y>=1} and {m:x+y<=5}. How many points with whole-number coordinates are in it? Points on the boundary count.</p>
+      <ol class="ladder"><li>List the points with {m:x=1}, then {m:x=2}, and so on.</li><li>For {m:x=1}, y can be 1, 2, 3 or 4.</li><li>Do the same for each x. Add up the points.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">You left out the points on the line {m:x+y=5}. The sign is {m:<=}, so those points are included.</li>
+        <li data-if="3">You left out the points on the lines {m:x=1} and {m:y=1}. Those signs include equal to, so the points count.</li>
+      </ul>
+      <div class="solution"><p>For {m:x=1}, y is 1 to 4: four points. For {m:x=2}, y is 1 to 3: three points. For {m:x=3}, y is 1 or 2: two points. For {m:x=4}, y is 1: one point. The total is {m:4+3+2+1=10}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>So far you have started with an inequality and found its solution. Now go the other way. Start with the solution or the region, and find the inequality.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From an inequality to a region. Draw the boundary, choose solid or dashed, test a point, and hatch one side.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a region to an inequality. Find the equation of the boundary, choose the sign from the line type, and test a point to pick the side.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a region</h3>
+      <p>A region has a dashed boundary through {m:(0, 1)} and {m:(4, 3)}. The point {m:(2, -0.5)} is inside the region. Write the inequality for the region.</p>
+      <ol class="steps">
+        <li>The gradient is {m:frac(3-1, 4-0)=frac(1, 2)}. The y-intercept is 1. So the boundary is {m:y=frac(1, 2)x+1}.</li>
+        <li>The line is dashed, so the sign is strict.</li>
+        <li>Test the point {m:(2, -0.5)}. On the boundary, {m:x=2} gives {m:y=frac(1, 2)*2+1=2}. The point has y equal to {m:-0.5}, which is less than 2.</li>
+        <li>The region is {m:y<frac(1, 2)x+1}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:inequalities-flip-region}<figcaption>Look at the dashed line and the test point below it. The test point has a smaller y-value than the line, so the region is below the line.</figcaption></figure>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a quadratic inequality to its solution. Factorise, find the critical values, sketch and read.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a solution to a quadratic inequality. Each critical value becomes a bracket. For a solution between two roots, write {m:(x-p)(x-q)<0}.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a solution</h3>
+      <p>A quadratic inequality has the solution {m:1<x<4}. Write down a quadratic inequality with this solution.</p>
+      <ol class="steps">
+        <li>The critical values are 1 and 4. So the factors are {m:(x-1)} and {m:(x-4)}.</li>
+        <li>The solution is between the roots, so the expression is below the axis: {m:(x-1)(x-4)<0}.</li>
+        <li>Expand: {m:x^2-5x+4<0}.</li>
+        <li>Check: {m:x=2} gives {m:4-10+4=-2}, which is less than 0.</li>
+      </ol>
+      <p>Other answers work too. For example {m:2x^2-10x+8<0} has the same solution, because every term is doubled.</p>
+      <figure class="figure-lg">{fig:inequalities-flip-quad}<figcaption>Look at the hatched part between {m:x=1} and {m:x=4}. The curve is below the x-axis there, so {m:(x-1)(x-4)<0}.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="x^2-2x-15&lt;0;x^2-15-2x&lt;0;-2x+x^2-15&lt;0;-2x-15+x^2&lt;0;-15+x^2-2x&lt;0;-15-2x+x^2&lt;0" data-mode="exact">
+      <p class="qtext">A quadratic inequality has the solution {m:-3<x<5}. Write it in the form x^2+bx+c&lt;0, with numbers for b and c. Type it like x^2+3x-4&lt;0.</p>
+      <ol class="ladder"><li>The critical values are {m:-3} and 5. What are the two factors?</li><li>The factors are {m:(x+3)} and {m:(x-5)}. The solution is between the roots, so the sign is {m:<}.</li><li>Expand {m:(x+3)(x-5)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+2x-15&lt;0;x^2-15+2x&lt;0;2x+x^2-15&lt;0;2x-15+x^2&lt;0;-15+x^2+2x&lt;0;-15+2x+x^2&lt;0">That has roots 3 and {m:-5}. The roots {m:-3} and 5 give the factors {m:(x+3)(x-5)}.</li>
+        <li data-if="x^2-2x-15&gt;0;x^2-15-2x&gt;0;-2x+x^2-15&gt;0;-2x-15+x^2&gt;0;-15+x^2-2x&gt;0;-15-2x+x^2&gt;0">That is the inequality for outside the roots. A solution between the roots comes from a quadratic that is less than 0.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+3)(x-5)=x^2-5x+3x-15=x^2-2x-15}. So the inequality is {m:x^2-2x-15<0}. Check: {m:x=0} gives {m:-15}, which is less than 0.</p></div>
+    </div>
+    <div class="q" data-answers="y&lt;=-2x+4;y&lt;=4-2x;-2x+4&gt;=y;4-2x&gt;=y" data-mode="exact">
+      <p class="qtext">A region has a solid boundary through {m:(0, 4)} and {m:(2, 0)}. The origin {m:(0, 0)} is inside the region. Write an inequality for the region. Type it like y&lt;=3x+1.</p>
+      <ol class="ladder"><li>Find the gradient and y-intercept of the boundary.</li><li>The gradient is {m:frac(0-4, 2-0)=-2}. The y-intercept is 4. The boundary is {m:y=-2x+4}.</li><li>The line is solid. Test the origin in the inequality.</li></ol>
+      <ul class="wrong">
+        <li data-if="y&gt;=-2x+4;y&gt;=4-2x;-2x+4&lt;=y;4-2x&lt;=y">Test the origin: {m:0>=-2*0+4} is {m:0>=4}, which is false. The origin is in the region, so use {m:<=}.</li>
+        <li data-if="y&lt;-2x+4;y&lt;4-2x;-2x+4&gt;y;4-2x&gt;y">The boundary is solid, so points on it are included. Use {m:<=}, not {m:<}.</li>
+      </ul>
+      <div class="solution"><p>The boundary is {m:y=-2x+4}. The origin gives {m:0<=4}, which is true, so the region is below the line. The line is solid, so {m:y<=-2x+4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A quadratic inequality has the solution {m:x<-1} or {m:x>4}. Which inequality could it come from?</p>
+      <ul class="options">
+        <li data-correct>The inequality {m:(x+1)(x-4)>0}</li>
+        <li data-why="This one is below the axis between the roots. Its solution is between &minus;1 and 4, not outside them.">The inequality {m:(x+1)(x-4)<0}</li>
+        <li data-why="The roots here are 1 and &minus;4. The factor (x &minus; 1) is zero at x = 1, not x = &minus;1.">The inequality {m:(x-1)(x+4)>0}</li>
+      </ul>
+      <ol class="ladder"><li>Each critical value gives a factor. The critical value {m:-1} gives {m:(x+1)}.</li><li>The solution is outside the roots. Is the expression above or below the axis there?</li></ol>
+      <div class="solution"><p>The critical values are {m:-1} and 4, so the factors are {m:(x+1)} and {m:(x-4)}. Outside the roots the curve is above the axis, so the expression is greater than 0.</p></div>
+    </div>
+    <div class="q" data-answers="-9" data-mode="value">
+      <p class="qtext">The inequality {m:x^2+bx+c<0} has the solution {m:2<x<7}. Find the value of b.</p>
+      <ol class="ladder"><li>The critical values are 2 and 7. Write the factors.</li><li>{m:(x-2)(x-7)}. Expand it.</li><li>b is the number in front of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="9">The factors are {m:(x-2)} and {m:(x-7)}, with minus signs. Their x terms are {m:-7x} and {m:-2x}, which add to {m:-9x}.</li>
+        <li data-if="5">You subtracted the roots. The x terms of the expansion add: {m:-2x-7x=-9x}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x-7)=x^2-9x+14<0}. So {m:b=-9}. Check: {m:x=4} gives {m:16-36+14=-6}, which is less than 0.</p></div>
+    </div>
+    <div class="q" data-answers="-4&lt;=x&lt;1;1&gt;x&gt;=-4;x&gt;=-4 and x&lt;1" data-mode="exact">
+      <p class="qtext">Write the interval [&minus;4, 1) as an inequality chain, with the smaller number on the left. Use x. Type it like 2&lt;=x&lt;5.</p>
+      <ol class="ladder"><li>A square bracket means the end value is included. A round bracket means it is not.</li><li>The left end is {m:-4} with a square bracket. Use {m:<=}.</li><li>The right end is 1 with a round bracket. Use {m:<}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4&lt;x&lt;=1">You swapped the brackets. [&minus;4 includes {m:-4}, and 1) leaves out 1.</li>
+        <li data-if="-4&lt;x&lt;1">The square bracket at {m:-4} means {m:-4} is included. Use {m:<=} on the left.</li>
+      </ul>
+      <div class="solution"><p>[&minus;4 includes {m:-4}, so {m:-4<=x}. The bracket 1) leaves out 1, so {m:x<1}. Together: {m:-4<=x<1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Priya says:</b> {m:-2x>6} gives {m:x>-3}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Dividing 6 by &minus;2 does give &minus;3. The number is right. The sign is the problem.">She should have divided only the 6 by 2, to get a positive 3</li>
+        <li data-correct>She did not reverse the sign when dividing by {m:-2}</li>
+        <li data-why="Adding 2x to both sides is allowed, but it is not what went wrong. Test x = 0: 0 is not greater than 6, but her answer says 0 is a solution.">She should have added 2x to both sides before dividing by anything</li>
+      </ul>
+      <ol class="ladder"><li>Test a value. Is {m:x=0} a solution of {m:-2x>6}? Is it a solution of {m:x>-3}?</li><li>Look at the number she divided by.</li></ol>
+      <div class="solution"><p>She divided both sides by {m:-2}, which is negative, so the sign must reverse. The correct answer is {m:x<-3}. Test {m:x=-4}: {m:-2*(-4)=8}, which is greater than 6.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> {m:x^2>4} gives {m:x>2}, by taking the square root of both sides. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The square root of 4 is 2, not 4. His number is right.">The answer should be {m:x>4}, because the square of x is more than 4</li>
+        <li data-why="The sign is strict in the question, so 2 is not a solution. The mistake is something else: he lost some solutions.">The answer should be {m:x>=2}, because the sign needs an equals part</li>
+        <li data-correct>He lost the solutions {m:x<-2}</li>
+      </ul>
+      <ol class="ladder"><li>Test {m:x=-3} in {m:x^2>4}.</li><li>Is it a solution? Is it in his answer?</li></ol>
+      <div class="solution"><p>{m:(-3)^2=9}, which is greater than 4, so {m:x=-3} is a solution. Sam&rsquo;s answer leaves it out. The correct answer is {m:x<-2} or {m:x>2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Mia says:</b> {m:x^2>5x} gives {m:x>5}, by dividing both sides by x. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She divided by x, which could be negative or zero</li>
+        <li data-why="A letter does not reverse the sign. The sign reverses only for a negative number. The problem is that she did not know whether x is negative.">She should have reversed the sign because x is a letter</li>
+        <li data-why="Test x = &minus;1: 1 is greater than &minus;5, so negative numbers work. x = 0 gives 0, which is not greater than 0, so 0 does not work.">The answer should be {m:x>5} or {m:x=0}</li>
+      </ul>
+      <ol class="ladder"><li>Test {m:x=-1} in {m:x^2>5x}.</li><li>Dividing by x is only safe if you know whether x is positive, negative or zero.</li></ol>
+      <div class="solution"><p>{m:x=-1} gives {m:1>-5}, which is true, but Mia&rsquo;s answer leaves it out. Instead, write {m:x^2-5x>0}, so {m:x(x-5)>0}. This gives {m:x<0} or {m:x>5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Leo says:</b> the region {m:y<=2x+1} has a dashed boundary. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Test the origin: 0 is less than or equal to 1, which is true. So the origin is in the region, and the origin is below the line. The shading side is fine.">The shading should be above the line instead of below it</li>
+        <li data-correct>The sign includes equal to, so the line should be solid</li>
+        <li data-why="The boundary comes from replacing the sign with an equals sign. That gives y = 2x + 1, so the line is right.">The boundary line should have equation {m:y=2x-1} instead of {m:y=2x+1}</li>
+      </ul>
+      <ol class="ladder"><li>Look at the sign. Does it include equal to?</li><li>Do points on the boundary belong to the region?</li></ol>
+      <div class="solution"><p>The sign {m:<=} includes equal to, so points on the line are in the region. The line must be solid. A dashed line would leave them out.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Tom says:</b> the solution of {m:x^2-x-6>0} is {m:-2>x>3}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Tom&rsquo;s critical values &minus;2 and 3 are right. The factors (x + 2)(x &minus; 3) give them.">The critical values should be 2 and {m:-3}, not {m:-2} and 3</li>
+        <li data-why="Greater than 0 does need the parts above the axis. The problem is how he wrote the two pieces.">The solution should be between {m:-2} and 3, not outside them</li>
+        <li data-correct>No number is both less than {m:-2} and greater than 3</li>
+      </ul>
+      <ol class="ladder"><li>Read his chain {m:-2>x>3}. It says x is less than {m:-2} and greater than 3.</li><li>Can one number be both?</li></ol>
+      <div class="solution"><p>The curve is above the axis in two separate pieces, so the answer is {m:x<-2} or {m:x>3}. Two separate pieces cannot be written as one chain.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="x&lt;-2;-2&gt;x" data-mode="exact">
+      <p class="qtext">Solve {m:6-4x>2x+18}. Type your answer like x&lt;2.</p>
+      <ol class="ladder"><li>Collect the x terms on one side. Subtract {m:2x} from both sides.</li><li>{m:6-6x>18}. Subtract 6.</li><li>{m:-6x>12}. Divide by {m:-6}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;-2;-2&lt;x">You did not reverse the sign. You divided by {m:-6}, a negative number.</li>
+        <li data-if="x&lt;2;2&gt;x">{m:12} divided by {m:-6} is {m:-2}, not 2.</li>
+      </ul>
+      <div class="solution"><p>{m:-6x>12}, so {m:x<-2}. Check: {m:x=-3} gives {m:6+12=18} on the left and {m:-6+18=12} on the right. 18 is greater than 12.</p></div>
+    </div>
+    <div class="q" data-answers="2&lt;=x&lt;=5;5&gt;=x&gt;=2" data-mode="exact">
+      <p class="qtext">Solve {m:x^2-7x+10<=0}. Type your answer like 1&lt;=x&lt;=4.</p>
+      <ol class="ladder"><li>Factorise: two numbers that multiply to 10 and add to {m:-7}.</li><li>{m:(x-2)(x-5)=0}. The critical values are 2 and 5.</li><li>At most 0 means on or below the axis.</li></ol>
+      <ul class="wrong">
+        <li data-if="2&lt;x&lt;5;5&gt;x&gt;2">The sign is {m:<=}, so the critical values are included.</li>
+        <li data-if="x&lt;=2 or x&gt;=5;x&gt;=5 or x&lt;=2">That is where the curve is on or above the axis. &ldquo;At most 0&rdquo; needs the part below.</li>
+      </ul>
+      <div class="solution"><p>The curve is on or below the axis between 2 and 5, including both. So {m:2<=x<=5}.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;-1;-1&gt;x" data-mode="exact">
+      <p class="qtext">Solve {m:frac(3x+1, 4)<frac(x-2, 2)+1}. Type your answer like x&lt;2.</p>
+      <ol class="ladder"><li>Multiply both sides by 4. It is positive, so the sign stays.</li><li>{m:4*frac(x-2, 2)=2(x-2)}. Remember to multiply the {m:+1} by 4 as well.</li><li>Solve {m:3x+1<2(x-2)+4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;-4;-4&gt;x">You multiplied {m:frac(x-2, 2)} by 4 but not the {m:+1}. Every term gets multiplied: {m:4*1=4}.</li>
+        <li data-if="x&gt;-1;-1&lt;x">You reversed the sign. You multiplied by 4, a positive number, so the sign stays.</li>
+      </ul>
+      <div class="solution"><p>{m:3x+1<2x-4+4=2x}, so {m:x<-1}. Check: {m:x=-2} gives {m:-1.25} on the left and {m:-1} on the right.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the interval notation for {m:x<=-2} or {m:x>5}?</p>
+      <ul class="options">
+        <li data-why="The brackets are swapped. Here &minus;2 is left out and 5 is included, but the inequalities include &minus;2 and leave out 5.">The interval (&minus;&infin;, &minus;2) &cup; [5, &infin;)</li>
+        <li data-correct>The interval (&minus;&infin;, &minus;2] &cup; (5, &infin;)</li>
+        <li data-why="This is one interval between the two numbers. The solution has two pieces, one on each side, so it needs the union sign.">The interval [&minus;2, 5)</li>
+      </ul>
+      <ol class="ladder"><li>There are two pieces, so you need a union.</li><li>{m:x<=-2} includes {m:-2}. {m:x>5} leaves out 5.</li></ol>
+      <div class="solution"><p>The left piece is (&minus;&infin;, &minus;2], with a square bracket because {m:-2} is included. The right piece is (5, &infin;), with a round bracket because 5 is left out. Join them with &cup;.</p></div>
+    </div>
+    <div class="q" data-answers="k&lt;-4 or k&gt;4;k&gt;4 or k&lt;-4" data-mode="exact">
+      <p class="qtext">Find the values of k for which {m:x^2+kx+4=0} has two different real roots. Type your answer like k&lt;-1 or k&gt;3.</p>
+      <ol class="ladder"><li>The discriminant is {m:k^2-4*1*4=k^2-16}.</li><li>Two different roots need {m:k^2-16>0}.</li><li>Factorise: {m:(k-4)(k+4)>0}. Where is it above the axis?</li></ol>
+      <ul class="wrong">
+        <li data-if="-4&lt;k&lt;4;4&gt;k&gt;-4">That is where the discriminant is negative, which gives no real roots. Two different roots need it positive, which is outside the critical values.</li>
+        <li data-if="k&gt;4;4&lt;k">Taking a square root loses the negative values. Try {m:k=-5}: {m:25-16=9}, which is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:(k-4)(k+4)>0} outside the critical values {m:-4} and 4. So {m:k<-4} or {m:k>4}.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;-2 or x&gt;3/2;x&lt;-2 or x&gt;1.5;x&gt;3/2 or x&lt;-2;x&gt;1.5 or x&lt;-2" data-mode="exact">
+      <p class="qtext">Solve {m:2x^2+x-6>0}. Type your answer like x&lt;-1 or x&gt;1/2.</p>
+      <ol class="ladder"><li>Factorise {m:2x^2+x-6}. Try {m:(2x-3)(x+2)}.</li><li>The critical values come from {m:2x-3=0} and {m:x+2=0}.</li><li>The parabola opens upward. Greater than 0 means outside the roots.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2&lt;x&lt;3/2;-2&lt;x&lt;1.5;3/2&gt;x&gt;-2;1.5&gt;x&gt;-2">That is where the curve is below the axis. &ldquo;Greater than 0&rdquo; needs the parts above it.</li>
+        <li data-if="x&lt;2 or x&gt;-3/2;x&lt;2 or x&gt;-1.5;x&gt;-3/2 or x&lt;2;x&gt;-1.5 or x&lt;2">You used the numbers in the brackets as the roots. {m:x+2=0} gives {m:x=-2}, and {m:2x-3=0} gives {m:x=frac(3, 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:(2x-3)(x+2)>0} gives the critical values {m:x=frac(3, 2)} and {m:x=-2}. The curve is above the axis outside them: {m:x<-2} or {m:x>frac(3, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="k&lt;5;5&gt;k" data-mode="exact">
+      <p class="qtext">The point {m:(3, k)} is in the region {m:y<2x-1}. Find the possible values of k. Type your answer like k&lt;2.</p>
+      <ol class="ladder"><li>Put {m:x=3} and {m:y=k} into the inequality.</li><li>{m:k<2*3-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&gt;5;5&lt;k">The region is {m:y<2x-1}, so y is less than the line&rsquo;s value. Use {m:<}.</li>
+        <li data-if="k&lt;=5;5&gt;=k">The sign is strict, so a point with {m:k=5} is on the dashed boundary and is not included.</li>
+      </ul>
+      <div class="solution"><p>{m:k<2*3-1=5}, so {m:k<5}. At {m:k=5} the point {m:(3, 5)} is on the boundary, which is left out.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Solve {m:3-x<1}. Which answer is correct?</p>
+      <ul class="options">
+        <li data-why="You did not reverse the sign. &minus;x &lt; &minus;2, and multiplying both sides by &minus;1 reverses the sign.">The solution is {m:x<2}</li>
+        <li data-why="Subtracting 3 gives &minus;x &lt; &minus;2. Multiplying by &minus;1 turns &minus;2 into +2, not &minus;2.">The solution is {m:x>-2}</li>
+        <li data-correct>The solution is {m:x>2}</li>
+      </ul>
+      <ol class="ladder"><li>Subtract 3 from both sides.</li><li>{m:-x<-2}. Multiply or divide both sides by {m:-1}.</li></ol>
+      <div class="solution"><p>{m:-x<-2}. Multiplying both sides by {m:-1} reverses the sign: {m:x>2}. Check: {m:x=3} gives 0, which is less than 1.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer.</p>
+    <div class="q" data-answers="x&gt;=-1;-1&lt;=x" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Solve {m:5-3(x-1)<=2x+13}. Type your answer like x&lt;=2 or x&gt;=2.</p>
+      <ol class="ladder"><li>Expand the bracket first.</li><li>{m:5-3x+3<=2x+13}, which is {m:8-3x<=2x+13}.</li><li>Collect the x terms and the numbers, then divide by a negative number.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;=-1;-1&gt;=x">You did not reverse the sign. {m:-5x<=5}, and dividing by {m:-5} reverses it.</li>
+        <li data-if="x&gt;=1;1&lt;=x">{m:5} divided by {m:-5} is {m:-1}, not 1.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:5-3x+3<=2x+13} gives {m:8-3x<=2x+13}. Then {m:-5x<=5}, so {m:x>=-1}. Check: {m:x=-1} gives {m:8+3=11} on the left and {m:-2+13=11} on the right.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for expanding the bracket to get {m:8-3x}</li>
+          <li><b>M1</b> for collecting terms: {m:-5x<=5}</li>
+          <li><b>A1</b> for {m:x>=-1}, with the sign reversed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x&lt;-2 or x&gt;5;x&gt;5 or x&lt;-2" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Solve {m:x^2-3x-10>0}. Type your answer like x&lt;-1 or x&gt;4.</p>
+      <ol class="ladder"><li>Factorise to find the critical values.</li><li>{m:(x-5)(x+2)=0}. The critical values are {m:-2} and 5.</li><li>Greater than 0 means above the axis, outside the roots.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2&lt;x&lt;5;5&gt;x&gt;-2">That is where the curve is below the axis. Greater than 0 needs the parts above it.</li>
+        <li data-if="x&lt;-5 or x&gt;2;x&gt;2 or x&lt;-5">You used the numbers in the brackets as the roots. {m:(x-5)=0} gives {m:x=5}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2-3x-10=(x-5)(x+2)}. The critical values are {m:-2} and 5. The curve opens upward, so it is above the axis outside them: {m:x<-2} or {m:x>5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for factorising, or using the formula</li>
+          <li><b>A1</b> for the critical values {m:-2} and 5</li>
+          <li><b>A1</b> for {m:x<-2} or {m:x>5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x&lt;-2 or 5&lt;x&lt;7;5&lt;x&lt;7 or x&lt;-2" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] Find the values of x that satisfy both {m:x^2-3x-10>0} and {m:2x+1<15}. Type your answer like x&lt;-1 or 3&lt;x&lt;8.</p>
+      <ol class="ladder"><li>Solve each inequality on its own.</li><li>The first gives {m:x<-2} or {m:x>5}. The second gives {m:x<7}.</li><li>Both must be true. Which numbers are in both?</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;-2 or x&gt;5;x&gt;5 or x&lt;-2">You ignored {m:2x+1<15}. It needs x to be less than 7, which cuts off the right-hand piece.</li>
+        <li data-if="5&lt;x&lt;7;7&gt;x&gt;5">You kept only one piece of the first answer. The values with {m:x<-2} also satisfy {m:x<7}.</li>
+      </ul>
+      <div class="solution">
+        <p>The first inequality gives {m:x<-2} or {m:x>5}. The second gives {m:2x<14}, so {m:x<7}. For {m:x<-2}, we already have {m:x<7}. For {m:x>5}, we need {m:x<7} too. So {m:x<-2} or {m:5<x<7}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the critical values {m:-2} and 5</li>
+          <li><b>A1</b> for {m:x<-2} or {m:x>5}</li>
+          <li><b>B1</b> for {m:x<7}</li>
+          <li><b>A1</b> for {m:x<-2} or {m:5<x<7}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-2&lt;k&lt;6;6&gt;k&gt;-2" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The equation {m:x^2+kx+(k+3)=0} has no real roots. Find the values of k. Type your answer like -1&lt;k&lt;5.</p>
+      <ol class="ladder"><li>Write the discriminant. Here {m:a=1}, {m:b=k} and {m:c=k+3}.</li><li>{m:b^2-4ac=k^2-4(k+3)=k^2-4k-12}.</li><li>No real roots means the discriminant is negative. Solve {m:k^2-4k-12<0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="k&lt;-2 or k&gt;6;k&gt;6 or k&lt;-2">That is where the discriminant is positive, which gives two real roots. No real roots needs it negative.</li>
+        <li data-if="-6&lt;k&lt;2;2&gt;k&gt;-6">You used the numbers in the brackets as the roots. {m:(k-6)=0} gives {m:k=6}.</li>
+      </ul>
+      <div class="solution">
+        <p>The discriminant is {m:k^2-4(k+3)=k^2-4k-12=(k-6)(k+2)}. No real roots needs {m:(k-6)(k+2)<0}, which is between the roots: {m:-2<k<6}. Check: {m:k=0} gives {m:x^2+3=0}, which has no real roots.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:k^2-4(k+3)} (or equivalent)</li>
+          <li><b>M1</b> for factorising {m:k^2-4k-12}</li>
+          <li><b>A1</b> for the critical values {m:-2} and 6</li>
+          <li><b>A1</b> for {m:-2<k<6}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x&lt;1 or x&gt;2;x&gt;2 or x&lt;1" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The line {m:y=3x-2} is below the curve {m:y=x^2} for some values of x. Find those values of x. Type your answer like x&lt;-1 or x&gt;4.</p>
+      <ol class="ladder"><li>The line is below the curve when the line&rsquo;s y-value is less than the curve&rsquo;s. Write {m:3x-2<x^2}.</li><li>Rearrange so that one side is 0: {m:x^2-3x+2>0}.</li><li>Factorise and read from the graph.</li></ol>
+      <ul class="wrong">
+        <li data-if="1&lt;x&lt;2;2&gt;x&gt;1">That is where the curve is below the line. The line is below the curve outside the roots.</li>
+        <li data-if="x&lt;=1 or x&gt;=2;x&gt;=2 or x&lt;=1">The inequality is strict. At {m:x=1} and {m:x=2} the line and the curve meet, so neither is below the other.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:3x-2<x^2} gives {m:x^2-3x+2>0}, so {m:(x-1)(x-2)>0}. The curve is above the axis outside the roots 1 and 2. So {m:x<1} or {m:x>2}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:x^2>3x-2}, or {m:x^2-3x+2>0}</li>
+          <li><b>M1</b> for factorising</li>
+          <li><b>A1</b> for the critical values 1 and 2</li>
+          <li><b>A1</b> for {m:x<1} or {m:x>2}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The sign reverses.</b> A negative multiplier reflects the number line, so left and right swap. The smaller number becomes the larger one.</li>
+      <li><b>Circles on a number line.</b> A filled circle says &ldquo;this number is a solution&rdquo;. An open circle says &ldquo;this number is the edge, and it is not one&rdquo;.</li>
+      <li><b>Quadratic inequalities.</b> A smooth curve cannot go from below the x-axis to above it without crossing. So the expression changes sign only at its roots.</li>
+      <li><b>The discriminant.</b> In the quadratic formula, the square root of {m:b^2-4ac} must be real. If {m:b^2-4ac} is negative, there is no real root.</li>
+      <li><b>One test point.</b> A line splits the plane into two sides. Every point on one side gives the same true or false answer. So one test point decides the whole side.</li>
+      <li><b>Dashed and solid.</b> A solid line says &ldquo;points on this line are in the region&rdquo;. A dashed line says &ldquo;they are not&rdquo;. It matches the filled and open circles on a number line.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Not reversing the sign when you multiply or divide by a negative number.</li>
+      <li>Reversing the sign when you divide by a positive number.</li>
+      <li>Dividing both sides by x. It could be negative or zero.</li>
+      <li>Taking the square root of both sides of {m:x^2>a}. It loses the negative solutions.</li>
+      <li>Writing two separate pieces as one chain, such as {m:-2>x>3}.</li>
+      <li>Using the wrong region for a quadratic. Greater than 0 is above the axis. Less than 0 is below.</li>
+      <li>Forgetting that a negative {m:x^2} term turns the parabola upside down.</li>
+      <li>Including the critical values when the sign is strict, or leaving them out when it is not.</li>
+      <li>Putting a square bracket next to infinity. Infinity always has a round bracket.</li>
+      <li>Using {m:<=} when you need two different real roots. A discriminant of 0 gives one repeated root.</li>
+      <li>Drawing a solid line for a strict inequality, or a dashed line for one with equal to.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="inequalities">
+      <li><label><input type="checkbox"> solve a linear inequality, including brackets and fractions, and reverse the sign when I multiply or divide by a negative number</label></li>
+      <li><label><input type="checkbox"> show a solution on a number line, and write it in set notation and interval notation</label></li>
+      <li><label><input type="checkbox"> join two inequalities with &ldquo;and&rdquo; or &ldquo;or&rdquo; and write the result correctly</label></li>
+      <li><label><input type="checkbox"> solve a quadratic inequality using a sketch of the parabola</label></li>
+      <li><label><input type="checkbox"> use the discriminant to find the values of k that give no roots, one root or two roots</label></li>
+      <li><label><input type="checkbox"> shade a region, with a dashed or solid boundary, and find the inequality from a region</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
