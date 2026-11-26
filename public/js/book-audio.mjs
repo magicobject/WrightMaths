@@ -23,20 +23,22 @@ export function hashText(text) {
   return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
 }
 
-const MARKS_LABEL = /^\s*(\[\d+ marks?\]\s*)+/i;
+const MARKS_LABEL = /^\s*((\[\d+ marks?\]|\(\w\))\s*)+/i;
 
 /**
  * Labels at the start of a question ("[3 marks]", the Higher chip, the marks, calculator and
  * grade tags) are for the eye: Listen reads just the question. There can be several in a row.
  */
 function dropLeadingLabels(el) {
+  // Tags anywhere in the question ("Uses: Fractions" links, calculator, grade) are for the eye too.
+  el.querySelectorAll('.qtag').forEach((n) => n.remove());
   for (;;) {
     const n = el.firstChild;
     if (!n) return;
     if (n.nodeType === 3) {
       const rest = n.textContent.replace(MARKS_LABEL, '').replace(/^\s+/, '');
       if (rest) { n.textContent = rest; if (!MARKS_LABEL.test(rest)) return; } else n.remove();
-    } else if (n.nodeType === 1 && n.matches('.chip, .qtag')) n.remove();
+    } else if (n.nodeType === 1 && (n.matches('.chip, .qtag') || /^\s*\(\w\)\s*$/.test(n.textContent))) n.remove(); // a part letter, <b>(a)</b>
     else return;
   }
 }
