@@ -268,8 +268,9 @@ function buildFlipArea(id) {
   p.text(k.B_1[0] + 30, k.B_1[1] + 8, 'B_1', { cls: 'alt', anchor: 'start', dy: 8 });
   p.text(k.B_2[0] - 30, k.B_2[1] + 8, 'B_2', { cls: 'alt', anchor: 'end', dy: 8 });
   p.text((k.A[0] + k.C[0]) / 2, k.A[1] - 30, '12 cm', { dy: 8 });
-  const m1 = mid(k.A, k.B_1);
-  p.text(m1[0] - 22, m1[1] + 26, '9 cm', { anchor: 'end', dy: 8 });
+  // near the B_1 end of AB_1, where the dashed line B_2 C is far away
+  const m1 = [k.A[0] + 0.78 * (k.B_1[0] - k.A[0]), k.A[1] + 0.78 * (k.B_1[1] - k.A[1])];
+  p.text(m1[0] - 24, m1[1] + 14, '9 cm', { anchor: 'end', dy: 8 });
   const m2 = mid(k.A, k.B_2);
   p.text(m2[0] - 16, m2[1] + 4, '9 cm', { anchor: 'end', dy: 8 });
   return {

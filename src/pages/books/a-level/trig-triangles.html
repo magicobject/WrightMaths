@@ -5,7 +5,7 @@
       <span class="eyebrow">Trigonometry &middot; Year 1</span>
       <h1>Trigonometry in triangles</h1>
       <p class="lead">At GCSE you used sine, cosine and tangent in right-angled triangles. This page works in any triangle. You will use the sine rule and the cosine rule to find a missing side or angle. You will choose the right rule for the information you have. You will find the area of a triangle from two sides and the angle between them. You will meet the case where two different triangles fit the same facts. You will finish with bearings and problems made of more than one triangle.</p>
-      <p class="where-use"><b>Where you will use this:</b> in Trigonometric graphs, where the same ratios are defined for any angle. Also in Vectors, where the cosine rule becomes the scalar product.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Trigonometric graphs, where the same ratios are defined for any angle. Also in Vectors, where a triangle of vectors gives lengths and angles that you find with these rules.</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
   </div>
@@ -42,7 +42,7 @@
     </div>
     <div class="q" data-answers="36.9" data-mode="value">
       <p class="qtext">In a right-angled triangle, {m:sin x=0.6}. Find the acute angle x in degrees, to 1 decimal place. Type only the number.</p>
-      <ol class="ladder"><li>To undo sine, use the inverse sine key, {m:sin^(-1)}, on your calculator.</li><li>Work out {m:sin^(-1)(0.6)}.</li></ol>
+      <ol class="ladder"><li>To undo sine, use the inverse sine key, {m:sin^(-1)} (also called arcsin), on your calculator.</li><li>Work out {m:sin^(-1)(0.6)}.</li></ol>
       <ul class="wrong"><li data-if="53.1">That is {m:cos^(-1)(0.6)}. Use the inverse of sine, because the question says sine.</li></ul>
       <div class="solution"><p>{m:x=sin^(-1)(0.6)=36.9deg} to 1 decimal place.</p></div>
     </div>
@@ -257,7 +257,7 @@
       <ul class="options">
         <li data-why="This leaves out the factor 2 and uses the angle A, which is not between a and b. The angle in the rule is the one opposite c.">The line {m:c^2=a^2+b^2-ab cos A}</li>
         <li data-correct>The line {m:c^2=a^2+b^2-2ab cos C}</li>
-        <li data-why="The angle C is opposite c, and the rule subtracts the cosine term. Adding it only gives the right result when the angle is obtuse.">The line {m:c^2=a^2+b^2+2ab cos C}</li>
+        <li data-why="The angle C is opposite c, and The rule subtracts the cosine term, -2ab cos C. With a plus sign the result is wrong unless C is a right angle.">The line {m:c^2=a^2+b^2+2ab cos C}</li>
       </ul>
       <ol class="ladder"><li>The side on the left is opposite the angle in the cosine.</li><li>The other two sides appear in the square terms and in the product {m:2ab}.</li></ol>
       <div class="solution"><p>The side on the left is c, so the angle is C, the one opposite it. The other sides are <em>a</em> and <em>b</em>: {m:c^2=a^2+b^2-2ab cos C}.</p></div>
@@ -602,7 +602,7 @@
         <li>The bearing of P from Q is {m:60+180=240deg}. The bearing of R from Q is {m:130deg}. So angle PQR is {m:240-130=110deg}.</li>
         <li>Two sides, 12 and 9, and the angle between them: the cosine rule. {m:PR^2=12^2+9^2-2*12*9*cos(110deg)=225+73.88=298.88}.</li>
         <li>{m:PR=sqrt(298.88)=17.3} km.</li>
-        <li>Now use the sine rule to find angle QPR: {m:frac(sin(QPR), 9)=frac(sin(110deg), 17.29)}, so {m:sin(QPR)=0.4891}, and {m:QPR=29.3deg}.</li>
+        <li>Now use the sine rule to find angle QPR: {m:frac(sin(QPR), 9)=frac(sin(110deg), 17.29)}, so {m:sin(QPR)=0.4892}, and {m:QPR=29.3deg}.</li>
         <li>The bearing of R from P is {m:60+29.3=89.3deg}, which is 089&deg; to the nearest degree.</li>
       </ol>
       <p>The angle at P is the smaller of the two unknown angles, so the inverse sine gives the right one.</p>
@@ -667,7 +667,7 @@
       <p class="qtext">In the walk above (8 km on 040&deg;, then 10 km on 120&deg;), find the bearing of R from P, to the nearest degree. Type only the number (leave out a leading zero).</p>
       <ol class="ladder"><li>Use the sine rule in triangle PQR to find angle QPR: {m:frac(sin(QPR), 10)=frac(sin(100deg), 13.85)}.</li><li>Add the angle QPR to 040&deg;.</li></ol>
       <ul class="wrong"><li data-if="45">That is the angle QPR. A bearing is measured from north, so add the 40&deg;.</li></ul>
-      <div class="solution"><p>{m:sin(QPR)=frac(10 sin(100deg), 13.85)=0.7110}, so {m:QPR=45.3deg}. The bearing of R from P is {m:40+45.3=85.3}, which is 085&deg; to the nearest degree.</p></div>
+      <div class="solution"><p>{m:sin(QPR)=frac(10 sin(100deg), 13.85)=0.7111}, so {m:QPR=45.3deg}. The bearing of R from P is {m:40+45.3=85.3}, which is 085&deg; to the nearest degree.</p></div>
     </div>
   </div>
 </section>
@@ -678,7 +678,7 @@
     <p>You have found a missing side, and a missing angle. Each is the reverse of the other. You also found an area from sides and an angle. You can find an angle from an area.</p>
     <div class="flip-grid">
       <div class="flip-side"><h3>Forwards</h3><p>From the angles and a side to a missing side. Put the sides on top: {m:frac(a, sin A)=frac(b, sin B)}. Multiply to get the side.</p><p>{m:a=9.5}, {m:A=38deg} and {m:B=71deg} give {m:b=frac(9.5 sin(71deg), sin(38deg))=14.6}.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>From the sides to a missing angle. Put the sines on top: {m:frac(sin A, a)=frac(sin B, b)}. Take the inverse sine. If an angle could be obtuse, check the second answer.</p><p>With the sides 5, 8 and 10: {m:cos C=frac(25+64-100, 80)=-0.1375}, so {m:C=97.9deg}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the sides to a missing angle. With a matching pair, put the sines on top and take the inverse sine. With all three sides, use the cosine rule, rearranged.</p><p>With the sides 5, 8 and 10: {m:cos C=frac(25+64-100, 80)=-0.1375}, so {m:C=97.9deg}.</p></div>
     </div>
     <div class="flip-grid">
       <div class="flip-side"><h3>Forwards</h3><p>From two sides and the angle between them to the area: {m:frac(1, 2)ab sin C}. One answer.</p></div>
@@ -760,7 +760,7 @@
         <li data-correct>She forgot to take the square root</li>
       </ul>
       <ol class="ladder"><li>The rule gives {m:a^2}, not <em>a</em>.</li></ol>
-      <div class="solution"><p>{m:a=sqrt(50.2)=7.08}. The last step of the cosine rule is the square root.</p></div>
+      <div class="solution"><p>{m:a=sqrt(50.2)=7.09}. The last step of the cosine rule is the square root.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Dev says:</b> {m:A=40deg}, {m:a=7} and {m:b=9}. The sine rule gives {m:sin B=0.8264}, so {m:B=55.7deg} and that is the only answer. What went wrong?</p>
@@ -931,7 +931,7 @@
         <ul class="markscheme">
           <li><b>M1</b> for {m:frac(1, 2)*8.5*11.2*sin(41deg)}</li>
           <li><b>A1</b> for 31.2 or better</li>
-          <li><b>A1</b> for the unit, cm&sup2;</li>
+          <li><b>A1</b> for 31.2 to 3 significant figures</li>
         </ul>
       </div>
     </div>

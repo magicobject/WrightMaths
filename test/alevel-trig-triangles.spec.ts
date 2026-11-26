@@ -228,6 +228,31 @@ test('every figure is drawn to the measurements it states: lengths, angles and a
   expect(problems).toEqual([]);
 });
 
+test('each side label sits nearest its own segment', async () => {
+  const { ids, geo } = await allGeometry();
+  const problems: string[] = [];
+  let checked = 0;
+  const H = 400; // the drawing height: the corners have y up, the text has y down
+  const toSegment = (p: number[], a: number[], b: number[]) => {
+    const [dx, dy] = [b[0] - a[0], b[1] - a[1]];
+    const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy)));
+    return Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy));
+  };
+  for (const id of ids) {
+    const g = geo(id);
+    if (g.kind !== 'shape' || !g.lengths?.length) continue;
+    const segs = g.lengths.map((l) => ({ value: l.value, a: [g.corners[l.from][0], H - g.corners[l.from][1]], b: [g.corners[l.to][0], H - g.corners[l.to][1]] }));
+    for (const m of g.svg.matchAll(/<text[^>]* x="([\d.-]+)" y="([\d.-]+)"[^>]*>(?:<tspan[^>]*>)?([\d.]+) cm</g)) {
+      checked += 1;
+      const at = [Number(m[1]), Number(m[2]) - 8]; // the label's baseline was moved down 8 to centre it
+      const nearest = segs.reduce((best, s) => (toSegment(at, s.a, s.b) < toSegment(at, best.a, best.b) ? s : best));
+      if (nearest.value !== Number(m[3])) problems.push(`${id}: the label "${m[3]} cm" is nearer a ${nearest.value} cm side`);
+    }
+  }
+  expect(checked).toBeGreaterThan(30);
+  expect(problems).toEqual([]);
+});
+
 test('every bearing diagram is drawn from its bearings and distances', async () => {
   const { ids, geo } = await allGeometry();
   const problems: string[] = [];
