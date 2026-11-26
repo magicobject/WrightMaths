@@ -48,7 +48,7 @@ export const TOPICS = [
   t('parametric', 'Parametric equations', 'coordinate', 2, ['functions', 'trig-identities'], 'From a parameter to a point, and from the points back to a single equation'),
 
   // Sequences and series
-  t('binomial-positive', 'Binomial expansion (positive whole-number powers)', 'sequences', 1, ['indices-surds'], 'Expanding a bracket raised to a power, and spotting which bracket an expansion came from'),
+  t('binomial-positive', 'Binomial expansion (positive whole-number powers)', 'sequences', 1, ['indices-surds'], 'Expanding a bracket raised to a power, and spotting which bracket an expansion came from', { aka: 'binomial expansion pascals triangle nCr factorial coefficient general term approximation expand bracket power', status: 'live', words: ['binomial', 'factorial', 'ncr', 'pascals-triangle', 'binomial-expansion', 'general-term', 'ascending-powers', 'coefficient', 'constant-term'] }),
   t('sequences', 'Sequences and recurrence relations', 'sequences', 2, ['functions'], 'Finding terms from a rule, and finding the rule from terms'),
   t('series-arithmetic', 'Arithmetic sequences and series', 'sequences', 2, ['sequences'], 'Adding up equal steps, and finding how many steps are needed'),
   t('series-geometric', 'Geometric sequences and series', 'sequences', 2, ['sequences', 'indices-surds'], 'Adding up repeated multiplying, and finding when the total stops growing'),

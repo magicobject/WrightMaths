@@ -8,6 +8,27 @@ const nCr = (n, r) => `<math alttext="${n}C${r}"><mmultiscripts><mi>C</mi>${sym(
 export const TERMS = [
   // ---------- Binomial expansion (Year 1, then Year 2) ----------
   {
+    id: 'binomial', term: 'Binomial', strand: 'al-sequences', level: 'Y1',
+    def: 'An expression with exactly two terms added or subtracted, such as a + b or 1 - 3x.',
+    example: [
+      '{m:x + 5} and {m:2 - 3x} are binomials.',
+      'A bracket such as {m:(2 + 3x)^5} is a binomial raised to a power.',
+    ],
+    watch: '"Bi" means two. {m:x^2 + 3x + 4} has three terms, so it is not a binomial.',
+    see: ['binomial-expansion', 'general-term'],
+  },
+  {
+    id: 'general-term', term: 'General term of an expansion', strand: 'al-sequences', level: 'Y1', aka: ['r-th term', 'term in x^r'],
+    def: 'A formula that gives any one term of a binomial expansion. In the expansion of (a + b) to the power n it is nCr times a to the power (n - r) times b to the power r.',
+    example: [
+      'In {m:(2 + 3x)^5} the term with r = 2 is ' + nCr(5, 2) + ' {m:2^3 (3x)^2 = 10 * 8 * 9x^2 = 720x^2}.',
+      'For a term in {m:x^3} in the expansion of {m:(2 + 3x)^5}, you need r = 3, because only {m:(3x)^3} gives {m:x^3}.',
+    ],
+    watch: 'The counting starts at r = 0, so the term with r = 2 is the third term, not the second. Put brackets round the whole of b: {m:(3x)^2 = 9x^2}.',
+    flip: 'Given one term of an expansion, the power of x tells you r, and the coefficient lets you find a missing number.',
+    see: ['binomial', 'ncr', 'binomial-expansion'],
+  },
+  {
     id: 'factorial', term: 'Factorial, n!', strand: 'al-sequences', level: 'Y1',
     def: 'The product of all the whole numbers from n down to 1, written n! and read "n factorial". By agreement, 0! is 1.',
     example: [

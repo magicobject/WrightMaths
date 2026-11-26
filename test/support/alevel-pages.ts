@@ -18,6 +18,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/books/a-level/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
   { path: '/books/a-level/simultaneous.html', titleContains: 'Simultaneous equations', heading: /^Simultaneous equations$/ },
   { path: '/books/a-level/inequalities.html', titleContains: 'Inequalities', heading: /^Inequalities$/ },
+  { path: '/books/a-level/binomial-positive.html', titleContains: 'Binomial expansion', heading: /^Binomial expansion \(positive whole-number powers\)$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
