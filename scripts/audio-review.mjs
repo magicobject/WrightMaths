@@ -25,6 +25,15 @@ if (existsSync(checkFile)) {
   }
 }
 
+// Keep the checks already in review.json (check.jsonl lives in the untracked audio-work/), keyed by hash,
+// so a rebuild after re-recording drops deleted clips without losing the transcriptions of the rest.
+const reviewFile = join(CLIPS, 'review.json');
+if (existsSync(reviewFile)) {
+  for (const r of JSON.parse(readFileSync(reviewFile, 'utf8'))) {
+    if (r.heard !== null && !checks.has(r.h)) checks.set(r.h, { heard: r.heard, ratio: r.ratio, extra: r.extra, missing: r.missing, seconds: r.sec });
+  }
+}
+
 // Only clips whose text is still current are listed (a clip checked before its sentence changed would mislead).
 const rows = all.filter((r) => manifest[r.hash]).map((r) => {
   const c = checks.get(r.hash);
