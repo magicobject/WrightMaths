@@ -40,12 +40,19 @@ export function unitText(node) {
     const bottom = f.querySelector('.fd')?.textContent ?? '';
     f.replaceWith(` the fraction ${top} over ${bottom}, `);
   });
+  // A column vector is drawn as two stacked numbers: say "vector minus one, two", with a slight pause between them.
+  clone.querySelectorAll('[aria-label^="column vector "]').forEach((v) => {
+    const m = /^column vector (.+) over (.+)$/.exec(v.getAttribute('aria-label'));
+    if (m) v.replaceWith(` vector ${m[1]}, ${m[2]} `);
+  });
   clone.querySelectorAll('sup').forEach((s) => {
     const p = s.textContent.trim();
     // f<sup>-1</sup>(x) is "f inverse of x", not "f to the power of minus one"
     const inverse = /^[−-]1$/.test(p) && /(^|[^A-Za-z0-9])[fgh]$/.test(s.previousSibling?.textContent ?? '') && /^\(/.test(s.nextSibling?.textContent ?? '');
     s.replaceWith(inverse ? ' inverse' : p === '2' ? ' squared ' : p === '3' ? ' cubed ' : ` to the power of ${p} `);
   });
+  // Paragraphs and list items join with no space in textContent ("hundred.The zero"), which a voice reads as "hundred dot The".
+  clone.querySelectorAll('p, li, br, div, td, th, h1, h2, h3, h4, dt, dd').forEach((n) => n.after(' '));
   const picture = entry
     ? node.querySelector('.g-fig svg')?.getAttribute('aria-label')
     : node.closest('.q')?.querySelector(':scope > .qfig desc')?.textContent;

@@ -1,5 +1,5 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { basename, join } from 'node:path';
 import { test, expect } from './support/fixtures';
 import { ALL_PAGES } from './support/pages';
 import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
@@ -31,6 +31,29 @@ test.describe('the GCSE book stays hidden', () => {
       await expect(page.locator('.legal .build-number')).toHaveCount(0);
     });
   }
+});
+
+test.describe('the recordings review page', () => {
+  test('is noindex, linked from nowhere, and has a Listen button for every recording it shows', async ({ page }) => {
+    const here = new Set(['audio-review.html', 'audio-review.mjs', 'audio-review.css']);
+    const walk = (dir: string): string[] => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
+    const linking = walk(PUBLIC).filter((f) => /\.(html|js|mjs|xml|txt)$/.test(f) && !here.has(basename(f)) && /audio-review/.test(readFileSync(f, 'utf8')));
+    expect(linking, 'only the review page itself may mention it').toEqual([]);
+    await page.goto('/books/gcse/audio-review.html');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('h1')).toHaveText('Listen recordings review');
+    await expect(page.locator('.ar-item')).toHaveCount(25);
+    await expect(page.locator('.ar-item').first().getByRole('button', { name: /^Listen to sentence/ })).toBeVisible();
+    const clip = await page.evaluate(async () => {
+      const rows = await (await fetch('/audio/book/review.json')).json();
+      const res = await fetch(new URL(rows[0].f, new URL('/audio/book/', location.href)));
+      return { n: rows.length, ok: res.ok, type: res.headers.get('content-type') };
+    });
+    expect(clip.n).toBeGreaterThan(1000);
+    expect(clip.ok).toBe(true);
+    await page.locator('.ar-item').first().getByRole('button', { name: 'Flag' }).click();
+    await expect(page.locator('#ar-count')).toContainText('1 flagged');
+  });
 });
 
 test.describe('the book is well formed', () => {
