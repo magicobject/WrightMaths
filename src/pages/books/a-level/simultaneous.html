@@ -1,0 +1,1016 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="simultaneous">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra and functions &middot; Year 1</span>
+      <h1>Simultaneous equations</h1>
+      <p class="lead">Some questions give you two equations that must both be true. You find the numbers that fit both. This page shows two methods for straight-line equations. Then it solves a straight line together with a curve. You will see each answer as a point where two graphs meet. You will also learn to count the points without solving.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Circles, to find where a line meets a circle. Also in Differentiation, to find where a tangent meets a curve. You use it too when you build an equation from known points.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Simultaneous equations</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on two earlier pages. From <a href="quadratics.html">Quadratics</a> you need solving a quadratic and the discriminant. From <a href="straight-lines.html">Straight lines</a> you need the equation of a line and its graph. Section 2 and Section 3 also link to <a href="circles.html">Circles</a>. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-two-linear-equations">Skip to the lesson</a></p>
+    <div class="q" data-answers="2 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-5x+6=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Find two numbers that multiply to 6 and add to {m:-5}.</li><li>The numbers are {m:-2} and {m:-3}, so the brackets are {m:(x-2)(x-3)}.</li><li>Set each bracket equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2 or -3">You took the signs from the numbers in the brackets. {m:x-2=0} gives {m:x=2}.</li>
+        <li data-if="2;3">You found one solution. Set each bracket equal to 0 to get two.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x-3)=0}, so {m:x=2} or {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="16" data-mode="value">
+      <p class="qtext">Find the value of {m:b^2-4ac} for the quadratic {m:3x^2-2x-1=0}. Type only the number.</p>
+      <ol class="ladder"><li>Here {m:a=3}, {m:b=-2} and {m:c=-1}.</li><li>{m:b^2=(-2)^2=4}. Now find {m:4ac}.</li><li>{m:4ac=4*3*(-1)}. Subtracting a negative number adds.</li></ol>
+      <ul class="wrong">
+        <li data-if="8">You wrote {m:(-2)^2} as {m:-4}. Squaring a negative number gives a positive number, so {m:(-2)^2=4}.</li>
+        <li data-if="-8">You used {m:c=1}. Here {m:c=-1}, so {m:-4ac=+12}.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=4-4*3*(-1)}, which is {m:4+12=16}. The discriminant is positive, so the quadratic has two different solutions.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="10-3x" data-mode="exact">
+      <p class="qtext">Make y the subject of {m:3x+y=10}. Type it like 5-2x.</p>
+      <ol class="ladder"><li>You want y on its own on the left.</li><li>Take {m:3x} from both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x-10;-10+3x">You moved {m:3x} to the other side without changing its sign. Subtract {m:3x} from both sides.</li>
+        <li data-if="10+3x;3x+10">You added {m:3x} to the right side. Subtract it instead.</li>
+      </ul>
+      <div class="solution"><p>{m:3x+y=10}, so {m:y=10-3x}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-2x+1;1-2x+x^2" data-mode="exact">
+      <p class="qtext">Expand {m:(1-x)^2}. Type it like x^2+4x+4.</p>
+      <ol class="ladder"><li>{m:(1-x)^2} means {m:(1-x)(1-x)}.</li><li>Multiply every term in the first bracket by every term in the second. Find the middle term with care.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+1;1+x^2">You squared each term and left out the middle term. The middle term is {m:2*1*(-x)=-2x}.</li>
+        <li data-if="1-x^2;-x^2+1">That is the answer to {m:(1-x)(1+x)}. Here both brackets are the same, so {m:x^2} is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:(1-x)(1-x)=1-x-x+x^2}. So it is {m:x^2-2x+1}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Write {m:2x+y=7} in the form {m:y=mx+c}. Give the gradient m. Type only the number.</p>
+      <ol class="ladder"><li>First make y the subject.</li><li>{m:y=7-2x}. Write it as {m:y=-2x+7}.</li><li>The gradient is the number in front of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">You moved {m:2x} across without changing its sign. The gradient is {m:-2}.</li>
+        <li data-if="7">That is c, where the line crosses the y-axis. The gradient is the number in front of x.</li>
+      </ul>
+      <div class="solution"><p>{m:y=7-2x=-2x+7}, so the gradient is {m:-2}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The equations are {m:x+y=9} and {m:x-y=3}. Find the value of x. Type only the number.</p>
+      <ol class="ladder"><li>Add the two equations. The y terms are {m:+y} and {m:-y}, so they cancel.</li><li>Adding gives {m:2x=12}. What is x?</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is {m:2x}. Divide by 2 to get x.</li>
+        <li data-if="3">That is the value of y. Check which letter the question asks for.</li>
+      </ul>
+      <div class="solution"><p>Adding: {m:(x+y)+(x-y)=9+3}, so {m:2x=12} and {m:x=6}. Then {m:y=3}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Two linear equations</h2>
+    <p>{term:simultaneous-equations|Simultaneous equations} are two or more equations that must be true at the same time. You find the values of the letters that fit all of them.</p>
+    <p>A {term:linear-equation|linear equation} has each letter only to the power 1. No two letters are multiplied together. So {m:3x+2y=12} is linear. {m:x^2+y=3} is not linear, and neither is {m:xy=4}.</p>
+    <p>The graph of a linear equation in x and y is a straight line. Two straight lines usually cross at one point. This is the {term:point-of-intersection|point of intersection}. It is on both lines, so its x and y fit both equations.</p>
+    <figure class="figure-lg">{fig:simultaneous-cross}<figcaption>Look at the point where the two lines cross. It is {m:(2, 3)}. It is the only point on both lines, so {m:x=2} and {m:y=3} solve both equations.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the solution is the point where the two lines cross. You can find it without drawing the lines. There are two methods.</p>
+    </div>
+    <h3>Method 1: substitution</h3>
+    <p>{term:substitution} means replacing a letter by an expression that is equal to it. Use it when one equation has a letter on its own.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to solve by substitution, follow these steps. First, write one letter on its own in one equation. Second, replace that letter in the other equation. Put the expression in brackets. Third, solve for the one letter that is left. Fourth, put the answer into the simpler equation to find the other letter. Last, check the pair in both equations.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: substitution</h3>
+      <p>Solve {m:y=2x-1} and {m:3x+2y=12}.</p>
+      <ol class="steps">
+        <li>The first equation has y on its own: {m:y=2x-1}.</li>
+        <li>Replace y in the second equation by {m:(2x-1)}: {m:3x+2(2x-1)=12}.</li>
+        <li>Expand the bracket: {m:3x+4x-2=12}. So {m:7x=14} and {m:x=2}.</li>
+        <li>Put {m:x=2} into {m:y=2x-1}. This gives {m:y=2*2-1=3}.</li>
+        <li>Check in the second equation: {m:3*2+2*3=12}. This is true.</li>
+      </ol>
+      <p>The solution is {m:x=2} and {m:y=3}. As a point, it is {m:(2, 3)}. This is the crossing point in the figure.</p>
+    </div>
+    <p>Often no letter is on its own. Then rearrange one equation first. Choose the letter with no number in front of it, so that you avoid fractions.</p>
+    <div class="worked">
+      <h3>Worked example: rearrange first</h3>
+      <p>Solve {m:x+2y=7} and {m:3x-y=7}.</p>
+      <ol class="steps">
+        <li>In the first equation, x has no number in front. Make x the subject: {m:x=7-2y}.</li>
+        <li>Replace x in the second equation by {m:(7-2y)}: {m:3(7-2y)-y=7}.</li>
+        <li>Expand: {m:21-6y-y=7}, so {m:21-7y=7}. Then {m:-7y=-14} and {m:y=2}.</li>
+        <li>Put {m:y=2} into {m:x=7-2y}. This gives {m:x=7-4=3}.</li>
+        <li>Check in the second equation: {m:3*3-2=7}. This is true.</li>
+      </ol>
+      <p>The solution is {m:x=3} and {m:y=2}.</p>
+    </div>
+    <h3>Method 2: elimination</h3>
+    <p>{term:elimination} removes one letter by adding or subtracting the two equations. Use it when both equations look like {m:ax+by=c}. Here a, b and c are numbers.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to eliminate a letter, make its {term:coefficient|coefficients} the same size in both equations. The coefficient is the number in front of the letter. If the two terms have the same sign, subtract the equations. If they have opposite signs, add the equations. Then solve for the letter that is left.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: add the equations</h3>
+      <p>Solve {m:3x+2y=11} and {m:5x-2y=13}.</p>
+      <ol class="steps">
+        <li>The y terms are {m:+2y} and {m:-2y}. The signs are opposite, so add.</li>
+        <li>Add the left sides, and add the right sides: {m:8x=24}. So {m:x=3}.</li>
+        <li>Put {m:x=3} into the first equation: {m:9+2y=11}. So {m:y=1}.</li>
+        <li>Check in the second equation: {m:5*3-2*1=13}. This is true.</li>
+      </ol>
+      <p>The solution is {m:x=3} and {m:y=1}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: subtract the equations</h3>
+      <p>Solve {m:7x+2y=20} and {m:3x+2y=12}.</p>
+      <ol class="steps">
+        <li>The y terms are {m:+2y} and {m:+2y}. The signs are the same, so subtract.</li>
+        <li>Subtract the second equation from the first. Subtract the right sides in the same order: {m:4x=20-12=8}. So {m:x=2}.</li>
+        <li>Put {m:x=2} into the first equation: {m:14+2y=20}. So {m:y=3}.</li>
+        <li>Check in the second equation: {m:3*2+2*3=12}. This is true.</li>
+      </ol>
+      <p>The solution is {m:x=2} and {m:y=3}.</p>
+    </div>
+    <p>Sometimes no letter has matching coefficients. Multiply one or both equations first. Multiply every term, including the number on the right.</p>
+    <div class="worked">
+      <h3>Worked example: multiply first</h3>
+      <p>Solve {m:2x+3y=12} and {m:3x+2y=13}.</p>
+      <ol class="steps">
+        <li>Make the x terms match. Multiply the first equation by 3 and the second by 2. This gives {m:6x+9y=36} and {m:6x+4y=26}.</li>
+        <li>The x terms have the same sign, so subtract: {m:5y=10}. So {m:y=2}.</li>
+        <li>Put {m:y=2} into the first equation: {m:2x+6=12}. So {m:x=3}.</li>
+        <li>Check in the second equation: {m:3*3+2*2=13}. This is true.</li>
+      </ol>
+      <p>The solution is {m:x=3} and {m:y=2}.</p>
+    </div>
+    <h3>When there is not one solution</h3>
+    <p>Two lines need not cross at one point. They can be parallel, or they can be the same line.</p>
+    <figure class="figure-lg">{fig:simultaneous-parallel}<figcaption>Look at the two lines. Both have gradient 2, but they cross the y-axis at different points. They stay the same distance apart and never meet.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: no solution</h3>
+      <p>Solve {m:y=2x+1} and {m:y=2x+4}.</p>
+      <ol class="steps">
+        <li>Replace y in the second equation by {m:2x+1}: {m:2x+1=2x+4}.</li>
+        <li>Subtract {m:2x} from both sides: {m:1=4}.</li>
+        <li>This is never true, whatever x is.</li>
+      </ol>
+      <p>There is no solution. The lines are parallel, as the figure shows.</p>
+    </div>
+    <p>Suppose you reach a statement that is always true, such as {m:0=0}. Then the two equations describe the same line. Every point on the line is a solution. There are infinitely many solutions. For example, {m:4x-2y=6} is {m:2x-y=3} with every term doubled.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:5x+2y=17} and {m:3x+2y=11}.</p>
+      <ol class="steps">
+        <li>The y terms have the same sign, so subtract. {m:2x=17-11=}<span class="blank" data-answers="6">___</span>.</li>
+        <li>So {m:x=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>Put {m:x=3} into {m:3x+2y=11}: {m:9+2y=11}. So {m:y=}<span class="blank" data-answers="1">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:x=3} and {m:y=1}. Check in the first equation: {m:5*3+2*1=17}. This is true.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: two linear equations</h2>
+    <div class="q" data-answers="(3,5);3,5;x=3,y=5" data-mode="exact">
+      <p class="qtext">Solve {m:y=x+2} and {m:2x+y=11}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>The first equation has y on its own.</li><li>Replace y in the second equation by {m:(x+2)}: {m:2x+(x+2)=11}.</li><li>Solve for x. Then put x into {m:y=x+2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is x. The question asks for x and y, so find y as well.</li>
+        <li data-if="(5,3);5,3;x=5,y=3">You gave y first. Write the pair with x first: {m:(3, 5)}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x+x+2=11}, so {m:3x=9} and {m:x=3}. Then {m:y=3+2=5}. Check: {m:2*3+5=11}.</p></div>
+    </div>
+    <div class="q" data-answers="(4,1);4,1;x=4,y=1" data-mode="exact">
+      <p class="qtext">Solve {m:2x+y=9} and {m:x-y=3}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>The y terms are {m:+y} and {m:-y}. Their signs are opposite.</li><li>Add the two equations. The y terms cancel.</li><li>Put your x into one of the equations to find y.</li></ol>
+      <ul class="wrong">
+        <li data-if="(1,4);1,4;x=1,y=4">You gave y first. Write the pair with x first: {m:(4, 1)}.</li>
+        <li data-if="4">That is x. The question asks for x and y, so find y as well.</li>
+      </ul>
+      <div class="solution"><p>Adding gives {m:3x=12}, so {m:x=4}. Then {m:8+y=9}, so {m:y=1}. Check in the second equation: {m:4-1=3}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The equations are {m:4x+3y=22} and {m:2x+3y=14}. Find the value of x. Type only the number.</p>
+      <ol class="ladder"><li>The y terms are {m:+3y} and {m:+3y}. Their signs are the same.</li><li>Subtract the second equation from the first. Subtract the right sides in the same order.</li></ol>
+      <ul class="wrong">
+        <li data-if="18">You added 22 and 14. When you subtract the equations, subtract both sides.</li>
+        <li data-if="8">That is {m:2x}. Divide by 2 to get x.</li>
+      </ul>
+      <div class="solution"><p>Subtracting gives {m:2x=22-14=8}, so {m:x=4}. Then {m:16+3y=22}, so {m:y=2}. Check: {m:8+6=14}.</p></div>
+    </div>
+    <div class="q" data-answers="(2,-1);2,-1;x=2,y=-1" data-mode="exact">
+      <p class="qtext">Solve {m:5x+2y=8} and {m:3x-4y=10}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>Make the y coefficients match in size. Multiply the first equation by 2.</li><li>This gives {m:10x+4y=16}. The y terms are now {m:+4y} and {m:-4y}.</li><li>Add the equations.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2,1);2,1;x=2,y=1">The x value is right. Check y: {m:10+2y=8} gives {m:2y=-2}, so y is negative.</li>
+        <li data-if="(-1,2);-1,2;x=-1,y=2">You gave y first. Write the pair with x first.</li>
+      </ul>
+      <div class="solution"><p>{m:10x+4y=16}. Adding {m:3x-4y=10} gives {m:13x=26}, so {m:x=2}. Then {m:10+2y=8}, so {m:y=-1}. Check: {m:3*2-4*(-1)=10}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The equations are {m:3x+2y=7} and {m:x+2y=5}. Which step removes y?</p>
+      <ul class="options">
+        <li data-why="Adding gives 4x + 4y = 12. The y terms add to 4y, so y is not removed. The two 2y terms have the same sign, so you subtract.">Add the two equations, because both contain 2y</li>
+        <li data-correct>Subtract one equation from the other</li>
+        <li data-why="That gives 2x + 4y = 10, so the y terms are 2y and 4y. They still do not match, so adding would not remove y.">Multiply the second equation by 2 and then add</li>
+      </ul>
+      <ol class="ladder"><li>Compare the y terms in the two equations.</li><li>The signs of the y terms decide whether you add or subtract.</li></ol>
+      <div class="solution"><p>Both y terms are {m:+2y}. The signs are the same, so subtract: {m:2x=2}. So {m:x=1} and {m:y=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many solutions do {m:y=3x+1} and {m:y=3x-2} have?</p>
+      <ul class="options">
+        <li data-why="Two lines cross at one point only if their gradients differ. Both gradients here are 3, so the lines never cross.">One, where the lines cross</li>
+        <li data-why="Both lines have gradient 3, but they cross the y-axis at 1 and at &minus;2. So they are different lines. Infinitely many solutions need the same line.">Infinitely many, because both gradients are 3</li>
+        <li data-correct>None, because the lines are parallel</li>
+      </ul>
+      <ol class="ladder"><li>Replace y in the second equation by {m:3x+1}.</li><li>Look at what is left after you subtract {m:3x}.</li></ol>
+      <div class="solution"><p>{m:3x+1=3x-2} gives {m:1=-2}. This is never true. So there is no solution, and the lines are parallel.</p></div>
+    </div>
+    <div class="q" data-answers="(3,4);3,4;x=3,y=4" data-mode="exact">
+      <p class="qtext">Solve {m:3x-y=5} and {m:2x+3y=18}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>Make y the subject of the first equation.</li><li>{m:3x-y=5} gives {m:y=3x-5}.</li><li>Replace y in the second equation by {m:(3x-5)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is x. The question asks for x and y, so find y as well.</li>
+        <li data-if="(4,3);4,3;x=4,y=3">You gave y first. Write the pair with x first: {m:(3, 4)}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x+3(3x-5)=18}, so {m:11x-15=18} and {m:x=3}. Then {m:y=3*3-5=4}. Check in the second equation: {m:6+12=18}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The equations are {m:x+y=10} and {m:3x-y=6}. Find the value of y. Type only the number.</p>
+      <ol class="ladder"><li>The y terms are {m:+y} and {m:-y}. Add the equations.</li><li>Find x first. Then put x into {m:x+y=10}.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the value of x. The question asks for y.</li>
+        <li data-if="16">That is {m:4x}. Divide by 4 to get x, then find y.</li>
+      </ul>
+      <div class="solution"><p>Adding gives {m:4x=16}, so {m:x=4}. Then {m:4+y=10}, so {m:y=6}. Check in the second equation: {m:12-6=6}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. A line and a quadratic</h2>
+    <p>Now one equation is {term:linear-equation|linear} and the other is a {term:quadratic|quadratic}. The quadratic may contain {m:x^2}, {m:y^2} or {m:xy}. Its graph is a curve. The solutions are the points where the line meets the curve.</p>
+    <figure class="figure-lg">{fig:simultaneous-line-parabola}<figcaption>Look at the two marked points. The dashed line meets the {term:parabola} at {m:(1, 0)} and at {m:(4, 3)}. Each point is one solution.</figcaption></figure>
+    <p>{term:elimination|Elimination} does not work well here. Adding the equations leaves a squared term behind. Use {term:substitution} instead.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to solve a line and a quadratic, start with the linear equation. Write one letter on its own. Replace that letter in the quadratic. Rearrange to {m:ax^2+bx+c=0} and solve. Then use the linear equation to find the other letter for each solution. Write each answer as a pair.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a line and a parabola</h3>
+      <p>Solve {m:y=x^2-4x+3} and {m:y=x-1}.</p>
+      <ol class="steps">
+        <li>Both equations give y. So the two expressions for y are equal: {m:x^2-4x+3=x-1}.</li>
+        <li>Move everything to one side: {m:x^2-5x+4=0}.</li>
+        <li>Factorise: {m:(x-1)(x-4)=0}. So {m:x=1} or {m:x=4}.</li>
+        <li>Find y from the line {m:y=x-1}. {m:x=1} gives {m:y=0}. {m:x=4} gives {m:y=3}.</li>
+        <li>Check in the curve: {m:1-4+3=0} and {m:16-16+3=3}. Both are true.</li>
+      </ol>
+      <p>The solutions are {m:x=1, y=0} and {m:x=4, y=3}. As points, they are {m:(1, 0)} and {m:(4, 3)}.</p>
+    </div>
+    <p>Use the linear equation to find y. It gives one y for each x. A circle can give two y values for one x. Only one of them is on the line.</p>
+    <div class="worked">
+      <h3>Worked example: a line and a circle</h3>
+      <p>Solve {m:x+y=1} and {m:x^2+y^2=13}. The second equation is a circle with its centre at the origin. See <a href="circles.html">Circles</a>.</p>
+      <ol class="steps">
+        <li>Make y the subject of the line: {m:y=1-x}.</li>
+        <li>Replace y in the circle: {m:x^2+(1-x)^2=13}.</li>
+        <li>Expand {m:(1-x)^2=1-2x+x^2}. So {m:2x^2-2x+1=13}, which gives {m:2x^2-2x-12=0}.</li>
+        <li>Divide by 2: {m:x^2-x-6=0}. Factorise: {m:(x-3)(x+2)=0}. So {m:x=3} or {m:x=-2}.</li>
+        <li>Find y from {m:y=1-x}. {m:x=3} gives {m:y=-2}. {m:x=-2} gives {m:y=3}.</li>
+        <li>Check in the circle: {m:9+4=13} and {m:4+9=13}. Both are true.</li>
+      </ol>
+      <p>The solutions are {m:(3, -2)} and {m:(-2, 3)}.</p>
+    </div>
+    <figure class="figure-lg">{fig:simultaneous-line-circle}<figcaption>Look at the two marked points. The dashed line cuts the circle at {m:(-2, 3)} and at {m:(3, -2)}.</figcaption></figure>
+    <p>Take care with {m:(1-x)^2}. It is {m:1-2x+x^2}, with a middle term. It is not {m:1-x^2}.</p>
+    <div class="worked">
+      <h3>Worked example: when the quadratic does not factorise</h3>
+      <p>Solve {m:y=x+3} and {m:y=x^2-2x+1}. Give exact answers.</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2-2x+1=x+3}. So {m:x^2-3x-2=0}.</li>
+        <li>This does not factorise. Use the quadratic formula with {m:a=1}, {m:b=-3} and {m:c=-2}. The part under the root is {m:9+8=17}.</li>
+        <li>So {m:x=frac(3+sqrt(17), 2)} or {m:x=frac(3-sqrt(17), 2)}.</li>
+        <li>Find y from {m:y=x+3}. {m:y=frac(3+sqrt(17), 2)+3=frac(9+sqrt(17), 2)}, and in the same way {m:y=frac(9-sqrt(17), 2)}.</li>
+      </ol>
+      <p>Pair each x with its own y. As decimals, the points are about {m:(3.56, 6.56)} and {m:(-0.56, 2.44)}.</p>
+    </div>
+    <!-- No figure for the surd example: its points have surd coordinates, and the picture adds nothing the working does not. -->
+    <div class="worked">
+      <h3>Worked example: a line and the curve xy = k</h3>
+      <p>Solve {m:y=2x-1} and {m:xy=3}.</p>
+      <ol class="steps">
+        <li>The line has y on its own. Replace y in {m:xy=3}: {m:x(2x-1)=3}.</li>
+        <li>Expand and rearrange: {m:2x^2-x-3=0}.</li>
+        <li>Factorise: {m:(2x-3)(x+1)=0}. So {m:x=frac(3, 2)} or {m:x=-1}.</li>
+        <li>Find y from {m:y=2x-1}. {m:x=frac(3, 2)} gives {m:y=2}. {m:x=-1} gives {m:y=-3}.</li>
+        <li>Check in {m:xy=3}: {m:frac(3, 2)*2=3} and {m:(-1)*(-3)=3}.</li>
+      </ol>
+      <p>The solutions are {m:(frac(3, 2), 2)} and {m:(-1, -3)}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:y=x+1} and {m:y=x^2-5x+6}.</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2-5x+6=x+1}. So x<sup>2</sup> &minus; <span class="blank" data-answers="6">___</span>x + 5 = 0.</li>
+        <li>Factorise: {m:(x-1)(x-5)=0}. The smaller x is {m:x=1}. The larger x is {m:x=}<span class="blank" data-answers="5">___</span>.</li>
+        <li>Find y from {m:y=x+1}. {m:x=1} gives {m:y=}<span class="blank" data-answers="2">___</span>. {m:x=5} gives {m:y=}<span class="blank" data-answers="6">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The solutions are {m:(1, 2)} and {m:(5, 6)}. Check in the curve: {m:1-5+6=2} and {m:25-25+6=6}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: a line and a quadratic</h2>
+    <div class="q" data-answers="-2 or 3" data-mode="value">
+      <p class="qtext">The diagram shows the curve {m:y=x^2-4} and the line {m:y=x+2}. They meet at the points P and Q. Find the x-coordinates of P and Q. Type your answers like 1 or 5.</p>
+      <figure class="qfig-lg">{fig:simultaneous-q-meet}</figure>
+      <ol class="ladder"><li>At a meeting point, both equations give the same y.</li><li>So {m:x^2-4=x+2}. Move everything to one side.</li><li>You get {m:x^2-x-6=0}. Factorise it.</li></ol>
+      <ul class="wrong">
+        <li data-if="2 or -3">You took the signs from the numbers in the brackets. {m:(x-3)(x+2)=0} gives {m:x=3} or {m:x=-2}.</li>
+        <li data-if="-2;3">Those are the two meeting points, so give both x-coordinates.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-4=x+2} gives {m:x^2-x-6=0}, so {m:(x-3)(x+2)=0}. The x-coordinates are {m:-2} and 3.</p></div>
+    </div>
+    <div class="q" data-answers="(4,9);4,9;x=4,y=9" data-mode="exact">
+      <p class="qtext">The line {m:y=2x+1} meets the curve {m:y=x^2-x-3} at two points. Find the coordinates of the point with the larger x-coordinate. Type it like (1,2).</p>
+      <ol class="ladder"><li>Put the two expressions for y equal: {m:x^2-x-3=2x+1}.</li><li>Rearrange to {m:x^2-3x-4=0} and factorise.</li><li>Take the larger x. Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="(-1,-1);-1,-1;x=-1,y=-1">That is the point with the smaller x-coordinate. The question asks for the larger.</li>
+        <li data-if="(9,4);9,4;x=9,y=4">You gave y first. Write the pair with x first.</li>
+        <li data-if="4">That is the x-coordinate. Find y from the line as well.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-3x-4=0} gives {m:(x-4)(x+1)=0}, so {m:x=4} or {m:x=-1}. The larger is {m:x=4}. Then {m:y=2*4+1=9}. Check in the curve: {m:16-4-3=9}.</p></div>
+    </div>
+    <div class="q" data-answers="1 or 4" data-mode="value">
+      <p class="qtext">The line {m:y=3x-2} meets the curve {m:y=x^2} at two points. Find the two y-coordinates. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2=3x-2}.</li><li>Solve the quadratic for x. Then find y for each x.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 2">Those are the x-coordinates. Put each x into the line to get its y.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-3x+2=0} gives {m:(x-1)(x-2)=0}, so {m:x=1} or {m:x=2}. Then {m:y=3*1-2=1} and {m:y=3*2-2=4}.</p></div>
+    </div>
+    <div class="q" data-answers="3.56" data-mode="value">
+      <p class="qtext">The line {m:y=x+3} meets the curve {m:y=x^2-2x+1} at two points. Find the larger x-coordinate. Give your answer to 2 decimal places.</p>
+      <ol class="ladder"><li>Put the expressions for y equal. You get {m:x^2-3x-2=0}.</li><li>This does not factorise. Use the quadratic formula with {m:a=1}, {m:b=-3}, {m:c=-2}.</li><li>The larger x uses the plus sign.</li></ol>
+      <ul class="wrong">
+        <li data-if="-0.56">That is the smaller x-coordinate. Use the plus sign for the larger.</li>
+        <li data-if="7.12">You forgot to divide by 2. The formula has {m:2a=2} on the bottom.</li>
+        <li data-if="4.12">That is {m:sqrt(17)}. The solution is {m:frac(3+sqrt(17), 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x=frac(3+sqrt(17), 2)}, which is about 3.56. The other solution is about {m:-0.56}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The line {m:y=x+1} meets the curve {m:xy=6} at two points. One point has a positive x-coordinate. Find its y-coordinate. Type only the number.</p>
+      <ol class="ladder"><li>Replace y in {m:xy=6} by {m:x+1}: {m:x(x+1)=6}.</li><li>Rearrange to {m:x^2+x-6=0} and factorise.</li><li>Take the positive x. Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is the x-coordinate. Find y from {m:y=x+1}.</li>
+        <li data-if="-2">That is the y-coordinate of the other point. Use the point with the positive x.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+x-6=0} gives {m:(x+3)(x-2)=0}, so {m:x=2} or {m:x=-3}. The positive x is 2. Then {m:y=2+1=3}. Check: {m:2*3=6}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-5x+6" data-mode="exact">
+      <p class="qtext">The curve {m:y=x^2-3x+5} meets the line {m:y=2x-1}. Put the two expressions for y equal. Rearrange so that the right side is 0 and the coefficient of {m:x^2} is 1. Type the left side, like x^2+4x-3.</p>
+      <ol class="ladder"><li>Start from {m:x^2-3x+5=2x-1}.</li><li>Subtract {m:2x-1} from both sides.</li><li>Be careful with {m:-(2x-1)}. It is {m:-2x+1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2-x+4;4-x+x^2;-x+x^2+4">You added {m:2x-1} to the left side. Subtract it from both sides.</li>
+        <li data-if="x^2-5x+4;4-5x+x^2;-5x+x^2+4">You subtracted {m:2x} but not the {m:-1}. Subtracting {m:-1} gives {m:+1}, so the number is {m:5+1=6}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-3x+5-(2x-1)} is {m:x^2-5x+6}. So the equation is {m:x^2-5x+6=0}.</p></div>
+    </div>
+    <div class="q" data-answers="2 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x+y=5} and {m:x^2+y^2=13}. Find the two possible values of x. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Make y the subject of the line: {m:y=5-x}.</li><li>Replace y in the circle: {m:x^2+(5-x)^2=13}. Expand with care.</li><li>You get {m:2x^2-10x+12=0}. Divide by 2 and factorise.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2 or -3">You took the signs from the numbers in the brackets. {m:(x-2)(x-3)=0} gives {m:x=2} or {m:x=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+(25-10x+x^2)=13} gives {m:2x^2-10x+12=0}, so {m:x^2-5x+6=0}. Then {m:(x-2)(x-3)=0}. The values are 2 and 3, with {m:y=3} and {m:y=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A line meets a circle. You have found both x-coordinates. Which equation should you use to find each y?</p>
+      <ul class="options">
+        <li data-correct>The equation of the line</li>
+        <li data-why="A circle gives two y values for each x, and only one of them is on the line. Using the circle gives extra points that are not on the line.">The equation of the circle, because it was the one you solved</li>
+        <li data-why="The two points have different y-coordinates in general. Find y for each x on its own.">The same y for both x-values, because the line is straight</li>
+      </ul>
+      <ol class="ladder"><li>You want points on both the line and the circle.</li><li>Which equation gives exactly one y for each x?</li></ol>
+      <div class="solution"><p>The line gives exactly one y for each x. The circle can give two, and one of them is not on the line. So use the line.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. How many points? The discriminant</h2>
+    <p>A line and a curve can meet twice, once or not at all. You can tell which before you solve. Substitute to get a quadratic. Then find its {term:discriminant}, {m:b^2-4ac}, as in <a href="quadratics.html">Quadratics</a>.</p>
+    <figure class="figure-lg">{fig:simultaneous-cases}<figcaption>Look at the three parallel lines. The dotted line cuts the curve twice. The dashed line touches it once, at {m:(2, 0)}. The solid line misses it.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> substitute to get {m:ax^2+bx+c=0}. If the discriminant is positive, the graphs meet at two points. If it is zero, they meet at one point. The quadratic has a {term:repeated-root|repeated solution}, and the line is a {term:tangent}. If it is negative, they do not meet.</p>
+    </div>
+    <p>The same test works for a line and a circle. You met it in <a href="circles.html">Circles</a>. The discriminant counts the {term:point-of-intersection|points of intersection}. It does not find them.</p>
+    <div class="worked">
+      <h3>Worked example: show that a line is a tangent</h3>
+      <p>Show that the line {m:y=2x-4} is a tangent to the curve {m:y=x^2-2x}. Find the point where they touch.</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2-2x=2x-4}. So {m:x^2-4x+4=0}.</li>
+        <li>The discriminant is {m:(-4)^2-4*1*4=0}. There is one solution, so the line is a tangent.</li>
+        <li>Solve: {m:(x-2)^2=0}, so {m:x=2}. Then {m:y=2*2-4=0}.</li>
+      </ol>
+      <p>The {term:point-of-contact|point of contact} is {m:(2, 0)}. Check in the curve: {m:2^2-2*2=0}. This is the dashed line in the figure.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two points or none</h3>
+      <p>How many points does each line have in common with the curve {m:y=x^2-2x}? The lines are {m:y=2x-1} and {m:y=2x-7}.</p>
+      <ol class="steps">
+        <li>For {m:y=2x-1}: {m:x^2-2x=2x-1} gives {m:x^2-4x+1=0}. The discriminant is {m:16-4=12}. It is positive, so there are two points.</li>
+        <li>For {m:y=2x-7}: {m:x^2-2x=2x-7} gives {m:x^2-4x+7=0}. The discriminant is {m:16-28=-12}. It is negative, so there are no points.</li>
+      </ol>
+      <p>These are the dotted line and the solid line in the figure.</p>
+    </div>
+    <p>A line may contain a letter, such as k. Then the discriminant contains k. Use it to find the values of k that give each case.</p>
+    <div class="worked">
+      <h3>Worked example: a range of values of k</h3>
+      <p>For which values of k does the line {m:y=2x+k} not meet the curve {m:y=x^2+4x+3}?</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2+4x+3=2x+k}. So {m:x^2+2x+(3-k)=0}.</li>
+        <li>Here {m:a=1}, {m:b=2} and {m:c=3-k}. The discriminant is {m:2^2-4*1*(3-k)}. This is {m:4-12+4k}, which is {m:4k-8}.</li>
+        <li>No common points means a negative discriminant: {m:4k-8<0}. So {m:k<2}.</li>
+      </ol>
+      <p>For {m:k=2} the line is a tangent. For {m:k>2} the line cuts the curve twice. Check {m:k=2}: {m:x^2+2x+1=0} gives {m:x=-1}, and both equations give {m:y=0}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find the gradient of a tangent</h3>
+      <p>The line {m:y=mx} is a tangent to the curve {m:y=x^2-4x+9}. Find the possible values of m.</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2-4x+9=mx}. So {m:x^2-(4+m)x+9=0}.</li>
+        <li>Here {m:b=-(4+m)}. The discriminant is {m:(4+m)^2-4*1*9}. This is {m:(4+m)^2-36}.</li>
+        <li>For a tangent, the discriminant is 0. So {m:(4+m)^2=36}.</li>
+        <li>Take the square root. {m:4+m=6} or {m:4+m=-6}. So {m:m=2} or {m:m=-10}.</li>
+      </ol>
+      <p>There are two tangents through the origin, so there are two values of m. Check {m:m=2}: {m:x^2-6x+9=0} gives {m:x=3}, and both equations give {m:y=6}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>How many points do {m:y=3x+1} and {m:y=x^2+2x+3} have in common?</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2+2x+3=3x+1}. So x<sup>2</sup> &minus; <span class="blank" data-answers="1">___</span>x + 2 = 0.</li>
+        <li>The discriminant is {m:(-1)^2-4*1*2=}<span class="blank" data-answers="-7">___</span>.</li>
+        <li>The discriminant is negative, so the number of common points is <span class="blank" data-answers="0;none">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:x^2-x+2=0} has discriminant {m:1-8=-7}. A negative discriminant means no real solutions, so the line misses the curve.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: how many points</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the number of points where the line {m:y=3x-1} meets the curve {m:y=x^2}. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2=3x-1}.</li><li>Rearrange to {m:x^2-3x+1=0}. Find the discriminant.</li><li>Use its sign to decide how many points there are.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">One point needs a discriminant of 0. Here the discriminant is positive, so there are two points.</li>
+        <li data-if="5">That is the value of the discriminant. Its sign tells you the number of points.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-3x+1=0} has discriminant {m:(-3)^2-4*1*1=5}. This is positive, so the line meets the curve at two points.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The line {m:y=x-6} and the curve {m:y=x^2-5x+3} give the equation {m:x^2-6x+9=0}. What does this tell you?</p>
+      <ul class="options">
+        <li data-why="Two different points need a positive discriminant. Here b&sup2; &minus; 4ac is 36 &minus; 36 = 0, so there is only one point.">The line crosses the curve at two different points</li>
+        <li data-correct>The line touches the curve at one point</li>
+        <li data-why="No points need a negative discriminant. Here the discriminant is 36 &minus; 36 = 0, which is not negative, so the line does meet the curve.">The line does not meet the curve at all</li>
+      </ul>
+      <ol class="ladder"><li>Find the discriminant of {m:x^2-6x+9}.</li><li>Zero, positive and negative each mean something different.</li></ol>
+      <div class="solution"><p>The discriminant is {m:(-6)^2-4*1*9=0}. One repeated solution, {m:x=3}, means the line is a tangent. It touches the curve at {m:(3, -3)}.</p></div>
+    </div>
+    <div class="q" data-answers="(2,4);2,4;x=2,y=4" data-mode="exact">
+      <p class="qtext">The line {m:y=4x-4} is a tangent to the curve {m:y=x^2}. Find the coordinates of the point where it touches the curve. Type it like (1,2).</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2=4x-4}.</li><li>Rearrange to {m:x^2-4x+4=0} and factorise. There is one solution.</li><li>Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is the x-coordinate. Find y as well.</li>
+        <li data-if="(4,2);4,2;x=4,y=2">You gave y first. Write the pair with x first.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-4x+4=0} gives {m:(x-2)^2=0}, so {m:x=2}. Then {m:y=4*2-4=4}. Check in the curve: {m:2^2=4}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The line {m:y=x+k} is a tangent to the curve {m:y=x^2+3x+5}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal and rearrange to {m:x^2+2x+(5-k)=0}.</li><li>For a tangent, the discriminant is 0.</li><li>The discriminant is {m:2^2-4*1*(5-k)}. Expand the bracket with care.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4">You expanded {m:-4(5-k)} as {m:-20-4k}. Multiplying {m:-4} by {m:-k} gives {m:+4k}.</li>
+        <li data-if="16">That is {m:4k}. Divide by 4 to get k.</li>
+      </ul>
+      <div class="solution"><p>The discriminant is {m:4-4(5-k)=4k-16}. For a tangent, {m:4k-16=0}, so {m:k=4}. Check: {m:x^2+2x+1=0} gives {m:x=-1}, and both equations give {m:y=3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The line {m:y=4x+k} and the curve {m:y=x^2+2x} give the equation {m:x^2-2x-k=0}. For which values of k do they meet at two points?</p>
+      <ul class="options">
+        <li data-correct>k is greater than {m:-1}</li>
+        <li data-why="The discriminant is 4 + 4k. If k is less than &minus;1, then 4 + 4k is negative, so there are no points.">k is less than {m:-1}, because the discriminant must be positive</li>
+        <li data-why="The discriminant is 0 only when k = &minus;1. That gives one point, a tangent, not two.">k is equal to {m:-1}, because the discriminant must be zero</li>
+      </ul>
+      <ol class="ladder"><li>Find the discriminant of {m:x^2-2x-k}. Here {m:a=1}, {m:b=-2} and {m:c=-k}.</li><li>Two points need the discriminant to be positive.</li></ol>
+      <div class="solution"><p>The discriminant is {m:(-2)^2-4*1*(-k)}, which is {m:4+4k}. Two points need {m:4+4k>0}, so {m:k>-1}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The line {m:y=mx} is a tangent to the curve {m:y=x^2+4}. The number m is positive. Find the value of m. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2+4=mx}. Rearrange to {m:x^2-mx+4=0}.</li><li>The discriminant is {m:m^2-16}. Set it equal to 0.</li><li>Take the square root. Choose the positive value.</li></ol>
+      <ul class="wrong">
+        <li data-if="16">That is {m:m^2}. Take the square root to get m.</li>
+        <li data-if="-4">That is the other tangent. The question says m is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:m^2-16=0} gives {m:m=4} or {m:m=-4}. The positive value is 4. Check: {m:x^2-4x+4=0} gives {m:x=2}, and both equations give {m:y=8}.</p></div>
+    </div>
+    <div class="q" data-answers="-31" data-mode="value">
+      <p class="qtext">Putting a line into a curve gives the quadratic equation {m:2x^2+3x+5=0}. Find the value of its discriminant. Type only the number.</p>
+      <ol class="ladder"><li>Here {m:a=2}, {m:b=3} and {m:c=5}.</li><li>Work out {m:b^2} and {m:4ac}. Then subtract.</li></ol>
+      <ul class="wrong">
+        <li data-if="49">You added {m:4ac}. The discriminant is {m:b^2-4ac}, so subtract 40 from 9.</li>
+        <li data-if="31">The sign is lost. {m:9-40} is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=9-4*2*5}, which is {m:9-40=-31}. The discriminant is negative, so the line and the curve do not meet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Setting up equations from a problem</h2>
+    <p>Some problems are in words. Say what each letter stands for. Write one equation for each fact. Then solve the equations together. Check your answers against the words.</p>
+    <figure class="figure-lg">{fig:simultaneous-rectangle}<figcaption>Look at the rectangle. It has sides x and y. The perimeter gives one equation. The area gives a second equation. Not drawn to scale.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the sides of a rectangle</h3>
+      <p>A rectangle has perimeter 20 cm and area 21 cm<sup>2</sup>. Find the lengths of its sides.</p>
+      <ol class="steps">
+        <li>Let the sides be x cm and y cm.</li>
+        <li>The perimeter is {m:2x+2y=20}. Divide by 2: {m:x+y=10}.</li>
+        <li>The area is {m:xy=21}.</li>
+        <li>Make y the subject of the first equation: {m:y=10-x}. Replace y in the second: {m:x(10-x)=21}.</li>
+        <li>Expand and rearrange: {m:x^2-10x+21=0}. Factorise: {m:(x-3)(x-7)=0}.</li>
+        <li>{m:x=3} gives {m:y=7}. {m:x=7} gives {m:y=3}.</li>
+      </ol>
+      <p>The sides are 3 cm and 7 cm. The two solutions describe the same rectangle turned round. Check: {m:2*(3+7)=20} and {m:3*7=21}.</p>
+    </div>
+    <p>A line through two points gives {term:simultaneous-equations|simultaneous equations} too. The unknowns are the numbers in the equation of the line. <a href="straight-lines.html">Straight lines</a> used the gradient formula. This is a second way to find the same line.</p>
+    <!-- No figure here: the line through two points is drawn in Straight lines, and the working shows everything this example teaches. -->
+    <div class="worked">
+      <h3>Worked example: a line through two points</h3>
+      <p>The line {m:y=mx+c} passes through {m:(1, 5)} and {m:(3, 11)}. Find m and c.</p>
+      <ol class="steps">
+        <li>The point {m:(1, 5)} is on the line, so {m:5=m*1+c}. This is {m:m+c=5}.</li>
+        <li>The point {m:(3, 11)} is on the line, so {m:11=3m+c}.</li>
+        <li>The c terms have the same sign, so subtract: {m:2m=11-5=6}. So {m:m=3}.</li>
+        <li>Put {m:m=3} into {m:m+c=5}. This gives {m:c=2}.</li>
+      </ol>
+      <p>The line is {m:y=3x+2}. Check with the second point: {m:3*3+2=11}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Two numbers add up to 9. Their product is 20. Find the numbers.</p>
+      <ol class="steps">
+        <li>Call the numbers x and y. Then {m:x+y=9} and {m:xy=20}.</li>
+        <li>Make y the subject: {m:y=9-x}. So {m:x(9-x)=20}, which gives x<sup>2</sup> &minus; <span class="blank" data-answers="9">___</span>x + 20 = 0.</li>
+        <li>Factorise: {m:(x-4)(x-5)=0}. The numbers are 4 and <span class="blank" data-answers="5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The numbers are 4 and 5. Check: {m:4+5=9} and {m:4*5=20}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: setting up equations</h2>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Two numbers add up to 12. Their product is 35. Find the larger number. Type only the number.</p>
+      <ol class="ladder"><li>Call the numbers x and y. Then {m:x+y=12} and {m:xy=35}.</li><li>Replace y by {m:12-x} in the second equation and rearrange to a quadratic.</li><li>Solve it. Take the larger solution.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is the smaller number. The question asks for the larger.</li>
+        <li data-if="35">That is the product. Find the two numbers.</li>
+      </ul>
+      <div class="solution"><p>{m:x(12-x)=35} gives {m:x^2-12x+35=0}, so {m:(x-5)(x-7)=0}. The numbers are 5 and 7. The larger is 7. Check: {m:5+7=12} and {m:5*7=35}.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">A rectangle has perimeter 26 cm and area 40 cm<sup>2</sup>. Find the length of its longer side in centimetres. Type only the number.</p>
+      <ol class="ladder"><li>Let the sides be x cm and y cm. The perimeter gives {m:x+y=13}.</li><li>The area gives {m:xy=40}.</li><li>Replace y by {m:13-x} and solve the quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is the shorter side. The question asks for the longer side.</li>
+        <li data-if="13">That is {m:x+y}, half the perimeter. Solve for the two sides.</li>
+      </ul>
+      <div class="solution"><p>{m:x(13-x)=40} gives {m:x^2-13x+40=0}, so {m:(x-5)(x-8)=0}. The sides are 5 cm and 8 cm. Check: {m:2*(5+8)=26} and {m:5*8=40}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">The line {m:y=mx+c} passes through {m:(1, 4)} and {m:(3, 10)}. Find the value of c. Type only the number.</p>
+      <ol class="ladder"><li>Put each point into {m:y=mx+c}. This gives {m:4=m+c} and {m:10=3m+c}.</li><li>Subtract to find m. Then find c.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is m. The question asks for c.</li>
+      </ul>
+      <div class="solution"><p>Subtracting gives {m:6=2m}, so {m:m=3}. Then {m:4=3+c}, so {m:c=1}. Check with the second point: {m:3*3+1=10}.</p></div>
+    </div>
+    <div class="q" data-answers="5 or -3" data-mode="value">
+      <p class="qtext">Two numbers x and y satisfy {m:x-y=2} and {m:x^2+y^2=34}. Find the two possible values of x. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Make x the subject of the first equation: {m:x=y+2}.</li><li>Replace x in the second equation: {m:(y+2)^2+y^2=34}. Expand with care.</li><li>Solve for y. Then find x for each y.</li></ol>
+      <ul class="wrong">
+        <li data-if="3 or -5">Those are the values of y. Find x from {m:x=y+2}.</li>
+      </ul>
+      <div class="solution"><p>{m:(y+2)^2+y^2=34} gives {m:2y^2+4y-30=0}, so {m:y^2+2y-15=0} and {m:(y+5)(y-3)=0}. Then {m:y=3} gives {m:x=5}, and {m:y=-5} gives {m:x=-3}. Check: {m:25+9=34} and {m:9+25=34}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Two numbers satisfy {m:x+y=10} and {m:xy=21}. Which quadratic equation do you get for x?</p>
+      <ul class="options">
+        <li data-why="Replacing y by 10 &minus; x gives x(10 &minus; x) = 21, which is 10x &minus; x&sup2; = 21. Moving everything to the right gives x&sup2; &minus; 10x + 21 = 0. The 10x is negative.">The quadratic {m:x^2+10x+21=0}, because the sum is 10</li>
+        <li data-why="From 10x &minus; x&sup2; = 21, add x&sup2; and subtract 10x from both sides to get 0 = x&sup2; &minus; 10x + 21. The number 21 stays positive.">The quadratic {m:x^2-10x-21=0}, because the product is 21</li>
+        <li data-correct>The quadratic {m:x^2-10x+21=0}</li>
+      </ul>
+      <ol class="ladder"><li>Make y the subject of {m:x+y=10}.</li><li>Replace y in {m:xy=21} and move every term to one side.</li></ol>
+      <div class="solution"><p>{m:y=10-x}, so {m:x(10-x)=21} and {m:10x-x^2=21}. Rearranged, {m:x^2-10x+21=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>So far you solved equations to find where graphs meet. You can also go the other way. You can start from the meeting points and find a missing number in an equation.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From two equations to the points where their graphs meet. Substitute, solve, then find the other letter.</p><p>{m:y=x^2-3x+3} and {m:y=x} give {m:x^2-4x+3=0}. So {m:x=1} or {m:x=3}, and the points are {m:(1, 1)} and {m:(3, 3)}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the meeting points to a missing number in an equation. Put the known x into both equations. Or compare the quadratic with the one made from its solutions.</p><p>If two graphs meet where {m:x=1} and {m:x=3}, the quadratic is {m:(x-1)(x-3)=x^2-4x+3}.</p></div>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a pair of equations to their solution. Two linear equations usually give one pair of values.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a solution to a pair of equations. Many pairs work, so one equation is never enough. Any two different lines through the point have it as their solution.</p><p>The point {m:(2, 3)} fits {m:x+y=5} and {m:x-y=-1}. It also fits many other pairs.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:simultaneous-flip}<figcaption>Look at the two marked points. The curve {m:y=x^2+bx+c} meets the dashed line {m:y=x} where {m:x=1} and where {m:x=3}. The numbers b and c are found from these two facts.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from the meeting points to the curve</h3>
+      <p>The curve {m:y=x^2+bx+c} meets the line {m:y=x} where {m:x=1} and {m:x=3}. Find b and c.</p>
+      <ol class="steps">
+        <li>Put the expressions for y equal: {m:x^2+bx+c=x}. So {m:x^2+(b-1)x+c=0}.</li>
+        <li>This quadratic has solutions 1 and 3, so it is {m:(x-1)(x-3)}. This is {m:x^2-4x+3}.</li>
+        <li>Compare the two forms. {m:b-1=-4} and {m:c=3}. So {m:b=-3}.</li>
+      </ol>
+      <p>The curve is {m:y=x^2-3x+3}. Check: at {m:x=1}, {m:y=1-3+3=1}. At {m:x=3}, {m:y=9-9+3=3}. Both points are on {m:y=x}.</p>
+      <p><b>A second way.</b> Both meeting points are on the curve. Put {m:(1, 1)} into the curve: {m:1+b+c=1}, so {m:b+c=0}. Put {m:(3, 3)} in: {m:9+3b+c=3}, so {m:3b+c=-6}. These two linear equations give {m:b=-3} and {m:c=3}.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">The line {m:y=2x+1} and the curve {m:y=x^2+bx+1} meet at the point where {m:x=3}. Find the value of b. Type only the number.</p>
+      <ol class="ladder"><li>Find y on the line when {m:x=3}.</li><li>That point is on the curve too. Put {m:x=3} and your y into {m:y=x^2+bx+1}.</li><li>Solve for b.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">You took 7 from 10. The equation is {m:10+3b=7}, so {m:3b=7-10=-3}.</li>
+        <li data-if="2">You left out {m:3^2=9}. The equation is {m:9+3b+1=7}.</li>
+      </ul>
+      <div class="solution"><p>On the line, {m:y=2*3+1=7}. On the curve, {m:9+3b+1=7}, so {m:3b=-3} and {m:b=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2+bx+c} meets the line {m:y=x} where {m:x=2} and where {m:x=5}. Find the value of c. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2+(b-1)x+c=0}.</li><li>This quadratic has solutions 2 and 5. Write it as {m:(x-2)(x-5)}.</li><li>Expand and compare the number terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="7">That is the sum of the solutions. The number term c is their product.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x-5)=x^2-7x+10}, so {m:c=10}. Check: the number term of a quadratic is the product of the solutions, {m:2*5=10}.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2+bx+c} meets the line {m:y=x} where {m:x=2} and where {m:x=5}. Find the value of b. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2+(b-1)x+c=0}.</li><li>This is the same as {m:(x-2)(x-5)=x^2-7x+10}.</li><li>Compare the coefficients of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="-7">That is {m:b-1}, the coefficient of x in the quadratic. Add 1 to get b.</li>
+      </ul>
+      <div class="solution"><p>{m:b-1=-7}, so {m:b=-6}. The curve is {m:y=x^2-6x+10}. Check: at {m:x=2}, {m:y=4-12+10=2}. At {m:x=5}, {m:y=25-30+10=5}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The lines {m:y=ax-2} and {m:y=x+b} meet at the point {m:(4, 10)}. Find the value of a. Type only the number.</p>
+      <ol class="ladder"><li>The point {m:(4, 10)} is on the line {m:y=ax-2}.</li><li>Put {m:x=4} and {m:y=10} into that equation.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">You took 2 from 10. The equation is {m:10=4a-2}, so {m:4a=10+2=12}.</li>
+        <li data-if="12">That is {m:4a}. Divide by 4 to get a.</li>
+      </ul>
+      <div class="solution"><p>{m:10=4a-2} gives {m:4a=12}, so {m:a=3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which pair of equations has the solution {m:x=2} and {m:y=1}?</p>
+      <ul class="options">
+        <li data-why="Check the second equation: x &minus; y = 2 &minus; 1 = 1, not 3. So the point (2, 1) does not fit it.">The pair {m:x+y=3} and {m:x-y=3}, because both use 3</li>
+        <li data-correct>The pair {m:x+y=3} and {m:x-y=1}</li>
+        <li data-why="Check the first equation: x + y = 2 + 1 = 3, not 1. So the point (2, 1) does not fit it.">The pair {m:x+y=1} and {m:x-y=3}, because 1 and 3 both appear</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=2} and {m:y=1} into each equation.</li><li>A pair is right only if both equations are true.</li></ol>
+      <div class="solution"><p>{m:2+1=3} and {m:2-1=1}, so the first pair fits. The other two pairs each have an equation that is false for {m:(2, 1)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> subtracting {m:x+2y=5} from {m:3x+2y=11} gives {m:2x=16}, so {m:x=8}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Adding gives 4x + 4y = 16, which still has y in it. The 2y terms have the same sign, so subtracting is the right choice.">He should have added the equations</li>
+        <li data-why="No multiplying is needed. The 2y terms already match, so one subtraction removes y.">He should have multiplied the first equation by 2 first</li>
+        <li data-correct>He added 11 and 5 instead of subtracting them</li>
+      </ul>
+      <ol class="ladder"><li>When you subtract the equations, you subtract both sides.</li><li>Work out {m:11-5}.</li></ol>
+      <div class="solution"><p>{m:11-5=6}, so {m:2x=6} and {m:x=3}. Then {m:9+2y=11} gives {m:y=1}. Ben used {m:11+5=16}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> replacing y by {m:x+1} in {m:x^2+y^2=25} gives {m:x^2+x^2+1=25}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She left out the middle term when squaring</li>
+        <li data-why="The line gives y = x + 1, so replacing y in the circle by x + 1 is right. The mistake comes in the next step.">She should have replaced x instead of replacing y</li>
+        <li data-why="The line is y = x + 1, so y is replaced by x + 1 and not by x &minus; 1. The substitution itself is correct.">She should have used {m:x-1} in place of y</li>
+      </ul>
+      <ol class="ladder"><li>The bracket is {m:(x+1)^2}. Write it as {m:(x+1)(x+1)}.</li><li>Multiply every term by every term.</li></ol>
+      <div class="solution"><p>{m:(x+1)^2=x^2+2x+1}, not {m:x^2+1}. The equation is {m:x^2+x^2+2x+1=25}, which gives {m:2x^2+2x-24=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> the line {m:y=x+1} meets the curve {m:y=x^2-5} where {m:x=3} and {m:x=-2}. He writes the points as {m:(3, -2)} and {m:(-2, 3)}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Either equation gives the same y at a meeting point. For x = 3 the line gives 4, and the curve gives 9 &minus; 5 = 4. The choice of equation was not the problem.">He should have found y from the curve and not the line</li>
+        <li data-correct>He used the x-values as y-values and did not find each y</li>
+        <li data-why="A point is one x with its own y. The pairs must stay together, as (3, 4) and (&minus;2, &minus;1). Writing all the x-values first would split them.">He should have listed all the x-values before the y-values</li>
+      </ul>
+      <ol class="ladder"><li>Each x needs its own y.</li><li>Put {m:x=3} and {m:x=-2} into {m:y=x+1}.</li></ol>
+      <div class="solution"><p>{m:x=3} gives {m:y=4}. {m:x=-2} gives {m:y=-1}. The points are {m:(3, 4)} and {m:(-2, -1)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eve says:</b> the line {m:y=2x-1} and the curve {m:y=x^2} give {m:x^2-2x+1=0}. The discriminant is 0, so the line misses the curve. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Work it out: (&minus;2)&sup2; &minus; 4 &times; 1 &times; 1 = 4 &minus; 4 = 0. Eve&rsquo;s discriminant is correct. Her conclusion is wrong.">The discriminant should be 4, because b is negative</li>
+        <li data-why="Two different points need a positive discriminant. A discriminant of 0 gives one repeated solution, so one point.">A discriminant of 0 means two different points of intersection</li>
+        <li data-correct>Zero means one point, so the line touches the curve</li>
+      </ul>
+      <ol class="ladder"><li>Zero, positive and negative discriminants each mean something different.</li><li>Solve {m:x^2-2x+1=0}. How many solutions does it have?</li></ol>
+      <div class="solution"><p>{m:x^2-2x+1=(x-1)^2}, so {m:x=1} once. The line touches the curve at {m:(1, 1)}. It is a tangent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="(-1,4);-1,4;x=-1,y=4" data-mode="exact">
+      <p class="qtext">Solve {m:3x+y=1} and {m:2x+y=2}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>The y terms are {m:+y} and {m:+y}. The signs are the same, so subtract.</li><li>Subtract the second equation from the first. Subtract the right sides in the same order.</li></ol>
+      <ul class="wrong">
+        <li data-if="(1,-2);1,-2;x=1,y=-2">You subtracted the right sides the wrong way round. Subtracting gives {m:1-2=-1}, so {m:x=-1}.</li>
+      </ul>
+      <div class="solution"><p>Subtracting gives {m:x=1-2=-1}. Then {m:-3+y=1}, so {m:y=4}. Check in the second equation: {m:2*(-1)+4=2}.</p></div>
+    </div>
+    <div class="q" data-answers="3 or -4" data-mode="value">
+      <p class="qtext">The line {m:y=x+1} meets the circle {m:x^2+y^2=25}. Find the two x-coordinates of the points where they meet. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Replace y in the circle by {m:(x+1)}. Expand {m:(x+1)^2} with care.</li><li>You get {m:2x^2+2x-24=0}. Divide by 2 and factorise.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3 or 4">You took the signs from the numbers in the brackets. {m:(x+4)(x-3)=0} gives {m:x=-4} or {m:x=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+(x+1)^2=25} gives {m:2x^2+2x-24=0}, so {m:x^2+x-12=0} and {m:(x+4)(x-3)=0}. The x-coordinates are 3 and {m:-4}.</p></div>
+    </div>
+    <div class="q" data-answers="0 or 5" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2-6x+5} meets the line {m:y=5-x} at two points. Find the x-coordinates of the points. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2-6x+5=5-x}.</li><li>Rearrange to {m:x^2-5x=0}.</li><li>Factorise. Do not divide both sides by x.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">You divided both sides by x. But x could be 0. You cannot divide by 0, so you lose the solution {m:x=0}. Factorise {m:x(x-5)=0} instead.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-5x=0} gives {m:x(x-5)=0}, so {m:x=0} or {m:x=5}. The points are {m:(0, 5)} and {m:(5, 0)}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The line {m:y=x+k} is a tangent to the circle {m:x^2+y^2=8}. The number k is positive. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Replace y in the circle by {m:(x+k)}. You get {m:2x^2+2kx+k^2-8=0}.</li><li>For a tangent, the discriminant is 0.</li><li>The discriminant is {m:(2k)^2-4*2*(k^2-8)=64-4k^2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="16">That is {m:k^2}. Take the square root to get k.</li>
+        <li data-if="-4">That is the other tangent. The question says k is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:64-4k^2=0} gives {m:k^2=16}, so {m:k=4} or {m:k=-4}. The positive value is 4. Check: {m:2x^2+8x+8=0} gives {m:x=-2}, and {m:y=2}. Then {m:4+4=8}.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Two numbers have sum 14 and difference 4. Find the larger number. Type only the number.</p>
+      <ol class="ladder"><li>Call the numbers x and y. Then {m:x+y=14} and {m:x-y=4}.</li><li>The y terms are {m:+y} and {m:-y}. Add the equations.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is the smaller number. The question asks for the larger.</li>
+        <li data-if="18">That is {m:2x}. Divide by 2 to get x.</li>
+      </ul>
+      <div class="solution"><p>Adding gives {m:2x=18}, so {m:x=9}. Then {m:y=5}. The larger number is 9. Check: {m:9+5=14} and {m:9-5=4}.</p></div>
+    </div>
+    <div class="q" data-answers="0" data-mode="value">
+      <p class="qtext">Find the number of points where the line {m:y=4x-7} meets the curve {m:y=x^2-2}. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2-2=4x-7}.</li><li>Rearrange to {m:x^2-4x+5=0}. Find the discriminant.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4">That is the value of the discriminant. It is negative, so the number of points is 0.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-4x+5=0} has discriminant {m:16-20=-4}. This is negative, so there are no points of intersection.</p></div>
+    </div>
+    <div class="q" data-answers="(3,2);3,2;x=3,y=2" data-mode="exact">
+      <p class="qtext">Solve {m:2x+3y=12} and {m:x-y=1}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>Make x the subject of the second equation.</li><li>{m:x-y=1} gives {m:x=y+1}.</li><li>Replace x in the first equation by {m:(y+1)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2,3);2,3;x=2,y=3">You gave y first. Write the pair with x first: {m:(3, 2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:2(y+1)+3y=12} gives {m:5y+2=12}, so {m:y=2}. Then {m:x=3}. Check in the first equation: {m:6+6=12}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">The line {m:y=mx+c} passes through {m:(2, 3)} and {m:(5, 12)}. Find the value of c. Type only the number.</p>
+      <ol class="ladder"><li>Put each point into {m:y=mx+c}. This gives {m:3=2m+c} and {m:12=5m+c}.</li><li>Subtract to find m. Then find c.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is m, and it is also the y-coordinate of the first point. The question asks for c.</li>
+      </ul>
+      <div class="solution"><p>Subtracting gives {m:9=3m}, so {m:m=3}. Then {m:3=6+c}, so {m:c=-3}. Check: {m:3*5-3=12}.</p></div>
+    </div>
+    <div class="q" data-answers="(2,1);2,1;x=2,y=1" data-mode="exact">
+      <p class="qtext">Solve {m:2x+3y=7} and {m:4x-3y=5}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>The y terms are {m:+3y} and {m:-3y}. Add the equations.</li><li>Put your x into the first equation to find y.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is x. The question asks for x and y, so find y as well.</li>
+        <li data-if="(1,2);1,2;x=1,y=2">You gave y first. Write the pair with x first: {m:(2, 1)}.</li>
+      </ul>
+      <div class="solution"><p>Adding gives {m:6x=12}, so {m:x=2}. Then {m:4+3y=7}, so {m:y=1}. Check in the second equation: {m:8-3=5}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="(-3,1);-3,1;x=-3,y=1" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The line {m:y=x+4} meets the curve {m:y=x^2+2x-2} at two points. Find the coordinates of the point with the negative x-coordinate. Type it like (1,2).</p>
+      <ol class="ladder"><li>Put the expressions for y equal: {m:x^2+2x-2=x+4}.</li><li>Rearrange to {m:x^2+x-6=0} and factorise.</li><li>Choose the negative x. Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2,6);2,6;x=2,y=6">That is the point with the positive x-coordinate. The question asks for the negative one.</li>
+        <li data-if="(1,-3);1,-3;x=1,y=-3">You gave y first. Write the pair with x first.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2+2x-2=x+4} gives {m:x^2+x-6=0}, so {m:(x+3)(x-2)=0}. The negative x is {m:-3}. Then {m:y=-3+4=1}. Check in the curve: {m:9-6-2=1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for putting the two expressions for y equal</li>
+          <li><b>M1</b> for solving the quadratic {m:x^2+x-6=0}</li>
+          <li><b>A1</b> for {m:x=-3}</li>
+          <li><b>A1</b> for {m:y=1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(1,3);1,3;x=1,y=3" data-mode="exact" data-marks="5">
+      <p class="qtext">[5 marks] The line {m:2x+y=5} meets the circle {m:x^2+y^2=10} at two points. Find the coordinates of the point with the larger y-coordinate. Type it like (1,2).</p>
+      <ol class="ladder"><li>Make y the subject of the line: {m:y=5-2x}.</li><li>Replace y in the circle: {m:x^2+(5-2x)^2=10}. Expand {m:(5-2x)^2} with care.</li><li>You get {m:5x^2-20x+15=0}. Divide by 5 and factorise. Then find y for each x.</li></ol>
+      <ul class="wrong">
+        <li data-if="(3,-1);3,-1;x=3,y=-1">That is the other point. It has the smaller y-coordinate.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:y=5-2x} gives {m:x^2+25-20x+4x^2=10}, so {m:5x^2-20x+15=0} and {m:x^2-4x+3=0}. Then {m:(x-1)(x-3)=0}. {m:x=1} gives {m:y=3}. {m:x=3} gives {m:y=-1}. The larger y belongs to {m:(1, 3)}. Check: {m:1+9=10}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for replacing y by {m:5-2x} in the circle</li>
+          <li><b>M1</b> for expanding {m:(5-2x)^2} correctly</li>
+          <li><b>A1</b> for {m:x^2-4x+3=0}, or an equivalent quadratic</li>
+          <li><b>M1</b> for solving the quadratic and finding y from the line</li>
+          <li><b>A1</b> for {m:(1, 3)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(a)</b> [3 marks] The line {m:y=2x+k} is a tangent to the curve {m:y=x^2-6x+11}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Put the expressions for y equal and rearrange to {m:x^2-8x+(11-k)=0}.</li><li>For a tangent, the discriminant is 0.</li><li>The discriminant is {m:64-4(11-k)}. Expand with care.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">Check the sign. The discriminant is {m:20+4k}, so {m:4k=-20}.</li>
+        <li data-if="-20">That is {m:4k}. Divide by 4 to get k.</li>
+      </ul>
+      <div class="solution">
+        <p>The equation is {m:x^2-8x+(11-k)=0}. The discriminant is {m:64-44+4k=20+4k}. For a tangent, {m:20+4k=0}, so {m:k=-5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for equating the expressions for y</li>
+          <li><b>M1</b> for setting the discriminant equal to 0</li>
+          <li><b>A1</b> for {m:k=-5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(4,3);4,3;x=4,y=3" data-mode="exact" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] The line {m:y=2x-5} is a tangent to the curve {m:y=x^2-6x+11}. Find the coordinates of the point where the line touches the curve. Type it like (1,2).</p>
+      <ol class="ladder"><li>Put the expressions for y equal and rearrange to a quadratic.</li><li>A tangent gives one repeated solution. Solve for x.</li><li>Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the x-coordinate. Find y as well.</li>
+        <li data-if="(3,4);3,4;x=3,y=4">The x value is 4, not 3. Check: {m:x^2-8x+16=0} gives {m:(x-4)^2=0}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2-6x+11=2x-5} gives {m:x^2-8x+16=0}, so {m:(x-4)^2=0} and {m:x=4}. Then {m:y=2*4-5=3}. Check in the curve: {m:16-24+11=3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for equating the expressions for y</li>
+          <li><b>A1</b> for {m:x=4}</li>
+          <li><b>A1</b> for {m:y=3}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(2,1);2,1;x=2,y=1" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] Solve {m:3x-2y=4} and {m:5x+3y=13}. Type your answer with x first, like (1,2).</p>
+      <ol class="ladder"><li>Make the y coefficients match in size. Multiply the first equation by 3 and the second by 2.</li><li>You get {m:9x-6y=12} and {m:10x+6y=26}. Add them.</li></ol>
+      <ul class="wrong">
+        <li data-if="(1,2);1,2;x=1,y=2">You gave y first. Write the pair with x first: {m:(2, 1)}.</li>
+        <li data-if="2">That is x. The question asks for x and y, so find y as well.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:9x-6y=12} and {m:10x+6y=26}. Adding gives {m:19x=38}, so {m:x=2}. Then {m:6-2y=4}, so {m:y=1}. Check in the second equation: {m:10+3=13}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for multiplying so that one letter has matching coefficients</li>
+          <li><b>M1</b> for adding or subtracting to eliminate that letter</li>
+          <li><b>A1</b> for {m:x=2}</li>
+          <li><b>A1</b> for {m:y=1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="60" data-mode="value" data-marks="6">
+      <p class="qtext">[6 marks] A rectangle has sides x cm and y cm. Its perimeter is 34 cm and its diagonal is 13 cm. Find the area of the rectangle in square centimetres. Type only the number.</p>
+      <ol class="ladder"><li>The perimeter gives {m:x+y=17}. Pythagoras gives {m:x^2+y^2=169}.</li><li>Replace y by {m:17-x} in the second equation and rearrange to a quadratic.</li><li>Solve it to find the two sides. Then multiply them.</li></ol>
+      <ul class="wrong">
+        <li data-if="17">That is {m:x+y}, half the perimeter. Find the two sides, then multiply them.</li>
+        <li data-if="12">That is the length of the longer side. The area is the two sides multiplied.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x+y=17} and {m:x^2+y^2=169}. Then {m:x^2+(17-x)^2=169} gives {m:2x^2-34x+120=0}, so {m:x^2-17x+60=0} and {m:(x-5)(x-12)=0}. The sides are 5 cm and 12 cm. The area is {m:5*12=60} square centimetres.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:x+y=17}</li>
+          <li><b>B1</b> for {m:x^2+y^2=169}</li>
+          <li><b>M1</b> for replacing y and expanding {m:(17-x)^2}</li>
+          <li><b>A1</b> for {m:x^2-17x+60=0}, or an equivalent quadratic</li>
+          <li><b>M1</b> for solving the quadratic</li>
+          <li><b>A1</b> for area 60</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Solutions are meeting points.</b> A point is on a graph when its coordinates fit the graph&rsquo;s equation. So a point is on both graphs exactly when its coordinates fit both equations. That is what a solution of the pair is.</li>
+      <li><b>Substitution.</b> Equal things can be swapped for each other. So replacing y by the expression that equals y keeps every solution.</li>
+      <li><b>Elimination.</b> Adding two true equations gives a true equation. You add equal amounts to equal amounts. Multiplying both sides by a number that is not zero also keeps it true. Multiplying by 0 would lose information.</li>
+      <li><b>No solution or infinitely many.</b> Lines with the same gradient and different y-intercepts never meet. The equations contradict each other. Lines with the same gradient and the same y-intercept are the same line. Every point on it works.</li>
+      <li><b>A line and a quadratic.</b> Replacing y turns the pair into one quadratic in x. Its solutions are the x-coordinates of the common points. The line then gives exactly one y for each x.</li>
+      <li><b>The discriminant.</b> The discriminant counts the solutions of the quadratic: two, one repeated, or none. Each solution is one common point. A repeated solution means the line touches the curve without crossing it.</li>
+      <li><b>Working backwards.</b> A quadratic with solutions p and q is {m:(x-p)(x-q)}. So known meeting points give the factors, and the factors give the unknown numbers.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Stopping after the first letter. A solution needs both x and y.</li>
+      <li>Subtracting the left sides but adding the right sides. Do the same to both sides.</li>
+      <li>Forgetting that subtracting a negative term adds. {m:3x-(-2x)} is {m:5x}.</li>
+      <li>Multiplying only the left side of an equation. Multiply the number on the right too.</li>
+      <li>Dropping brackets when you substitute. {m:3x+2(2x-1)} is {m:7x-2}, not {m:3x+4x-1}.</li>
+      <li>Writing {m:(1-x)^2} as {m:1-x^2}. It is {m:1-2x+x^2}.</li>
+      <li>Using elimination on a line and a curve. Use substitution.</li>
+      <li>Finding y from the curve, or from the wrong x. Use the linear equation, and keep each x with its own y.</li>
+      <li>Dividing both sides by x in {m:x^2=5x}. The value of x could be 0, so you lose the solution {m:x=0}. Factorise instead.</li>
+      <li>Thinking a discriminant of 0 means no solutions. It means exactly one, so the line is a tangent.</li>
+      <li>Giving the pair as (y, x). Coordinates always have x first.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="simultaneous">
+      <li><label><input type="checkbox"> solve two linear equations by substitution and by elimination</label></li>
+      <li><label><input type="checkbox"> say when two linear equations have no solution or infinitely many</label></li>
+      <li><label><input type="checkbox"> solve a linear equation and a quadratic equation together</label></li>
+      <li><label><input type="checkbox"> pair each x with its own y, and check the pair in both equations</label></li>
+      <li><label><input type="checkbox"> use the discriminant to count the points where a line meets a curve</label></li>
+      <li><label><input type="checkbox"> find a missing number so that a line is a tangent to a curve</label></li>
+      <li><label><input type="checkbox"> turn a problem in words into simultaneous equations and solve it</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
