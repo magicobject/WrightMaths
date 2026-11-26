@@ -24,7 +24,7 @@ export default defineConfig({
   webServer: {
     // Run tsx directly: `npx tsx` can spend a minute resolving the package (for example in a git worktree whose node_modules is a link),
     // which is longer than this server's start-up allowance below.
-    command: 'node node_modules/tsx/dist/cli.mjs test/support/static-server.ts',
+    command: 'node scripts/build.mjs && node node_modules/tsx/dist/cli.mjs test/support/static-server.ts',
     env: { PORT: String(PORT) },
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,

@@ -36,27 +36,15 @@ Running `npm run build` reads all three and writes the finished files into `publ
 
 If you're not sure whether a file in `public/` is generated or hand-maintained, check whether it has a same-named counterpart under `src/pages/` — if it does, it's generated.
 
-## The pre-commit hook and the build number in the footer
+## Building the site, and no build numbers
 
-Every page's footer shows a build number like `Build 2026.08.27.003` (format `yyyy.mm.dd.NNN`, where `NNN` counts commits made that day, stored in [build-number.json](build-number.json)).
+`public/*.html` (and the search indexes) are build artefacts and are **not committed**. `npm run build` makes them from `templates/` and `src/`; Cloudflare runs the same command on every deploy (`build.command` in [wrangler.json](wrangler.json)), and `npm test` builds first. Each build stamps one random token on the css and js links (`style.css?v=...`) so browsers fetch fresh files after a deploy. The token is made at build time and never committed, which keeps pull requests small.
 
-This is maintained automatically, not by hand. `npm install` runs the `prepare` script, which points git at the tracked [.githooks/pre-commit](.githooks/pre-commit) hook. On every commit, that hook:
-
-1. Runs [scripts/bump-build-number.mjs](scripts/bump-build-number.mjs), which increments today's counter in `build-number.json`.
-2. Runs `npm run build`, regenerating every file in `public/` — including stamping the new build number into each footer and cache-busting `css/style.css?v=...`.
-3. Stages the results (`git add public build-number.json`) so they're included in the commit you're about to make.
-
-In other words: **you never bump the build number or rebuild `public/` yourself** — just edit source files under `src/`/`templates/` and commit as normal. If you ever see a commit whose diff is *only* a build-number/cache-bust change with none of your actual edits, that's the signal an edit was made directly to `public/` and got overwritten — go make the change in `src/pages/` instead.
-
-## Build tags and the /updates changelog
-
-Every commit gets a matching git tag, `build-<date>.<NNN>` (e.g. `build-2026.08.31.001`) — the same value as the footer's "Build ..." text for that commit, so any deployed build is checkoutable by name (`git checkout build-2026.08.31.001`) without digging through `git log`.
-
-[src/pages/updates.html](src/pages/updates.html) (served at `/updates.html`) is a hand-maintained changelog, one entry per build number, newest first — the human-readable counterpart to the git tags. It's a real page, built by the normal pipeline like any other, but it's deliberately not linked from the nav, the footer, or anywhere else on the site (and it's `robots: noindex` in `src/pages.config.mjs`), since it's a build log for whoever knows the URL, not user-facing content.
+There is no build number, pre-commit hook, release tag or `/updates` page any more: git history and each pull request's description are the changelog.
 
 ## Tests
 
-[Playwright](https://playwright.dev) specs in `test/` cover navigation state, the footer build-number format, 404 handling, and that each page renders its own title/heading/canonical URL (a regression guard — pages once served each other's content by mistake). `test/support/pages.ts` is the shared list of expected page metadata used across specs; add an entry there when adding a new page.
+[Playwright](https://playwright.dev) specs in `test/` cover navigation state, 404 handling, and that each page renders its own title/heading/canonical URL (a regression guard — pages once served each other's content by mistake). `test/support/pages.ts` is the shared list of expected page metadata used across specs; add an entry there when adding a new page.
 
 Unit tests in `test-unit/` (Node's built-in runner, `npm run test:unit`) cover the vulnerability watch below and guard the GitHub Actions workflows (actions pinned to commit SHAs, explicit permissions). `npm test` runs them first.
 

@@ -1,5 +1,5 @@
 import { test, expect } from './support/fixtures';
-import { ALL_PAGES, PAGES, UPDATES_PAGE } from './support/pages';
+import { ALL_PAGES, PAGES } from './support/pages';
 
 // Regression guard: each page's file once served the wrong page's content
 // entirely (e.g. lessons.html rendered the Contact form, contact.html
@@ -18,13 +18,14 @@ for (const page of PAGES) {
   });
 }
 
-// Updates isn't in the nav, so it gets its own version of the check above
-// without the active-nav-item assertion.
-test(`${UPDATES_PAGE.path} shows its own title and heading, and stays out of search results`, async ({ page }) => {
-  await page.goto(UPDATES_PAGE.path);
-  await expect(page).toHaveTitle(new RegExp(UPDATES_PAGE.titleContains));
-  await expect(page.locator('h1')).toHaveText(UPDATES_PAGE.heading);
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+// There is no /updates page and no build number any more (they caused constant merge conflicts).
+// The ?v= on css and js links is a random token made at build time, never a committed version number.
+test('there is no /updates page, and css and js links carry a build-time token', async ({ page }) => {
+  const response = await page.goto('/updates.html');
+  expect(response?.status()).toBe(404);
+  await page.goto('/');
+  await expect(page.locator('link[rel="stylesheet"][href^="css/style.css?v="]')).toHaveAttribute('href', /\?v=[0-9a-f]{8}$/);
+  await expect(page.locator('script[src^="js/main.js?v="]')).toHaveAttribute('src', /\?v=[0-9a-f]{8}$/);
 });
 
 test('every page links to a unique canonical URL matching its own filename', async ({ page }) => {

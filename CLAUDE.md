@@ -17,16 +17,13 @@ These apply to every change here, not just when explicitly asked for.
 - Don't add third-party scripts, trackers, or embeds without checking what they contribute to CSP/privacy first.
 
 ## Build pipeline
-- `public/*.html` is generated from `templates/*.html` + `src/pages/*.html` + `src/pages.config.mjs` by `scripts/build.mjs` — never hand-edit it, edit the source and run `npm run build`.
-- `public/css/style.css` is the one thing in `public/` that's hand-maintained, not generated.
-- The pre-commit hook bumps the build number and regenerates `public/` automatically on every commit — never do either by hand.
+- `public/**/*.html` and `public/books/*/search-index.json` are **not in git**. They are generated from `templates/*.html` + `src/pages/*.html` + `src/pages.config.mjs` by `scripts/build.mjs`, and Cloudflare runs `npm run build` on every deploy (`build.command` in `wrangler.json`). `npm test` builds first. Edit the source, never `public/*.html`.
+- `public/css/style.css` and the hand-written `public/js/*` are the hand-maintained files in `public/`; `public/audio/book/` (the recordings, `manifest.json`, `review.json`) is committed.
+- The cache-busting `?v=...` on css and js links is a random token made at build time (`readBuildId` in `scripts/page-shell.mjs`; `WM_BUILD_ID` pins it). It is never written to a committed file, so a PR only shows real changes. Don't put a build or version number in anything committed.
+- The `?m=NN` on the book's own `import ... from './x.mjs?m=NN'` lines is different: it is in hand-written source and is bumped by hand when that module changes (a test checks every import carries one).
 
-## Build numbers: tag every commit, and log it on /updates.html
-The pre-commit hook bumps `build-number.json` on every commit (same date → counter +1; new date → counter resets to 1). Two more things go with that, both driven by the *same* build number:
-1. **Before committing**, work out what the new build number will be (read `build-number.json`, apply the same same-date/new-date rule above) and add a new entry at the *top* of the changelog in `src/pages/updates.html` — that build number, today's date, and a one-line summary of the change. Newest entry first. Include this file in the commit like any other source change.
-2. **After committing**, tag it with that same build number and push the tag: `git tag build-<date>.<NNN>` (e.g. `build-2026.08.31.007`, matching the footer's "Build 2026.08.31.007" text exactly), then `git push origin build-<date>.<NNN>`.
-
-`/updates.html` is a real, reachable page — it's just not linked from anywhere on the site (not in the nav, not the footer, not any sitemap), and is marked `robots: noindex` in `src/pages.config.mjs` for exactly that reason. It's a build log for whoever knows the URL, not user-facing content.
+## No build numbers, tags or /updates page (changed 26 Nov 2026)
+This repo no longer has a `build-number.json`, a pre-commit hook, `build-<date>.<NNN>` tags, a footer build number or an `/updates.html` changelog page. They made every commit touch every page and caused constant merge conflicts. The history is in git and in each PR's description: write the "what and why" there. This overrides the global "every commit gets a changelog entry and a build tag" rule for this repo only.
 
 ## Data kept in sync by hand
 Unlike kington-parishes/kingtonfoodbank, this repo has no `site.config.mjs` centralizing contact details — phone (`+447449301083` / `07449 301083`) and email (`info@wrightmaths.uk`) are hardcoded independently in three places: `templates/footer.html`, `src/pages/contact.html`, and the JSON-LD `ProfessionalService` block in `templates/page.html`. Nothing tests that they agree. Change one, change all three.
