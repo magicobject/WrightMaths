@@ -1354,12 +1354,14 @@ test.describe('what the voice reads', () => {
         labels: unitText(make('<span class="chip chip-higher">Higher</span> [4 marks] Find x.')),
         tags: unitText(make('<span class="qtag qtag-marks">[3 marks]</span><span class="qtag qtag-calc">Calculator</span><span class="qtag qtag-grade">Grade 4</span> Find y.')),
         midSentence: unitText(make('Find x. [2 marks]')),
+        part: unitText(make('<b>(a)</b> [1 mark] Find z. <a class="qtag qtag-from" href="fractions.html">Uses: Fractions</a>')),
       };
     });
     // Labels at the start of a question are for the eye; Listen reads just the question.
     expect(spoken.labels).toBe('Find x.');
     expect(spoken.tags).toBe('Find y.');
     expect(spoken.midSentence).toBe('Find x. [two marks]');
+    expect(spoken.part).toBe('Find z.');
     expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');

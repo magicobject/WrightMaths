@@ -158,7 +158,7 @@ A voice says only the words on the page, so a bare number is spoken bare. Write 
 
 The voice does not read the page as written. `public/js/book-speech.mjs` turns the displayed words into spoken words: numbers become words ("4,872" is "four thousand, eight hundred and seventy-two", "0.643" is "zero point six four three", "045" is "zero four five"), symbols and units are spelled out, money is pounds and pence. Recordings are keyed to that spoken text.
 
-Labels at the very start of a question (the Higher chip, "[3 marks]", the marks, calculator and grade tags, any number of them in a row) are not read: Listen reads just the question (`dropLeadingLabels` in `public/js/book-audio.mjs`).
+Labels at the very start of a question (the Higher chip, a part letter like "(a)", "[3 marks]", the marks, calculator and grade tags, any number of them in a row) are not read, nor are tags anywhere in it such as "Uses: Fractions". After re-recording, run `npm run book:audio -- all` then `npm run book:review` so `/books/gcse/audio-review.html` plays the new clips: Listen reads just the question (`dropLeadingLabels` in `public/js/book-audio.mjs`).
 
 When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence that still needs a recording.
 
