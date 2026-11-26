@@ -12,6 +12,9 @@ const OUT = join(ROOT, 'test-results', 'print-docx');
 const PAGES = ['fractions', 'percentages', 'vectors'];
 
 test.describe('the Word build', () => {
+  // One worker builds the file and runs every check: with fullyParallel, each worker's beforeAll would rebuild the
+  // same book.docx at once, and a worker could read a half-written zip ("invalid zip data").
+  test.describe.configure({ mode: 'serial' });
   test.setTimeout(180_000);
   let files: Record<string, Uint8Array>;
   let xml: string;
