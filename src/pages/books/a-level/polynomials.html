@@ -1,0 +1,1113 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="polynomials">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra and functions &middot; Year 1</span>
+      <h1>Polynomials and the factor theorem</h1>
+      <p class="lead">A polynomial is an expression such as {m:x^3-4x^2+x+6}. This page shows you how to expand products of brackets and how to divide a polynomial by a bracket. It then shows the factor theorem, a quick test for whether a bracket is a factor. You use the test to factorise cubics and to solve cubic equations. You also work backwards, from the roots to the polynomial.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Graphs of polynomials, to sketch a cubic from its roots. Also in Differentiation, to find where a cubic has its turning points. It comes back in Algebraic fractions, for splitting a fraction into partial fractions. It helps whenever a cubic equation appears and you need its solutions.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Polynomials and the factor theorem</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="quadratics.html">Quadratics</a>. You need to expand and factorise a quadratic, and to solve one. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-polynomials-and-expanding">Skip to the lesson</a></p>
+    <div class="q" data-answers="x^2-2x-15;-15-2x+x^2" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+3)(x-5)}. Type it like x^2+4x+4.</p>
+      <ol class="ladder"><li>Multiply every term in the first bracket by every term in the second.</li><li>{m:(x+3)(x-5)=x^2-5x+3x-15}. Now collect the x terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+2x-15;-15+2x+x^2">You added {m:-5x} and {m:3x} as {m:+2x}. They give {m:-2x}.</li>
+        <li data-if="x^2-15;-15+x^2">You multiplied the first terms and the last terms only. Multiply every term by every term, so there is an x term as well.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+3)(x-5)=x^2-5x+3x-15}, which is {m:x^2-2x-15}.</p></div>
+    </div>
+    <div class="q" data-answers="-2 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-x-6=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Find two numbers that multiply to {m:-6} and add to {m:-1}.</li><li>The numbers are {m:-3} and 2, so the brackets are {m:(x-3)(x+2)}.</li><li>Set each bracket equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="2 or -3">You took the signs from the numbers in the brackets. {m:x-3=0} gives {m:x=3}.</li>
+        <li data-if="-6 or 1;6 or -1">Those are the numbers that multiply to the last term. Factorise, then set each bracket equal to 0.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-3)(x+2)=0}, so {m:x=3} or {m:x=-2}.</p></div>
+    </div>
+    <div class="q" data-answers="-10" data-mode="value">
+      <p class="qtext">Work out {m:2x^3-x+4} when {m:x=-2}. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:-2} in brackets in place of x each time.</li><li>{m:(-2)^3=-8}, so {m:2x^3=-16}. Then {m:-x=-(-2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="22">You wrote {m:(-2)^3} as {m:+8}. An odd power of a negative number is negative: {m:(-2)^3=-8}.</li>
+        <li data-if="-14">You took {m:-x} as {m:-2}. When {m:x=-2}, {m:-x=+2}.</li>
+      </ul>
+      <div class="solution"><p>{m:2(-2)^3-(-2)+4=-16+2+4=-10}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="(x+3)(x+4)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^2+7x+12}. Type it like (x+1)(x+2).</p>
+      <ol class="ladder"><li>Find two numbers that multiply to 12 and add to 7.</li><li>The numbers are 3 and 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-3)(x-4)">Those brackets give {m:x^2-7x+12}. The middle term is {m:+7x}, so both numbers are positive.</li>
+        <li data-if="(x+2)(x+6)">Those multiply to 12 but add to 8. You need two numbers that add to 7.</li>
+      </ul>
+      <div class="solution"><p>{m:3*4=12} and {m:3+4=7}, so {m:x^2+7x+12=(x+3)(x+4)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^5" data-mode="exact">
+      <p class="qtext">Simplify {m:x^2*x^3}. Type it like x^4.</p>
+      <ol class="ladder"><li>The laws of indices say what happens to the powers when you multiply.</li><li>{m:x^2=x*x} and {m:x^3=x*x*x}. Count the x factors.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^6">You multiplied the powers. When you multiply, add the powers: {m:2+3=5}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2*x^3=x^(2+3)=x^5}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^2+5x-12;-12+5x+2x^2" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:3(x-4)+2x(x+1)}. Type it like x^2+4x+4.</p>
+      <ol class="ladder"><li>Expand each bracket on its own: {m:3(x-4)} and {m:2x(x+1)}.</li><li>Then collect the terms with the same power of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x^2+5x-4;-4+5x+2x^2">You multiplied only the first term of {m:(x-4)} by 3. Multiply both: {m:3*(-4)=-12}.</li>
+      </ul>
+      <div class="solution"><p>{m:3(x-4)=3x-12} and {m:2x(x+1)=2x^2+2x}. Together they make {m:2x^2+5x-12}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Polynomials and expanding</h2>
+    <p>A {term:polynomial} is a sum of terms. Each term is a number times a power of x, and each power is a whole number: 0, 1, 2, 3 and so on. So {m:3x^4-2x^2+x-7} is a polynomial. {m:frac(1, x)+x} is not, because {m:frac(1, x)} is {m:x^(-1)}, which is not a whole-number power.</p>
+    <p>The number in front of a power of x is its {term:coefficient}. In {m:5x^3-x^2+4}, the coefficient of {m:x^3} is 5 and the coefficient of {m:x^2} is {m:-1}. The coefficient of x is 0, because there is no x term. The number on its own, 4, is the {term:constant-term|constant term}.</p>
+    <p>The {term:degree|degree} of a polynomial is its highest power of x. So {m:5x^3-x^2+4} has degree 3. A polynomial of degree 3 is a {term:cubic}. A polynomial of degree 4 is a {term:quartic}. A quadratic has degree 2.</p>
+    <p>We often name a polynomial {m:f(x)}. Then {m:f(2)} means the value of the polynomial when {m:x=2}. For {m:f(x)=x^3-4x}, {m:f(2)=8-8=0}.</p>
+    <!-- No figure for this section: expanding brackets is algebra with no natural picture, and the later sections draw the graphs. -->
+    <div class="key">
+      <p><b>Key idea:</b> to expand brackets, multiply every term in one bracket by every term in the other. Then collect the terms with the same power of x. When you multiply three brackets, multiply two of them first. Then multiply the result by the third.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: three brackets</h3>
+      <p>Expand and simplify {m:(x+2)(x-3)(x+1)}.</p>
+      <ol class="steps">
+        <li>Multiply the first two brackets: {m:(x+2)(x-3)=x^2-3x+2x-6=x^2-x-6}.</li>
+        <li>Multiply the result by {m:(x+1)}. Take x first: {m:x(x^2-x-6)=x^3-x^2-6x}.</li>
+        <li>Now take 1: {m:1*(x^2-x-6)=x^2-x-6}.</li>
+        <li>Add the two lines: {m:x^3-x^2-6x+x^2-x-6}.</li>
+        <li>The {m:x^2} terms cancel, and {m:-6x-x=-7x}. So the answer is {m:x^3-7x-6}.</li>
+      </ol>
+      <p>The answer has no {m:x^2} term. Its coefficient is 0. The degree is 3: three brackets, each with an x, give {m:x^3}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a bracket times a quadratic</h3>
+      <p>Expand and simplify {m:(2x-1)(x^2+3x-4)}.</p>
+      <ol class="steps">
+        <li>Take {m:2x} first: {m:2x(x^2+3x-4)=2x^3+6x^2-8x}.</li>
+        <li>Take {m:-1} next: {m:-1*(x^2+3x-4)=-x^2-3x+4}.</li>
+        <li>Add: {m:2x^3+6x^2-8x-x^2-3x+4}.</li>
+        <li>Collect like terms: {m:6x^2-x^2=5x^2} and {m:-8x-3x=-11x}.</li>
+      </ol>
+      <p>The answer is {m:2x^3+5x^2-11x+4}. The degree is 1 + 2 = 3, the sum of the degrees of the two factors.</p>
+    </div>
+    <p>To add or subtract polynomials, collect the terms with the same power of x. When you subtract a bracket, change the sign of every term inside it.</p>
+    <div class="worked">
+      <h3>Worked example: subtracting polynomials</h3>
+      <p>Simplify {m:(3x^3-x+2)-(x^3-2x^2+x-5)}.</p>
+      <ol class="steps">
+        <li>Change every sign in the second bracket: {m:3x^3-x+2-x^3+2x^2-x+5}.</li>
+        <li>Collect the {m:x^3} terms: {m:3x^3-x^3=2x^3}. The {m:x^2} term is {m:+2x^2}.</li>
+        <li>Collect the x terms: {m:-x-x=-2x}. Collect the numbers: {m:2+5=7}.</li>
+      </ol>
+      <p>The answer is {m:2x^3+2x^2-2x+7}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Expand and simplify {m:(x+1)(x^2-x+2)}.</p>
+      <ol class="steps">
+        <li>Take x first: {m:x^3-x^2+2x}. Take 1 next: {m:x^2-x+2}.</li>
+        <li>The {m:x^2} terms add to <span class="blank" data-answers="0">___</span>.</li>
+        <li>The x terms are {m:2x-x}. They add to <span class="blank" data-answers="1">___</span>x.</li>
+        <li>The number term is <span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(x+1)(x^2-x+2)=x^3+x+2}. Check with {m:x=1}: the brackets give {m:2*2=4}, and {m:1+1+2=4}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: polynomials and expanding</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">State the degree of the polynomial {m:4x^5-x^2+7}. Type only the number.</p>
+      <ol class="ladder"><li>The degree is the highest power of x.</li><li>Look at the powers of x in each term.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the coefficient of {m:x^5}. The degree is the power, not the coefficient.</li>
+        <li data-if="7">That is the constant term. The degree is the highest power of x.</li>
+      </ul>
+      <div class="solution"><p>The powers of x are 5 and 2, and the constant has power 0. The highest is 5, so the degree is 5.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a polynomial?</p>
+      <ul class="options">
+        <li data-correct>three x cubed, minus x, plus 5</li>
+        <li data-why="The term 4 over x is 4 times x to the power minus 1. A polynomial has only whole-number powers of 0 or more, so this is not one.">x squared, plus 4 over x</li>
+        <li data-why="The square root of x is x to the power one half. That is not a whole number, so this is not a polynomial.">the square root of x, plus 1</li>
+      </ul>
+      <ol class="ladder"><li>Write each term as a number times a power of x.</li><li>A polynomial has only whole-number powers: 0, 1, 2 and so on.</li></ol>
+      <div class="solution"><p>{m:3x^3-x+5} has the powers 3, 1 and 0. {m:frac(4, x)=4x^(-1)} and {m:sqrt(x)=x^(frac(1, 2))} have powers that are not whole numbers of 0 or more.</p></div>
+    </div>
+    <div class="q" data-answers="x^3+5x^2+2x-8;-8+2x+5x^2+x^3" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+4)(x-1)(x+2)}. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>Multiply the first two brackets: {m:(x+4)(x-1)=x^2+3x-4}.</li><li>Multiply the result by {m:(x+2)}. Take x first, then 2.</li><li>Collect like terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3+5x^2+2x+8;8+2x+5x^2+x^3">The number term is {m:-4*2=-8}. A negative number times a positive number is negative.</li>
+        <li data-if="x^3+3x^2-4x;-4x+3x^2+x^3">You multiplied by the x in {m:(x+2)} only. Multiply by 2 as well.</li>
+      </ul>
+      <div class="solution"><p>{m:(x^2+3x-4)(x+2)=x^3+3x^2-4x+2x^2+6x-8}, which is {m:x^3+5x^2+2x-8}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">Expand {m:(x-1)^3}. Find the coefficient of {m:x^2}. Type only the number.</p>
+      <ol class="ladder"><li>{m:(x-1)^3=(x-1)(x-1)(x-1)}. Start with {m:(x-1)(x-1)=x^2-2x+1}.</li><li>Multiply {m:x^2-2x+1} by {m:(x-1)}. Find the two lines that give {m:x^2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">The signs alternate. {m:(x-1)^3=x^3-3x^2+3x-1}, so the coefficient of {m:x^2} is {m:-3}.</li>
+        <li data-if="-1">That is the constant term. The coefficient of {m:x^2} is {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x^2-2x+1)(x-1)=x^3-x^2-2x^2+2x+x-1}, which is {m:x^3-3x^2+3x-1}. The coefficient of {m:x^2} is {m:-3}.</p></div>
+    </div>
+    <div class="q" data-answers="3x^3+3x^2-3x-5;-5-3x+3x^2+3x^3" data-mode="exact">
+      <p class="qtext">Simplify {m:(4x^3+x^2-5)-(x^3-2x^2+3x)}. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>Change the sign of every term in the second bracket.</li><li>You get {m:4x^3+x^2-5-x^3+2x^2-3x}. Collect like terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x^3-x^2-3x-5;-5-3x-x^2+3x^3">You did not change the sign of {m:-2x^2}. Subtracting {m:-2x^2} adds {m:2x^2}, so {m:x^2+2x^2=3x^2}.</li>
+        <li data-if="3x^3+3x^2+3x-5;-5+3x+3x^2+3x^3">You did not change the sign of {m:3x}. Subtracting {m:3x} gives {m:-3x}.</li>
+      </ul>
+      <div class="solution"><p>{m:4x^3-x^3=3x^3}, {m:x^2+2x^2=3x^2}, and the x term is {m:-3x}. The number is {m:-5}. The answer is {m:3x^3+3x^2-3x-5}.</p></div>
+    </div>
+    <div class="q" data-answers="3x^3+x^2-5x+2;2-5x+x^2+3x^3" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(3x-2)(x^2+x-1)}. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>Take {m:3x} first: {m:3x(x^2+x-1)}.</li><li>Take {m:-2} next: {m:-2(x^2+x-1)}. Be careful with the signs.</li></ol>
+      <ul class="wrong">
+        <li data-if="3x^3+5x^2-5x+2;2-5x+5x^2+3x^3">You wrote {m:-2*x^2} as {m:+2x^2}. It is {m:-2x^2}, and {m:3x^2-2x^2=x^2}.</li>
+      </ul>
+      <div class="solution"><p>{m:3x(x^2+x-1)=3x^3+3x^2-3x}. {m:-2(x^2+x-1)=-2x^2-2x+2}. Together they make {m:3x^3+x^2-5x+2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Dividing by (x &plusmn; p)</h2>
+    <p>You can divide one number by another and get a quotient and a remainder. {m:17=5*3+2} has quotient 3 and remainder 2. You can do the same with polynomials. This is {term:polynomial-division}.</p>
+    <p>When you divide a polynomial {m:f(x)} by a bracket such as {m:(x-2)}, you get a {term:quotient} {m:q(x)} and a {term:remainder} r. They fit together like this.</p>
+    {md:f(x)=(x-2)*q(x)+r}
+    <p>The remainder r is a number, because it has a lower degree than the bracket. The quotient has degree one less than {m:f(x)}. When the remainder is 0, the division is exact, and the bracket is a factor of {m:f(x)}.</p>
+    <p>There are two methods. Both work for brackets such as {m:(x-2)} and {m:(x+2)}.</p>
+    <h3>Method 1: compare coefficients</h3>
+    <p>Write the quotient with letters for its unknown coefficients. Expand the product. Then match the coefficient of each power of x.</p>
+    <div class="worked">
+      <h3>Worked example: compare coefficients</h3>
+      <p>Divide {m:x^3+2x^2-5x-6} by {m:(x-2)}. You are told the division is exact.</p>
+      <ol class="steps">
+        <li>The quotient has degree 2. Write {m:x^3+2x^2-5x-6=(x-2)(x^2+ax+b)}.</li>
+        <li>Expand the right side: {m:x^3+ax^2+bx-2x^2-2ax-2b}. Collect: {m:x^3+(a-2)x^2+(b-2a)x-2b}.</li>
+        <li>Match {m:x^2}: {m:a-2=2}, so {m:a=4}.</li>
+        <li>Match x: {m:b-2a=-5}, so {m:b-8=-5} and {m:b=3}.</li>
+        <li>Check the number term: {m:-2b=-6}. This agrees with the left side.</li>
+      </ol>
+      <p>The quotient is {m:x^2+4x+3}. The check on the number term works because the remainder is 0.</p>
+    </div>
+    <h3>Method 2: long division</h3>
+    <p>Long division works like long division of numbers. At each step, divide the highest power left by x. Write the result in the quotient. Multiply it by the whole bracket. Subtract. Then repeat with what is left.</p>
+    <div class="key">
+      <p><b>Key idea:</b> in long division, each step has three moves. Divide the highest power left by x. Multiply the answer by the whole bracket. Subtract the product, changing every sign. Stop when what is left has a lower degree than the bracket. That is the remainder.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: long division</h3>
+      <p>Divide {m:x^3-6x^2+11x-6} by {m:(x-1)}.</p>
+      <ol class="steps">
+        <li>Divide {m:x^3} by x. This gives {m:x^2}. Multiply: {m:x^2(x-1)=x^3-x^2}. Subtract: {m:-6x^2-(-x^2)=-5x^2}. What is left is {m:-5x^2+11x-6}.</li>
+        <li>Divide {m:-5x^2} by x. This gives {m:-5x}. Multiply: {m:-5x(x-1)=-5x^2+5x}. Subtract: {m:11x-5x=6x}. What is left is {m:6x-6}.</li>
+        <li>Divide {m:6x} by x. This gives 6. Multiply: {m:6(x-1)=6x-6}. Subtract: 0.</li>
+      </ol>
+      <p>The quotient is {m:x^2-5x+6} and the remainder is 0. Check: {m:(x-1)(x^2-5x+6)=x^3-6x^2+11x-6}.</p>
+    </div>
+    <p>A polynomial can be missing a power. Then write the missing term with the coefficient 0, so that every power is in its place.</p>
+    <div class="worked">
+      <h3>Worked example: a missing power, and dividing by (x + p)</h3>
+      <p>Divide {m:x^3-7x-6} by {m:(x+2)}.</p>
+      <ol class="steps">
+        <li>There is no {m:x^2} term. Write {m:x^3+0x^2-7x-6}.</li>
+        <li>Divide {m:x^3} by x. This gives {m:x^2}. Multiply: {m:x^2(x+2)=x^3+2x^2}. Subtract: {m:0x^2-2x^2=-2x^2}. What is left is {m:-2x^2-7x-6}.</li>
+        <li>Divide {m:-2x^2} by x. This gives {m:-2x}. Multiply: {m:-2x(x+2)=-2x^2-4x}. Subtract: {m:-7x-(-4x)=-3x}. What is left is {m:-3x-6}.</li>
+        <li>Divide {m:-3x} by x. This gives {m:-3}. Multiply: {m:-3(x+2)=-3x-6}. Subtract: 0.</li>
+      </ol>
+      <p>The quotient is {m:x^2-2x-3} and the remainder is 0.</p>
+    </div>
+    <p>Often the remainder is not 0. Then the bracket is not a factor.</p>
+    <div class="worked">
+      <h3>Worked example: a remainder</h3>
+      <p>Divide {m:x^3+x^2-4x+5} by {m:(x-1)}.</p>
+      <ol class="steps">
+        <li>Divide {m:x^3} by x. This gives {m:x^2}. Multiply: {m:x^3-x^2}. Subtract: {m:x^2-(-x^2)=2x^2}. What is left is {m:2x^2-4x+5}.</li>
+        <li>Divide {m:2x^2} by x. This gives {m:2x}. Multiply: {m:2x^2-2x}. Subtract: {m:-4x-(-2x)=-2x}. What is left is {m:-2x+5}.</li>
+        <li>Divide {m:-2x} by x. This gives {m:-2}. Multiply: {m:-2x+2}. Subtract: {m:5-2=3}.</li>
+      </ol>
+      <p>The quotient is {m:x^2+2x-2} and the remainder is 3. So {m:x^3+x^2-4x+5=(x-1)(x^2+2x-2)+3}. The remainder is not 0, so {m:(x-1)} is not a factor.</p>
+    </div>
+    <!-- No figure for this section: division is a calculation, and the next section draws the graph that shows what a zero remainder means. -->
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Divide {m:x^3+4x^2+x-6} by {m:(x+2)}. The division is exact.</p>
+      <ol class="steps">
+        <li>Write {m:x^3+4x^2+x-6=(x+2)(x^2+ax+b)}. Expanding gives {m:x^3+(a+2)x^2+(b+2a)x+2b}.</li>
+        <li>Match {m:x^2}: {m:a+2=4}, so {m:a=}<span class="blank" data-answers="2">___</span>.</li>
+        <li>Match x: {m:b+2a=1}, so {m:b=}<span class="blank" data-answers="-3">___</span>.</li>
+        <li>Check the number term: {m:2b=}<span class="blank" data-answers="-6">___</span>. It agrees with the {m:-6} on the left.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The quotient is {m:x^2+2x-3}. Check: {m:(x+2)(x^2+2x-3)=x^3+2x^2-3x+2x^2+4x-6=x^3+4x^2+x-6}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: dividing by (x &plusmn; p)</h2>
+    <div class="q" data-answers="x^2+5x+6;6+5x+x^2" data-mode="exact">
+      <p class="qtext">Divide {m:x^3+3x^2-4x-12} by {m:(x-2)}. The division is exact. Type the quotient like x^2+3x+1.</p>
+      <ol class="ladder"><li>Write {m:x^3+3x^2-4x-12=(x-2)(x^2+ax+b)}.</li><li>Expanding gives {m:x^3+(a-2)x^2+(b-2a)x-2b}.</li><li>Match {m:x^2} to find a. Then match x to find b.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+x-2;-2+x+x^2">You solved {m:a-2=3} as {m:a=1}. Add 2 to both sides: {m:a=5}.</li>
+        <li data-if="x^2+5x-6;-6+5x+x^2">Check the number term. {m:-2b=-12} gives {m:b=6}, not {m:-6}.</li>
+      </ul>
+      <div class="solution"><p>{m:a-2=3} gives {m:a=5}. {m:b-2a=-4} gives {m:b=6}. Check: {m:-2b=-12}. The quotient is {m:x^2+5x+6}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-3x-4;-4-3x+x^2" data-mode="exact">
+      <p class="qtext">Divide {m:x^3-x^2-10x-8} by {m:(x+2)}. Type the quotient like x^2+3x+1.</p>
+      <ol class="ladder"><li>Divide {m:x^3} by x to get the first term of the quotient.</li><li>Multiply it by {m:(x+2)} and subtract. Repeat.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+x-12;-12+x+x^2">After the first multiplication you subtract {m:x^3+2x^2}. So {m:-x^2-2x^2=-3x^2}, not {m:+x^2}. Subtract every term.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2(x+2)=x^3+2x^2}. Subtract: {m:-3x^2-10x-8} is left. {m:-3x(x+2)=-3x^2-6x}. Subtract: {m:-4x-8}. {m:-4(x+2)=-4x-8}. The remainder is 0, and the quotient is {m:x^2-3x-4}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^2+7x+3;3+7x+2x^2" data-mode="exact">
+      <p class="qtext">Divide {m:2x^3+3x^2-11x-6} by {m:(x-2)}. The division is exact. Type the quotient like x^2+3x+1.</p>
+      <ol class="ladder"><li>The quotient starts with {m:2x^2}, because {m:2x^3} divided by x is {m:2x^2}.</li><li>Write {m:(x-2)(2x^2+ax+b)=2x^3+(a-4)x^2+(b-2a)x-2b}.</li><li>Match the coefficients of {m:x^2} and x.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+7x+3;3+7x+x^2">The first term is {m:2x^2}. Divide the {m:2x^3} by x, and keep the 2.</li>
+        <li data-if="2x^2-x-13;-13-x+2x^2">You solved {m:a-4=3} as {m:a=-1}. Add 4 to both sides: {m:a=7}.</li>
+      </ul>
+      <div class="solution"><p>{m:a-4=3} gives {m:a=7}. {m:b-14=-11} gives {m:b=3}. Check: {m:-2b=-6}. The quotient is {m:2x^2+7x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Divide {m:x^3+2x^2-3x+4} by {m:(x-1)}. Find the remainder. Type only the number.</p>
+      <ol class="ladder"><li>Divide {m:x^3} by x to get {m:x^2}. Multiply by {m:(x-1)} and subtract.</li><li>You get {m:3x^2-3x+4}. Continue with {m:3x}.</li><li>The remainder is what is left when the degree is lower than the bracket.</li></ol>
+      <ul class="wrong">
+        <li data-if="0">The remainder is not 0. After the last subtraction, the number 4 is left.</li>
+        <li data-if="-3">That is a coefficient from the polynomial. The remainder is what is left after the last subtraction.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2(x-1)=x^3-x^2}, so {m:3x^2-3x+4} is left. {m:3x(x-1)=3x^2-3x}, so 4 is left. The quotient is {m:x^2+3x} and the remainder is 4.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You divide {m:x^3-7x-6} by {m:(x+2)}. What do you write for the {m:x^2} term before you start?</p>
+      <ul class="options">
+        <li data-correct>0x squared, so the columns line up</li>
+        <li data-why="Leaving a gap puts the x term under the wrong power. Then the subtraction steps mix terms with different powers and give a wrong quotient.">nothing, because there is no x squared term</li>
+        <li data-why="The polynomial has no x squared term, so its coefficient is 0, not 1. Writing 1 would change the polynomial.">1x squared</li>
+      </ul>
+      <ol class="ladder"><li>Every power from the highest down to the constant needs a place.</li><li>What is the coefficient of {m:x^2} in {m:x^3-7x-6}?</li></ol>
+      <div class="solution"><p>The coefficient of {m:x^2} is 0, so write {m:x^3+0x^2-7x-6}. Then each step subtracts terms with the same power.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+3x-4;-4+3x+x^2" data-mode="exact">
+      <p class="qtext">Divide {m:x^3+6x^2+5x-12} by {m:(x+3)}. The division is exact. Type the quotient like x^2+3x+1.</p>
+      <ol class="ladder"><li>Write {m:(x+3)(x^2+ax+b)=x^3+(a+3)x^2+(b+3a)x+3b}.</li><li>Match {m:x^2}: {m:a+3=6}.</li><li>Match x to find b. Check with the number term.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+9x-22;-22+9x+x^2">You solved {m:a+3=6} as {m:a=9}. Subtract 3 from both sides: {m:a=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:a=3}. {m:b+9=5} gives {m:b=-4}. Check: {m:3b=-12}. The quotient is {m:x^2+3x-4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. The factor theorem</h2>
+    <p>Section 2 gave this fact. When you divide {m:f(x)} by {m:(x-p)}, then {m:f(x)=(x-p)q(x)+r}. Put {m:x=p} in both sides. The bracket {m:(x-p)} becomes 0, so the product disappears. That leaves {m:f(p)=r}.</p>
+    <p>So the remainder is {m:f(p)}. The bracket is a factor exactly when the remainder is 0. This is the {term:factor-theorem}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the bracket {m:(x-p)} is a factor of {m:f(x)} exactly when {m:f(p)=0}. To test a bracket, find the value of x that makes it zero. Put that value into {m:f(x)}. If you get 0, the bracket is a factor. If you get anything else, it is not.</p>
+    </div>
+    <p>Take care with the sign. For {m:(x-2)}, the value that makes the bracket zero is {m:x=2}. For {m:(x+3)}, it is {m:x=-3}. This value is also a {term:root|root} of the equation {m:f(x)=0}.</p>
+    <div class="worked">
+      <h3>Worked example: testing brackets</h3>
+      <p>The polynomial is {m:f(x)=x^3+2x^2-5x-6}. Test the brackets {m:(x-2)}, {m:(x+1)} and {m:(x-1)}.</p>
+      <ol class="steps">
+        <li>For {m:(x-2)}, use {m:x=2}: {m:f(2)=8+8-10-6=0}. So {m:(x-2)} is a factor.</li>
+        <li>For {m:(x+1)}, use {m:x=-1}: {m:f(-1)=-1+2+5-6=0}. So {m:(x+1)} is a factor.</li>
+        <li>For {m:(x-1)}, use {m:x=1}: {m:f(1)=1+2-5-6=-8}. This is not 0, so {m:(x-1)} is not a factor.</li>
+      </ol>
+      <p>The value {m:-8} is the remainder when you divide by {m:(x-1)}. Also {m:f(-3)=-27+18+15-6=0}, so {m:(x+3)} is a third factor.</p>
+    </div>
+    <figure class="figure-lg">{fig:polynomials-cubic-roots}<figcaption>Look at the three marked points on the x-axis. They are {m:(-3, 0)}, {m:(-1, 0)} and {m:(2, 0)}. At each one {m:f(x)=0}. So {m:x=-3}, {m:x=-1} and {m:x=2} are roots, and {m:(x+3)}, {m:(x+1)} and {m:(x-2)} are factors.</figcaption></figure>
+    <p>A bracket such as {m:(2x-1)} works in the same way. The value that makes it zero is {m:x=frac(1, 2)}.</p>
+    <div class="worked">
+      <h3>Worked example: a bracket with a number in front of x</h3>
+      <p>Show that {m:(2x-1)} is a factor of {m:h(x)=2x^3+3x^2-8x+3}.</p>
+      <ol class="steps">
+        <li>The bracket is zero when {m:2x-1=0}. So {m:x=frac(1, 2)}.</li>
+        <li>Work out {m:h(frac(1, 2))=2*frac(1, 8)+3*frac(1, 4)-8*frac(1, 2)+3}.</li>
+        <li>This is {m:frac(1, 4)+frac(3, 4)-4+3=1-4+3=0}.</li>
+      </ol>
+      <p>{m:h(frac(1, 2))=0}, so {m:(2x-1)} is a factor. Notice that {m:h(1)=2+3-8+3=0} as well. So {m:(x-1)} is also a factor.</p>
+    </div>
+    <h3>Extra: the remainder theorem</h3>
+    <p><b>[Extra]</b> Not every board names this idea. You never need it to answer a factor-theorem question. The factor theorem is the special case where the remainder is 0.</p>
+    <p>The {term:remainder-theorem} says that the remainder on dividing {m:f(x)} by {m:(x-p)} is {m:f(p)}. You get it by substitution, with no division.</p>
+    <div class="worked">
+      <h3>Worked example: a remainder without dividing</h3>
+      <p>Find the remainder when {m:f(x)=x^3+x^2-4x+5} is divided by {m:(x+2)}.</p>
+      <ol class="steps">
+        <li>The bracket is zero when {m:x=-2}.</li>
+        <li>{m:f(-2)=-8+4+8+5=9}.</li>
+      </ol>
+      <p>The remainder is 9. Section 2 divided this same polynomial by {m:(x-1)} and found remainder 3. Check with the theorem: {m:f(1)=1+1-4+5=3}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Is {m:(x+2)} a factor of {m:x^3-2x^2-5x+6}?</p>
+      <ol class="steps">
+        <li>The bracket is zero when {m:x=-2}.</li>
+        <li>{m:f(-2)=(-2)^3-2(-2)^2-5(-2)+6}. The four pieces are {m:-8}, <span class="blank" data-answers="-8">___</span>, <span class="blank" data-answers="10">___</span> and 6.</li>
+        <li>The total is <span class="blank" data-answers="0">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:f(-2)=-8-8+10+6=0}. The result is 0, so {m:(x+2)} is a factor.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the factor theorem</h2>
+    <div class="q" data-answers="-4" data-mode="value">
+      <p class="qtext">You want to test whether {m:(x+4)} is a factor of a polynomial. Which value of x do you put into the polynomial? Type only the number.</p>
+      <ol class="ladder"><li>Find the value of x that makes {m:(x+4)} equal to 0.</li><li>Solve {m:x+4=0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the number in the bracket. The bracket {m:(x+4)} is zero when {m:x=-4}.</li>
+      </ul>
+      <div class="solution"><p>{m:x+4=0} gives {m:x=-4}. You work out {m:f(-4)}. If it is 0, then {m:(x+4)} is a factor.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a factor of {m:x^3-4x^2+x+6}?</p>
+      <ul class="options">
+        <li data-why="Test it: f(1) = 1 &minus; 4 + 1 + 6 = 4. This is not 0, so (x &minus; 1) is not a factor.">x minus 1</li>
+        <li data-correct>x plus 1</li>
+        <li data-why="Test it: the bracket is zero when x = &minus;2. f(&minus;2) = &minus;8 &minus; 16 &minus; 2 + 6 = &minus;20. This is not 0, so (x + 2) is not a factor.">x plus 2</li>
+      </ul>
+      <ol class="ladder"><li>For each bracket, find the value of x that makes it zero.</li><li>Put that value into the polynomial. A factor gives 0.</li></ol>
+      <div class="solution"><p>For {m:(x+1)}, use {m:x=-1}: {m:-1-4-1+6=0}. So {m:(x+1)} is a factor. {m:f(1)=4} and {m:f(-2)=-20}, so the other two are not.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">For {m:f(x)=x^3-6x^2+11x-6}, you find that {m:f(1)=0}. What does this tell you?</p>
+      <ul class="options">
+        <li data-correct>The bracket (x minus 1) is a factor</li>
+        <li data-why="The bracket that matches f(1) = 0 is (x &minus; 1). The value 1 makes x &minus; 1 equal to 0. A bracket (x + 1) would need f(&minus;1) = 0.">The bracket (x plus 1) is a factor</li>
+        <li data-why="The remainder on dividing by (x &minus; 1) is f(1), which is 0. A remainder of 0 means the division is exact. It does not mean the remainder is 1.">The remainder on dividing by (x minus 1) is 1</li>
+      </ul>
+      <ol class="ladder"><li>The factor theorem links {m:f(p)=0} to the bracket {m:(x-p)}.</li><li>Here {m:p=1}.</li></ol>
+      <div class="solution"><p>{m:f(1)=1-6+11-6=0}. So {m:(x-1)} is a factor, and the remainder on dividing by {m:(x-1)} is 0.</p></div>
+    </div>
+    <div class="q" data-answers="0" data-mode="value">
+      <p class="qtext">The polynomial is {m:f(x)=2x^3-x^2-7x-3}. Work out {m:f(-frac(1, 2))}. Type only the number.</p>
+      <ol class="ladder"><li>{m:(-frac(1, 2))^3=-frac(1, 8)} and {m:(-frac(1, 2))^2=frac(1, 4)}.</li><li>So {m:f(-frac(1, 2))=-frac(1, 4)-frac(1, 4)+frac(7, 2)-3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">That is the constant term, which is {m:f(0)}. Put {m:x=-frac(1, 2)} into every term.</li>
+        <li data-if="-7">You took {m:-7x} as {m:-frac(7, 2)}. When {m:x=-frac(1, 2)}, {m:-7x=+frac(7, 2)}.</li>
+      </ul>
+      <div class="solution"><p>The terms are {m:2*(-frac(1, 8))=-frac(1, 4)}, then {m:-frac(1, 4)}, then {m:-7*(-frac(1, 2))=frac(7, 2)}, then {m:-3}. They add to {m:-frac(1, 4)-frac(1, 4)+frac(7, 2)-3=0}. So {m:(2x+1)} is a factor.</p></div>
+    </div>
+    <div class="q" data-answers="-2 or 1 or 3" data-mode="value">
+      <p class="qtext">Find the whole numbers p from {m:-3} to 3 for which {m:(x-p)} is a factor of {m:x^3-2x^2-5x+6}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Work out {m:f(p)} for each whole number from {m:-3} to 3.</li><li>A factor gives {m:f(p)=0}.</li><li>Try {m:f(1)}, {m:f(-2)} and {m:f(3)} first.</li></ol>
+      <ul class="wrong">
+        <li data-if="2 or -1 or -3">You gave the number in each bracket, not p. The factor {m:(x+2)} is {m:(x-(-2))}, so p is {m:-2}.</li>
+        <li data-if="1">That is one value. Check the others as well: there are three.</li>
+      </ul>
+      <div class="solution"><p>{m:f(1)=1-2-5+6=0}. {m:f(-2)=-8-8+10+6=0}. {m:f(3)=27-18-15+6=0}. The other values give {m:f(-3)=-24}, {m:f(-1)=8}, {m:f(0)=6} and {m:f(2)=-4}. So p is {m:-2}, 1 or 3.</p></div>
+    </div>
+    <div class="q" data-answers="21" data-mode="value">
+      <p class="qtext">[Extra] Find the remainder when {m:x^3+3x^2-2x+5} is divided by {m:(x-2)}. Type only the number.</p>
+      <ol class="ladder"><li>The bracket {m:(x-2)} is zero when {m:x=2}.</li><li>The remainder is {m:f(2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="13">You used {m:x=-2}. The bracket {m:(x-2)} is zero when {m:x=2}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2)=8+12-4+5=21}. The remainder is 21.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">[Extra] Find the remainder when {m:2x^3-x+7} is divided by {m:(x+1)}. Type only the number.</p>
+      <ol class="ladder"><li>The bracket {m:(x+1)} is zero when {m:x=-1}.</li><li>Work out {m:f(-1)=2(-1)^3-(-1)+7}.</li></ol>
+      <ul class="wrong">
+        <li data-if="8">You used {m:x=1}. The bracket {m:(x+1)} is zero when {m:x=-1}, and {m:f(1)=8}.</li>
+        <li data-if="4">You took {m:-x} as {m:-1}. When {m:x=-1}, {m:-x=+1}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(-1)=-2+1+7=6}. The remainder is 6.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Factorising and solving cubics</h2>
+    <p>The factor theorem finds one factor of a cubic. Division then reduces the cubic to a quadratic. You already know how to factorise a quadratic. So the two ideas together factorise the whole cubic.</p>
+    <p>To find the first root, try the values of x that divide the {term:constant-term|constant term}. For a constant term of {m:-6}, try {m:1}, {m:-1}, 2, {m:-2}, 3, {m:-3}, 6 and {m:-6}. When the coefficient of {m:x^3} is 1, a whole-number root is always one of these. The reason is in Why it works.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to factorise a cubic {m:f(x)}, follow these steps. First, try x = 1, {m:-1}, 2, {m:-2} and so on, using factors of the constant term, until {m:f(x)=0}. Second, write down the factor {m:(x-p)}. Third, divide {m:f(x)} by {m:(x-p)} to get a quadratic. Fourth, factorise the quadratic. Last, write all three factors together.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the first try works</h3>
+      <p>Factorise {m:x^3-7x^2+14x-8} completely. Then solve {m:x^3-7x^2+14x-8=0}.</p>
+      <ol class="steps">
+        <li>The constant term is {m:-8}. Try {m:x=1}: {m:f(1)=1-7+14-8=0}. So {m:(x-1)} is a factor.</li>
+        <li>Divide by {m:(x-1)}. Write {m:(x-1)(x^2+ax+b)=x^3+(a-1)x^2+(b-a)x-b}.</li>
+        <li>Match {m:x^2}: {m:a-1=-7}, so {m:a=-6}. Match x: {m:b-a=14}, so {m:b=8}. Check: {m:-b=-8}.</li>
+        <li>Factorise the quadratic: {m:x^2-6x+8=(x-2)(x-4)}.</li>
+      </ol>
+      <p>So {m:x^3-7x^2+14x-8=(x-1)(x-2)(x-4)}. The equation is solved when a factor is 0. So {m:x=1}, {m:x=2} or {m:x=4}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: more tries needed</h3>
+      <p>Solve {m:x^3-x^2-14x+24=0}.</p>
+      <ol class="steps">
+        <li>The constant term is 24. Try {m:x=1}: {m:f(1)=1-1-14+24=10}. Not 0.</li>
+        <li>Try {m:x=-1}: {m:f(-1)=-1-1+14+24=36}. Not 0.</li>
+        <li>Try {m:x=2}: {m:f(2)=8-4-28+24=0}. So {m:(x-2)} is a factor.</li>
+        <li>Divide by {m:(x-2)}. Write {m:(x-2)(x^2+ax+b)=x^3+(a-2)x^2+(b-2a)x-2b}. Match: {m:a-2=-1}, so {m:a=1}. {m:b-2=-14}, so {m:b=-12}. Check: {m:-2b=24}.</li>
+        <li>Factorise: {m:x^2+x-12=(x-3)(x+4)}.</li>
+      </ol>
+      <p>So {m:(x-2)(x-3)(x+4)=0}. The solutions are {m:x=2}, {m:x=3} and {m:x=-4}.</p>
+    </div>
+    <p>A factor can appear twice. This is a {term:repeated-root}. The graph touches the x-axis there and does not cross it.</p>
+    <div class="worked">
+      <h3>Worked example: a repeated root</h3>
+      <p>Solve {m:x^3-3x+2=0}.</p>
+      <ol class="steps">
+        <li>There is no {m:x^2} term, so its coefficient is 0. Try {m:x=1}: {m:f(1)=1-3+2=0}. So {m:(x-1)} is a factor.</li>
+        <li>Divide by {m:(x-1)}. Write {m:(x-1)(x^2+ax+b)=x^3+(a-1)x^2+(b-a)x-b}. Match: {m:a-1=0}, so {m:a=1}. {m:b-1=-3}, so {m:b=-2}. Check: {m:-b=2}.</li>
+        <li>Factorise: {m:x^2+x-2=(x-1)(x+2)}.</li>
+      </ol>
+      <p>So {m:x^3-3x+2=(x-1)^2(x+2)}. The solutions are {m:x=1} and {m:x=-2}. The root {m:x=1} is repeated, so the graph touches the x-axis there.</p>
+    </div>
+    <figure class="figure-lg">{fig:polynomials-repeated}<figcaption>Look at the two marked points on the x-axis. The curve crosses the axis at {m:(-2, 0)}. At {m:(1, 0)} it touches the axis and turns back. That is the repeated root.</figcaption></figure>
+    <p>Not every cubic has three real roots. After you divide, the quadratic may have a negative {term:discriminant}. Then it gives no more real solutions.</p>
+    <div class="worked">
+      <h3>Worked example: only one real solution</h3>
+      <p>Solve {m:x^3-2x^2-2x-3=0}.</p>
+      <ol class="steps">
+        <li>The constant term is {m:-3}. Try {m:x=3}: {m:f(3)=27-18-6-3=0}. So {m:(x-3)} is a factor.</li>
+        <li>Divide by {m:(x-3)}. Write {m:(x-3)(x^2+ax+b)=x^3+(a-3)x^2+(b-3a)x-3b}. Match: {m:a-3=-2}, so {m:a=1}. {m:b-3=-2}, so {m:b=1}. Check: {m:-3b=-3}.</li>
+        <li>The quadratic is {m:x^2+x+1}. Its discriminant is {m:1^2-4*1*1=-3}. This is negative.</li>
+      </ol>
+      <p>The quadratic has no real roots. So {m:x=3} is the only real solution.</p>
+    </div>
+    <p>The coefficient of {m:x^3} may be larger than 1. Then a root can be a fraction. The possible roots are the factors of the constant term divided by the factors of the coefficient of {m:x^3}.</p>
+    <div class="worked">
+      <h3>Worked example: the coefficient of x cubed is 2</h3>
+      <p>Factorise {m:2x^3+3x^2-8x+3} completely.</p>
+      <ol class="steps">
+        <li>Try {m:x=1}: {m:f(1)=2+3-8+3=0}. So {m:(x-1)} is a factor.</li>
+        <li>Divide by {m:(x-1)}. Write {m:(x-1)(2x^2+ax+b)=2x^3+(a-2)x^2+(b-a)x-b}. Match: {m:a-2=3}, so {m:a=5}. {m:b-5=-8}, so {m:b=-3}. Check: {m:-b=3}.</li>
+        <li>Factorise the quadratic: {m:2x^2+5x-3=(2x-1)(x+3)}.</li>
+      </ol>
+      <p>So {m:2x^3+3x^2-8x+3=(x-1)(2x-1)(x+3)}. The roots are {m:x=1}, {m:x=frac(1, 2)} and {m:x=-3}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:x^3-6x^2+11x-6=0}.</p>
+      <ol class="steps">
+        <li>Try {m:x=1}: {m:f(1)=1-6+11-6=}<span class="blank" data-answers="0">___</span>. So {m:(x-1)} is a factor.</li>
+        <li>Write {m:(x-1)(x^2+ax+b)=x^3+(a-1)x^2+(b-a)x-b}. Match {m:x^2}: {m:a-1=-6}, so {m:a=}<span class="blank" data-answers="-5">___</span>.</li>
+        <li>The quadratic is {m:x^2-5x+6=(x-2)(x-3)}. So the three solutions are 1, 2 and <span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:x^3-6x^2+11x-6=(x-1)(x-2)(x-3)}. The solutions are {m:x=1}, {m:x=2} and {m:x=3}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: factorising and solving cubics</h2>
+    <div class="q" data-answers="(x-1)(x+1)(x+2)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^3+2x^2-x-2} completely. Type it like (x-1)(x+2)(x+3).</p>
+      <ol class="ladder"><li>The constant term is {m:-2}. Try {m:x=1}, {m:-1}, 2 and {m:-2}.</li><li>Divide by the factor you find, then factorise the quadratic that is left.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+1)(x-1)(x-2)">Check the signs. {m:f(-2)=0}, so the factor is {m:(x+2)}, not {m:(x-2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(1)=1+2-1-2=0}, so {m:(x-1)} is a factor. Dividing gives {m:x^2+3x+2=(x+1)(x+2)}. So {m:x^3+2x^2-x-2=(x-1)(x+1)(x+2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or -2 or 4" data-mode="value">
+      <p class="qtext">Solve {m:x^3+x^2-14x-24=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>The constant term is {m:-24}. Try {m:-2}, {m:-3} and 4 among the factors of 24.</li><li>Find one factor. Divide to get a quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="3 or 2 or -4">You took the signs from the brackets. {m:(x+2)=0} gives {m:x=-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(4)=64+16-56-24=0}, so {m:(x-4)} is a factor. Dividing gives {m:x^2+5x+6=(x+2)(x+3)}. The solutions are 4, {m:-2} and {m:-3}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-1)(x-2)(x+3)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^3-7x+6} completely. Type it like (x-1)(x+2)(x+3).</p>
+      <ol class="ladder"><li>There is no {m:x^2} term. Its coefficient is 0.</li><li>Try {m:x=1}. Then divide by the factor and factorise the quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+1)(x+2)(x-3)">Those brackets give roots {m:-1}, {m:-2} and 3. Test {m:f(1)=1-7+6=0}: 1 is a root, so {m:(x-1)} is a factor.</li>
+      </ul>
+      <div class="solution"><p>{m:f(1)=1-7+6=0}. Dividing by {m:(x-1)} gives {m:x^2+x-6=(x-2)(x+3)}. So {m:x^3-7x+6=(x-1)(x-2)(x+3)}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">How many different real solutions does {m:x^3-x^2-x-2=0} have? Type only the number.</p>
+      <ol class="ladder"><li>Try {m:x=2}: {m:f(2)=8-4-2-2}.</li><li>Divide by {m:(x-2)} to get {m:x^2+x+1}. Find its discriminant.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">A cubic has at most three real roots, not always three. Here the quadratic factor has a negative discriminant.</li>
+        <li data-if="2">The quadratic factor {m:x^2+x+1} has discriminant {m:1-4=-3}. It gives no real solutions, so there is only one.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2)=0}, so {m:(x-2)} is a factor. Dividing gives {m:x^2+x+1}. Its discriminant is {m:1-4=-3}, which is negative. So the only real solution is {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-3)(x+2)(2x-1)" data-mode="exact">
+      <p class="qtext">Factorise {m:2x^3-3x^2-11x+6} completely. Type it like (x-1)(x+2)(2x+3).</p>
+      <ol class="ladder"><li>Try {m:x=3}: {m:f(3)=54-27-33+6}.</li><li>Divide by {m:(x-3)} to get {m:2x^2+3x-2}. Factorise that.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-3)(x+2)(x-1)">The quadratic is {m:2x^2+3x-2}, with a 2 in front. Its factors are {m:(2x-1)(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(3)=0}, so {m:(x-3)} is a factor. Dividing gives {m:2x^2+3x-2=(2x-1)(x+2)}. So {m:2x^3-3x^2-11x+6=(x-3)(x+2)(2x-1)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You try the numbers 1, 2, 3 and 6 and their negatives as roots of {m:x^3-6x^2+11x-6}. Why these numbers?</p>
+      <ul class="options">
+        <li data-correct>They are the numbers that divide the constant term</li>
+        <li data-why="The coefficients are 1, &minus;6, 11 and &minus;6. The numbers to try come from the constant term only, and 11 is not one of the numbers tried.">They are the coefficients of the polynomial</li>
+        <li data-why="The numbers to try are not chosen from the answer. They are the numbers that divide the constant term, which you can list before you start.">They are the roots, which you already know</li>
+      </ul>
+      <ol class="ladder"><li>Look at the constant term, {m:-6}.</li><li>List the whole numbers that divide it.</li></ol>
+      <div class="solution"><p>A whole-number root of a polynomial with first coefficient 1 divides the constant term. {m:-6} is divisible by 1, 2, 3 and 6, with either sign.</p></div>
+    </div>
+    <div class="q" data-answers="1 or 2" data-mode="value">
+      <p class="qtext">Solve {m:x^3-5x^2+8x-4=0}. Give each different solution once. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Try {m:x=1}: {m:f(1)=1-5+8-4}.</li><li>Divide by {m:(x-1)} to get {m:x^2-4x+4}. Factorise it.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 2 or 2">Each different solution is written once. The root 2 is repeated, but it is one solution.</li>
+        <li data-if="1 or -2">{m:x^2-4x+4=(x-2)^2}. The bracket {m:(x-2)} gives {m:x=2}, not {m:x=-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(1)=0}, so {m:(x-1)} is a factor. Dividing gives {m:x^2-4x+4=(x-2)^2}. So {m:x^3-5x^2+8x-4=(x-1)(x-2)^2}. The solutions are {m:x=1} and {m:x=2}, with 2 repeated.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Finding an unknown coefficient</h2>
+    <p>A question may give a factor and leave a coefficient unknown. The factor theorem gives an equation for it. Put the value that makes the bracket zero into the polynomial. Set the result equal to 0. Then solve for the unknown.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if {m:(x-p)} is a factor of {m:f(x)}, then {m:f(p)=0}. Put {m:x=p} into {m:f(x)} with the unknown letter still in it. Set the result equal to 0 and solve. With two unknown letters, use two factors to get two equations.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: one unknown</h3>
+      <p>{m:(x-2)} is a factor of {m:x^3+kx^2-x-10}. Find the value of k.</p>
+      <ol class="steps">
+        <li>Put {m:x=2} into the polynomial: {m:8+4k-2-10}.</li>
+        <li>Set it equal to 0: {m:4k-4=0}. So {m:k=1}.</li>
+      </ol>
+      <p>Check: {m:x^3+x^2-x-10} at {m:x=2} is {m:8+4-2-10=0}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a bracket with a number in front of x</h3>
+      <p>{m:(2x+1)} is a factor of {m:2x^3+kx^2-7x-6}. Find k.</p>
+      <ol class="steps">
+        <li>The bracket is zero when {m:x=-frac(1, 2)}.</li>
+        <li>Put it in: {m:2*(-frac(1, 8))+k*frac(1, 4)+frac(7, 2)-6=0}.</li>
+        <li>This is {m:-frac(1, 4)+frac(k, 4)+frac(7, 2)-6=0}. Multiply by 4: {m:-1+k+14-24=0}.</li>
+        <li>So {m:k-11=0}, and {m:k=11}.</li>
+      </ol>
+      <p>Check: {m:(2x+1)(x^2+5x-6)=2x^3+10x^2-12x+x^2+5x-6=2x^3+11x^2-7x-6}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two unknowns</h3>
+      <p>{m:(x-1)} and {m:(x+2)} are both factors of {m:x^3+ax^2+bx+6}. Find a and b.</p>
+      <ol class="steps">
+        <li>Put {m:x=1} in: {m:1+a+b+6=0}. So {m:a+b=-7}.</li>
+        <li>Put {m:x=-2} in: {m:-8+4a-2b+6=0}. So {m:4a-2b=2}, which is {m:2a-b=1}.</li>
+        <li>Add the two equations: {m:3a=-6}, so {m:a=-2}. Then {m:b=-7-a=-5}.</li>
+      </ol>
+      <p>The polynomial is {m:x^3-2x^2-5x+6}. Check: this equals {m:(x-1)(x+2)(x-3)}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>{m:(x+2)} is a factor of {m:x^3+kx^2-4x-12}. Find k.</p>
+      <ol class="steps">
+        <li>The bracket is zero when {m:x=-2}.</li>
+        <li>Put it in: {m:-8+k(-2)^2-4(-2)-12=-8+}<span class="blank" data-answers="4">___</span>{m:k+8-12}.</li>
+        <li>So {m:4k-}<span class="blank" data-answers="12">___</span>{m:=0}, which gives {m:k=}<span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:k=3}. Check: {m:x^3+3x^2-4x-12} at {m:x=-2} is {m:-8+12+8-12=0}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: unknown coefficients</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">{m:(x-1)} is a factor of {m:x^3+kx^2-x-3}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:x=1} into the polynomial.</li><li>You get {m:1+k-1-3}. Set it equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">The equation is {m:k-3=0}. Add 3 to both sides to get {m:k=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:1+k-1-3=k-3=0}, so {m:k=3}. Check: {m:x^3+3x^2-x-3} at {m:x=1} is {m:1+3-1-3=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">{m:(x+2)} is a factor of {m:x^3-x^2+kx+6}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>The bracket {m:(x+2)} is zero when {m:x=-2}.</li><li>Put {m:x=-2} in: {m:-8-4-2k+6}. Set it equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">The equation is {m:-6-2k=0}. So {m:-2k=6} and {m:k=-3}. Watch the sign when you divide.</li>
+        <li data-if="-5">You used {m:x=2}. The bracket {m:(x+2)} is zero when {m:x=-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:(-2)^3-(-2)^2+k(-2)+6=-8-4-2k+6=-6-2k}. Set it to 0: {m:k=-3}. Check: {m:x^3-x^2-3x+6} at {m:x=-2} is {m:-8-4+6+6=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">{m:(x-3)} is a factor of {m:2x^3-5x^2+kx+6}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:x=3} into the polynomial.</li><li>{m:2*27-5*9+3k+6=54-45+3k+6}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">The equation is {m:15+3k=0}. So {m:3k=-15} and {m:k=-5}.</li>
+        <li data-if="-15">That is {m:3k}. Divide by 3 to get k.</li>
+      </ul>
+      <div class="solution"><p>{m:54-45+3k+6=15+3k}. Set it to 0: {m:3k=-15}, so {m:k=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">{m:(2x-1)} is a factor of {m:2x^3+kx^2-5x+2}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>The bracket is zero when {m:x=frac(1, 2)}.</li><li>Put it in: {m:frac(1, 4)+frac(k, 4)-frac(5, 2)+2=0}. Multiply every term by 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1">Multiplying by 4 gives {m:1+k-10+8=k-1}, so {m:k-1=0}. Add 1 to both sides: {m:k=+1}.</li>
+        <li data-if="4">That is the denominator. Solve {m:k-1=0} for k.</li>
+      </ul>
+      <div class="solution"><p>{m:2*frac(1, 8)+k*frac(1, 4)-5*frac(1, 2)+2=0}. Multiply by 4: {m:1+k-10+8=0}, so {m:k=1}. Check: {m:(2x-1)(x^2+x-2)=2x^3+x^2-5x+2}.</p></div>
+    </div>
+    <div class="q" data-answers="(4,1);4,1;a=4,b=1" data-mode="exact">
+      <p class="qtext">{m:(x-1)} and {m:(x+2)} are factors of {m:x^3+ax^2+bx-6}. Find a and b. Type your answer with a first, like (1,2).</p>
+      <ol class="ladder"><li>Put {m:x=1} in: {m:1+a+b-6=0}, so {m:a+b=5}.</li><li>Put {m:x=-2} in: {m:-8+4a-2b-6=0}, so {m:2a-b=7}.</li><li>Add the two equations to find a. Then find b.</li></ol>
+      <ul class="wrong">
+        <li data-if="(1,4);1,4;a=1,b=4">Your pair has b before a. Write a first.</li>
+        <li data-if="4">That is a. The question asks for a and b, so find b as well.</li>
+      </ul>
+      <div class="solution"><p>Adding {m:a+b=5} and {m:2a-b=7} gives {m:3a=12}, so {m:a=4}. Then {m:b=1}. Check: {m:x^3+4x^2+x-6=(x-1)(x+2)(x+3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">{m:(x-2)} is a factor of {m:f(x)}. Which statement must be true?</p>
+      <ul class="options">
+        <li data-correct>{m:f(2)=0}</li>
+        <li data-why="The value that makes (x &minus; 2) equal to 0 is x = 2, not x = &minus;2. So the test is f(2), not f(&minus;2).">{m:f(-2)=0}</li>
+        <li data-why="The number 2 is the value of x in the test, not the value of f. A factor gives f(2) = 0.">{m:f(0)=2}</li>
+      </ul>
+      <ol class="ladder"><li>Which value of x makes {m:(x-2)} equal to 0?</li><li>The factor theorem puts that value into {m:f(x)}.</li></ol>
+      <div class="solution"><p>{m:x-2=0} gives {m:x=2}. The factor theorem says {m:f(2)=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>So far you started with a polynomial and found its factors and roots. You can also go the other way. You start with the roots and build the polynomial.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a polynomial to its factors. Find a root with the factor theorem, divide, and factorise what is left.</p><p>{m:x^3-4x^2+x+6} has {m:f(-1)=0}, so {m:(x+1)} is a factor. Dividing gives {m:(x+1)(x-2)(x-3)}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the roots to a polynomial. Each root p gives a factor {m:(x-p)}. Multiply the factors together.</p><p>The roots {m:-1}, 2 and 3 give {m:(x+1)(x-2)(x-3)}. Expanding gives {m:x^3-4x^2+x+6}.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:polynomials-flip}<figcaption>Look at the three marked points on the x-axis. The roots are {m:-1}, 2 and 3. Each root gives one factor. The curve also meets the y-axis at {m:(0, 6)}, which is the constant term.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from the roots to the cubic</h3>
+      <p>A cubic has {m:x^3} coefficient 1 and roots {m:-1}, 2 and 3. Write it in expanded form.</p>
+      <ol class="steps">
+        <li>The factors are {m:(x+1)}, {m:(x-2)} and {m:(x-3)}.</li>
+        <li>Multiply the last two: {m:(x-2)(x-3)=x^2-5x+6}.</li>
+        <li>Multiply by {m:(x+1)}: {m:x^3-5x^2+6x+x^2-5x+6}.</li>
+        <li>Collect like terms: {m:x^3-4x^2+x+6}.</li>
+      </ol>
+      <p>Check: at {m:x=0}, the factors give {m:1*(-2)*(-3)=6}. This matches the constant term.</p>
+    </div>
+    <p>The roots alone do not fix the polynomial. Any number times it has the same roots. So {m:2(x+1)(x-2)(x-3)} has the same roots too. A point on the curve fixes the number.</p>
+    <div class="worked">
+      <h3>Worked example: a cubic through a point</h3>
+      <p>A cubic curve crosses the x-axis at {m:-2}, 1 and 4. It passes through {m:(0, 16)}. Find its equation.</p>
+      <ol class="steps">
+        <li>Write {m:y=k(x+2)(x-1)(x-4)}, with k to find.</li>
+        <li>Put {m:x=0} and {m:y=16}. The brackets give {m:2*(-1)*(-4)=8}. So {m:16=8k} and {m:k=2}.</li>
+        <li>Expand {m:(x+2)(x-1)(x-4)}. First {m:(x+2)(x-1)=x^2+x-2}. Then {m:(x^2+x-2)(x-4)=x^3-3x^2-6x+8}.</li>
+        <li>Multiply by 2.</li>
+      </ol>
+      <p>The curve is {m:y=2x^3-6x^2-12x+16}. Check at {m:x=0}: {m:y=16}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a repeated root</h3>
+      <p>A cubic with {m:x^3} coefficient 1 touches the x-axis at {m:x=1} and crosses it at {m:x=-3}. Find it.</p>
+      <ol class="steps">
+        <li>The touching root is repeated, so the factor {m:(x-1)} appears twice. The factors are {m:(x-1)^2} and {m:(x+3)}.</li>
+        <li>Expand {m:(x-1)^2=x^2-2x+1}. Multiply by {m:(x+3)}: {m:x^3+3x^2-2x^2-6x+x+3}.</li>
+      </ol>
+      <p>The cubic is {m:x^3+x^2-5x+3}.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="x^3-6x^2+11x-6;-6+11x-6x^2+x^3" data-mode="exact">
+      <p class="qtext">A cubic has {m:x^3} coefficient 1 and roots 1, 2 and 3. Write it in expanded form. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>The factors are {m:(x-1)}, {m:(x-2)} and {m:(x-3)}.</li><li>Multiply two of them, then multiply by the third.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3+6x^2+11x+6;6+11x+6x^2+x^3">You used {m:(x+1)(x+2)(x+3)}. A root of 1 gives the factor {m:(x-1)}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-1)(x-2)=x^2-3x+2}. Then {m:(x^2-3x+2)(x-3)=x^3-3x^2-3x^2+9x+2x-6=x^3-6x^2+11x-6}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3-4x^2-x+4;4-x-4x^2+x^3" data-mode="exact">
+      <p class="qtext">A cubic has {m:x^3} coefficient 1 and roots {m:-1}, 1 and 4. Write it in expanded form. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>The factors are {m:(x+1)}, {m:(x-1)} and {m:(x-4)}.</li><li>Start with {m:(x+1)(x-1)=x^2-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3+4x^2-x-4;-4-x+4x^2+x^3">You used {m:(x-4)} with the wrong sign. The root 4 gives {m:(x-4)}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x^2-1)(x-4)=x^3-4x^2-x+4}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3+3x^2-10x;-10x+3x^2+x^3" data-mode="exact">
+      <p class="qtext">A cubic has {m:x^3} coefficient 1 and roots 0, 2 and {m:-5}. Write it in expanded form. Type it like x^3+2x^2-x.</p>
+      <ol class="ladder"><li>The root 0 gives the factor {m:(x-0)}, which is x.</li><li>The other factors are {m:(x-2)} and {m:(x+5)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+3x-10;-10+3x+x^2">You left out the factor x from the root 0. The cubic is x times this quadratic.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x+5)=x^2+3x-10}. Multiply by x: {m:x^3+3x^2-10x}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">A curve {m:y=k(x+1)(x-2)(x-3)} passes through the point {m:(0, 12)}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:x=0} and {m:y=12} into the equation.</li><li>Work out {m:(0+1)(0-2)(0-3)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">That is y. Divide by the value of the three brackets to find k.</li>
+        <li data-if="-2">The three brackets give {m:1*(-2)*(-3)=+6}, because two negatives multiply to a positive. So {m:6k=12}.</li>
+      </ul>
+      <div class="solution"><p>{m:12=k*1*(-2)*(-3)=6k}, so {m:k=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A cubic with {m:x^3} coefficient 1 touches the x-axis at {m:x=2} and crosses it at {m:x=-1}. Which is its equation?</p>
+      <ul class="options">
+        <li data-correct>{m:y=(x-2)^2(x+1)}</li>
+        <li data-why="This has only two factors, so it is a quadratic. A cubic needs three factors, and the touching root must appear twice.">{m:y=(x-2)(x+1)}</li>
+        <li data-why="The factor (x + 2) would give a root at x = &minus;2. The cubic must touch at x = 2 and cross at x = &minus;1.">{m:y=(x-2)(x+2)(x+1)}</li>
+      </ul>
+      <ol class="ladder"><li>A touching root is a repeated root. Its factor appears twice.</li><li>Count the factors. A cubic has three.</li></ol>
+      <div class="solution"><p>The factor {m:(x-2)} appears twice, and {m:(x+1)} once. So {m:y=(x-2)^2(x+1)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> dividing {m:x^3+x^2-4x+5} by {m:(x-1)} gives the quotient {m:x^2+2x-2} and remainder 5, because 5 is the last number in the polynomial. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The remainder is what is left after the last subtraction, and that is 3</li>
+        <li data-why="The last term of the quotient is not the remainder. The remainder is a separate number, left after the final subtraction.">The remainder should be {m:-2}, the last term of the quotient</li>
+        <li data-why="A quadratic quotient does not make the remainder 0. The remainder is 0 only when the final subtraction leaves nothing.">The remainder is always 0 when the quotient is a quadratic</li>
+      </ul>
+      <ol class="ladder"><li>The last step is {m:-2x+5-(-2x+2)}.</li><li>Work out what is left.</li></ol>
+      <div class="solution"><p>{m:5-2=3}. So {m:x^3+x^2-4x+5=(x-1)(x^2+2x-2)+3}. A quick check: {m:f(1)=1+1-4+5=3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> {m:f(x)=x^3-6x^2+11x-6} has {m:f(1)=0} and {m:f(2)=0}. So {m:f(x)=(x-1)(x-2)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>A cubic has three linear factors, and {m:(x-1)(x-2)} has only two</li>
+        <li data-why="The factor theorem says f(2) = 0 does give the factor (x &minus; 2). Her two factors are right. The mistake is that one is missing.">{m:f(2)=0} does not give a factor</li>
+        <li data-why="Testing f(&minus;1) is not needed. The missing third factor comes from dividing, or from the constant term.">She should have tested {m:f(-1)} as well</li>
+      </ul>
+      <ol class="ladder"><li>Expand {m:(x-1)(x-2)}. What is its degree?</li><li>Divide {m:f(x)} by {m:(x-1)(x-2)=x^2-3x+2}.</li></ol>
+      <div class="solution"><p>{m:(x-1)(x-2)=x^2-3x+2} has degree 2, but {m:f(x)} has degree 3. Dividing gives the third factor {m:(x-3)}. So {m:f(x)=(x-1)(x-2)(x-3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> {m:(x-2)(x^2+x+3)=x^3-x^2+x+6}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He wrote {m:-2*3} as {m:+6}. It is {m:-6}</li>
+        <li data-why="The x term is correct: 3x from x times 3, and &minus;2x from &minus;2 times x, which add to x. The mistake is in the number term.">The x term should be {m:5x}</li>
+        <li data-why="The x squared terms come from x times x, which is x squared, and from &minus;2 times x squared, which is &minus;2x squared. They add to &minus;x squared, so Dev&rsquo;s x squared term is right. The mistake is in the number term.">The {m:x^2} term should be {m:+x^2}</li>
+      </ul>
+      <ol class="ladder"><li>Multiply each term of {m:(x^2+x+3)} by x, then by {m:-2}.</li><li>Check each sign, especially the last one.</li></ol>
+      <div class="solution"><p>{m:x(x^2+x+3)=x^3+x^2+3x} and {m:-2(x^2+x+3)=-2x^2-2x-6}. Together they make {m:x^3-x^2+x-6}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eve says:</b> to test whether {m:(2x-1)} is a factor of {m:f(x)=2x^3+3x^2-8x+3}, I work out {m:f(2)=15}. So it is not a factor. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She should have used {m:x=frac(1, 2)}, the value that makes {m:2x-1} zero</li>
+        <li data-why="The value that makes 2x &minus; 1 zero is positive one half. Using &minus;1 does not make the bracket zero.">She should have used {m:x=-1}</li>
+        <li data-why="Her arithmetic is right: f(2) = 16 + 12 &minus; 16 + 3 = 15. The mistake is the value she chose, not the sum.">She worked out {m:f(2)} wrongly, and it is 0</li>
+      </ul>
+      <ol class="ladder"><li>Solve {m:2x-1=0}.</li><li>Put that value of x into {m:f(x)}.</li></ol>
+      <div class="solution"><p>{m:2x-1=0} gives {m:x=frac(1, 2)}. {m:f(frac(1, 2))=frac(1, 4)+frac(3, 4)-4+3=0}. So {m:(2x-1)} is a factor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="x^3-13x-12;-12-13x+x^3" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+1)(x-4)(x+3)}. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>Multiply the first two brackets: {m:(x+1)(x-4)=x^2-3x-4}.</li><li>Multiply by {m:(x+3)}. Look at the {m:x^2} terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3-13x+12;12-13x+x^3">The number term is {m:-4*3=-12}. A negative number times a positive number is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:(x^2-3x-4)(x+3)=x^3+3x^2-3x^2-9x-4x-12}, which is {m:x^3-13x-12}.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 2 or 5" data-mode="value">
+      <p class="qtext">Solve {m:x^3-4x^2-11x+30=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>The constant term is 30. Try small factors of 30, such as 1, 2 and {m:-2}.</li><li>Divide by the factor you find to get a quadratic. Factorise it.</li></ol>
+      <ul class="wrong">
+        <li data-if="3 or -2 or -5">You took the signs from the brackets. {m:(x+3)=0} gives {m:x=-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2)=8-16-22+30=0}, so {m:(x-2)} is a factor. Dividing gives {m:x^2-2x-15=(x-5)(x+3)}. The solutions are 2, 5 and {m:-3}.</p></div>
+    </div>
+    <div class="q" data-answers="2x^2-3x-2;-2-3x+2x^2" data-mode="exact">
+      <p class="qtext">Divide {m:2x^3+x^2-8x-4} by {m:(x+2)}. The division is exact. Type the quotient like x^2+3x+1.</p>
+      <ol class="ladder"><li>Write {m:(x+2)(2x^2+ax+b)=2x^3+(a+4)x^2+(b+2a)x+2b}.</li><li>Match {m:x^2}: {m:a+4=1}. Match x to find b.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x^2+5x-18;-18+5x+2x^2">You solved {m:a+4=1} as {m:a=5}. Subtract 4 from both sides: {m:a=-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:a+4=1} gives {m:a=-3}. {m:b-6=-8} gives {m:b=-2}. Check: {m:2b=-4}. The quotient is {m:2x^2-3x-2}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">{m:(x+1)} is a factor of {m:x^3+kx^2+2x-4}. Find the value of k. Type only the number.</p>
+      <ol class="ladder"><li>The bracket {m:(x+1)} is zero when {m:x=-1}.</li><li>Put {m:x=-1} in: {m:-1+k-2-4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-7">The equation is {m:k-7=0}. Add 7 to both sides: {m:k=7}.</li>
+      </ul>
+      <div class="solution"><p>{m:(-1)^3+k(-1)^2+2(-1)-4=-1+k-2-4=k-7}. Set it to 0: {m:k=7}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many real solutions does {m:x^3+x=0} have?</p>
+      <ul class="options">
+        <li data-correct>One solution</li>
+        <li data-why="A cubic has at most three real solutions, not always three. Here x(x squared + 1) = 0 and x squared + 1 is never 0, so there is one.">Three solutions</li>
+        <li data-why="Take out the factor x. Then x squared + 1 is never zero for a real x. So only the factor x gives a solution, and there is one.">Two solutions</li>
+      </ul>
+      <ol class="ladder"><li>Take out the common factor x.</li><li>Can {m:x^2+1} equal 0 for a real number x?</li></ol>
+      <div class="solution"><p>{m:x^3+x=x(x^2+1)}. The factor x gives {m:x=0}. {m:x^2+1} is at least 1, so it never gives a real solution. There is one real solution.</p></div>
+    </div>
+    <div class="q" data-answers="(x-2)(x+2)(x-3)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^3-3x^2-4x+12} completely. Type it like (x-1)(x+2)(x+3).</p>
+      <ol class="ladder"><li>Try {m:x=2}: {m:8-12-8+12}.</li><li>Divide by {m:(x-2)} to get a quadratic. Factorise the quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+2)(x-2)(x+3)">Check the last factor. {m:f(3)=27-27-12+12=0}, so the factor is {m:(x-3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2)=0}, so {m:(x-2)} is a factor. Dividing gives {m:x^2-x-6=(x-3)(x+2)}. Check: {m:(x-2)(x^2-x-6)=x^3-x^2-6x-2x^2+2x+12=x^3-3x^2-4x+12}. So the factors are {m:(x-2)(x-3)(x+2)}.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-3x+3;3-3x+x^2" data-mode="exact">
+      <p class="qtext">Find the quotient when {m:x^3-2x^2+3} is divided by {m:(x+1)}. The division is exact. Type it like x^2+3x+1.</p>
+      <ol class="ladder"><li>There is no x term. Its coefficient is 0.</li><li>Write {m:(x+1)(x^2+ax+b)=x^3+(a+1)x^2+(b+a)x+b}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+3x-3;-3+3x+x^2">You solved {m:a+1=-2} as {m:a=3}. Subtract 1 from both sides: {m:a=-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:a+1=-2} gives {m:a=-3}. {m:b+a=0} gives {m:b=3}. Check: the number term is {m:b=3}. The quotient is {m:x^2-3x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3-3x+2;2-3x+x^3" data-mode="exact">
+      <p class="qtext">A cubic with {m:x^3} coefficient 1 has a repeated root at {m:x=1} and a root at {m:x=-2}. Write it in expanded form. Type it like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>The repeated root gives {m:(x-1)^2}.</li><li>Multiply by {m:(x+2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3+x^2-5x+3;3-5x+x^2+x^3">That cubic has the factor {m:(x+3)}, which gives the root {m:-3}. The root {m:-2} gives the factor {m:(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-1)^2(x+2)=(x^2-2x+1)(x+2)=x^3+2x^2-2x^2-4x+x+2=x^3-3x+2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="-5 or -2 or 3" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] {m:f(x)=x^3+4x^2-11x-30}. Given that {m:(x-3)} is a factor of {m:f(x)}, solve {m:f(x)=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Divide {m:f(x)} by {m:(x-3)}. Write {m:(x-3)(x^2+ax+b)}.</li><li>Match coefficients to find a and b.</li><li>Factorise the quadratic. Then use every factor.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the solution from the given factor. A cubic can have more. Factorise the quadratic that is left.</li>
+        <li data-if="-3 or 2 or 5">You took the signs from the brackets. {m:(x-3)=0} gives {m:x=3}, and {m:(x+2)=0} gives {m:x=-2}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:(x-3)(x^2+ax+b)=x^3+(a-3)x^2+(b-3a)x-3b}. So {m:a-3=4} gives {m:a=7}, and {m:b-21=-11} gives {m:b=10}. Check: {m:-3b=-30}. The quadratic {m:x^2+7x+10=(x+2)(x+5)}. The solutions are 3, {m:-2} and {m:-5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for dividing {m:f(x)} by {m:(x-3)}, or comparing coefficients</li>
+          <li><b>A1</b> for the quadratic {m:x^2+7x+10}</li>
+          <li><b>M1</b> for factorising the quadratic</li>
+          <li><b>A1</b> for all three solutions: 3, {m:-2} and {m:-5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] {m:(x-2)} is a factor of {m:f(x)=2x^3+ax^2-7x-6}. Find the value of a. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:x=2} into {m:f(x)}. Keep the letter a.</li><li>You get {m:16+4a-14-6}. Set it equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1">The equation is {m:4a-4=0}. Add 4 to both sides: {m:4a=4}, so {m:a=1}.</li>
+        <li data-if="4">That is {m:4a}. Divide by 4 to get a.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:f(2)=16+4a-14-6=4a-4}. Set it to 0: {m:4a=4}, so {m:a=1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for putting {m:x=2} into {m:f(x)} and setting it equal to 0</li>
+          <li><b>A1</b> for {m:a=1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(x-2)(2x+3)(x+1)" data-mode="exact" data-marks="4">
+      <p class="qtext"><b>(b)</b> [4 marks] Now take {m:a=1}, so {m:f(x)=2x^3+x^2-7x-6}. Factorise {m:f(x)} completely. Type it like (x-1)(x+2)(2x+3).</p>
+      <ol class="ladder"><li>Write {m:f(x)=(x-2)(2x^2+bx+c)}.</li><li>Expanding gives {m:2x^3+(b-4)x^2+(c-2b)x-2c}. Match to find b and c.</li><li>Factorise the quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-2)(x+3)(x+1)">The quadratic is {m:2x^2+5x+3}, with a 2 in front. Its factors are {m:(2x+3)(x+1)}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:b-4=1} gives {m:b=5}. {m:c-10=-7} gives {m:c=3}. Check: {m:-2c=-6}. Then {m:2x^2+5x+3=(2x+3)(x+1)}. So {m:f(x)=(x-2)(2x+3)(x+1)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for dividing by {m:(x-2)}, or comparing coefficients</li>
+          <li><b>A1</b> for the quadratic {m:2x^2+5x+3}</li>
+          <li><b>M1</b> for factorising the quadratic</li>
+          <li><b>A1</b> for {m:(x-2)(2x+3)(x+1)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(-1,-8);-1,-8;a=-1,b=-8" data-mode="exact" data-marks="5">
+      <p class="qtext">[5 marks] {m:(x-2)} and {m:(x+3)} are both factors of {m:x^3+ax^2+bx+12}. Find a and b. Type your answer with a first, like (1,2).</p>
+      <ol class="ladder"><li>Put {m:x=2} in: {m:8+4a+2b+12=0}, so {m:2a+b=-10}.</li><li>Put {m:x=-3} in: {m:-27+9a-3b+12=0}, so {m:3a-b=5}.</li><li>Add the two equations to find a. Then find b.</li></ol>
+      <ul class="wrong">
+        <li data-if="(-8,-1);-8,-1;a=-8,b=-1">Your pair has b before a. Write a first.</li>
+        <li data-if="-1">That is a. The question asks for a and b, so find b as well.</li>
+      </ul>
+      <div class="solution">
+        <p>Adding {m:2a+b=-10} and {m:3a-b=5} gives {m:5a=-5}, so {m:a=-1}. Then {m:b=-10-2a=-8}. Check: {m:x^3-x^2-8x+12=(x-2)^2(x+3)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for putting {m:x=2} into the cubic and setting it equal to 0</li>
+          <li><b>A1</b> for {m:2a+b=-10}</li>
+          <li><b>M1</b> for putting {m:x=-3} into the cubic and setting it equal to 0</li>
+          <li><b>A1</b> for {m:3a-b=5}</li>
+          <li><b>A1</b> for {m:a=-1} and {m:b=-8}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-8" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(a)</b> [3 marks] {m:f(x)=x^3+x^2+x-3}. Divide {m:f(x)} by {m:(x-1)}. The quotient is a quadratic. Find the value of its discriminant. Type only the number.</p>
+      <ol class="ladder"><li>Check that {m:f(1)=0}. Then write {m:(x-1)(x^2+ax+b)}.</li><li>Match coefficients to find a and b.</li><li>The discriminant of {m:x^2+ax+b} is {m:a^2-4b}.</li></ol>
+      <ul class="wrong">
+        <li data-if="8">The sign is lost. {m:4-12=-8}.</li>
+        <li data-if="-3">That is the number term b, not the discriminant. Work out {m:a^2-4b}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:(x-1)(x^2+ax+b)=x^3+(a-1)x^2+(b-a)x-b}. So {m:a-1=1} gives {m:a=2}, and {m:b-2=1} gives {m:b=3}. Check: {m:-b=-3}. The quadratic is {m:x^2+2x+3}. Its discriminant is {m:2^2-4*1*3=-8}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:f(1)=0}, so {m:(x-1)} is a factor</li>
+          <li><b>M1</b> for dividing, or comparing coefficients</li>
+          <li><b>A1</b> for the discriminant {m:-8}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(b)</b> [2 marks] Use your answer to part (a). How many real solutions does {m:x^3+x^2+x-3=0} have? Type only the number.</p>
+      <ol class="ladder"><li>The solutions come from the factors {m:(x-1)} and {m:(x^2+2x+3)}.</li><li>A negative discriminant means no real solutions from the quadratic.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">A cubic has at most three real roots. Here the quadratic factor has a negative discriminant, so it gives none.</li>
+        <li data-if="0">The factor {m:(x-1)} gives the real solution {m:x=1}. The quadratic gives none, so there is one in total.</li>
+      </ul>
+      <div class="solution">
+        <p>The discriminant {m:-8} is negative, so {m:x^2+2x+3=0} has no real solutions. The only real solution is {m:x=1}. There is 1.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for using the negative discriminant to say the quadratic has no real solutions</li>
+          <li><b>A1</b> for 1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-2x^3+4x^2+10x-12;-12+10x+4x^2-2x^3" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] A cubic curve crosses the x-axis at {m:x=-2}, {m:x=1} and {m:x=3}. It crosses the y-axis at {m:(0, -12)}. Find its equation in the form {m:y=ax^3+bx^2+cx+d}. Type only the right side, like x^3+2x^2-x+5.</p>
+      <ol class="ladder"><li>Write {m:y=k(x+2)(x-1)(x-3)}.</li><li>Put {m:x=0} and {m:y=-12} to find k.</li><li>Expand and multiply by k.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3-2x^2-5x+6;6-5x-2x^2+x^3">That is the cubic with {m:x^3} coefficient 1. It passes through {m:(0, 6)}. Multiply by k to pass through {m:(0, -12)}.</li>
+        <li data-if="2x^3-4x^2-10x+12;12-10x-4x^2+2x^3">The sign of k is wrong. At {m:x=0}, the brackets give {m:2*(-1)*(-3)=6}, so {m:6k=-12}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:y=k(x+2)(x-1)(x-3)}. At {m:x=0}: {m:-12=k*2*(-1)*(-3)=6k}, so {m:k=-2}. {m:(x+2)(x-1)(x-3)=x^3-2x^2-5x+6}. Multiply by {m:-2}: {m:y=-2x^3+4x^2+10x-12}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:y=k(x+2)(x-1)(x-3)}</li>
+          <li><b>M1</b> for using {m:(0, -12)} to find k</li>
+          <li><b>A1</b> for {m:k=-2}</li>
+          <li><b>A1</b> for {m:y=-2x^3+4x^2+10x-12}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-2 or 3 or 4" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] {m:f(x)=x^3-5x^2-2x+24}. Show that {m:(x+2)} is a factor of {m:f(x)}. Hence solve {m:f(x)=0}. Type your solutions like 1 or 5.</p>
+      <ol class="ladder"><li>Work out {m:f(-2)}. A result of 0 shows that {m:(x+2)} is a factor.</li><li>Divide by {m:(x+2)}: {m:(x+2)(x^2+ax+b)}. Match coefficients.</li><li>Factorise the quadratic and use every factor.</li></ol>
+      <ul class="wrong">
+        <li data-if="2 or -3 or -4">You took the signs from the brackets. {m:(x-3)=0} gives {m:x=3}.</li>
+        <li data-if="-2">That is the solution from the given factor. Factorise the quadratic that is left for the other two.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:f(-2)=-8-20+4+24=0}, so {m:(x+2)} is a factor. {m:(x+2)(x^2+ax+b)=x^3+(a+2)x^2+(b+2a)x+2b}. So {m:a+2=-5} gives {m:a=-7}, and {m:b-14=-2} gives {m:b=12}. Check: {m:2b=24}. The quadratic {m:x^2-7x+12=(x-3)(x-4)}. The solutions are {m:-2}, 3 and 4.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:f(-2)=0}, with the working shown</li>
+          <li><b>M1</b> for dividing, or comparing coefficients</li>
+          <li><b>A1</b> for the quadratic {m:x^2-7x+12}</li>
+          <li><b>M1</b> for factorising the quadratic</li>
+          <li><b>A1</b> for all three solutions: {m:-2}, 3 and 4</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Expanding.</b> Multiplying every term by every term is the distributive law used twice. It keeps the value the same for every x, so the expanded form is another way to write the same polynomial.</li>
+      <li><b>Division.</b> {m:f(x)=(x-p)q(x)+r} is the same fact as {m:17=5*3+2}. You can always check a division by multiplying back and adding the remainder.</li>
+      <li><b>The remainder is a number.</b> You stop dividing when what is left has a lower degree than the bracket. The bracket has degree 1, so what is left has degree 0. That is a number.</li>
+      <li><b>The factor theorem.</b> Put {m:x=p} into {m:f(x)=(x-p)q(x)+r}. The product {m:(p-p)q(p)} is 0 times a number, which is 0. So {m:f(p)=r}. A remainder of 0 means {m:(x-p)} divides {m:f(x)} exactly, so it is a factor. If {m:(x-p)} is a factor, the remainder is 0.</li>
+      <li><b>Trying the factors of the constant term.</b> Take {m:x^3+ax^2+bx+c} with whole-number coefficients, and suppose a whole number p is a root. Then {m:p^3+ap^2+bp+c=0}, so {m:c=-p(p^2+ap+b)}. So p divides c. When the coefficient of {m:x^3} is not 1, a fraction can be a root. It then has the form (a divisor of c) over (a divisor of the leading coefficient).</li>
+      <li><b>At most three roots.</b> Each root gives one linear factor. A cubic has degree 3, so it has at most three linear factors. A repeated root uses up two of the three factors. The graph touches the axis there, so the cubic has fewer than three different roots.</li>
+      <li><b>Building from roots.</b> The product of {m:(x-p)} for each root p is zero at each root and nowhere else. Any number times it has the same roots. A point on the curve fixes that number.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Testing {m:(x+3)} with {m:f(3)}. The bracket {m:(x+3)} is zero when {m:x=-3}, so test {m:f(-3)}.</li>
+      <li>Forgetting the missing power. Write {m:x^3+0x^2-7x-6} before you divide.</li>
+      <li>Losing a sign when you subtract in long division. Change every sign of the line you subtract.</li>
+      <li>Stopping after the first factor. A cubic needs three factors, and the quadratic left over needs factorising too.</li>
+      <li>Dropping a repeated root. For {m:(x-1)^2(x+2)}, the solutions are {m:x=1} and {m:x=-2}, and the first is repeated.</li>
+      <li>Taking the signs of the solutions from the brackets. {m:(x+2)=0} gives {m:x=-2}.</li>
+      <li>Thinking a cubic always has three real roots. After you divide, the quadratic may have a negative discriminant.</li>
+      <li>Testing {m:(2x-1)} with {m:x=2}. Solve {m:2x-1=0} and use {m:x=frac(1, 2)}.</li>
+      <li>Forgetting the number in front when you build a polynomial from its roots. The roots fix the factors, not the size. A point on the curve fixes k.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="polynomials">
+      <li><label><input type="checkbox"> expand and simplify products of brackets, and add and subtract polynomials</label></li>
+      <li><label><input type="checkbox"> divide a polynomial by {m:(x-p)} or {m:(x+p)}, by comparing coefficients or by long division</label></li>
+      <li><label><input type="checkbox"> use the factor theorem to test whether a bracket is a factor</label></li>
+      <li><label><input type="checkbox"> factorise a cubic completely by finding the first root, dividing, and factorising the quadratic</label></li>
+      <li><label><input type="checkbox"> solve a cubic equation, including one with a repeated root or only one real root</label></li>
+      <li><label><input type="checkbox"> find an unknown coefficient when a factor is given</label></li>
+      <li><label><input type="checkbox"> build a polynomial from its roots, and fix its size from a point on the curve</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
