@@ -36,9 +36,16 @@ test('a typo fails loudly', () => {
 
 test('expandMath and mathToLinear handle whole pages of text', () => {
   const html = '<p>Solve {m:x^2=4}.</p>{md:y=x^2}';
-  assert.match(expandMath(html), /<p>Solve <math alttext="x\^2 = 4">/);
+  assert.match(expandMath(html), /<p>Solve <span class="mw"><math alttext="x\^2 = 4">.*<\/math>\.<\/span><\/p>/);
   assert.match(expandMath(html), /<span class="eq"><math display="block"/);
   assert.equal(mathToLinear(html), '<p>Solve x^2 = 4.</p>y = x^2');
+});
+
+test('a long inline formula breaks at its equals signs, and punctuation stays with the last piece', () => {
+  const out = expandMath('<p>{m:(x+3)^2-4=x^2+6x+9-4=x^2+6x+5}.</p>');
+  assert.ok(out.match(/<math /g).length >= 3);
+  assert.match(out, /<math alttext="= x\^2 \+ 6x \+ 5">.*<\/math>\.<\/span><\/p>$/);
+  assert.match(out, /<span class="mw"><math alttext="= x\^2 \+ 6x \+ 5">/);
 });
 
 test('column vectors, nCr, set symbols, arrows and primes', () => {

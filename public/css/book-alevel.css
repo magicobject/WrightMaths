@@ -54,6 +54,7 @@
 
 /* ---------- maths (native MathML) ---------- */
 math{font-size:1.18em;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",math,serif;}
+.mw{white-space:nowrap;}
 .eq{display:block;margin:14px 0;padding:10px 14px;overflow-x:auto;text-align:center;background:var(--tint,var(--paper));border-radius:8px;}
 .eq math{font-size:1.4em;}
 .qtext math,.key math{font-size:1.2em;}
