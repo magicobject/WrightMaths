@@ -1351,8 +1351,15 @@ test.describe('what the voice reads', () => {
         plain: unitText(make('What is 4,872 &divide; 24 in a 6 m pole?')),
         angles: unitText(make('Key idea: a triangle totals 180&deg;.')),
         override: unitText(make('x&sup2; &minus; 5x', 'x squared minus five x')),
+        labels: unitText(make('<span class="chip chip-higher">Higher</span> [4 marks] Find x.')),
+        tags: unitText(make('<span class="qtag qtag-marks">[3 marks]</span><span class="qtag qtag-calc">Calculator</span><span class="qtag qtag-grade">Grade 4</span> Find y.')),
+        midSentence: unitText(make('Find x. [2 marks]')),
       };
     });
+    // Labels at the start of a question are for the eye; Listen reads just the question.
+    expect(spoken.labels).toBe('Find x.');
+    expect(spoken.tags).toBe('Find y.');
+    expect(spoken.midSentence).toBe('Find x. [two marks]');
     expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');
