@@ -302,8 +302,8 @@
       <p class="qtext">Which of these is the same as {m:root(3, x^2)}?</p>
       <ul class="options">
         <li data-correct>x to the power 2/3</li>
-        <li data-why="The bottom of the fraction is the root and the top is the power. This has them the wrong way round: it would mean the square root of x cubed.>x to the power 3/2</li>
-        <li data-why="This multiplies 2 by 3. A root is a fractional index, not a multiplier of the index.>x to the power 6</li>
+        <li data-why="The bottom of the fraction is the root and the top is the power. This has them the wrong way round: it would mean the square root of x cubed.">x to the power 3/2</li>
+        <li data-why="This multiplies 2 by 3. A root is a fractional index, not a multiplier of the index.">x to the power 6</li>
       </ul>
       <ol class="ladder"><li>The cube root of {m:x^2} is {m:(x^2)^(frac(1, 3))}.</li><li>Multiply the indices: {m:2*frac(1, 3)}.</li></ol>
       <div class="solution"><p>{m:root(3, x^2)=(x^2)^(frac(1, 3))=x^(frac(2, 3))}. The root, 3, is on the bottom.</p></div>
@@ -382,10 +382,10 @@
         <li>The pieces are {m:25}, {m:-5sqrt(3)}, {m:5sqrt(3)} and {m:-3}.</li>
         <li>The two surd pieces cancel. So the result is {m:25-3=22}.</li>
       </ol>
-      <p>This is a difference of two squares: {m:(a+b)(a-b)=a^2-b^2}. Here the product has no surd. You will use this in the next section.</p>
+      <p>This is a difference of two squares (one square minus another square): {m:(a+b)(a-b)=a^2-b^2}. Here the product has no surd. You will use this in the next section.</p>
     </div>
     <h3>Algebraic surds</h3>
-    <p>A surd can contain a letter. In this book, a letter under a square root stands for a positive number, so that the square root is defined. The same rules hold. Notice that {m:sqrt(x)*sqrt(x)=x}, and {m:sqrt(a^2)=a} when a is positive.</p>
+    <p>A surd can contain a letter. In this book, a letter under a square root stands for a number that is positive or zero, so that the square root is defined. The same rules hold. Notice that {m:sqrt(x)*sqrt(x)=x}, and {m:sqrt(a^2)=a} when a is positive or zero.</p>
     <div class="worked">
       <h3>Worked example</h3>
       <p>Take a to be positive. Simplify {m:sqrt(18a^2)}. Then expand {m:(sqrt(x)+2)(sqrt(x)-2)}, where {m:x >= 0}.</p>
@@ -432,7 +432,7 @@
     <div class="q" data-answers="5sqrt(5);5sqrt5;5*sqrt(5)" data-mode="exact">
       <p class="qtext">Simplify {m:sqrt(45)+sqrt(20)}. Type it like 5sqrt(2).</p>
       <ol class="ladder"><li>Simplify each surd first.</li><li>{m:sqrt(45)=3sqrt(5)} and {m:sqrt(20)=2sqrt(5)}.</li><li>They are like surds. Add the numbers in front.</li></ol>
-      <ul class="wrong"><li data-if="sqrt(65)">You added the numbers under the roots. Surds do not add like that. Simplify first, then add the numbers in front.</li><li data-if="13sqrt(5)">You added 45 and 20 outside the root. Write each as a multiple of {m:sqrt(5)} first: {m:3sqrt(5)+2sqrt(5)}.</li></ul>
+      <ul class="wrong"><li data-if="sqrt(65)">You added the numbers under the roots. Surds do not add like that. Simplify first, then add the numbers in front.</li><li data-if="5sqrt(10);5sqrt10">You added the numbers in front correctly, but you also added the numbers under the roots. The root part stays {m:sqrt(5)}: {m:3sqrt(5)+2sqrt(5)=5sqrt(5)}.</li></ul>
       <div class="solution"><p>{m:sqrt(45)+sqrt(20)=3sqrt(5)+2sqrt(5)=5sqrt(5)}. Check with a calculator: 6.708 + 4.472 = 11.180, and {m:5sqrt(5)=11.180}.</p></div>
     </div>
     <div class="q" data-answers="3sqrt(2);3sqrt2;3*sqrt(2)" data-mode="exact">
@@ -582,7 +582,7 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Check your knowledge: rationalising denominators</h2>
-    <div class="q" data-answers="sqrt(5)/5;sqrt5/5" data-mode="exact">
+    <div class="q" data-answers="sqrt(5)/5;sqrt5/5;(1/5)sqrt(5);1/5*sqrt(5)" data-mode="exact">
       <p class="qtext">Rationalise the denominator of {m:frac(1, sqrt(5))}. Type it like sqrt(3)/4.</p>
       <ol class="ladder"><li>Multiply the top and the bottom by {m:sqrt(5)}.</li><li>The bottom becomes {m:sqrt(5)*sqrt(5)}.</li></ol>
       <ul class="wrong"><li data-if="sqrt(5)">You multiplied the top by {m:sqrt(5)} but not the bottom. Multiply both, so that the value does not change.</li><li data-if="1/5">You squared the bottom but left the top as 1. Multiply the top by {m:sqrt(5)} too.</li></ul>
@@ -594,13 +594,13 @@
       <ul class="wrong"><li data-if="12sqrt(6)/6;12sqrt6/6">That is the right number, but it is not finished. Divide the 12 and the 6 by 6.</li><li data-if="12sqrt(6);12sqrt6">You multiplied the top by {m:sqrt(6)} but forgot that the bottom becomes 6. Divide by 6.</li></ul>
       <div class="solution"><p>{m:frac(12, sqrt(6))=frac(12sqrt(6), 6)=2sqrt(6)}.</p></div>
     </div>
-    <div class="q" data-answers="sqrt(3)/2;sqrt3/2" data-mode="exact">
+    <div class="q" data-answers="sqrt(3)/2;sqrt3/2;(1/2)sqrt(3);1/2*sqrt(3)" data-mode="exact">
       <p class="qtext">Rationalise the denominator of {m:frac(3, 2sqrt(3))}. Type it like sqrt(3)/4.</p>
       <ol class="ladder"><li>Multiply the top and the bottom by {m:sqrt(3)}.</li><li>The bottom is {m:2sqrt(3)*sqrt(3)=2*3=6}. Then cancel.</li></ol>
       <ul class="wrong"><li data-if="3sqrt(3)/2;3sqrt3/2">The bottom is {m:2sqrt(3)*sqrt(3)=6}, not 2. Then {m:frac(3sqrt(3), 6)=frac(sqrt(3), 2)}.</li></ul>
       <div class="solution"><p>{m:frac(3, 2sqrt(3))=frac(3sqrt(3), 6)=frac(sqrt(3), 2)}. Check: {m:frac(3, 3.464)=0.866}, and {m:frac(1.732, 2)=0.866}.</p></div>
     </div>
-    <div class="q" data-answers="(3-sqrt(2))/7;(3-sqrt2)/7;3/7-sqrt(2)/7" data-mode="exact">
+    <div class="q" data-answers="(3-sqrt(2))/7;(3-sqrt2)/7;3/7-sqrt(2)/7;(-sqrt(2)+3)/7;(1/7)(3-sqrt(2));3/7-(1/7)sqrt(2)" data-mode="exact">
       <p class="qtext">Rationalise the denominator of {m:frac(1, 3+sqrt(2))}. Type it like (1+sqrt(3))/2.</p>
       <ol class="ladder"><li>Multiply the top and the bottom by the conjugate, {m:3-sqrt(2)}.</li><li>The bottom is {m:(3+sqrt(2))(3-sqrt(2))=9-2}.</li></ol>
       <ul class="wrong"><li data-if="(3+sqrt(2))/7;(3+sqrt2)/7">Use the conjugate, with the sign changed. The top is {m:1*(3-sqrt(2))}.</li><li data-if="(3-sqrt(2))/11;(3-sqrt2)/11">The bottom is a difference of two squares: {m:9-2=7}, not {m:9+2}.</li></ul>
@@ -618,7 +618,7 @@
       <ul class="wrong"><li data-if="7+2sqrt(3);2sqrt(3)+7">The middle term of {m:(2+sqrt(3))^2} is {m:2*2*sqrt(3)=4sqrt(3)}.</li><li data-if="7">You squared each term but missed the middle term {m:4sqrt(3)}.</li></ul>
       <div class="solution"><p>{m:(2+sqrt(3))^2=4+4sqrt(3)+3=7+4sqrt(3)}, and the bottom is 1. Check: {m:frac(3.732, 0.268)=13.93}, and {m:7+6.928=13.93}.</p></div>
     </div>
-    <div class="q" data-answers="(sqrt(5)+sqrt(3))/2;(sqrt(3)+sqrt(5))/2;(sqrt5+sqrt3)/2;(sqrt3+sqrt5)/2" data-mode="exact">
+    <div class="q" data-answers="(sqrt(5)+sqrt(3))/2;(sqrt(3)+sqrt(5))/2;(sqrt5+sqrt3)/2;(sqrt3+sqrt5)/2;sqrt(5)/2+sqrt(3)/2;sqrt(3)/2+sqrt(5)/2;(1/2)(sqrt(5)+sqrt(3))" data-mode="exact">
       <p class="qtext">Rationalise the denominator of {m:frac(1, sqrt(5)-sqrt(3))}. Type it like (sqrt(2)+sqrt(7))/3.</p>
       <ol class="ladder"><li>The conjugate is {m:sqrt(5)+sqrt(3)}.</li><li>The bottom is {m:5-3}. Write the answer as one fraction.</li></ol>
       <ul class="wrong"><li data-if="(sqrt(5)+sqrt(3))/8;(sqrt5+sqrt3)/8">The bottom is {m:(sqrt(5))^2-(sqrt(3))^2=5-3=2}. You added them.</li></ul>
@@ -633,7 +633,7 @@
     <p>To solve an equation such as {m:x^(frac(3, 2))=8}, undo the index on x. Raise both sides to the reciprocal power, the fraction turned upside down. This is because {m:(x^(frac(3, 2)))^(frac(2, 3))=x^1=x}.</p>
     <figure class="figure-lg">{fig:indices-surds-power-eq}<figcaption>Look at the point where the curve meets the dashed line {m:y=8}. It is {m:(4, 8)}. So {m:x^(frac(3, 2))=8} has the solution {m:x=4}.</figcaption></figure>
     <div class="key">
-      <p><b>Key idea:</b> to solve {m:x^(frac(m, n))=k}, raise both sides to the power {m:frac(n, m)}. Then check the answer in the original equation. If m is even, there is also a negative solution: both {m:x} and {m:-x} give the same value for an even power.</p>
+      <p><b>Key idea:</b> to solve {m:x^(frac(m, n))=k}, where {m:frac(m, n)} is in lowest terms and k is positive, raise both sides to the power {m:frac(n, m)}. Then check the answer in the original equation. If m is even, there is also a negative solution: both {m:x} and {m:-x} give the same value for an even power.</p>
     </div>
     <div class="worked">
       <h3>Worked example</h3>
@@ -776,13 +776,13 @@
         <li>Perimeter is twice the sum of the sides: {m:2*((3+sqrt(5))+(3-sqrt(5)))=2*6=12}. The perimeter is 12 cm.</li>
         <li>The surds cancel in both, because the sides are conjugates.</li>
       </ol>
-      <figure class="figure-lg">{fig:indices-surds-rect}<figcaption>Look at the labelled sides. The rectangle is longer than it is wide, because {m:3+sqrt(5)} is bigger than {m:3-sqrt(5)}. Both areas come out as whole numbers.</figcaption></figure>
+      <figure class="figure-lg">{fig:indices-surds-rect}<figcaption>Look at the labelled sides. The rectangle is longer than it is wide, because {m:3+sqrt(5)} is bigger than {m:3-sqrt(5)}. The area and the perimeter both come out as whole numbers.</figcaption></figure>
     </div>
     <div class="worked">
       <h3>Worked example: Pythagoras</h3>
       <p>A square has a diagonal of length 6 cm. Find the side length, in the form {m:a*sqrt(b)}, and the area.</p>
       <ol class="steps">
-        <li>Let the side be s cm. The diagonal is the hypotenuse of a right-angled triangle with two sides s. So {m:s^2+s^2=6^2}.</li>
+        <li>Let the side be s cm. The diagonal is the hypotenuse (the longest side, opposite the right angle) of a right-angled triangle with two sides s. So {m:s^2+s^2=6^2}.</li>
         <li>{m:2s^2=36}, so {m:s^2=18}. The area is 18 cm&sup2;, a whole number.</li>
         <li>The side is {m:s=sqrt(18)=3sqrt(2)} cm.</li>
         <li>Check: the diagonal of a square is its side times {m:sqrt(2)}. Here {m:3sqrt(2)*sqrt(2)=3*2=6}.</li>
@@ -815,7 +815,7 @@
       <div class="solution"><p>{m:frac(12, 2sqrt(3))=frac(6, sqrt(3))=frac(6sqrt(3), 3)=2sqrt(3)}. Check: {m:2sqrt(3)*2sqrt(3)=4*3=12}.</p></div>
     </div>
     <div class="q" data-answers="2sqrt(5);2sqrt5;2*sqrt(5)" data-mode="exact">
-      <p class="qtext">A right-angled triangle has hypotenuse 5 cm and one other side {m:sqrt(5)} cm. Find the third side, in centimetres, in the form {m:a*sqrt(b)}. Type it like 5sqrt(2).</p>
+      <p class="qtext">A right-angled triangle has hypotenuse 5 cm (its longest side) and one other side {m:sqrt(5)} cm. Find the third side, in centimetres, in the form {m:a*sqrt(b)}. Type it like 5sqrt(2).</p>
       <ol class="ladder"><li>The hypotenuse is the longest side. Its square is the sum of the other two squares.</li><li>The third side squared is {m:25-5}.</li></ol>
       <ul class="wrong"><li data-if="sqrt(30);sqrt30">You added the squares. The hypotenuse is the longest side, so subtract: {m:25-5}.</li><li data-if="sqrt(20);sqrt20">That is right, but not fully simplified. {m:20=4*5}.</li></ul>
       <div class="solution"><p>Let s be the third side, in centimetres. Then {m:s^2=25-5=20}. So the third side is {m:sqrt(20)=2sqrt(5)} cm.</p></div>
@@ -852,7 +852,7 @@
     </div>
     <div class="worked">
       <h3>Worked example: from the solutions</h3>
-      <p>Find a quadratic with whole-number coefficients whose solutions are {m:1+sqrt(2)} and {m:1-sqrt(2)}.</p>
+      <p>Find a quadratic with whole-number coefficients (the numbers in front of each term) whose solutions are {m:1+sqrt(2)} and {m:1-sqrt(2)}.</p>
       <ol class="steps">
         <li>The sum is {m:(1+sqrt(2))+(1-sqrt(2))=2}.</li>
         <li>The product is {m:(1+sqrt(2))(1-sqrt(2))=1-2=-1}.</li>
@@ -924,12 +924,12 @@
     <div class="q" data-type="mc">
       <p class="qtext"><b>Priya says:</b> {m:sqrt(12)+sqrt(3)=sqrt(15)}. What went wrong?</p>
       <ul class="options">
-        <li data-correct>You cannot add numbers under roots. Simplify first: {m:2sqrt(3)+sqrt(3)=3sqrt(3)}</li>
+        <li data-correct>Adding the numbers under the roots does not add the roots. Simplify first: {m:2sqrt(3)+sqrt(3)=3sqrt(3)}</li>
         <li data-why="&radic;12 + &radic;3 is a real number, and it can be written as one surd. The mistake is how to add them, not whether it is possible.">The sum cannot be written as one surd</li>
         <li data-why="&radic;12 = 3.46 is correct. The square root of 12 is about 3.46, which is 2&radic;3.">{m:sqrt(12)} is not {m:2sqrt(3)}</li>
       </ul>
       <ol class="ladder"><li>Try it with a calculator. What is {m:sqrt(12)+sqrt(3)}? What is {m:sqrt(15)}?</li><li>Simplify {m:sqrt(12)} first.</li></ol>
-      <div class="solution"><p>{m:sqrt(12)+sqrt(3)=3.46+1.73=5.20}, but {m:sqrt(15)=3.87}. The correct working is {m:2sqrt(3)+sqrt(3)=3sqrt(3)}, which is 5.20.</p></div>
+      <div class="solution"><p>{m:sqrt(12)+sqrt(3)=3.464+1.732=5.196}, but {m:sqrt(15)=3.873}. The correct working is {m:2sqrt(3)+sqrt(3)=3sqrt(3)}, which is 5.196.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Tom says:</b> {m:8^(frac(2, 3))=8*frac(2, 3)=frac(16, 3)}. What went wrong?</p>
@@ -1009,7 +1009,7 @@
 <section class="exam-section">
   <div class="wrap narrow">
     <h2>Exam style</h2>
-    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method, A1 is a mark for a correct answer, and B1 is a mark for a correct fact or value. &ldquo;Hence&rdquo; means: use your answer to the part before.</p>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value. &ldquo;Hence&rdquo; means: use your answer to the part before.</p>
     <div class="q" data-answers="3sqrt(3);3sqrt3;3*sqrt(3)" data-mode="exact" data-marks="2">
       <p class="qtext"><b>(a)</b> [2 marks] Write {m:sqrt(75)-sqrt(12)} in the form {m:a*sqrt(3)}, where a is a whole number. Type it like 5sqrt(3).</p>
       <ol class="ladder"><li>Simplify each surd.</li><li>{m:sqrt(75)=5sqrt(3)} and {m:sqrt(12)=2sqrt(3)}.</li></ol>
@@ -1022,7 +1022,7 @@
         </ul>
       </div>
     </div>
-    <div class="q" data-answers="4sqrt(3)/3;(4sqrt(3))/3;(4/3)sqrt(3);4/3sqrt(3)" data-mode="exact" data-marks="2">
+    <div class="q" data-answers="4sqrt(3)/3;(4sqrt(3))/3;(4/3)sqrt(3);4/3sqrt(3);(4*sqrt(3))/3;sqrt(3)*4/3" data-mode="exact" data-marks="2">
       <p class="qtext"><b>(b)</b> [2 marks] Hence, or otherwise, write {m:frac(12, sqrt(75)-sqrt(12))} in the form {m:frac(a*sqrt(3), b)}, where a and b are whole numbers with no common factor. Type it like 5sqrt(3)/2.</p>
       <ol class="ladder"><li>Use your answer to part (a) for the bottom.</li><li>{m:frac(12, 3sqrt(3))=frac(4, sqrt(3))}. Now rationalise.</li></ol>
       <ul class="wrong"><li data-if="4/sqrt(3);4/sqrt3">That is the right number, but the bottom still has a surd. Multiply the top and the bottom by {m:sqrt(3)}.</li><li data-if="4sqrt(3)">You did not divide by 3. {m:frac(4, sqrt(3))=frac(4sqrt(3), 3)}.</li></ul>
@@ -1062,7 +1062,7 @@
     </div>
     <div class="q" data-answers="1/2 or 4;1/2 and 4;1/2,4;4 or 1/2;4 and 1/2;4,1/2;0.5 or 4;0.5 and 4;0.5,4" data-mode="value" data-marks="2">
       <p class="qtext"><b>(a)</b> [2 marks] Let {m:u=x^(frac(1, 2))}. Write {m:2x-9x^(frac(1, 2))+4=0} as a quadratic in u, and solve it. Type both values of u with &ldquo;or&rdquo; between them, smallest first, like 1/3 or 2.</p>
-      <ol class="ladder"><li>Since {m:u=x^(frac(1, 2))}, then {m:x=u^2}.</li><li>The equation is {m:2u^2-9u+4=0}. Factorise it.</li><li>{m:(2u-1)(u-4)=0}.</li></ol>
+      <ol class="ladder"><li>Since {m:u=x^(frac(1, 2))}, then {m:x=u^2}.</li><li>The equation is {m:2u^2-9u+4=0}. Factorise it, which means write it as brackets multiplied together.</li><li>{m:(2u-1)(u-4)=0}.</li></ol>
       <ul class="wrong"><li data-if="-1/2 or -4;-1/2 and -4;-1/2,-4;-4 or -1/2;-4 and -1/2;-4,-1/2">Each solution has the opposite sign to the number in its bracket. {m:(2u-1)} is 0 when {m:u=frac(1, 2)}.</li></ul>
       <div class="solution">
         <p>{m:2u^2-9u+4=(2u-1)(u-4)=0}, so {m:u=frac(1, 2)} or {m:u=4}.</p>
