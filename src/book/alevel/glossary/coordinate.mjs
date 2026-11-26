@@ -295,6 +295,30 @@ export const TERMS = [
     see: ['circle-equation', 'centre', 'radius'],
   },
 
+  {
+    id: 'circumcircle', term: 'Circumcircle', strand: 'al-coordinate', level: 'Y1', aka: ['circle through three points'],
+    def: 'The circle that passes through all three corners of a triangle.',
+    example: [
+      'The triangle has corners A (0, 0), B (6, 0) and C (0, 8). The angle at A is a right angle, so BC is a diameter.',
+      'The centre is the midpoint of BC, which is (3, 4). The radius is 5, so the circumcircle is {m:(x - 3)^2 + (y - 4)^2 = 25}.',
+    ],
+    watch: 'The centre is where the perpendicular bisectors of the sides meet. It is not where the sides meet. The sides meet at the corners, which are on the circle.',
+    flip: 'For a right-angled triangle, the circumcircle has the longest side as its diameter, so its centre is the midpoint of that side.',
+    see: ['chord-bisector-property', 'perpendicular-bisector', 'angle-in-semicircle', 'circle-equation'],
+  },
+  {
+    id: 'circles-meet', term: 'Two circles meeting', strand: 'al-coordinate', level: 'Y1', aka: ['touching circles', 'intersecting circles'],
+    def: 'Two circles with radii r and s, whose centres are a distance d apart, have a common point only when d is between the difference and the sum of the radii.',
+    example: [
+      'Circles of radius 5 and 3 have centres 6 apart. The difference is 2 and the sum is 8.',
+      '{m:2 < 6 < 8}, so the circles cross at two points.',
+      'If the centres were 8 apart, the circles would touch once, from outside.',
+    ],
+    watch: 'Touching means exactly one common point. That happens when d equals the sum of the radii (touching from outside) or the difference of the radii (touching from inside).',
+    flip: 'If you know two circles touch, then d equals the sum or the difference of the radii. That gives an equation for an unknown radius or centre.',
+    see: ['circle-equation', 'radius', 'distance', 'line-circle-intersection'],
+  },
+
   // ---------- Parametric equations (Year 2) ----------
   {
     id: 'parameter', term: 'Parameter', strand: 'al-coordinate', level: 'Y2',

@@ -44,7 +44,7 @@ export const TOPICS = [
 
   // Coordinate geometry
   t('straight-lines', 'Straight lines', 'coordinate', 1, [], 'Finding an equation from a graph, and drawing a graph from an equation', { aka: 'gradient intercept y=mx+c parallel perpendicular midpoint distance equation of a line', status: 'live', words: ['gradient', 'y-intercept', 'x-intercept', 'equation-of-a-line', 'point-gradient-form', 'general-form-of-a-line', 'parallel-lines', 'perpendicular', 'negative-reciprocal', 'line-segment', 'midpoint', 'distance', 'perpendicular-bisector', 'linear-model'] }),
-  t('circles', 'Circles', 'coordinate', 1, ['straight-lines', 'quadratics'], 'From a centre and a radius to an equation, and from an equation back to a centre and a radius'),
+  t('circles', 'Circles', 'coordinate', 1, ['straight-lines', 'quadratics'], 'From a centre and a radius to an equation, and from an equation back to a centre and a radius', { aka: 'circle equation centre radius tangent normal chord semicircle discriminant circumcircle', status: 'live', words: ['circle', 'centre', 'radius', 'diameter', 'chord', 'tangent', 'normal', 'point-of-contact', 'circle-equation', 'circle-general-form', 'angle-in-semicircle', 'chord-bisector-property', 'tangent-radius-property', 'line-circle-intersection', 'circumcircle', 'circles-meet'] }),
   t('parametric', 'Parametric equations', 'coordinate', 2, ['functions', 'trig-identities'], 'From a parameter to a point, and from the points back to a single equation'),
 
   // Sequences and series
