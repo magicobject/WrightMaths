@@ -3,7 +3,7 @@
 // old recording stop matching (the browser voice reads it instead) and the build
 // tooling lists it as needing a new one. Clips are plain files on this site:
 // nothing is fetched from anywhere else.
-import { toSpoken } from './book-speech.mjs?m=43';
+import { toSpoken } from './book-speech.mjs?m=44';
 
 export const AUDIO_DIR = '/audio/book/';
 export const AUDIO_TYPES = ['mp3', 'm4a', 'ogg', 'wav'];
