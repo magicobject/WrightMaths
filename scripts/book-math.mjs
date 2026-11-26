@@ -324,6 +324,27 @@ export function toMathML(src, { display = false } = {}) {
   return `<math${display ? ' display="block"' : ''} alttext="${alt}">${mlSeq(tree)}</math>`;
 }
 
+// A long inline equation cannot wrap inside one <math>, so on a phone it would push the page wider than the screen.
+// Inline maths longer than this is cut into several <math> elements with a <wbr> between them, so the line can break
+// after an equals or times sign, or before a plus or minus that is not inside brackets or a fraction.
+const WRAP_AFTER_LENGTH = 14;
+
+/** The <math> element(s) for one inline {m:...}: one element, or several joined by <wbr> when it is long. */
+export function toInlineMathML(src) {
+  const tree = parse(src);
+  if (linSeq(tree).length < WRAP_AFTER_LENGTH) return toMathML(src);
+  const pieces = [[]];
+  tree.forEach((n, i) => {
+    const sign = n.k === 'op' && (n.lin === '+' || n.lin === '-') && i > 0 && tree[i - 1].k !== 'op';
+    if (sign) pieces.push([]);
+    pieces[pieces.length - 1].push(n);
+    if (n.k === 'op' && (n.lin === '=' || n.lin === '*') && i < tree.length - 1) pieces.push([]);
+  });
+  if (pieces.length < 2) return toMathML(src);
+  const one = (items, at) => `<math alttext="${esc(linSeq(items)).replaceAll('"', '&quot;')}">${at ? mlSeq(items).replace(/^<mo>/, '<mo form="infix">') : mlSeq(items)}</math>`;
+  return pieces.map((items, at) => one(items, at)).join('<wbr>');
+}
+
 /** Plain text of the same shorthand, for answer keys, search and pop-up definitions. */
 export function toLinear(src) {
   return linSeq(parse(src));
@@ -333,7 +354,7 @@ export function toLinear(src) {
 export function expandMath(html) {
   return html
     .replace(/\{md:([^{}]+)\}/g, (_, body) => `<span class="eq">${toMathML(body, { display: true })}</span>`)
-    .replace(/\{m:([^{}]+)\}/g, (_, body) => toMathML(body));
+    .replace(/\{m:([^{}]+)\}/g, (_, body) => toInlineMathML(body));
 }
 
 /** Replace every {m:...} / {md:...} with its plain-text form (no MathML). */

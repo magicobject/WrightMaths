@@ -5,7 +5,7 @@
 import { plane } from '../figure-lib.mjs';
 
 const W = 640;
-const H = 600;
+const H = 640;
 const LEFT = 64;
 const RIGHT = 48;
 const BOTTOM = 52;
@@ -15,17 +15,17 @@ const DEG = '°';
  * A plane with no grid and no scale numbers and the SAME scale on both axes.
  * x runs from xmin to xmax, and y is centred on ymid. `top` leaves a band above the graph for the equation.
  */
-function eq({ xmin, xmax, ymid, top = 96, height = H, ...rest }) {
+function eq({ xmin, xmax, ymid, top = 130, height = H, ...rest }) {
   const w = W - LEFT - RIGHT;
   const h = height - top - BOTTOM;
   const yr = ((xmax - xmin) * h) / w;
   return plane({ grid: false, ticks: false, tickLabels: false, width: W, height, top, xmin, xmax, ymin: ymid - yr / 2, ymax: ymid + yr / 2, ...rest });
 }
 
-/** The equation (left) and a note (right) in the band above the graph. */
+/** The equation on the first line and a note on the second, above the graph (the y-axis label sits below both). */
 function band(p, left, right = '') {
-  p.note(LEFT, 50, left, { cls: 'alt' });
-  if (right) p.note(W - RIGHT, 50, right, { anchor: 'end' });
+  p.note(LEFT, 34, left, { cls: 'alt' });
+  if (right) p.note(LEFT, 76, right);
 }
 
 /**
@@ -173,8 +173,8 @@ export const FIGURES = {
   // ---- 4. tangent and normal ----
   'circles-tangent-normal': () => {
     const p = eq({ xmin: -6, xmax: 10, ymid: 3 });
-    p.note(LEFT, 28, 'tangent: 4x + 3y - 35 = 0', { cls: 'alt' });
-    p.note(LEFT, 60, 'normal: 3x - 4y + 5 = 0');
+    band(p, 'tangent: 4x + 3y - 35 = 0', 'normal: 3x - 4y + 5 = 0');
+
     circle(p, 1, 2, 5);
     p.line(5 - 4.2 * 0.75, 5 + 4.2, 5 + 4.2 * 0.75, 5 - 4.2, { cls: 'tangent', clip: true });
     p.line(5 - 4 * 1.9, 5 - 3 * 1.9, 5 + 4 * 0.4, 5 + 3 * 0.4, { cls: 'curve-b', clip: true });
@@ -201,7 +201,7 @@ export const FIGURES = {
     p.point(3, 4, {});
     p.text(10.8, -0.75 * 10.8 + 2.5, 'cuts twice', { cls: 'alt', anchor: 'end', dy: 36 });
     p.text(10.8, -0.75 * 10.8 + 6.25, 'touches', { cls: 'alt', anchor: 'end', dy: 36 });
-    p.text(10.8, -0.75 * 10.8 + 8.75, 'misses', { cls: 'alt', anchor: 'end', dy: 36 });
+    p.text(9.2, -0.75 * 9.2 + 8.75, 'misses', { cls: 'alt', anchor: 'end', dy: 36 });
     return finish(p, {
       id: 'circles-line-cases',
       title: 'Three lines and a circle: cuts, touches and misses',
