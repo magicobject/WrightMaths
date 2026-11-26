@@ -3049,9 +3049,9 @@ export const GLOSSARY = [
     "strand": "a",
     "level": "H",
     "def": "The vertical line through the turning point of a parabola. The curve is a mirror image of itself on either side of it.",
-    "example": "y = x&sup2; &minus; 4x + 3 has roots 1 and 3, so its line of symmetry is x = 2, halfway between them.",
+    "example": "y = x&sup2; &minus; 4x + 3 has roots 1 and 3, so its axis of symmetry is x = 2, halfway between them.",
     "watch": "It is a vertical line, so its equation is x = a number, not y = a number.",
-    "flip": "If you know the line of symmetry and one root, the other root is the same distance on the other side.",
+    "flip": "If you know the axis of symmetry and one root, the other root is the same distance on the other side.",
     "see": [
       "parabola",
       "turning-point",
