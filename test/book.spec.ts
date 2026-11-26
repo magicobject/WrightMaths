@@ -1354,6 +1354,7 @@ test.describe('what the voice reads', () => {
         labels: unitText(make('<span class="chip chip-higher">Higher</span> [4 marks] Find x.')),
         tags: unitText(make('<span class="qtag qtag-marks">[3 marks]</span><span class="qtag qtag-calc">Calculator</span><span class="qtag qtag-grade">Grade 4</span> Find y.')),
         midSentence: unitText(make('Find x. [2 marks]')),
+        brackets: unitText(make('x&sup2; &minus; 9 = (x + 3)(x &minus; 3)')),
         part: unitText(make('<b>(a)</b> [1 mark] Find z. <a class="qtag qtag-from" href="fractions.html">Uses: Fractions</a>')),
       };
     });
@@ -1362,6 +1363,7 @@ test.describe('what the voice reads', () => {
     expect(spoken.tags).toBe('Find y.');
     expect(spoken.midSentence).toBe('Find x. [two marks]');
     expect(spoken.part).toBe('Find z.');
+    expect(spoken.brackets).toBe('x squared minus nine equals (x plus three) times (x minus three)');
     expect(spoken.plain).toBe('What is four thousand, eight hundred and seventy-two divided by twenty-four in a six metre pole?');
     expect(spoken.angles).toBe('Key idea: a triangle totals one hundred and eighty degrees.');
     expect(spoken.override).toBe('x squared minus five x');

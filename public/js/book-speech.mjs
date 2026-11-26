@@ -180,6 +180,7 @@ export function toSpoken(text) {
   for (const [pattern, say] of [...PRONOUNCE, ...PRONOUNCE, ...SYMBOLS, ...UNITS]) out = out.replace(pattern, say);
   out = sayLetterA(numbersToWords(out));
   return out
+    .replace(/\)\(/g, ') times (') // (x + 2)(x + 3): brackets side by side multiply
     .replace(/[“”]/g, '') // quotation marks are not spoken
     .replace(/[‘’]/g, "'")
     .replace(/\(\s+/g, '(')
