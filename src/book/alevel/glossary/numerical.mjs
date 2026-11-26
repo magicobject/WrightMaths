@@ -166,7 +166,7 @@ export const TERMS = [
     example: [
       '{m:int(a, b) y dx} &asymp; {m:frac(h, 2) [y_0+y_n+2 sum(r=1, n-1) y_r]}',
       'Here {m:h} is the strip width, {m:n} is the number of strips and {m:y_0} to {m:y_n} are the y-values. The sign &asymp; is read as "is approximately equal to". The sigma sign means "add up": here it adds {m:y_1} to {m:y_(n-1)}.',
-      'Estimate {m:int(0, 2) x^2 dx} with 4 strips. {m:h=frac(2-0, 4)=0.5}. The y-values are 0, 0.25, 1, 2.25 and 4. So the estimate is {m:frac(0.5, 2) [0+2(0.25+1+2.25)+4]=0.25*11=2.75}.',
+      'Estimate {m:int(0, 2) x^2 dx} with 4 strips. {m:h=frac(2-0, 4)=0.5}. The y-values are 0, 0.25, 1, 2.25 and 4. So the estimate is {md:frac(0.5, 2) [0+2(0.25+1+2.25)+4]=0.25*11=2.75}',
     ],
     watch: 'The first and last y-values are used once. All the middle ones are used twice. With {m:n} strips there are {m:n+1} y-values. The answer is an estimate: say whether it is an over- or underestimate.',
     flip: 'The exact answer is {m:int(0, 2) x^2 dx=frac(8,3)=2.667}. So the estimate 2.75 is too big: see {term:over-and-under-estimate}.',

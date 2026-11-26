@@ -107,6 +107,9 @@ test('every term picture belongs to a real glossary term', async () => {
 test('answer keys: plainText and extractKey read a question page', async () => {
   const { plainText, extractKey } = await import('../scripts/book-lib.mjs');
   assert.equal(plainText('Work out {frac:3/4} of 20 &times; &pound;5'), 'Work out 3/4 of 20 × £5');
+  // maths holding < or > must survive the tag strip
+  assert.equal(plainText('so {m:k<13}.'), 'so k < 13.');
+  assert.equal(plainText('<b>a</b> {m:-4<k<4} and <i>b</i>'), 'a -4 < k < 4 and b');
   assert.equal(plainText('{frac:x + 1/2}'), '(x + 1)/2');
   const raw = '<div class="q" data-answers="15;15.0" data-marks="2"><p class="qtext">[2 marks] Work out 3 &times; 5.</p><div class="solution"><p>3 &times; 5 = 15.</p><ul class="markscheme"><li><b>M1</b> multiply</li><li><b>A1</b> 15</li></ul></div></div>'
     + '<div class="q" data-type="mc"><p class="qtext">Pick.</p><ul class="options"><li data-correct>Right one</li><li data-why="no">Wrong</li></ul><div class="solution"><p>Because.</p></div></div>'
