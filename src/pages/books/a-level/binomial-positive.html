@@ -146,7 +146,7 @@
     <div class="q" data-answers="21" data-mode="value">
       <p class="qtext">Row 6 of Pascal&rsquo;s triangle is 1, 6, 15, 20, 15, 6, 1. Row 7 starts 1, 7, and then a missing number. Find the missing number.</p>
       <ol class="ladder"><li>Each number is the sum of the two numbers above it.</li><li>The missing number sits below 6 and 15.</li></ol>
-      <ul class="wrong"><li data-if="22">You added 7 and 15. The two numbers above the missing one are 6 and 15.</li><li data-if="9">You added 6 and 3. Use the two numbers above the gap in row 6, which are 6 and 15.</li></ul>
+      <ul class="wrong"><li data-if="22">You added 7 and 15. The two numbers above the missing one are 6 and 15.</li><li data-if="35">You added 20 and 15, which are further along row 6. The two numbers above the gap are 6 and 15.</li></ul>
       <div class="solution"><p>{m:6+15=21}. Row 7 is 1, 7, 21, 35, 35, 21, 7, 1.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -195,7 +195,7 @@
     <h2>2. Factorials and nCr</h2>
     <p>Pascal&rsquo;s triangle is quick for a small power. For a big power, such as 15, it would take too many rows. You need a way to find any number in the triangle directly.</p>
     <p>A {term:factorial|factorial} is a product of whole numbers counting down to 1. The symbol {m:n!} is read &ldquo;n factorial&rdquo;. For example {m:5! =5*4*3*2*1=120}. By agreement {m:0! =1}.</p>
-    <p>The {term:ncr|nCr} number is the number in row n, position r of Pascal&rsquo;s triangle. Position counting starts at 0. It is read &ldquo;n choose r&rdquo;. It is written <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</p>
+    <p>The {term:ncr|nCr} number is the number in row n, position r of Pascal&rsquo;s triangle. Position counting starts at 0. It is read &ldquo;n choose r&rdquo;. It is written <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>. The stacked form <math alttext="n over r"><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>r</mi></mfrac><mo>)</mo></mrow></math> means the same thing.</p>
     <div class="key">
       <p><b>Key idea:</b> the formula for <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</p>
       {md:frac(n!, r!(n-r)!)}
@@ -285,11 +285,11 @@
         <li data-why="The two numbers are not swapped. In nCr the top number is the total. 7C10 has no meaning, because you cannot choose 10 from 7.">7C10, because the numbers swap</li>
       </ul>
       <ol class="ladder"><li><math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> equals <math alttext="nCn-r"><mmultiscripts><mi>C</mi><mrow><mi>n</mi><mo>&minus;</mo><mi>r</mi></mrow><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li><li>Here {m:n=10} and {m:r=7}.</li></ol>
-      <div class="solution"><p><math alttext="10C7"><mmultiscripts><mi>C</mi><mn>7</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C10-7"><mmultiscripts><mi>C</mi><mi>10-7</mi><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math>. Both equal {m:120}.</p></div>
+      <div class="solution"><p><math alttext="10C7"><mmultiscripts><mi>C</mi><mn>7</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C10-7"><mmultiscripts><mi>C</mi><mrow><mn>10</mn><mo>&minus;</mo><mn>7</mn></mrow><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math>. Both equal {m:120}.</p></div>
     </div>
     <div class="q" data-answers="15" data-mode="value">
       <p class="qtext">Work out <math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Use the symmetry to make it short.</p>
-      <ol class="ladder"><li><math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = <math alttext="15C15-14"><mmultiscripts><mi>C</mi><mi>15-14</mi><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>.</li><li>Work out <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Choosing 1 thing from 15 can be done in how many ways?</li></ol>
+      <ol class="ladder"><li><math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = <math alttext="15C15-14"><mmultiscripts><mi>C</mi><mrow><mn>15</mn><mo>&minus;</mo><mn>14</mn></mrow><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>.</li><li>Work out <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Choosing 1 thing from 15 can be done in how many ways?</li></ol>
       <ul class="wrong"><li data-if="1">That is <math alttext="15C15"><mmultiscripts><mi>C</mi><mn>15</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> or <math alttext="15C0"><mmultiscripts><mi>C</mi><mn>0</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Here r is 14, and {m:15-14=1}, so the answer is <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>.</li><li data-if="14">The partner of <math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> is <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>, which is 15, not 14.</li></ul>
       <div class="solution"><p><math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = 15. Check with the formula: {m:frac(15!, 14!1!)=15}.</p></div>
     </div>
@@ -524,7 +524,7 @@
     <div class="q" data-answers="1080" data-mode="value">
       <p class="qtext">Find the coefficient of {m:x^2} in the expansion of {m:(3-2x)^5}.</p>
       <ol class="ladder"><li>{m:r=2}. The term is <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:3^3(-2x)^2}.</li><li>{m:(-2x)^2=4x^2}. It is positive.</li></ol>
-      <ul class="wrong"><li data-if="-1080">The power 2 is even, so {m:(-2x)^2=4x^2} is positive.</li><li data-if="270">You did not square the 2. {m:(-2x)^2=4x^2}.</li></ul>
+      <ul class="wrong"><li data-if="-1080">The power 2 is even, so {m:(-2x)^2=4x^2} is positive.</li><li data-if="270">You left out the 2. {m:(-2x)^2=4x^2}, not {m:x^2}.</li></ul>
       <div class="solution"><p>{m:10*27*4=1080}.</p></div>
     </div>
   </div>
@@ -978,7 +978,7 @@
     <div class="q" data-answers="32+240x+720x^2" data-mode="exact" data-marks="3">
       <p class="qtext">[3 marks] Find the first three terms, in ascending powers of x, of the expansion of {m:(2+3x)^5}. Type it like 1+3x+2x^2.</p>
       <ol class="ladder"><li>Use the general term with {m:n=5}, {m:a=2} and {m:bx=3x}.</li><li>The first three terms have {m:r=0}, 1 and 2.</li><li>The coefficients are 1, 5 and 10.</li></ol>
-      <ul class="wrong"><li data-if="32+15x+90x^2">You left out the powers of 2. The terms are {m:5*2^4*3x} and {m:10*2^3*(3x)^2}.</li><li data-if="32+240x+270x^2">You did not square the 3 in the third term. {m:(3x)^2=9x^2}.</li></ul>
+      <ul class="wrong"><li data-if="32+15x+90x^2">You left out the powers of 2. The terms are {m:5*2^4*3x} and {m:10*2^3*(3x)^2}.</li><li data-if="32+240x+240x^2">You did not square the 3 in the third term. {m:(3x)^2=9x^2}.</li></ul>
       <div class="solution">
         <p>{m:2^5=32}. Then {m:5*2^4*3x=240x} and {m:10*2^3*9x^2=720x^2}. So {m:(2+3x)^5=32+240x+720x^2+}&hellip;.</p>
         <ul class="markscheme">
@@ -1050,7 +1050,7 @@
   <div class="wrap narrow">
     <h2>Why it works</h2>
     <ul class="tick">
-      <li><b>Pascal&rsquo;s triangle.</b> Each term of {m:(a+b)^n} comes from {m:(a+b)^(n-1)} multiplied by one more bracket. A term in the new expansion is made two ways: from a term below it times a, or from the term before that times b. So each new coefficient is the sum of the two above it.</li>
+      <li><b>Pascal&rsquo;s triangle.</b> Each term of {m:(a+b)^n} comes from {m:(a+b)^(n-1)} multiplied by one more bracket. A term in the expansion of {m:(a+b)^n} is made two ways: from the term of {m:(a+b)^(n-1)} with the same power of b, times a; or from the term with one power of b fewer, times b. So each new coefficient is the sum of two coefficients in the row above.</li>
       <li><b>nCr as a coefficient.</b> Each term of {m:(a+b)^n} picks a or b from every one of the n brackets. A term with {m:b^r} needs b from exactly r brackets. The number of ways to choose those r brackets is <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li>
       <li><b>The formula.</b> There are {m:n!} ways to put n different things in a line. Choosing r of them counts each group of r in {m:r!} orders, and each leftover group of {m:n-r} in {m:(n-r)!} orders. Dividing by both gives {m:frac(n!, r!(n-r)!)}.</li>
       <li><b>The symmetry.</b> Choosing which r brackets give b is the same as choosing which {m:n-r} give a. So <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = <math alttext="nCn-r"><mmultiscripts><mi>C</mi><mrow><mi>n</mi><mo>&minus;</mo><mi>r</mi></mrow><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li>

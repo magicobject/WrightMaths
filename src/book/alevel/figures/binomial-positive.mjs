@@ -48,7 +48,7 @@ export const FIGURES = {
         p.note(x(n, r) + w / 2, y(n) + 33, String(value), { anchor: 'middle' });
       });
     });
-    p.note(mid, y(PICKED.row) + h + 34, 'Each number is the sum of the two above it: 10 + 10 = 20', { anchor: 'middle', cls: 'alt' });
+    p.note(mid, y(PICKED.row) + h + 34, '10 + 10 = 20', { anchor: 'middle', cls: 'alt' });
     return finish(p, {
       id: 'binomial-positive-pascal',
       title: "Pascal's triangle, rows 0 to 6",
@@ -79,7 +79,7 @@ export const FIGURES = {
     return finish(p, {
       id: 'binomial-positive-term',
       title: 'The three parts of one term of (2 + 3x) to the power 5',
-      desc: 'Three boxes in a row, joined by multiplication signs. The first box is 5C2 = 10, the number of ways to choose. The second is 2 cubed = 8, the power of the first part. The third is (3x) squared = 9x squared, the power of the second part. Underneath: 10 times 8 times 9x squared = 720x squared, which is the term in x squared.',
+      desc: 'Three boxes in a row, joined by multiplication signs. The first box is 5C2 = 10 (5 choose 2), the number of ways to choose. The second is 2 cubed = 8, the power of the first part. The third is (3x) squared = 9x squared, the power of the second part. Underneath: 10 times 8 times 9x squared = 720x squared, which is the term in x squared.',
     });
   },
 };

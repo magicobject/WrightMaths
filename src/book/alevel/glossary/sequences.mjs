@@ -46,6 +46,7 @@ export const TERMS = [
       'The formula is nCr = {m:frac(n!, r!(n - r)!)}.',
       'For example, ' + nCr(5, 2) + ' = {m:frac(5!, 2!3!) = frac(120, 12) = 10}.',
       'Your calculator has an nCr button.',
+      'The stacked form, n over r in round brackets with no line between, means the same thing.',
     ],
     watch: 'nCr is the same as nC(n - r), so ' + nCr(5, 2) + ' = ' + nCr(5, 3) + '. Also ' + nCr('n', 0) + ' = ' + nCr('n', 'n') + ' = 1. You need r to be no bigger than n.',
     flip: 'The values of nCr are the numbers in row n of {term:pascals-triangle|Pascal\u2019s triangle}.',

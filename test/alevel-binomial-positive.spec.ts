@@ -359,3 +359,58 @@ test('the page has the sections the book promises, and each nCr symbol reads as 
   expect(alts.length).toBeGreaterThan(5);
   for (const t of alts) expect(t).toMatch(/^[\dn]+C[\dnr]+$/);
 });
+
+test('every text in every figure stays inside the figure at 320px', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.goto('/books/a-level/binomial-positive.html');
+  const outside = await page.evaluate(() => {
+    const out: string[] = [];
+    for (const svg of document.querySelectorAll('main figure svg')) {
+      const vb = (svg as SVGSVGElement).viewBox.baseVal;
+      for (const t of svg.querySelectorAll('text')) {
+        const b = (t as SVGTextElement).getBBox();
+        if (b.x < vb.x - 0.5 || b.y < vb.y - 0.5 || b.x + b.width > vb.x + vb.width + 0.5 || b.y + b.height > vb.y + vb.height + 0.5) out.push(`${t.textContent}`);
+      }
+    }
+    return out;
+  });
+  expect(outside).toEqual([]);
+});
+
+test('no math identifier <mi> holds digits or an operator (they must be <mn> and <mo>)', () => {
+  const bad = [...SOURCE.matchAll(/<mi>([^<]*)<\/mi>/g)].map((m) => m[1]).filter((t) => /[\d+\-*/=]/.test(t));
+  expect(bad).toEqual([]);
+});
+
+// Each wrong value that describes a computable slip is produced by that slip, here recomputed with exact arithmetic.
+test('wrong values tied to a slip are exactly what the slip produces', () => {
+  const wrongFor = (fragment: string) => find(fragment).wrongs;
+  const exam = 'first three terms, in ascending powers of x, of the expansion of {m:(2+3x)^5}';
+  // the 3 not squared in the x^2 term: 10 * 2^3 * 3 = 240
+  expect(wrongFor(exam)).toContain(`32+240x+${nCr(5, 2) * pow(2, 3) * 3n}x^2`);
+  // the powers of 2 left out: 5 * 3 = 15 and 10 * 9 = 90
+  expect(wrongFor(exam)).toContain(`32+${nCr(5, 1) * 3n}x+${nCr(5, 2) * 9n}x^2`);
+  // (3-2x)^5, x^2: sign lost = -1080; the 2 dropped = 10 * 27 * 1 = 270
+  const k = wrongFor('coefficient of {m:x^2} in the expansion of {m:(3-2x)^5}');
+  expect(k).toContain(String(-expand(3, -2, 5)[2]));
+  expect(k).toContain(String(nCr(5, 2) * pow(3, 3)));
+  // (1+3x)^7, x^2: 3 not squared = 63; 3^2 left out = 21
+  const a = wrongFor('coefficient of {m:x^2} in the expansion of {m:(1+3x)^7}');
+  expect(a).toContain(String(nCr(7, 2) * 3n));
+  expect(a).toContain(String(nCr(7, 2)));
+  // (2+x)^6, x^3: 2 not cubed = 40; 2^3 left out = 20
+  const b = wrongFor('coefficient of {m:x^3} in the expansion of {m:(2+x)^6}');
+  expect(b).toContain(String(nCr(6, 3) * 2n));
+  expect(b).toContain(String(nCr(6, 3)));
+  // (3-2x)^6, x^3: 3^2 used instead of 3^3
+  expect(wrongFor('coefficient of {m:x^3} in the expansion of {m:(3-2x)^6}')).toContain(String(nCr(6, 3) * pow(3, 2) * pow(-2, 3)));
+  // Row 7 gap: 7 + 15 = 22 (wrong pair) and 20 + 15 = 35 (further along the row)
+  const g = wrongFor('Row 7 starts 1, 7');
+  expect(g).toContain(String(7 + 15));
+  expect(g).toContain(String(20 + 15));
+  expect(nCr(7, 2)).toBe(6n + 15n);
+  // two terms only, and the third term subtracted
+  expect(wrongFor('to estimate {m:1.01^6}')).toContain(estimate(6, 1n, 100n, 2, 2));
+  expect(wrongFor('to estimate {m:0.99^8}')).toContain('0.9172');
+  expect(10000n - 800n - 28n).toBe(9172n);
+});
