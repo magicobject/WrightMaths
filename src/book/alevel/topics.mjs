@@ -55,7 +55,7 @@ export const TOPICS = [
   t('binomial-general', 'Binomial expansion (fractional and negative powers)', 'sequences', 2, ['binomial-positive', 'algebraic-fractions'], 'Expanding with a fractional or negative power, and knowing when the expansion works'),
 
   // Trigonometry
-  t('trig-triangles', 'Trigonometry in triangles', 'trigonometry', 1, [], 'Finding a missing length or angle, and choosing the right rule'),
+  t('trig-triangles', 'Trigonometry in triangles', 'trigonometry', 1, [], 'Finding a missing length or angle, and choosing the right rule', { aka: 'sine rule cosine rule area of a triangle ambiguous case bearings triangle missing side angle', status: 'live', words: ['sine', 'cosine', 'included-angle', 'sine-rule', 'cosine-rule', 'area-of-triangle-sine', 'ambiguous-case', 'bearing'] }),
   t('trig-graphs', 'Trigonometric graphs and exact values', 'trigonometry', 1, ['trig-triangles'], 'Reading values from a graph, and drawing a graph from values'),
   t('trig-identities', 'Trigonometric identities and equations', 'trigonometry', 1, ['trig-graphs', 'quadratics'], 'Solving an equation for the angle, and showing that two expressions are the same'),
   t('radians', 'Radians, arcs and sectors', 'trigonometry', 2, ['trig-graphs'], 'Measuring an angle in degrees, and measuring it in radians'),

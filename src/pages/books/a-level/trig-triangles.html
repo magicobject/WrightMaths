@@ -1,0 +1,982 @@
+<main class="book strand-al-trigonometry" data-book-page="topic" data-topic="trig-triangles">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Trigonometry &middot; Year 1</span>
+      <h1>Trigonometry in triangles</h1>
+      <p class="lead">At GCSE you used sine, cosine and tangent in right-angled triangles. This page works in any triangle. You will use the sine rule and the cosine rule to find a missing side or angle. You will choose the right rule for the information you have. You will find the area of a triangle from two sides and the angle between them. You will meet the case where two different triangles fit the same facts. You will finish with bearings and problems made of more than one triangle.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Trigonometric graphs, where the same ratios are defined for any angle. Also in Vectors, where the cosine rule becomes the scalar product.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Trigonometry in triangles</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page needs only GCSE work: {term:sine|sine}, {term:cosine|cosine} and tangent in a right-angled triangle, Pythagoras&rsquo; theorem, and the fact that the angles of a triangle add to {m:180deg}. The warm-up checks them. Set your calculator to <b>degrees</b> for every question on this page.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-labelling-a-triangle-and-the-sine-rule">Skip to the lesson</a></p>
+    <div class="q" data-answers="5.74" data-mode="value">
+      <p class="qtext">A right-angled triangle has a hypotenuse of 10 cm and an angle of {m:35deg}. The side opposite the angle is x cm. Find x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Opposite and hypotenuse go with sine.</li><li>{m:sin(35deg)=frac(x, 10)}.</li><li>Multiply both sides by 10.</li></ol>
+      <ul class="wrong">
+        <li data-if="8.19">That is {m:10 cos(35deg)}, the side next to the angle. The side opposite uses sine.</li>
+        <li data-if="5.7">That is 2 significant figures. Give 3 significant figures.</li>
+      </ul>
+      <div class="solution"><p>{m:x=10 sin(35deg)=5.74} to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="65" data-mode="value">
+      <p class="qtext">In triangle ABC, angle A is {m:47deg} and angle B is {m:68deg}. Find angle C in degrees. Type only the number.</p>
+      <ol class="ladder"><li>The three angles of a triangle add to {m:180deg}.</li><li>Add the two angles you know, then subtract from 180.</li></ol>
+      <ul class="wrong"><li data-if="115">That is {m:47+68}. Subtract it from 180 to get the third angle.</li></ul>
+      <div class="solution"><p>{m:180-47-68=65}, so angle C is {m:65deg}.</p></div>
+    </div>
+    <div class="q" data-answers="36.9" data-mode="value">
+      <p class="qtext">In a right-angled triangle, {m:sin x=0.6}. Find the acute angle x in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>To undo sine, use the inverse sine key, {m:sin^(-1)}, on your calculator.</li><li>Work out {m:sin^(-1)(0.6)}.</li></ol>
+      <ul class="wrong"><li data-if="53.1">That is {m:cos^(-1)(0.6)}. Use the inverse of sine, because the question says sine.</li></ul>
+      <div class="solution"><p>{m:x=sin^(-1)(0.6)=36.9deg} to 1 decimal place.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">A right-angled triangle has two short sides of 5 cm and 12 cm. Find the length of the hypotenuse. Type only the number.</p>
+      <ol class="ladder"><li>Pythagoras: the square of the hypotenuse is the sum of the squares of the other two sides.</li><li>{m:5^2+12^2=25+144}. Now take the square root.</li></ol>
+      <ul class="wrong">
+        <li data-if="17">That is {m:5+12}. Square each side, add, then take the square root.</li>
+        <li data-if="169">That is the hypotenuse squared. Take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:sqrt(5^2+12^2)=sqrt(169)=13}.</p></div>
+    </div>
+    <div class="q" data-answers="7.04" data-mode="value">
+      <p class="qtext">Round 7.0449 to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The first three significant figures are 7, 0 and 4.</li><li>Look at the next digit. It is 4, which is less than 5, so the third figure stays the same.</li></ol>
+      <ul class="wrong">
+        <li data-if="7.05">You rounded the 4s one at a time. Look only at the digit after the third figure.</li>
+        <li data-if="7">That is 1 significant figure. Keep three.</li>
+      </ul>
+      <div class="solution"><p>7.0449 to 3 significant figures is 7.04. The next digit is 4, so you round down.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier work (skip it if you are confident)</summary>
+    <div class="q" data-answers="18" data-mode="value">
+      <p class="qtext">A triangle has a base of 9 cm and a perpendicular height of 4 cm. Find its area in cm&sup2;. Type only the number.</p>
+      <ol class="ladder"><li>The area of a triangle is half the base times the perpendicular height.</li></ol>
+      <ul class="wrong"><li data-if="36">That is base times height. A triangle is half of that.</li></ul>
+      <div class="solution"><p>{m:frac(1, 2)*9*4=18}.</p></div>
+    </div>
+    <div class="q" data-answers="-0.5" data-mode="value">
+      <p class="qtext">Use your calculator, in degrees, to find {m:cos(120deg)}. Type only the number.</p>
+      <ol class="ladder"><li>Check that the calculator shows DEG, not RAD.</li><li>An angle between {m:90deg} and {m:180deg} has a negative cosine.</li></ol>
+      <ul class="wrong"><li data-if="0.5">The cosine of an obtuse angle is negative. Cosine of {m:120deg} is {m:-0.5}.</li></ul>
+      <div class="solution"><p>{m:cos(120deg)=-0.5}. You need this later: the cosine of an obtuse angle is negative.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Labelling a triangle, and the sine rule</h2>
+    <p>The rules in this topic work in <em>any</em> triangle, not only a right-angled one. They need an agreed way of naming the parts.</p>
+    <p>Name the corners with capital letters: A, B and C. Name each side with the small letter of the corner <b>opposite</b> it. So side <em>a</em> is opposite angle A, side <em>b</em> is opposite angle B, and side <em>c</em> is opposite angle C.</p>
+    <figure class="figure-lg">{fig:trig-triangles-labels}<figcaption>Look at side <em>a</em>. It is the side that does not touch corner A. Each small letter sits across the triangle from its capital letter.</figcaption></figure>
+    <p>Take the side <em>a</em> and the angle A opposite it. Call them a <b>matching pair</b>. The {term:sine-rule} says that the ratio of a side to the sine of its matching angle is the same for all three pairs.</p>
+    <div class="key">
+      <p><b>Key idea:</b> in any triangle ABC,</p>
+      <p>{md:frac(a, sin A)=frac(b, sin B)=frac(c, sin C)}</p>
+      <p>This is the {term:sine-rule|sine rule}. To find an <b>angle</b>, use the upside-down form {m:frac(sin A, a)=frac(sin B, b)=frac(sin C, c)}. It needs one matching pair, and one other side or angle.</p>
+    </div>
+    <p>Here is a first example. You know two angles and a side that is not opposite either of them.</p>
+    <figure class="figure-lg">{fig:trig-triangles-sine-side}<figcaption>Look at the 12 cm side. It is opposite the {m:65deg} angle, so they are a matching pair. The side x is opposite the {m:40deg} angle, so they are the other matching pair.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: finding a side</h3>
+      <p>In triangle ABC, {m:A=40deg}, {m:B=65deg} and {m:b=12} cm. Find the side <em>a</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The matching pairs are <em>a</em> with A, and <em>b</em> with B. You know A, B and <em>b</em>, so use both pairs.</li>
+        <li>{m:frac(a, sin(40deg))=frac(12, sin(65deg))}.</li>
+        <li>Multiply both sides by {m:sin(40deg)}: {m:a=frac(12 sin(40deg), sin(65deg))}.</li>
+        <li>{m:a=8.51} cm to 3 significant figures.</li>
+      </ol>
+      <p>Side <em>a</em> is shorter than side <em>b</em>, which fits: {m:40deg} is smaller than {m:65deg}. The larger angle is opposite the longer side.</p>
+    </div>
+    <p>To find an <em>angle</em>, put the sines on top. Then take the inverse sine, {m:sin^(-1)}, at the end.</p>
+    <figure class="figure-lg">{fig:trig-triangles-sine-angle}<figcaption>Look at the 12 cm side and the {m:70deg} angle. They are a matching pair. The 9 cm side is opposite the angle marked &theta;.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: finding an angle</h3>
+      <p>In triangle ABC, {m:a=12} cm, {m:A=70deg} and {m:b=9} cm. Find angle B, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>The matching pairs are <em>a</em> with A, and <em>b</em> with B. You know <em>a</em>, A and <em>b</em>.</li>
+        <li>Put the sines on top: {m:frac(sin B, 9)=frac(sin(70deg), 12)}.</li>
+        <li>{m:sin B=frac(9 sin(70deg), 12)=0.7048}.</li>
+        <li>{m:B=sin^(-1)(0.7048)=44.8deg} to 1 decimal place.</li>
+      </ol>
+      <p>Side <em>b</em> is shorter than side <em>a</em>, so B must be smaller than A. The answer {m:44.8deg} is smaller than {m:70deg}. A sine can also come from an obtuse angle, but here {m:180deg-44.8deg=135.2deg} is too big: with A it would make more than {m:180deg}. So there is one answer.</p>
+    </div>
+    <p>When you are given two angles, you can find the third. The angles add to {m:180deg}. This lets you make a matching pair.</p>
+    <div class="worked">
+      <h3>Worked example: find the third angle first</h3>
+      <p>In triangle ABC, {m:A=38deg}, {m:B=60deg} and {m:a=7} cm. Find side <em>c</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The side <em>c</em> is opposite C. Find C: {m:C=180-38-60=82deg}.</li>
+        <li>Use the pairs <em>c</em> with C, and <em>a</em> with A: {m:frac(c, sin(82deg))=frac(7, sin(38deg))}.</li>
+        <li>{m:c=frac(7 sin(82deg), sin(38deg))=11.3} cm to 3 significant figures.</li>
+      </ol>
+    </div>
+    <figure class="figure-lg">{fig:trig-triangles-choose}<figcaption>Look at the 7 cm side. It is opposite the {m:38deg} angle. The side x is opposite the third angle, which is not marked, so find it first.</figcaption></figure>
+    <p>Keep the full calculator value between steps and round only at the end. A rounded value in the middle can change the last digit.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>In triangle ABC, {m:A=30deg}, {m:B=100deg} and {m:a=8} cm. Find side <em>b</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The pairs are <em>a</em> with A, and <em>b</em> with B: {m:frac(b, sin(100deg))=frac(8, sin(30deg))}.</li>
+        <li>{m:sin(30deg)=}<span class="blank" data-answers="0.5">___</span>.</li>
+        <li>{m:b=frac(8 sin(100deg), 0.5)=}<span class="blank" data-answers="15.8">___</span> cm.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:b=frac(8 sin(100deg), sin(30deg))=15.76}, so 15.8 cm to 3 significant figures. The largest angle, {m:100deg}, is opposite the longest side.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the sine rule</h2>
+    <div class="q" data-answers="10.3" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:A=35deg}, {m:B=80deg} and {m:a=6} cm. Find side <em>b</em> to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-sine-side}</figure>
+      <ol class="ladder"><li>The 6 cm side is opposite the {m:35deg} angle: that is one matching pair.</li><li>Side <em>b</em> is opposite {m:80deg}: that is the other pair.</li><li>{m:frac(b, sin(80deg))=frac(6, sin(35deg))}.</li></ol>
+      <ul class="wrong"><li data-if="3.49">You turned the rule the wrong way up. Side <em>b</em> goes with {m:sin(80deg)}, so {m:b=frac(6 sin(80deg), sin(35deg))}.</li></ul>
+      <div class="solution"><p>{m:b=frac(6 sin(80deg), sin(35deg))=10.30}, so 10.3 cm to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC, {m:C=48deg}, {m:B=71deg} and {m:c=9} cm. Which line gives side <em>b</em>?</p>
+      <ul class="options">
+        <li data-why="This pairs the side c with sin B. Side c is opposite C, so it goes with sin C. Side b goes with sin B.">The line {m:b=frac(9 sin(48deg), sin(71deg))}</li>
+        <li data-correct>The line {m:b=frac(9 sin(71deg), sin(48deg))}</li>
+        <li data-why="This multiplies by 9 and by the cosine. The sine rule uses only sines, and the sines go on top and bottom as a ratio.">The line {m:b=9 cos(71deg)*cos(48deg)}</li>
+      </ul>
+      <ol class="ladder"><li>Side <em>c</em> and angle C are a matching pair. Side <em>b</em> and angle B are the other.</li><li>{m:frac(b, sin B)=frac(c, sin C)}. Multiply both sides by {m:sin B}.</li></ol>
+      <div class="solution"><p>{m:frac(b, sin(71deg))=frac(9, sin(48deg))}, so {m:b=frac(9 sin(71deg), sin(48deg))}.</p></div>
+    </div>
+    <div class="q" data-answers="43.9" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=14} cm, {m:A=62deg} and {m:b=11} cm. Find angle B in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>Put the sines on top: {m:frac(sin B, 11)=frac(sin(62deg), 14)}.</li><li>Find {m:sin B}, then use the inverse sine.</li><li>Side <em>b</em> is shorter than side <em>a</em>, so B is smaller than A.</li></ol>
+      <ul class="wrong"><li data-if="136.1">That is {m:180-43.9}. Angle B is smaller than A, so it is the acute angle.</li></ul>
+      <div class="solution"><p>{m:sin B=frac(11 sin(62deg), 14)=0.6937}, so {m:B=sin^(-1)(0.6937)=43.9deg}.</p></div>
+    </div>
+    <div class="q" data-answers="8.76" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:A=52deg}, {m:B=61deg} and {m:a=7.5} cm. Find side <em>c</em> to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Side <em>c</em> is opposite angle C, which is not given. Find C.</li><li>{m:C=180-52-61=67deg}.</li><li>{m:frac(c, sin(67deg))=frac(7.5, sin(52deg))}.</li></ol>
+      <ul class="wrong"><li data-if="6.42">You paired <em>c</em> with {m:sin(52deg)}. Side <em>c</em> goes with {m:sin C=sin(67deg)}.</li></ul>
+      <div class="solution"><p>{m:C=67deg}, so {m:c=frac(7.5 sin(67deg), sin(52deg))=8.76} cm.</p></div>
+    </div>
+    <div class="q" data-answers="44.1" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=9} cm, {m:c=12.5} cm and {m:C=75deg}. Find angle A in degrees, to 1 decimal place. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-sine-angle}</figure>
+      <ol class="ladder"><li>The 12.5 cm side and the {m:75deg} angle are a matching pair.</li><li>{m:frac(sin A, 9)=frac(sin(75deg), 12.5)}.</li><li>Side <em>a</em> is shorter than side <em>c</em>, so A is the smaller angle.</li></ol>
+      <ul class="wrong"><li data-if="0.695">That is {m:sin A}. Use the inverse sine to turn it into an angle.</li></ul>
+      <div class="solution"><p>{m:sin A=frac(9 sin(75deg), 12.5)=0.6955}, so {m:A=sin^(-1)(0.6955)=44.1deg}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. The cosine rule</h2>
+    <p>The sine rule needs a matching pair. Sometimes you do not have one. You may know two sides and the angle <em>between</em> them, or all three sides. Then use the {term:cosine-rule}.</p>
+    <p>The angle between two given sides is the {term:included-angle}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> in any triangle ABC,</p>
+      <p>{md:a^2=b^2+c^2-2bc cos A}</p>
+      <p>The side on the left, <em>a</em>, is opposite the angle A. The angle A is between the sides <em>b</em> and <em>c</em>. This is the {term:cosine-rule|cosine rule}. To find an angle, rearrange it: {m:cos A=frac(b^2+c^2-a^2, 2bc)}.</p>
+    </div>
+    <p>If A is a right angle, {m:cos A=0} and the rule becomes Pythagoras&rsquo; theorem. The extra term {m:-2bc cos A} corrects it for other angles.</p>
+    <figure class="figure-lg">{fig:trig-triangles-cos-side}<figcaption>Look at the {m:52deg} angle. It is between the 7 cm and 9 cm sides. The side x is opposite it. There is no matching pair, so the sine rule cannot start.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: finding a side</h3>
+      <p>In triangle ABC, {m:b=7} cm, {m:c=9} cm and {m:A=52deg}. Find side <em>a</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The angle A is between <em>b</em> and <em>c</em>, so use {m:a^2=b^2+c^2-2bc cos A}.</li>
+        <li>{m:a^2=7^2+9^2-2*7*9*cos(52deg)}.</li>
+        <li>{m:a^2=49+81-126 cos(52deg)=130-77.58=52.42}.</li>
+        <li>Take the square root: {m:a=sqrt(52.42)=7.24} cm to 3 significant figures.</li>
+      </ol>
+      <p>Do not forget the square root. The calculation gives {m:a^2}, not <em>a</em>.</p>
+    </div>
+    <p>To find an angle from three sides, use the rearranged form. A negative answer for the cosine means the angle is obtuse.</p>
+    <figure class="figure-lg">{fig:trig-triangles-cos-angle}<figcaption>Look at the angle marked &theta;. It is opposite the longest side, 12 cm, so it is the largest angle.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: finding an angle</h3>
+      <p>In triangle ABC, {m:a=7}, {m:b=9} and {m:c=12}. Find angle C, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>Angle C is opposite side <em>c</em>, so put {m:c^2} on the left: {m:cos C=frac(a^2+b^2-c^2, 2ab)}.</li>
+        <li>{m:cos C=frac(49+81-144, 2*7*9)=frac(-14, 126)=-0.1111}.</li>
+        <li>{m:C=cos^(-1)(-0.1111)=96.4deg} to 1 decimal place.</li>
+      </ol>
+      <p>The cosine is negative, so C is obtuse: more than {m:90deg}. That fits: C is opposite the longest side.</p>
+    </div>
+    <p>The cosine rule gives exact answers when the numbers are kind. For example, take {m:b=6}, {m:c=10} and {m:A=120deg}. Then {m:cos(120deg)=-frac(1, 2)}, so {m:a^2=36+100-120*(-frac(1, 2))=196} and {m:a=14}.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>In triangle ABC, {m:a=6}, {m:b=8} and {m:C=60deg}. Find side <em>c</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The angle C is between <em>a</em> and <em>b</em>, so {m:c^2=a^2+b^2-2ab cos C}.</li>
+        <li>{m:cos(60deg)=}<span class="blank" data-answers="0.5">___</span>.</li>
+        <li>{m:c^2=36+64-96*0.5=}<span class="blank" data-answers="52">___</span>.</li>
+        <li>{m:c=sqrt(52)=}<span class="blank" data-answers="7.21">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:c^2=100-48=52}, so {m:c=sqrt(52)=7.21} to 3 significant figures.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the cosine rule</h2>
+    <div class="q" data-answers="7.08" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:b=8} cm, {m:c=11} cm and {m:A=40deg}. Find side <em>a</em> to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-cos-side}</figure>
+      <ol class="ladder"><li>The angle A is between <em>b</em> and <em>c</em>, so use {m:a^2=b^2+c^2-2bc cos A}.</li><li>{m:a^2=64+121-176 cos(40deg)}.</li><li>Take the square root at the end.</li></ol>
+      <ul class="wrong"><li data-if="50.2">That is {m:a^2}. Take the square root to get <em>a</em>.</li></ul>
+      <div class="solution"><p>{m:a^2=185-176 cos(40deg)=50.18}, so {m:a=sqrt(50.18)=7.08} cm.</p></div>
+    </div>
+    <div class="q" data-answers="95.7" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=5}, {m:b=7} and {m:c=9}. Find angle C in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:c^2} first: {m:cos C=frac(a^2+b^2-c^2, 2ab)}.</li><li>{m:cos C=frac(25+49-81, 70)}. Is it positive or negative?</li></ol>
+      <ul class="wrong"><li data-if="84.3">That is {m:180-95.7}. The cosine is negative, so C is obtuse. Use the inverse cosine of {m:-0.1}.</li></ul>
+      <div class="solution"><p>{m:cos C=frac(25+49-81, 70)=-0.1}, so {m:C=cos^(-1)(-0.1)=95.7deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC you know {m:a}, {m:b} and the angle C between them. Which line gives {m:c^2}?</p>
+      <ul class="options">
+        <li data-why="This leaves out the factor 2 and uses the angle A, which is not between a and b. The angle in the rule is the one opposite c.">The line {m:c^2=a^2+b^2-ab cos A}</li>
+        <li data-correct>The line {m:c^2=a^2+b^2-2ab cos C}</li>
+        <li data-why="The angle C is opposite c, and the rule subtracts the cosine term. Adding it only gives the right result when the angle is obtuse.">The line {m:c^2=a^2+b^2+2ab cos C}</li>
+      </ul>
+      <ol class="ladder"><li>The side on the left is opposite the angle in the cosine.</li><li>The other two sides appear in the square terms and in the product {m:2ab}.</li></ol>
+      <div class="solution"><p>The side on the left is c, so the angle is C, the one opposite it. The other sides are <em>a</em> and <em>b</em>: {m:c^2=a^2+b^2-2ab cos C}.</p></div>
+    </div>
+    <div class="q" data-answers="14" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:b=6}, {m:c=10} and {m:A=120deg}. Find side <em>a</em>. Type only the number.</p>
+      <ol class="ladder"><li>{m:a^2=b^2+c^2-2bc cos A=36+100-120 cos(120deg)}.</li><li>{m:cos(120deg)=-0.5}. Subtracting a negative adds.</li></ol>
+      <ul class="wrong"><li data-if="8.72">You used {m:cos(120deg)=+0.5}. The cosine of an obtuse angle is negative, so the term adds 60, not subtracts it.</li></ul>
+      <div class="solution"><p>{m:a^2=136-120*(-0.5)=136+60=196}, so {m:a=14}.</p></div>
+    </div>
+    <div class="q" data-answers="36.2" data-mode="value">
+      <p class="qtext">Triangle ABC has sides {m:a=6}, {m:b=7} and {m:c=10}. Find the smallest angle, in degrees to 1 decimal place. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-cos-angle}</figure>
+      <ol class="ladder"><li>The smallest angle is opposite the shortest side, <em>a</em>. That is angle A.</li><li>{m:cos A=frac(b^2+c^2-a^2, 2bc)=frac(49+100-36, 140)}.</li></ol>
+      <ul class="wrong"><li data-if="0.807">That is {m:cos A}. Use the inverse cosine to find the angle.</li></ul>
+      <div class="solution"><p>{m:cos A=frac(113, 140)=0.8071}, so {m:A=cos^(-1)(0.8071)=36.2deg}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Choosing the right rule</h2>
+    <p>Most of the skill is deciding where to start. Ask what you know about the triangle. The answer tells you the rule.</p>
+    <div class="key">
+      <p><b>Key idea:</b> choose by what you are given.</p>
+      <ul class="tick">
+        <li><b>A side and its opposite angle, plus one more side or angle.</b> Use the sine rule.</li>
+        <li><b>Two angles and any side.</b> Find the third angle ({m:180deg} minus the two), then use the sine rule.</li>
+        <li><b>Two sides and the angle between them.</b> Use the cosine rule to find the third side.</li>
+        <li><b>All three sides.</b> Use the cosine rule, rearranged, to find an angle.</li>
+      </ul>
+      <p>With two sides and an angle that is <em>not</em> between them, use the sine rule, but read the section on the ambiguous case first.</p>
+    </div>
+    <p>After you find a missing side with the cosine rule, you have a matching pair. The sine rule is then a quick way to find another angle. Find the <em>smaller</em> of the two remaining angles with the sine rule: a smaller angle is never obtuse, so there is one answer.</p>
+    <div class="worked">
+      <h3>Worked example: which rule?</h3>
+      <p>Say which rule you would use first.</p>
+      <ol class="steps">
+        <li>{m:A=50deg}, {m:B=60deg}, {m:a=8}: find <em>b</em>. The pairs are <em>a</em> with A and <em>b</em> with B, so use the <b>sine rule</b>.</li>
+        <li>{m:a=5}, {m:b=6}, {m:C=70deg}: find <em>c</em>. The angle C is between <em>a</em> and <em>b</em>, so use the <b>cosine rule</b>.</li>
+        <li>{m:a=4}, {m:b=5}, {m:c=7}: find the largest angle. All three sides, so use the <b>cosine rule</b>, rearranged.</li>
+        <li>{m:A=44deg}, {m:C=71deg}, {m:b=10}: find <em>c</em>. Side <em>b</em> has no matching angle yet. Find B, {m:180-44-71=65deg}, then use the <b>sine rule</b>.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>In triangle ABC, {m:a=9}, {m:b=7} and {m:C=60deg}. Find side <em>c</em>, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The angle C is between <em>a</em> and <em>b</em>, so use the cosine rule: {m:c^2=81+49-2*9*7*cos(60deg)}.</li>
+        <li>{m:c^2=130-126*0.5=}<span class="blank" data-answers="67">___</span>.</li>
+        <li>{m:c=sqrt(67)=}<span class="blank" data-answers="8.19">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:c^2=130-63=67}, so {m:c=sqrt(67)=8.19} to 3 significant figures.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: choosing the rule</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC, {m:A=50deg}, {m:B=60deg} and {m:a=8}. You want side <em>b</em>. Which rule do you use?</p>
+      <ul class="options">
+        <li data-correct>The sine rule, because <em>a</em> and A are a matching pair</li>
+        <li data-why="The cosine rule needs two sides and the angle between them, or three sides. Here you have two angles and one side.">The cosine rule, because you know two angles</li>
+        <li data-why="Pythagoras works only when one angle is a right angle. No angle here is 90 degrees.">Pythagoras, because it is a triangle</li>
+      </ul>
+      <ol class="ladder"><li>Look for a side and the angle opposite it.</li></ol>
+      <div class="solution"><p>Side <em>a</em> and angle A are opposite each other. Together with B this lets you use the sine rule: {m:b=frac(8 sin(60deg), sin(50deg))}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC, {m:a=4}, {m:b=5} and {m:c=7}. You want the largest angle. Which rule do you use?</p>
+      <ul class="options">
+        <li data-why="There is no angle given, so there is no matching pair. The sine rule cannot start.">The sine rule, with side 7</li>
+        <li data-correct>The cosine rule, rearranged, to find angle C</li>
+        <li data-why="The largest angle is opposite the longest side, which is c. The angle A is opposite the shortest side.">The cosine rule, rearranged, to find angle A</li>
+      </ul>
+      <ol class="ladder"><li>The largest angle is opposite the longest side.</li></ol>
+      <div class="solution"><p>The longest side is {m:c=7}, so the largest angle is C. {m:cos C=frac(16+25-49, 40)=-0.2}, so {m:C=101.5deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC, {m:a=5}, {m:b=6} and {m:C=70deg}. You want side <em>c</em>. Which rule do you use?</p>
+      <ul class="options">
+        <li data-why="Two sides and the angle between them are not a matching pair, because C is not opposite a or b. The sine rule needs a side and the angle opposite it.">The sine rule, because you know two sides</li>
+        <li data-correct>The cosine rule, because C is between <em>a</em> and <em>b</em></li>
+        <li data-why="The area formula gives an area. It does not give a side length.">The area formula</li>
+      </ul>
+      <ol class="ladder"><li>Is C opposite <em>a</em> or <em>b</em>? Or between them?</li></ol>
+      <div class="solution"><p>C is between <em>a</em> and <em>b</em>, so {m:c^2=25+36-60 cos(70deg)}.</p></div>
+    </div>
+    <div class="q" data-answers="10.4" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:A=44deg}, {m:C=71deg} and {m:b=10} cm. Find side <em>c</em> to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-choose}</figure>
+      <ol class="ladder"><li>Side <em>b</em> is not opposite A or C. Find angle B first.</li><li>{m:B=180-44-71=65deg}.</li><li>{m:frac(c, sin(71deg))=frac(10, sin(65deg))}.</li></ol>
+      <ul class="wrong"><li data-if="13.6">You paired side <em>b</em> with {m:sin(44deg)}. Side <em>b</em> is opposite B, so it goes with {m:sin(65deg)}.</li></ul>
+      <div class="solution"><p>{m:B=65deg}, so {m:c=frac(10 sin(71deg), sin(65deg))=10.43}. To 3 significant figures, 10.4 cm.</p></div>
+    </div>
+    <div class="q" data-answers="7.01" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=6}, {m:c=8} and {m:B=58deg}. Find side <em>b</em> to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Angle B is between <em>a</em> and <em>c</em>. Use the cosine rule.</li><li>{m:b^2=a^2+c^2-2ac cos B=36+64-96 cos(58deg)}.</li></ol>
+      <ul class="wrong"><li data-if="49.1">That is {m:b^2}. Take the square root.</li></ul>
+      <div class="solution"><p>{m:b^2=100-96 cos(58deg)=49.13}, so {m:b=sqrt(49.13)=7.01}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. The area of a triangle</h2>
+    <p>The area of a triangle is half the base times the perpendicular height. Often you are not given the height. Trigonometry finds it from a side and an angle.</p>
+    <figure class="figure-lg">{fig:trig-triangles-area}<figcaption>Look at the {m:38deg} angle. It is between the 11 cm and 8 cm sides. The area, shaded, needs these two sides and that angle.</figcaption></figure>
+    <p>Take the side <em>a</em> as the base. The height from A to this base is {m:b sin C}, because it is the side opposite {m:C} in a right-angled triangle with hypotenuse <em>b</em>. So the area is half the base times the height.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the area of triangle ABC is</p>
+      <p>{md:"Area"=frac(1, 2)ab sin C}</p>
+      <p>This is the {term:area-of-triangle-sine|area formula}. The angle C must be the {term:included-angle} between the sides <em>a</em> and <em>b</em>. In the same way, {m:frac(1, 2)bc sin A} and {m:frac(1, 2)ac sin B} also give the area.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the area from two sides and the angle between them</h3>
+      <p>Triangle ABC has {m:a=11} cm, {m:b=8} cm and {m:C=38deg}. Find its area, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The angle C is between <em>a</em> and <em>b</em>.</li>
+        <li>{m:"Area"=frac(1, 2)*11*8*sin(38deg)=44 sin(38deg)}.</li>
+        <li>The area is 27.1 cm&sup2; to 3 significant figures.</li>
+      </ol>
+    </div>
+    <p>The formula works for an obtuse angle too. The sine of an obtuse angle is positive, so the area is positive.</p>
+    <figure class="figure-lg">{fig:trig-triangles-area-obtuse}<figcaption>Look at the angle C. It is {m:125deg}, which is more than a right angle. The formula still uses the sine of C.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: an obtuse angle</h3>
+      <p>Triangle ABC has {m:a=9} cm, {m:b=6} cm and {m:C=125deg}. Find its area, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>{m:"Area"=frac(1, 2)*9*6*sin(125deg)=27 sin(125deg)}.</li>
+        <li>{m:sin(125deg)=0.8192}, so the area is 22.1 cm&sup2;.</li>
+      </ol>
+      <p>The sine of an obtuse angle equals the sine of {m:180deg} minus it: {m:sin(125deg)=sin(55deg)}.</p>
+    </div>
+    <p>You can run the formula backwards. If you know the area and two sides, you can find the angle between them.</p>
+    <figure class="figure-lg">{fig:trig-triangles-area-angle}<figcaption>Look at the shaded triangle. Its area is 24 cm&sup2; and two sides are 10 cm and 7 cm. The angle between them is &theta;.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the angle from the area</h3>
+      <p>Triangle ABC has area 24 cm&sup2;, {m:a=10} cm and {m:b=7} cm. Angle C is acute. Find C to 1 decimal place.</p>
+      <ol class="steps">
+        <li>{m:frac(1, 2)*10*7*sin C=24}, so {m:35 sin C=24}.</li>
+        <li>{m:sin C=frac(24, 35)=0.6857}.</li>
+        <li>{m:C=sin^(-1)(0.6857)=43.3deg}.</li>
+      </ol>
+      <p>If the question did not say acute, there would be a second angle, {m:180deg-43.3deg=136.7deg}. Both give the same area.</p>
+    </div>
+    <p>When you know all three sides but no angle, find an angle with the cosine rule. Then use the area formula.</p>
+    <figure class="figure-lg">{fig:trig-triangles-area-sss}<figcaption>Look at the three sides: 8 cm, 9 cm and 11 cm. No angle is given. Find one angle first.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the area from three sides</h3>
+      <p>Triangle ABC has {m:a=8}, {m:b=9} and {m:c=11}. Find its area to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Find C with the cosine rule: {m:cos C=frac(64+81-121, 2*8*9)=frac(24, 144)=frac(1, 6)}.</li>
+        <li>{m:C=cos^(-1)(frac(1, 6))=80.4deg}.</li>
+        <li>{m:"Area"=frac(1, 2)*8*9*sin(80.4deg)=36 sin(80.4deg)=35.5}.</li>
+      </ol>
+      <p>The area is 35.5 cm&sup2;.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Two sides of a triangle are 10 cm and 7 cm. The angle between them is {m:30deg}. Find the area.</p>
+      <ol class="steps">
+        <li>The area is {m:frac(1, 2)*10*7*sin(30deg)}.</li>
+        <li>{m:sin(30deg)=}<span class="blank" data-answers="0.5">___</span>.</li>
+        <li>{m:"Area"=35*0.5=}<span class="blank" data-answers="17.5">___</span> cm&sup2;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(1, 2)*10*7*frac(1, 2)=17.5}. The area is 17.5 cm&sup2;.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: area</h2>
+    <div class="q" data-answers="49.6" data-mode="value">
+      <p class="qtext">Two sides of a triangle are 9 cm and 14 cm. The angle between them is {m:52deg}. Find the area in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The area is half times the two sides times the sine of the angle between them.</li><li>{m:frac(1, 2)*9*14*sin(52deg)}.</li></ol>
+      <ul class="wrong"><li data-if="99.3">You left out the half. A triangle is half of the parallelogram, so the formula starts with {m:frac(1, 2)}.</li></ul>
+      <div class="solution"><p>{m:"Area"=63 sin(52deg)=49.64}, so 49.6 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="14.7" data-mode="value">
+      <p class="qtext">Triangle ABC has sides {m:a=5}, {m:b=6} and {m:c=7} cm. Find its area in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-area}</figure>
+      <ol class="ladder"><li>No angle is given. Find one with the cosine rule.</li><li>{m:cos A=frac(36+49-25, 2*6*7)=frac(60, 84)=frac(5, 7)}, so {m:A=44.4deg}.</li><li>Use {m:frac(1, 2)bc sin A}.</li></ol>
+      <ul class="wrong"><li data-if="105">That is {m:frac(1, 2)*5*6*7}. The formula needs two sides and the sine of the angle between them.</li></ul>
+      <div class="solution"><p>{m:A=cos^(-1)(frac(5, 7))=44.4deg}. {m:"Area"=frac(1, 2)*6*7*sin(44.4deg)=14.7} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="52.7" data-mode="value">
+      <p class="qtext">A triangle has sides of 8 cm and 11 cm and an area of 35 cm&sup2;. The angle between the sides is acute. Find it in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>{m:frac(1, 2)*8*11*sin C=35}, so {m:44 sin C=35}.</li><li>{m:sin C=frac(35, 44)}. Take the inverse sine.</li></ol>
+      <ul class="wrong"><li data-if="127.3">That is the obtuse angle, {m:180-52.7}. The question says the angle is acute.</li></ul>
+      <div class="solution"><p>{m:sin C=frac(35, 44)=0.7955}, so {m:C=sin^(-1)(0.7955)=52.7deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In triangle ABC, {m:AB=7} cm, {m:BC=10} cm and {m:ABC=40deg}. Which line gives its area?</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-mc-area}</figure>
+      <ul class="options">
+        <li data-correct>The area is {m:frac(1, 2)*7*10*sin(40deg)}</li>
+        <li data-why="The cosine does not give the area. The formula uses the sine of the angle between the two sides.">The area is {m:frac(1, 2)*7*10*cos(40deg)}</li>
+        <li data-why="The formula needs the angle between the two sides. The angle at A is not between AB and BC.">The area is {m:frac(1, 2)*7*10*sin A}</li>
+      </ul>
+      <ol class="ladder"><li>Which angle is between AB and BC?</li></ol>
+      <div class="solution"><p>The sides AB and BC meet at B, so the angle between them is {m:40deg}. The area is {m:frac(1, 2)*7*10*sin(40deg)=22.5} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="7.78" data-mode="value">
+      <p class="qtext">Triangle ABC has area 30 cm&sup2;, {m:a=12} cm and {m:C=40deg}. Find side <em>b</em> to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>{m:frac(1, 2)*12*b*sin(40deg)=30}, so {m:6b sin(40deg)=30}.</li><li>Divide 30 by {m:6 sin(40deg)}.</li></ol>
+      <ul class="wrong"><li data-if="3.89">You divided by {m:12 sin(40deg)}. The half is part of the formula, so the coefficient of <em>b</em> is {m:6 sin(40deg)}.</li></ul>
+      <div class="solution"><p>{m:b=frac(2*30, 12 sin(40deg))=7.78} cm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. The ambiguous case [OCR]</h2>
+    <p>This section is needed for OCR. It is not needed for the other boards, but it explains an error many students make.</p>
+    <p>Two sides and the angle <em>between</em> them fix a triangle. Two sides and an angle that is <em>not</em> between them may not. This is the {term:ambiguous-case}.</p>
+    <p>The reason is that two angles have the same sine: {m:sin theta=sin(180deg-theta)}. For example, {m:sin(30deg)} and {m:sin(150deg)} are both 0.5. Your calculator gives only the smaller one, and you must decide whether the other also fits.</p>
+    <figure class="figure-lg">{fig:trig-triangles-ambiguous}<figcaption>Look at the point C. A circle of radius 7 cm round C meets the line from A in two places. These give two triangles, A B<sub>1</sub> C and A B<sub>2</sub> C. Both have {m:A=30deg}, {m:b=10} and {m:a=7}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> you are given the angle A and the sides <em>a</em> and <em>b</em>. The sine rule gives {m:sin B=frac(b sin A, a)}. Then:</p>
+      <ul class="tick">
+        <li>If {m:sin B} is more than 1, there is <b>no</b> triangle.</li>
+        <li>Otherwise, B is {m:sin^(-1)} of the value, or {m:180deg} minus that angle. Keep the second angle only if {m:A+B} is less than {m:180deg}. Then there are <b>two</b> triangles.</li>
+        <li>If <em>a</em> is at least as long as <em>b</em>, the second angle never fits. There is one triangle.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two triangles</h3>
+      <p>Triangle ABC has {m:A=30deg}, {m:a=7} and {m:b=10}. Find the possible values of angle B, and of side <em>c</em>.</p>
+      <ol class="steps">
+        <li>{m:sin B=frac(10 sin(30deg), 7)=frac(5, 7)=0.7143}.</li>
+        <li>{m:B=sin^(-1)(0.7143)=45.6deg}, or {m:B=180-45.6=134.4deg}.</li>
+        <li>Check both: {m:30+45.6=75.6} and {m:30+134.4=164.4} are both less than 180. Both triangles exist.</li>
+        <li>For {m:B=45.6deg}: {m:C=104.4deg} and {m:c=frac(7 sin(104.4deg), sin(30deg))=13.6}.</li>
+        <li>For {m:B=134.4deg}: {m:C=15.6deg} and {m:c=frac(7 sin(15.6deg), sin(30deg))=3.76}.</li>
+      </ol>
+      <p>The two triangles have the same {m:A}, <em>a</em> and <em>b</em>. They are different triangles, with different third sides.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: no triangle</h3>
+      <p>Triangle ABC has {m:A=40deg}, {m:a=5} and {m:b=9}. Find angle B.</p>
+      <ol class="steps">
+        <li>{m:sin B=frac(9 sin(40deg), 5)=1.157}.</li>
+        <li>A sine is never more than 1. So there is no angle B, and no triangle.</li>
+      </ol>
+      <p>The short side <em>a</em> is too short to reach the base line from C.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: only one triangle</h3>
+      <p>Triangle ABC has {m:A=55deg}, {m:a=10} and {m:b=7}. Find angle B.</p>
+      <ol class="steps">
+        <li>{m:sin B=frac(7 sin(55deg), 10)=0.5734}.</li>
+        <li>{m:B=sin^(-1)(0.5734)=35.0deg}, or {m:B=180-35.0=145.0deg}.</li>
+        <li>The second angle fails: {m:55+145=200} is more than 180.</li>
+      </ol>
+      <p>So {m:B=35.0deg}. Here <em>a</em> is longer than <em>b</em>, so the second angle never fits.</p>
+    </div>
+    <p>One special case sits between. If {m:sin B=1}, then B is exactly {m:90deg}, and the two triangles become one right-angled triangle.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Triangle ABC has {m:A=25deg}, {m:a=8} and {m:b=15}. Find the possible values of angle B, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>{m:sin B=frac(15 sin(25deg), 8)=}<span class="blank" data-answers="0.792">___</span> (3 decimal places).</li>
+        <li>The first angle is {m:B=}<span class="blank" data-answers="52.4">___</span>.</li>
+        <li>The second is {m:180-52.4=}<span class="blank" data-answers="127.6">___</span>. It fits, because {m:25+127.6} is less than 180.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:sin B=0.7924}, so B is {m:52.4deg} or {m:127.6deg}. There are two triangles.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the ambiguous case [OCR]</h2>
+    <div class="q" data-answers="45.6 or 134.4" data-mode="value">
+      <p class="qtext">Triangle ABC has {m:A=30deg}, {m:a=7} and {m:b=10}. Find the two possible values of angle B, in degrees to 1 decimal place. Type your answers like 1.5 or 2.5.</p>
+      <ol class="ladder"><li>{m:sin B=frac(10 sin(30deg), 7)=0.7143}.</li><li>One angle is the inverse sine. The other is {m:180deg} minus it.</li></ol>
+      <ul class="wrong"><li data-if="45.6">That is one of two answers. The second angle is {m:180-45.6}, and it fits because {m:30+134.4} is less than 180.</li></ul>
+      <div class="solution"><p>{m:B=45.6deg} or {m:B=180-45.6=134.4deg}. Both fit.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Triangle ABC has {m:A=35deg}, {m:a=5} and {m:b=8}. How many different triangles fit?</p>
+      <ul class="options">
+        <li data-why="Here sin B = 8 sin 35 / 5 = 0.918, which is less than 1. So at least one triangle exists.">None, because the sine is more than 1</li>
+        <li data-why="The second angle is 180 minus 66.6, which is 113.4. With A = 35 the angles add to 148.4, which is less than 180, so it fits.">One, because the second angle is too big</li>
+        <li data-correct>Two, with B equal to {m:66.6deg} and {m:113.4deg}</li>
+      </ul>
+      <ol class="ladder"><li>Find {m:sin B}. If it is less than 1, find the two angles.</li><li>Check each with {m:A+B<180}.</li></ol>
+      <div class="solution"><p>{m:sin B=frac(8 sin(35deg), 5)=0.9177}. So B is {m:66.6deg} or {m:113.4deg}. Both add to less than {m:180deg} with {m:35deg}.</p></div>
+    </div>
+    <div class="q" data-answers="35" data-mode="value">
+      <p class="qtext">Triangle ABC has {m:A=55deg}, {m:a=10} and {m:b=7}. Find angle B in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>{m:sin B=frac(7 sin(55deg), 10)}. Find the first angle.</li><li>Check the second angle with {m:A+B<180}.</li></ol>
+      <ul class="wrong"><li data-if="145">That is the second angle, {m:180-35}. With {m:55deg} it makes more than {m:180deg}, so it does not fit.</li></ul>
+      <div class="solution"><p>{m:B=35.0deg}. The second angle, {m:145deg}, fails, because {m:55+145=200}.</p></div>
+    </div>
+    <div class="q" data-answers="13.6 or 3.76" data-mode="value">
+      <p class="qtext">Triangle ABC has {m:A=30deg}, {m:a=7} and {m:b=10}. There are two possible values of side <em>c</em>. Find both to 3 significant figures. Type your answers like 1.5 or 2.5.</p>
+      <ol class="ladder"><li>The two values of B are {m:45.6deg} and {m:134.4deg}.</li><li>Find C each time, then use {m:frac(c, sin C)=frac(a, sin A)}.</li></ol>
+      <ul class="wrong"><li data-if="13.6">That is one of the two. The other triangle has {m:C=15.6deg}.</li></ul>
+      <div class="solution"><p>{m:C=104.4deg} gives {m:c=frac(7 sin(104.4deg), sin(30deg))=13.6}. {m:C=15.6deg} gives {m:c=frac(7 sin(15.6deg), sin(30deg))=3.76}.</p></div>
+    </div>
+    <div class="q" data-answers="90" data-mode="value">
+      <p class="qtext">Triangle ABC has {m:A=30deg}, {m:a=5} and {m:b=10}. Find angle B in degrees. Type only the number.</p>
+      <ol class="ladder"><li>{m:sin B=frac(10 sin(30deg), 5)}.</li><li>What is {m:sin B}? Which angle has that sine?</li></ol>
+      <ul class="wrong"><li data-if="0">A sine of 1 belongs to {m:90deg}, not 0. {m:sin B=frac(10*0.5, 5)=1}.</li></ul>
+      <div class="solution"><p>{m:sin B=1}, so {m:B=90deg}. There is exactly one triangle, and it is right-angled.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Triangle ABC has {m:A=30deg} and {m:b=10}. Two triangles fit when <em>a</em> is more than 5 and less than 10. How many whole-number values of <em>a</em> give two triangles? Type only the number.</p>
+      <ol class="ladder"><li>List the whole numbers more than 5 and less than 10.</li><li>5 and 10 are not included. Why not?</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That counts 5 as well. At {m:a=5} the triangle is right-angled, and there is only one triangle.</li>
+        <li data-if="3">That is one too few. The whole numbers are 6, 7, 8 and 9.</li>
+      </ul>
+      <div class="solution"><p>The values are 6, 7, 8 and 9: four values. At {m:a=5} there is one right-angled triangle, and at {m:a=10} or more there is one triangle.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Bearings and problems in two dimensions</h2>
+    <p>A {term:bearing} gives a direction as an angle measured <b>clockwise from north</b>. Write it with three digits: east is 090&deg;, south is 180&deg; and 40&deg; is written 040&deg;.</p>
+    <p>A bearing is measured <b>at the place you start from</b>. The bearing of B from A is measured at A. The bearing of A from B is measured at B. The two are {m:180deg} apart.</p>
+    <figure class="figure-lg">{fig:trig-triangles-back-bearing}<figcaption>Look at the two north arrows. They are parallel. The bearing of B from A is 072&deg;. Turning round, the bearing of A from B is {m:72deg+180deg=252deg}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> to find the bearing of A from B, add {m:180deg} to the bearing of B from A if it is less than {m:180deg}. Subtract {m:180deg} if it is {m:180deg} or more. Always draw a north line at each point you start from.</p>
+    </div>
+    <p>For a journey in two legs, draw the path and a north line at each turning point. Then work out the angle inside the triangle between the two legs. Use the cosine rule and the sine rule as before.</p>
+    <figure class="figure-lg">{fig:trig-triangles-bearing-legs}<figcaption>Look at the north arrow at Q. The bearing from Q to R is 130&deg;. The line from Q back to P has bearing 240&deg;. The angle PQR is the difference, {m:240-130=110deg}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a ship in two legs</h3>
+      <p>A ship sails 12 km from P to Q on a bearing of 060&deg;. It then sails 9 km to R on a bearing of 130&deg;. Find PR, to 3 significant figures, and the bearing of R from P to the nearest degree.</p>
+      <ol class="steps">
+        <li>The bearing of P from Q is {m:60+180=240deg}. The bearing of R from Q is {m:130deg}. So angle PQR is {m:240-130=110deg}.</li>
+        <li>Two sides, 12 and 9, and the angle between them: the cosine rule. {m:PR^2=12^2+9^2-2*12*9*cos(110deg)=225+73.88=298.88}.</li>
+        <li>{m:PR=sqrt(298.88)=17.3} km.</li>
+        <li>Now use the sine rule to find angle QPR: {m:frac(sin(QPR), 9)=frac(sin(110deg), 17.29)}, so {m:sin(QPR)=0.4891}, and {m:QPR=29.3deg}.</li>
+        <li>The bearing of R from P is {m:60+29.3=89.3deg}, which is 089&deg; to the nearest degree.</li>
+      </ol>
+      <p>The angle at P is the smaller of the two unknown angles, so the inverse sine gives the right one.</p>
+    </div>
+    <p>Many problems have two triangles that share a side. Find the shared side in one triangle. Then use it in the other.</p>
+    <figure class="figure-lg">{fig:trig-triangles-field}<figcaption>Look at the dashed line AC. It is a side of both triangles ABC and ACD. The triangle ABC has two sides and the angle between them, so start there.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: two triangles</h3>
+      <p>In the field ABCD, {m:AB=6}, {m:BC=9}, {m:CD=7} and {m:DA=8} metres, and angle ABC is {m:110deg}. Find AC, then angle ADC.</p>
+      <ol class="steps">
+        <li>In triangle ABC, the cosine rule: {m:AC^2=6^2+9^2-2*6*9*cos(110deg)=117+36.94=153.94}.</li>
+        <li>{m:AC=sqrt(153.94)=12.4} m, to 3 significant figures.</li>
+        <li>In triangle ACD you know all three sides: 8, 7 and AC. The angle D is opposite AC: {m:cos D=frac(8^2+7^2-153.94, 2*8*7)=frac(-40.94, 112)=-0.3655}.</li>
+        <li>{m:D=cos^(-1)(-0.3655)=111.4deg}, to 1 decimal place.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The bearing of B from A is 245&deg;. Find the bearing of A from B.</p>
+      <ol class="steps">
+        <li>245&deg; is more than 180&deg;, so subtract: {m:245-180=}<span class="blank" data-answers="65">___</span>.</li>
+        <li>Written with three digits, the bearing is 0<span class="blank" data-answers="65">___</span>&deg;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:245-180=65}, so the bearing of A from B is 065&deg;.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: bearings and problems</h2>
+    <div class="q" data-answers="252" data-mode="value">
+      <p class="qtext">The bearing of B from A is 072&deg;. Find the bearing of A from B, in degrees. Type only the number.</p>
+      <ol class="ladder"><li>The two bearings are 180&deg; apart.</li><li>072&deg; is less than 180&deg;, so add 180&deg;.</li></ol>
+      <ul class="wrong"><li data-if="108">That is {m:180-72}. Add 180 to the bearing instead.</li></ul>
+      <div class="solution"><p>{m:72+180=252}, so the bearing of A from B is 252&deg;.</p></div>
+    </div>
+    <div class="q" data-answers="65" data-mode="value">
+      <p class="qtext">The bearing of B from A is 245&deg;. Find the bearing of A from B, in degrees. Type only the number (leave out a leading zero).</p>
+      <ol class="ladder"><li>245&deg; is more than 180&deg;, so subtract 180&deg;.</li></ol>
+      <ul class="wrong"><li data-if="425">Adding 180 gives more than 360, which is not a bearing. For a bearing over 180, subtract.</li></ul>
+      <div class="solution"><p>{m:245-180=65}, so the bearing is 065&deg;.</p></div>
+    </div>
+    <div class="q" data-answers="13.8" data-mode="value">
+      <p class="qtext">A walker goes 8 km from P to Q on a bearing of 040&deg;, then 10 km from Q to R on a bearing of 120&deg;. Find PR in km, to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-q-bearing}</figure>
+      <ol class="ladder"><li>The bearing of P from Q is {m:40+180=220deg}.</li><li>Angle PQR is {m:220-120=100deg}.</li><li>Use the cosine rule with the sides 8 and 10 and the angle {m:100deg} between them.</li></ol>
+      <ul class="wrong"><li data-if="11.7">You used {m:80deg} for the angle PQR. The angle is {m:220-120=100deg}, because you must use the bearing of P from Q.</li></ul>
+      <div class="solution"><p>{m:PQR=220-120=100deg}. {m:PR^2=64+100-160 cos(100deg)=191.78}, so {m:PR=13.8} km.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The bearing of B from A is 300&deg;. What is the bearing of A from B?</p>
+      <ul class="options">
+        <li data-why="480 is more than 360, so it is not a bearing. For a bearing over 180, subtract 180.">480&deg;</li>
+        <li data-why="That is 300 minus 90. The two bearings must differ by exactly 180, and 300 and 210 differ by 90.">210&deg;</li>
+        <li data-correct>120&deg;</li>
+      </ul>
+      <ol class="ladder"><li>300&deg; is more than 180&deg;.</li></ol>
+      <div class="solution"><p>{m:300-180=120}. The bearing of A from B is 120&deg;.</p></div>
+    </div>
+    <div class="q" data-answers="85" data-mode="value">
+      <p class="qtext">In the walk above (8 km on 040&deg;, then 10 km on 120&deg;), find the bearing of R from P, to the nearest degree. Type only the number (leave out a leading zero).</p>
+      <ol class="ladder"><li>Use the sine rule in triangle PQR to find angle QPR: {m:frac(sin(QPR), 10)=frac(sin(100deg), 13.85)}.</li><li>Add the angle QPR to 040&deg;.</li></ol>
+      <ul class="wrong"><li data-if="45">That is the angle QPR. A bearing is measured from north, so add the 40&deg;.</li></ul>
+      <div class="solution"><p>{m:sin(QPR)=frac(10 sin(100deg), 13.85)=0.7110}, so {m:QPR=45.3deg}. The bearing of R from P is {m:40+45.3=85.3}, which is 085&deg; to the nearest degree.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: run it backwards</h2>
+    <p>You have found a missing side, and a missing angle. Each is the reverse of the other. You also found an area from sides and an angle. You can find an angle from an area.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the angles and a side to a missing side. Put the sides on top: {m:frac(a, sin A)=frac(b, sin B)}. Multiply to get the side.</p><p>{m:a=9.5}, {m:A=38deg} and {m:B=71deg} give {m:b=frac(9.5 sin(71deg), sin(38deg))=14.6}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the sides to a missing angle. Put the sines on top: {m:frac(sin A, a)=frac(sin B, b)}. Take the inverse sine. If an angle could be obtuse, check the second answer.</p><p>With the sides 5, 8 and 10: {m:cos C=frac(25+64-100, 80)=-0.1375}, so {m:C=97.9deg}.</p></div>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From two sides and the angle between them to the area: {m:frac(1, 2)ab sin C}. One answer.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the area and two sides to the angle between them: {m:sin C=frac(2*"Area", ab)}. There are two angles: the acute one, and {m:180deg} minus it. Both give the same area.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:trig-triangles-flip-area}<figcaption>Look at the two triangles. They share the base AC of 12 cm. Each has a 9 cm side from A. The angle at A is {m:47.8deg} in one and {m:132.2deg} in the other. Both have area 40 cm&sup2;.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from an area to the angle</h3>
+      <p>A triangle has sides of 9 cm and 12 cm and an area of 40 cm&sup2;. Find the possible values of the angle between them, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>{m:frac(1, 2)*9*12*sin C=40}, so {m:54 sin C=40}.</li>
+        <li>{m:sin C=frac(40, 54)=0.7407}.</li>
+        <li>{m:C=sin^(-1)(0.7407)=47.8deg}, or {m:C=180-47.8=132.2deg}.</li>
+      </ol>
+      <p>Both angles give the same area, because {m:sin(47.8deg)=sin(132.2deg)}. Unless the question says acute or obtuse, there are two triangles.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="14.6" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=9.5} cm, {m:A=38deg} and {m:B=71deg}. Find side <em>b</em> to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The pairs are <em>a</em> with A, and <em>b</em> with B.</li><li>{m:b=frac(9.5 sin(71deg), sin(38deg))}.</li></ol>
+      <ul class="wrong"><li data-if="6.19">You turned the rule upside down. Side <em>b</em> goes with {m:sin B}, and <em>a</em> with {m:sin A}.</li></ul>
+      <div class="solution"><p>{m:b=frac(9.5 sin(71deg), sin(38deg))=14.59}, so 14.6 cm.</p></div>
+    </div>
+    <div class="q" data-answers="97.9" data-mode="value">
+      <p class="qtext">Triangle ABC has sides {m:a=5}, {m:b=8} and {m:c=10}. Find angle C in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:c^2} first: {m:cos C=frac(a^2+b^2-c^2, 2ab)}.</li><li>{m:cos C=frac(25+64-100, 80)}. It is negative.</li></ol>
+      <ul class="wrong"><li data-if="82.1">That is {m:180-97.9}. The cosine is negative, so C is obtuse. Use the inverse cosine of the negative value.</li></ul>
+      <div class="solution"><p>{m:cos C=frac(-11, 80)=-0.1375}, so {m:C=97.9deg}.</p></div>
+    </div>
+    <div class="q" data-answers="135.6" data-mode="value">
+      <p class="qtext">A triangle has sides of 8 cm and 10 cm and an area of 28 cm&sup2;. The angle between the sides is obtuse. Find it in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>{m:frac(1, 2)*8*10*sin C=28}, so {m:40 sin C=28}.</li><li>{m:sin C=0.7}. The calculator gives the acute angle. The obtuse angle is {m:180deg} minus it.</li></ol>
+      <ul class="wrong"><li data-if="44.4">That is the acute angle. The question says obtuse, so subtract it from 180.</li></ul>
+      <div class="solution"><p>{m:sin C=0.7}, so {m:C=44.4deg} or {m:180-44.4=135.6deg}. The question wants the obtuse one: {m:135.6deg}.</p></div>
+    </div>
+    <div class="q" data-answers="38.3 or 141.7" data-mode="value">
+      <p class="qtext">In a triangle, {m:sin B=0.62}. Find the two possible values of B in degrees, to 1 decimal place. Type your answers like 1.5 or 2.5.</p>
+      <ol class="ladder"><li>The calculator gives one angle.</li><li>The other has the same sine: {m:180deg} minus the first.</li></ol>
+      <ul class="wrong"><li data-if="38.3">That is one answer. A sine of 0.62 also belongs to the angle {m:180-38.3}.</li></ul>
+      <div class="solution"><p>{m:B=sin^(-1)(0.62)=38.3deg} or {m:B=180-38.3=141.7deg}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ana says:</b> in triangle ABC, {m:A=40deg}, {m:B=65deg} and {m:b=12}. So {m:frac(a, sin B)=frac(12, sin A)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She paired each side with the wrong angle</li>
+        <li data-why="The sine rule works in any triangle. It does not need a right angle.">The sine rule needs a right angle</li>
+        <li data-why="Two angles and a side are enough for the sine rule. Ana does not need the third angle here.">She should have found angle C first</li>
+      </ul>
+      <ol class="ladder"><li>Side <em>a</em> is opposite angle A.</li><li>Side <em>b</em> is opposite angle B.</li></ol>
+      <div class="solution"><p>Each side goes with the sine of the angle <b>opposite</b> it. It should be {m:frac(a, sin A)=frac(12, sin B)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> my calculator gives {m:sin(30deg)=-0.988}, so I will use that. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The sine of 30 degrees is positive, and the calculator would not give a negative value for a mistake of sign.">He pressed the wrong sign</li>
+        <li data-correct>His calculator is set to radians, not degrees</li>
+        <li data-why="The sine of 30 degrees is a single value, one half. It does not depend on a triangle.">The sine depends on the size of the triangle</li>
+      </ul>
+      <ol class="ladder"><li>What should {m:sin(30deg)} be?</li><li>{m:-0.988} is the sine of 30 radians.</li></ol>
+      <div class="solution"><p>{m:sin(30deg)=0.5}. The value {m:-0.988} is the sine of 30 <em>radians</em>. Check that the calculator shows DEG.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> in the cosine rule I found {m:a^2=50.2}, so {m:a=50.2}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The cosine rule gives a squared. Cara found a squared correctly. The mistake is after that.">She used the wrong angle</li>
+        <li data-why="The value 50.2 is the result of the calculation. The mistake is what she did with it.">She should have divided by 2</li>
+        <li data-correct>She forgot to take the square root</li>
+      </ul>
+      <ol class="ladder"><li>The rule gives {m:a^2}, not <em>a</em>.</li></ol>
+      <div class="solution"><p>{m:a=sqrt(50.2)=7.08}. The last step of the cosine rule is the square root.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> {m:A=40deg}, {m:a=7} and {m:b=9}. The sine rule gives {m:sin B=0.8264}, so {m:B=55.7deg} and that is the only answer. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Taking the inverse sine of 0.8264 is correct. The value 55.7 is right. The mistake is that there is another answer.">He should have used the inverse cosine</li>
+        <li data-correct>He missed the second angle, {m:180-55.7=124.3deg}, which also fits</li>
+        <li data-why="A sine of 0.8264 is less than 1, so a triangle exists. The problem is that there is a second one.">There is no triangle, because the sine is too large</li>
+      </ul>
+      <ol class="ladder"><li>Two angles have the same sine.</li><li>Does {m:40+124.3} come to less than 180?</li></ol>
+      <div class="solution"><p>{m:40+124.3=164.3} is less than 180, so B can also be {m:124.3deg}. There are two triangles.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="11.1" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:a=9} cm, {m:A=48deg} and {m:B=67deg}. Find side <em>b</em> to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The pairs are <em>a</em> with A, and <em>b</em> with B.</li><li>{m:b=frac(9 sin(67deg), sin(48deg))}.</li></ol>
+      <ul class="wrong"><li data-if="7.27">You turned the fraction upside down. Side <em>b</em> goes with {m:sin(67deg)}.</li></ul>
+      <div class="solution"><p>{m:b=frac(9 sin(67deg), sin(48deg))=11.15}, so 11.1 cm to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="117.3" data-mode="value">
+      <p class="qtext">A triangle has sides 6, 8 and 12. Find its largest angle in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>The largest angle is opposite the longest side, 12.</li><li>{m:cos C=frac(36+64-144, 2*6*8)}.</li></ol>
+      <ul class="wrong"><li data-if="62.7">That is {m:180-117.3}. The cosine is negative, so the angle is obtuse.</li></ul>
+      <div class="solution"><p>{m:cos C=frac(-44, 96)=-0.4583}, so {m:C=117.3deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Triangle ABC has {m:A=35deg}, {m:a=5} and {m:b=8}. How many triangles fit these facts?</p>
+      <ul class="options">
+        <li data-why="Here sin B is 0.918, which is less than 1, so a triangle exists.">No triangle</li>
+        <li data-why="The second angle, 113.4 degrees, fits with 35 degrees, because they add to less than 180.">One triangle</li>
+        <li data-correct>Two triangles</li>
+      </ul>
+      <ol class="ladder"><li>Find {m:sin B=frac(8 sin(35deg), 5)}.</li><li>Check whether the second angle fits.</li></ol>
+      <div class="solution"><p>{m:sin B=0.9177}, so B is {m:66.6deg} or {m:113.4deg}. Both fit with {m:35deg}, so there are two triangles.</p></div>
+    </div>
+    <div class="q" data-answers="59.2" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:A=70deg}, {m:b=9} cm and {m:c=14} cm. Find the area in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The angle A is between <em>b</em> and <em>c</em>.</li><li>{m:frac(1, 2)*9*14*sin(70deg)}.</li></ol>
+      <ul class="wrong"><li data-if="118">You left out the half. The area formula starts with {m:frac(1, 2)}.</li></ul>
+      <div class="solution"><p>{m:"Area"=63 sin(70deg)=59.2} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="140" data-mode="value">
+      <p class="qtext">The bearing of A from B is 320&deg;. Find the bearing of B from A, in degrees. Type only the number.</p>
+      <ol class="ladder"><li>320&deg; is more than 180&deg;, so subtract 180&deg;.</li></ol>
+      <ul class="wrong"><li data-if="500">Adding 180 gives more than 360. For a bearing over 180, subtract 180.</li></ul>
+      <div class="solution"><p>{m:320-180=140}. The bearing of B from A is 140&deg;.</p></div>
+    </div>
+    <div class="q" data-answers="48.2" data-mode="value">
+      <p class="qtext">A triangle has sides 7, 8 and 9. Find its smallest angle in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>The smallest angle is opposite the shortest side, 7.</li><li>{m:cos A=frac(64+81-49, 2*8*9)=frac(96, 144)}.</li></ol>
+      <ul class="wrong"><li data-if="0.667">That is the cosine of the angle. Use the inverse cosine.</li></ul>
+      <div class="solution"><p>{m:cos A=frac(2, 3)}, so {m:A=48.2deg}.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:b=5}, {m:c=12} and {m:A=90deg}. Use the cosine rule to find <em>a</em>. Type only the number.</p>
+      <ol class="ladder"><li>{m:cos(90deg)=0}.</li><li>What does the rule become when the last term is 0?</li></ol>
+      <ul class="wrong"><li data-if="169">That is {m:a^2}. Take the square root.</li></ul>
+      <div class="solution"><p>{m:a^2=25+144-120*0=169}, so {m:a=13}. This is Pythagoras&rsquo; theorem.</p></div>
+    </div>
+    <div class="q" data-answers="48.7" data-mode="value">
+      <p class="qtext">In triangle ABC, {m:A=110deg}, {m:a=15} and {m:b=12}. Find angle B in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>{m:sin B=frac(12 sin(110deg), 15)}.</li><li>Side <em>b</em> is shorter than side <em>a</em>, and A is obtuse, so B is acute.</li></ol>
+      <ul class="wrong"><li data-if="131.3">That is {m:180-48.7}. With {m:110deg} it would make more than {m:180deg}.</li></ul>
+      <div class="solution"><p>{m:sin B=frac(12 sin(110deg), 15)=0.7518}, so {m:B=48.7deg}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="14.5" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] In triangle ABC, {m:b=12} cm, {m:c=15} cm and {m:A=64deg}. Find side <em>a</em> to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-e-cos-side}</figure>
+      <ol class="ladder"><li>The angle A is between <em>b</em> and <em>c</em>. Use the cosine rule.</li><li>{m:a^2=144+225-360 cos(64deg)}.</li></ol>
+      <ul class="wrong"><li data-if="211.2;211">That is {m:a^2}. Take the square root.</li></ul>
+      <div class="solution">
+        <p>{m:a^2=369-360 cos(64deg)=211.2}, so {m:a=14.5} cm.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:a^2=12^2+15^2-2*12*15*cos(64deg)}</li>
+          <li><b>A1</b> for {m:a^2=211.2} or better</li>
+          <li><b>A1</b> for 14.5</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="43.9" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] In triangle ABC, {m:a=14} cm, {m:b=11} cm and {m:A=62deg}. Find angle B in degrees, to 1 decimal place. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-e-sine-angle}</figure>
+      <ol class="ladder"><li>The 14 cm side and {m:62deg} are a matching pair.</li><li>{m:frac(sin B, 11)=frac(sin(62deg), 14)}.</li></ol>
+      <ul class="wrong"><li data-if="136.1">That is the obtuse angle. Side <em>b</em> is shorter than <em>a</em>, so B is acute.</li></ul>
+      <div class="solution">
+        <p>{m:sin B=frac(11 sin(62deg), 14)=0.6937}, so {m:B=43.9deg}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(sin B, 11)=frac(sin(62deg), 14)}</li>
+          <li><b>A1</b> for {m:sin B=0.6937}</li>
+          <li><b>A1</b> for 43.9</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="52.1 or 127.9" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] [OCR] Triangle ABC has {m:A=35deg}, {m:a=8} cm and {m:b=11} cm. Find the two possible values of angle B, in degrees to 1 decimal place. Type your answers like 1.5 or 2.5.</p>
+      <ol class="ladder"><li>{m:sin B=frac(11 sin(35deg), 8)}.</li><li>The second angle is {m:180deg} minus the first. Check that it fits with A.</li></ol>
+      <ul class="wrong"><li data-if="52.1">That is one answer. The other is {m:180-52.1}, and {m:35+127.9} is less than 180, so it fits.</li></ul>
+      <div class="solution">
+        <p>{m:sin B=frac(11 sin(35deg), 8)=0.7887}. {m:B=52.1deg} or {m:B=127.9deg}. Both fit, because {m:35+127.9=162.9}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:sin B=frac(11 sin(35deg), 8)}</li>
+          <li><b>A1</b> for {m:B=52.1deg}</li>
+          <li><b>M1</b> for {m:180-52.1}</li>
+          <li><b>A1</b> for {m:B=127.9deg}, with a check that it fits</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="7.14" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Triangle ABC has {m:AB=7} cm, {m:AC=10} cm and area 25 cm&sup2;. The angle A is acute. Find the length of BC to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The angle A is between AB and AC. Use {m:frac(1, 2)*7*10*sin A=25}.</li><li>Find A, then use the cosine rule for BC.</li></ol>
+      <ul class="wrong"><li data-if="51;51.0;51.02">That is {m:BC^2}. Take the square root.</li></ul>
+      <div class="solution">
+        <p>{m:35 sin A=25}, so {m:sin A=frac(5, 7)} and {m:A=45.6deg}. {m:BC^2=49+100-140 cos(45.6deg)=51.0}, so {m:BC=7.14} cm.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(1, 2)*7*10*sin A=25}</li>
+          <li><b>A1</b> for {m:A=45.6deg}</li>
+          <li><b>M1</b> for {m:BC^2=7^2+10^2-2*7*10*cos A}</li>
+          <li><b>A1</b> for 7.14</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="25.4" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(a)</b> [3 marks] A ship leaves port P and sails 20 km on a bearing of 075&deg; to Q. It then sails 14 km on a bearing of 160&deg; to R. Find PR in km, to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-e-bearing}</figure>
+      <ol class="ladder"><li>The bearing of P from Q is {m:75+180=255deg}.</li><li>Angle PQR is {m:255-160=95deg}.</li><li>Use the cosine rule with 20, 14 and {m:95deg}.</li></ol>
+      <ul class="wrong"><li data-if="23.4">You used 85 degrees for the angle at Q. The angle PQR is {m:255-160=95deg}.</li></ul>
+      <div class="solution">
+        <p>{m:PQR=255-160=95deg}. {m:PR^2=400+196-560 cos(95deg)=644.8}, so {m:PR=25.4} km.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for angle {m:PQR=95deg}</li>
+          <li><b>M1</b> for the cosine rule with 20, 14 and {m:95deg}</li>
+          <li><b>A1</b> for 25.4</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="108" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] Using the same journey (20 km on 075&deg;, then 14 km on 160&deg;), find the bearing of R from P, to the nearest degree. Type only the number.</p>
+      <ol class="ladder"><li>Use the sine rule in triangle PQR to find angle QPR. {m:PR=25.39}.</li><li>Add the angle QPR to 075&deg;.</li></ol>
+      <ul class="wrong"><li data-if="33">That is the angle QPR. A bearing is measured from north, so add the 75&deg;.</li></ul>
+      <div class="solution">
+        <p>{m:sin(QPR)=frac(14 sin(95deg), 25.39)=0.5493}, so {m:QPR=33.3deg}. The bearing is {m:75+33.3=108.3}, which is 108&deg; to the nearest degree.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(sin(QPR), 14)=frac(sin(95deg), PR)}</li>
+          <li><b>A1</b> for {m:QPR=33.3deg}</li>
+          <li><b>A1</b> for 108</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="31.2" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] In triangle ABC, {m:a=8.5} cm, {m:b=11.2} cm and {m:C=41deg}. Find the area in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:trig-triangles-e-area}</figure>
+      <ol class="ladder"><li>The angle C is between <em>a</em> and <em>b</em>.</li><li>{m:frac(1, 2)*8.5*11.2*sin(41deg)}.</li></ol>
+      <ul class="wrong"><li data-if="47.6">That is {m:frac(1, 2)*8.5*11.2}. Multiply by {m:sin(41deg)} as well.</li></ul>
+      <div class="solution">
+        <p>{m:"Area"=frac(1, 2)*8.5*11.2*sin(41deg)=47.6 sin(41deg)=31.2} cm&sup2;.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(1, 2)*8.5*11.2*sin(41deg)}</li>
+          <li><b>A1</b> for 31.2 or better</li>
+          <li><b>A1</b> for the unit, cm&sup2;</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The area formula.</b> Take side <em>a</em> as the base. Drop a perpendicular from A. The height is {m:b sin C}, because it is the side opposite {m:C} in a right-angled triangle with hypotenuse <em>b</em>. The area is {m:frac(1, 2)*a*b sin C}. If C is obtuse, the height is {m:b sin(180deg-C)}, which equals {m:b sin C}.</li>
+      <li><b>The sine rule.</b> The area is {m:frac(1, 2)bc sin A}, {m:frac(1, 2)ac sin B} and {m:frac(1, 2)ab sin C}. They are all the same number. Set the first two equal and divide by {m:frac(1, 2)c}: {m:b sin A=a sin B}, so {m:frac(a, sin A)=frac(b, sin B)}.</li>
+      <li><b>The cosine rule.</b> Drop the perpendicular of height <em>h</em> from B to side <em>b</em>. It splits <em>b</em> into {m:c cos A} and {m:b-c cos A}, and {m:h=c sin A}. Pythagoras on the right-hand triangle gives {m:a^2=h^2+(b-c cos A)^2=c^2 sin^2 A+b^2-2bc cos A+c^2 cos^2 A}. Since {m:sin^2 A+cos^2 A=1}, this is {m:a^2=b^2+c^2-2bc cos A}.</li>
+      <li><b>The ambiguous case.</b> A circle of radius <em>a</em> round C can cut the line from A in two points, one point, or none. That is two triangles, one triangle, or none. It is the sine rule that cannot tell the two points apart, because {m:sin B=sin(180deg-B)}.</li>
+      <li><b>Bearings.</b> North lines at different points are parallel. The bearing from A to B and the bearing from B to A are the two ends of one line, so they differ by {m:180deg}.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Using a calculator set to radians. Check that it shows DEG.</li>
+      <li>Pairing a side with the wrong angle. A side goes with the angle opposite it.</li>
+      <li>Forgetting the square root at the end of the cosine rule.</li>
+      <li>Using {m:cos A} in the area formula, or using an angle that is not between the two sides.</li>
+      <li>Forgetting the half in {m:frac(1, 2)ab sin C}.</li>
+      <li>Rounding in the middle of a calculation. Keep the full value and round at the end.</li>
+      <li>Giving only one angle from the sine rule when the question could have two, or giving a second angle that does not fit.</li>
+      <li>Reading a bearing from the wrong point. The bearing of A from B is measured at B.</li>
+      <li>Using the cosine rule for an angle with the wrong side on the left. The side opposite the angle goes first.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="trig-triangles">
+      <li><label><input type="checkbox"> name a triangle&rsquo;s sides and angles, and use the sine rule to find a side or an angle</label></li>
+      <li><label><input type="checkbox"> use the cosine rule to find a side or an angle</label></li>
+      <li><label><input type="checkbox"> choose the right rule from the information given</label></li>
+      <li><label><input type="checkbox"> find the area of a triangle from two sides and the angle between them, and run it backwards</label></li>
+      <li><label><input type="checkbox"> decide when two triangles, one or none fit, and find both answers [OCR]</label></li>
+      <li><label><input type="checkbox"> use bearings, and solve problems with more than one triangle</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
