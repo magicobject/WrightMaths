@@ -1,0 +1,1094 @@
+<main class="book strand-al-sequences" data-book-page="topic" data-topic="binomial-positive">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Sequences and series &middot; Year 1</span>
+      <h1>Binomial expansion (positive whole-number powers)</h1>
+      <p class="lead">A bracket such as {m:(2+3x)^5} means five brackets multiplied together. Multiplying them out one by one is slow, and a slip is likely. This page gives you a fast, reliable method. You will use Pascal&rsquo;s triangle and the &ldquo;n choose r&rdquo; button on your calculator. You will expand brackets, pick out one term, find a missing number from a coefficient, and use the expansion to estimate a number such as {m:1.02^8}.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Binomial expansion for fractional and negative powers in Year 2, which carries on from this page. The same coefficients also give the probabilities of a binomial distribution in statistics.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Binomial expansion (positive whole-number powers)</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses <a href="indices-surds.html">Indices and surds</a>: what a power means, and the laws of indices. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-expanding-a-bracket-and-pascals-triangle">Skip to the lesson</a></p>
+    <div class="q" data-answers="32" data-mode="value">
+      <p class="qtext">Work out {m:2^5}.</p>
+      <ol class="ladder"><li>{m:2^5} means five 2s multiplied together.</li><li>Work out {m:2*2*2*2*2}.</li></ol>
+      <ul class="wrong"><li data-if="10">You multiplied 2 by 5. The small number says how many 2s to multiply: {m:2*2*2*2*2}.</li></ul>
+      <div class="solution"><p>{m:2^5=2*2*2*2*2=32}.</p></div>
+    </div>
+    <div class="q" data-answers="8x^3" data-mode="exact">
+      <p class="qtext">Write {m:(2x)^3} without brackets. Type it like 5x^2.</p>
+      <ol class="ladder"><li>The power 3 applies to everything inside the bracket: both the 2 and the x.</li><li>{m:(2x)^3=2^3*x^3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x^3">The power applies to the 2 as well. {m:(2x)^3=2^3*x^3}.</li>
+        <li data-if="6x^3">You multiplied 2 by 3. Cube the 2 instead: {m:2^3=8}.</li>
+      </ul>
+      <div class="solution"><p>{m:(2x)^3=2^3*x^3=8x^3}. Check: {m:x=1} gives {m:2^3=8} on both sides.</p></div>
+    </div>
+    <div class="q" data-answers="x^2+5x+6" data-mode="exact">
+      <p class="qtext">Expand {m:(x+2)(x+3)}. Type it like x^2+3x+1.</p>
+      <ol class="ladder"><li>Multiply each term in the first bracket by each term in the second.</li><li>{m:x*x}, then {m:x*3}, then {m:2*x}, then {m:2*3}.</li><li>Collect the terms in x.</li></ol>
+      <ul class="wrong"><li data-if="x^2+6;6+x^2">You multiplied only the first terms and the last terms. The two middle products, {m:3x} and {m:2x}, are also there.</li></ul>
+      <div class="solution"><p>{m:(x+2)(x+3)=x^2+3x+2x+6=x^2+5x+6}. Check: {m:x=1} gives {m:3*4=12} and {m:1+5+6=12}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="-8" data-mode="value">
+      <p class="qtext">Work out {m:(-2)^3}.</p>
+      <ol class="ladder"><li>Write it out: {m:(-2)*(-2)*(-2)}.</li><li>Multiply the first two. Then multiply by the third.</li></ol>
+      <ul class="wrong"><li data-if="8">Three negative numbers multiplied give a negative answer. {m:(-2)*(-2)=4}, and {m:4*(-2)=-8}.</li><li data-if="-6">You multiplied 2 by 3. The power 3 means three 2s multiplied: {m:(-2)*(-2)*(-2)}.</li></ul>
+      <div class="solution"><p>{m:(-2)*(-2)=4}, and {m:4*(-2)=-8}. An odd power of a negative number is negative.</p></div>
+    </div>
+    <div class="q" data-answers="45" data-mode="value">
+      <p class="qtext">Work out {m:frac(10*9, 2)}.</p>
+      <ol class="ladder"><li>Multiply the top first: {m:10*9=90}.</li><li>Then divide by 2.</li></ol>
+      <ul class="wrong"><li data-if="90">You forgot to divide by 2.</li></ul>
+      <div class="solution"><p>{m:frac(10*9, 2)=frac(90, 2)=45}.</p></div>
+    </div>
+    <div class="q" data-answers="120" data-mode="value">
+      <p class="qtext">Work out {m:5*4*3*2*1}.</p>
+      <ol class="ladder"><li>Multiply from the left: {m:5*4=20}.</li><li>Then multiply by 3, then 2, then 1.</li></ol>
+      <ul class="wrong"><li data-if="15">You added the numbers. The signs are multiplication signs.</li><li data-if="20">You stopped after {m:5*4}. Carry on with 3, 2 and 1.</li></ul>
+      <div class="solution"><p>{m:5*4=20}, {m:20*3=60}, {m:60*2=120}, {m:120*1=120}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Expanding a bracket, and Pascal&rsquo;s triangle</h2>
+    <p>A {term:binomial} is a bracket with two terms in it, such as {m:(a+b)} or {m:(1+2x)}. To <b>expand</b> a bracket is to multiply it out. You already know {m:(a+b)^2=a^2+2ab+b^2}. Multiply that by one more {m:(a+b)} and you get the cube:</p>
+    <p>{m:(a+b)^3=(a+b)(a^2+2ab+b^2)=a^3+3a^2 b+3a b^2+b^3}.</p>
+    <p>Look at the pattern. It is the same for every power n.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the shape of the {term:binomial-expansion|binomial expansion} of {m:(a+b)^n}.</p>
+      <ul class="tick">
+        <li>There are {m:n+1} terms.</li>
+        <li>The power of a starts at n and goes down by 1 each term, to 0.</li>
+        <li>The power of b starts at 0 and goes up by 1 each term, to n.</li>
+        <li>In every term the two powers add up to n.</li>
+        <li>The numbers in front of the terms are the {term:coefficient|coefficients}. They come from {term:pascals-triangle|Pascal&rsquo;s triangle}.</li>
+      </ul>
+    </div>
+    <p>Pascal&rsquo;s triangle is a triangle of numbers. Each row starts and ends with 1. Every other number is the sum of the two numbers above it. The top row, a single 1, is row 0. Row n gives the coefficients for the power n.</p>
+    <div class="worked">
+      <h3>Worked example: building the next row</h3>
+      <p>Row 5 is 1, 5, 10, 10, 5, 1. Write down row 6.</p>
+      <ol class="steps">
+        <li>Start and end the new row with 1.</li>
+        <li>Add the numbers in pairs along row 5: {m:1+5=6}, {m:5+10=15}, {m:10+10=20}, {m:10+5=15}, {m:5+1=6}.</li>
+        <li>Row 6 is 1, 6, 15, 20, 15, 6, 1.</li>
+        <li>Check: each row adds up to a power of 2. Row 5 adds to {m:2^5=32}. Row 6 adds to {m:1+6+15+20+15+6+1=64=2^6}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:binomial-positive-pascal}<figcaption>Look at the highlighted boxes. The 20 in row 6 is the sum of the two 10s above it in row 5.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a power of 4</h3>
+      <p>Expand {m:(a+b)^4}.</p>
+      <ol class="steps">
+        <li>The power is 4, so use row 4: 1, 4, 6, 4, 1. There are five terms.</li>
+        <li>Powers of a go down: {m:a^4}, {m:a^3}, {m:a^2}, {m:a}, {m:1}. Powers of b go up: {m:1}, {m:b}, {m:b^2}, {m:b^3}, {m:b^4}.</li>
+        <li>Write each term: {m:(a+b)^4=a^4+4a^3 b+6a^2 b^2+4a b^3+b^4}.</li>
+        <li>Check: put {m:a=1} and {m:b=1}. The left side is {m:2^4=16}. The right side is {m:1+4+6+4+1=16}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number in the bracket</h3>
+      <p>Expand {m:(x+2)^3}.</p>
+      <ol class="steps">
+        <li>Use row 3: 1, 3, 3, 1. Here a is x and b is 2.</li>
+        <li>{m:x^3+3*x^2*2+3*x*2^2+2^3}.</li>
+        <li>Work out each part: {m:3*2=6}, {m:3*2^2=12} and {m:2^3=8}. So {m:(x+2)^3=x^3+6x^2+12x+8}.</li>
+        <li>Check: put {m:x=1}. The left side is {m:3^3=27}. The right side is {m:1+6+12+8=27}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a minus sign</h3>
+      <p>Expand {m:(x-3)^4}.</p>
+      <ol class="steps">
+        <li>Think of the bracket as {m:(x+(-3))^4}. The number b is {m:-3}. Use row 4: 1, 4, 6, 4, 1.</li>
+        <li>Powers of {m:-3}: {m:(-3)^1=-3}, {m:(-3)^2=9}, {m:(-3)^3=-27}, {m:(-3)^4=81}.</li>
+        <li>{m:x^4+4*x^3*(-3)+6*x^2*9+4*x*(-27)+81}.</li>
+        <li>{m:(x-3)^4=x^4-12x^3+54x^2-108x+81}. The signs alternate, because the odd powers of {m:-3} are negative.</li>
+        <li>Check: put {m:x=1}. The left side is {m:(-2)^4=16}. The right side is {m:1-12+54-108+81=16}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Use row 5 to expand {m:(1+y)^5}.</p>
+      <ol class="steps">
+        <li>Row 5 is 1, 5, 10, 10, 5, 1. Every power of 1 is 1, so only the powers of y matter.</li>
+        <li>{m:(1+y)^5=1+}<span class="blank" data-answers="5">___</span>{m:y+}<span class="blank" data-answers="10">___</span>{m:y^2+10y^3+5y^4+y^5}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(1+y)^5=1+5y+10y^2+10y^3+5y^4+y^5}. Check: put {m:y=1}. The left side is {m:2^5=32}. The right side is {m:1+5+10+10+5+1=32}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: Pascal&rsquo;s triangle</h2>
+    <div class="q" data-answers="21" data-mode="value">
+      <p class="qtext">Row 6 of Pascal&rsquo;s triangle is 1, 6, 15, 20, 15, 6, 1. Row 7 starts 1, 7, and then a missing number. Find the missing number.</p>
+      <ol class="ladder"><li>Each number is the sum of the two numbers above it.</li><li>The missing number sits below 6 and 15.</li></ol>
+      <ul class="wrong"><li data-if="22">You added 7 and 15. The two numbers above the missing one are 6 and 15.</li><li data-if="35">You added 20 and 15, which are further along row 6. The two numbers above the gap are 6 and 15.</li></ul>
+      <div class="solution"><p>{m:6+15=21}. Row 7 is 1, 7, 21, 35, 35, 21, 7, 1.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many terms are there in the expansion of {m:(a+b)^7}?</p>
+      <ul class="options">
+        <li data-why="Count the powers of b: they are 0, 1, 2, 3, 4, 5, 6 and 7. That is 8 different powers, so 8 terms, not 7.">There are 7 terms</li>
+        <li data-correct>There are 8 terms</li>
+        <li data-why="The power of b goes from 0 up to 7. That is 8 values, not 6.">There are 6 terms</li>
+      </ul>
+      <ol class="ladder"><li>Row n of the triangle has {m:n+1} numbers.</li><li>The power of b goes from 0 up to 7.</li></ol>
+      <div class="solution"><p>The power of b takes the values 0 to 7, which is 8 values. So there are {m:7+1=8} terms.</p></div>
+    </div>
+    <div class="q" data-answers="x^4+4x^3+6x^2+4x+1" data-mode="exact">
+      <p class="qtext">Expand {m:(x+1)^4}. Type it like x^3+3x^2+3x+1.</p>
+      <ol class="ladder"><li>Use row 4 of the triangle: 1, 4, 6, 4, 1.</li><li>Every power of 1 is 1, so the coefficients are the row itself.</li></ol>
+      <ul class="wrong"><li data-if="x^4+4x^3+4x^2+4x+1">The middle number of row 4 is 6, not 4. Row 4 is 1, 4, 6, 4, 1.</li><li data-if="x^3+3x^2+3x+1">That is the expansion of {m:(x+1)^3}. For the power 4 use row 4.</li></ul>
+      <div class="solution"><p>{m:(x+1)^4=x^4+4x^3+6x^2+4x+1}. Check: put {m:x=1}. {m:2^4=16} and {m:1+4+6+4+1=16}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3+9x^2+27x+27" data-mode="exact">
+      <p class="qtext">Expand {m:(x+3)^3}. Type it like x^3+3x^2+3x+1.</p>
+      <ol class="ladder"><li>Use row 3: 1, 3, 3, 1. Here b is 3.</li><li>The terms are {m:x^3}, {m:3*x^2*3}, {m:3*x*3^2} and {m:3^3}.</li></ol>
+      <ul class="wrong"><li data-if="x^3+3x^2+3x+27">You did not multiply the middle terms by the powers of 3. {m:3*x^2*3=9x^2} and {m:3*x*3^2=27x}.</li></ul>
+      <div class="solution"><p>{m:x^3+3*3x^2+3*9x+27=x^3+9x^2+27x+27}. Check: put {m:x=1}. {m:4^3=64} and {m:1+9+27+27=64}.</p></div>
+    </div>
+    <div class="q" data-answers="x^4-8x^3+24x^2-32x+16" data-mode="exact">
+      <p class="qtext">Expand {m:(x-2)^4}. Type it like x^2-4x+4.</p>
+      <ol class="ladder"><li>The number b is {m:-2}. Use row 4: 1, 4, 6, 4, 1.</li><li>Powers of {m:-2}: {m:-2}, {m:4}, {m:-8}, {m:16}.</li><li>The signs alternate.</li></ol>
+      <ul class="wrong"><li data-if="x^4+8x^3+24x^2+32x+16">You left out the minus signs. The odd powers of {m:-2} are negative.</li></ul>
+      <div class="solution"><p>{m:x^4+4*(-2)x^3+6*4x^2+4*(-8)x+16=x^4-8x^3+24x^2-32x+16}. Check: put {m:x=1}. {m:(-1)^4=1} and {m:1-8+24-32+16=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which row of Pascal&rsquo;s triangle gives the coefficients for {m:(a+b)^5}?</p>
+      <ul class="options">
+        <li data-correct>Row 5, which is 1, 5, 10, 10, 5, 1</li>
+        <li data-why="Row 4 is 1, 4, 6, 4, 1, which has only 5 numbers. The power 5 needs 6 terms, so 6 numbers.">Row 4, which is 1, 4, 6, 4, 1</li>
+        <li data-why="Row 6 is 1, 6, 15, 20, 15, 6, 1, which has 7 numbers. The power 5 gives 6 terms. The row number is the power.">Row 6, which is 1, 6, 15, 20, 15, 6, 1</li>
+      </ul>
+      <ol class="ladder"><li>The top row, a single 1, is row 0.</li><li>The row number is the same as the power.</li></ol>
+      <div class="solution"><p>The row number equals the power, so use row 5: 1, 5, 10, 10, 5, 1. It has {m:5+1=6} numbers, one for each of the 6 terms.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Factorials and nCr</h2>
+    <p>Pascal&rsquo;s triangle is quick for a small power. For a big power, such as 15, it would take too many rows. You need a way to find any number in the triangle directly.</p>
+    <p>A {term:factorial|factorial} is a product of whole numbers counting down to 1. The symbol {m:n!} is read &ldquo;n factorial&rdquo;. For example {m:5! =5*4*3*2*1=120}. By agreement {m:0! =1}.</p>
+    <p>The {term:ncr|nCr} number is the number in row n, position r of Pascal&rsquo;s triangle. Position counting starts at 0. It is read &ldquo;n choose r&rdquo;. It is written <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>. The stacked form <math alttext="n over r"><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>r</mi></mfrac><mo>)</mo></mrow></math> means the same thing.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the formula for <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</p>
+      {md:frac(n!, r!(n-r)!)}
+      <ul class="tick">
+        <li>Your calculator has an nCr button. Use it to check your working.</li>
+        <li><math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> and <math alttext="nCn-r"><mmultiscripts><mi>C</mi><mrow><mi>n</mi><mo>&minus;</mo><mi>r</mi></mrow><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> are equal, because the triangle is the same read from the left or from the right.</li>
+        <li><math alttext="nC0"><mmultiscripts><mi>C</mi><mn>0</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> and <math alttext="nCn"><mmultiscripts><mi>C</mi><mi>n</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> are both 1. These are the ends of each row.</li>
+      </ul>
+    </div>
+    <p>Why does this count the right thing? To expand {m:(a+b)^n}, you pick a or b from each of the n brackets. A term with {m:b^r} comes from picking b in exactly r of the brackets. The number of ways to choose which r brackets is <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>. That is why <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> is the coefficient.</p>
+    <div class="worked">
+      <h3>Worked example: factorials</h3>
+      <p>Work out {m:6!} and {m:frac(8!, 6!)}.</p>
+      <ol class="steps">
+        <li>{m:6! =6*5*4*3*2*1=720}.</li>
+        <li>For the fraction, write {m:8! =8*7*6!}. The {m:6!} cancels: {m:frac(8!, 6!)=8*7=56}.</li>
+        <li>Cancelling first is much quicker than working out {m:8! =40320} and dividing.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: using the formula</h3>
+      <p>Work out <math alttext="7C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math>.</p>
+      <ol class="steps">
+        <li><math alttext="7C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> = {m:frac(7!, 3!4!)}.</li>
+        <li>Write {m:7! =7*6*5*4!}. The {m:4!} cancels, leaving {m:frac(7*6*5, 3!)=frac(210, 6)}.</li>
+        <li>{m:frac(210, 6)=35}. So <math alttext="7C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> = {m:35}.</li>
+        <li>Check: row 7 of the triangle is 1, 7, 21, 35, 35, 21, 7, 1. Position 3 is 35.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the symmetry</h3>
+      <p>Work out <math alttext="12C10"><mmultiscripts><mi>C</mi><mn>10</mn><none/><mprescripts/><none/><mn>12</mn></mmultiscripts></math>.</p>
+      <ol class="steps">
+        <li><math alttext="12C10"><mmultiscripts><mi>C</mi><mn>10</mn><none/><mprescripts/><none/><mn>12</mn></mmultiscripts></math> equals <math alttext="12C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>12</mn></mmultiscripts></math>, because {m:12-10=2}. Choosing 10 to include is the same as choosing 2 to leave out.</li>
+        <li><math alttext="12C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>12</mn></mmultiscripts></math> = {m:frac(12*11, 2)=frac(132, 2)=66}.</li>
+        <li>So <math alttext="12C10"><mmultiscripts><mi>C</mi><mn>10</mn><none/><mprescripts/><none/><mn>12</mn></mmultiscripts></math> = {m:66}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a missing n</h3>
+      <p>Find the value of n, if <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = {m:21}.</p>
+      <ol class="steps">
+        <li><math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = {m:frac(n(n-1), 2)}. Set it equal to 21: {m:frac(n(n-1), 2)=21}.</li>
+        <li>Multiply by 2: {m:n(n-1)=42}.</li>
+        <li>Two consecutive whole numbers that multiply to 42 are 7 and 6. So {m:n=7}.</li>
+        <li>Check: <math alttext="7C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> = {m:frac(7*6, 2)=21}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Work out <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math>.</p>
+      <ol class="steps">
+        <li><math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:frac(6!, 3!3!)}. Now {m:6! =}<span class="blank" data-answers="720">___</span>.</li>
+        <li>{m:3!3! =6*6=36}. So <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:frac(720, 36)=}<span class="blank" data-answers="20">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p><math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = 20. This matches the middle of row 6: 1, 6, 15, 20, 15, 6, 1.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: factorials and nCr</h2>
+    <div class="q" data-answers="120" data-mode="value">
+      <p class="qtext">Work out {m:5!}.</p>
+      <ol class="ladder"><li>{m:5!} means {m:5*4*3*2*1}.</li></ol>
+      <ul class="wrong"><li data-if="25">You worked out {m:5*5}. The factorial counts down: {m:5*4*3*2*1}.</li><li data-if="15">You added. A factorial multiplies.</li></ul>
+      <div class="solution"><p>{m:5! =5*4*3*2*1=120}.</p></div>
+    </div>
+    <div class="q" data-answers="72" data-mode="value">
+      <p class="qtext">Work out {m:frac(9!, 7!)}.</p>
+      <ol class="ladder"><li>Write {m:9! =9*8*7!}.</li><li>Cancel the {m:7!} on the top and the bottom.</li></ol>
+      <ul class="wrong"><li data-if="2">You worked out {m:9-7}. Cancel the common {m:7!} instead: {m:frac(9*8*7!, 7!)=9*8}.</li></ul>
+      <div class="solution"><p>{m:frac(9!, 7!)=frac(9*8*7!, 7!)=9*8=72}.</p></div>
+    </div>
+    <div class="q" data-answers="56" data-mode="value">
+      <p class="qtext">Work out <math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math>.</p>
+      <ol class="ladder"><li><math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = {m:frac(8!, 3!5!)}.</li><li>Write {m:8! =8*7*6*5!} and cancel the {m:5!}.</li><li>Divide {m:8*7*6=336} by {m:3! =6}.</li></ol>
+      <ul class="wrong"><li data-if="336">You worked out {m:8*7*6} and forgot to divide by {m:3! =6}.</li></ul>
+      <div class="solution"><p><math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = {m:frac(8*7*6, 3*2*1)=frac(336, 6)=56}. Check: row 8 is 1, 8, 28, 56, 70, 56, 28, 8, 1. Position 3 is 56.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is equal to 10C7?</p>
+      <ul class="options">
+        <li data-correct>10C3, because {m:10-7=3}</li>
+        <li data-why="10C4 would need 10 &minus; r = 7 with r = 4, but 10 &minus; 4 = 6. The partner of 10C7 is 10C3.">10C4, because {m:7-3=4}</li>
+        <li data-why="The two numbers are not swapped. In nCr the top number is the total. 7C10 has no meaning, because you cannot choose 10 from 7.">7C10, because the numbers swap</li>
+      </ul>
+      <ol class="ladder"><li><math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> equals <math alttext="nCn-r"><mmultiscripts><mi>C</mi><mrow><mi>n</mi><mo>&minus;</mo><mi>r</mi></mrow><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li><li>Here {m:n=10} and {m:r=7}.</li></ol>
+      <div class="solution"><p><math alttext="10C7"><mmultiscripts><mi>C</mi><mn>7</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C10-7"><mmultiscripts><mi>C</mi><mrow><mn>10</mn><mo>&minus;</mo><mn>7</mn></mrow><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = <math alttext="10C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math>. Both equal {m:120}.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">Work out <math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Use the symmetry to make it short.</p>
+      <ol class="ladder"><li><math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = <math alttext="15C15-14"><mmultiscripts><mi>C</mi><mrow><mn>15</mn><mo>&minus;</mo><mn>14</mn></mrow><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>.</li><li>Work out <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Choosing 1 thing from 15 can be done in how many ways?</li></ol>
+      <ul class="wrong"><li data-if="1">That is <math alttext="15C15"><mmultiscripts><mi>C</mi><mn>15</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> or <math alttext="15C0"><mmultiscripts><mi>C</mi><mn>0</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>. Here r is 14, and {m:15-14=1}, so the answer is <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>.</li><li data-if="14">The partner of <math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> is <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math>, which is 15, not 14.</li></ul>
+      <div class="solution"><p><math alttext="15C14"><mmultiscripts><mi>C</mi><mn>14</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = <math alttext="15C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>15</mn></mmultiscripts></math> = 15. Check with the formula: {m:frac(15!, 14!1!)=15}.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">The number n is a positive whole number, and <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = {m:28}. Find n.</p>
+      <ol class="ladder"><li><math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = {m:frac(n(n-1), 2)}. Set this equal to 28.</li><li>{m:n(n-1)=56}.</li><li>Find two consecutive whole numbers that multiply to 56.</li></ol>
+      <ul class="wrong"><li data-if="56">That is the value of {m:n(n-1)}. Find the n that gives 56.</li><li data-if="14">You divided 28 by 2. Instead solve {m:n(n-1)=56}.</li></ul>
+      <div class="solution"><p>{m:n(n-1)=56}. The numbers 8 and 7 multiply to 56, so {m:n=8}. Check: <math alttext="8C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = {m:frac(8*7, 2)=28}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Expanding (a + bx) to a power</h2>
+    <p>Now put the pieces together. The {term:binomial-expansion|binomial expansion} of {m:(a+b)^n} uses <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> for the coefficient of each term. The term with {m:b^r} is <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:a^(n-r) b^r}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the {term:general-term|general term}.</p>
+      <p>{m:(a+bx)^n=a^n+}<math alttext="nC1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:a^(n-1)(bx)+}<math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:a^(n-2)(bx)^2+}&hellip;{m:+(bx)^n}</p>
+      <ul class="tick">
+        <li>The term with {m:x^r} is <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:a^(n-r)(bx)^r}. The value r starts at 0.</li>
+        <li>Put brackets round the whole of {m:bx}. The power applies to the number b as well as to x.</li>
+        <li>The last term is {m:(bx)^n=b^n x^n}.</li>
+      </ul>
+    </div>
+    <p>When the terms go from the lowest power of x to the highest, they are in {term:ascending-powers|ascending powers} of x. Write them in that order.</p>
+    <div class="worked">
+      <h3>Worked example: a number multiplying x</h3>
+      <p>Expand {m:(1+2x)^5}.</p>
+      <ol class="steps">
+        <li>Use row 5: 1, 5, 10, 10, 5, 1. Here a is 1 and bx is {m:2x}.</li>
+        <li>The powers of {m:2x} are {m:1}, {m:2x}, {m:4x^2}, {m:8x^3}, {m:16x^4}, {m:32x^5}.</li>
+        <li>Multiply each by its coefficient: {m:1}, {m:10x}, {m:40x^2}, {m:80x^3}, {m:80x^4}, {m:32x^5}.</li>
+        <li>{m:(1+2x)^5=1+10x+40x^2+80x^3+80x^4+32x^5}.</li>
+        <li>Check: put {m:x=1}. The left side is {m:3^5=243}. The right side is {m:1+10+40+80+80+32=243}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number that is not 1</h3>
+      <p>Expand {m:(2+x)^4}.</p>
+      <ol class="steps">
+        <li>Use row 4: 1, 4, 6, 4, 1. Here a is 2 and bx is x.</li>
+        <li>The powers of 2 go down: {m:16}, {m:8}, {m:4}, {m:2}, {m:1}. The powers of x go up.</li>
+        <li>{m:16+4*8x+6*4x^2+4*2x^3+x^4}.</li>
+        <li>{m:(2+x)^4=16+32x+24x^2+8x^3+x^4}.</li>
+        <li>Check: put {m:x=1}. The left side is {m:3^4=81}. The right side is {m:16+32+24+8+1=81}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a minus sign and a number</h3>
+      <p>Expand {m:(3-2x)^4}.</p>
+      <ol class="steps">
+        <li>Here a is 3 and bx is {m:-2x}. Use row 4: 1, 4, 6, 4, 1.</li>
+        <li>Powers of 3 go down: {m:81}, {m:27}, {m:9}, {m:3}, {m:1}. Powers of {m:-2x} go up: {m:1}, {m:-2x}, {m:4x^2}, {m:-8x^3}, {m:16x^4}.</li>
+        <li>Multiply the three parts of each term: {m:81}, {m:4*27*(-2x)=-216x}, {m:6*9*4x^2=216x^2}, {m:4*3*(-8x^3)=-96x^3} and {m:16x^4}.</li>
+        <li>{m:(3-2x)^4=81-216x+216x^2-96x^3+16x^4}.</li>
+        <li>Check: put {m:x=1}. The left side is {m:1^4=1}. The right side is {m:81-216+216-96+16=1}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the first few terms</h3>
+      <p>Find the first three terms, in ascending powers of x, of {m:(2+3x)^5}.</p>
+      <ol class="steps">
+        <li>Here {m:n=5}, {m:a=2} and {m:b=3}. You need r = 0, 1 and 2.</li>
+        <li>{m:r=0}: {m:2^5=32}.</li>
+        <li>{m:r=1}: <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:2^4(3x)=5*16*3x=240x}.</li>
+        <li>{m:r=2}: <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:2^3(3x)^2=10*8*9x^2=720x^2}.</li>
+        <li>The first three terms are {m:32+240x+720x^2}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:binomial-positive-term}<figcaption>Look at the three boxes. Each term is the number of ways to choose, times a power of 2, times a power of {m:3x}.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the first three terms of {m:(1+3x)^4} in ascending powers of x.</p>
+      <ol class="steps">
+        <li>{m:r=0} gives 1. {m:r=1} gives <math alttext="4C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> {m:(3x)=4*3x=}<span class="blank" data-answers="12">___</span>{m:x}.</li>
+        <li>{m:r=2} gives <math alttext="4C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> {m:(3x)^2=6*9x^2=}<span class="blank" data-answers="54">___</span>{m:x^2}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The first three terms are {m:1+12x+54x^2}. The whole expansion is {m:1+12x+54x^2+108x^3+81x^4}. Check: put {m:x=1}. {m:4^4=256} and {m:1+12+54+108+81=256}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: expanding a bracket</h2>
+    <div class="q" data-answers="1+20x+160x^2" data-mode="exact">
+      <p class="qtext">Find the first three terms of {m:(1+4x)^5} in ascending powers of x. Type it like 1+3x+2x^2.</p>
+      <ol class="ladder"><li>Row 5 starts 1, 5, 10.</li><li>The powers of {m:4x} are {m:1}, {m:4x}, {m:16x^2}.</li><li>Multiply: {m:1*1}, {m:5*4x}, {m:10*16x^2}.</li></ol>
+      <ul class="wrong"><li data-if="1+20x+40x^2">You did not square the 4. {m:(4x)^2=16x^2}, so the third term is {m:10*16x^2}.</li></ul>
+      <div class="solution"><p>{m:1+5*4x+10*16x^2=1+20x+160x^2}. Check: the next terms are {m:640x^3+1280x^4+1024x^5}, and the whole expansion sums to {m:5^5=3125} at {m:x=1}.</p></div>
+    </div>
+    <div class="q" data-answers="32+80x+80x^2" data-mode="exact">
+      <p class="qtext">Find the first three terms of {m:(2+x)^5} in ascending powers of x. Type it like 1+3x+2x^2.</p>
+      <ol class="ladder"><li>Row 5 starts 1, 5, 10.</li><li>The powers of 2 go down from {m:2^5}: {m:32}, {m:16}, {m:8}.</li><li>Multiply the coefficient, the power of 2 and the power of x.</li></ol>
+      <ul class="wrong"><li data-if="32+5x+10x^2">You left out the powers of 2 in the second and third terms. They are {m:2^4=16} and {m:2^3=8}.</li></ul>
+      <div class="solution"><p>{m:32+5*16x+10*8x^2=32+80x+80x^2}.</p></div>
+    </div>
+    <div class="q" data-answers="1-8x+24x^2-32x^3+16x^4" data-mode="exact">
+      <p class="qtext">Expand {m:(1-2x)^4}. Type it like 1-3x+3x^2.</p>
+      <ol class="ladder"><li>Use row 4: 1, 4, 6, 4, 1. Here bx is {m:-2x}.</li><li>The powers of {m:-2x} are {m:1}, {m:-2x}, {m:4x^2}, {m:-8x^3}, {m:16x^4}.</li></ol>
+      <ul class="wrong"><li data-if="1+8x+24x^2+32x^3+16x^4">You left out the minus signs. The odd powers of {m:-2x} are negative.</li></ul>
+      <div class="solution"><p>{m:1+4*(-2x)+6*4x^2+4*(-8x^3)+16x^4=1-8x+24x^2-32x^3+16x^4}. Check: put {m:x=1}. {m:(-1)^4=1} and {m:1-8+24-32+16=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In the expansion of {m:(2+5x)^3} in ascending powers of x, which is the second term?</p>
+      <ul class="options">
+        <li data-correct>The second term is {m:60x}</li>
+        <li data-why="This is 3 times 5. It leaves out the power of 2. The second term is 3 &times; 2&sup2; &times; 5x = 60x.">The second term is {m:15x}</li>
+        <li data-why="This uses 2 instead of 2&sup2;. The power of 2 in the second term is 2 to the power 2, which is 4, and 3 &times; 4 &times; 5 = 60.">The second term is {m:30x}</li>
+      </ul>
+      <ol class="ladder"><li>The second term has r = 1.</li><li>For {m:n=3}, the power of 2 is {m:3-1=2}.</li></ol>
+      <div class="solution"><p><math alttext="3C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></math> {m:2^2(5x)=3*4*5x=60x}. The full expansion is {m:8+60x+150x^2+125x^3}.</p></div>
+    </div>
+    <div class="q" data-answers="27-27x+9x^2-x^3" data-mode="exact">
+      <p class="qtext">Expand {m:(3-x)^3}. Type it like 1-3x+3x^2.</p>
+      <ol class="ladder"><li>Use row 3: 1, 3, 3, 1. Here a is 3 and bx is {m:-x}.</li><li>Powers of 3 go down: {m:27}, {m:9}, {m:3}, {m:1}. Powers of {m:-x}: {m:1}, {m:-x}, {m:x^2}, {m:-x^3}.</li></ol>
+      <ul class="wrong"><li data-if="27+27x+9x^2+x^3">You left out the minus signs. The odd powers of {m:-x} are negative.</li></ul>
+      <div class="solution"><p>{m:27+3*9*(-x)+3*3*x^2+(-x)^3=27-27x+9x^2-x^3}. Check: put {m:x=1}. {m:2^3=8} and {m:27-27+9-1=8}.</p></div>
+    </div>
+    <div class="q" data-answers="729x^6" data-mode="exact">
+      <p class="qtext">Find the last term of the expansion of {m:(2+3x)^6}. Type it like 5x^2.</p>
+      <ol class="ladder"><li>The last term is {m:(3x)^6}.</li><li>The power 6 applies to the 3 and the x.</li></ol>
+      <ul class="wrong"><li data-if="18x^6">You multiplied 3 by 6. The power applies to the 3: {m:3^6=729}.</li><li data-if="3x^6">You left out the power of 3. {m:(3x)^6=3^6 x^6}.</li></ul>
+      <div class="solution"><p>The last term is {m:(3x)^6=3^6 x^6=729x^6}. Its coefficient <math alttext="6C6"><mmultiscripts><mi>C</mi><mn>6</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> is 1.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Finding one term or one coefficient</h2>
+    <p>Sometimes you do not need the whole expansion. A question may ask for &ldquo;the coefficient of {m:x^3}&rdquo; or &ldquo;the fourth term&rdquo;. Use the general term and work out one value of r.</p>
+    <div class="key">
+      <p><b>Key idea:</b> find r first.</p>
+      <ul class="tick">
+        <li>For &ldquo;the term in {m:x^3}&rdquo;, the power of x is r, so {m:r=3}.</li>
+        <li>For &ldquo;the fourth term&rdquo;, count from the first term, which has {m:r=0}. The fourth term has {m:r=3}.</li>
+        <li>The coefficient is the number in front of the power of x. Include its sign.</li>
+        <li>The first term of {m:(a+bx)^n} is the {term:constant-term|constant term} {m:a^n}. It has no x.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a coefficient</h3>
+      <p>Find the coefficient of {m:x^3} in the expansion of {m:(2+3x)^6}.</p>
+      <ol class="steps">
+        <li>The power of x is 3, so {m:r=3}. Here {m:n=6}, {m:a=2} and {m:b=3}.</li>
+        <li>The term is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:2^3(3x)^3}.</li>
+        <li><math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:20}, {m:2^3=8} and {m:3^3=27}.</li>
+        <li>The coefficient is {m:20*8*27=4320}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a term with a minus sign</h3>
+      <p>Find the term in {m:x^4} in the expansion of {m:(1-2x)^6}.</p>
+      <ol class="steps">
+        <li>{m:r=4}, {m:n=6}, {m:a=1} and {m:bx=-2x}.</li>
+        <li>The term is <math alttext="6C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:1^2(-2x)^4}.</li>
+        <li><math alttext="6C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:15}. {m:(-2x)^4=(-2)^4 x^4=16x^4}. An even power of a negative number is positive.</li>
+        <li>The term is {m:15*16x^4=240x^4}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a numbered term</h3>
+      <p>Find the fourth term of the expansion of {m:(3-x)^5} in ascending powers of x.</p>
+      <ol class="steps">
+        <li>The first term has {m:r=0}, so the fourth term has {m:r=3}.</li>
+        <li>The term is <math alttext="5C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:3^2(-x)^3}.</li>
+        <li><math alttext="5C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> = {m:10}, {m:3^2=9} and {m:(-x)^3=-x^3}.</li>
+        <li>The term is {m:10*9*(-x^3)=-90x^3}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a large power</h3>
+      <p>Find the coefficient of {m:x^3} in the expansion of {m:(2-x)^8}.</p>
+      <ol class="steps">
+        <li>Pascal&rsquo;s triangle to row 8 would take a while. Use the general term with {m:r=3}.</li>
+        <li>The term is <math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:2^5(-x)^3}.</li>
+        <li><math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = {m:56}, {m:2^5=32} and {m:(-x)^3=-x^3}.</li>
+        <li>The coefficient is {m:56*32*(-1)=-1792}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the coefficient of {m:x^2} in the expansion of {m:(4+x)^5}.</p>
+      <ol class="steps">
+        <li>{m:r=2}, so the term is <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:4^3 x^2}. Now <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> = <span class="blank" data-answers="10">___</span>.</li>
+        <li>{m:4^3=}<span class="blank" data-answers="64">___</span>. So the coefficient is {m:10*64=640}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The coefficient is 640. The whole expansion is {m:1024+1280x+640x^2+160x^3+20x^4+x^5}. Check: put {m:x=1}. {m:5^5=3125} and {m:1024+1280+640+160+20+1=3125}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: one term or coefficient</h2>
+    <div class="q" data-answers="189" data-mode="value">
+      <p class="qtext">Find the coefficient of {m:x^2} in the expansion of {m:(1+3x)^7}.</p>
+      <ol class="ladder"><li>{m:r=2}, so the term is <math alttext="7C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> {m:(3x)^2}.</li><li><math alttext="7C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> = {m:frac(7*6, 2)=21}.</li><li>Multiply by {m:3^2}.</li></ol>
+      <ul class="wrong"><li data-if="21">That is <math alttext="7C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math>. Multiply it by {m:3^2=9} as well.</li><li data-if="63">You multiplied by 3, not by {m:3^2=9}. The power 2 applies to the 3.</li></ul>
+      <div class="solution"><p>{m:21*9=189}.</p></div>
+    </div>
+    <div class="q" data-answers="160" data-mode="value">
+      <p class="qtext">Find the coefficient of {m:x^3} in the expansion of {m:(2+x)^6}.</p>
+      <ol class="ladder"><li>{m:r=3}. The term is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:2^3 x^3}.</li><li><math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = 20 and {m:2^3=8}.</li></ol>
+      <ul class="wrong"><li data-if="20">That is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math>. Multiply by {m:2^3=8} as well.</li><li data-if="40">You multiplied by 2, not by {m:2^3=8}. The power of 2 in this term is {m:6-3=3}.</li></ul>
+      <div class="solution"><p>{m:20*8=160}.</p></div>
+    </div>
+    <div class="q" data-answers="126" data-mode="value">
+      <p class="qtext">Find the coefficient of {m:x^4} in the expansion of {m:(1-x)^9}.</p>
+      <ol class="ladder"><li>{m:r=4}. The term is <math alttext="9C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>9</mn></mmultiscripts></math> {m:(-x)^4}.</li><li>{m:(-x)^4=x^4}, because the power is even.</li></ol>
+      <ul class="wrong"><li data-if="-126">The power 4 is even, so {m:(-x)^4=x^4} is positive.</li></ul>
+      <div class="solution"><p><math alttext="9C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>9</mn></mmultiscripts></math> = {m:frac(9*8*7*6, 4*3*2*1)=frac(3024, 24)=126}. The sign is positive. The coefficient is 126.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You want the term in {m:x^5} in the expansion of {m:(2+x)^8}. Which value of r do you use?</p>
+      <ul class="options">
+        <li data-correct>{m:r=5}, because the power of x is r</li>
+        <li data-why="The term in x to the power 5 is not the fifth term. The first term has r = 0, so the fifth term has r = 4. The question asks for the power of x.">{m:r=4}, because it is the fifth term</li>
+        <li data-why="8 &minus; 5 = 3 is the power of 2 in this term, not r. The power of x is r.">{m:r=3}, because {m:8-5=3}</li>
+      </ul>
+      <ol class="ladder"><li>In the term <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:a^(n-r)(bx)^r}, what is the power of x?</li></ol>
+      <div class="solution"><p>The power of x is r, so {m:r=5}. The term is <math alttext="8C5"><mmultiscripts><mi>C</mi><mn>5</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:2^3 x^5=56*8x^5=448x^5}.</p></div>
+    </div>
+    <div class="q" data-answers="160x^3" data-mode="exact">
+      <p class="qtext">Find the fourth term of the expansion of {m:(1+2x)^6} in ascending powers of x. Type it like 5x^2.</p>
+      <ol class="ladder"><li>The first term has {m:r=0}. So the fourth term has {m:r=3}.</li><li>The term is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(2x)^3}.</li></ol>
+      <ul class="wrong"><li data-if="60x^2">That is the third term, with {m:r=2}. The fourth term has {m:r=3}.</li><li data-if="20x^3">That is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> on its own. Multiply by {m:(2x)^3=8x^3} as well.</li></ul>
+      <div class="solution"><p>{m:20*8x^3=160x^3}. Check against the whole expansion: {m:1+12x+60x^2+160x^3+240x^4+192x^5+64x^6}.</p></div>
+    </div>
+    <div class="q" data-answers="1080" data-mode="value">
+      <p class="qtext">Find the coefficient of {m:x^2} in the expansion of {m:(3-2x)^5}.</p>
+      <ol class="ladder"><li>{m:r=2}. The term is <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:3^3(-2x)^2}.</li><li>{m:(-2x)^2=4x^2}. It is positive.</li></ol>
+      <ul class="wrong"><li data-if="-1080">The power 2 is even, so {m:(-2x)^2=4x^2} is positive.</li><li data-if="270">You left out the 2. {m:(-2x)^2=4x^2}, not {m:x^2}.</li></ul>
+      <div class="solution"><p>{m:10*27*4=1080}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Finding an unknown from a coefficient</h2>
+    <p>Some questions give you a coefficient and ask for a missing number. Write the coefficient using the general term. Then solve the equation.</p>
+    <div class="key">
+      <p><b>Key idea:</b> write the coefficient in terms of the unknown, and make it equal to the value you are given.</p>
+      <ul class="tick">
+        <li>If the unknown is a number in the bracket, you get an equation in that number.</li>
+        <li>If the unknown is the power n, remember n is a positive whole number. Reject any other solution.</li>
+        <li>A squared unknown can give two answers, one positive and one negative. Check each one.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an unknown in the bracket</h3>
+      <p>The coefficient of {m:x^2} in the expansion of {m:(1+kx)^6} is 135. Find the possible values of k.</p>
+      <ol class="steps">
+        <li>{m:r=2}. The term is <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(kx)^2=15k^2 x^2}.</li>
+        <li>So {m:15k^2=135}, which gives {m:k^2=9}.</li>
+        <li>Then {m:k=3} or {m:k=-3}.</li>
+        <li>Check both: {m:15*3^2=135} and {m:15*(-3)^2=135}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the coefficient of x</h3>
+      <p>The coefficient of x in the expansion of {m:(2+ax)^5} is 400. Find a.</p>
+      <ol class="steps">
+        <li>{m:r=1}. The term is <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:2^4(ax)=5*16*ax=80a x}.</li>
+        <li>So {m:80a=400}, which gives {m:a=5}.</li>
+        <li>Check: {m:5*16*5=400}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an unknown power</h3>
+      <p>The coefficient of {m:x^2} in the expansion of {m:(1+2x)^n} is 60, where n is a positive whole number. Find n.</p>
+      <ol class="steps">
+        <li>{m:r=2}. The term is <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:(2x)^2=frac(n(n-1), 2)*4x^2=2n(n-1)x^2}.</li>
+        <li>So {m:2n(n-1)=60}, which gives {m:n(n-1)=30}.</li>
+        <li>Rearrange: {m:n^2-n-30=0}, so {m:(n-6)(n+5)=0}.</li>
+        <li>Then {m:n=6} or {m:n=-5}. The power must be a positive whole number, so reject {m:-5}. So {m:n=6}.</li>
+        <li>Check: <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:2^2=15*4=60}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two coefficients that are equal</h3>
+      <p>In the expansion of {m:(1+kx)^7}, where k is not 0, the coefficients of {m:x^2} and {m:x^3} are equal. Find k.</p>
+      <ol class="steps">
+        <li>The coefficient of {m:x^2} is <math alttext="7C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> {m:k^2=21k^2}. The coefficient of {m:x^3} is <math alttext="7C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>7</mn></mmultiscripts></math> {m:k^3=35k^3}.</li>
+        <li>Set them equal: {m:21k^2=35k^3}.</li>
+        <li>Divide both sides by {m:k^2}. This is allowed, because k is not 0. You get {m:21=35k}.</li>
+        <li>So {m:k=frac(21, 35)=frac(3, 5)}.</li>
+        <li>Check: {m:21*(3/5)^2=21*frac(9, 25)=frac(189, 25)} and {m:35*(3/5)^3=35*frac(27, 125)=frac(189, 25)}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The coefficient of {m:x^2} in the expansion of {m:(1+kx)^5} is 160, and k is positive. Find k.</p>
+      <ol class="steps">
+        <li><math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:k^2=10k^2}. So {m:10k^2=160}, which gives {m:k^2=}<span class="blank" data-answers="16">___</span>.</li>
+        <li>k is positive, so {m:k=}<span class="blank" data-answers="4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:k=4}. Check: {m:10*4^2=160}. The value {m:k=-4} also gives 160, but the question says k is positive.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: finding an unknown</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The coefficient of {m:x^2} in the expansion of {m:(1+kx)^4} is 54, and k is positive. Find k.</p>
+      <ol class="ladder"><li>{m:r=2}. The term is <math alttext="4C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> {m:(kx)^2}.</li><li><math alttext="4C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> = 6, so the coefficient is {m:6k^2}.</li><li>Solve {m:6k^2=54}.</li></ol>
+      <ul class="wrong"><li data-if="9">That is {m:k^2}. Take the square root.</li><li data-if="-3">The question says k is positive, so choose {m:k=3}.</li></ul>
+      <div class="solution"><p>{m:6k^2=54} gives {m:k^2=9}, so {m:k=3} (k is positive). Check: {m:6*3^2=54}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The coefficient of x in the expansion of {m:(3+ax)^4} is {m:-216}. Find a.</p>
+      <ol class="ladder"><li>{m:r=1}. The term is <math alttext="4C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> {m:3^3(ax)=4*27*ax}.</li><li>The coefficient is {m:108a}. Solve {m:108a=-216}.</li></ol>
+      <ul class="wrong"><li data-if="2">You lost the minus sign. {m:108a=-216} gives a negative a.</li></ul>
+      <div class="solution"><p>{m:108a=-216} gives {m:a=-2}. Check: {m:4*27*(-2)=-216}.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">The coefficient of {m:x^2} in the expansion of {m:(1+x)^n} is 45, where n is a positive whole number. Find n.</p>
+      <ol class="ladder"><li>The coefficient is <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = {m:frac(n(n-1), 2)}.</li><li>Solve {m:frac(n(n-1), 2)=45}, so {m:n(n-1)=90}.</li><li>Find two consecutive whole numbers that multiply to 90.</li></ol>
+      <ul class="wrong"><li data-if="45">That is the value of <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>. Find the n that gives it.</li><li data-if="9">9 and 8 multiply to 72. You need two consecutive numbers that multiply to 90.</li></ul>
+      <div class="solution"><p>{m:n(n-1)=90} is {m:n^2-n-90=0}, so {m:(n-10)(n+9)=0}. The value {m:n=-9} is rejected, so {m:n=10}. Check: <math alttext="10C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> = 45.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The coefficient of {m:x^2} in the expansion of {m:(1+kx)^5} is 90. Which values of k are possible?</p>
+      <ul class="options">
+        <li data-why="Also test k = &minus;3. (&minus;3) squared is 9, which gives the same coefficient 10 &times; 9 = 90. So &minus;3 works too.">Only {m:k=3}</li>
+        <li data-correct>Either {m:k=3} or {m:k=-3}</li>
+        <li data-why="This is the value of k squared. The equation is 10k&sup2; = 90, so k&sup2; = 9 and k = 3 or &minus;3.">Only {m:k=9}</li>
+      </ul>
+      <ol class="ladder"><li>The coefficient is <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:k^2=10k^2}.</li><li>Solve {m:10k^2=90}. A square root has a positive and a negative value.</li></ol>
+      <div class="solution"><p>{m:10k^2=90} gives {m:k^2=9}, so {m:k=3} or {m:k=-3}. Both give 90.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The coefficient of x in the expansion of {m:(2+x)^n} is 192, where n is a positive whole number. Find n.</p>
+      <ol class="ladder"><li>The coefficient of x is <math alttext="nC1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:2^(n-1)=n*2^(n-1)}.</li><li>Try n = 5, then 6, then 7, until you reach 192.</li></ol>
+      <ul class="wrong"><li data-if="5">For {m:n=5} the coefficient is {m:5*2^4=80}, which is too small.</li><li data-if="7">For {m:n=7} the coefficient is {m:7*2^6=448}, which is too big.</li></ul>
+      <div class="solution"><p>For {m:n=6}: {m:6*2^5=6*32=192}. The values {m:n*2^(n-1)} get bigger as n grows ({m:80}, {m:192}, {m:448}), so only {m:n=6} works.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Using an expansion to estimate a number</h2>
+    <p>Suppose you want {m:1.02^8} and your calculator is not there. Write {m:1.02=1+0.02}. Then {m:1.02^8=(1+0.02)^8}. This is a binomial expansion with {m:x=0.02}.</p>
+    <p>The powers of 0.02 get small very quickly: {m:0.02^2=0.0004}, {m:0.02^3=0.000008}. So the first few terms give a good <b>estimate</b>. Later terms are too small to change the answer you need.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to estimate a number close to 1, write it as {m:1+x} or {m:1-x} with x small, expand, and keep the first few terms.</p>
+      <ul class="tick">
+        <li>For {m:0.98} write {m:1+(-0.02)}. The odd powers of the small number are negative.</li>
+        <li>For a number close to 2, such as {m:2.01}, write it as {m:2+0.01}.</li>
+        <li>Say how many terms you used. More terms give a closer estimate.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number a little above 1</h3>
+      <p>Use the first four terms of a binomial expansion to estimate {m:1.02^8}. Compare with the calculator value.</p>
+      <ol class="steps">
+        <li>{m:1.02^8=(1+0.02)^8}. The coefficients are <math alttext="8C0"><mmultiscripts><mi>C</mi><mn>0</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = 1, <math alttext="8C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = 8, <math alttext="8C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = 28 and <math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> = 56.</li>
+        <li>The terms are {m:1}, {m:8*0.02=0.16}, {m:28*0.02^2=28*0.0004=0.0112} and {m:56*0.02^3=56*0.000008=0.000448}.</li>
+        <li>Add them: {m:1+0.16+0.0112+0.000448=1.171648}.</li>
+        <li>The calculator gives 1.171659 to 6 decimal places. The estimate is within 0.00002 of the true value.</li>
+        <li>With only the first three terms the estimate is {m:1.1712}. The extra term improves it.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number a little below 1</h3>
+      <p>Use the first three terms of a binomial expansion to estimate {m:0.98^6}, to 3 decimal places.</p>
+      <ol class="steps">
+        <li>{m:0.98^6=(1-0.02)^6}. Here {m:x=-0.02}.</li>
+        <li>The terms are {m:1}, {m:6*(-0.02)=-0.12} and {m:15*(-0.02)^2=15*0.0004=0.006}.</li>
+        <li>Add them: {m:1-0.12+0.006=0.886}.</li>
+        <li>The calculator gives 0.885842. To 3 decimal places this is 0.886, so the estimate is good.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number close to 2</h3>
+      <p>Use the first three terms of a binomial expansion to estimate {m:2.01^5}.</p>
+      <ol class="steps">
+        <li>{m:2.01^5=(2+0.01)^5}. Here {m:a=2}, {m:n=5} and the small number is 0.01.</li>
+        <li>The terms are {m:2^5=32}, {m:5*2^4*0.01=5*16*0.01=0.8} and {m:10*2^3*0.01^2=10*8*0.0001=0.008}.</li>
+        <li>Add them: {m:32+0.8+0.008=32.808}.</li>
+        <li>The calculator gives 32.80804. The estimate is very close.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: expand first, then substitute</h3>
+      <p>Expand {m:(1+2x)^6} up to the term in {m:x^3}. Use your answer with {m:x=0.01} to estimate {m:1.02^6}.</p>
+      <ol class="steps">
+        <li>The terms are {m:1}, <math alttext="6C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(2x)=12x}, <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(2x)^2=15*4x^2=60x^2} and <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(2x)^3=20*8x^3=160x^3}.</li>
+        <li>So {m:(1+2x)^6=1+12x+60x^2+160x^3+}&hellip;.</li>
+        <li>When {m:x=0.01}, the bracket is {m:1+2*0.01=1.02}. So {m:1.02^6} is about {m:1+12*0.01+60*0.0001+160*0.000001}.</li>
+        <li>{m:1+0.12+0.006+0.00016=1.12616}.</li>
+        <li>The calculator gives 1.126162. The estimate is correct to 5 decimal places.</li>
+      </ol>
+    </div>
+    <p><b>In context.</b> The expansion of {m:(0.7+0.3)^3} has terms {m:0.343}, {m:0.441}, {m:0.189} and {m:0.027}. They are the probabilities of 0, 1, 2 and 3 successes in three tries, when each try succeeds with probability 0.3. They add up to 1, because {m:(0.7+0.3)^3=1^3}. This is the link from the binomial expansion to the binomial distribution in statistics.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Use the first three terms of a binomial expansion to estimate {m:1.01^10}.</p>
+      <ol class="steps">
+        <li>{m:1.01^10=(1+0.01)^10}. The second term is {m:10*0.01=}<span class="blank" data-answers="0.1">___</span>.</li>
+        <li>The third term is <math alttext="10C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>10</mn></mmultiscripts></math> {m:0.01^2=45*0.0001=}<span class="blank" data-answers="0.0045">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:1+0.1+0.0045=1.1045}. The calculator gives 1.104622, so the estimate is within 0.0002 of the true value.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: estimating</h2>
+    <div class="q" data-answers="1.0615" data-mode="value">
+      <p class="qtext">Use the first three terms of the expansion of {m:(1+0.01)^6} to estimate {m:1.01^6}. Give your answer to 4 decimal places.</p>
+      <ol class="ladder"><li>The coefficients are 1, 6 and <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math>.</li><li>The terms are {m:1}, {m:6*0.01} and {m:15*0.01^2}.</li></ol>
+      <ul class="wrong"><li data-if="1.06">You used only two terms. The third term is {m:15*0.0001=0.0015}.</li></ul>
+      <div class="solution"><p>{m:1+0.06+0.0015=1.0615}. The calculator gives 1.061520.</p></div>
+    </div>
+    <div class="q" data-answers="0.9228" data-mode="value">
+      <p class="qtext">Use the first three terms of the expansion of {m:(1-0.01)^8} to estimate {m:0.99^8}. Give your answer to 4 decimal places.</p>
+      <ol class="ladder"><li>The small number is {m:-0.01}.</li><li>The terms are {m:1}, {m:8*(-0.01)} and {m:28*(-0.01)^2}.</li><li>{m:(-0.01)^2} is positive.</li></ol>
+      <ul class="wrong"><li data-if="0.9172">You subtracted the third term. {m:(-0.01)^2=0.0001} is positive, so the third term is {m:+0.0028}.</li></ul>
+      <div class="solution"><p>{m:1-0.08+0.0028=0.9228}. The calculator gives 0.922745.</p></div>
+    </div>
+    <div class="q" data-answers="1.61" data-mode="value">
+      <p class="qtext">Use the first four terms of the expansion of {m:(1+0.1)^5} to estimate {m:1.1^5}. Give your answer to 2 decimal places.</p>
+      <ol class="ladder"><li>Row 5 starts 1, 5, 10, 10.</li><li>The terms are {m:1}, {m:5*0.1}, {m:10*0.1^2} and {m:10*0.1^3}.</li></ol>
+      <ul class="wrong"><li data-if="1.6">You used three terms. The fourth term is {m:10*0.001=0.01}.</li></ul>
+      <div class="solution"><p>{m:1+0.5+0.1+0.01=1.61}. The calculator gives 1.61051.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The first few terms of {m:(1+x)^8} give a good estimate of {m:1.02^8}, but a poor estimate of {m:1.9^8}. Why?</p>
+      <ul class="options">
+        <li data-correct>Powers of 0.02 shrink very fast, but powers of 0.9 do not</li>
+        <li data-why="The coefficients are the same for both. They depend on the power 8, not on x.">The coefficients are different for 1.9</li>
+        <li data-why="The expansion of a whole-number power is true for every x. The estimate is poor because the terms you leave out are not small.">The expansion is not true for large values of x</li>
+      </ul>
+      <ol class="ladder"><li>For {m:1.9=1+0.9}, work out {m:0.9^2} and {m:0.9^3}. Are they small?</li></ol>
+      <div class="solution"><p>{m:0.9^3=0.729}, so the terms you leave out are still large. For {m:x=0.02}, {m:0.02^3=0.000008}, so the missing terms are tiny. The expansion itself is exact for any x if you keep all the terms.</p></div>
+    </div>
+    <div class="q" data-answers="1.159" data-mode="value">
+      <p class="qtext">Expand {m:(1+3x)^5} up to the term in {m:x^2}. Use {m:x=0.01} to estimate {m:1.03^5}. Give your answer to 3 decimal places.</p>
+      <ol class="ladder"><li>The terms are {m:1}, <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:(3x)} and <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:(3x)^2}.</li><li>They are {m:1+15x+90x^2}.</li><li>Put {m:x=0.01}.</li></ol>
+      <ul class="wrong"><li data-if="1.15">You used only two terms. The term in {m:x^2} adds {m:90*0.0001=0.009}.</li></ul>
+      <div class="solution"><p>{m:(1+3x)^5=1+15x+90x^2+}&hellip;. At {m:x=0.01}: {m:1+0.15+0.009=1.159}. The calculator gives 1.159274.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: which bracket did this expansion come from?</h2>
+    <p>So far you have started with a bracket and found its expansion. Now go the other way. Start with an expansion, or part of one, and find the bracket it came from.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a bracket to an expansion. Choose a row of the triangle, and multiply by powers of a and of bx.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From an expansion to a bracket. The number of terms gives n. The first and last terms give a and b. A middle coefficient checks your answer.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: reading the whole expansion</h3>
+      <p>The expansion {m:1+10x+40x^2+80x^3+80x^4+32x^5} comes from {m:(1+bx)^n}. Find n and b.</p>
+      <ol class="steps">
+        <li>There are 6 terms, and the number of terms is {m:n+1}. So {m:n=5}.</li>
+        <li>The last term is {m:b^5 x^5=32x^5}. So {m:b^5=32}, and {m:b=2}.</li>
+        <li>Check the second term: <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:b=5*2=10}. It matches. Check the third: <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:b^2=10*4=40}. It matches.</li>
+        <li>The bracket is {m:(1+2x)^5}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: reading the first terms</h3>
+      <p>The expansion of {m:(1+bx)^n} begins {m:1+12x+60x^2+}&hellip;. Find n and b. Here n is a positive whole number.</p>
+      <ol class="steps">
+        <li>The coefficient of x is {m:nb=12}, so {m:b=frac(12, n)}.</li>
+        <li>The coefficient of {m:x^2} is <math alttext="nC2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:b^2=frac(n(n-1), 2)*b^2=60}.</li>
+        <li>Put {m:b=frac(12, n)} in: {m:frac(n(n-1), 2)*frac(144, n^2)=frac(72(n-1), n)=60}.</li>
+        <li>Then {m:72(n-1)=60n}, so {m:72n-72=60n} and {m:12n=72}. So {m:n=6}.</li>
+        <li>Then {m:b=frac(12, 6)=2}. Check: <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:2^2=15*4=60}.</li>
+      </ol>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a bracket with a minus sign to an expansion whose signs alternate.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From an expansion whose signs alternate to a bracket with a negative number. The first term is {m:a^n}. The sign of b is the sign of the second term.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: alternating signs</h3>
+      <p>The expansion {m:32-80x+80x^2-40x^3+10x^4-x^5} comes from {m:(a+bx)^n}. Find a, b and n.</p>
+      <ol class="steps">
+        <li>There are 6 terms, so {m:n=5}.</li>
+        <li>The first term is {m:a^5=32}, so {m:a=2}.</li>
+        <li>The last term is {m:b^5 x^5=-x^5}, so {m:b^5=-1} and {m:b=-1}. This matches the alternating signs.</li>
+        <li>Check the second term: <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> {m:2^4*(-1)x=5*16*(-1)x=-80x}. It matches.</li>
+        <li>The bracket is {m:(2-x)^5}.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The expansion {m:1-12x+48x^2-64x^3} comes from {m:(1+bx)^n}. Find n and b.</p>
+      <ol class="steps">
+        <li>There are 4 terms, so {m:n=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>The last term is {m:b^3 x^3=-64x^3}, so {m:b=}<span class="blank" data-answers="-4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:n=3} and {m:b=-4}, so the bracket is {m:(1-4x)^3}. Check the second term: <math alttext="3C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></math> {m:(-4)=3*(-4)=-12}. Check the third: <math alttext="3C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></math> {m:(-4)^2=3*16=48}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The expansion {m:1+20x+160x^2+640x^3+1280x^4+1024x^5} comes from {m:(1+bx)^n}. Find n.</p>
+      <ol class="ladder"><li>Count the terms.</li><li>The number of terms is {m:n+1}.</li></ol>
+      <ul class="wrong"><li data-if="6">That is the number of terms. The power is one less: {m:n+1=6}.</li></ul>
+      <div class="solution"><p>There are 6 terms, so {m:n+1=6} and {m:n=5}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The expansion {m:1+20x+160x^2+640x^3+1280x^4+1024x^5} comes from {m:(1+bx)^5}. Find b.</p>
+      <ol class="ladder"><li>The last term is {m:b^5 x^5}.</li><li>Solve {m:b^5=1024}. Try b = 3, then 4.</li></ol>
+      <ul class="wrong"><li data-if="20">That is the coefficient of x. It equals {m:5b}, so b is one fifth of it.</li></ul>
+      <div class="solution"><p>{m:b^5=1024} gives {m:b=4}, because {m:4^5=1024}. Check the second term: {m:5*4=20}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The expansion {m:81-216x+216x^2-96x^3+16x^4} comes from {m:(a+bx)^n}, where a is positive. Find a.</p>
+      <ol class="ladder"><li>There are 5 terms, so {m:n=4}.</li><li>The first term is {m:a^4=81}.</li></ol>
+      <ul class="wrong"><li data-if="81">That is {m:a^4}. Take the fourth root: which number multiplied by itself four times gives 81?</li><li data-if="2">{m:2^4=16}. You need {m:a^4=81}.</li></ul>
+      <div class="solution"><p>{m:a^4=81} gives {m:a=3}, because {m:3^4=81}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The expansion {m:81-216x+216x^2-96x^3+16x^4} comes from {m:(3+bx)^4}. Find b.</p>
+      <ol class="ladder"><li>The second term is <math alttext="4C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>4</mn></mmultiscripts></math> {m:3^3 bx=108b x}.</li><li>Solve {m:108b=-216}.</li></ol>
+      <ul class="wrong"><li data-if="2">The last term, {m:b^4=16}, allows {m:b=2} or {m:b=-2}. The second term is negative, so b is negative.</li></ul>
+      <div class="solution"><p>{m:108b=-216} gives {m:b=-2}. Check: {m:(-2)^4=16}, which is the last term.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The coefficients of an expansion are 1, 7, 21, 35, 35, 21, 7, 1. What power n does it come from?</p>
+      <ul class="options">
+        <li data-why="There are 8 numbers, which is n + 1 terms with n = 7. The power is one less than the number of terms.">The power is 8, because there are 8 numbers</li>
+        <li data-correct>The power is 7, because there are 8 numbers</li>
+        <li data-why="35 is a coefficient in the row, not the power. The power is one less than the number of terms.">The power is 35, because it is the largest number</li>
+      </ul>
+      <ol class="ladder"><li>Count the numbers in the row.</li><li>The number of terms is {m:n+1}.</li></ol>
+      <div class="solution"><p>There are 8 numbers, so {m:n+1=8} and {m:n=7}. This is row 7 of Pascal&rsquo;s triangle.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The expansion of {m:(1+bx)^n} begins {m:1+15x+90x^2+}&hellip;. Find n, where n is a positive whole number.</p>
+      <ol class="ladder"><li>The coefficient of x is {m:nb=15}, so {m:b=frac(15, n)}.</li><li>The coefficient of {m:x^2} is {m:frac(n(n-1), 2)*b^2=90}.</li><li>Put in {m:b=frac(15, n)} and solve for n.</li></ol>
+      <ul class="wrong"><li data-if="15">That is the value of {m:nb}. It is not n itself.</li></ul>
+      <div class="solution"><p>{m:frac(n(n-1), 2)*frac(225, n^2)=frac(225(n-1), 2n)=90}. So {m:225n-225=180n}, which gives {m:45n=225} and {m:n=5}. Then {m:b=3}. Check: {m:(1+3x)^5=1+15x+90x^2+}&hellip;.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ali says:</b> {m:(x+3)^4=x^4+3^4=x^4+81}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="3 to the power 4 is 81. His number is right. The problem is the middle terms.">{m:3^4} is not 81</li>
+        <li data-correct>He left out the middle terms</li>
+        <li data-why="The power 4 needs row 4, which has five terms, so row 3 is too short. The problem is the missing middle terms between x&sup4; and 81.">He should have used row 3 of the triangle</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=1} in both sides. What do you get?</li><li>The left side is {m:4^4}. The right side is his answer.</li></ol>
+      <div class="solution"><p>At {m:x=1} the left side is {m:4^4=256}, but his right side is {m:1+81=82}. The power does not go inside the sum. The correct expansion is {m:x^4+12x^3+54x^2+108x+81}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Bea says:</b> {m:(1+2x)^3=1+3x+3x^2+x^3}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She did not raise the 2 to the powers: it should be {m:(2x)^2} and {m:(2x)^3}</li>
+        <li data-why="Row 3 is 1, 3, 3, 1, and she used it correctly. The problem is the 2 in the bracket.">She used the wrong row of the triangle</li>
+        <li data-why="The expansion of a power 3 has 4 terms, and hers has 4. The number of terms is right.">She should have written five terms</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=1}. The left side is {m:3^3=27}.</li><li>What does her right side give at {m:x=1}?</li></ol>
+      <div class="solution"><p>Her right side gives {m:1+3+3+1=8}, but the left is 27. She copied row 3 without using the {m:2x}. The correct answer is {m:1+3(2x)+3(2x)^2+(2x)^3=1+6x+12x^2+8x^3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cal says:</b> {m:(2-x)^3=8+12x+6x^2+x^3}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The numbers 8, 12, 6 and 1 are all right. The problem is the signs.">One of the coefficients is wrong</li>
+        <li data-correct>The signs should alternate, because the second number is negative</li>
+        <li data-why="The first term is 2&sup3; = 8, which is right.">The first term should be 6</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=1}. The left side is {m:(2-1)^3=1}.</li><li>What does Cal&rsquo;s right side give at {m:x=1}?</li></ol>
+      <div class="solution"><p>His right side gives {m:8+12+6+1=27}, but the left is 1. The odd powers of {m:-x} are negative. The correct answer is {m:8-12x+6x^2-x^3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> the third term of {m:(1+x)^8} is <math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:x^3=56x^3}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The third term does have a coefficient from row 8. The mistake is which position he used.">There is no third term in a power of 8</li>
+        <li data-correct>The first term has {m:r=0}, so the third term has {m:r=2}</li>
+        <li data-why="8C3 is 56, so that part is right. The mistake is using r = 3 for the third term."><math alttext="8C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> is not 56</li>
+      </ul>
+      <ol class="ladder"><li>Count: the first term has {m:r=0}. What is r for the second term? For the third?</li></ol>
+      <div class="solution"><p>The third term has {m:r=2}. So it is <math alttext="8C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:x^2=28x^2}. The term he found, {m:56x^3}, is the fourth term.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eve says:</b> <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:frac(6!, 2!)=360}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She forgot to divide by {m:(6-2)! =4!} as well</li>
+        <li data-why="6! is 720, and dividing by 2 gives 360. Her arithmetic is right. A part of the formula is missing.">{m:6!} is not 720</li>
+        <li data-why="The formula has a product of two factorials on the bottom, so there is more to divide by, not less to multiply.">She should have multiplied by {m:2!} instead of dividing</li>
+      </ul>
+      <ol class="ladder"><li>The formula is {m:frac(n!, r!(n-r)!)}. How many factorials are on the bottom?</li></ol>
+      <div class="solution"><p>The bottom should be {m:2!*4! =2*24=48}. So <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> = {m:frac(720, 48)=15}. This matches row 6 of the triangle: 1, 6, 15, &hellip;</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Fay says:</b> {m:(-2x)^2=-4x^2}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The 2 is squared correctly to give 4. The sign is the problem.">{m:2^2} is not 4</li>
+        <li data-why="The x is squared correctly. The sign is the problem.">The power of x should be 1</li>
+        <li data-correct>An even power of a negative number is positive, so {m:(-2x)^2=4x^2}</li>
+      </ul>
+      <ol class="ladder"><li>Write it out: {m:(-2x)*(-2x)}.</li><li>What is a negative times a negative?</li></ol>
+      <div class="solution"><p>{m:(-2x)*(-2x)=4x^2}. The minus sign is inside the bracket, so it is squared too. Compare {m:-(2x)^2=-4x^2}, which has the minus outside.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <p class="muted">These questions mix the ideas from every section, in no fixed order.</p>
+    <div class="q" data-answers="8+12x+6x^2+x^3" data-mode="exact">
+      <p class="qtext">Expand {m:(2+x)^3}. Type it like 1+3x+3x^2+x^3.</p>
+      <ol class="ladder"><li>Use row 3: 1, 3, 3, 1.</li><li>Powers of 2 go down: {m:8}, {m:4}, {m:2}, {m:1}.</li></ol>
+      <ul class="wrong"><li data-if="8+3x+3x^2+x^3">You left out the powers of 2 in the middle terms. They are {m:3*4x} and {m:3*2x^2}.</li></ul>
+      <div class="solution"><p>{m:8+3*4x+3*2x^2+x^3=8+12x+6x^2+x^3}. Check: put {m:x=1}. {m:3^3=27} and {m:8+12+6+1=27}.</p></div>
+    </div>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Work out <math alttext="9C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>9</mn></mmultiscripts></math>.</p>
+      <ol class="ladder"><li><math alttext="9C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>9</mn></mmultiscripts></math> = {m:frac(9*8, 2!)}.</li></ol>
+      <ul class="wrong"><li data-if="72">You forgot to divide by {m:2! =2}.</li></ul>
+      <div class="solution"><p><math alttext="9C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>9</mn></mmultiscripts></math> = {m:frac(9*8, 2)=36}.</p></div>
+    </div>
+    <div class="q" data-answers="135" data-mode="value">
+      <p class="qtext">Find the coefficient of {m:x^2} in the expansion of {m:(1-3x)^6}.</p>
+      <ol class="ladder"><li>{m:r=2}. The term is <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:(-3x)^2}.</li><li>{m:(-3x)^2=9x^2}.</li></ol>
+      <ul class="wrong"><li data-if="-135">The power 2 is even, so {m:(-3x)^2=9x^2} is positive.</li><li data-if="45">You did not square the 3. {m:(-3x)^2=9x^2}.</li></ul>
+      <div class="solution"><p>{m:15*9=135}.</p></div>
+    </div>
+    <div class="q" data-answers="1.216" data-mode="value">
+      <p class="qtext">Use the first three terms of the expansion of {m:(1+0.04)^5} to estimate {m:1.04^5}. Give your answer to 3 decimal places.</p>
+      <ol class="ladder"><li>The terms are {m:1}, {m:5*0.04} and {m:10*0.04^2}.</li></ol>
+      <ul class="wrong"><li data-if="1.2">You used only two terms. The third is {m:10*0.0016=0.016}.</li></ul>
+      <div class="solution"><p>{m:1+0.2+0.016=1.216}. The calculator gives 1.216653.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many terms are there in the expansion of {m:(2+3x)^10}?</p>
+      <ul class="options">
+        <li data-why="The terms have powers of x from 0 up to 10. That is 11 different powers, so 11 terms.">There are 10 terms</li>
+        <li data-correct>There are 11 terms</li>
+        <li data-why="The number of terms is one more than the power, so it is not twice the power.">There are 20 terms</li>
+      </ul>
+      <ol class="ladder"><li>The powers of x go from 0 to 10.</li></ol>
+      <div class="solution"><p>The number of terms is {m:n+1=11}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The coefficient of {m:x^2} in the expansion of {m:(1+kx)^3} is 12, and k is positive. Find k.</p>
+      <ol class="ladder"><li>{m:r=2}. The coefficient is <math alttext="3C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></math> {m:k^2=3k^2}.</li><li>Solve {m:3k^2=12}.</li></ol>
+      <ul class="wrong"><li data-if="4">That is {m:k^2}. Take the square root.</li><li data-if="-2">The question says k is positive.</li></ul>
+      <div class="solution"><p>{m:3k^2=12} gives {m:k^2=4}, so {m:k=2}. Check: {m:3*4=12}.</p></div>
+    </div>
+    <div class="q" data-answers="60x^4" data-mode="exact">
+      <p class="qtext">Find the fifth term of the expansion of {m:(2+x)^6} in ascending powers of x. Type it like 5x^2.</p>
+      <ol class="ladder"><li>The first term has {m:r=0}, so the fifth term has {m:r=4}.</li><li>The term is <math alttext="6C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:2^2 x^4}.</li></ol>
+      <ul class="wrong"><li data-if="15x^4">That is <math alttext="6C4"><mmultiscripts><mi>C</mi><mn>4</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> on its own. Multiply by {m:2^2=4}.</li><li data-if="160x^3">That is the fourth term, with {m:r=3}. The fifth term has {m:r=4}.</li></ul>
+      <div class="solution"><p>{m:15*4x^4=60x^4}. Check against the whole expansion: {m:64+192x+240x^2+160x^3+60x^4+12x^5+x^6}.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">The coefficients of an expansion are 1, 9, 36, 84, 126, 126, 84, 36, 9, 1. Find the power n that it came from.</p>
+      <ol class="ladder"><li>Count the numbers.</li><li>The number of terms is {m:n+1}.</li></ol>
+      <ul class="wrong"><li data-if="10">That is the number of terms. The power is one less.</li></ul>
+      <div class="solution"><p>There are 10 numbers, so {m:n+1=10} and {m:n=9}. The second number, 9, also equals n.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer.</p>
+    <div class="q" data-answers="32+240x+720x^2" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Find the first three terms, in ascending powers of x, of the expansion of {m:(2+3x)^5}. Type it like 1+3x+2x^2.</p>
+      <ol class="ladder"><li>Use the general term with {m:n=5}, {m:a=2} and {m:bx=3x}.</li><li>The first three terms have {m:r=0}, 1 and 2.</li><li>The coefficients are 1, 5 and 10.</li></ol>
+      <ul class="wrong"><li data-if="32+15x+90x^2">You left out the powers of 2. The terms are {m:5*2^4*3x} and {m:10*2^3*(3x)^2}.</li><li data-if="32+240x+240x^2">You did not square the 3 in the third term. {m:(3x)^2=9x^2}.</li></ul>
+      <div class="solution">
+        <p>{m:2^5=32}. Then {m:5*2^4*3x=240x} and {m:10*2^3*9x^2=720x^2}. So {m:(2+3x)^5=32+240x+720x^2+}&hellip;.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the binomial coefficients 1, 5, 10 (or <math alttext="5C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math> and <math alttext="5C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>5</mn></mmultiscripts></math>) with powers of 2 and 3x</li>
+          <li><b>A1</b> for {m:32+240x}</li>
+          <li><b>A1</b> for {m:720x^2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-4320" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] Find the coefficient of {m:x^3} in the expansion of {m:(3-2x)^6}.</p>
+      <ol class="ladder"><li>{m:r=3}. The term is <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:3^3(-2x)^3}.</li><li>{m:(-2x)^3=-8x^3}. It is negative.</li></ol>
+      <ul class="wrong"><li data-if="4320">An odd power of a negative number is negative. {m:(-2x)^3=-8x^3}.</li><li data-if="-1440">You used {m:3^2}. The power of 3 in this term is {m:6-3=3}, so use {m:3^3=27}.</li></ul>
+      <div class="solution">
+        <p>The term is {m:20*27*(-8)x^3}. {m:20*27=540}, and {m:540*(-8)=-4320}. The coefficient is {m:-4320}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for <math alttext="6C3"><mmultiscripts><mi>C</mi><mn>3</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:3^3(-2x)^3} (or equivalent)</li>
+          <li><b>A1</b> for the values {m:20}, {m:27} and {m:-8}</li>
+          <li><b>A1</b> for {m:-4320}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] In the expansion of {m:(1+kx)^6}, where k is not 0, the coefficient of {m:x^2} is 5 times the coefficient of x. Find the value of k.</p>
+      <ol class="ladder"><li>The coefficient of x is <math alttext="6C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:k=6k}.</li><li>The coefficient of {m:x^2} is <math alttext="6C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>6</mn></mmultiscripts></math> {m:k^2=15k^2}.</li><li>Write {m:15k^2=5*6k}, and solve.</li></ol>
+      <ul class="wrong"><li data-if="0">The question says k is not 0. Divide both sides by k to get an equation for k.</li><li data-if="12">That is the coefficient of x when {m:k=2}. You need k itself: solve {m:15k^2=30k}.</li></ul>
+      <div class="solution">
+        <p>{m:15k^2=30k}. Divide both sides by {m:15k}. This is allowed, because k is not 0. So {m:k=2}. Check: the coefficients are 12 for x and 60 for {m:x^2}, and {m:60=5*12}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for the coefficient of x: {m:6k}</li>
+          <li><b>B1</b> for the coefficient of {m:x^2}: {m:15k^2}</li>
+          <li><b>M1</b> for {m:15k^2=5*6k}</li>
+          <li><b>A1</b> for {m:k=2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1.1712" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Find the first three terms of the expansion of {m:(1+2x)^8} in ascending powers of x. Use your answer with {m:x=0.01} to estimate {m:1.02^8}. Give your estimate to 4 decimal places.</p>
+      <ol class="ladder"><li>The terms are {m:1}, <math alttext="8C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:(2x)} and <math alttext="8C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> {m:(2x)^2}.</li><li>They are {m:1+16x+112x^2}.</li><li>When {m:x=0.01}, the bracket is {m:1+2*0.01=1.02}.</li></ol>
+      <ul class="wrong"><li data-if="1.16">You used two terms. The third term, {m:112*0.0001=0.0112}, is part of the answer.</li><li data-if="1.1724">You added {m:112*0.01^2} as {m:0.0124}. {m:112*0.0001=0.0112}.</li></ul>
+      <div class="solution">
+        <p>{m:(1+2x)^8=1+16x+112x^2+}&hellip;. At {m:x=0.01}: {m:1+0.16+0.0112=1.1712}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the coefficients 8 and 28 (or <math alttext="8C1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math> and <math alttext="8C2"><mmultiscripts><mi>C</mi><mn>2</mn><none/><mprescripts/><none/><mn>8</mn></mmultiscripts></math>) with powers of {m:2x}</li>
+          <li><b>A1</b> for {m:1+16x+112x^2}</li>
+          <li><b>M1</b> for substituting {m:x=0.01}</li>
+          <li><b>A1</b> for {m:1.1712}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The first three terms, in ascending powers of x, of the expansion of {m:(3+bx)^n} are {m:81-108x+54x^2}. Here n is a positive whole number. Find b.</p>
+      <ol class="ladder"><li>The first term is {m:3^n=81}. Find n.</li><li>The second term is <math alttext="nC1"><mmultiscripts><mi>C</mi><mn>1</mn><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> {m:3^(n-1) bx}.</li><li>Put in your value of n and solve for b. Then check the third term.</li></ol>
+      <ul class="wrong"><li data-if="1">The second term is negative, so b is negative. {m:4*27*b=-108} gives {m:b=-1}.</li></ul>
+      <div class="solution">
+        <p>{m:3^n=81} gives {m:n=4}. The second term is {m:4*3^3*bx=108b x}. So {m:108b=-108}, which gives {m:b=-1}. Check the third term: {m:6*3^2*(-1)^2=54}. It matches.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:n=4}</li>
+          <li><b>M1</b> for {m:4*3^3*b=-108}</li>
+          <li><b>A1</b> for {m:b=-1}</li>
+          <li><b>B1</b> for checking the term in {m:x^2}: {m:6*9*b^2=54}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Pascal&rsquo;s triangle.</b> Each term of {m:(a+b)^n} comes from {m:(a+b)^(n-1)} multiplied by one more bracket. A term in the expansion of {m:(a+b)^n} is made two ways: from the term of {m:(a+b)^(n-1)} with the same power of b, times a; or from the term with one power of b fewer, times b. So each new coefficient is the sum of two coefficients in the row above.</li>
+      <li><b>nCr as a coefficient.</b> Each term of {m:(a+b)^n} picks a or b from every one of the n brackets. A term with {m:b^r} needs b from exactly r brackets. The number of ways to choose those r brackets is <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li>
+      <li><b>The formula.</b> There are {m:n!} ways to put n different things in a line. Choosing r of them counts each group of r in {m:r!} orders, and each leftover group of {m:n-r} in {m:(n-r)!} orders. Dividing by both gives {m:frac(n!, r!(n-r)!)}.</li>
+      <li><b>The symmetry.</b> Choosing which r brackets give b is the same as choosing which {m:n-r} give a. So <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math> = <math alttext="nCn-r"><mmultiscripts><mi>C</mi><mrow><mi>n</mi><mo>&minus;</mo><mi>r</mi></mrow><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>.</li>
+      <li><b>Estimating.</b> When x is small, {m:x^2}, {m:x^3} and the later powers are tiny. The first few terms hold almost all of the value.</li>
+      <li><b>The check at x = 1.</b> Put {m:x=1} in {m:(a+bx)^n} and you get {m:(a+b)^n}. The coefficients add up to that. It is a quick test of any expansion.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Writing {m:(a+b)^n=a^n+b^n}. The middle terms are missing.</li>
+      <li>Not putting brackets round {m:bx}. The power applies to the number b as well: {m:(2x)^3=8x^3}, not {m:2x^3}.</li>
+      <li>Using the wrong row of the triangle. The row number is the power. The top row is row 0.</li>
+      <li>Forgetting that there are {m:n+1} terms, not n.</li>
+      <li>Losing the signs in {m:(a-bx)^n}. The odd powers of the negative term are negative, so the signs alternate.</li>
+      <li>Using r = 3 for the third term. The first term has {m:r=0}.</li>
+      <li>Mixing up the power of x with the power of a. In the term in {m:x^r}, the power of a is {m:n-r}.</li>
+      <li>Forgetting the second factorial in <math alttext="nCr"><mmultiscripts><mi>C</mi><mi>r</mi><none/><mprescripts/><none/><mi>n</mi></mmultiscripts></math>. The bottom is {m:r!(n-r)!}.</li>
+      <li>Keeping {m:n=-5} when n must be a positive whole number.</li>
+      <li>Giving only k = 3 when the equation is {m:k^2=9}, and k = &minus;3 also works (unless the question rules it out).</li>
+      <li>Using too few terms to estimate, or using this method when x is not small.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="binomial-positive">
+      <li><label><input type="checkbox"> build Pascal&rsquo;s triangle and use a row for the coefficients of {m:(a+b)^n}</label></li>
+      <li><label><input type="checkbox"> work out factorials and nCr, with the formula and with my calculator</label></li>
+      <li><label><input type="checkbox"> expand {m:(a+bx)^n} in ascending powers of x, with the right signs</label></li>
+      <li><label><input type="checkbox"> find a given term or coefficient without expanding the whole bracket</label></li>
+      <li><label><input type="checkbox"> find an unknown number, or an unknown power, from a given coefficient</label></li>
+      <li><label><input type="checkbox"> use the first few terms to estimate a number such as {m:1.02^8}</label></li>
+      <li><label><input type="checkbox"> work backwards from an expansion to the bracket that made it</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

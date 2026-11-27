@@ -27,7 +27,7 @@ const t = (id, title, strand, year, needs, flip, extra = {}) => ({ id, title, st
 
 export const TOPICS = [
   // Proof
-  t('proof-methods', 'Proof: direct, exhaustion, counterexample', 'proof', 1, [], 'Proving a statement is always true, and finding one example that shows it is false'),
+  t('proof-methods', 'Proof: direct, exhaustion, counterexample', 'proof', 1, [], 'Proving a statement is always true, and finding one example that shows it is false', { aka: 'proof prove deduction exhaustion counterexample disprove implies if and only if therefore even odd consecutive integers', status: 'live', words: ['statement', 'proof', 'proof-by-deduction', 'proof-by-exhaustion', 'counterexample', 'implies', 'if-and-only-if', 'therefore', 'converse', 'even-number', 'odd-number', 'consecutive-integers', 'multiple', 'square-number', 'completing-the-square', 'set-notation', 'element-of', 'union', 'intersection', 'empty-set'] }),
   t('proof-contradiction', 'Proof by contradiction', 'proof', 2, ['proof-methods'], 'Assuming the opposite and showing that it cannot be true'),
 
   // Algebra and functions
@@ -35,7 +35,7 @@ export const TOPICS = [
   t('quadratics', 'Quadratics', 'algebra', 1, ['indices-surds'], 'Solving a quadratic, and building a quadratic from its solutions', { aka: 'quadratic equation completing the square discriminant factorise formula', status: 'live', words: ['quadratic', 'root', 'completing-the-square', 'quadratic-formula', 'discriminant', 'vertex'] }),
   t('simultaneous', 'Simultaneous equations', 'algebra', 1, ['quadratics'], 'Solving two equations together, and seeing where two graphs cross', { aka: 'simultaneous linear quadratic substitution elimination intersection graphs meet tangent', status: 'live', words: ['simultaneous-equations', 'linear-equation', 'substitution', 'elimination', 'point-of-intersection', 'discriminant', 'tangent'] }),
   t('inequalities', 'Inequalities', 'algebra', 1, ['quadratics', 'straight-lines'], 'Solving an inequality, and shading the region it describes', { aka: 'inequality interval notation set notation number line region shading quadratic inequality critical values', status: 'live', words: ['inequality', 'strict-inequality', 'interval', 'interval-notation', 'set-notation', 'union', 'intersection', 'critical-values', 'region', 'boundary', 'discriminant'] }),
-  t('polynomials', 'Polynomials and the factor theorem', 'algebra', 1, ['quadratics'], 'Dividing to find a factor, and multiplying factors back into a polynomial'),
+  t('polynomials', 'Polynomials and the factor theorem', 'algebra', 1, ['quadratics'], 'Dividing to find a factor, and multiplying factors back into a polynomial', { aka: 'polynomial factor theorem remainder theorem algebraic division long division cubic factorise solve root coefficient quotient remainder', status: 'live', words: ['polynomial', 'coefficient', 'degree', 'constant-term', 'cubic', 'quartic', 'polynomial-division', 'quotient', 'remainder', 'factor-theorem', 'remainder-theorem', 'root', 'repeated-root', 'discriminant'] }),
   t('graphs-polynomials', 'Graphs of polynomials and reciprocals', 'algebra', 1, ['polynomials'], 'Reading roots from a graph, and sketching a graph from its equation'),
   t('graph-transformations', 'Transformations of graphs', 'algebra', 1, ['graphs-polynomials'], 'Moving a graph, and finding the equation of the moved graph'),
   t('functions', 'Functions', 'algebra', 2, ['graph-transformations'], 'Applying a function, and undoing it with its inverse'),
@@ -48,14 +48,14 @@ export const TOPICS = [
   t('parametric', 'Parametric equations', 'coordinate', 2, ['functions', 'trig-identities'], 'From a parameter to a point, and from the points back to a single equation'),
 
   // Sequences and series
-  t('binomial-positive', 'Binomial expansion (positive whole-number powers)', 'sequences', 1, ['indices-surds'], 'Expanding a bracket raised to a power, and spotting which bracket an expansion came from'),
+  t('binomial-positive', 'Binomial expansion (positive whole-number powers)', 'sequences', 1, ['indices-surds'], 'Expanding a bracket raised to a power, and spotting which bracket an expansion came from', { aka: 'binomial expansion pascals triangle nCr factorial coefficient general term approximation expand bracket power', status: 'live', words: ['binomial', 'factorial', 'ncr', 'pascals-triangle', 'binomial-expansion', 'general-term', 'ascending-powers', 'coefficient', 'constant-term'] }),
   t('sequences', 'Sequences and recurrence relations', 'sequences', 2, ['functions'], 'Finding terms from a rule, and finding the rule from terms'),
   t('series-arithmetic', 'Arithmetic sequences and series', 'sequences', 2, ['sequences'], 'Adding up equal steps, and finding how many steps are needed'),
   t('series-geometric', 'Geometric sequences and series', 'sequences', 2, ['sequences', 'indices-surds'], 'Adding up repeated multiplying, and finding when the total stops growing'),
   t('binomial-general', 'Binomial expansion (fractional and negative powers)', 'sequences', 2, ['binomial-positive', 'algebraic-fractions'], 'Expanding with a fractional or negative power, and knowing when the expansion works'),
 
   // Trigonometry
-  t('trig-triangles', 'Trigonometry in triangles', 'trigonometry', 1, [], 'Finding a missing length or angle, and choosing the right rule'),
+  t('trig-triangles', 'Trigonometry in triangles', 'trigonometry', 1, [], 'Finding a missing length or angle, and choosing the right rule', { aka: 'sine rule cosine rule area of a triangle ambiguous case bearings triangle missing side angle', status: 'live', words: ['sine', 'cosine', 'included-angle', 'sine-rule', 'cosine-rule', 'area-of-triangle-sine', 'ambiguous-case', 'bearing'] }),
   t('trig-graphs', 'Trigonometric graphs and exact values', 'trigonometry', 1, ['trig-triangles'], 'Reading values from a graph, and drawing a graph from values'),
   t('trig-identities', 'Trigonometric identities and equations', 'trigonometry', 1, ['trig-graphs', 'quadratics'], 'Solving an equation for the angle, and showing that two expressions are the same'),
   t('radians', 'Radians, arcs and sectors', 'trigonometry', 2, ['trig-graphs'], 'Measuring an angle in degrees, and measuring it in radians'),
