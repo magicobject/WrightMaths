@@ -154,6 +154,11 @@ const CHECKS: Check[] = [
   { find: 'y=x^3-x^2 and y=2x meet', answer: typedList(meetX((x) => x ** 3 - x ** 2, (x) => 2 * x)), slips: [{ value: typedList(meetX((x) => x ** 3 - x ** 2, (x) => 2 * x).filter((v) => v !== 0)), says: /divided by x and lost the solution x=0/ }] },
   { find: 'y=frac(12, x) and y=7-x meet', answer: (() => { const x = Math.min(...meetX((v) => 12 / v, (v) => 7 - v)); return pair(x, 7 - x); })(), slips: [{ value: (() => { const x = Math.max(...meetX((v) => 12 / v, (v) => 7 - v)); return pair(x, 7 - x); })(), says: /larger x-coordinate/ }] },
   { find: 'Sketch y=x^3 and y=frac(1, x)', answer: String(meetX((x) => x ** 3, (x) => 1 / x).length), slips: [{ value: String(meetX((x) => x ** 3, (x) => 1 / x).filter((v) => v > 0).length), says: /x=-1 works too/ }] },
+  // 6. proportion
+  { find: 'y is proportional to x^2. When x=2, y=20', answer: String((20 / 2 ** 2) * 4 ** 2), slips: [{ value: String((20 / 2) * 4), says: /treated y as proportional to x\./ }] },
+  { find: 'y is inversely proportional to x. When x=3, y=8', answer: String((8 * 3) / 8), slips: [{ value: String((8 / 3) * 8), says: /directly proportional/ }] },
+  { find: 'y is proportional to sqrt(x). When x=4, y=12', answer: String((12 / Math.sqrt(4)) * Math.sqrt(25)), slips: [{ value: String((12 / 4) * 25), says: /treated y as proportional to x\./ }] },
+  { find: 'y=k*sqrt(x) passes through the point (9, 15)', answer: String(15 / Math.sqrt(9)), slips: [{ value: String(15 * 9), says: /multiplied 15 by 9/ }] },
   // flip it: equations are compared as functions of x
   { find: 'The graph shows a cubic', answer: `${qCubicK}(x+2)(x-3)^2`, fn: qCubic, slips: [{ value: '(x+2)(x-3)^2', says: /meets the y-axis at \(0, 18\)/, fn: fn(1, [X(2), X(-3, 2)]) }, { value: '-(x+2)^2(x-3)', says: /wrong factor/, fn: fn(-1, [X(2, 2), X(-3)]) }] },
   { find: 'The curve in the figure has the equation', answer: `${qRecipA}/x`, fn: (x) => qRecipA / x, slips: [{ value: `${-qRecipA}/x`, says: /a is negative/, fn: (x) => -qRecipA / x }, { value: `${qRecipA}x`, says: /straight line/, fn: (x) => qRecipA * x }] },
@@ -248,7 +253,7 @@ test('multiple-choice keys: each correct option is the one the function gives, a
   const cube = fn(1, [X(-1, 3)]);
   expect(crosses(cube, 1)).toBe(true);
   expect(Math.abs(cube(1.01))).toBeLessThan(2e-6); // flat: the value is tiny a little way from the root
-  expect(correctText('What does the graph of y=(x-1)^3 do')).toBe('It crosses the x-axis, with a flat spot as it crosses');
+  expect(correctText('What does the graph of y=(x-1)^3 do')).toBe('It crosses the x-axis, and the gradient is 0 there. The graph keeps going the same way: this is a point of inflection');
   // four brackets, each once: four crossings, both ends up
   const four = fn(1, [X(-1), X(-2), X(-3), X(-4)]);
   expect([1, 2, 3, 4].every((r) => crosses(four, r))).toBe(true);
@@ -316,6 +321,7 @@ const WORKED: Worked[] = [
   { eq: '(x+3)(x-1)^2', k: 1, bs: [X(3), X(-1, 2)] },
   { eq: '(2-x)(x+1)^2', k: 1, bs: [B(-1, 2), X(1, 2)] },
   { eq: '(x-1)^3', k: 1, bs: [X(-1, 3)] },
+  { eq: 'x(2x-1)(x+2)', k: 1, bs: [B(1, 0), B(2, -1), X(2)] },
   { eq: '(x+3)(x+1)(x-2)(x-4)', k: 1, bs: [X(3), X(1), X(-2), X(-4)] },
   { eq: '(x+2)^2(x-1)(x-3)', k: 1, bs: [X(2, 2), X(-1), X(-3)] },
   { eq: '(x+1)^2(x-2)^2', k: 1, bs: [X(1, 2), X(-2, 2)] },
@@ -394,7 +400,7 @@ test('every calculation {m:a=b=c} on the page is right', () => {
 type Geom = { width: number; height: number; left: number; right: number; top: number; bottom: number; xmin: number; xmax: number; ymin: number; ymax: number };
 type Fx = (x: number) => number;
 /** What each picture is meant to show, written here from the page's own numbers (not read from the figure code). */
-type Stated = { curves: { cls: string; f: Fx }[]; points: Record<string, [number, number]>; on: Record<string, number[]>; roots?: { x: number; cross: boolean }[]; ends?: string; vlines?: Record<string, number>; hlines?: Record<string, number>; reciprocal?: number[] };
+type Stated = { curves: { cls: string; f: Fx }[]; points: Record<string, [number, number]>; on: Record<string, number[]>; roots?: { x: number; cross: boolean; w?: [number, number] }[]; ends?: string; vlines?: Record<string, number>; hlines?: Record<string, number>; reciprocal?: number[] };
 const poly = (k: number, bs: Bracket[]): Fx => fn(k, bs);
 const STATED: Record<string, Stated> = {
   'graphs-polynomials-ends-odd': { curves: [{ cls: 'curve', f: (x) => x ** 3 }, { cls: 'curve-b', f: (x) => -(x ** 3) }], points: {}, on: {} },
@@ -403,6 +409,8 @@ const STATED: Record<string, Stated> = {
   'graphs-polynomials-cubic-touch': { curves: [{ cls: 'curve', f: poly(1, [X(3), X(-1, 2)]) }], points: { cross: [-3, 0], touch: [1, 0], yint: [0, 3] }, on: { cross: [0], touch: [0], yint: [0] }, roots: [{ x: -3, cross: true }, { x: 1, cross: false }], ends: 'The left end goes down and the right end goes up' },
   'graphs-polynomials-cubic-negative': { curves: [{ cls: 'curve', f: poly(1, [B(-1, 2), X(1, 2)]) }], points: { touch: [-1, 0], cross: [2, 0], yint: [0, 2] }, on: { touch: [0], cross: [0], yint: [0] }, roots: [{ x: -1, cross: false }, { x: 2, cross: true }], ends: 'The left end goes up and the right end goes down' },
   'graphs-polynomials-cubic-triple': { curves: [{ cls: 'curve', f: poly(1, [X(-1, 3)]) }], points: { root: [1, 0], yint: [0, -1] }, on: { root: [0], yint: [0] }, roots: [{ x: 1, cross: true }], ends: 'The left end goes down and the right end goes up' },
+  'graphs-polynomials-cubic-nonmonic': { curves: [{ cls: 'curve', f: poly(1, [B(1, 0), B(2, -1), X(2)]) }], points: { r1: [-2, 0], r2: [0, 0], r3: [0.5, 0] }, on: { r1: [0], r2: [0], r3: [0] }, roots: [{ x: -2, cross: true }, { x: 0, cross: true, w: [0.08, 0.2] }, { x: 0.5, cross: true, w: [0.08, 0.2] }], ends: 'The left end goes down and the right end goes up' },
+  'graphs-polynomials-proportion-root': { curves: [{ cls: 'curve', f: (x) => 3 * Math.sqrt(x) }], points: { p1: [1, 3], p4: [4, 6], p9: [9, 9] }, on: { p1: [0], p4: [0], p9: [0] } },
   'graphs-polynomials-quartic-four': { curves: [{ cls: 'curve', f: poly(1, [X(3), X(1), X(-2), X(-4)]) }], points: { r1: [-3, 0], r2: [-1, 0], r3: [2, 0], r4: [4, 0], yint: [0, 24] }, on: { r1: [0], r2: [0], r3: [0], r4: [0], yint: [0] }, roots: [{ x: -3, cross: true }, { x: -1, cross: true }, { x: 2, cross: true }, { x: 4, cross: true }], ends: 'Both ends go up' },
   'graphs-polynomials-quartic-double': { curves: [{ cls: 'curve', f: poly(1, [X(2, 2), X(-1), X(-3)]) }], points: { touch: [-2, 0], r2: [1, 0], r3: [3, 0], yint: [0, 12] }, on: { touch: [0], r2: [0], r3: [0], yint: [0] }, roots: [{ x: -2, cross: false }, { x: 1, cross: true }, { x: 3, cross: true }], ends: 'Both ends go up' },
   'graphs-polynomials-quartic-flat': { curves: [{ cls: 'curve', f: horner([1, 0, -4, 0, 0]) }], points: { r1: [-2, 0], origin: [0, 0], r3: [2, 0] }, on: { r1: [0], origin: [0], r3: [0] }, roots: [{ x: -2, cross: true }, { x: 0, cross: false }, { x: 2, cross: true }], ends: 'Both ends go up' },
@@ -474,8 +482,9 @@ test('every curve is read back from its drawn path and is the function the page 
     for (const r of st.roots ?? []) {
       const pts = m.paths[0].pieces.flat();
       const side = (lo: number, hi: number) => pts.filter(([x]) => x >= lo && x <= hi).map(([, y]) => sig(y));
-      const left = side(r.x - 0.6, r.x - 0.25);
-      const right = side(r.x + 0.25, r.x + 0.6);
+      const [w0, w1] = r.w ?? [0.25, 0.6];
+      const left = side(r.x - w1, r.x - w0);
+      const right = side(r.x + w0, r.x + w1);
       expect(left.length * right.length, `${id}: points either side of ${r.x}`).toBeGreaterThan(0);
       const crossed = new Set(left).size === 1 && new Set(right).size === 1 && left[0] !== right[0];
       const touched = new Set([...left, ...right]).size === 1;
@@ -563,17 +572,39 @@ test('every label says the coordinates of its own point, and is nearest its own 
   expect(problems).toEqual([]);
 });
 
-test('a question figure describes the picture without giving the answer', async () => {
+test('a question figure states every marked coordinate in its text alternative, and does not give the answer', async () => {
   const src = readFileSync(join(ROOT, 'src', 'book', 'alevel', 'figures', 'graphs-polynomials.mjs'), 'utf8');
   const descs = [...src.matchAll(/'(graphs-polynomials-q-[a-z]+)': \(\) => \{[\s\S]*?title: '((?:[^'\\]|\\.)*)',\s*desc: '((?:[^'\\]|\\.)*)'/g)];
   expect(descs.map((d) => d[1]).sort()).toEqual(['graphs-polynomials-q-cubic', 'graphs-polynomials-q-recip']);
+  const { FIGURES, ITEMS } = await import('../src/book/alevel/figures/graphs-polynomials.mjs');
   for (const d of descs) {
-    expect(d[2], `${d[1]} title`).not.toMatch(/\d|minus|equation/i);
-    expect(d[3], `${d[1]} desc`).not.toMatch(/\d|minus|equals|equation/i);
+    (FIGURES as Record<string, () => string>)[d[1]]();
+    for (const it of (ITEMS as Record<string, { kind: string; x: number; y: number }[]>)[d[1]].filter((i) => i.kind === 'point')) expect(d[3], `${d[1]} names (${it.x}, ${it.y})`).toContain(`(${it.x}, ${it.y})`);
+    expect(`${d[2]} ${d[3]}`, d[1]).not.toMatch(/equation|\bk\b|\ba = |minus 6|-6\/x|-\(x/i);
   }
-  // the page puts each question figure straight after its question text
   expect(SOURCE).toContain('{fig:graphs-polynomials-q-cubic}');
   expect(SOURCE).toContain('{fig:graphs-polynomials-q-recip}');
+});
+
+test('a format hint ("Type it like ...") never gives the key away', async () => {
+  const { matches } = await import('../public/js/book-answer.mjs');
+  const problems: string[] = [];
+  let hints = 0;
+  for (const q of questions()) {
+    const m = /Type (?:it|them|your answers) like (.*?)\.?$/.exec(q.plain);
+    if (!m || q.answers.length === 0) continue;
+    hints += 1;
+    if (matches(m[1], q.answers, q.mode)) problems.push(`"${m[1]}" is the key of: ${q.plain.slice(0, 60)}`);
+  }
+  expect(hints).toBeGreaterThan(10);
+  expect(problems).toEqual([]);
+});
+
+test('at 320px every figure label is at least 12px tall', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/courses/a-level/graphs-polynomials.html');
+  const small = await page.evaluate(() => [...document.querySelectorAll('main svg.graph-svg text')].map((t) => ({ s: t.textContent, h: t.getBoundingClientRect().height })).filter((t) => t.h > 0 && t.h < 12).map((t) => t.s + ' ' + t.h.toFixed(1)));
+  expect(small).toEqual([]);
 });
 
 test('every figure on the page exists, is used once, and every figure file entry is used', async () => {
@@ -599,9 +630,9 @@ test('no figure text leaves its picture', async ({ page }) => {
   expect(outside).toEqual([]);
 });
 
-test('the page keeps to its scope: no derivatives, no transformations of graphs, no proportionality laws', () => {
+test('the page keeps to its scope: no derivatives, no transformations of graphs', () => {
   const text = plain(SOURCE.replace(/<!--[\s\S]*?-->/g, ' ').replace(/<p class="where-use">[\s\S]*?<\/p>/, ' '));
-  expect(text).not.toMatch(/derivative|dy\/dx|gradient|translat|stretch|reflect|modulus|sin |cos |tan /i);
+  expect(text).not.toMatch(/derivative|dy\/dx|stationary|translat|stretch|modulus|sin |cos |tan /i);
   // Differentiation is named once in the lessons, as the place the exact turning points come from
   expect((text.match(/Differentiation/g) ?? []).length).toBe(1);
   // a sketch needs no exact turning points: the page says so

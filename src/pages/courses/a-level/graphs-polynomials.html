@@ -4,7 +4,7 @@
     <div>
       <span class="eyebrow">Algebra &middot; Year 1</span>
       <h1>Graphs of polynomials and reciprocals</h1>
-      <p class="lead">A sketch is a quick drawing that shows the shape of a graph and the points that matter. You do not need a table of values. This page shows you how to sketch a cubic or a quartic from its factors. You find where it crosses or touches the x-axis, where it meets the y-axis, and what its two ends do. Then you meet the graphs of {m:frac(a, x)} and {m:frac(a, x^2)}, which have asymptotes. Last, you find where two graphs meet by solving their equations together.</p>
+      <p class="lead">A sketch is a quick drawing that shows the shape of a graph and the points that matter. You do not need a table of values. This page shows you how to sketch a cubic or a quartic from its factors. You find where it crosses or touches the x-axis, where it meets the y-axis, and what its two ends do. Then you meet the graphs of {m:frac(a, x)} and {m:frac(a, x^2)}, which have asymptotes: lines they get closer and closer to but never touch. Last, you find where two graphs meet by solving their equations together.</p>
       <p class="where-use"><b>Where you will use this:</b> in Transformations of graphs, which moves and stretches the graphs you sketch here. It also helps in Differentiation, where you find the exact turning points that a sketch only shows roughly. Any question that says &ldquo;sketch the curve&rdquo; uses the four facts on this page.</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
@@ -199,7 +199,7 @@
       <p><b>Key idea:</b> the four facts for a sketch.</p>
       <ul class="tick">
         <li><b>The roots.</b> Set each bracket to 0. Mark each point on the x-axis.</li>
-        <li><b>Cross or touch.</b> Look at the power of each bracket. Power 1: the graph crosses the axis. Power 2: it touches the axis and turns back. Power 3: it crosses, with a flat spot. This number is the {term:multiplicity}.</li>
+        <li><b>Cross or touch.</b> Look at the power of each bracket. Power 1: the graph crosses the axis. Power 2: it touches the axis and turns back. Power 3: it crosses, and the gradient is 0 at the root. This number is the {term:multiplicity}.</li>
         <li><b>The y-intercept.</b> Put {m:x=0} into every bracket and multiply.</li>
         <li><b>The ends.</b> Multiply the x terms of the brackets to find the leading term.</li>
       </ul>
@@ -213,7 +213,7 @@
         <li>Each bracket appears once, so the graph crosses the x-axis at all three points.</li>
         <li>y-intercept: {m:2*(-1)*(-3)=6}, so {m:(0, 6)}.</li>
         <li>Ends: the leading term is {m:x*x*x=x^3}, which is positive. The graph starts at the bottom left and ends at the top right.</li>
-        <li>Draw it: start low on the left, cross at {m:-2}, rise past {m:(0, 6)}, cross at 1, dip, cross at 3 and keep rising.</li>
+        <li>Draw it: start low on the left, cross at {m:-2}, rise to a high point a little left of the y-axis, come down through {m:(0, 6)}, cross at 1, dip, cross at 3 and keep rising.</li>
       </ol>
       <figure class="figure-lg">{fig:graphs-polynomials-cubic-three}<figcaption>Look at the three marked points on the x-axis. The curve crosses the axis at each of them. It meets the y-axis at {m:(0, 6)}.</figcaption></figure>
     </div>
@@ -245,18 +245,18 @@
       <p>Sketch {m:y=(x-1)^3}.</p>
       <ol class="steps">
         <li>The only root is {m:x=1}. The bracket appears three times, which is an odd number, so the graph crosses the axis.</li>
-        <li>With a power of 3 the graph flattens for a moment as it crosses.</li>
+        <li>With a power of 3 the gradient is 0 at the root. The graph levels out for a moment and keeps going the same way. This is a {term:point-of-inflection}.</li>
         <li>y-intercept: {m:(-1)^3=-1}, so {m:(0, -1)}.</li>
         <li>Ends: the leading term is {m:x^3}, which is positive. The graph starts at the bottom left and ends at the top right.</li>
       </ol>
-      <figure class="figure-lg">{fig:graphs-polynomials-cubic-triple}<figcaption>Look at the point {m:(1, 0)}. The curve flattens out there and crosses the x-axis. It does not turn back.</figcaption></figure>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-triple}<figcaption>Look at the point {m:(1, 0)}. The gradient is 0 there. The curve levels out, crosses the x-axis and keeps going the same way. It does not turn back.</figcaption></figure>
     </div>
     <div class="key">
       <p><b>Key idea:</b> the power of a bracket tells you what the graph does at its root.</p>
       <ul class="tick">
         <li>An odd power (1 or 3): the graph crosses the x-axis.</li>
         <li>An even power (2 or 4): the graph touches the x-axis and turns back.</li>
-        <li>A power of 3 or more makes the graph flatter at the root.</li>
+        <li>A power of 2 or more makes the graph level with the axis at the root. With 2 it touches and turns back. With 3 the gradient is 0 and it crosses.</li>
       </ul>
     </div>
     <p>If the polynomial is not factorised, factorise it first. Take out any common factor, then factorise what is left.</p>
@@ -270,6 +270,17 @@
         <li>The constant term is 0, so the y-intercept is {m:(0, 0)}. This is the root at {m:x=0}.</li>
       </ol>
       <!-- No figure: the curve has the same shape as the first cubic in this lesson, with different roots. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: brackets with a number in front of x</h3>
+      <p>Sketch {m:y=x(2x-1)(x+2)}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=0}. Then {m:2x-1=0} gives {m:x=0.5}, and {m:x+2=0} gives {m:x=-2}. Each bracket appears once, so the graph crosses at all three.</li>
+        <li>y-intercept: put {m:x=0} into the first bracket and the product is 0, so {m:(0, 0)}. This is the root {m:x=0}.</li>
+        <li>Ends: multiply the x terms: {m:x*2x*x=2x^3}. The number 2 is positive, so the graph starts at the bottom left and ends at the top right.</li>
+        <li>The 2 in {m:(2x-1)} does not make the root 2. It makes the root {m:x=0.5}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-nonmonic}<figcaption>Look at the three marked points on the x-axis. The curve crosses at each one. The root at {m:(0.5, 0)} is close to the one at the origin, so the dip between them is small.</figcaption></figure>
     </div>
     <div class="worked faded">
       <h3>Now you finish it</h3>
@@ -337,12 +348,12 @@
     <div class="q" data-type="mc">
       <p class="qtext">What does the graph of {m:y=(x-1)^3} do at x = 1?</p>
       <ul class="options">
-        <li data-correct>It crosses the x-axis, with a flat spot as it crosses</li>
+        <li data-correct>It crosses the x-axis, and the gradient is 0 there. The graph keeps going the same way: this is a point of inflection</li>
         <li data-why="Only an even power makes the graph turn back. The bracket has the power 3, which is odd, so the graph crosses.">It touches the x-axis and turns back</li>
         <li data-why="At x = 1 the bracket is 0, so y = 0. The graph does meet the x-axis there.">It does not meet the x-axis at x = 1</li>
       </ul>
       <ol class="ladder"><li>Is the power odd or even?</li><li>An odd power crosses.</li></ol>
-      <div class="solution"><p>The power 3 is odd, so the graph crosses the axis. A power of 3 also flattens the graph at the root. See the figure in this lesson.</p></div>
+      <div class="solution"><p>The power 3 is odd, so the graph crosses the axis. A power of 3 also makes the gradient 0 at the root, and the graph keeps going the same way. This is a point of inflection. See the figure in this lesson.</p></div>
     </div>
   </div>
 </section>
@@ -396,7 +407,7 @@
       <figure class="figure-lg">{fig:graphs-polynomials-quartic-flat}<figcaption>Look at the origin. The curve rises to touch the x-axis there from below, then goes back down. It crosses the axis at {m:-2} and at 2.</figcaption></figure>
     </div>
     <div class="key">
-      <p><b>Key idea:</b> a minus sign in front of the whole expression turns the graph upside down.</p>
+      <p><b>Key idea:</b> a minus sign in front of the whole expression reflects the graph in the x-axis. This flips it upside down.</p>
       <ul class="tick">
         <li>The roots stay where they are, and the graph still touches or crosses at each one.</li>
         <li>The ends change: {m:y=-x^2(x-2)(x+2)} has both ends going down, because its leading term is {m:-x^4}.</li>
@@ -476,7 +487,7 @@
     <ul class="tick">
       <li>When {m:x=1}, {m:y=6}. When {m:x=2}, {m:y=3}. When {m:x=6}, {m:y=1}.</li>
       <li>As x gets bigger, y gets smaller and closer to 0. It never reaches 0.</li>
-      <li>As x gets closer to 0, y gets bigger and bigger.</li>
+      <li>As x gets closer to 0 from the positive side, y gets bigger and bigger.</li>
       <li>When {m:x=0} you cannot divide by 0. So the graph has no point on the y-axis.</li>
     </ul>
     <p>The graph gets closer and closer to the two axes but never touches them. A line like this is an {term:asymptote}. The x-axis, {m:y=0}, is one. The y-axis, {m:x=0}, is the other. Here the asymptotes are the two axes themselves. Write their equations on your sketch. An asymptote that is not an axis is drawn as a dashed line, with its equation written beside it.</p>
@@ -703,7 +714,7 @@
   <div class="wrap narrow">
     <h2>Check your knowledge: where two graphs meet</h2>
     <div class="q" data-answers="2,5;2, 5" data-mode="exact">
-      <p class="qtext">The graphs of {m:y=frac(10, x)} and {m:y=x+3} meet at two points. Find the point with positive x. Type it like (2, 5).</p>
+      <p class="qtext">The graphs of {m:y=frac(10, x)} and {m:y=x+3} meet at two points. Find the point with positive x. Type it like (4, 7).</p>
       <ol class="ladder"><li>Set {m:frac(10, x)=x+3} and multiply by x.</li><li>Rearrange to {m:x^2+3x-10=0} and factorise.</li></ol>
       <ul class="wrong">
         <li data-if="5,2;5, 2">You gave the y-value first. A point is written with x first.</li>
@@ -752,6 +763,77 @@
   </div>
 </section>
 
+<section>
+  <div class="wrap narrow">
+    <h2>6. Proportion</h2>
+    <p>Two quantities are in {term:proportional|proportion} when one is a fixed number times the other. The sign &prop; reads &ldquo;is proportional to&rdquo;. The fixed number is k.</p>
+    <ul class="tick">
+      <li>{m:y=kx^n} means y is proportional to {m:x^n}. For example, {m:y=kx^2} is proportional to {m:x^2}.</li>
+      <li>{m:y=frac(k, x)} means y is {term:inversely-proportional|inversely proportional} to x. Its graph is a reciprocal graph.</li>
+      <li>{m:y=k*sqrt(x)} means y is proportional to the square root of x. Its graph is half of a parabola on its side, starting at the origin.</li>
+    </ul>
+    <p>To use a proportion: write the equation with k, use one known point to find k, then use the equation.</p>
+    <div class="worked">
+      <h3>Worked example: proportional to x squared</h3>
+      <p>y is proportional to {m:x^2}. When {m:x=3}, {m:y=45}. Find y when {m:x=4}.</p>
+      <ol class="steps">
+        <li>Write {m:y=kx^2}. Put in the point: {m:45=k*3^2}, so {m:45=9k} and {m:k=5}.</li>
+        <li>When {m:x=4}: {m:y=5*4^2=80}.</li>
+      </ol>
+      <!-- No figure: the graph of y = kx^2 is a parabola through the origin, as drawn in Quadratics. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: inversely proportional to x</h3>
+      <p>y is inversely proportional to x. When {m:x=2}, {m:y=6}. Find y when {m:x=4}.</p>
+      <ol class="steps">
+        <li>Write {m:y=frac(k, x)}. Put in the point: {m:6=frac(k, 2)}. So {m:k=12}.</li>
+        <li>When {m:x=4}: {m:y=frac(12, 4)=3}. Doubling x halved y.</li>
+      </ol>
+      <!-- No figure: the reciprocal graph is drawn in lesson 4. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: proportional to the square root of x</h3>
+      <p>y is proportional to {m:sqrt(x)}. When {m:x=4}, {m:y=6}. Find y when {m:x=9}, and sketch the graph.</p>
+      <ol class="steps">
+        <li>Write {m:y=k*sqrt(x)}. Put in the point: {m:6=k*sqrt(4)}, so {m:6=2k} and {m:k=3}.</li>
+        <li>When {m:x=9}: {m:y=3*sqrt(9)=9}.</li>
+        <li>The graph exists only for {m:x >= 0}. It starts at the origin and rises, more and more slowly.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-proportion-root}<figcaption>Look at the curve. It starts at the origin and passes through {m:(1, 3)}, {m:(4, 6)} and {m:(9, 9)}. It has no points to the left of the y-axis.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: proportion</h2>
+    <div class="q" data-answers="80" data-mode="value">
+      <p class="qtext">y is proportional to {m:x^2}. When {m:x=2}, {m:y=20}. Find y when {m:x=4}.</p>
+      <ol class="ladder"><li>Write {m:y=kx^2} and find k.</li><li>{m:20=k*2^2}.</li></ol>
+      <ul class="wrong"><li data-if="40">You treated y as proportional to x. It is proportional to {m:x^2}, so use {m:x^2} in both steps.</li></ul>
+      <div class="solution"><p>{m:20=4k}, so {m:k=5}. When {m:x=4}, {m:y=5*4^2=80}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">y is inversely proportional to x. When {m:x=3}, {m:y=8}. Find y when {m:x=8}.</p>
+      <ol class="ladder"><li>Write {m:y=frac(k, x)} and find k.</li><li>{m:8=frac(k, 3)}.</li></ol>
+      <ul class="wrong"><li data-if="21.33;64/3">You treated y as directly proportional to x. For inverse proportion, y is k divided by x.</li></ul>
+      <div class="solution"><p>{m:8=frac(k, 3)}, so {m:k=24}. When {m:x=8}, {m:y=frac(24, 8)=3}.</p></div>
+    </div>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext">y is proportional to {m:sqrt(x)}. When {m:x=4}, {m:y=12}. Find y when {m:x=25}.</p>
+      <ol class="ladder"><li>Write {m:y=k*sqrt(x)} and find k.</li><li>{m:12=k*sqrt(4)}.</li></ol>
+      <ul class="wrong"><li data-if="75">You treated y as proportional to x. The square root of x is what matters here.</li></ul>
+      <div class="solution"><p>{m:12=2k}, so {m:k=6}. When {m:x=25}, {m:y=6*sqrt(25)=30}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The curve {m:y=k*sqrt(x)} passes through the point {m:(9, 15)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:x=9} and {m:y=15} in.</li><li>{m:sqrt(9)=3}.</li></ol>
+      <ul class="wrong"><li data-if="135">You multiplied 15 by 9. The equation has {m:sqrt(9)=3}, so divide 15 by 3.</li></ul>
+      <div class="solution"><p>{m:15=k*sqrt(9)}, so {m:15=3k} and {m:k=5}.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="flip-section">
   <div class="wrap narrow">
     <h2>Flip it: from the equation to the graph, and from the graph to the equation</h2>
@@ -793,8 +875,8 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Check your knowledge: flip it</h2>
-    <div class="q" data-answers="-(x+2)(x-3)^2;-1(x+2)(x-3)^2;-(x-3)^2(x+2)" data-mode="exact">
-      <p class="qtext">The graph shows a cubic. It crosses the x-axis at the left marked point and touches it at the right marked point. Find its equation. Type it like y=2(x+1)(x-3)^2.</p>
+    <div class="q" data-answers="-(x+2)(x-3)^2;-1(x+2)(x-3)^2;-(x-3)^2(x+2);-(x+2)(x-3)(x-3);-(x-3)(x-3)(x+2)" data-mode="exact">
+      <p class="qtext">The graph shows a cubic. It crosses the x-axis at the left marked point and touches it at the right marked point. Find its equation. Type it like y=3(x+4)(x-5)^2.</p>
       <figure class="qfig-lg">{fig:graphs-polynomials-q-cubic}</figure>
       <ol class="ladder"><li>The crossing root gives a bracket. The touching root gives a squared bracket.</li><li>Write {m:y=k(x+2)(x-3)^2}, then use the point on the y-axis to find k.</li></ol>
       <ul class="wrong">
@@ -803,7 +885,7 @@
       </ul>
       <div class="solution"><p>The roots are {m:x=-2} (crossing) and {m:x=3} (touching). So {m:y=k(x+2)(x-3)^2}. At {m:(0, -18)}: {m:-18=k*2*9=18k}, so {m:k=-1}. The equation is {m:y=-(x+2)(x-3)^2}.</p></div>
     </div>
-    <div class="q" data-answers="-6/x" data-mode="exact">
+    <div class="q" data-answers="-6/x;-(6/x)" data-mode="exact">
       <p class="qtext">The curve in the figure has the equation {m:y=frac(a, x)}. Find its equation. Type it like y=5/x.</p>
       <figure class="qfig-lg">{fig:graphs-polynomials-q-recip}</figure>
       <ol class="ladder"><li>Multiply the x-coordinate of the marked point by its y-coordinate.</li><li>That product is a.</li></ol>
@@ -814,7 +896,7 @@
       <div class="solution"><p>{m:a=x*y=3*(-2)=-6}. The equation is {m:y=frac(-6, x)}.</p></div>
     </div>
     <div class="q" data-answers="(x-1)^2(x+2)(x-3);(x+2)(x-3)(x-1)^2;(x-1)(x-1)(x+2)(x-3)" data-mode="exact">
-      <p class="qtext">A quartic has {m:x^4} coefficient 1. It touches the x-axis at {m:x=1} and crosses it at {m:x=-2} and {m:x=3}. Write its equation in factorised form. Type it like y=(x+1)^2(x-2)(x-3).</p>
+      <p class="qtext">A quartic has {m:x^4} coefficient 1. It touches the x-axis at {m:x=1} and crosses it at {m:x=-2} and {m:x=3}. Write its equation in factorised form. Type it like y=(x+4)(x-5)^3.</p>
       <ol class="ladder"><li>A quartic has four factors. The touching root appears twice.</li><li>Each root {m:x=a} gives a bracket {m:(x-a)}.</li></ol>
       <ul class="wrong">
         <li data-if="(x-1)(x+2)(x-3);(x+2)(x-3)(x-1)">That has only three factors, so it is a cubic. The touching root at 1 must appear twice.</li>
@@ -1016,7 +1098,7 @@
       <li><b>A factor gives a root.</b> If {m:(x-a)} is a factor, then putting {m:x=a} makes one bracket 0, and the whole product is 0. That is why each bracket gives a point on the x-axis.</li>
       <li><b>An odd power keeps the sign change.</b> Shortly before a root a bracket {m:(x-a)} is negative, and soon after it is positive. Raise it to an odd power and the sign still changes, so the graph crosses. Raise it to an even power and the sign does not change, so the graph touches and turns back.</li>
       <li><b>The y-intercept is x = 0.</b> Every point on the y-axis has {m:x=0}. So you put 0 into each bracket and multiply.</li>
-      <li><b>A reciprocal graph has no point at x = 0.</b> You cannot divide by 0. As x gets close to 0, {m:frac(a, x)} grows without limit, and as x grows, it shrinks towards 0. That is why the axes are asymptotes.</li>
+      <li><b>A reciprocal graph has no point at x = 0.</b> You cannot divide by 0. As x gets close to 0, the size of {m:frac(a, x)} grows without limit: it is very large and positive on one side of 0 and very large and negative on the other. As x grows, it shrinks towards 0. That is why the axes are asymptotes.</li>
       <li><b>The product xy stays constant.</b> If {m:y=frac(a, x)}, then {m:x*y=a}. Doubling x halves y, which is inverse proportion.</li>
       <li><b>Where graphs meet, the y-values are equal.</b> Both equations hold at the same point. So setting the two expressions for y equal gives every x where the graphs meet.</li>
     </ul>
@@ -1048,6 +1130,7 @@
       <li><label><input type="checkbox"> sketch {m:y=frac(a, x)} and {m:y=frac(a, x^2)} for a positive and a negative a, with their asymptotes</label></li>
       <li><label><input type="checkbox"> find a from a point on a reciprocal graph</label></li>
       <li><label><input type="checkbox"> find where two graphs meet by solving their equations together, and use a sketch to see how many points to expect</label></li>
+      <li><label><input type="checkbox"> use a proportion to find k from one point, and say what its graph looks like</label></li>
       <li><label><input type="checkbox"> read the roots and one more point from a sketch, and write the equation</label></li>
     </ul>
     <p class="muted">Come back in a week and tick again, without looking.</p>

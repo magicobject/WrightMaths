@@ -16,7 +16,7 @@ export const CURVES = {};
 /** What is marked on each picture: { name, kind: 'point', x, y } or { name, kind: 'vline', x } or { name, kind: 'hline', y }. */
 export const ITEMS = {};
 
-const W = 720;
+const W = 600; // a narrow picture, so the labels are drawn large when it is scaled down to a phone
 const LEFT = 64;
 const RIGHT = 48;
 const BOTTOM = 52;
@@ -61,7 +61,7 @@ function mark(p, id, { name, x, y, text, dx = 14, dy = -14, anchor = 'start' }) 
 /**
  * The equation of an asymptote, written beside it. `x` is a vertical asymptote, `y` a horizontal one. `at` is where the
  * text sits, in graph units. Every asymptote on this page IS an axis (x = 0 or y = 0), so no extra line is drawn: the
- * axis already shows it. (A dashed asymptote that is not an axis comes with Transformations of graphs.)
+ * axis already shows it. (An asymptote that is not an axis, such as y = a/(x + b) + c, is taught in Transformations of graphs.)
  */
 function asymptote(p, id, { name, x, y, text, at, dx = 0, dy = 0, anchor = 'start' }) {
   ITEMS[id].push(x !== undefined ? { name, kind: 'vline', x } : { name, kind: 'hline', y });
@@ -93,6 +93,8 @@ const lineMeet = (x) => -3 * x;
 const hyper8 = (x) => 8 / x;
 const parab = (x) => x ** 2;
 const flipBack = (x) => 2 * (x + 1) * (x - 2) ** 2;
+const cubicNonmonic = (x) => x * (2 * x - 1) * (x + 2);
+const rootThree = (x) => 3 * Math.sqrt(x);
 const qCubic = (x) => -(x + 2) * (x - 3) ** 2;
 
 export const FIGURES = {
@@ -100,8 +102,8 @@ export const FIGURES = {
   'graphs-polynomials-ends-odd': () => {
     const id = 'graphs-polynomials-ends-odd';
     const p = sketch(id, { xmin: -2.1, xmax: 2.1, ymin: -9.5, ymax: 9.5, rows: 2 });
-    keyRow(p, 0, 'curve', 'y = x^3  (the x^3 term is positive)');
-    keyRow(p, 1, 'curve-b', 'y = -x^3  (the x^3 term is negative)');
+    keyRow(p, 0, 'curve', 'y = x^3  (+x^3 term)');
+    keyRow(p, 1, 'curve-b', 'y = -x^3  (-x^3 term)');
     draw(p, id, [{ name: 'positive', fn: cubic }, { name: 'negative', cls: 'curve-b', fn: negCubic }]);
     return finish(p, {
       id,
@@ -114,13 +116,13 @@ export const FIGURES = {
   'graphs-polynomials-ends-even': () => {
     const id = 'graphs-polynomials-ends-even';
     const p = sketch(id, { xmin: -2.1, xmax: 2.1, ymin: -19, ymax: 19, rows: 2 });
-    keyRow(p, 0, 'curve', 'y = x^4  (the x^4 term is positive)');
-    keyRow(p, 1, 'curve-b', 'y = -x^4  (the x^4 term is negative)');
+    keyRow(p, 0, 'curve', 'y = x^4  (+x^4 term)');
+    keyRow(p, 1, 'curve-b', 'y = -x^4  (-x^4 term)');
     draw(p, id, [{ name: 'positive', fn: quartic }, { name: 'negative', cls: 'curve-b', fn: negQuartic }]);
     return finish(p, {
       id,
       title: 'The graphs of y = x to the power 4 and y = minus x to the power 4: both ends point the same way',
-      desc: 'Two curves that both touch the x-axis at the origin. The solid curve, y equals x to the power 4, has both ends going up, like a flat-bottomed bowl. The dashed curve, y equals minus x to the power 4, is its mirror image in the x-axis and has both ends going down. In each curve the left end and the right end point the same way.',
+      desc: 'Two curves that both touch the x-axis at the origin. The solid curve, y equals x to the power 4, has both ends going up, like a wide bowl. The dashed curve, y equals minus x to the power 4, is its mirror image in the x-axis and has both ends going down. In each curve the left end and the right end point the same way.',
     });
   },
 
@@ -173,7 +175,7 @@ export const FIGURES = {
     });
   },
 
-  // ---- 2. a triple root: y = (x - 1)^3 crosses, but flattens as it does ----
+  // ---- 2. a triple root: y = (x - 1)^3 crosses, with gradient 0 as it does ----
   'graphs-polynomials-cubic-triple': () => {
     const id = 'graphs-polynomials-cubic-triple';
     const p = sketch(id, { xmin: -1, xmax: 3, ymin: -9, ymax: 9 });
@@ -183,20 +185,52 @@ export const FIGURES = {
     mark(p, id, { name: 'yint', x: 0, y: -1, text: '(0, -1)', dx: 14, dy: 40 });
     return finish(p, {
       id,
-      title: 'The graph of y = (x - 1) cubed crosses the x-axis at 1 and flattens out as it crosses',
-      desc: 'A cubic curve that comes up from the bottom left, flattens out as it reaches the marked point (1, 0) on the x-axis, crosses the axis there, and keeps rising to the top right. It meets the y-axis at the marked point (0, -1). It crosses the axis, but with a flat spot at the crossing.',
+      title: 'The graph of y = (x - 1) cubed crosses the x-axis at 1, where its gradient is 0',
+      desc: 'A cubic curve that comes up from the bottom left, levels out as it reaches the marked point (1, 0) on the x-axis, where its gradient is 0, crosses the axis there, and keeps rising to the top right. It meets the y-axis at the marked point (0, -1). It crosses the axis, and keeps going the same way after the level moment at the crossing.',
+    });
+  },
+
+  // ---- 2. brackets with a number in front of x: y = x(2x - 1)(x + 2) has the root 0.5, not 2 ----
+  'graphs-polynomials-cubic-nonmonic': () => {
+    const id = 'graphs-polynomials-cubic-nonmonic';
+    const p = sketch(id, { xmin: -2.6, xmax: 1.4, ymin: -12, ymax: 11 });
+    band(p, 0, 'y = x(2x - 1)(x + 2)');
+    draw(p, id, [{ name: 'cubic', fn: cubicNonmonic }]);
+    mark(p, id, { name: 'r1', x: -2, y: 0, text: '(-2, 0)', dx: 14, dy: 40 });
+    mark(p, id, { name: 'r2', x: 0, y: 0, text: '(0, 0)', dx: -14, dy: 40, anchor: 'end' });
+    mark(p, id, { name: 'r3', x: 0.5, y: 0, text: '(0.5, 0)', dx: 14, dy: 40 });
+    return finish(p, {
+      id,
+      title: 'The graph of y = x(2x - 1)(x + 2) crosses the x-axis at -2, 0 and 0.5',
+      desc: 'A cubic curve that comes up from the bottom left and crosses the x-axis at the marked point (-2, 0). It reaches a high point, comes down through the marked point (0, 0) at the origin, dips a little below the axis, then crosses again at the marked point (0.5, 0) and keeps rising to the top right. It crosses the axis at all three roots.',
+    });
+  },
+
+  // ---- 6. y proportional to the square root of x: y = 3 sqrt(x) ----
+  'graphs-polynomials-proportion-root': () => {
+    const id = 'graphs-polynomials-proportion-root';
+    const p = sketch(id, { xmin: -1, xmax: 10, ymin: -2, ymax: 11 });
+    band(p, 0, 'y = 3 sqrt(x)');
+    draw(p, id, [{ name: 'root', fn: rootThree }]);
+    mark(p, id, { name: 'p1', x: 1, y: 3, text: '(1, 3)', dx: 14, dy: 36 });
+    mark(p, id, { name: 'p4', x: 4, y: 6, text: '(4, 6)', dx: 14, dy: 36 });
+    mark(p, id, { name: 'p9', x: 9, y: 9, text: '(9, 9)', dx: -14, dy: 70, anchor: 'end' });
+    return finish(p, {
+      id,
+      title: 'The graph of y = 3 times the square root of x starts at the origin and rises more and more slowly',
+      desc: 'A curve that starts at the origin and rises to the right, steeply at first and then more and more slowly, like half of a parabola lying on its side. It passes through the marked points (1, 3), (4, 6) and (9, 9). There are no points to the left of the y-axis.',
     });
   },
 
   // ---- 3. a quartic with four roots: y = (x + 3)(x + 1)(x - 2)(x - 4) ----
   'graphs-polynomials-quartic-four': () => {
     const id = 'graphs-polynomials-quartic-four';
-    const p = sketch(id, { xmin: -3.6, xmax: 4.6, ymin: -30, ymax: 72 });
+    const p = sketch(id, { xmin: -4, xmax: 5.8, ymin: -30, ymax: 100 });
     band(p, 0, 'y = (x + 3)(x + 1)(x - 2)(x - 4)');
     draw(p, id, [{ name: 'quartic', fn: quarticFour }]);
-    mark(p, id, { name: 'r1', x: -3, y: 0, text: '(-3, 0)', dx: 14, dy: -16 });
+    mark(p, id, { name: 'r1', x: -3, y: 0, text: '(-3, 0)', dx: -14, dy: 40, anchor: 'end' });
     mark(p, id, { name: 'r2', x: -1, y: 0, text: '(-1, 0)', dx: 14, dy: 40 });
-    mark(p, id, { name: 'r3', x: 2, y: 0, text: '(2, 0)', dx: 14, dy: -16 });
+    mark(p, id, { name: 'r3', x: 2, y: 0, text: '(2, 0)', dx: 4, dy: -16 });
     mark(p, id, { name: 'r4', x: 4, y: 0, text: '(4, 0)', dx: 14, dy: 40 });
     mark(p, id, { name: 'yint', x: 0, y: 24, text: '(0, 24)', dx: -16, dy: -14, anchor: 'end' });
     return finish(p, {
@@ -209,7 +243,7 @@ export const FIGURES = {
   // ---- 3. a quartic with a repeated root: y = (x + 2)^2 (x - 1)(x - 3) ----
   'graphs-polynomials-quartic-double': () => {
     const id = 'graphs-polynomials-quartic-double';
-    const p = sketch(id, { xmin: -3.2, xmax: 3.6, ymin: -22, ymax: 54 });
+    const p = sketch(id, { xmin: -3.2, xmax: 4, ymin: -22, ymax: 54 });
     band(p, 0, 'y = (x + 2)^2 (x - 1)(x - 3)');
     draw(p, id, [{ name: 'quartic', fn: quarticDouble }]);
     mark(p, id, { name: 'touch', x: -2, y: 0, text: '(-2, 0)', dx: 0, dy: 44, anchor: 'middle' });
@@ -226,11 +260,11 @@ export const FIGURES = {
   // ---- 3. an expanded quartic: y = x^4 - 4x^2 = x^2 (x - 2)(x + 2) ----
   'graphs-polynomials-quartic-flat': () => {
     const id = 'graphs-polynomials-quartic-flat';
-    const p = sketch(id, { xmin: -2.4, xmax: 2.4, ymin: -6, ymax: 12 });
+    const p = sketch(id, { xmin: -2.4, xmax: 2.8, ymin: -6, ymax: 12 });
     band(p, 0, 'y = x^4 - 4x^2 = x^2 (x - 2)(x + 2)');
     draw(p, id, [{ name: 'quartic', fn: quarticFlat }]);
     mark(p, id, { name: 'r1', x: -2, y: 0, text: '(-2, 0)', dx: 14, dy: -16 });
-    mark(p, id, { name: 'origin', x: 0, y: 0, text: '(0, 0)', dx: 0, dy: -20, anchor: 'middle' });
+    mark(p, id, { name: 'origin', x: 0, y: 0, text: '(0, 0)', dx: 14, dy: -20 });
     mark(p, id, { name: 'r3', x: 2, y: 0, text: '(2, 0)', dx: 14, dy: 40 });
     return finish(p, {
       id,
@@ -270,7 +304,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = 6 over x has one branch in the top right and one in the bottom left',
-      desc: 'A curve in two separate pieces, called branches. One branch is in the top right: it falls from very high values near the y-axis, through the marked points (1, 6), (2, 3) and (6, 1), and flattens out close to the x-axis. The other branch is in the bottom left and is the first branch turned half a turn about the origin, passing through the marked point (-2, -3). The two axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
+      desc: 'A curve in two separate pieces, called branches. One branch is in the top right: it falls from very high values near the y-axis, through the marked points (1, 6), (2, 3) and (6, 1), and runs closer and closer to the x-axis. The other branch is in the bottom left and is the first branch turned half a turn about the origin, passing through the marked point (-2, -3). The two axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
     });
   },
 
@@ -287,7 +321,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = minus 6 over x has one branch in the top left and one in the bottom right',
-      desc: 'A curve in two separate branches. One branch is in the top left: it rises steeply close to the y-axis and flattens out close to the x-axis on the left, passing through the marked point (-2, 3). The other branch is in the bottom right and passes through the marked point (2, -3). Both axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
+      desc: 'A curve in two separate branches. One branch is in the top left: it rises steeply close to the y-axis and runs closer and closer to the x-axis on the left, passing through the marked point (-2, 3). The other branch is in the bottom right and passes through the marked point (2, -3). Both axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
     });
   },
 
@@ -306,7 +340,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = 4 over x squared has two branches that are both above the x-axis',
-      desc: 'A curve in two separate branches that are mirror images of each other in the y-axis, both above the x-axis. The right branch falls from very high values close to the y-axis, through the marked points (1, 4) and (2, 1), and flattens out close to the x-axis. The left branch passes through the marked points (-1, 4) and (-2, 1). The two axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
+      desc: 'A curve in two separate branches that are mirror images of each other in the y-axis, both above the x-axis. The right branch falls from very high values close to the y-axis, through the marked points (1, 4) and (2, 1), and runs closer and closer to the x-axis. The left branch passes through the marked points (-1, 4) and (-2, 1). The two axes are the asymptotes. They are labelled x = 0 and y = 0, and the curve gets closer and closer to them but never touches them.',
     });
   },
 
@@ -385,7 +419,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'A cubic curve with three marked points',
-      desc: 'A cubic curve that comes down from the top left and crosses the x-axis at the left marked point. It dips below the axis, passes through the marked point on the y-axis, then rises to meet the x-axis at the right marked point. There it touches the axis without crossing and turns back down. The right end points down.',
+      desc: 'A cubic curve that comes down from the top left and crosses the x-axis at the marked point (-2, 0). It dips below the axis, passes through the marked point (0, -18) on the y-axis, then rises to meet the x-axis at the marked point (3, 0). There it touches the axis without crossing and turns back down. The right end points down.',
     });
   },
 
@@ -397,7 +431,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'A reciprocal curve with one marked point',
-      desc: 'A curve in two separate branches, each getting closer to the two axes without touching them. One point on the curve is marked.',
+      desc: 'A curve in two separate branches, one in the top left and one in the bottom right, each getting closer to the two axes without touching them. The point (3, -2) on the bottom right branch is marked.',
     });
   },
 };
