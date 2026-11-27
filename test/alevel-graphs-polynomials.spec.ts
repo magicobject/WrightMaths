@@ -199,7 +199,7 @@ test('every typed key is recomputed, and every wrong-answer value is tied to the
       if (!s.says.test(plain(li.text))) problems.push(`${c.find}: the message for "${s.value}" does not name the slip ${s.says}: ${li.text.slice(0, 90)}`);
       if (matches(s.value, q.answers, q.mode)) problems.push(`${c.find}: the slip value "${s.value}" is also a right answer`);
       for (const v of li.values) {
-        const same = s.fn ? SAMPLES.every((x) => close(eqFn(v)(x), s.fn!(x), 1e-7)) : sameValue(v, s.value, 0.04);
+        const same = s.fn ? SAMPLES.every((x) => close(eqFn(v)(x), s.fn!(x), 1e-7)) : (sameValue(v, s.value) || (/^-?\d+\.\d+$/.test(v) && Number(Number(s.value).toFixed(v.split('.')[1].length)) === Number(v)));
         if (!same) problems.push(`${c.find}: "${v}" is listed with the slip but is not the slip value "${s.value}"`);
       }
       if (s.fn && c.fn && SAMPLES.every((x) => close(s.fn!(x), c.fn!(x), 1e-7))) problems.push(`${c.find}: the slip "${s.value}" is the same graph as the key`);

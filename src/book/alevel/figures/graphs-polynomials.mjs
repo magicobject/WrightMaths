@@ -152,7 +152,7 @@ export const FIGURES = {
     draw(p, id, [{ name: 'cubic', fn: cubicTouch }]);
     mark(p, id, { name: 'cross', x: -3, y: 0, text: '(-3, 0)', dx: 14, dy: 40 });
     mark(p, id, { name: 'touch', x: 1, y: 0, text: '(1, 0)', dx: 0, dy: 44, anchor: 'middle' });
-    mark(p, id, { name: 'yint', x: 0, y: 3, text: '(0, 3)', dx: -16, dy: 50, anchor: 'end' });
+    mark(p, id, { name: 'yint', x: 0, y: 3, text: '(0, 3)', dx: 0, dy: -40, anchor: 'middle' });
     return finish(p, {
       id,
       title: 'The graph of y = (x + 3)(x - 1) squared crosses the x-axis at -3 and touches it at 1',
