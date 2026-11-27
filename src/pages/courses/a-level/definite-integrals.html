@@ -190,7 +190,7 @@
     <p>Let {m:A(x)} be the area under the curve from the fixed value {m:x=a} to a variable x. Add a thin strip of width h to the right. The strip is almost a rectangle of height {m:f(x)}, so its area is about {m:f(x)*h}.</p>
     <figure class="figure-lg">{fig:definite-integrals-strip}<figcaption>{m:A(x)} is the area from a to x. The strip adds about {m:f(x)*h}, so the area grows at rate {m:f(x)}.</figcaption></figure>
     <p>So {m:A(x+h)-A(x)} is about {m:f(x)*h}. Divide by h: the rate at which the area grows is {m:f(x)}. In other words, the derivative of {m:A(x)} is {m:f(x)}. Then {m:A(x)} is an antiderivative of {m:f(x)}, so {m:A(x)=F(x)+c}. At {m:x=a} no area has been collected yet, so {m:A(a)=0} and {m:c=-F(a)}. The area up to {m:x=b} is {m:F(b)-F(a)}.</p>
-    <p>The smaller h is, the closer the strip is to a rectangle, so as h gets close to 0 the rate at which the area grows is exactly {m:f(x)}. This explains the rule; a full proof needs limits.</p>
+    <p>The smaller h is, the closer {m:frac(A(x+h)-A(x), h)} gets to {m:f(x)}. As h tends to 0 it equals {m:f(x)}. A full proof needs limits.</p>
   </div>
 </section>
 

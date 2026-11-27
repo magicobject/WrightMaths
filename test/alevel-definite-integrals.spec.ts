@@ -212,9 +212,10 @@ test('every chain of numbers joined by = in the working is true', () => {
     const parts = m[1].split('=');
     if (parts.length < 2) continue;
     const values = parts.map(evalNumeric);
-    if (values.some((v) => v === null)) continue;
+    const nums = values.filter((v) => v !== null) as number[];
+    if (nums.length < 2) continue;
     checked += 1;
-    values.forEach((v, i) => { if (!same(v as number, values[0] as number)) problems.push(`${m[0]}: side ${i + 1} is ${v}, side 1 is ${values[0]}`); });
+    nums.forEach((v, i) => { if (!same(v, nums[0])) problems.push(`${m[0]}: a side is ${v}, the first number is ${nums[0]} (side ${i + 1} of the numeric sides)`); });
   }
   expect(checked).toBeGreaterThan(40);
   expect(problems).toEqual([]);
@@ -321,7 +322,7 @@ test('a point label shows its own coordinates, and every marked point is named i
       if (m) expect(POINTS[id].some((p: { x: number; y: number }) => abs(p.x - Number(m[1])) < 1e-9 && abs(p.y - Number(m[2])) < 1e-9), `${id}: label ${t}`).toBe(true);
     }
     // the figure with four unlabelled dots describes them by their x-values instead
-    // the dots in the question figure with two curves are left unnamed on purpose: the question asks for the meeting points
+    // the dots in the question figure with two curves are left unnamed on purpose: the reader finds the meeting points as the first step
     if (id === 'definite-integrals-q-line-curve') continue;
     // a question whose answer is a coordinate must not let the reader count ticks to it
     if (id === 'definite-integrals-q-k') expect(svg).not.toContain('class="tick"');
