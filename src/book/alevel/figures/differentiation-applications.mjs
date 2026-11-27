@@ -237,12 +237,12 @@ export const FIGURES = {
     const id = `${P}q-decreasing`;
     const p = frame(id, { xmin: -4.5, xmax: 4.5, ymin: -22, ymax: 22, height: 680, width: 470 });
     curve(p, id, G3);
-    scale(p, id, { xs: [-4, -3, -2, -1, 1, 2, 3, 4], unlabelled: [-4, -3, 3] });
+    scale(p, id, { xs: [-4, -3, -2, -1, 1, 2, 3, 4], unlabelled: [-4, -3, 3, 4] });
     say(p, 3.9, -19, 'y = f(x)', { anchor: 'middle', cls: 'alt' });
     return finish(p, {
       id,
       title: 'The graph of a cubic function f',
-      desc: 'A smooth curve through the origin. Coming from the lower left it rises to a peak, falls through the origin to a valley, then rises again to the upper right. The horizontal axis is marked in whole numbers from minus 4 to 4, and the vertical axis at minus 20, minus 10, 10 and 20.',
+      desc: 'A smooth curve through the origin. Coming from the lower left it rises to a peak, falls through the origin to a valley, then rises again to the upper right. The horizontal axis has a scale mark at each whole number from minus 4 to 4; minus 2, minus 1, 1 and 2 are numbered. The vertical axis has no scale.',
     });
   },
 

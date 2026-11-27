@@ -801,6 +801,19 @@ test('a question figure describes the picture and never gives the answer away', 
   for (const q of qs) expect(/<\/p>\s*<figure class="qfig-lg">\{fig:differentiation-applications-q-/.test(q), 'figure straight after qtext').toBe(true);
 });
 
+test('what the q-decreasing description says about the axis marks is what is drawn', async () => {
+  const { FIGURES } = await figureModule();
+  const svg: string = FIGURES[`${P0}q-decreasing`]();
+  const desc = descOf(svg);
+  // a scale mark at each whole number from -4 to 4 (8 marks, none at 0), and only -2, -1, 1 and 2 numbered
+  expect((svg.match(/<line class="tick"/g) ?? []).length).toBe(8);
+  expect(desc).toContain('a scale mark at each whole number from minus 4 to 4');
+  expect(desc).toContain('minus 2, minus 1, 1 and 2 are numbered');
+  expect(desc).toContain('The vertical axis has no scale');
+  const numbers = labelsOf(svg).filter((t) => /^-?\d+$/.test(t));
+  expect(numbers).toEqual(['-2', '-1', '1', '2']);
+});
+
 test('a description that says dotted or dashed has such an element in the picture', async () => {
   const { FIGURES } = await figureModule();
   for (const id of Object.keys(FIGURES)) {

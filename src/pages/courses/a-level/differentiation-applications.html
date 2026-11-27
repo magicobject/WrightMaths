@@ -97,7 +97,7 @@
       <h3>Now you finish it</h3>
       <p>Find the equation of the tangent to {m:y=x^2+2x-3} at the point where {m:x=1}. Type the last answer like y=5x+2.</p>
       <ol class="steps">
-        <li>{m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="2x+2;2+2x">___</span>.</li>
+        <li>{m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="2x+2;2+2x;2(x+1)">___</span>.</li>
         <li>At {m:x=1}, the gradient is <span class="blank" data-answers="4">___</span>.</li>
         <li>At {m:x=1}, {m:y=1+2-3=}<span class="blank" data-answers="0">___</span>. So the tangent is {m:y-0=4(x-1)}, which is <span class="blank" data-mode="exact" data-answers="y=4x-4;4x-4;-4+4x;y=-4+4x">___</span>.</li>
       </ol>
@@ -160,7 +160,7 @@
     <p>The {term:normal-to-curve|normal} to a curve at a point is the straight line through that point at right angles to the tangent there.</p>
     <p>You know from Straight lines that two lines at right angles have gradients that multiply to {m:-1}. So the gradient of the normal is the {term:negative-reciprocal} of the gradient of the tangent: turn the fraction upside down, and change the sign.</p>
     <div class="key">
-      <p><b>Key idea:</b> suppose the tangent to a curve at a point has gradient m, and m is not 0. The normal at the same point has gradient {m:-frac(1, m)}, so the two gradients multiply to {m:-1}. The normal passes through the same point as the tangent. If {m:m=0}, the tangent is horizontal, and the normal is the vertical line {m:x=a} through the point. (You cannot use {m:-frac(1, m)} when {m:m=0}: it would need a division by 0.)</p>
+      <p><b>Key idea:</b> suppose the tangent to a curve at a point has gradient m, and m is not 0. The normal at the same point has gradient {m:-frac(1, m)}, so the two gradients multiply to {m:-1}. The normal passes through the same point as the tangent. If {m:m=0}, the tangent is horizontal, and the normal is the vertical line {m:x=a} through the point, where a is the x-coordinate of the point. (You cannot use {m:-frac(1, m)} when {m:m=0}: it would need a division by 0.)</p>
     </div>
     <figure class="figure-lg">{fig:differentiation-applications-tangent-normal}<figcaption>At A (3, 2) on {m:y=x^2-4x+5}, the tangent has gradient 2 and the normal has gradient {m:-frac(1, 2)}. Both axes have the same scale, so the right angle looks like one.</figcaption></figure>
     <p>To find the equation of a normal, do the same three steps as for a tangent, then use the new gradient in the last step.</p>
@@ -218,7 +218,7 @@
       <div class="solution"><p>{m:frac(dy, dx)=frac(1, 2)x^(-1/2)}, which is {m:frac(1, 2)*frac(1, 2)=frac(1, 4)} at {m:x=4}. The normal has gradient {m:-4}. At {m:x=4}, {m:y=2}. So {m:y-2=-4(x-4)}, which is {m:y=-4x+18}.</p></div>
     </div>
     <div class="q" data-answers="2" data-mode="value">
-      <p class="qtext">The normal to {m:y=x^3-12x} at the point where {m:x=2} is a vertical line with equation {m:x=a}. Find a.</p>
+      <p class="qtext">The normal to {m:y=x^3-12x} at the point where {m:x=2} is a vertical line with equation {m:x=a}, where a is the x-coordinate of the point. Find a.</p>
       <ol class="ladder"><li>Find the gradient of the tangent at this point.</li><li>What kind of line is at right angles to a line with that gradient? What does every point on it have in common?</li></ol>
       <ul class="wrong"><li data-if="-16">{m:-16} is the y-coordinate of the point. A vertical line {m:x=a} is described by the x-coordinate.</li></ul>
       <div class="solution"><p>{m:frac(dy, dx)=3x^2-12}, which is 0 at {m:x=2}. The tangent is horizontal, so the normal is vertical. It passes through the point where {m:x=2}, so {m:x=2} and {m:a=2}.</p></div>
@@ -255,12 +255,12 @@
       </ol>
     </div>
     <figure class="figure-lg">{fig:differentiation-applications-sign-chart}<figcaption>The sign of {m:frac(dy, dx)} for {m:y=x^3-6x^2+9x}, on a number line. The two marked points are where the gradient is 0.</figcaption></figure>
-    <p>This book writes {m:x < 1}, because the gradient is strictly positive there. Some questions include the points where the gradient is 0. Then write {m:x <= 1} and {m:x >= 3}: the curve still never goes down on those ranges.</p>
+    <p>This page writes {m:x < 1} and {m:x > 3}, where the gradient is strictly positive. Including the end points, {m:x <= 1} and {m:x >= 3}, is also correct, and is the form the glossary uses: the curve never goes down on those ranges.</p>
     <div class="worked faded">
       <h3>Now you finish it</h3>
       <p>Find the values of x for which {m:f(x)=2x^3-3x^2-12x} is decreasing.</p>
       <ol class="steps">
-        <li>{m:f'(x)=}<span class="blank" data-mode="exact" data-answers="6x^2-6x-12">___</span>.</li>
+        <li>{m:f'(x)=}<span class="blank" data-mode="exact" data-answers="6x^2-6x-12;6(x-2)(x+1);6(x^2-x-2)">___</span>.</li>
         <li>{m:f'(x)=6(x-2)(x+1)}, which is 0 at {m:x=-1} and {m:x=2}.</li>
         <li>The graph of {m:y=f'(x)} is U-shaped, so it is below the x-axis between the roots. So f is decreasing for <span class="blank" data-answers="-1">___</span> &lt; x &lt; <span class="blank" data-answers="2">___</span>.</li>
       </ol>
@@ -323,7 +323,7 @@
     <h2>4. Stationary points</h2>
     <p>A {term:stationary-point|stationary point} is a point on a curve where the gradient is zero: {m:frac(dy, dx)=0}. The tangent there is horizontal.</p>
     <div class="key">
-      <p><b>Key idea:</b> a stationary point of {m:y=f(x)} is a point where {m:frac(dy, dx)=0}. To find the stationary points: differentiate; solve {m:frac(dy, dx)=0} to get every x-value; then put each x-value into {m:y=f(x)} to find its y-coordinate. Solving {m:frac(dy, dx)=0} gives only x-values. The y-coordinates come from the curve. At a stationary point the tangent is the horizontal line {m:y=k}, where k is the y-coordinate, and the normal is the vertical line {m:x=a}.</p>
+      <p><b>Key idea:</b> a stationary point of {m:y=f(x)} is a point where {m:frac(dy, dx)=0}. To find the stationary points: differentiate; solve {m:frac(dy, dx)=0} to get every x-value; then put each x-value into {m:y=f(x)} to find its y-coordinate. Solving {m:frac(dy, dx)=0} gives only x-values. The y-coordinates come from the curve. At a stationary point the tangent is the horizontal line {m:y=k}, where k is the y-coordinate, and the normal is the vertical line {m:x=a}, where a is the x-coordinate of the point.</p>
     </div>
     <figure class="figure-lg">{fig:differentiation-applications-stationary-cubic}<figcaption>The curve {m:y=x^3-12x} has a horizontal tangent at each of its two stationary points, (&minus;2, 16) and (2, &minus;16). The gradient of the curve is 0 at both.</figcaption></figure>
     <div class="worked">
@@ -441,7 +441,7 @@
         <tr><th scope="row">{m:frac(dy, dx)} for {m:y=x^3}</th><td>0.75</td><td>0</td><td>0.75</td></tr>
       </tbody>
     </table>
-    <p>For {m:y=x^4} the gradient goes from negative to positive: (0, 0) is a minimum. For {m:y=x^3} the gradient is positive on both sides: (0, 0) is neither a maximum nor a minimum. It is a {term:point-of-inflection|point of inflection}: the tangent is horizontal there, and the curve keeps rising. You study points of inflection in Year 2.</p>
+    <p>For {m:y=x^4} the gradient goes from negative to positive: (0, 0) is a minimum. For {m:y=x^3} the gradient is positive on both sides: (0, 0) is neither a maximum nor a minimum. It is called a stationary {term:point-of-inflection|point of inflection}: the tangent is horizontal there, but the curve does not turn. Points of inflection are defined in Year 2.</p>
     <figure class="figure-lg">{fig:differentiation-applications-second-derivative-zero}<figcaption>Both curves have a stationary point at (0, 0), and the second derivative is 0 at that point for both. The solid curve {m:y=x^4} has a minimum there. The dashed curve {m:y=x^3} does not.</figcaption></figure>
     <div class="worked">
       <h3>Worked example: using both tests</h3>
@@ -497,7 +497,7 @@
         <li data-why="A minimum has a negative gradient to the left of it and a positive gradient to the right.">A minimum</li>
         <li data-why="The point is neither a maximum nor a minimum only when the gradient has the same sign on both sides. Here the sign changes.">Neither a maximum nor a minimum</li>
       </ul>
-      <ol class="ladder"><li>Imagine moving along the curve from left to right through the point.</li><li>The curve rises, then falls.</li></ol>
+      <ol class="ladder"><li>Imagine moving along the curve from left to right through the point.</li><li>Is the curve rising or falling on each side?</li></ol>
       <div class="solution"><p>The curve rises (positive gradient), then falls (negative gradient). So the stationary point is a maximum.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -527,7 +527,7 @@
       <li>Name the quantity and the variable. Use any fixed total to write the quantity in terms of one variable.</li>
       <li>Differentiate, and solve {m:frac(dQ, dx)=0}.</li>
       <li>Use the second derivative, or the sign of the gradient, to check that the point is a maximum (or a minimum, whichever the question asks for).</li>
-      <li>Put the x-value into the quantity. Give the value the question asks for, with units. Check that the x-value is possible in the problem, such as a length that is positive.</li>
+      <li>Put the x-value into the quantity. Give the value the question asks for, with units. Check that the x-value is possible in the problem, such as a length that is positive. If it is the only stationary point in the allowed values, a maximum there is the greatest value.</li>
     </ol>
     <div class="key">
       <p><b>Key idea:</b> to find the greatest or least value of a quantity Q that depends on one variable x, write Q as a function of x, solve {m:frac(dQ, dx)=0}, and check the nature of each solution. Then put the x-value into Q. This finds a maximum or a minimum where the gradient is 0, so the x-value must be allowed in the problem. If the allowed values of x stop at an end point, the quantity at the end point must be compared too.</p>
@@ -855,7 +855,7 @@
     <div class="q" data-answers="2" data-mode="value" data-marks="3">
       <p class="qtext"><b>(c)</b> [3 marks] Find the value of x, with {m:0 < x < 6}, for which V is a maximum.</p>
       <ol class="ladder"><li>Set {m:frac(dV, dx)=0}. Divide by 12 to make the numbers smaller, then factorise.</li><li>Use the condition {m:0 < x < 6}, and the second derivative, to choose between your answers.</li></ol>
-      <ul class="wrong"><li data-if="6">At {m:x=6} the volume is 0, and it is not inside {m:0 < x < 6}. It is the other stationary point, and {m:frac(d^2V, dx^2)=24x-96} is positive there: a minimum.</li></ul>
+      <ul class="wrong"><li data-if="6">At {m:x=6} is the other stationary point, but it is outside the allowed values {m:0 < x < 6}: the box has no volume there.</li></ul>
       <div class="solution">
         <p>{m:12x^2-96x+144=12(x^2-8x+12)=12(x-2)(x-6)=0}, so {m:x=2} or {m:x=6}. {m:frac(d^2V, dx^2)=24x-96}. At {m:x=2} it is {m:-48}, negative: a maximum. At {m:x=6} it is 48, positive: a minimum. So {m:x=2}.</p>
         <ul class="markscheme">
@@ -910,7 +910,7 @@
       <li>Putting the x-value into the original equation to get the gradient, instead of into {m:frac(dy, dx)}.</li>
       <li>Using the gradient as the y-intercept of the tangent, or forgetting to add the y-coordinate back when writing {m:y=m(x-x_1)+y_1}.</li>
       <li>Using the gradient of the tangent as the gradient of the normal, or changing the sign without turning the fraction upside down.</li>
-      <li>Forgetting that a horizontal tangent has a vertical normal, {m:x=a}, with no gradient to find.</li>
+      <li>Forgetting that a horizontal tangent has a vertical normal, {m:x=a} (a is the x-coordinate of the point), with no gradient to find.</li>
       <li>Solving a derivative inequality and giving y-values instead of x-values.</li>
       <li>Dividing both sides of {m:frac(dy, dx)=0} by x, and losing the solution {m:x=0}.</li>
       <li>Giving only the x-coordinate of a stationary point, when the question asks for the point.</li>

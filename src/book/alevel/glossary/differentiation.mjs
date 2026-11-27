@@ -211,7 +211,7 @@ export const TERMS = [
     term: 'nature of a stationary point',
     strand: 'al-differentiation',
     level: 'Y1',
-    def: 'Whether a stationary point is a maximum or a minimum. (In Year 2 you also meet a stationary point that is neither: a point of inflection.)',
+    def: 'Whether a stationary point is a maximum or a minimum. (A stationary point can also be neither, such as (0, 0) on y = x^3.)',
     example: [
       'For {m:y=x^3-3x}: {m:frac(d^2y, dx^2)=6x}.',
       'At {m:x=1} it is 6, which is positive: a minimum. At {m:x=-1} it is {m:-6}, which is negative: a maximum.',
