@@ -1,6 +1,6 @@
-// The hidden GCSE book pilot. Kept out of pages.ts on purpose: these pages are
-// not in the nav, not in the sitemap and not linked from anywhere, so the
-// nav/footer/canonical specs that loop over ALL_PAGES must never include them.
+// The GCSE book (public since 27 Nov 2026). Kept out of pages.ts on purpose: these pages
+// are not in the main nav and have their own shell, so the nav/footer/canonical specs
+// that loop over ALL_PAGES must never include them.
 export interface BookPage {
   path: string;
   titleContains: string;

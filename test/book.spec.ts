@@ -6,8 +6,8 @@ import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
 
 const PUBLIC = join(__dirname, '..', 'public');
 
-test.describe('the GCSE book stays hidden', () => {
-  test('the main site links only to the Books page (menu and footer), never straight to the GCSE book; the sitemap and robots.txt never mention it', async ({ page }) => {
+test.describe('the GCSE book is public (Greg, 27 Nov 2026)', () => {
+  test('the main site reaches it through the Books page (menu and footer); the sitemap lists it and its answer keys stay noindex', async ({ page }) => {
     for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
       // Greg's decision (24 Nov 2026): Books is in the main menu (and so the footer); the GCSE book is one click further on.
@@ -16,15 +16,19 @@ test.describe('the GCSE book stays hidden', () => {
         await expect(page.locator('a[href*="gcse"]'), `${sitePage.path} links straight to the book`).toHaveCount(0);
       }
     }
-    for (const file of ['sitemap.xml', 'robots.txt']) {
-      expect(readFileSync(join(PUBLIC, file), 'utf8'), file).not.toMatch(/books/i);
-    }
+    const sitemap = readFileSync(join(PUBLIC, 'sitemap.xml'), 'utf8');
+    for (const loc of ['books/', 'books/gcse/', 'books/gcse/glossary.html']) expect(sitemap, loc).toContain(`<loc>https://wrightmaths.uk/${loc}</loc>`);
+    expect(sitemap, 'no answer key in the sitemap').not.toMatch(/key\/|audio-review/);
+    expect(readFileSync(join(PUBLIC, 'robots.txt'), 'utf8')).not.toMatch(/Disallow:\s*\/books/i);
+    await page.goto('/books/gcse/key/fractions.html');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   });
 
   for (const bookPage of BOOK_PAGES) {
-    test(`${bookPage.path} is noindex, has its own title and heading, and no nav item is highlighted`, async ({ page }) => {
+    test(`${bookPage.path} can be indexed, has its own title and heading, and no nav item is highlighted`, async ({ page }) => {
       await page.goto(bookPage.path);
-      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+      await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+      await expect(page).not.toHaveTitle(/pilot/i);
       await expect(page).toHaveTitle(new RegExp(bookPage.titleContains));
       await expect(page.locator('h1')).toHaveText(bookPage.heading);
       await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveCount(0);
@@ -816,7 +820,7 @@ test.describe('the Books page', () => {
     await expect(page).toHaveURL(/\/books\/$/);
     await expect(page).toHaveTitle(/Maths Books/);
     await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
     // A-level Year 1 is an early preview with one link to its home page. Year 2 and Further Pure are "Coming soon" and link to Contact.
     const year1 = page.locator('.card', { hasText: 'A-level Pure Maths, Year 1' });
