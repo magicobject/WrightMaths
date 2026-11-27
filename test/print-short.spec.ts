@@ -9,7 +9,9 @@ import { test, expect } from '@playwright/test';
 // Small books are built from real pages; the full books are built on demand: npm run book:docx:both.
 
 const ROOT = join(__dirname, '..');
-const OUT = join(ROOT, 'test-results', 'print-short');
+// Each Playwright worker builds into its own folder: with fullyParallel, two workers that need the same book would
+// otherwise write the same .docx at once, and one could read a half-written zip ("invalid zip data").
+const OUT = join(ROOT, 'test-results', 'print-short', `worker-${process.env.TEST_WORKER_INDEX ?? '0'}`);
 const PAGES = ['fractions', 'percentages', 'squares-roots', 'pythagoras'];
 
 type Built = { xml: string; paragraphs: string[]; report: Record<string, any> };
