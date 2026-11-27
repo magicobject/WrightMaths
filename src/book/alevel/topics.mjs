@@ -90,6 +90,6 @@ export const TOPICS = [
   t('trapezium-rule', 'The trapezium rule', 'numerical', 2, ['definite-integrals'], 'Estimating an area, and deciding whether the estimate is too big or too small'),
 
   // Vectors
-  t('vectors-2d', 'Vectors in two dimensions', 'vectors', 1, [], 'A vector as a journey, and a vector as an arrow'),
+  t('vectors-2d', 'Vectors in two dimensions', 'vectors', 1, [], 'A vector as a journey, and a vector as an arrow', { aka: 'vector column vector i j notation magnitude direction unit vector position vector triangle law parallelogram law collinear parallel ratio proof', status: 'live', words: ['vector', 'scalar', 'vector-notation', 'column-vector', 'component', 'i-j-notation', 'unit-vector', 'magnitude', 'direction-of-a-vector', 'vector-addition', 'parallelogram-law', 'vector-subtraction', 'negative-vector', 'scalar-multiple', 'parallel-vectors', 'position-vector', 'collinear', 'dividing-in-a-ratio', 'vector-proof'] }),
   t('vectors-3d', 'Vectors in three dimensions', 'vectors', 2, ['vectors-2d'], 'Moving in three directions at once'),
 ];

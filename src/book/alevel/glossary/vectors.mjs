@@ -112,6 +112,16 @@ export const TERMS = [
     see: ['resultant', 'vector-subtraction', 'negative-vector'],
   },
   {
+    id: 'parallelogram-law', term: 'Parallelogram law', strand: 'al-vectors', level: 'Y1', aka: ['parallelogram rule'],
+    def: 'The sum of two vectors that start at the same point is the diagonal of the parallelogram they make, drawn from that point.',
+    example: [
+      'Draw a and b from one point. Complete the parallelogram. The diagonal from that point is {m:a + b}.',
+      'Opposite sides of the parallelogram are equal vectors, so the other route round gives {m:b + a}.',
+    ],
+    watch: 'It gives the same answer as the triangle law. Use it when both vectors start at the same point.',
+    see: ['vector-addition', 'resultant'],
+  },
+  {
     id: 'resultant', term: 'Resultant', strand: 'al-vectors', level: 'Y1', aka: ['resultant vector'],
     def: 'The single vector that has the same effect as two or more vectors acting together: their sum.',
     example: 'The resultant of ' + col(3, 1) + ' and ' + col(2, 4) + ' is ' + col(5, 5) + '.',
