@@ -447,6 +447,12 @@ test('no figure text leaves its picture', async ({ page }) => {
   expect(outside).toEqual([]);
 });
 
+test('the unit vector is shown with its hat, read "a hat", in the lesson and in the Key idea', () => {
+  const hat = SOURCE.split('\n').filter((l) => l.includes('{m:hat(a)}'));
+  expect(hat.length).toBeGreaterThanOrEqual(2);
+  for (const l of hat) expect(l).toContain('read &ldquo;a hat&rdquo;');
+});
+
 test('the topic stays inside its scope: no scalar product, no third dimension in the lessons', () => {
   const text = plain(SOURCE.replace(/<!--[\s\S]*?-->/g, ' '));
   expect(text).not.toMatch(/scalar product|dot product|cross product|\bk-component|3D\b|three-dimensional|Further/i);

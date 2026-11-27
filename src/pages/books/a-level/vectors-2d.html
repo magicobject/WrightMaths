@@ -319,7 +319,7 @@
       <ul class="options">
         <li data-correct>The vector {m:col(-1, 2)}</li>
         <li data-why="The components of the first vector are in the ratio 1 : &minus;2. These are in the ratio 1 : 2, so this is not a multiple of it.">The vector {m:col(1, 2)}</li>
-        <li data-why="This swaps the signs of the numbers. The ratio is 2 : &minus;1, but the first vector has the ratio 1 : &minus;2.">The vector {m:col(6, -3)}</li>
+        <li data-why="This swaps the sizes of the two numbers. The ratio is 2 : &minus;1, but the first vector has the ratio 1 : &minus;2.">The vector {m:col(6, -3)}</li>
       </ul>
       <ol class="ladder"><li>Find a number k that turns 3 into the top of the option.</li><li>Check that the same k turns {m:-6} into the bottom.</li></ol>
       <div class="solution"><p>{m:col(-1, 2)} = {m:-frac(1, 3)} times {m:col(3, -6)}: {m:3*(-frac(1, 3))=-1} and {m:-6*(-frac(1, 3))=2}. The other two options are not multiples.</p></div>
@@ -379,9 +379,9 @@
       </ol>
       <!-- No figure: this repeats the method of the first example. -->
     </div>
-    <p>A {term:unit-vector} has magnitude 1. To find the unit vector in the direction of <b>a</b>, divide <b>a</b> by its magnitude. It is written <b>a</b> with a small hat, &ldquo;a hat&rdquo;.</p>
+    <p>A {term:unit-vector} has magnitude 1. To find the unit vector in the direction of <b>a</b>, divide <b>a</b> by its magnitude. It is written {m:hat(a)}, read &ldquo;a hat&rdquo;.</p>
     <div class="key">
-      <p><b>Key idea:</b> the unit vector in the direction of <b>a</b> is <b>a</b> divided by |<b>a</b>|. Any vector is its magnitude times its unit vector.</p>
+      <p><b>Key idea:</b> the unit vector in the direction of <b>a</b> is {m:hat(a)}, read &ldquo;a hat&rdquo;. It is <b>a</b> divided by |<b>a</b>|. Any vector is its magnitude times its unit vector.</p>
     </div>
     <div class="worked">
       <h3>Worked example: a unit vector</h3>
@@ -595,7 +595,7 @@
       <h3>Now you finish it</h3>
       <p>The points A and B have position vectors {m:col(3, 1)} and {m:col(7, 4)}. Find {m:vec(AB)} and its magnitude.</p>
       <ol class="steps">
-        <li>{m:vec(AB)} = {m:col(7-3, 4-1)} = ({m:4}, <span class="blank" data-answers="3">___</span>).</li>
+        <li>{m:vec(AB)} = {m:col(7-3, 4-1)} = {m:col(4, "?")}, so the bottom number is <span class="blank" data-answers="3">___</span>.</li>
         <li>The magnitude is {m:sqrt(4^2+3^2)=}<span class="blank" data-answers="5">___</span>.</li>
       </ol>
       <details class="check-line"><summary>Check my answer</summary><p>{m:vec(AB)} = {m:col(4, 3)}. Its magnitude is {m:sqrt(16+9)=5}, so A and B are 5 units apart.</p></details>
@@ -773,7 +773,7 @@
       </ul>
       <div class="solution"><p>{m:vec(AC)} = {m:vec(AO)} + {m:vec(OC)} = &minus;<b>a</b> + <b>c</b> = <b>c</b> &minus; <b>a</b>.</p></div>
     </div>
-    <div class="q" data-answers="3/4a+1/4b;(3a+b)/4;0.75a+0.25b;3a/4+b/4;(3/4)a+(1/4)b;(3a+b)/4" data-mode="exact">
+    <div class="q" data-answers="3/4a+1/4b;(3a+b)/4;1/4(3a+b);0.25(3a+b);0.75a+0.25b;3a/4+b/4;(3/4)a+(1/4)b" data-mode="exact">
       <p class="qtext">{m:vec(OA)} = <b>a</b> and {m:vec(OB)} = <b>b</b>. P is on AB with AP : PB = 1 : 3. Write {m:vec(OP)} in terms of a and b. Type it like 1/2a+1/2b.</p>
       <ol class="ladder"><li>There are {m:1+3=4} parts. AP is one of them.</li><li>{m:vec(AP)} = {m:frac(1, 4)}(<b>b</b> &minus; <b>a</b>).</li><li>{m:vec(OP)} = <b>a</b> + {m:vec(AP)}.</li></ol>
       <ul class="wrong">
@@ -1008,7 +1008,7 @@
 <section class="exam-section">
   <div class="wrap narrow">
     <h2>Exam style</h2>
-    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer.</p>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement or fact.</p>
     <div class="q" data-answers="sqrt(37);&#8730;37;sqrt37" data-mode="exact" data-marks="3">
       <p class="qtext">[3 marks] <b>p</b> = 4<b>i</b> &minus; 3<b>j</b> and <b>q</b> = <b>i</b> + 2<b>j</b>. Find the exact value of |<b>p</b> + 2<b>q</b>|. Type it like sqrt(13).</p>
       <ol class="ladder"><li>Find 2<b>q</b> first.</li><li>Add it to <b>p</b>.</li><li>Then find the magnitude of the result.</li></ol>

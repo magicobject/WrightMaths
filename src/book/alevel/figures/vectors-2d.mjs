@@ -95,7 +95,7 @@ export const FIGURES = {
     arrow(p, { name: 'v', from: [0, 0], vec: [3, -2], text: `3i ${MINUS} 2j`, side: 1, off: 36 });
     arrow(p, { name: 'i', from: [0, 0], vec: [1, 0], cls: 'curve-b', text: 'i', side: -1, off: 22 });
     arrow(p, { name: 'j', from: [0, 0], vec: [0, 1], cls: 'curve-b', text: 'j', side: -1, off: 22 });
-    guide(p, 1, 0, 3, 0);
+    guide(p, 1.3, 0, 3, 0);
     guide(p, 3, 0, 3, -2);
     p.text(2.2, 0, '3i', { dy: -14 });
     p.text(3, -1, `${MINUS}2j`, { anchor: 'start', dx: 14, dy: 8 });
@@ -105,7 +105,7 @@ export const FIGURES = {
   // ---- lesson 2: adding, subtracting and multiplying ----
   'vectors-2d-triangle': () => {
     const p = vplane(0, 7, 0, 5);
-    arrow(p, { name: 'a', from: [0, 0], vec: [3, 1], text: 'a', side: 1, off: 26 });
+    arrow(p, { name: 'a', from: [0, 0], vec: [3, 1], text: 'a', side: 1, off: 20, t: 0.6 });
     arrow(p, { name: 'b', from: [3, 1], vec: [2, 3], text: 'b', side: 1, off: 28 });
     arrow(p, { name: 'sum', from: [0, 0], vec: [5, 4], cls: 'curve-b', text: 'a + b', side: -1, off: 36 });
     return finish(p, { id: 'vectors-2d-triangle', title: 'The triangle law', desc: 'The arrow a goes 3 across and 1 up from the origin. The arrow b starts where a ends and goes 2 across and 3 up. A dashed arrow from the origin to the end of b is labelled a + b: it goes 5 across and 4 up.' });
@@ -172,7 +172,7 @@ export const FIGURES = {
   // ---- lesson 5: geometric proof ----
   'vectors-2d-proof': () => {
     const p = vplane(0, 7, 0, 6, { width: 560 });
-    arrow(p, { name: 'a', from: [0, 0], vec: [6, 2], text: 'a', side: 1, off: 26, t: 0.25 });
+    arrow(p, { name: 'a', from: [0, 0], vec: [6, 2], text: 'a', side: -1, off: 26, t: 0.25 });
     arrow(p, { name: 'b', from: [0, 0], vec: [2, 5], text: 'b', side: -1, off: 26, t: 0.3 });
     arrow(p, { name: 'AB', from: [6, 2], vec: [-4, 3], cls: 'curve-b', text: `b ${MINUS} a`, side: 1, off: 34 });
     arrow(p, { name: 'MN', from: [3, 1], vec: [-2, 1.5], cls: 'curve-c', text: `${HALF}(b ${MINUS} a)`, side: 1, off: 36 });
@@ -204,7 +204,7 @@ export const FIGURES = {
     guide(p, dx, 0, dx, dy);
     arc(p, 0, 0, 1.4, 0, 40);
     p.text(1.7, 0.35, `40${DEG}`, { anchor: 'start', dx: 8 });
-    p.text(dx / 2, 0, `8 cos 40${DEG}`, { dy: -14, dx: 40 });
+    p.text(4.6, 0, `8 cos 40${DEG}`, { dy: -14 });
     p.text(dx, dy / 2, `8 sin 40${DEG}`, { anchor: 'start', dx: 14, dy: 8 });
     return finish(p, { id: 'vectors-2d-flip', title: 'From magnitude and direction to components', desc: 'An arrow of length 8 leaves the origin at 40 degrees above the x-axis. Dashed lines make a right-angled triangle. The side along the x-axis is labelled 8 cos 40 degrees, and the upright side is labelled 8 sin 40 degrees.' });
   },
