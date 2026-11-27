@@ -242,7 +242,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of a cubic function f',
-      desc: 'A smooth curve through the origin. Coming from the lower left it rises to a peak, falls through the origin to a valley, then rises again to the upper right. The horizontal axis has a scale mark at each whole number from minus 4 to 4; minus 2, minus 1, 1 and 2 are numbered. The vertical axis has no scale.',
+      desc: 'A smooth curve through the origin. Coming from the lower left it rises to a peak, falls through the origin to a valley, then rises again to the upper right. The horizontal axis has a scale mark at each whole number from minus 4 to 4 except 0; minus 2, minus 1, 1 and 2 are numbered. The vertical axis has no scale.',
     });
   },
 
