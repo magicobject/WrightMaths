@@ -13,6 +13,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/indices-surds.html', titleContains: 'Indices and surds', heading: /^Indices and surds$/ },
   { path: '/courses/a-level/integration-basics.html', titleContains: 'Integration as reverse differentiation', heading: /^Integration as reverse differentiation$/ },
   { path: '/courses/a-level/differentiation-basics.html', titleContains: 'Differentiation from first principles', heading: /^Differentiation from first principles$/ },
+  { path: '/courses/a-level/differentiation-applications.html', titleContains: 'Tangents, normals and stationary points', heading: /^Tangents, normals and stationary points$/ },
   { path: '/courses/a-level/quadratics.html', titleContains: 'Quadratics', heading: /^Quadratics$/ },
   { path: '/courses/a-level/straight-lines.html', titleContains: 'Straight lines', heading: /^Straight lines$/ },
   { path: '/courses/a-level/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
