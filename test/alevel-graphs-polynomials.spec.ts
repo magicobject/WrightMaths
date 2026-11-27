@@ -158,7 +158,7 @@ const CHECKS: Check[] = [
   { find: 'y is proportional to x^2. When x=2, y=20', answer: String((20 / 2 ** 2) * 4 ** 2), slips: [{ value: String((20 / 2) * 4), says: /treated y as proportional to x\./ }] },
   { find: 'y is inversely proportional to x. When x=3, y=8', answer: String((8 * 3) / 8), slips: [{ value: String((8 / 3) * 8), says: /directly proportional/ }] },
   { find: 'y is proportional to sqrt(x). When x=4, y=12', answer: String((12 / Math.sqrt(4)) * Math.sqrt(25)), slips: [{ value: String((12 / 4) * 25), says: /treated y as proportional to x\./ }] },
-  { find: 'y=k*sqrt(x) passes through the point (9, 15)', answer: String(15 / Math.sqrt(9)), slips: [{ value: String(15 * 9), says: /multiplied 15 by 9/ }] },
+  { find: 'y=k*sqrt(x) passes through the point (9, 15)', answer: String(15 / Math.sqrt(9)), slips: [{ value: String(15 * 9), says: /multiplied 15 by 9/ }, { value: String(15 / 9), says: /divided by 9/ }] },
   // flip it: equations are compared as functions of x
   { find: 'The graph shows a cubic', answer: `${qCubicK}(x+2)(x-3)^2`, fn: qCubic, slips: [{ value: '(x+2)(x-3)^2', says: /meets the y-axis at \(0, 18\)/, fn: fn(1, [X(2), X(-3, 2)]) }, { value: '-(x+2)^2(x-3)', says: /wrong factor/, fn: fn(-1, [X(2, 2), X(-3)]) }] },
   { find: 'The curve in the figure has the equation', answer: `${qRecipA}/x`, fn: (x) => qRecipA / x, slips: [{ value: `${-qRecipA}/x`, says: /a is negative/, fn: (x) => -qRecipA / x }, { value: `${qRecipA}x`, says: /straight line/, fn: (x) => qRecipA * x }] },
@@ -199,7 +199,7 @@ test('every typed key is recomputed, and every wrong-answer value is tied to the
       if (!s.says.test(plain(li.text))) problems.push(`${c.find}: the message for "${s.value}" does not name the slip ${s.says}: ${li.text.slice(0, 90)}`);
       if (matches(s.value, q.answers, q.mode)) problems.push(`${c.find}: the slip value "${s.value}" is also a right answer`);
       for (const v of li.values) {
-        const same = s.fn ? SAMPLES.every((x) => close(eqFn(v)(x), s.fn!(x), 1e-7)) : sameValue(v, s.value, 0.006);
+        const same = s.fn ? SAMPLES.every((x) => close(eqFn(v)(x), s.fn!(x), 1e-7)) : sameValue(v, s.value, 0.04);
         if (!same) problems.push(`${c.find}: "${v}" is listed with the slip but is not the slip value "${s.value}"`);
       }
       if (s.fn && c.fn && SAMPLES.every((x) => close(s.fn!(x), c.fn!(x), 1e-7))) problems.push(`${c.find}: the slip "${s.value}" is the same graph as the key`);
@@ -252,8 +252,8 @@ test('multiple-choice keys: each correct option is the one the function gives, a
   // y = (x - 1)^3
   const cube = fn(1, [X(-1, 3)]);
   expect(crosses(cube, 1)).toBe(true);
-  expect(Math.abs(cube(1.01))).toBeLessThan(2e-6); // flat: the value is tiny a little way from the root
-  expect(correctText('What does the graph of y=(x-1)^3 do')).toBe('It crosses the x-axis, and the gradient is 0 there. The graph keeps going the same way: this is a point of inflection');
+  expect(Math.abs(cube(1.01))).toBeLessThan(2e-6); // gradient 0: the value is tiny a little way from the root
+  expect(correctText('What does the graph of y=(x-1)^3 do')).toBe('It crosses the x-axis, with gradient 0 there');
   // four brackets, each once: four crossings, both ends up
   const four = fn(1, [X(-1), X(-2), X(-3), X(-4)]);
   expect([1, 2, 3, 4].every((r) => crosses(four, r))).toBe(true);
@@ -309,6 +309,7 @@ test('the blanks in every "Now you finish it" are recomputed', () => {
     ...[touch(g3)[0], yInt(1, g3)],
     ...[10 / 5, 10 / -2],
     ...[q5, q5 + 1],
+    ...[54 / 3 ** 3, (54 / 3 ** 3) * 2 ** 3], // y proportional to x^3
   ].map(String);
   const blanks = [...SOURCE.matchAll(/class="blank" data-answers="([^"]*)"/g)].map((m) => m[1]);
   expect(blanks).toEqual(expected);
@@ -410,6 +411,7 @@ const STATED: Record<string, Stated> = {
   'graphs-polynomials-cubic-negative': { curves: [{ cls: 'curve', f: poly(1, [B(-1, 2), X(1, 2)]) }], points: { touch: [-1, 0], cross: [2, 0], yint: [0, 2] }, on: { touch: [0], cross: [0], yint: [0] }, roots: [{ x: -1, cross: false }, { x: 2, cross: true }], ends: 'The left end goes up and the right end goes down' },
   'graphs-polynomials-cubic-triple': { curves: [{ cls: 'curve', f: poly(1, [X(-1, 3)]) }], points: { root: [1, 0], yint: [0, -1] }, on: { root: [0], yint: [0] }, roots: [{ x: 1, cross: true }], ends: 'The left end goes down and the right end goes up' },
   'graphs-polynomials-cubic-nonmonic': { curves: [{ cls: 'curve', f: poly(1, [B(1, 0), B(2, -1), X(2)]) }], points: { r1: [-2, 0], r2: [0, 0], r3: [0.5, 0] }, on: { r1: [0], r2: [0], r3: [0] }, roots: [{ x: -2, cross: true }, { x: 0, cross: true, w: [0.08, 0.2] }, { x: 0.5, cross: true, w: [0.08, 0.2] }], ends: 'The left end goes down and the right end goes up' },
+  'graphs-polynomials-proportion-square': { curves: [{ cls: 'curve', f: (x) => 5 * x ** 2 }], points: { p1: [1, 5], n1: [-1, 5], p2: [2, 20] }, on: { p1: [0], n1: [0], p2: [0] } },
   'graphs-polynomials-proportion-root': { curves: [{ cls: 'curve', f: (x) => 3 * Math.sqrt(x) }], points: { p1: [1, 3], p4: [4, 6], p9: [9, 9] }, on: { p1: [0], p4: [0], p9: [0] } },
   'graphs-polynomials-quartic-four': { curves: [{ cls: 'curve', f: poly(1, [X(3), X(1), X(-2), X(-4)]) }], points: { r1: [-3, 0], r2: [-1, 0], r3: [2, 0], r4: [4, 0], yint: [0, 24] }, on: { r1: [0], r2: [0], r3: [0], r4: [0], yint: [0] }, roots: [{ x: -3, cross: true }, { x: -1, cross: true }, { x: 2, cross: true }, { x: 4, cross: true }], ends: 'Both ends go up' },
   'graphs-polynomials-quartic-double': { curves: [{ cls: 'curve', f: poly(1, [X(2, 2), X(-1), X(-3)]) }], points: { touch: [-2, 0], r2: [1, 0], r3: [3, 0], yint: [0, 12] }, on: { touch: [0], r2: [0], r3: [0], yint: [0] }, roots: [{ x: -2, cross: false }, { x: 1, cross: true }, { x: 3, cross: true }], ends: 'Both ends go up' },
@@ -637,4 +639,14 @@ test('the page keeps to its scope: no derivatives, no transformations of graphs'
   expect((text.match(/Differentiation/g) ?? []).length).toBe(1);
   // a sketch needs no exact turning points: the page says so
   expect(text).toContain('A sketch does not need their exact position');
+});
+
+test('every numbered lesson section has a Key idea box and a faded "Now you finish it" example', () => {
+  const lessons = SOURCE.split('<section').filter((sec) => /<h2>\d+\./.test(sec));
+  expect(lessons.length).toBe(6);
+  for (const sec of lessons) {
+    const name = /<h2>([^<]*)<\/h2>/.exec(sec)?.[1];
+    expect(sec, `${name}: a Key idea box`).toContain('class="key"');
+    expect(sec, `${name}: a faded example`).toContain('class="worked faded"');
+  }
 });

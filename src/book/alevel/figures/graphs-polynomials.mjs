@@ -94,6 +94,7 @@ const hyper8 = (x) => 8 / x;
 const parab = (x) => x ** 2;
 const flipBack = (x) => 2 * (x + 1) * (x - 2) ** 2;
 const cubicNonmonic = (x) => x * (2 * x - 1) * (x + 2);
+const fiveSquare = (x) => 5 * x ** 2;
 const rootThree = (x) => 3 * Math.sqrt(x);
 const qCubic = (x) => -(x + 2) * (x - 3) ** 2;
 
@@ -151,7 +152,7 @@ export const FIGURES = {
     draw(p, id, [{ name: 'cubic', fn: cubicTouch }]);
     mark(p, id, { name: 'cross', x: -3, y: 0, text: '(-3, 0)', dx: 14, dy: 40 });
     mark(p, id, { name: 'touch', x: 1, y: 0, text: '(1, 0)', dx: 0, dy: 44, anchor: 'middle' });
-    mark(p, id, { name: 'yint', x: 0, y: 3, text: '(0, 3)', dx: -16, dy: 40, anchor: 'end' });
+    mark(p, id, { name: 'yint', x: 0, y: 3, text: '(0, 3)', dx: -16, dy: 50, anchor: 'end' });
     return finish(p, {
       id,
       title: 'The graph of y = (x + 3)(x - 1) squared crosses the x-axis at -3 and touches it at 1',
@@ -206,15 +207,31 @@ export const FIGURES = {
     });
   },
 
+  // ---- 6. y proportional to x squared: y = 5x^2 ----
+  'graphs-polynomials-proportion-square': () => {
+    const id = 'graphs-polynomials-proportion-square';
+    const p = sketch(id, { xmin: -2.4, xmax: 2.4, ymin: -3, ymax: 25 });
+    band(p, 0, 'y = 5x^2');
+    draw(p, id, [{ name: 'parabola', fn: fiveSquare }]);
+    mark(p, id, { name: 'p1', x: 1, y: 5, text: '(1, 5)', dx: 14, dy: 36 });
+    mark(p, id, { name: 'n1', x: -1, y: 5, text: '(-1, 5)', dx: -14, dy: 36, anchor: 'end' });
+    mark(p, id, { name: 'p2', x: 2, y: 20, text: '(2, 20)', dx: -14, dy: -16, anchor: 'end' });
+    return finish(p, {
+      id,
+      title: 'The graph of y = 5x squared is a parabola through the origin',
+      desc: 'A U-shaped curve through the origin, with the y-axis as its line of symmetry. It rises steeply on both sides and passes through the marked points (1, 5), (-1, 5) and (2, 20). Every y-value is zero or positive.',
+    });
+  },
+
   // ---- 6. y proportional to the square root of x: y = 3 sqrt(x) ----
   'graphs-polynomials-proportion-root': () => {
     const id = 'graphs-polynomials-proportion-root';
     const p = sketch(id, { xmin: -1, xmax: 10, ymin: -2, ymax: 11 });
-    band(p, 0, 'y = 3 sqrt(x)');
+    band(p, 0, 'y = 3\u221ax');
     draw(p, id, [{ name: 'root', fn: rootThree }]);
     mark(p, id, { name: 'p1', x: 1, y: 3, text: '(1, 3)', dx: 14, dy: 36 });
     mark(p, id, { name: 'p4', x: 4, y: 6, text: '(4, 6)', dx: 14, dy: 36 });
-    mark(p, id, { name: 'p9', x: 9, y: 9, text: '(9, 9)', dx: -14, dy: 70, anchor: 'end' });
+    mark(p, id, { name: 'p9', x: 9, y: 9, text: '(9, 9)', dx: -14, dy: -16, anchor: 'end' });
     return finish(p, {
       id,
       title: 'The graph of y = 3 times the square root of x starts at the origin and rises more and more slowly',
