@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { test, expect } from './support/fixtures';
 import { ALL_PAGES } from './support/pages';
@@ -54,6 +54,9 @@ test.describe('the recordings review page', () => {
       return { n: rows.length, ok: res.ok, type: res.headers.get('content-type') };
     });
     expect(clip.n).toBeGreaterThan(1000);
+    const listed: { f: string }[] = JSON.parse(readFileSync(join(PUBLIC, 'audio', 'book', 'review.json'), 'utf8'));
+    const gone = listed.filter((r) => !existsSync(join(PUBLIC, 'audio', 'book', r.f))).map((r) => r.f);
+    expect(gone, 'review.json lists clips that no longer exist: run npm run book:review').toEqual([]);
     expect(clip.ok).toBe(true);
     await page.locator('.ar-item').first().getByRole('button', { name: 'Flag' }).click();
     await expect(page.locator('#ar-count')).toContainText('1 flagged');
