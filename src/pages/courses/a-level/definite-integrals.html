@@ -1,0 +1,824 @@
+<main class="book strand-al-integration" data-book-page="topic" data-topic="definite-integrals">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Integration &middot; Year 1</span>
+      <h1>Definite integrals and area</h1>
+      <p class="lead">An integral with limits is a number. This page shows how to find that number, how it gives the area between a curve and the x-axis, and when it does not. You also find the area between a line and a curve.</p>
+      <p class="where-use"><b>Where you will use this:</b> finding areas of curved regions, working out a quantity from its rate of change, and the area between two curves and the trapezium rule in Year 2.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Definite integrals and area</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page assumes you can integrate powers of x, including roots and reciprocals written as powers. The warm-up checks that. It does not use the limit of a sum: the Year 2 topic on area between curves covers that. Every curve here is unbroken between the limits used.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-the-definite-integral-and-area">Skip to the lesson</a></p>
+    <div class="q" data-answers="2x^3+c;c+2x^3" data-mode="exact">
+      <p class="qtext">Find {m:int() 6x^2 dx}. Use the letter c for the constant. Type your answer like x^3+c.</p>
+      <ol class="ladder"><li>Integrating reverses differentiating. Add 1 to the power.</li><li>Then divide by the new power.</li><li>An integral with no limits ends in a constant.</li></ol>
+      <ul class="wrong"><li data-if="2x^3">The working is right, but an integral with no limits needs {m:+c}.</li><li data-if="6x^3+c">You added 1 to the power, but you did not divide by the new power, 3.</li><li data-if="12x+c">{m:12x} is the derivative of {m:6x^2}. Integrating goes the other way.</li></ul>
+      <div class="solution"><p>Add 1 to the power to get {m:x^3}. Divide by the new power: {m:frac(6x^3, 3)=2x^3}. So {m:int() 6x^2 dx=2x^3+c}.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">Work out the value of {m:2x^2+x} when {m:x=-3}.</p>
+      <ol class="ladder"><li>Put {m:-3} in place of every x.</li><li>Only the x in {m:x^2} is squared. Square {m:-3} first, then multiply by 2.</li><li>Then add the second term.</li></ol>
+      <ul class="wrong"><li data-if="-21">{m:(-3)^2} is 9, not {m:-9}. A negative number squared is positive.</li><li data-if="33">Only x is squared: {m:2x^2} means 2 times {m:x^2}, not {m:(2x)^2}.</li></ul>
+      <div class="solution"><p>{m:2*(-3)^2+(-3)=2*9-3=18-3=15}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Work out {m:5-(-2)}.</p>
+      <ol class="ladder"><li>Subtracting a negative number is the same as adding.</li><li>{m:5-(-2)} becomes {m:5+2}.</li><li>Add them.</li></ol>
+      <ul class="wrong"><li data-if="3">Subtracting {m:-2} adds 2. It does not take 2 away.</li><li data-if="-7">The order is 5 first, then take away {m:-2}. You reversed the order.</li></ul>
+      <div class="solution"><p>{m:5-(-2)=5+2=7}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2-4} crosses the x-axis at two points. Find the positive x-value where it crosses.</p>
+      <ol class="ladder"><li>On the x-axis, {m:y=0}. Put {m:x^2-4=0}.</li><li>Move the 4 across to get {m:x^2=4}.</li><li>Take the square root. Two answers are possible: choose the positive one.</li></ol>
+      <ul class="wrong"><li data-if="4">{m:x^2=4} gives the value of x squared. Take the square root to get x.</li></ul>
+      <div class="solution"><p>Put {m:y=0}: {m:x^2=4}, so {m:x=2} or {m:x=-2}. The positive value is {m:x=2}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip if you are happy)</summary>
+    <div class="q" data-answers="3x+c;c+3x" data-mode="exact">
+      <p class="qtext">Find {m:int() 3 dx}. Use the letter c for the constant. Type your answer like 5x+c.</p>
+      <ol class="ladder"><li>A number on its own is the same as the number times {m:x^0}.</li><li>Add 1 to the power 0. Divide by the new power.</li><li>Do not forget the constant.</li></ol>
+      <ul class="wrong"><li data-if="3x">The working is right, but an integral with no limits needs {m:+c}.</li><li data-if="3+c">A number on its own integrates to a multiple of x. The derivative of {m:3x} is 3.</li></ul>
+      <div class="solution"><p>The derivative of {m:3x} is 3, so {m:int() 3 dx=3x+c}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-3x=0}. Give the root that is not zero.</p>
+      <ol class="ladder"><li>Factorise. Both terms have x in them.</li><li>Write {m:x(x-3)=0}.</li><li>A product is zero when one factor is zero.</li></ol>
+      <ul class="wrong"><li data-if="0">{m:x=0} is a root, but the question asks for the other one.</li><li data-if="-3">{m:x-3=0} gives {m:x=3}. Move the 3 across with a plus sign.</li></ul>
+      <div class="solution"><p>{m:x(x-3)=0} gives {m:x=0} or {m:x=3}. The root that is not zero is 3.</p></div>
+    </div>
+    <div class="q" data-answers="x^2-2x-3;-3-2x+x^2;-2x+x^2-3;x^2-3-2x" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+1)(x-3)}. Type your answer like x^2+5x+1.</p>
+      <ol class="ladder"><li>Multiply every term in the first bracket by every term in the second.</li><li>There are four products. Two of them contain x.</li><li>Join the two terms in x.</li></ol>
+      <ul class="wrong"><li data-if="x^2-3">That drops the middle terms. Four products give {m:x^2-3x+x-3}.</li><li data-if="x^2+2x-3">The middle terms are {m:-3x} and {m:+x}. They make {m:-2x}.</li></ul>
+      <div class="solution"><p>{m:(x+1)(x-3)=x^2-3x+x-3=x^2-2x-3}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. The definite integral and area</h2>
+    <p>A curve has no formula for the area under it, the way a rectangle has. Look at the shaded region. It is bounded by the curve, the x-axis, and two vertical lines.</p>
+    <figure class="figure-lg">{fig:definite-integrals-area-under}<figcaption>The shaded region lies under {m:y=x^2}, above the x-axis, between the lines {m:x=1} and {m:x=3}.</figcaption></figure>
+    <p>An integral with a lower value and an upper value written on the integral sign is a {term:definite-integral}. The two values are the {term:limits-of-integration|limits}. The lower limit is where the region starts and the upper limit is where it stops. Both are values of x.</p>
+    <p>For the region in the figure, the lower limit is 1 and the upper limit is 3. We write it {m:int(1, 3) x^2 dx}. Read it as "the integral from 1 to 3 of x squared, dx". Compare this with an {term:indefinite-integral}, which has no limits and ends in {m:+c}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> let {m:f(x)} be a function whose graph is unbroken from {m:x=a} to {m:x=b}, with {m:a < b}. Suppose {m:f(x) >= 0} for every x from a to b: the curve is on or above the x-axis. Then the area of the region between the curve, the x-axis and the lines {m:x=a} and {m:x=b} is the definite integral {m:int(a, b) f(x) dx}. A definite integral is a number, so it has no {m:+c}.</p>
+    </div>
+    <p>The condition {m:f(x) >= 0} matters. Section 4 shows what happens when the curve is below the axis. The area under a curve is measured in square units.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Write the area of the shaded region in the figure as a definite integral.</p>
+      <ol class="steps">
+        <li>The region starts at {m:x=1} and stops at {m:x=3}. These are the limits. The lower limit is 1.</li>
+        <li>The curve {m:y=x^2} is above the x-axis from {m:x=1} to {m:x=3}, so the area equals the integral.</li>
+        <li>The area is {m:int(1, 3) x^2 dx}. Section 2 shows how to find its value.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write the area under the curve {m:y=3x+1}, above the x-axis, from {m:x=2} to {m:x=5}, as a definite integral.</p>
+      <ol class="steps">
+        <li>The lower limit is <span class="blank" data-answers="2">___</span> and the upper limit is <span class="blank" data-answers="5">___</span>.</li>
+        <li>The curve is above the axis for these x-values, because {m:3x+1} is positive when x is positive.</li>
+        <li>The area is {m:int(2, 5)} <span class="blank" data-mode="exact" data-answers="3x+1">___</span> {m:dx}.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The limits are the x-values where the region starts and stops: 2 and 5. The function after the integral sign is the height of the curve, {m:3x+1}. So the area is {m:int(2, 5) (3x+1) dx}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the definite integral</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which definite integral gives the area under {m:y=x^2+1}, above the x-axis, between {m:x=0} and {m:x=2}?</p>
+      <ul class="options">
+        <li data-correct>The integral from 0 to 2 of x squared plus 1, dx</li>
+        <li data-why="The 1 is the height of the curve at x = 0, which is a y-value. Limits are x-values.">The integral from 1 to 2 of x squared plus 1, dx</li>
+        <li data-why="The 5 is the height of the curve at x = 2, which is a y-value. The upper limit is the x-value, 2.">The integral from 0 to 5 of x squared plus 1, dx</li>
+      </ul>
+      <ol class="ladder"><li>The limits are the x-values where the region starts and stops.</li><li>Read the question again. Which two x-values does it give?</li><li>The function after the integral sign is the height of the curve.</li></ol>
+      <div class="solution"><p>The region runs from {m:x=0} to {m:x=2}, so those are the limits. The curve {m:y=x^2+1} is above the axis, so the area is {m:int(0, 2) (x^2+1) dx}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The definite integral {m:int(2, 7) (x^2+3) dx} is the area of a region under a curve. How wide is that region, measured along the x-axis? Type a number.</p>
+      <ol class="ladder"><li>The region starts at the lower limit and stops at the upper limit.</li><li>Width is the distance between the two limits.</li><li>Take the smaller limit away from the larger.</li></ol>
+      <ul class="wrong"><li data-if="9">That adds the limits. The width is the distance between them, so subtract.</li><li data-if="14">That multiplies the limits. The width is the distance between them, so subtract.</li></ul>
+      <div class="solution"><p>The region runs from {m:x=2} to {m:x=7}. Its width is {m:7-2=5}.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">A region lies under the curve {m:y=f(x)}, on or above the x-axis, between {m:x=1} and {m:x=4}. Its area is 12 square units. Write down the value of {m:int(1, 4) f(x) dx}.</p>
+      <ol class="ladder"><li>The curve is on or above the axis between the limits.</li><li>What does the key idea say about the integral and the area in that case?</li><li>The integral is a number. You do not need the width.</li></ol>
+      <ul class="wrong"><li data-if="36">That multiplies the area by the width, 3. The integral already equals the area.</li><li data-if="4">That divides the area by the width, 3. The integral already equals the area.</li></ul>
+      <div class="solution"><p>The curve is on or above the x-axis between the limits, so the definite integral equals the area. The value is 12.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement about {m:int(1, 3) (2x+1) dx} is correct?</p>
+      <ul class="options">
+        <li data-correct>It is a single number, and it has no +c</li>
+        <li data-why="The limits turn the integral into a number. Only an integral with no limits is a function plus c.">It is a function of x, so it ends in +c</li>
+        <li data-why="The x is only a placeholder. Once the limits are used, no x is left in the answer.">Its value depends on x</li>
+      </ul>
+      <ol class="ladder"><li>Look at the top and bottom of the integral sign.</li><li>The limits are numbers.</li><li>What is left of x once you put numbers in?</li></ol>
+      <div class="solution"><p>A definite integral has limits, so its value is a number. There is no x left in it and no {m:+c}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">For {m:int(a, b) f(x) dx} to equal the area between the curve and the x-axis, which must be true?</p>
+      <ul class="options">
+        <li data-correct>The curve is on or above the x-axis from a to b</li>
+        <li data-why="The lower limit can be any number. A region can start at x = 2 or x = 10.">The lower limit a must be 0</li>
+        <li data-why="The limits can be any numbers. The curve being above the axis is what matters.">The upper limit b must be a whole number</li>
+      </ul>
+      <ol class="ladder"><li>Think about which part of the picture decides whether the integral is the area.</li><li>It is about where the curve lies compared with the x-axis.</li><li>Read the key idea again: which condition did it state?</li></ol>
+      <div class="solution"><p>The integral equals the area when {m:f(x) >= 0} from a to b. The limits themselves can be any numbers with {m:a < b}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Finding the value: upper minus lower</h2>
+    <p>Integrating without limits gives a function plus c. To use limits, take any {term:antiderivative} {m:F(x)} of the function, put the upper limit into it, put the lower limit into it, and subtract.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the {term:fundamental-theorem-of-calculus|fundamental theorem of calculus}. If {m:F(x)} has derivative {m:f(x)}, and {m:f} is unbroken from a to b, then {m:int(a, b) f(x) dx=F(b)-F(a)}. Upper limit first, then lower limit, and subtract. Leave out {m:+c}: it cancels, as the next paragraph shows.</p>
+    </div>
+    <p>Some books write the working with square brackets, like {m:[frac(x^3, 3)]_1^3}. The limits go to the right of the bracket. This page writes {m:F(b)-F(a)} out in full.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find {m:int(1, 3) x^2 dx}. This is the area under the curve in section 1.</p>
+      <ol class="steps">
+        <li>Integrate without the constant: {m:F(x)=frac(x^3, 3)}.</li>
+        <li>Put in the upper limit: {m:F(3)=frac(27, 3)=9}.</li>
+        <li>Put in the lower limit: {m:F(1)=frac(1, 3)}.</li>
+        <li>Subtract: {m:F(3)-F(1)=9-frac(1, 3)=frac(26, 3)}.</li>
+        <li>So {m:int(1, 3) x^2 dx=frac(26, 3)}. The curve is above the axis, so the area of the region is {m:frac(26, 3)} square units.</li>
+      </ol>
+    </div>
+    <h3>Why the constant cancels</h3>
+    <p>Two antiderivatives of {m:2x} are {m:x^2} and {m:x^2+2}. They have the same shape, one higher than the other. Between {m:x=1} and {m:x=3}, each rises by the same amount.</p>
+    <figure class="figure-lg">{fig:definite-integrals-constant}<figcaption>The solid curve rises from 1 to 9. The dashed curve rises from 3 to 11. Both rise by 8.</figcaption></figure>
+    <p>In symbols, with a constant c: {m:(F(b)+c)-(F(a)+c)=F(b)-F(a)}. The c is added once and taken away once. Any antiderivative gives the same answer.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:int(1, 2) (4x^3+2x) dx}.</p>
+      <ol class="steps">
+        <li>Integrate each term: {m:F(x)=}<span class="blank" data-mode="exact" data-answers="x^4+x^2">___</span>.</li>
+        <li>Upper limit: {m:F(2)=16+4=}<span class="blank" data-answers="20">___</span>.</li>
+        <li>Lower limit: {m:F(1)=1+1=2}. Subtract: {m:20-2=}<span class="blank" data-answers="18">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:4x^3} gives {m:x^4}, and {m:2x} gives {m:x^2}. So {m:F(2)=2^4+2^2=20} and {m:F(1)=1+1=2}. The value is {m:20-2=18}.</p></details>
+    </div>
+    <h3>Why the rule works</h3>
+    <p>Let {m:A(x)} be the area under the curve from the fixed value {m:x=a} to a variable x. Add a thin strip of width h to the right. The strip is almost a rectangle of height {m:f(x)}, so its area is about {m:f(x)*h}.</p>
+    <figure class="figure-lg">{fig:definite-integrals-strip}<figcaption>{m:A(x)} is the area from a to x. The strip adds about {m:f(x)*h}, so the area grows at rate {m:f(x)}.</figcaption></figure>
+    <p>So {m:A(x+h)-A(x)} is about {m:f(x)*h}. Divide by h: the rate at which the area grows is {m:f(x)}. In other words, the derivative of {m:A(x)} is {m:f(x)}. Then {m:A(x)} is an antiderivative of {m:f(x)}, so {m:A(x)=F(x)+c}. At {m:x=a} no area has been collected yet, so {m:A(a)=0} and {m:c=-F(a)}. The area up to {m:x=b} is {m:F(b)-F(a)}.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: upper minus lower</h2>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Work out {m:int(0, 3) x^2 dx}.</p>
+      <ol class="ladder"><li>Integrate {m:x^2}: add 1 to the power, then divide by the new power.</li><li>Put 3 into your answer. Then put 0 into it.</li><li>Subtract the second value from the first.</li></ol>
+      <ul class="wrong"><li data-if="27">{m:3^3=27}, but you did not divide by the new power, 3. The antiderivative of {m:x^2} is {m:frac(x^3, 3)}.</li></ul>
+      <div class="solution"><p>{m:F(x)=frac(x^3, 3)}. {m:F(3)=9} and {m:F(0)=0}. So {m:int(0, 3) x^2 dx=9-0=9}.</p></div>
+    </div>
+    <div class="q" data-answers="15" data-mode="value">
+      <p class="qtext">Work out {m:int(1, 4) 2x dx}.</p>
+      <ol class="ladder"><li>The antiderivative of {m:2x} is a power of x.</li><li>Put the upper limit in, then the lower limit.</li><li>Subtract: upper value minus lower value.</li></ol>
+      <ul class="wrong"><li data-if="16">That is {m:F(4)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="17">That adds {m:F(4)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:F(x)=x^2}. {m:F(4)=16} and {m:F(1)=1}. So {m:int(1, 4) 2x dx=16-1=15}.</p></div>
+    </div>
+    <div class="q" data-answers="16" data-mode="value">
+      <p class="qtext">Work out {m:int(1, 2) (6x^2+2) dx}.</p>
+      <ol class="ladder"><li>Integrate each term on its own. The 2 on its own gives a multiple of x.</li><li>Find the value of your antiderivative at 2 and at 1.</li><li>Subtract the value at 1 from the value at 2.</li></ol>
+      <ul class="wrong"><li data-if="20">That is {m:F(2)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="24">That adds {m:F(2)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:F(x)=2x^3+2x}. {m:F(2)=16+4=20} and {m:F(1)=2+2=4}. So the value is {m:20-4=16}.</p></div>
+    </div>
+    <div class="q" data-answers="10/3" data-mode="value">
+      <p class="qtext">Find the area of the shaded region. Give your answer as a fraction, like 5/6.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-area-curve}</figure>
+      <ol class="ladder"><li>Read the limits and the curve from the picture. The curve is above the axis.</li><li>The area is a definite integral. Integrate {m:x^2+1}.</li><li>Subtract the value at the lower limit from the value at the upper limit.</li></ol>
+      <ul class="wrong"><li data-if="14/3">That is {m:F(2)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="6">That adds {m:F(2)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:F(x)=frac(x^3, 3)+x}. {m:F(2)=frac(8, 3)+2=frac(14, 3)} and {m:F(1)=frac(1, 3)+1=frac(4, 3)}. The area is {m:frac(14, 3)-frac(4, 3)=frac(10, 3)} square units.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why does a definite integral not need +c?</p>
+      <ul class="options">
+        <li data-correct>The c is added to both F(b) and F(a), so it cancels when you subtract</li>
+        <li data-why="The constant can be any number. It is not always 0. It cancels because the same c appears in both values.">The constant is always 0</li>
+        <li data-why="A definite integral can be negative: section 4 shows an example. The constant is not left out for that reason.">A definite integral is always positive</li>
+      </ul>
+      <ol class="ladder"><li>Write F(b) plus c, and F(a) plus c.</li><li>Subtract the second from the first.</li><li>What happens to the c?</li></ol>
+      <div class="solution"><p>{m:(F(b)+c)-(F(a)+c)=F(b)-F(a)}. The constant is the same in both brackets, so it cancels.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Work out {m:int(0, 2) (x^3+x) dx}.</p>
+      <ol class="ladder"><li>Integrate each term: add 1 to the power and divide by the new power.</li><li>The value at 0 is 0. Find the value at 2.</li><li>Subtract the value at 0 from the value at 2.</li></ol>
+      <ul class="wrong"><li data-if="20">You did not divide by the new powers. {m:x^3} integrates to {m:frac(x^4, 4)} and {m:x} to {m:frac(x^2, 2)}.</li></ul>
+      <div class="solution"><p>{m:F(x)=frac(x^4, 4)+frac(x^2, 2)}. {m:F(2)=4+2=6} and {m:F(0)=0}. So the value is 6.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Area under a curve above the axis</h2>
+    <p>Sometimes a question names the region by the curve and the x-axis alone, as in "the area enclosed between {m:y=4x-x^2} and the x-axis". Then the limits are the x-values where the curve meets the x-axis. Find them first by putting {m:y=0}.</p>
+    <figure class="figure-lg">{fig:definite-integrals-above-axis-roots}<figcaption>The curve {m:y=4x-x^2} meets the x-axis at {m:x=0} and {m:x=4}. Between them it is above the axis.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> to find the {term:area-under-curve|area under a curve}, first check that the curve is on or above the x-axis between the limits. If it is, the area is the definite integral. When a question asks for the area enclosed between a curve and the x-axis, the limits are where the curve crosses the axis. If the curve is below the axis anywhere between the limits, this method needs the changes in sections 4 and 5.</p>
+    </div>
+    <p>Check which side of the axis the curve is on by testing one x-value between the limits. For {m:y=4x-x^2}, put {m:x=2}: the height is {m:8-4=4}, which is positive. So the curve is above the axis between 0 and 4.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the area enclosed between the curve {m:y=4x-x^2} and the x-axis.</p>
+      <ol class="steps">
+        <li>Put {m:y=0}: {m:x(4-x)=0}, so {m:x=0} or {m:x=4}. These are the limits.</li>
+        <li>At {m:x=2}, {m:y=4}. The curve is above the axis, so the area equals the integral.</li>
+        <li>Integrate: {m:F(x)=2x^2-frac(x^3, 3)}.</li>
+        <li>{m:F(4)=32-frac(64, 3)=frac(32, 3)} and {m:F(0)=0}.</li>
+        <li>The area is {m:frac(32, 3)-0=frac(32, 3)} square units.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the area enclosed between {m:y=6x-x^2} and the x-axis. This curve has the same shape as the one in the figure, but wider.</p>
+      <ol class="steps">
+        <li>Put {m:y=0}: {m:x(6-x)=0}. The limits are 0 and <span class="blank" data-answers="6">___</span>.</li>
+        <li>Integrate: {m:F(x)=3x^2-frac(x^3, 3)}. Then {m:F(6)=108-72=}<span class="blank" data-answers="36">___</span>.</li>
+        <li>{m:F(0)=0}, so the area is <span class="blank" data-answers="36">___</span> square units.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:F(6)=3*36-frac(216, 3)=108-72=36} and {m:F(0)=0}. At {m:x=3} the curve has height {m:18-9=9}, which is positive, so the curve is above the axis and the area is 36 square units.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: area above the axis</h2>
+    <div class="q" data-answers="4/3" data-mode="value">
+      <p class="qtext">Find the area enclosed between the curve {m:y=1-x^2} and the x-axis. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Put {m:y=0} to find where the curve meets the x-axis. There are two values.</li><li>Check one x-value between them to see the curve is above the axis.</li><li>Integrate {m:1-x^2}, then put in the larger limit and the smaller limit.</li></ol>
+      <ul class="wrong"><li data-if="2/3">That is the area from 0 to 1 only: half of the region. The curve meets the axis at {m:x=-1} and {m:x=1}, so the region runs from {m:-1} to 1.</li></ul>
+      <div class="solution"><p>{m:1-x^2=0} gives {m:x=-1} or {m:x=1}. At {m:x=0}, {m:y=1}, so the curve is above the axis. {m:F(x)=x-frac(x^3, 3)}. {m:F(1)=frac(2, 3)} and {m:F(-1)=-frac(2, 3)}. The area is {m:frac(2, 3)-(-frac(2, 3))=frac(4, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="9" data-mode="value">
+      <p class="qtext">Find the area under the curve {m:y=3x^2+2}, above the x-axis, from {m:x=1} to {m:x=2}.</p>
+      <ol class="ladder"><li>The curve is above the axis for every x, because {m:3x^2+2} is always positive.</li><li>Integrate {m:3x^2+2}.</li><li>Subtract the value at 1 from the value at 2.</li></ol>
+      <ul class="wrong"><li data-if="12">That is {m:F(2)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="15">That adds {m:F(2)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:F(x)=x^3+2x}. {m:F(2)=8+4=12} and {m:F(1)=1+2=3}. The area is {m:12-3=9} square units.</p></div>
+    </div>
+    <div class="q" data-answers="14/3" data-mode="value">
+      <p class="qtext">Find the area under {m:y=sqrt(x)}, above the x-axis, from {m:x=1} to {m:x=4}. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Write {m:sqrt(x)} as a power of x.</li><li>Add 1 to the power and divide by the new power. Dividing by a fraction means multiplying by its reciprocal.</li><li>Put in 4, put in 1, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="16/3">That is {m:F(4)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="6">That adds {m:F(4)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:sqrt(x)=x^(1/2)}, so {m:F(x)=frac(2, 3)x^(3/2)}. {m:F(4)=frac(2, 3)*8=frac(16, 3)} and {m:F(1)=frac(2, 3)}. The area is {m:frac(16, 3)-frac(2, 3)=frac(14, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The area of the shaded region is 9 square units. Find the value of k, where {m:k > 0}.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-k}</figure>
+      <ol class="ladder"><li>The area is {m:int(0, k) 2x dx}.</li><li>Find this in terms of k. The value at 0 is 0.</li><li>Put your expression equal to 9 and solve for k.</li></ol>
+      <ul class="wrong"><li data-if="4.5">That solves {m:2k=9}. But {m:2x} is the height of the line, not the area function. The area is {m:int(0, k) 2x dx=k^2}.</li><li data-if="-3">{m:k^2=9} has the solutions 3 and {m:-3}. The region is to the right of the y-axis, so {m:k > 0}.</li></ul>
+      <div class="solution"><p>{m:int(0, k) 2x dx=k^2-0=k^2}. So {m:k^2=9}. Since {m:k > 0}, {m:k=3}. Check: the triangle has base 3 and height 6, and half of {m:3*6} is 9.</p></div>
+    </div>
+    <div class="q" data-answers="32" data-mode="value">
+      <p class="qtext">Find the area enclosed between the curve {m:y=12x-3x^2} and the x-axis.</p>
+      <ol class="ladder"><li>Factorise {m:12x-3x^2} to find where it meets the x-axis.</li><li>The curve is a hill shape, so it is above the axis between the two values.</li><li>Integrate. Divide each term by its new power.</li></ol>
+      <ul class="wrong"><li data-if="128">You did not divide {m:12x} by the new power, 2. It integrates to {m:6x^2}, not {m:12x^2}.</li></ul>
+      <div class="solution"><p>{m:12x-3x^2=3x(4-x)=0} gives {m:x=0} and {m:x=4}. {m:F(x)=6x^2-x^3}. {m:F(4)=96-64=32} and {m:F(0)=0}. The area is 32 square units.</p></div>
+    </div>
+    <div class="q" data-answers="26/3" data-mode="value">
+      <p class="qtext">Find the area under {m:y=(x+1)^2}, above the x-axis, from {m:x=0} to {m:x=2}. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Expand the bracket before you integrate.</li><li>{m:(x+1)^2} means {m:(x+1)(x+1)}. It has three terms once you join like terms.</li><li>Integrate each term. Put in 2 and 0, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="14/3">That squares each term and gets {m:x^2+1}. The bracket {m:(x+1)^2} is {m:x^2+2x+1}: the middle term is missing.</li></ul>
+      <div class="solution"><p>{m:(x+1)^2=x^2+2x+1}. {m:F(x)=frac(x^3, 3)+x^2+x}. {m:F(2)=frac(8, 3)+4+2=frac(26, 3)} and {m:F(0)=0}. The area is {m:frac(26, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Below the axis: negative integrals</h2>
+    <p>What if the curve is below the x-axis? The region has a real area, but the integral behaves differently.</p>
+    <figure class="figure-lg">{fig:definite-integrals-below}<figcaption>The curve {m:y=x^2-4} is below the x-axis from {m:x=0} to {m:x=2}. The shaded region lies below the axis.</figcaption></figure>
+    <p>Work out {m:int(0, 2) (x^2-4) dx}. The antiderivative is {m:F(x)=frac(x^3, 3)-4x}. Then {m:F(2)=frac(8, 3)-8=-frac(16, 3)} and {m:F(0)=0}. The integral is {m:-frac(16, 3)}: a negative number.</p>
+    <p>An area cannot be negative. The integral is negative because the curve is below the axis, where the heights {m:f(x)} are negative.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if the curve is on or below the x-axis from a to b, so {m:f(x) <= 0}, then {m:int(a, b) f(x) dx} is zero or negative, and the area of the region between the curve and the x-axis is {m:-int(a, b) f(x) dx}. Swapping the limits changes the sign: {m:int(b, a) f(x) dx=-int(a, b) f(x) dx}. The integral is the signed area. The {term:area-below-the-axis|area below the axis} counts as negative.</p>
+    </div>
+    <p>The area is the integral with its minus sign removed: {m:frac(16, 3)} square units. The definite integral is a number that can be negative. The area is the size of the region.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the area between the curve {m:y=x^2-4} and the x-axis, from {m:x=0} to {m:x=2}.</p>
+      <ol class="steps">
+        <li>Test {m:x=1}: {m:y=1-4=-3}. The curve is below the axis between 0 and 2.</li>
+        <li>Integrate: {m:F(x)=frac(x^3, 3)-4x}. {m:F(2)=-frac(16, 3)} and {m:F(0)=0}.</li>
+        <li>The integral is {m:-frac(16, 3)}. The area is its size, {m:frac(16, 3)}, without the minus sign.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the area between the same curve and the x-axis from {m:x=1} to {m:x=2}. This is part of the shaded region in the figure.</p>
+      <ol class="steps">
+        <li>{m:F(2)=-frac(16, 3)}. {m:F(1)=frac(1, 3)-4=-frac(11, 3)}.</li>
+        <li>The integral is {m:F(2)-F(1)=-frac(16, 3)+frac(11, 3)=}<span class="blank" data-answers="-5/3">___</span>.</li>
+        <li>The curve is below the axis, so the area is <span class="blank" data-answers="5/3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:-frac(16, 3)+frac(11, 3)=-frac(5, 3)}. The curve is below the axis between 1 and 2, so the area is {m:frac(5, 3)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: below the axis</h2>
+    <div class="q" data-answers="9/2" data-mode="value">
+      <p class="qtext">Find the area of the shaded region. Give your answer as a fraction, like 5/6.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-below}</figure>
+      <ol class="ladder"><li>The region is below the axis, so the integral is negative.</li><li>Integrate {m:x^2-3x} and use the limits from the picture.</li><li>An area cannot be negative. Take the minus sign away from the integral.</li></ol>
+      <ul class="wrong"><li data-if="-9/2">That is the value of the integral. An area is never negative: the area is {m:frac(9, 2)}.</li></ul>
+      <div class="solution"><p>{m:F(x)=frac(x^3, 3)-frac(3x^2, 2)}. {m:F(3)=9-frac(27, 2)=-frac(9, 2)} and {m:F(0)=0}. The integral is {m:-frac(9, 2)}. The area is {m:frac(9, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-16" data-mode="value">
+      <p class="qtext">Work out {m:int(0, 2) (3x^2-12) dx}.</p>
+      <ol class="ladder"><li>Integrate each term. Then put in 2 and 0.</li><li>The curve {m:y=3x^2-12} is below the x-axis from 0 to 2.</li><li>The question asks for the integral, not the area.</li></ol>
+      <ul class="wrong"><li data-if="16">That is the size of the area. The integral itself is negative, because the curve is below the axis.</li></ul>
+      <div class="solution"><p>{m:F(x)=x^3-12x}. {m:F(2)=8-24=-16} and {m:F(0)=0}. So {m:int(0, 2) (3x^2-12) dx=-16}.</p></div>
+    </div>
+    <div class="q" data-answers="16" data-mode="value">
+      <p class="qtext">Find the area between the curve {m:y=3x^2-12} and the x-axis, from {m:x=0} to {m:x=2}. The curve is below the axis between these limits.</p>
+      <ol class="ladder"><li>Integrate {m:3x^2-12} from 0 to 2.</li><li>Your integral will be negative, because the curve is below the axis.</li><li>The area is the size of the integral.</li></ol>
+      <ul class="wrong"><li data-if="-16">That is the integral. An area is never negative, so remove the minus sign.</li></ul>
+      <div class="solution"><p>The integral is {m:int(0, 2) (3x^2-12) dx=-16}. The area is the size of this: 16 square units.</p></div>
+    </div>
+    <div class="q" data-answers="-7" data-mode="value">
+      <p class="qtext">Given that {m:int(1, 4) f(x) dx=7}, write down the value of {m:int(4, 1) f(x) dx}.</p>
+      <ol class="ladder"><li>The two integrals have the same function, with the limits swapped.</li><li>Swapping the limits swaps the order of subtraction.</li><li>What does that do to the sign?</li></ol>
+      <ul class="wrong"><li data-if="7">Swapping the limits changes the sign. {m:int(4, 1) f(x) dx=F(1)-F(4)}, the negative of {m:F(4)-F(1)}.</li></ul>
+      <div class="solution"><p>{m:int(4, 1) f(x) dx=F(1)-F(4)=-(F(4)-F(1))=-7}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">For {m:y=x^2-4} between {m:x=0} and {m:x=1}, the integral is {m:-frac(11, 3)}. The curve is below the axis. Which statement is correct?</p>
+      <ul class="options">
+        <li data-correct>The area is 11 over 3 square units</li>
+        <li data-why="An area is never negative. The minus sign shows that the curve is below the axis.">The area is minus 11 over 3 square units</li>
+        <li data-why="A region below the axis does have an area. Remove the minus sign from the integral to find it.">The area cannot be found because the integral is negative</li>
+      </ul>
+      <ol class="ladder"><li>The integral is the signed area.</li><li>What does the minus sign tell you about where the curve is?</li><li>An area is the size of the region.</li></ol>
+      <div class="solution"><p>The curve is below the axis, so the integral is negative and the area is its size: {m:frac(11, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Find the area enclosed between the curve {m:y=x^2-9} and the x-axis.</p>
+      <ol class="ladder"><li>Put {m:y=0} to find the limits. There are two.</li><li>Test an x-value between them to see which side of the axis the curve is on.</li><li>Integrate, subtract, and make the area positive.</li></ol>
+      <ul class="wrong"><li data-if="-36">That is the integral. The curve is below the axis, so the area is the size of the integral.</li></ul>
+      <div class="solution"><p>{m:x^2-9=0} gives {m:x=-3} and {m:x=3}. At {m:x=0}, {m:y=-9}, so the curve is below the axis. {m:F(x)=frac(x^3, 3)-9x}. {m:F(3)=-18} and {m:F(-3)=18}. The integral is {m:-18-18=-36}. The area is 36.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Regions that cross the axis</h2>
+    <p>Now take a region where the curve is above the axis in one part and below it in another. A single integral adds the positive and negative signed areas, so they partly cancel.</p>
+    <figure class="figure-lg">{fig:definite-integrals-split}<figcaption>The curve {m:y=x^2-4} crosses the x-axis at {m:x=2}. The region from 0 to 2 is below the axis. The region from 2 to 3 is above it.</figcaption></figure>
+    <p>The integral from 0 to 3 is {m:F(3)-F(0)=(9-12)-0=-3}. That number is not the total area. The area below is {m:frac(16, 3)} and the area above is {m:frac(7, 3)}, and they partly cancel in {m:-frac(16, 3)+frac(7, 3)=-3}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to find the total area between a curve and the x-axis when the curve crosses the axis, find every x-value between the limits where it crosses. Split the integral at each one. Find each part. Make each area positive: remove the minus sign from a part below the axis. Add the areas. Splitting is allowed because {m:int(a, c) f(x) dx=int(a, b) f(x) dx+int(b, c) f(x) dx} for any b between a and c.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the total area between {m:y=x^2-4} and the x-axis, from {m:x=0} to {m:x=3}.</p>
+      <ol class="steps">
+        <li>Put {m:y=0}: {m:x=2} or {m:x=-2}. Only {m:x=2} is between 0 and 3. Split there.</li>
+        <li>From 0 to 2: the integral is {m:-frac(16, 3)}, as in section 4. This part is below the axis, so its area is {m:frac(16, 3)}.</li>
+        <li>From 2 to 3: {m:F(3)-F(2)=-3-(-frac(4, 3))=frac(7, 3)}. This part is above the axis, so its area is {m:frac(7, 3)}.</li>
+        <li>Add the areas: {m:frac(16, 3)+frac(7, 3)=frac(23, 3)}.</li>
+      </ol>
+    </div>
+    <p>Here is a curve where the two regions are the same size and the integral is exactly 0.</p>
+    <figure class="figure-lg">{fig:definite-integrals-odd}<figcaption>The curve {m:y=x^3-4x} crosses the x-axis at {m:x=-2}, 0 and 2. The two shaded regions are the same size.</figcaption></figure>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the total area between {m:y=x^3-4x} and the x-axis, from {m:x=-2} to {m:x=2}.</p>
+      <ol class="steps">
+        <li>The curve crosses the axis at {m:x=0}, between the limits. Split there. {m:F(x)=frac(x^4, 4)-2x^2}.</li>
+        <li>From 0 to 2: {m:F(2)-F(0)=-4}. This part is below the axis, so its area is <span class="blank" data-answers="4">___</span>.</li>
+        <li>From {m:-2} to 0: {m:F(0)-F(-2)=0-(-4)=4}. This part is above the axis. The total area is {m:4+4=}<span class="blank" data-answers="8">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:F(2)=4-8=-4} and {m:F(-2)=4-8=-4}. So {m:int(0, 2)=-4}, an area of 4, and {m:int(-2, 0)=0-(-4)=4}. The total area is 8. The integral from {m:-2} to 2 is {m:-4+4=0}, which is not the area.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: regions that cross the axis</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the total area of the shaded regions. The curve is {m:y=x^2-1}.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-split}</figure>
+      <ol class="ladder"><li>Where does {m:y=x^2-1} cross the x-axis between 0 and 2? Put {m:y=0}.</li><li>Find the integral on each side of that value on its own.</li><li>Make each area positive, then add.</li></ol>
+      <ul class="wrong"><li data-if="2/3">That is a single integral from 0 to 2. The part below the axis cancels part of the part above. Split at the crossing point.</li><li data-if="4/3">That is the area above the axis only. You also need the region below the axis.</li></ul>
+      <div class="solution"><p>{m:x^2-1=0} gives {m:x=1} between 0 and 2. {m:F(x)=frac(x^3, 3)-x}. {m:F(0)=0}, {m:F(1)=-frac(2, 3)}, {m:F(2)=frac(2, 3)}. From 0 to 1 the integral is {m:-frac(2, 3)}, so the area is {m:frac(2, 3)}. From 1 to 2 it is {m:frac(2, 3)-(-frac(2, 3))=frac(4, 3)}. Total area: {m:frac(2, 3)+frac(4, 3)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">Work out the integral {m:int(0, 3) (x^2-4) dx}.</p>
+      <ol class="ladder"><li>Integrate. Put in 3, put in 0, and subtract.</li><li>The question asks for the integral, not for an area.</li><li>Compare it with the total area worked out in this section.</li></ol>
+      <ul class="wrong"><li data-if="23/3">That is the total area. The integral adds the signed parts, so it is smaller: {m:-frac(16, 3)+frac(7, 3)}.</li></ul>
+      <div class="solution"><p>{m:F(x)=frac(x^3, 3)-4x}. {m:F(3)=9-12=-3} and {m:F(0)=0}. So the integral is {m:-3}. It is not the area, because the curve crosses the axis at {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2-2x} crosses the x-axis at {m:x=0} and {m:x=2}. Find the total area between the curve and the x-axis, from {m:x=-1} to {m:x=3}.</p>
+      <ol class="ladder"><li>The two crossing points are inside the limits, so split at both. There are three parts.</li><li>Find each part. Use {m:F(x)=frac(x^3, 3)-x^2}.</li><li>Make each area positive, then add the three.</li></ol>
+      <ul class="wrong"><li data-if="4/3">That is a single integral from {m:-1} to 3. The signed parts partly cancel. Split at both crossing points.</li><li data-if="8/3">That is two of the three parts. There is a region on each side of each crossing.</li></ul>
+      <div class="solution"><p>{m:F(-1)=-frac(4, 3)}, {m:F(0)=0}, {m:F(2)=-frac(4, 3)}, {m:F(3)=0}. The parts are {m:F(0)-F(-1)=frac(4, 3)}, {m:F(2)-F(0)=-frac(4, 3)} and {m:F(3)-F(2)=frac(4, 3)}. Each has area {m:frac(4, 3)}. The total is {m:3*frac(4, 3)=4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A curve crosses the x-axis at {m:x=r}, between the limits a and b. Why must you split the integral at r to find the area?</p>
+      <ul class="options">
+        <li data-correct>A single integral adds the part below the axis as a negative, so it partly cancels the part above</li>
+        <li data-why="The integral can be worked out across a crossing point. But the number it gives is not the total area.">An integral cannot be worked out across a point where the curve meets the axis</li>
+        <li data-why="The antiderivative is one function. It does not change at a crossing point.">The antiderivative changes at the crossing point</li>
+      </ul>
+      <ol class="ladder"><li>Think about the sign of the integral on each side of r.</li><li>What happens when a negative number and a positive number are added?</li><li>An area must add up as positive amounts.</li></ol>
+      <div class="solution"><p>A part below the axis gives a negative integral, and a part above gives a positive one. Adding them lets them cancel, so the result is not the total area.</p></div>
+    </div>
+    <div class="q" data-answers="1/2" data-mode="value">
+      <p class="qtext">Find the total area of the shaded regions. The curve is {m:y=x^3-x}. Give your answer as a fraction, like 5/6.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-cubic}</figure>
+      <ol class="ladder"><li>The curve crosses the axis at {m:x=0}, which is between the limits. Split there.</li><li>Use {m:F(x)=frac(x^4, 4)-frac(x^2, 2)} to find each part.</li><li>Make each area positive, then add.</li></ol>
+      <ul class="wrong"><li data-if="0">That is the integral from {m:-1} to 1. The two parts cancel. Find each area on its own, make it positive, then add.</li></ul>
+      <div class="solution"><p>{m:F(-1)=-frac(1, 4)}, {m:F(0)=0}, {m:F(1)=-frac(1, 4)}. From {m:-1} to 0: {m:0-(-frac(1, 4))=frac(1, 4)}. From 0 to 1: {m:-frac(1, 4)-0=-frac(1, 4)}, so the area is {m:frac(1, 4)}. Total: {m:frac(1, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="8/3" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2-4x+3} crosses the x-axis at {m:x=1} and {m:x=3}. Find the total area between the curve and the x-axis, from {m:x=0} to {m:x=3}. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Only one of the two crossing points is inside the limits {m:x=0} to {m:x=3}. Which one is between them, and which is an end?</li><li>Use {m:F(x)=frac(x^3, 3)-2x^2+3x}. Find the integral from 0 to 1 and from 1 to 3.</li><li>Make each area positive, then add.</li></ol>
+      <ul class="wrong"><li data-if="0">That is a single integral from 0 to 3. The two parts cancel exactly. Split at {m:x=1}.</li><li data-if="4/3">That is one part only. Both parts are needed, and each has its own area.</li></ul>
+      <div class="solution"><p>{m:F(0)=0}, {m:F(1)=frac(1, 3)-2+3=frac(4, 3)}, {m:F(3)=9-18+9=0}. From 0 to 1: {m:frac(4, 3)}, above the axis. From 1 to 3: {m:0-frac(4, 3)=-frac(4, 3)}, below the axis, so the area is {m:frac(4, 3)}. Total: {m:frac(8, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Between a line and a curve</h2>
+    <p>A line and a curve can enclose a region. Here the line {m:y=x+2} cuts the curve {m:y=x^2}. The region between them is shaded.</p>
+    <figure class="figure-lg">{fig:definite-integrals-line-curve}<figcaption>The line meets the curve at two points. Between them the line is above the curve.</figcaption></figure>
+    <p>First find where they meet. At a meeting point both equations give the same y, so put the two expressions equal: {m:x^2=x+2}, which gives {m:x^2-x-2=0}, so {m:(x-2)(x+1)=0}. The meeting points are at {m:x=-1} and {m:x=2}. Those are the limits.</p>
+    <p>Then decide which is above. Test an x-value between the limits. At {m:x=0}: the line has height 2 and the curve has height 0, so the line is above.</p>
+    <div class="key">
+      <p><b>Key idea:</b> suppose {m:y=g(x)} is above {m:y=f(x)} for every x from a to b, with both unbroken. Then the area of the region between them is {m:int(a, b) (g(x)-f(x)) dx}: the upper function minus the lower function. This holds wherever the region lies, above or below the x-axis. If the line and curve are both above the axis, it is also the area under the line minus the area under the curve. If you subtract in the wrong order you get the negative of the area.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the area enclosed between the line {m:y=x+2} and the curve {m:y=x^2}.</p>
+      <ol class="steps">
+        <li>Meeting points: {m:x^2=x+2} gives {m:x=-1} and {m:x=2}.</li>
+        <li>At {m:x=0}, the line (2) is above the curve (0). The upper function is {m:x+2}.</li>
+        <li>The area is {m:int(-1, 2) (x+2-x^2) dx}. Integrate: {m:F(x)=frac(x^2, 2)+2x-frac(x^3, 3)}.</li>
+        <li>{m:F(2)=2+4-frac(8, 3)=frac(10, 3)}. {m:F(-1)=frac(1, 2)-2+frac(1, 3)=-frac(7, 6)}.</li>
+        <li>The area is {m:frac(10, 3)-(-frac(7, 6))=frac(20, 6)+frac(7, 6)=frac(9, 2)}.</li>
+      </ol>
+      <p>Check: both the line and the curve are above the x-axis between the limits. The area under the line is a trapezium with parallel sides 1 and 4 and width 3, so {m:frac(1+4, 2)*3=frac(15, 2)}. The area under the curve is {m:int(-1, 2) x^2 dx=3}. The difference is {m:frac(15, 2)-3=frac(9, 2)}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the area enclosed between the line {m:y=2x} and the curve {m:y=x^2}.</p>
+      <figure class="figure-lg">{fig:definite-integrals-line-curve-b}<figcaption>The line {m:y=2x} is above the curve between the two meeting points.</figcaption></figure>
+      <ol class="steps">
+        <li>Put {m:x^2=2x}: {m:x(x-2)=0}. The limits are 0 and <span class="blank" data-answers="2">___</span>.</li>
+        <li>The line is above the curve. The area is {m:int(0, 2) (2x-x^2) dx}. Integrate: {m:F(x)=x^2-frac(x^3, 3)}.</li>
+        <li>{m:F(2)=4-frac(8, 3)=}<span class="blank" data-answers="4/3">___</span> and {m:F(0)=0}, so the area is <span class="blank" data-answers="4/3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:F(2)=4-frac(8, 3)=frac(4, 3)}. Check with the other method: the area under the line is {m:int(0, 2) 2x dx=4} and under the curve is {m:int(0, 2) x^2 dx=frac(8, 3)}. The difference is {m:4-frac(8, 3)=frac(4, 3)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: a line and a curve</h2>
+    <div class="q" data-answers="32/3" data-mode="value">
+      <p class="qtext">Find the area of the shaded region between the line {m:y=2x+3} and the curve {m:y=x^2}. Give your answer as a fraction, like 5/6.</p>
+      <figure class="qfig-lg">{fig:definite-integrals-q-line-curve}</figure>
+      <ol class="ladder"><li>Find where they meet: put {m:x^2=2x+3} and solve.</li><li>The line is the upper function. Integrate the line minus the curve.</li><li>Put in the larger limit, then the smaller, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="-32/3">That subtracts the upper function from the lower one. Subtract in the other order: line minus curve.</li><li data-if="20">That is the area under the line only. Subtract the area under the curve as well.</li></ul>
+      <div class="solution"><p>{m:x^2-2x-3=0} gives {m:x=-1} and {m:x=3}. {m:F(x)=x^2+3x-frac(x^3, 3)}, from {m:int() (2x+3-x^2) dx}. {m:F(3)=9+9-9=9} and {m:F(-1)=1-3+frac(1, 3)=-frac(5, 3)}. The area is {m:9+frac(5, 3)=frac(32, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The line {m:y=x+6} meets the curve {m:y=x^2} at two points. Find the positive x-coordinate of the meeting point.</p>
+      <ol class="ladder"><li>At a meeting point the two y-values are equal. Put {m:x^2=x+6}.</li><li>Move every term to one side and factorise.</li><li>Choose the positive solution for x.</li></ol>
+      <ul class="wrong"><li data-if="9">That is the y-coordinate of the point: {m:3^2=9}. The question asks for the x-coordinate.</li></ul>
+      <div class="solution"><p>{m:x^2-x-6=0} gives {m:(x-3)(x+2)=0}, so {m:x=3} or {m:x=-2}. The positive one is {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="125/6" data-mode="value">
+      <p class="qtext">The line {m:y=x+6} meets the curve {m:y=x^2} at {m:x=-2} and {m:x=3}. Find the area enclosed between them. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Test a value between the limits to see which is above.</li><li>Integrate the upper function minus the lower function.</li><li>Put in 3 and {m:-2}, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="-125/6">That is the integral the wrong way round. The area is upper minus lower, so it is positive.</li><li data-if="27/2">That integrates from 0 to 3 only. The region starts at {m:x=-2}.</li></ul>
+      <div class="solution"><p>At {m:x=0} the line is above the curve. {m:F(x)=frac(x^2, 2)+6x-frac(x^3, 3)}. {m:F(3)=frac(9, 2)+18-9=frac(27, 2)} and {m:F(-2)=2-12+frac(8, 3)=-frac(22, 3)}. The area is {m:frac(27, 2)+frac(22, 3)=frac(125, 6)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The line y = g(x) is above the curve y = f(x) from x = a to x = b. Which gives the area enclosed between them?</p>
+      <ul class="options">
+        <li data-correct>The integral from a to b of g(x) minus f(x)</li>
+        <li data-why="This subtracts the upper function from the lower, so it gives the negative of the area.">The integral from a to b of f(x) minus g(x)</li>
+        <li data-why="Adding the two functions gives a quantity with no meaning for the region between them.">The integral from a to b of f(x) plus g(x)</li>
+      </ul>
+      <ol class="ladder"><li>The upper function is the one with the greater height. Which is it here?</li><li>The height of the region at each x is a difference of two heights.</li><li>Subtract in the order that gives a positive height.</li></ol>
+      <div class="solution"><p>The height of the region at each x is the upper height minus the lower height. Here that is g(x) minus f(x). Integrating it from a to b gives the area.</p></div>
+    </div>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Find the area enclosed between the line {m:y=9} and the curve {m:y=x^2}.</p>
+      <ol class="ladder"><li>Put {m:x^2=9}. There are two meeting points.</li><li>The line is above the curve between them. Integrate line minus curve.</li><li>Put in the larger limit, then the smaller, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="54">That is the area under the line only: a rectangle of width 6 and height 9. Subtract the area under the curve as well.</li></ul>
+      <div class="solution"><p>{m:x^2=9} gives {m:x=-3} and {m:x=3}. {m:F(x)=9x-frac(x^3, 3)}. {m:F(3)=27-9=18} and {m:F(-3)=-18}. The area is {m:18-(-18)=36}.</p></div>
+    </div>
+    <div class="q" data-answers="9/2" data-mode="value">
+      <p class="qtext">The area under the line {m:y=x+2} from {m:x=-1} to {m:x=2} is {m:frac(15, 2)}. The area under the curve {m:y=x^2} over the same range is 3. Both are above the x-axis, and the line is above the curve. Find the area enclosed between them. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>The region between them is what is left when you remove the area under the curve.</li><li>The area under the line includes the area under the curve.</li><li>Subtract one number from the other.</li></ol>
+      <ul class="wrong"><li data-if="21/2">That adds the two areas. The region between them is the larger area minus the smaller.</li></ul>
+      <div class="solution"><p>The area under the line is the region between the curves plus the area under the curve. So the region is {m:frac(15, 2)-3=frac(9, 2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from a to b, and from b to a</h2>
+    <p>The same region can be integrated in two directions. The value changes sign, but the region does not change.</p>
+    <div class="flip-grid" style="grid-template-columns:1fr;">
+      <div class="flip-side"><h3>From the lower limit to the upper limit</h3><figure class="figure-lg">{fig:definite-integrals-flip-forward}<figcaption>{m:int(1, 3) x^2 dx=frac(26, 3)}: positive.</figcaption></figure></div>
+      <div class="flip-side"><h3>From the upper limit to the lower limit</h3><figure class="figure-lg">{fig:definite-integrals-flip-backward}<figcaption>{m:int(3, 1) x^2 dx=-frac(26, 3)}: negative.</figcaption></figure></div>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> {m:int(b, a) f(x) dx=-int(a, b) f(x) dx}, because {m:F(a)-F(b)=-(F(b)-F(a))}. The area of the region does not depend on the direction: it is never negative. Only the integral changes sign.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Given {m:int(0, 2) f(x) dx=5} and {m:int(2, 6) f(x) dx=-3}, find {m:int(0, 6) f(x) dx}.</p>
+      <ol class="steps">
+        <li>The range 0 to 6 is the range 0 to 2 followed by the range 2 to 6.</li>
+        <li>So {m:int(0, 6) f(x) dx=int(0, 2) f(x) dx+int(2, 6) f(x) dx}.</li>
+        <li>That is {m:5+(-3)=2}. The negative part is a region below the axis.</li>
+      </ol>
+    </div>
+    <p><b>Try it:</b> integrate {m:x^2} from 1 to 3 and from 3 to 1. What do you notice about the two numbers?</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="-26/3" data-mode="value">
+      <p class="qtext">Given {m:int(1, 3) x^2 dx=frac(26, 3)}, write down {m:int(3, 1) x^2 dx}. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>The two integrals have the same function and the same limits, in opposite order.</li><li>Swapping the limits changes one thing about the answer.</li><li>You do not need to integrate again.</li></ol>
+      <ul class="wrong"><li data-if="26/3">The size is right but the sign is wrong. Swapping the limits changes the sign.</li></ul>
+      <div class="solution"><p>{m:int(3, 1) x^2 dx=-int(1, 3) x^2 dx=-frac(26, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Given {m:int(0, 2) f(x) dx=5} and {m:int(2, 6) f(x) dx=-3}, find {m:int(0, 6) f(x) dx}.</p>
+      <ol class="ladder"><li>Split the range 0 to 6 at 2.</li><li>The integrals add. Keep the sign of each.</li><li>Do not make the {m:-3} positive. It is an integral, not an area.</li></ol>
+      <ul class="wrong"><li data-if="8">That adds 5 and 3 as if both were areas. The integral from 2 to 6 is {m:-3}, so the sum is {m:5+(-3)}.</li></ul>
+      <div class="solution"><p>{m:int(0, 6) f(x) dx=5+(-3)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-9" data-mode="value">
+      <p class="qtext">Work out {m:int(5, 2) 3 dx}.</p>
+      <ol class="ladder"><li>The antiderivative of 3 is a multiple of x.</li><li>The upper limit is the number written at the top of the integral sign.</li><li>Upper minus lower, in the order the limits are written.</li></ol>
+      <ul class="wrong"><li data-if="9">Take care with the order. The limits are 5 then 2, so the value is {m:F(2)-F(5)}, which is negative.</li></ul>
+      <div class="solution"><p>{m:F(x)=3x}. The upper limit is 2 and the lower limit is 5. {m:F(2)-F(5)=6-15=-9}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ali says:</b> {m:int(1, 2) 2x dx=2^2=4}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not subtract the value at the lower limit</li>
+        <li data-why="A definite integral is a number. It has no constant.">He should have added +c</li>
+        <li data-why="Going from 2x to x squared is integrating, which is right here.">He differentiated instead of integrating</li>
+      </ul>
+      <ol class="ladder"><li>The antiderivative of {m:2x} is {m:x^2}. Is that right?</li><li>The working puts in the upper limit. What about the lower limit?</li><li>The rule is F(b) minus F(a).</li></ol>
+      <div class="solution"><p>{m:F(2)=4}, but he must also find {m:F(1)=1} and subtract. The correct value is {m:4-1=3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Bea says:</b> {m:int(0, 3) (x^2-4) dx=-3}, so the area between the curve and the x-axis from 0 to 3 is {m:-3}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>An area cannot be negative, and the curve crosses the axis at x = 2, so the integral is not the area</li>
+        <li data-why="The integral is right. It is the signed area that she took to be the area.">The integral should be 3, not minus 3</li>
+        <li data-why="Nothing needs adding to the integral. The method for the area is wrong.">She should have added 4</li>
+      </ul>
+      <ol class="ladder"><li>Where does {m:y=x^2-4} cross the x-axis? Is it between 0 and 3?</li><li>What happens when part of the region is below the axis and part above?</li><li>Can an area be negative?</li></ol>
+      <div class="solution"><p>The curve crosses the axis at {m:x=2}, which is between 0 and 3. The two parts partly cancel in the integral. Split at 2: the areas are {m:frac(16, 3)} and {m:frac(7, 3)}, giving {m:frac(23, 3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cal says:</b> the area between the line {m:y=x+2} and the curve {m:y=x^2}, from {m:x=-1} to {m:x=2}, is {m:int(-1, 2) (x+2) dx=frac(15, 2)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He found the area under the line only, and did not subtract the curve</li>
+        <li data-why="The limits are the meeting points, x = -1 and x = 2. They are correct.">He used the wrong limits</li>
+        <li data-why="The line is above the curve between the limits, so the line is the function to take first.">He should have integrated the curve minus the line</li>
+      </ul>
+      <ol class="ladder"><li>The integral of {m:x+2} gives the area under which curve?</li><li>The region wanted is between the line and the curve.</li><li>What must you take away from the area under the line?</li></ol>
+      <div class="solution"><p>{m:int(-1, 2) (x+2) dx=frac(15, 2)} is the area under the line. The area under the curve is 3. The area between them is {m:frac(15, 2)-3=frac(9, 2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dee says:</b> {m:int(1, 3) x^2 dx=3^3-1^3=26}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She did not divide by the new power, 3</li>
+        <li data-why="The limits are put in correctly: upper first, then lower.">She should have put in the lower limit first</li>
+        <li data-why="A definite integral does not have +c.">She should have added +c</li>
+      </ul>
+      <ol class="ladder"><li>Check the antiderivative: what is the derivative of {m:x^3}?</li><li>It is {m:3x^2}, not {m:x^2}.</li><li>What should {m:x^2} integrate to?</li></ol>
+      <div class="solution"><p>The antiderivative of {m:x^2} is {m:frac(x^3, 3)}. So the value is {m:frac(27, 3)-frac(1, 3)=frac(26, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Work out {m:int(1, 2) (4x^3-6x) dx}.</p>
+      <ol class="ladder"><li>Integrate each term. Divide by the new power.</li><li>Put in 2, then 1.</li><li>Subtract. Take care with the negative value at the lower limit.</li></ol>
+      <ul class="wrong"><li data-if="4">That is {m:F(2)} only. Also work out {m:F(1)} and subtract it.</li><li data-if="2">That adds {m:F(2)=4} and {m:F(1)=-2}. You must subtract.</li></ul>
+      <div class="solution"><p>{m:F(x)=x^4-3x^2}. {m:F(2)=16-12=4} and {m:F(1)=1-3=-2}. The value is {m:4-(-2)=6}.</p></div>
+    </div>
+    <div class="q" data-answers="1/2" data-mode="value">
+      <p class="qtext">Find the area under {m:y=frac(1, x^2)}, above the x-axis, from {m:x=1} to {m:x=2}. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Write {m:frac(1, x^2)} as a power of x.</li><li>Add 1 to the power. Divide by the new power, which is negative.</li><li>Put in 2, then 1, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="-1/2">That is {m:F(2)} only. Also work out {m:F(1)} and subtract it.</li></ul>
+      <div class="solution"><p>{m:frac(1, x^2)=x^(-2)}, so {m:F(x)=-x^(-1)=-frac(1, x)}. {m:F(2)=-frac(1, 2)} and {m:F(1)=-1}. The area is {m:-frac(1, 2)-(-1)=frac(1, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Given that {m:a > 0} and {m:int(0, a) x dx=8}, find a.</p>
+      <ol class="ladder"><li>Work out the integral in terms of a.</li><li>Put it equal to 8.</li><li>Solve for a, and choose the positive solution.</li></ol>
+      <ul class="wrong"><li data-if="16">{m:frac(a^2, 2)=8} gives {m:a^2=16}. Take the square root to find a.</li><li data-if="-4">{m:a^2=16} has two solutions, but the question says {m:a > 0}.</li></ul>
+      <div class="solution"><p>{m:int(0, a) x dx=frac(a^2, 2)}. So {m:frac(a^2, 2)=8}, giving {m:a^2=16}. Since {m:a > 0}, {m:a=4}.</p></div>
+    </div>
+    <div class="q" data-answers="32/3" data-mode="value">
+      <p class="qtext">Find the area enclosed between the curve {m:y=x^2-4x} and the x-axis. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Put {m:y=0} to find the limits.</li><li>Test an x-value between the limits. Which side of the axis is the curve on?</li><li>Integrate and subtract. Then make the area positive.</li></ol>
+      <ul class="wrong"><li data-if="-32/3">That is the integral. The curve is below the axis, so the area is the size of the integral.</li></ul>
+      <div class="solution"><p>{m:x(x-4)=0} gives {m:x=0} and {m:x=4}. At {m:x=2}, {m:y=-4}, so the curve is below the axis. {m:F(x)=frac(x^3, 3)-2x^2}. {m:F(4)=frac(64, 3)-32=-frac(32, 3)} and {m:F(0)=0}. The area is {m:frac(32, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Given that {m:k > 1} and {m:int(1, k) 2x dx=8}, find k.</p>
+      <ol class="ladder"><li>Work out the integral in terms of k. Remember the lower limit.</li><li>Put it equal to 8.</li><li>Solve, and choose the solution greater than 1.</li></ol>
+      <ul class="wrong"><li data-if="9">{m:k^2-1=8} gives {m:k^2=9}. Take the square root to find k.</li></ul>
+      <div class="solution"><p>{m:int(1, k) 2x dx=k^2-1}. So {m:k^2-1=8}, giving {m:k^2=9}. Since {m:k > 1}, {m:k=3}.</p></div>
+    </div>
+    <div class="q" data-answers="1/6" data-mode="value">
+      <p class="qtext">The line {m:y=x} meets the curve {m:y=x^2} at {m:x=0} and {m:x=1}. Find the area enclosed between them. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Test {m:x=0.5}: which of {m:y=x} and {m:y=x^2} is higher?</li><li>Integrate the upper function minus the lower function, from 0 to 1.</li><li>Put in 1 and 0, and subtract.</li></ol>
+      <ul class="wrong"><li data-if="1/2">That is the area under the line only. Subtract the area under the curve as well.</li><li data-if="-1/6">That subtracts in the wrong order. The line is above the curve, so take the line minus the curve.</li></ul>
+      <div class="solution"><p>At {m:x=0.5} the line is 0.5 and the curve is 0.25, so the line is above. {m:F(x)=frac(x^2, 2)-frac(x^3, 3)}. {m:F(1)=frac(1, 2)-frac(1, 3)=frac(1, 6)} and {m:F(0)=0}. The area is {m:frac(1, 6)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper: no calculator. The marks tell you how much to write. M marks are for the method. A marks are for an accurate answer.</p>
+    <p class="muted">Write your working on paper, then type the answer.</p>
+    <div class="q" data-answers="68" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] Find the value of {m:int(1, 3) (6x^2+4x) dx}.</p>
+      <ol class="ladder"><li>The marks tell you the steps: integrate, use both limits, subtract.</li><li>Integrate each term: add 1 to the power and divide by the new power.</li><li>Put in 3 and 1, and subtract the second from the first.</li></ol>
+      <ul class="wrong"><li data-if="72">That is {m:F(3)} only. You must also work out {m:F(1)} and subtract it.</li><li data-if="76">That adds {m:F(3)} and {m:F(1)}. You must subtract.</li></ul>
+      <div class="solution">
+        <p>{m:F(x)=2x^3+2x^2}. {m:F(3)=54+18=72} and {m:F(1)=2+2=4}. The value is {m:72-4=68}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for adding 1 to a power and dividing by the new power in at least one term</li>
+          <li><b>A1</b> for {m:2x^3+2x^2}</li>
+          <li><b>A1</b> for substituting both limits and subtracting to get 68</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4/3" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The curve {m:y=x^2-6x+8} crosses the x-axis at {m:x=2} and {m:x=4}. The region R is bounded by the curve and the x-axis. Find the area of R. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>The limits are the x-values where the curve crosses the axis.</li><li>Test an x-value between them to see which side of the axis the curve is on.</li><li>Integrate, subtract, and make the area positive.</li></ol>
+      <ul class="wrong"><li data-if="-4/3">That is the integral. The region is below the axis, so the area is the size of the integral.</li><li data-if="16/3">That integrates from 0 to 4. The limits are the crossing points, 2 and 4.</li></ul>
+      <div class="solution">
+        <p>At {m:x=3}, {m:y=9-18+8=-1}, so the curve is below the axis between 2 and 4. {m:F(x)=frac(x^3, 3)-3x^2+8x}. {m:F(4)=frac(16, 3)} and {m:F(2)=frac(20, 3)}. The integral is {m:frac(16, 3)-frac(20, 3)=-frac(4, 3)}. The area is {m:frac(4, 3)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for integrating to get a cubic with three terms</li>
+          <li><b>A1</b> for {m:frac(x^3, 3)-3x^2+8x} </li>
+          <li><b>M1</b> for substituting 4 and 2 and subtracting</li>
+          <li><b>A1</b> for the area {m:frac(4, 3)}, positive</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="81/2" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] Find the total area enclosed between the curve {m:y=x^3-9x} and the x-axis, from {m:x=-3} to {m:x=3}. The curve crosses the x-axis at {m:x=-3}, 0 and 3. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>The curve crosses the axis at 0, between the limits. Split there.</li><li>Find the integral from 0 to 3 and from {m:-3} to 0 separately.</li><li>Make each area positive, then add.</li></ol>
+      <ul class="wrong"><li data-if="0">That is the integral from {m:-3} to 3. The two parts cancel. Find each area on its own and add.</li><li data-if="81/4">That is one of the two regions. The other region has the same area, so add them.</li></ul>
+      <div class="solution">
+        <p>{m:F(x)=frac(x^4, 4)-frac(9x^2, 2)}. {m:F(3)=frac(81, 4)-frac(81, 2)=-frac(81, 4)}, {m:F(0)=0} and {m:F(-3)=-frac(81, 4)}. From 0 to 3 the integral is {m:-frac(81, 4)}, so the area is {m:frac(81, 4)}. From {m:-3} to 0 the integral is {m:0-(-frac(81, 4))=frac(81, 4)}. Total area: {m:frac(81, 2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for integrating the cubic, dividing each term by its new power</li>
+          <li><b>M1</b> for splitting at {m:x=0}</li>
+          <li><b>A1</b> for one part correct</li>
+          <li><b>M1</b> for adding the two areas as positive numbers</li>
+          <li><b>A1</b> for {m:frac(81, 2)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="343/6" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] The line {m:y=3x+10} meets the curve {m:y=x^2} at two points, A and B. Find the area of the region enclosed between the line and the curve. Give your answer as a fraction, like 5/6.</p>
+      <ol class="ladder"><li>Put {m:x^2=3x+10} to find the x-coordinates of A and B.</li><li>Test an x-value between them to see which of the line and the curve is above.</li><li>Integrate upper minus lower between those x-values.</li></ol>
+      <ul class="wrong"><li data-if="-343/6">That is the integral the wrong way round. The area is upper minus lower, so it is positive.</li><li data-if="275/6">That integrates from 0 to 5 only. The region starts at the other meeting point, {m:x=-2}.</li></ul>
+      <div class="solution">
+        <p>{m:x^2-3x-10=0} gives {m:(x-5)(x+2)=0}, so {m:x=-2} and {m:x=5}. At {m:x=0} the line (10) is above the curve (0). The area is {m:int(-2, 5) (3x+10-x^2) dx}. {m:F(x)=frac(3x^2, 2)+10x-frac(x^3, 3)}. {m:F(5)=frac(75, 2)+50-frac(125, 3)=frac(275, 6)} and {m:F(-2)=6-20+frac(8, 3)=-frac(34, 3)}. The area is {m:frac(275, 6)+frac(68, 6)=frac(343, 6)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for equating the line and the curve</li>
+          <li><b>A1</b> for {m:x=-2} and {m:x=5}</li>
+          <li><b>M1</b> for integrating the line minus the curve</li>
+          <li><b>M1</b> for substituting both limits and subtracting</li>
+          <li><b>A1</b> for {m:frac(343, 6)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Given that {m:k > 0} and {m:int(0, k) (2x+3) dx=10}, find the value of k.</p>
+      <ol class="ladder"><li>Work out the integral in terms of k. The value at 0 is 0.</li><li>Put the expression equal to 10. You get a quadratic in k.</li><li>Solve it, and use {m:k > 0} to choose between the solutions.</li></ol>
+      <ul class="wrong"><li data-if="-5">{m:k^2+3k-10=0} has two solutions, 2 and {m:-5}. The question says {m:k > 0}.</li></ul>
+      <div class="solution">
+        <p>{m:int(0, k) (2x+3) dx=k^2+3k}. So {m:k^2+3k=10}, giving {m:k^2+3k-10=0} and {m:(k+5)(k-2)=0}. So {m:k=-5} or {m:k=2}. Since {m:k > 0}, {m:k=2}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for integrating to {m:x^2+3x}</li>
+          <li><b>A1</b> for {m:k^2+3k=10}</li>
+          <li><b>M1</b> for solving the quadratic</li>
+          <li><b>A1</b> for {m:k=2}, with {m:k=-5} rejected</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The area function grows at the height of the curve.</b> A thin strip added to the right of the region has area about height times width. So the rate of growth of the area is the height {m:f(x)}.</li>
+      <li><b>That makes the area function an antiderivative.</b> Integrating undoes differentiating, so {m:F(b)-F(a)} gives the area collected between a and b.</li>
+      <li><b>The constant cancels.</b> The same c is in both values, so it drops out when you subtract.</li>
+      <li><b>A curve below the axis has negative height.</b> The integral adds heights, so a region below the axis gives a negative number. The area is its size.</li>
+      <li><b>A line and a curve work by subtraction.</b> The height of the region at each x is the upper function minus the lower function. The integral adds these heights.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Putting in only the upper limit and forgetting to subtract {m:F(a)}.</li>
+      <li>Adding {m:F(b)} and {m:F(a)} instead of subtracting.</li>
+      <li>Writing {m:+c} in a definite integral.</li>
+      <li>Using y-values as limits. Limits are x-values.</li>
+      <li>Calling a negative integral an area, or writing a negative area.</li>
+      <li>Integrating across a point where the curve crosses the axis, and calling the result the area.</li>
+      <li>Splitting the integral at a root outside the limits.</li>
+      <li>Swapping the limits without changing the sign.</li>
+      <li>Subtracting a line and a curve in the wrong order, or using only the area under the line.</li>
+      <li>Forgetting to divide by the new power, or squaring each term of a bracket instead of expanding it.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="definite-integrals">
+      <li><label><input type="checkbox"> read and write a definite integral, and say what the limits are</label></li>
+      <li><label><input type="checkbox"> find a definite integral by working out upper minus lower</label></li>
+      <li><label><input type="checkbox"> explain why +c is not needed with limits</label></li>
+      <li><label><input type="checkbox"> find the area under a curve above the x-axis</label></li>
+      <li><label><input type="checkbox"> say why an integral is negative below the axis, and find the area</label></li>
+      <li><label><input type="checkbox"> split a region at a root and add the areas</label></li>
+      <li><label><input type="checkbox"> find the area between a line and a curve</label></li>
+      <li><label><input type="checkbox"> swap limits and use the sign change</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

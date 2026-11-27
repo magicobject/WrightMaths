@@ -24,6 +24,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/proof-methods.html', titleContains: 'Proof: direct, exhaustion, counterexample', heading: /^Proof: direct, exhaustion, counterexample$/ },
   { path: '/courses/a-level/polynomials.html', titleContains: 'Polynomials and the factor theorem', heading: /^Polynomials and the factor theorem$/ },
   { path: '/courses/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
+  { path: '/courses/a-level/definite-integrals.html', titleContains: 'Definite integrals and area', heading: /^Definite integrals and area$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
