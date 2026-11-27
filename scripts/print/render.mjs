@@ -29,10 +29,12 @@ const MONO_BOX = { fill: 'F0F0F0', line: '555555' };
 
 // ---------- the context passed to every render function ----------
 
-export function makeContext({ chapters, glossaryById, mono = false, noHints = false, noSlips = false }) {
+export function makeContext({ chapters, glossaryById, mono = false, noHints = false, noSlips = false, elsewhere = new Map(), elsewhereLabel = '' }) {
   return {
     chapters,
     byId: new Map(chapters.map((c) => [c.id, c])),
+    elsewhere, // chapters of the other book: id -> title. A reference to one prints "(in the Higher book)" instead of a chapter number
+    elsewhereLabel,
     glossaryById,
     mono,
     noHints,
@@ -63,6 +65,7 @@ function runsFor(runs, ctx, st = {}) {
       out.push(...runsFor(r.runs, ctx, st));
       const target = ctx.byId.get(hrefToId(r.href));
       if (target) out.push(new TextRun({ text: ` (Chapter ${target.num})`, size, font: FONT }));
+      else if (ctx.elsewhere.has(hrefToId(r.href))) out.push(new TextRun({ text: ` (${ctx.elsewhereLabel})`, size, font: FONT }));
       else if (hrefToId(r.href) === 'glossary') out.push(new TextRun({ text: ' (see the Glossary)', size, font: FONT }));
       else ctx.deadRefs.push({ page: ctx.page, href: r.href, text: runsToText(r.runs) });
     } else {
@@ -162,7 +165,7 @@ function renderFigure(b, ctx, st) {
     const placedIn = Math.min(Math.floor(fig.cssWidth) / 100, MAX_FIGURE_IN); // a 3x screenshot placed at css width / 100 in is 300 ppi
     const widthPx = Math.round(placedIn * 96);
     const heightPx = Math.round(widthPx * (img.pxHeight / img.pxWidth));
-    ctx.figureLog.push({ page: ctx.page, id: fig.id, pxWidth: img.pxWidth, placedIn: Number(placedIn.toFixed(2)), ppi: Math.round(img.pxWidth / placedIn) });
+    ctx.figureLog.push({ page: ctx.page, id: fig.id, pxWidth: img.pxWidth, placedIn: Number(placedIn.toFixed(2)), heightIn: Number((placedIn * img.pxHeight / img.pxWidth).toFixed(2)), ppi: Math.round(img.pxWidth / placedIn) });
     const out = [para([new ImageRun({
       type: 'png',
       data: img.png,
@@ -206,7 +209,10 @@ function renderQuestion(q, ctx, st) {
   }
   if (!labelled) out.unshift(para(lead, st, { keepNext: true }));
   if (q.tags.from.length) {
-    const names = q.tags.from.map((href) => ctx.byId.get(hrefToId(href))).filter(Boolean).map((c) => `Chapter ${c.num}, ${c.title}`);
+    const names = q.tags.from.map((href) => hrefToId(href)).flatMap((id) => {
+      if (ctx.byId.has(id)) return [`Chapter ${ctx.byId.get(id).num}, ${ctx.byId.get(id).title}`];
+      return ctx.elsewhere.has(id) ? [`${ctx.elsewhere.get(id)} (${ctx.elsewhereLabel})`] : [];
+    });
     if (names.length) out.push(para([new TextRun({ text: `Uses: ${names.join('; ')}`, italics: true, size: SMALL, font: FONT })], st, { indentLeft: 540 }));
   }
   q.options.forEach((o, i) => out.push(para([new TextRun({ text: `${optionLetter(i)}\t`, bold: true, size: BODY, font: FONT }), ...runsFor(o.runs, ctx, st)], st, { indentLeft: 540 + 360, hanging: 360, keepLines: true })));
@@ -456,7 +462,7 @@ export function glossaryBlocks(glossary, ctx) {
   const out = [];
   for (const g of [...glossary].sort((a, b) => a.term.localeCompare(b.term))) {
     const small = { size: SMALL, after: 40 };
-    out.push(para([new TextRun({ text: g.term, bold: true, size: BODY, font: FONT }), new TextRun({ text: `  ${g.level === 'H' ? '(Higher)' : ''}`, size: SMALL, font: FONT })], { after: 20 }, { keepNext: true }));
+    out.push(para([new TextRun({ text: g.term, bold: true, size: BODY, font: FONT }), new TextRun({ text: `  ${g.level === 'H' && ctx.tier !== 'foundation' ? '(Higher)' : ''}`, size: SMALL, font: FONT })], { after: 20 }, { keepNext: true }));
     out.push(para(runsFor(shorthandRuns(g.def), ctx, small), small, { indentLeft: 360, keepNext: true }));
     const examples = Array.isArray(g.example) ? g.example : [g.example].filter(Boolean);
     for (const ex of examples) out.push(para([new TextRun({ text: 'Example: ', italics: true, size: SMALL, font: FONT }), ...runsFor(shorthandRuns(ex), ctx, small)], small, { indentLeft: 360 }));

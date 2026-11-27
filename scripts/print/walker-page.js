@@ -56,7 +56,10 @@
       if (text) out.push({ t: text, ...fmt });
       return;
     }
-    if (tag === 'span' && has(el, 'frac')) {
+    if (tag === 'span' && el.getAttribute('data-tier') === 'H') {
+      // Higher-only words inside a sentence (data-tier="H"): printed in the Higher book, cut from the Foundation book
+      inline(el, { ...fmt, hi: true }, out);
+    } else if (tag === 'span' && has(el, 'frac')) {
       out.push({ x: 'frac', num: runsOf(childByClass(el, 'fn')), den: runsOf(childByClass(el, 'fd')) });
     } else if (tag === 'span' && /^column vector/.test(el.getAttribute('aria-label') || '')) {
       out.push({ x: 'cvec', rows: [...el.children].map(runsOf) });
@@ -160,7 +163,7 @@
     const qid = el.getAttribute('data-qid');
     if (qid && Number(qid.split('-').pop()) !== qIndex) unknown.push({ where: 'question number', tag: 'div', cls: 'q', text: `${qid} is question ${qIndex} in page order` });
     const type = el.getAttribute('data-type') || 'typed';
-    const q = { t: 'q', n: qIndex, qid, type, answers: el.getAttribute('data-answers') || '', marks: Number(el.getAttribute('data-marks') || 0) || 0, body: [], options: [], ladder: [], wrong: [], solution: [], tags: { from: [] }, screenOnly: '' };
+    const q = { t: 'q', n: qIndex, qid, type, higher: el.getAttribute('data-tier') === 'H', answers: el.getAttribute('data-answers') || '', marks: Number(el.getAttribute('data-marks') || 0) || 0, body: [], options: [], ladder: [], wrong: [], solution: [], tags: { from: [] }, screenOnly: '' };
     if (!['typed', 'mc', 'show'].includes(type)) q.screenOnly = `question type "${type}"`;
     else if (el.querySelector('input, textarea, canvas, iframe, [draggable]')) q.screenOnly = 'has a form control or drag target';
     else if (getComputedStyle(el).display === 'none') q.screenOnly = 'hidden in print';

@@ -89,7 +89,7 @@ export const GLOSSARY = [
     see: ['indices-laws', 'square-number'],
   },
   {
-    id: 'indices-laws', term: 'Laws of indices', strand: 'n', level: 'H', aka: ['powers exponents'],
+    id: 'indices-laws', term: 'Laws of indices', strand: 'n', level: 'F', aka: ['powers exponents'],
     def: 'Rules for powers of the same base: add the powers when multiplying, subtract the powers when dividing, and multiply the powers when raising a power to a power. A negative power means one divided by the positive power; a fractional power means a root.',
     example: 'a<sup>m</sup> &times; a<sup>n</sup> = a<sup>m+n</sup>; a<sup>&minus;n</sup> = {frac:1/a<sup>n</sup>}; 9<sup>1/2</sup> = &radic;9 = 3.',
     watch: 'The laws for multiplying and dividing powers only work when the bases are the same.',
@@ -1653,7 +1653,7 @@ export const GLOSSARY = [
     "id": "sector",
     "term": "Sector",
     "strand": "g",
-    "level": "H",
+    "level": "F",
     "def": "A slice of a circle between two radii and the arc that joins their ends.",
     "example": [
       "A sector with angle 72&deg; and radius 5 cm is {frac:72/360} = {frac:1/5} of the circle.",
@@ -1670,7 +1670,7 @@ export const GLOSSARY = [
     "id": "cylinder",
     "term": "Cylinder",
     "strand": "g",
-    "level": "H",
+    "level": "F",
     "def": "A solid with two equal circular ends and a curved side, like a tin of beans. It is a prism with a circle for its cross-section.",
     "example": [
       "Volume = &pi; &times; r&sup2; &times; h, where r is the radius and h is the height.",
@@ -2277,7 +2277,7 @@ export const GLOSSARY = [
     "id": "tolerance",
     "term": "Tolerance",
     "strand": "n",
-    "level": "H",
+    "level": "F",
     "def": "How far a measurement is allowed to be from its target. A tolerance of 2 mm on a 600 mm length means 598 mm to 602 mm.",
     "example": [
       "A pipe cut to 2.50 m with a tolerance of 5 mm either way is between 2495 mm and 2505 mm."
@@ -2729,7 +2729,7 @@ export const GLOSSARY = [
     "id": "vector",
     "term": "Vector",
     "strand": "g",
-    "level": "H",
+    "level": "F",
     "def": "A journey with a size and a direction, such as 3 right and 2 up. It is drawn as an arrow and written as a column vector, or as a bold letter such as a.",
     "example": [
       "The vector from A(1, 2) to B(5, 5) is B &minus; A = (4, 3).",
@@ -2895,7 +2895,7 @@ export const GLOSSARY = [
     "id": "segment",
     "term": "Segment (of a circle)",
     "strand": "g",
-    "level": "H",
+    "level": "F",
     "def": "The region of a circle between a chord and the arc it cuts off. A chord splits a circle into a small segment and a big segment.",
     "example": [
       "The shaded piece of a circle cut off by a straight line across it is a segment.",
