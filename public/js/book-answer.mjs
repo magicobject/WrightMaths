@@ -209,6 +209,36 @@ function numberList(text) {
   return numbers.every((n) => n !== null) ? numbers.sort((x, y) => x - y) : null;
 }
 
+/** The numbers in a typed pair or list, in the order typed ("(4,1)", "4 and 1", "4 1"); null when it is not two or more plain numbers. */
+function orderedNumbers(text) {
+  if (/[a-z]/.test(String(text).toLowerCase().replace(/\band\b/g, ''))) return null; // "y=3, x=5" is read by labelledPair, in letter order
+  const parts = String(text).toLowerCase().replace(/[()]/g, ' ').split(/\s*(?:,|;|&|\band\b|\s)\s*/).filter(Boolean);
+  if (parts.length < 2) return null;
+  const numbers = parts.map((p) => parseNumber(p));
+  return numbers.every((n) => n !== null) ? numbers : null;
+}
+
+/**
+ * True when a typed factorisation has a bracket of degree 2 or more, such as "(x-1)(x^2+3x+2)" or "(x^2-1)(x+2)".
+ * Used where a question says "factorise completely" (data-complete="linear"): every bracket must be linear.
+ */
+export function hasNonLinearBracket(input) {
+  const text = String(input).toLowerCase().replace(MINUS, '-').replace(/²/g, '^2').replace(/³/g, '^3').replace(/\s+/g, '');
+  let depth = 0;
+  let start = 0;
+  for (let k = 0; k < text.length; k += 1) {
+    if (text[k] === '(') { if (depth === 0) start = k + 1; depth += 1; }
+    else if (text[k] === ')' && depth > 0) {
+      depth -= 1;
+      if (depth === 0) {
+        const inside = text.slice(start, k);
+        if (/[a-z]\^\(?(?:[2-9]|\d\d)/.test(inside) || /[a-z]\*?[a-z]/.test(inside) || inside.includes('(')) return true;
+      }
+    }
+  }
+  return false;
+}
+
 // A key such as "-5 or 2" or "0 and 6" is a list of numbers: right in any order, but never with different numbers.
 const LIST_WORD = /(?<![a-z])(?:or|and)(?![a-z])/i;
 const sameNumbers = (a, b) => Boolean(a && b) && a.length === b.length && a.every((n, i) => close(n, b[i]));
@@ -226,8 +256,9 @@ export function labelledPair(raw) {
  * True when `input` matches any of `answers` under `mode`. `context` (optional) is the question and
  * solution text: with it a typed unit must suit the question, and "10pi" is read as 10 where the question is about pi.
  */
-export function matches(input, answers, mode = 'value', context = '') {
+export function matches(input, answers, mode = 'value', context = '', options = {}) {
   if (String(input).length > 200) return false;
+  if (options.complete === 'linear' && hasNonLinearBracket(input)) return false;
   const list = Array.isArray(answers) ? answers : [answers];
   let typed = String(input);
   if (typed.trim() === '') return false;
@@ -240,6 +271,12 @@ export function matches(input, answers, mode = 'value', context = '') {
     if (unitMismatch(typed, context)) return false;
     const pi = /^(.*\d)\s*(?:π|pi)$/i.exec(typed.trim());
     if (pi && !list.some((a) => /π|pi/i.test(String(a))) && /π|\bpi\b/i.test(context)) typed = pi[1];
+  }
+  // A list asked for as "1 or 2" and typed "1,2" is a list, not the decimal 1.2.
+  const listKey = list.some((a) => LIST_WORD.test(String(a)));
+  if (listKey) {
+    const asList = numberList(typed);
+    if (asList && list.some((a) => LIST_WORD.test(String(a)) && sameNumbers(asList, numberList(a)))) return true;
   }
   if (mode === 'value') {
     const n = parseNumber(typed, { decimalComma: noCommaKeys(list) });
@@ -256,6 +293,11 @@ export function matches(input, answers, mode = 'value', context = '') {
   const typedNumbers = numberList(typed);
   if (typedNumbers && list.some((a) => LIST_WORD.test(String(a)) && sameNumbers(typedNumbers, numberList(a)))) return true;
   // A labelled pair such as "y=5, x=3", "x=3 and y=5" or "(x=3,y=5)" is read in the order x, y, then compared with the keys.
+  // A pair key such as "(4,1)" is also right when typed "4 and 1" or "4 1": the order still matters.
+  if (list.some((a) => /^\(?\s*-?[\d.]+\s*,\s*-?[\d.]+\s*\)?$/.test(String(a).trim()))) {
+    const typedPair = orderedNumbers(typed);
+    if (typedPair && list.some((a) => { const key = orderedNumbers(a); return key && key.length === typedPair.length && key.every((n, i) => close(n, typedPair[i])); })) return true;
+  }
   const pair = labelledPair(typed);
   if (pair) return list.some((a) => textKey(labelledPair(a) ?? a) === textKey(pair));
   const key = textKey(typed);
