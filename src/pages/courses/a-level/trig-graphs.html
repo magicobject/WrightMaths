@@ -51,7 +51,7 @@
       <ul class="wrong"><li data-if="6">The square root of 12 is not 12 divided by 2. Write 12 as {m:4*3} and take the root of 4.</li></ul>
       <div class="solution"><p>{m:sqrt(12)=sqrt(4)*sqrt(3)=2 sqrt(3)}.</p></div>
     </div>
-    <div class="q" data-answers="sqrt(3)/3;sqrt3/3;&radic;3/3;1/3sqrt(3);1/3*sqrt(3)" data-mode="exact">
+    <div class="q" data-answers="sqrt(3)/3;sqrt3/3;&radic;3/3;(1/3)sqrt(3)" data-mode="exact">
       <p class="qtext">Rationalise the denominator of {m:frac(1, sqrt(3))}. Type it like sqrt(2)/2.</p>
       <ol class="ladder"><li>Multiply the top and the bottom by {m:sqrt(3)}.</li><li>{m:sqrt(3)*sqrt(3)=3}.</li></ol>
       <ul class="wrong"><li data-if="sqrt(3);sqrt3;&radic;3">You multiplied the top by {m:sqrt(3)} but forgot the bottom. Multiply both, so the bottom becomes {m:sqrt(3)*sqrt(3)=3}.</li></ul>
@@ -84,7 +84,7 @@
         <li>The x-coordinate of P is {m:-0.866}, so {m:cos(150deg)=-0.866}.</li>
         <li>{m:tan(150deg)=frac(0.5, -0.866)=-0.577}.</li>
       </ol>
-      <p>The cosine and the tangent are negative because P is to the left of the y-axis.</p>
+      <p>The cosine is negative because P is to the left of the y-axis. The tangent is negative because it is a positive y divided by a negative x.</p>
     </div>
     <p>The axes split the plane into four {term:quadrant|quadrants}. Quadrant 1 is the top right. The numbers go anticlockwise. The signs of the coordinates tell you which of sine, cosine and tangent are positive.</p>
     <figure class="figure-lg">{fig:trig-graphs-quadrants}<figcaption>Look at the four quarters. In the top right all three are positive. In the top left only sine is positive. In the bottom left only tangent is positive. In the bottom right only cosine is positive.</figcaption></figure>
@@ -243,7 +243,7 @@
 <section class="ckw">
   <div class="wrap narrow">
     <h2>Check your knowledge: exact values</h2>
-    <div class="q" data-answers="sqrt(3)/2;sqrt3/2;&radic;3/2;(sqrt3)/2;1/2sqrt(3);1/2*sqrt(3);(sqrt(3))/2" data-mode="exact">
+    <div class="q" data-answers="sqrt(3)/2;sqrt3/2;&radic;3/2;(sqrt3)/2;(sqrt(3))/2;(1/2)sqrt(3);0.5sqrt(3);&frac12;sqrt(3);root 3 over 2" data-mode="exact">
       <p class="qtext">Write down the exact value of {m:sin(60deg)}. Type it like sqrt(5)/3.</p>
       <ol class="ladder"><li>Use the table, or the 30, 60, 90 triangle.</li><li>Sine is opposite over hypotenuse. The side opposite 60&deg; is {m:sqrt(3)}.</li></ol>
       <ul class="wrong"><li data-if="1/2;0.5">That is {m:sin(30deg)}, and also {m:cos(60deg)}. The sine of 60&deg; is the larger of the two: {m:frac(sqrt(3),2)} is about 0.866.</li></ul>
@@ -265,7 +265,7 @@
       <ol class="ladder"><li>Cosine is adjacent over hypotenuse.</li><li>In the 30, 60, 90 triangle, the side next to the 30&deg; angle is {m:sqrt(3)}.</li></ol>
       <div class="solution"><p>The side next to the 30&deg; angle is {m:sqrt(3)} and the hypotenuse is 2. So {m:cos(30deg)=frac(sqrt(3),2)}.</p></div>
     </div>
-    <div class="q" data-answers="-sqrt(3)/2;-sqrt3/2;-&radic;3/2;-(sqrt3)/2;-(sqrt(3)/2);-1/2sqrt(3);-(sqrt(3))/2" data-mode="exact">
+    <div class="q" data-answers="-sqrt(3)/2;-sqrt3/2;-&radic;3/2;-(sqrt3)/2;-(sqrt(3)/2);-(sqrt(3))/2;-(1/2)sqrt(3);-0.5sqrt(3);-&frac12;sqrt(3);minus root 3 over 2" data-mode="exact">
       <p class="qtext">Write down the exact value of {m:cos(150deg)}. Type it like -sqrt(5)/3.</p>
       <ol class="ladder"><li>Find the matching acute angle: {m:180-150}.</li><li>Cosine is negative in quadrant 2.</li></ol>
       <ul class="wrong"><li data-if="sqrt(3)/2;sqrt3/2;&radic;3/2">You have the size but not the sign. {m:150deg} is in quadrant 2, where cosine is negative.</li><li data-if="-1/2;-0.5">That is {m:cos(120deg)}. The matching acute angle for 150&deg; is 30&deg;, and {m:cos(30deg)=frac(sqrt(3),2)}.</li></ul>
@@ -291,7 +291,7 @@
     <h2>3. The graphs of sine and cosine</h2>
     <p>Draw the angle on the x-axis and the value of the sine on the y-axis. Each angle gives one point. Joining the points gives the graph of {m:y=sin x}.</p>
     <figure class="figure-lg">{fig:trig-graphs-sine}<figcaption>Look at the highest and lowest points. The wave starts at the origin, rises to {m:(90deg, 1)}, falls through 180&deg; to {m:(270deg, -1)} and comes back to 0 at 360&deg;.</figcaption></figure>
-    <p>The graph does not stop at 360&deg;. It repeats the same shape again and again, in both directions. The length of one full repeat is the {term:period}. For sine the period is 360&deg;. The {term:amplitude} is the distance from the middle line to the top. For {m:y=sin x} the amplitude is 1.</p>
+    <p>The graph does not stop at 360&deg;. It repeats the same shape again and again, in both directions. One full repeat is called a cycle. The length of one cycle is the {term:period}. For sine the period is 360&deg;. The {term:amplitude} is the distance from the middle line to the top. For {m:y=sin x} the amplitude is 1.</p>
     <p>The graph of {m:y=cos x} has the same shape. It starts at its highest point instead of at zero. It is the sine graph moved 90&deg; to the left.</p>
     <figure class="figure-lg">{fig:trig-graphs-cosine}<figcaption>Look at the start and the end. The wave starts at {m:(0deg, 1)}, falls to {m:(180deg, -1)} and returns to {m:(360deg, 1)}. It crosses the x-axis at 90&deg; and at 270&deg;.</figcaption></figure>
     <div class="key">
@@ -316,9 +316,9 @@
     <p>The graphs have symmetry. It lets you find a value from another value you already know.</p>
     <p>The sine graph has a mirror line at {m:x=90deg}. Two angles the same distance either side of 90&deg; have the same sine. Those angles add up to 180&deg;.</p>
     <figure class="figure-lg">{fig:trig-graphs-sine-mirror}<figcaption>Look at the two points at height 0.5. One is at 30&deg; and one is at 150&deg;. Each is 60&deg; from the mirror line at 90&deg;. So {m:sin(30deg)=sin(150deg)}.</figcaption></figure>
-    <p>The sine graph also looks the same after a half turn about the origin. A positive angle and the matching negative angle give values of opposite sign.</p>
+    <p>The sine graph also looks the same after a half turn about the origin. An angle and the same angle with a minus sign give values of opposite sign.</p>
     <figure class="figure-lg">{fig:trig-graphs-sine-odd}<figcaption>Look at the two points. The point at 30&deg; has height 0.5. The point at {m:-30deg} has height {m:-0.5}. So {m:sin(-30deg)=-sin(30deg)}.</figcaption></figure>
-    <p>The cosine graph is symmetrical about the y-axis. A positive angle and the matching negative angle give the same value.</p>
+    <p>The cosine graph is symmetrical about the y-axis. An angle and the same angle with a minus sign give the same value.</p>
     <figure class="figure-lg">{fig:trig-graphs-cos-even}<figcaption>Look at the two points at height 0.5. They are at 60&deg; and at {m:-60deg}, and they are mirror images in the y-axis. So {m:cos(-60deg)=cos(60deg)}.</figcaption></figure>
     <div class="key">
       <p><b>Key idea:</b> three symmetries to use.</p>
@@ -406,13 +406,13 @@
   <div class="wrap narrow">
     <h2>4. The graph of tangent</h2>
     <p>The {term:tangent-function|tangent} of an angle is the y-coordinate divided by the x-coordinate on the unit circle. This is a problem at 90&deg; and at 270&deg;. There the x-coordinate is 0 and you cannot divide by 0.</p>
-    <p>Near those angles the tangent gets very large. A little below 90&deg; it is a large positive number. A little above 90&deg; it is a large negative number. The graph has a vertical {term:asymptote}: a line that the curve gets closer to but never touches.</p>
+    <p>Near those angles the tangent gets very large. A little below 90&deg; it is a large positive number. A little above 90&deg; it is a large negative number. The graph has a vertical {term:asymptote}: a line that the curve gets closer and closer to.</p>
     <figure class="figure-lg">{fig:trig-graphs-tan}<figcaption>Look at the dashed lines at {m:x=90deg} and {m:x=270deg}. These are the asymptotes. The curve rises towards each line and comes up again from the bottom after it. It passes through {m:(45deg, 1)} and {m:(135deg, -1)}, and crosses the x-axis at 0&deg;, 180&deg; and 360&deg;.</figcaption></figure>
     <div class="key">
       <p><b>Key idea:</b> the graph of {m:y=tan x}.</p>
       <ul class="tick">
         <li>The period is 180&deg;: {m:tan(x+180deg)=tan x}. This is half the period of sine and cosine.</li>
-        <li>There are asymptotes at {m:x=90deg}, {m:x=270deg} and every 180&deg; after that, and also at {m:x=-90deg}.</li>
+        <li>There are asymptotes at {m:x=90deg}, {m:x=270deg} and every 180&deg; before and after them (&hellip;, {m:-90deg}, {m:90deg}, {m:270deg}, &hellip;).</li>
         <li>The graph goes through the origin and rises between each pair of asymptotes. It takes every value, so it has no highest or lowest value and no amplitude.</li>
         <li>{m:tan(-x)=-tan x}. The graph looks the same after a half turn about the origin.</li>
       </ul>
@@ -531,7 +531,7 @@
         <li>The solutions are {m:x=120deg} and {m:x=240deg}.</li>
       </ol>
     </div>
-    <figure class="figure-lg">{fig:trig-graphs-solve-tan}<figcaption>Look at the dashed line at height {m:-1}. It cuts the tangent curve once between each pair of asymptotes: at {m:x=135deg} and at {m:x=315deg}.</figcaption></figure>
+    <figure class="figure-lg">{fig:trig-graphs-solve-tan}<figcaption>Look at the dashed line at height {m:-1}. It cuts the tangent curve once every 180&deg;: at {m:x=135deg} and at {m:x=315deg}.</figcaption></figure>
     <div class="worked">
       <h3>Worked example: tangent</h3>
       <p>Solve {m:tan x=-1} for {m:0deg<=x<=360deg}.</p>
@@ -595,7 +595,7 @@
       <ul class="wrong"><li data-if="-36.9">That is the calculator value, but it is outside the range. Use {m:180+36.9} and {m:360-36.9}.</li><li data-if="36.9 or 143.1">These have a sine of {m:+0.6}. The value is negative, so the angles are in quadrants 3 and 4.</li></ul>
       <div class="solution"><p>The matching acute angle is 36.9&deg;. In quadrant 3: {m:180+36.9=216.9}. In quadrant 4: {m:360-36.9=323.1}. So {m:x=216.9deg} or {m:x=323.1deg}.</p></div>
     </div>
-    <div class="q" data-answers="-113.6 or 113.6" data-mode="value">
+    <div class="q" data-answers="-113.6 or 113.6;&plusmn;113.6;+-113.6;+/-113.6" data-mode="value">
       <p class="qtext">Solve {m:cos x=-0.4} for {m:-180deg<=x<=180deg}. Give your answers in degrees to 1 decimal place. Type your answers like -11.5 or 22.5.</p>
       <ol class="ladder"><li>The inverse cosine gives an angle between 0&deg; and 180&deg;.</li><li>The cosine graph is symmetrical about the y-axis.</li></ol>
       <ul class="wrong"><li data-if="113.6">That is one solution. By symmetry, {m:-113.6} is a solution too.</li><li data-if="113.6 or 246.4">{m:246.4} is outside the range {m:-180deg<=x<=180deg}. Use the symmetry {m:cos(-x)=cos x} instead.</li></ul>
@@ -633,7 +633,7 @@
     <p>A number in front of the sine changes the amplitude. The graph of {m:y=2 sin x} has amplitude 2. It is twice as tall, but it crosses the x-axis in the same places.</p>
     <figure class="figure-lg">{fig:trig-graphs-amplitude}<figcaption>Look at the highest points. The dashed wave {m:y=sin x} reaches height 1 at 90&deg;. The solid wave {m:y=2 sin x} reaches height 2 at 90&deg;. Both are 0 at 0&deg;, 180&deg; and 360&deg;.</figcaption></figure>
     <p>A number multiplying the angle changes the period. The graph of {m:y=sin 2x} goes through a full cycle in 180&deg;, not 360&deg;. It is squashed from the sides.</p>
-    <figure class="figure-lg">{fig:trig-graphs-period}<figcaption>Look at the solid wave. Its first highest point is at {m:(45deg, 1)}. It is back at the x-axis at 180&deg;, and then does a second full cycle by 360&deg;. The dashed wave {m:y=sin x} only does one.</figcaption></figure>
+    <figure class="figure-lg">{fig:trig-graphs-period}<figcaption>Look at the solid wave. Its first highest point is at {m:(45deg, 1)}. It crosses the x-axis at 90&deg; and ends its first cycle at 180&deg;. It does a second full cycle by 360&deg;. The dashed wave {m:y=sin x} only does one.</figcaption></figure>
     <div class="key">
       <p><b>Key idea:</b> for positive numbers a and b:</p>
       <ul class="tick">
@@ -792,7 +792,7 @@
       <p class="qtext"><b>Ana says:</b> &ldquo;{m:sin(150deg)=-0.5}, because 150&deg; is bigger than 90&deg;, and sine goes negative after 90&deg;.&rdquo; What went wrong?</p>
       <ul class="options">
         <li data-correct>Sine is positive up to 180&deg;, so {m:sin(150deg)=0.5}</li>
-        <li data-why="Sine is the y-coordinate. At 150&deg; the point is above the x-axis, so the sine is positive.">Sine is negative only after 270&deg;</li>
+        <li data-why="Sine is negative from 180&deg; to 360&deg;, not only after 270&deg;. For example, sin 200&deg; is negative.">Sine is negative only after 270&deg;</li>
         <li data-why="The sign of sine is the sign of the y-coordinate. Whether the angle is more than 90&deg; does not matter on its own.">The angle should have been less than 90&deg;</li>
       </ul>
       <ol class="ladder"><li>Sine is the y-coordinate on the unit circle.</li><li>Where is the point at 150&deg;?</li></ol>
@@ -852,7 +852,7 @@
       <ul class="wrong"><li data-if="26.6 or 153.4">You used {m:180-26.6}, which gives an angle with tangent {m:-0.5}. For a positive value, add 180&deg;.</li></ul>
       <div class="solution"><p>{m:tan^(-1)(0.5)=26.6deg}. Add 180&deg;: {m:26.6+180=206.6}.</p></div>
     </div>
-    <div class="q" data-answers="-sqrt(2)/2;-sqrt2/2;-&radic;2/2;-1/sqrt(2);-1/sqrt2;-1/&radic;2;-(sqrt2)/2;-(sqrt(2))/2;-(sqrt(2)/2);-(1/sqrt(2))" data-mode="exact">
+    <div class="q" data-answers="-sqrt(2)/2;-sqrt2/2;-&radic;2/2;-1/sqrt(2);-1/sqrt2;-1/&radic;2;-(sqrt2)/2;-(sqrt(2))/2;-(sqrt(2)/2);-(1/sqrt(2));-(1/2)sqrt(2);-0.5sqrt(2)" data-mode="exact">
       <p class="qtext">Write down the exact value of {m:sin(315deg)}. Type it like -sqrt(5)/3.</p>
       <ol class="ladder"><li>{m:315deg} is in quadrant 4. The matching acute angle is {m:360-315=45}.</li><li>Sine is negative in quadrant 4.</li></ol>
       <ul class="wrong"><li data-if="sqrt(2)/2;sqrt2/2;&radic;2/2;1/sqrt(2)">You have the size but not the sign. {m:315deg} is in quadrant 4, where sine is negative.</li></ul>
@@ -894,7 +894,7 @@
         </ul>
       </div>
     </div>
-    <div class="q" data-answers="-sqrt(3)/3;-sqrt3/3;-&radic;3/3;-1/sqrt(3);-1/sqrt3;-1/&radic;3;-(sqrt3)/3;-(sqrt(3))/3;-(sqrt(3)/3);-(1/sqrt(3));-1/3sqrt(3)" data-mode="exact" data-marks="2">
+    <div class="q" data-answers="-sqrt(3)/3;-sqrt3/3;-&radic;3/3;-1/sqrt(3);-1/sqrt3;-1/&radic;3;-(sqrt3)/3;-(sqrt(3))/3;-(sqrt(3)/3);-(1/sqrt(3));-(1/3)sqrt(3)" data-mode="exact" data-marks="2">
       <p class="qtext">[2 marks] Find the exact value of {m:tan(150deg)}. Type it like -sqrt(5)/3.</p>
       <ol class="ladder"><li>The matching acute angle is {m:180-150=30}.</li><li>Tangent is negative in quadrant 2.</li></ol>
       <ul class="wrong"><li data-if="sqrt(3)/3;sqrt3/3;&radic;3/3;1/sqrt(3)">You have the size but not the sign. {m:150deg} is in quadrant 2, where tangent is negative.</li></ul>

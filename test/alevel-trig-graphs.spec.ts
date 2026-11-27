@@ -20,8 +20,8 @@ const BUILT = join(ROOT, 'public', 'courses', 'a-level', 'trig-graphs.html');
 let matches: (input: string, answers: string[], mode?: string) => boolean;
 test.beforeAll(async () => { ({ matches } = await import('../public/js/book-answer.mjs')); });
 
-const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-', deg: '\u00b0', radic: '\u221a' };
-const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
+const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-', deg: '\u00b0', plusmn: '\u00b1', frac12: '\u00bd', hellip: '...', radic: '\u221a' };
+const decode = (t: string) => t.replace(/&([a-z0-9]+);/gi, (m, n) => ENTITIES[n] ?? m);
 
 // ---- trigonometry in degrees, written independently of the figure code ----
 const RAD = Math.PI / 180;
@@ -73,7 +73,7 @@ const argMin = (f: Fn, lo: number, hi: number) => { let best = lo; for (let x = 
 
 // ---- exact numbers: a tiny evaluator for the forms a key may be written in ----
 function evalForm(text: string): number {
-  let s = decode(text).replace(/\u2212/g, '-').replace(/\s+/g, '');
+  let s = decode(text).replace(/\u00bd/g, '0.5').replace(/\u2212/g, '-').replace(/\s+/g, '');
   s = s.replace(/\u221a(\d+)/g, 'sqrt($1)').replace(/sqrt(\d+)/g, 'sqrt($1)').replace(/\u221a\(/g, 'sqrt(');
   s = s.replace(/(\d)sqrt/g, '$1*sqrt').replace(/\)(\d|sqrt|\()/g, ')*$1');
   if (!/^[-+*/().\dsqrt]+$/.test(s)) throw new Error(`cannot evaluate ${text}`);
@@ -171,12 +171,12 @@ const CASES: Case[] = [
 type Exact = { find: string; value: number; wrongs?: { v: number; says: string }[]; accept: string[]; reject: string[] };
 const EXACT: Exact[] = [
   { find: 'Write {m:sqrt(12)} in the form', value: 2 * Math.sqrt(3), accept: ['2sqrt(3)', '2sqrt3', '2*sqrt(3)', '2\u221a3'], reject: ['4sqrt(3)', '3sqrt(2)', '6', 'sqrt(12)'] },
-  { find: 'Rationalise the denominator', value: 1 / Math.sqrt(3), accept: ['sqrt(3)/3', 'sqrt3/3', '\u221a3/3', '1/3sqrt(3)', '1/3*sqrt(3)'], reject: ['sqrt(3)', '1/3', 'sqrt(3)/2', '1/sqrt(3)'] },
-  { find: 'exact value of {m:sin(60deg)}. Type', value: sin(60), accept: ['sqrt(3)/2', 'sqrt3/2', '\u221a3/2', '(\u221a3)/2', 'sqrt(3) / 2', '1/2sqrt(3)', '1/2*sqrt(3)', '(sqrt(3))/2'], reject: ['1/2', '0.5', 'sqrt(2)/2', 'sqrt(3)/3', '-sqrt(3)/2'] },
-  { find: 'exact value of {m:cos(150deg)}. Type', value: cos(150), accept: ['-sqrt(3)/2', '-sqrt3/2', '-\u221a3/2', '\u2212\u221a3/2', '-(sqrt(3)/2)', '-(sqrt3)/2', '-1/2sqrt(3)'], reject: ['sqrt(3)/2', '-1/2', '-sqrt(2)/2', '-sqrt(3)/3'] },
+  { find: 'Rationalise the denominator', value: 1 / Math.sqrt(3), accept: ['(1/3)sqrt(3)', 'sqrt(3)/3', 'sqrt3/3', '\u221a3/3'], reject: ['1/3sqrt(3)', 'sqrt(3)', '1/3', 'sqrt(3)/2', '1/sqrt(3)'] },
+  { find: 'exact value of {m:sin(60deg)}. Type', value: sin(60), accept: ['(1/2)sqrt(3)', '0.5sqrt(3)', '\u00bdsqrt(3)', 'root 3 over 2', 'sqrt(3)/2', 'sqrt3/2', '\u221a3/2', '(\u221a3)/2', 'sqrt(3) / 2', '(sqrt(3))/2'], reject: ['1/2sqrt(3)', '1/2', '0.5', 'sqrt(2)/2', 'sqrt(3)/3', '-sqrt(3)/2'] },
+  { find: 'exact value of {m:cos(150deg)}. Type', value: cos(150), accept: ['-(1/2)sqrt(3)', '-0.5sqrt(3)', '-\u00bdsqrt(3)', 'minus root 3 over 2', '-sqrt(3)/2', '-sqrt3/2', '-\u221a3/2', '\u2212\u221a3/2', '-(sqrt(3)/2)', '-(sqrt3)/2'], reject: ['-1/2sqrt(3)', 'sqrt(3)/2', '-1/2', '-sqrt(2)/2', '-sqrt(3)/3'] },
   { find: 'exact value of {m:tan(300deg)}', value: tan(300), accept: ['-sqrt(3)', '-sqrt3', '-\u221a3', '\u2212\u221a3'], reject: ['sqrt(3)', '-sqrt(3)/3', '-1/sqrt(3)', '-1'] },
-  { find: 'exact value of {m:sin(315deg)}', value: sin(315), accept: ['-sqrt(2)/2', '-sqrt2/2', '-\u221a2/2', '-1/sqrt(2)', '-1/\u221a2', '-(sqrt(2)/2)', '-(1/sqrt(2))', '-(sqrt2)/2'], reject: ['sqrt(2)/2', '1/sqrt(2)', '-sqrt(3)/2', '-1/2'] },
-  { find: 'exact value of {m:tan(150deg)}', value: tan(150), accept: ['-sqrt(3)/3', '-sqrt3/3', '-\u221a3/3', '-1/sqrt(3)', '-1/sqrt3', '-1/\u221a3', '-(sqrt(3)/3)', '-(1/sqrt(3))', '-(sqrt3)/3'], reject: ['sqrt(3)/3', '1/sqrt(3)', '-sqrt(3)', '-1/3'] },
+  { find: 'exact value of {m:sin(315deg)}', value: sin(315), accept: ['-(1/2)sqrt(2)', '-0.5sqrt(2)', '-sqrt(2)/2', '-sqrt2/2', '-\u221a2/2', '-1/sqrt(2)', '-1/\u221a2', '-(sqrt(2)/2)', '-(1/sqrt(2))', '-(sqrt2)/2'], reject: ['-1/2sqrt(2)', 'sqrt(2)/2', '1/sqrt(2)', '-sqrt(3)/2', '-1/2'] },
+  { find: 'exact value of {m:tan(150deg)}', value: tan(150), accept: ['-(1/3)sqrt(3)', '-sqrt(3)/3', '-sqrt3/3', '-\u221a3/3', '-1/sqrt(3)', '-1/sqrt3', '-1/\u221a3', '-(sqrt(3)/3)', '-(1/sqrt(3))', '-(sqrt3)/3'], reject: ['-1/3sqrt(3)', 'sqrt(3)/3', '1/sqrt(3)', '-sqrt(3)', '-1/3'] },
 ];
 
 /** Every problem found in the keys of `source`, as text. An empty list means every key is right. */
@@ -204,7 +204,7 @@ function keyProblems(source: string): string[] {
     const hits = qs.filter((q) => q.raw.includes(e.find));
     if (hits.length !== 1) { problems.push(`exact "${e.find}" matches ${hits.length} questions`); continue; }
     const q = hits[0];
-    for (const form of q.answers) if (Math.abs(evalForm(form) - e.value) > 1e-9) problems.push(`"${e.find}": the form ${form} is ${evalForm(form)}, recomputed ${e.value}`);
+    for (const form of q.answers.filter((x) => !/root|over/.test(x))) if (Math.abs(evalForm(form) - e.value) > 1e-9) problems.push(`"${e.find}": the form ${form} is ${evalForm(form)}, recomputed ${e.value}`);
     for (const form of Object.keys(q.wrongs)) {
       let shown: number | null = null;
       try { shown = evalForm(form); } catch { shown = null; }
@@ -256,8 +256,8 @@ test('typical equivalent ways of typing a list of angles are accepted, and a par
   const key = ['53.1 or 126.9'];
   for (const ok of ['53.1 or 126.9', '126.9 or 53.1', '53.1, 126.9', '53.1 and 126.9', '53.1 126.9', 'x = 53.1 or x = 126.9', '53.1\u00b0 or 126.9\u00b0']) expect(matches(ok, key, 'value'), ok).toBe(true);
   for (const bad of ['53.1', '126.9', '53.1 or 126.8', '53.1 or 53.1 or 126.9']) expect(matches(bad, key, 'value'), bad).toBe(false);
-  const neg = ['-113.6 or 113.6'];
-  for (const ok of ['-113.6 or 113.6', '113.6 or -113.6', '-113.6, 113.6', '-113.6 and 113.6']) expect(matches(ok, neg, 'value'), ok).toBe(true);
+  const neg = questions(SOURCE).find((q) => q.raw.includes('Solve {m:cos x=-0.4} for {m:-180'))!.answers;
+  for (const ok of ['-113.6 or 113.6', '113.6 or -113.6', '-113.6, 113.6', '-113.6 and 113.6', '\u00b1113.6', '+-113.6', '+/-113.6']) expect(matches(ok, neg, 'value'), ok).toBe(true);
   for (const bad of ['113.6', '-113.6', '113.6 or 246.4']) expect(matches(bad, neg, 'value'), bad).toBe(false);
   const four = ['101.5 or 258.5 or 461.5 or 618.5'];
   expect(matches('618.5, 461.5, 258.5, 101.5', four, 'value')).toBe(true);
@@ -440,7 +440,7 @@ test('the tangent figure marks its asymptotes where the cosine is zero', async (
   const { geo } = await allFigures();
   const g = geo('trig-graphs-tan');
   const pl = planeOf(g.svg)!;
-  const marked = [...g.svg.matchAll(/<line class="guide" x1="([\d.-]+)" y1="([\d.-]+)" x2="([\d.-]+)" y2="([\d.-]+)"\/>/g)].filter((m) => m[1] === m[3]).map((m) => toGraph(pl, Number(m[1]), 0)[0]);
+  const marked = [...g.svg.matchAll(/<line class="guide" x1="([\d.-]+)" y1="([\d.-]+)" x2="([\d.-]+)" y2="([\d.-]+)"\/>/g)].filter((m) => m[1] === m[3] && Math.abs(Number(m[4]) - Number(m[2])) > 0.9 * (pl.bottom - pl.top)).map((m) => toGraph(pl, Number(m[1]), 0)[0]);
   const truth = roots(cos, 0, pl.xmin, pl.xmax);
   expect(truth.map((x) => Math.round(x))).toEqual([90, 270]);
   expect(marked.map((x) => Math.round(x)).sort((a, b) => a - b)).toEqual(truth.map((x) => Math.round(x)));
@@ -537,10 +537,14 @@ test('the sine-odd figure writes the heights it states at the points it marks', 
     expect(sin(h > 0 ? 30 : -30)).toBeCloseTo(Number(t.text.replace('\u2212', '-')), 9);
     expect(Math.sign(h)).toBe(Math.sign(Number(t.text.replace('\u2212', '-'))));
   }
-  // the x-axis row names the angles of the points
-  const row = textsOf(g.svg).filter((t) => /data-xlabel/.test(t.attrs)).map((t) => Number(t.text.replace('\u00b0', '').replace('\u2212', '-')));
-  expect(row).toContain(30);
-  expect(row).toContain(-30);
+  // each point's angle is written at the foot of its own dashed line, on the x-axis
+  for (const [pt, angle] of [['p30', 30], ['m30', -30]] as const) {
+    const label = textsOf(g.svg).find((t) => new RegExp(`data-foot="${pt}"`).test(t.attrs))!;
+    // the label is centred under (or over) its own point, and on the side of the x-axis the curve is not on
+    expect(label.x, `${pt} label x`).toBeCloseTo(pointsOf(g.svg).find((q) => q.id === pt)!.px[0], 0);
+    expect(Number(label.text.replace('\u00b0', '').replace('\u2212', '-'))).toBe(angle);
+    expect(toGraph(pl, label.x, 0)[0]).toBeCloseTo(angle, 0);
+  }
 });
 
 test('the x-axis numbers sit at the right x positions', async () => {
@@ -741,4 +745,48 @@ test('a defined word is linked with its plain name, with no bracketed extra in t
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(8);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);
+});
+
+test('no label sits on a curve or a line: nothing drawn crosses the box of any text, padded by 1px', async ({ page }) => {
+  await page.goto('/courses/a-level/trig-graphs.html');
+  const hits = await page.evaluate(() => {
+    const out: string[] = [];
+    for (const svg of document.querySelectorAll('main svg.graph-svg')) {
+      const title = svg.querySelector('title')?.textContent ?? '';
+      // everything drawn that a label must stay clear of: sample the curves, take the ends of the straight lines
+      const segs: [number, number, number, number, string][] = [];
+      for (const el of svg.querySelectorAll('path.curve, path.curve-b, path.curve-c, path.guide')) {
+        const path = el as SVGPathElement;
+        const len = path.getTotalLength();
+        let prev = path.getPointAtLength(0);
+        for (let l = 2; l <= len + 2; l += 2) {
+          const p = path.getPointAtLength(Math.min(l, len));
+          // a jump of more than 40 units is a break in the path (the tangent), not a stroke
+          if (Math.hypot(p.x - prev.x, p.y - prev.y) < 40) segs.push([prev.x, prev.y, p.x, p.y, el.getAttribute('class') ?? '']);
+          prev = p;
+        }
+      }
+      for (const el of svg.querySelectorAll('line.guide, line.line, line.axis')) {
+        segs.push([+el.getAttribute('x1')!, +el.getAttribute('y1')!, +el.getAttribute('x2')!, +el.getAttribute('y2')!, el.getAttribute('class') ?? '']);
+      }
+      for (const t of svg.querySelectorAll('text')) {
+        const label = (t.textContent ?? '').trim();
+        if (!label) continue;
+        const b = (t as SVGTextElement).getBBox();
+        const [l, r, tp, bt] = [b.x - 1, b.x + b.width + 1, b.y - 1, b.y + b.height + 1];
+        for (const [x1, y1, x2, y2, cls] of segs) {
+          // Liang-Barsky: does the segment meet the box?
+          let t0 = 0; let t1 = 1;
+          const dx = x2 - x1; const dy = y2 - y1;
+          let ok = true;
+          for (const [p, q] of [[-dx, x1 - l], [dx, r - x1], [-dy, y1 - tp], [dy, bt - y1]]) {
+            if (Math.abs(p) < 1e-9) { if (q < 0) { ok = false; break; } } else { const k = q / p; if (p < 0) { if (k > t1) { ok = false; break; } t0 = Math.max(t0, k); } else { if (k < t0) { ok = false; break; } t1 = Math.min(t1, k); } }
+          }
+          if (ok) { out.push(`${title}: "${label}" is crossed by a ${cls}`); break; }
+        }
+      }
+    }
+    return out;
+  });
+  expect(hits).toEqual([]);
 });

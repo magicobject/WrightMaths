@@ -55,10 +55,11 @@ function curve(p, meta, key, { cls = 'curve', from = p.xmin, to = p.xmax } = {})
 }
 
 /** A marked point on a curve (or free, when `on` is omitted), with its label set (dx, dy) pixels away. */
-function mark(p, meta, id, x, y, { on = null, text = '', dx = 12, dy = -12, anchor = 'start', open = false, ty = y } = {}) {
+function mark(p, meta, id, x, y, { on = null, text = '', dx = 12, dy = -12, anchor = 'start', open = false, ty = y, foot = false } = {}) {
   p.raw(`<circle class="${open ? 'pt-open' : 'pt'}" data-pt="${id}" data-at="${x},${y}"${on ? ` data-on="${on}"` : ''} cx="${f(p.X(x))}" cy="${f(p.Y(y))}" r="7"/>`);
   // the label is set (dx, dy) pixels from the height `ty` above the point's own x (the point's height by default)
-  if (text) p.raw(`<text class="svg-t" data-for="${id}" x="${f(p.X(x) + dx)}" y="${f(p.Y(ty) + dy)}" text-anchor="${anchor}">${label(text)}</text>`);
+  // a foot label (the angle under its dashed line) is tied to its point by its x position, not by being nearest; the spec checks that
+  if (text) p.raw(`<text class="svg-t" ${foot ? 'data-foot' : 'data-for'}="${id}" x="${f(p.X(x) + dx)}" y="${f(p.Y(ty) + dy)}" text-anchor="${anchor}">${label(text)}</text>`);
   meta.points.push({ id, x, y, text, on });
 }
 
@@ -67,8 +68,8 @@ const guideH = (p, y, x1, x2) => p.line(x1, y, x2, y, { cls: 'guide', clip: fals
 const degTick = (x) => `${String(x).replace('-', MINUS)}${DEG}`;
 
 /** A graph plane in degrees with the same layout for every picture. The x-axis numbers are drawn by xrow(). */
-function gplane({ x, y, height = 330, left = 64, width = WIDTH }) {
-  return plane({ xmin: x[0], xmax: x[1], xstep: x[2], ymin: y[0], ymax: y[1], ystep: y[2], width, height, left, right: 48, top: 44, bottom: 52, xtickFormat: () => '', ytickFormat: (v) => String(v).replace('-', MINUS) });
+function gplane({ x, y, height = 330, left = 64, width = WIDTH, tickLabels = true, ytick = (v) => String(v).replace('-', MINUS) }) {
+  return plane({ xmin: x[0], xmax: x[1], xstep: x[2], ymin: y[0], ymax: y[1], ystep: y[2], width, height, left, right: 48, top: 44, bottom: 52, tickLabels, xtickFormat: () => '', ytickFormat: ytick });
 }
 
 /** The x-axis numbers sit in a row under the picture, so no curve or label can run through them. */
@@ -280,26 +281,28 @@ function buildSineMirror(id) {
 }
 
 function buildSineOdd(id) {
-  const p = gplane({ x: [-180, 180, 90], y: [-1.5, 1.5, 1] });
+  // no tick numbers and no O: the heights and angles of the two points are written beside them instead
+  const p = gplane({ x: [-180, 180, 90], y: [-1.2, 1.2, 1], height: 400, tickLabels: false });
   const meta = newMeta();
   curve(p, meta, 'sin');
-  // each point is joined by dashed lines to the y-axis, where its height is written, and to the x-axis row, where its angle is written
-  mark(p, meta, 'p30', 30, 0.5, { on: 'sin' });
-  mark(p, meta, 'm30', -30, -0.5, { on: 'sin' });
+  // each point is joined by dashed lines to the y-axis, where its height is written, and to the x-axis, where its angle is written
+  mark(p, meta, 'p30', 30, 0.5, { on: 'sin', text: `30${DEG}`, dx: 0, dy: 34, anchor: 'middle', ty: 0, foot: true });
+  mark(p, meta, 'm30', -30, -0.5, { on: 'sin', text: `${MINUS}30${DEG}`, dx: 0, dy: -14, anchor: 'middle', ty: 0, foot: true });
   guideH(p, 0.5, 0, 30);
   guideH(p, -0.5, -30, 0);
-  guideV(p, 30, -1.5, 0.5);
-  guideV(p, -30, -1.5, -0.5);
+  guideV(p, 30, 0, 0.5);
+  guideV(p, -30, 0, -0.5);
   p.raw(`<text class="svg-t" data-yvalue="p30" x="${f(p.X(0) - 12)}" y="${f(p.Y(0.5) + 8)}" text-anchor="end">0.5</text>`);
   p.raw(`<text class="svg-t" data-yvalue="m30" x="${f(p.X(0) + 12)}" y="${f(p.Y(-0.5) + 8)}" text-anchor="start">${MINUS}0.5</text>`);
   meta.yvalues = [{ x: 30, y: 0.5, text: '0.5' }, { x: -30, y: -0.5, text: `${MINUS}0.5` }];
-  xrow(p, [-180, -90, -30, 30, 90, 180]);
+  xrow(p, [-180, -90, 90, 180]);
   meta.facts = ['30', '0.5'];
-  return finish(p, meta, { id, title: 'The sine graph turned half a turn about the origin', desc: 'The graph of y = sin x for x from -180 to 180 degrees. Two points are marked: (30, 0.5) above the x-axis on the right, and (-30, -0.5) below the x-axis on the left. Dashed lines join each point to the y-axis, where its height 0.5 or -0.5 is written, and down to the angle 30 or -30 along the bottom. Each point is the other turned half a turn about the origin, so sin(-30) = -sin 30.' });
+  return finish(p, meta, { id, title: 'The sine graph turned half a turn about the origin', desc: 'The graph of y = sin x for x from -180 to 180 degrees. Two points are marked: (30, 0.5) above the x-axis on the right, and (-30, -0.5) below the x-axis on the left. Dashed lines join each point to the y-axis, where its height 0.5 or -0.5 is written, and to the x-axis, where its angle 30 or -30 is written. Each point is the other turned half a turn about the origin, so sin(-30) = -sin 30.' });
 }
 
 function buildCosEven(id) {
-  const p = gplane({ x: [-180, 180, 90], y: [-1.5, 1.5, 1] });
+  // the label 1 is left off: the curve peaks at height 1, right beside where it would sit
+  const p = gplane({ x: [-180, 180, 90], y: [-1.5, 1.5, 1], ytick: (v) => (v === 1 ? '' : String(v).replace('-', MINUS)) });
   const meta = newMeta();
   curve(p, meta, 'cos');
   mark(p, meta, 'p60', 60, 0.5, { on: 'cos', text: `(60${DEG}, 0.5)`, dx: 14, dy: -14 });
@@ -318,12 +321,17 @@ function buildTan(id) {
     p.raw(`<text class="svg-t alt" data-note="asymptote-${x}" x="${f(p.X(x) + 10)}" y="${f(p.Y(2.2))}" text-anchor="start">${label(`x = ${x}`)}</text>`);
   }
   curve(p, meta, 'tan');
-  mark(p, meta, 'p45', 45, 1, { on: 'tan', text: `(45${DEG}, 1)`, dx: 14, dy: 8 });
-  mark(p, meta, 'p135', 135, -1, { on: 'tan', text: `(135${DEG}, ${MINUS}1)`, dx: 14, dy: 26 });
+  // each point is joined by dashed lines to the y-axis, where its height is the tick number, and to the x-axis, where its angle is written
+  mark(p, meta, 'p45', 45, 1, { on: 'tan', text: `45${DEG}`, dx: 0, dy: 34, anchor: 'middle', ty: 0 });
+  mark(p, meta, 'p135', 135, -1, { on: 'tan', text: `135${DEG}`, dx: 0, dy: -14, anchor: 'middle', ty: 0 });
+  guideV(p, 45, 0, 1);
+  guideV(p, 135, 0, -1);
+  guideH(p, 1, 0, 45);
+  guideH(p, -1, 0, 135);
   xrow(p, [90, 180, 270, 360]);
   meta.asymptotes = [90, 270];
   meta.facts = ['45', '135', '90', '270', '1'];
-  return finish(p, meta, { id, title: 'The graph of y = tan x', desc: 'The graph of y = tan x for x from 0 to 360 degrees. It has vertical dashed asymptote lines at x = 90 and x = 270, which the curve never touches. The curve starts at the origin and rises towards the first line, then comes up again from the bottom of the picture, crossing the x-axis at 180, and rises towards the second line. A third piece comes up from the bottom after 270 and crosses the x-axis at 360. Two points are marked: (45, 1) and (135, -1). The pattern repeats every 180 degrees.' });
+  return finish(p, meta, { id, title: 'The graph of y = tan x', desc: 'The graph of y = tan x for x from 0 to 360 degrees. It has vertical dashed asymptote lines at x = 90 and x = 270, which the curve never touches. The curve starts at the origin and rises towards the first line, then comes up again from the bottom of the picture, crossing the x-axis at 180, and rises towards the second line. A third piece comes up from the bottom after 270 and crosses the x-axis at 360. Two points are marked: (45, 1) and (135, -1). Dashed lines join each to the y-axis and to the x-axis, where the angles 45 and 135 are written. The pattern repeats every 180 degrees.' });
 }
 
 /** A graph with a horizontal line y = k and the points where it cuts the curve. `xs`: [{ x, side }], the label goes on that side. */
