@@ -42,12 +42,12 @@ function arrow(p, x1, x2, y) {
 
 /** Build one figure. `draw` gets small helpers that also record what is drawn. */
 function make(id, range, title, desc, draw) {
-  const { xmin, xmax, ymin, ymax, xstep = 1, ystep = 1, xs = [] } = range;
+  const { xmin, xmax, ymin, ymax, xstep = 1, ystep = 1, xs = [], ticks = true } = range;
   GEOM[id] = { width: W, height: H, left: LEFT, right: RIGHT, top: TOP, bottom: BOTTOM, xmin, xmax, ymin, ymax };
   CURVES[id] = [];
   POINTS[id] = [];
   SHADES[id] = [];
-  const p = plane({ width: W, height: H, top: TOP, grid: false, xmin, xmax, ymin, ymax, xstep, ystep, tickLabels: false });
+  const p = plane({ width: W, height: H, top: TOP, grid: false, xmin, xmax, ymin, ymax, xstep, ystep, ticks, tickLabels: false });
   const tools = {
     p,
     curve(fn, cls = 'curve', from = xmin, to = xmax) { CURVES[id].push({ cls, fn, from, to }); p.curve(fn, { cls, from, to }); },
@@ -103,7 +103,7 @@ export const FIGURES = {
   'definite-integrals-constant': () => make('definite-integrals-constant',
     { xs: [1, 3], xmin: -1, xmax: 4, ymin: -2, ymax: 12, ystep: 2 },
     'Two antiderivatives of 2x rise by the same amount from x = 1 to x = 3',
-    'Two graphs, one above the other. The solid curve is y equals x squared and the dashed curve is y equals x squared plus 2. Vertical dashed guides mark x = 1 and x = 3. On each curve there is a dot at x = 1 and a dot at x = 3. Between the two guides each curve climbs by the same amount.',
+    'Two graphs, one above the other. The solid curve is y equals x squared and the dashed curve is y equals x squared plus 2. Vertical dashed guides mark x = 1 and x = 3. On each curve there is a dot at x = 1 and a dot at x = 3: the points (1, 1), (3, 9), (1, 3) and (3, 11). Between the two guides each curve climbs by the same amount.',
     ({ p, curve, point }) => {
       p.line(1, 0, 1, 3, { cls: 'guide' });
       p.line(3, 0, 3, 11, { cls: 'guide' });
@@ -208,11 +208,12 @@ export const FIGURES = {
   'definite-integrals-flip-forward': () => make('definite-integrals-flip-forward',
     { xs: [1, 3], xmin: -0.5, xmax: 4, ymin: -5, ymax: 10, ystep: 2 },
     'Integrating y = x squared from x = 1 to x = 3, left to right',
-    'A graph of the curve y equals x squared with the region under it from x = 1 to x = 3 shaded and labelled positive. Below the axis an arrow points to the right, from x = 1 to x = 3, labelled from 1 to 3.',
+    'A graph of the curve y equals x squared with the region under it from x = 1 to x = 3 shaded and labelled: the integral is positive. Below the axis an arrow points to the right, from x = 1 to x = 3, labelled from 1 to 3.',
     ({ p, curve, shade }) => {
       shade(sq, zero, 1, 3);
       curve(sq);
-      p.text(2.1, 0.7, 'positive');
+      p.text(2.45, 2.2, 'integral');
+      p.text(2.45, 0.4, '> 0');
       arrow(p, 1, 3, -4.3);
       p.text(2, -3.3, 'from 1 to 3');
       key(p, [['curve', 'y = x^2']]);
@@ -221,11 +222,12 @@ export const FIGURES = {
   'definite-integrals-flip-backward': () => make('definite-integrals-flip-backward',
     { xs: [1, 3], xmin: -0.5, xmax: 4, ymin: -5, ymax: 10, ystep: 2 },
     'Integrating y = x squared from x = 3 to x = 1, right to left',
-    'A graph of the curve y equals x squared with the region under it from x = 1 to x = 3 shaded and labelled negative. Below the axis an arrow points to the left, from x = 3 to x = 1, labelled from 3 to 1.',
+    'A graph of the curve y equals x squared with the region under it from x = 1 to x = 3 shaded and labelled: the integral is negative. Below the axis an arrow points to the left, from x = 3 to x = 1, labelled from 3 to 1.',
     ({ p, curve, shade }) => {
       shade(sq, zero, 1, 3);
       curve(sq);
-      p.text(2.1, 0.7, 'negative');
+      p.text(2.45, 2.2, 'integral');
+      p.text(2.45, 0.4, '< 0');
       arrow(p, 3, 1, -4.3);
       p.text(2, -3.3, 'from 3 to 1');
       key(p, [['curve', 'y = x^2']]);
@@ -244,7 +246,7 @@ export const FIGURES = {
     }),
 
   'definite-integrals-q-k': () => make('definite-integrals-q-k',
-    { xmin: -1, xmax: 5, ymin: -2, ymax: 8 },
+    { xmin: -1, xmax: 5, ymin: -2, ymax: 8, ticks: false },
     'The triangle under y = 2x from x = 0 to x = k, with area 9',
     'A graph of the straight line y equals 2x through the origin. The triangular region under the line, above the x-axis, from x = 0 to a value x = k is shaded and labelled area 9. The value k is marked on the x-axis.',
     ({ p, curve, shade }) => {
@@ -297,7 +299,7 @@ export const FIGURES = {
   'definite-integrals-q-line-curve': () => make('definite-integrals-q-line-curve',
     { xmin: -2, xmax: 4, ymin: -1, ymax: 11, ystep: 2 },
     'The shaded region between the line y = 2x + 3 and the curve y = x squared',
-    'A graph of the curve y equals x squared (solid) and the straight line y equals 2x plus 3 (dashed). They cross at two points, (-1, 1) and (3, 9). Between those points the line is above the curve, and the region between them is shaded.',
+    'A graph of the curve y equals x squared (solid) and the straight line y equals 2x plus 3 (dashed). They cross at two points. Between those points the line is above the curve, and the region between them is shaded.',
     ({ p, curve, shade, point }) => {
       shade((x) => 2 * x + 3, sq, -1, 3);
       curve(sq);

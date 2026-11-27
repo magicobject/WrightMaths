@@ -190,6 +190,7 @@
     <p>Let {m:A(x)} be the area under the curve from the fixed value {m:x=a} to a variable x. Add a thin strip of width h to the right. The strip is almost a rectangle of height {m:f(x)}, so its area is about {m:f(x)*h}.</p>
     <figure class="figure-lg">{fig:definite-integrals-strip}<figcaption>{m:A(x)} is the area from a to x. The strip adds about {m:f(x)*h}, so the area grows at rate {m:f(x)}.</figcaption></figure>
     <p>So {m:A(x+h)-A(x)} is about {m:f(x)*h}. Divide by h: the rate at which the area grows is {m:f(x)}. In other words, the derivative of {m:A(x)} is {m:f(x)}. Then {m:A(x)} is an antiderivative of {m:f(x)}, so {m:A(x)=F(x)+c}. At {m:x=a} no area has been collected yet, so {m:A(a)=0} and {m:c=-F(a)}. The area up to {m:x=b} is {m:F(b)-F(a)}.</p>
+    <p>The smaller h is, the closer the strip is to a rectangle, so as h gets close to 0 the rate at which the area grows is exactly {m:f(x)}. This explains the rule; a full proof needs limits.</p>
   </div>
 </section>
 
@@ -411,7 +412,7 @@
       <ol class="steps">
         <li>Put {m:y=0}: {m:x=2} or {m:x=-2}. Only {m:x=2} is between 0 and 3. Split there.</li>
         <li>From 0 to 2: the integral is {m:-frac(16, 3)}, as in section 4. This part is below the axis, so its area is {m:frac(16, 3)}.</li>
-        <li>From 2 to 3: {m:F(3)-F(2)=-3-(-frac(4, 3))=frac(7, 3)}. This part is above the axis, so its area is {m:frac(7, 3)}.</li>
+        <li>From 2 to 3: {m:F(3)-F(2)=-3-(-frac(16, 3))=frac(7, 3)}. This part is above the axis, so its area is {m:frac(7, 3)}.</li>
         <li>Add the areas: {m:frac(16, 3)+frac(7, 3)=frac(23, 3)}.</li>
       </ol>
     </div>
@@ -425,7 +426,7 @@
         <li>From 0 to 2: {m:F(2)-F(0)=-4}. This part is below the axis, so its area is <span class="blank" data-answers="4">___</span>.</li>
         <li>From {m:-2} to 0: {m:F(0)-F(-2)=0-(-4)=4}. This part is above the axis. The total area is {m:4+4=}<span class="blank" data-answers="8">___</span>.</li>
       </ol>
-      <details class="check-line"><summary>Check my answer</summary><p>{m:F(2)=4-8=-4} and {m:F(-2)=4-8=-4}. So {m:int(0, 2)=-4}, an area of 4, and {m:int(-2, 0)=0-(-4)=4}. The total area is 8. The integral from {m:-2} to 2 is {m:-4+4=0}, which is not the area.</p></details>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:F(2)=4-8=-4} and {m:F(-2)=4-8=-4}. So {m:int(0, 2) (x^3-4x) dx=-4}, an area of 4, and {m:int(-2, 0) (x^3-4x) dx=0-(-4)=4}. The total area is 8. The integral from {m:-2} to 2 is {m:-4+4=0}, which is not the area.</p></details>
     </div>
   </div>
 </section>
@@ -784,8 +785,8 @@
       <li><b>The area function grows at the height of the curve.</b> A thin strip added to the right of the region has area about height times width. So the rate of growth of the area is the height {m:f(x)}.</li>
       <li><b>That makes the area function an antiderivative.</b> Integrating undoes differentiating, so {m:F(b)-F(a)} gives the area collected between a and b.</li>
       <li><b>The constant cancels.</b> The same c is in both values, so it drops out when you subtract.</li>
-      <li><b>A curve below the axis has negative height.</b> The integral adds heights, so a region below the axis gives a negative number. The area is its size.</li>
-      <li><b>A line and a curve work by subtraction.</b> The height of the region at each x is the upper function minus the lower function. The integral adds these heights.</li>
+      <li><b>A curve below the axis has negative height.</b> The integral adds up heights, so the integral over a part below the axis is negative. The area is its size.</li>
+      <li><b>A line and a curve work by subtraction.</b> The height of the region at each x is the upper function minus the lower function. Integrating that difference from a to b gives the area.</li>
     </ul>
     <h2>Common traps</h2>
     <ul class="tick traps">

@@ -187,6 +187,39 @@ test('every simple sum written as {m:a*b=c} or {m:a+b=c} on the page is right', 
   expect(problems).toEqual([]);
 });
 
+// Evaluate a chain written only with numbers, frac(a, b), + - * ^ and brackets, and check every "=" in it holds.
+function evalNumeric(src: string): number | null {
+  let t = src.replace(/\s+/g, '');
+  for (let guard = 0; guard < 50 && t.includes('frac('); guard += 1) {
+    const at = t.indexOf('frac(');
+    let depth = 0;
+    let comma = -1;
+    let end = -1;
+    for (let i = at + 4; i < t.length; i += 1) {
+      if (t[i] === '(') depth += 1;
+      else if (t[i] === ')') { depth -= 1; if (depth === 0) { end = i; break; } } else if (t[i] === ',' && depth === 1) comma = i;
+    }
+    if (end < 0 || comma < 0) return null;
+    t = `${t.slice(0, at)}((${t.slice(at + 5, comma)})/(${t.slice(comma + 1, end)}))${t.slice(end + 1)}`;
+  }
+  if (/[^0-9.+\-*/^()]/.test(t)) return null;
+  try { return new Function(`return (${t.replace(/\^/g, '**')});`)() as number; } catch { return null; }
+}
+test('every chain of numbers joined by = in the working is true', () => {
+  const problems: string[] = [];
+  let checked = 0;
+  for (const m of SOURCE.matchAll(/\{md?:([^}]*)\}/g)) {
+    const parts = m[1].split('=');
+    if (parts.length < 2) continue;
+    const values = parts.map(evalNumeric);
+    if (values.some((v) => v === null)) continue;
+    checked += 1;
+    values.forEach((v, i) => { if (!same(v as number, values[0] as number)) problems.push(`${m[0]}: side ${i + 1} is ${v}, side 1 is ${values[0]}`); });
+  }
+  expect(checked).toBeGreaterThan(40);
+  expect(problems).toEqual([]);
+});
+
 test('every "Now you finish it" blank holds the recomputed value', () => {
   const blanks = [...SOURCE.matchAll(/<span class="blank"(?: data-mode="exact")? data-answers="([^"]*)">/g)].map((m) => m[1].split(';'));
   const want: (number | string)[] = [
@@ -288,7 +321,10 @@ test('a point label shows its own coordinates, and every marked point is named i
       if (m) expect(POINTS[id].some((p: { x: number; y: number }) => abs(p.x - Number(m[1])) < 1e-9 && abs(p.y - Number(m[2])) < 1e-9), `${id}: label ${t}`).toBe(true);
     }
     // the figure with four unlabelled dots describes them by their x-values instead
-    if (id === 'definite-integrals-constant') continue;
+    // the dots in the question figure with two curves are left unnamed on purpose: the question asks for the meeting points
+    if (id === 'definite-integrals-q-line-curve') continue;
+    // a question whose answer is a coordinate must not let the reader count ticks to it
+    if (id === 'definite-integrals-q-k') expect(svg).not.toContain('class="tick"');
     for (const p of POINTS[id] as { x: number; y: number }[]) expect(desc, `${id}: (${p.x}, ${p.y})`).toContain(`(${p.x}, ${p.y})`);
   }
 });
