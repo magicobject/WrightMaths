@@ -76,9 +76,9 @@ function arc(p, cx, cy, r, a0, a1) {
 export const FIGURES = {
   // ---- lesson 1: vectors, column vectors, i and j ----
   'vectors-2d-equal': () => {
-    const p = vplane(0, 9, -1, 4);
+    const p = vplane(0, 9, 0, 4);
     arrow(p, { name: 'a1', from: [1, 1], vec: [3, 2], text: 'a', side: 1, off: 26 });
-    arrow(p, { name: 'a2', from: [5, 0], vec: [3, 2], text: 'a', side: 1, off: 26 });
+    arrow(p, { name: 'a2', from: [5, 1], vec: [3, 2], text: 'a', side: 1, off: 26 });
     return finish(p, { id: 'vectors-2d-equal', title: 'Two arrows for the same vector', desc: 'A grid with two arrows of the same length that point the same way, one higher and further left than the other. Both are labelled a. Each goes 3 across and 2 up.' });
   },
   'vectors-2d-components': () => {
@@ -92,7 +92,7 @@ export const FIGURES = {
   },
   'vectors-2d-ij': () => {
     const p = vplane(-1, 5, -3, 2, { width: 560 });
-    arrow(p, { name: 'v', from: [0, 0], vec: [3, -2], text: `3i ${MINUS} 2j`, side: -1, off: 36, ldx: -10 });
+    arrow(p, { name: 'v', from: [0, 0], vec: [3, -2], text: `3i ${MINUS} 2j`, side: 1, off: 36 });
     arrow(p, { name: 'i', from: [0, 0], vec: [1, 0], cls: 'curve-b', text: 'i', side: -1, off: 22 });
     arrow(p, { name: 'j', from: [0, 0], vec: [0, 1], cls: 'curve-b', text: 'j', side: -1, off: 22 });
     guide(p, 1, 0, 3, 0);
@@ -130,7 +130,7 @@ export const FIGURES = {
   // ---- lesson 3: magnitude, unit vectors and direction ----
   'vectors-2d-magnitude': () => {
     const p = vplane(0, 7, 0, 4);
-    arrow(p, { name: 'a', from: [0, 0], vec: [5, 2], text: `|a| = ${ROOT}29`, side: 1, off: 40, ldx: -30 });
+    arrow(p, { name: 'a', from: [0, 0], vec: [5, 2], text: `|a| = ${ROOT}29`, side: -1, off: 40 });
     guide(p, 0, 0, 5, 0);
     guide(p, 5, 0, 5, 2);
     p.text(2.5, 0, '5', { dy: -14 });
@@ -176,7 +176,7 @@ export const FIGURES = {
     arrow(p, { name: 'b', from: [0, 0], vec: [2, 5], text: 'b', side: -1, off: 26, t: 0.3 });
     arrow(p, { name: 'AB', from: [6, 2], vec: [-4, 3], cls: 'curve-b', text: `b ${MINUS} a`, side: 1, off: 34 });
     arrow(p, { name: 'MN', from: [3, 1], vec: [-2, 1.5], cls: 'curve-c', text: `${HALF}(b ${MINUS} a)`, side: 1, off: 36 });
-    p.point(0, 0, { label: 'O', dx: -14, dy: 30, anchor: 'end' });
+    p.point(0, 0);
     p.point(6, 2, { label: 'A', dx: 14, dy: 12 });
     p.point(2, 5, { label: 'B', dx: -4, dy: -16, anchor: 'end' });
     p.point(3, 1, { label: 'M', dx: 6, dy: 32 });
@@ -231,7 +231,7 @@ export const FIGURES = {
     arrow(p, { name: 'c', from: [0, 0], vec: [1, 3], text: 'c', side: 1, off: 26 });
     guide(p, 1, 3, 6, 4);
     guide(p, 5, 1, 6, 4);
-    p.point(0, 0, { label: 'O', dx: -12, dy: 28, anchor: 'end' });
+    p.point(0, 0);
     p.point(5, 1, { label: 'A', dx: 14, dy: 28 });
     p.point(6, 4, { label: 'B', dx: 14, dy: -12 });
     p.point(1, 3, { label: 'C', dx: -14, dy: -12, anchor: 'end' });
