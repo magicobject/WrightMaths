@@ -81,6 +81,27 @@ export const TERMS = [
     aka: ['area formula', 'half ab sin C'],
   },
   {
+    id: 'included-angle', term: 'Included angle', strand: 'al-trigonometry', level: 'Y1',
+    def: 'The angle between two given sides of a triangle, at the corner where those two sides meet.',
+    example: 'In triangle ABC, sides <em>b</em> and <em>c</em> meet at corner A. So angle A is the included angle of sides <em>b</em> and <em>c</em>. The {term:area-of-triangle-sine|area formula} and the {term:cosine-rule} both use an included angle.',
+    watch: 'The included angle is not opposite either of the two sides. The angle opposite side <em>b</em> is B, and B is not between <em>b</em> and <em>c</em>.',
+    flip: 'Two sides and their included angle fix a triangle completely. Two sides and an angle that is not between them may fit two triangles: see the {term:ambiguous-case}.',
+    see: ['cosine-rule', 'area-of-triangle-sine', 'ambiguous-case'],
+    aka: ['angle between two sides', 'SAS'],
+  },
+  {
+    id: 'bearing', term: 'Bearing', strand: 'al-trigonometry', level: 'Y1',
+    def: 'A direction given as an angle measured clockwise from north, written with three digits.',
+    example: [
+      'North is 000&deg;, east is 090&deg;, south is 180&deg; and west is 270&deg;. A bearing of 045&deg; points halfway between north and east.',
+      'If the bearing of B from A is 072&deg;, then the bearing of A from B is 072&deg; + 180&deg; = 252&deg;. A bearing is always measured at the place you are starting from.',
+    ],
+    watch: '"The bearing of B from A" is measured at A. The bearing of A from B is a different angle, 180&deg; away. Always draw a north line at each point you start from.',
+    flip: 'To turn a bearing round, add 180&deg; if the bearing is less than 180&deg;, and subtract 180&deg; if it is 180&deg; or more.',
+    see: ['sine-rule', 'cosine-rule'],
+    aka: ['compass bearing', 'three-figure bearing', 'back bearing'],
+  },
+  {
     id: 'unit-circle', term: 'Unit circle', strand: 'al-trigonometry', level: 'Y1',
     def: 'A circle with radius 1 and centre at the origin, used to define sine, cosine and tangent for angles of any size.',
     example: [
