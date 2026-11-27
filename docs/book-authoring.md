@@ -1,6 +1,6 @@
 # Writing for the GCSE book
 
-The book lives at `/books/gcse/` (hidden pilot: not linked anywhere, not in the sitemap, `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
+The book lives at `/books/gcse/`, public since 27 Nov 2026 (linked from the Books page; answer keys stay `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
 
 ## The one-paragraph version
 
@@ -97,6 +97,8 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 **Warm-ups and recaps.** One warm-up question at most; fold recap questions into `<details class="recap"><summary>Quick recap of earlier topics (skip if you are happy)</summary>...</details>` so the lesson comes first. A faded example's answer goes in `<details class="check-line"><summary>Check my answer</summary>...</details>` so it is not given away.
 
 **Higher-only sections** carry `<span class="chip chip-higher">Higher</span>` in their heading.
+
+**Higher-only questions and words** carry the chip at the start of the question text. Where there is no chip, put `data-tier="H"` on the `<div class="q">`, or wrap the Higher words of a sentence in `<span data-tier="H">...</span>`. The web page looks the same; the Foundation print book (`docs/print-edition.md`) cuts them out. A question graded 7 or more must carry one of these (a test checks). Phrases such as "Higher tier", "(Higher)" or "Higher only" in running text are treated as Higher markers by the print build; "Higher" in its everyday sense is fine.
 
 **Glossary examples** may be an array (one line each). Use the identity sign with `{term:identity|&equiv;}` only for Higher-tier notes.
 

@@ -3,7 +3,7 @@
 // Run `npm run build` after editing anything in templates/ or src/, and commit the
 // regenerated public/*.html — Cloudflare serves that directory as-is.
 //
-// The hidden GCSE book (public/books/gcse/) is built here too, from
+// The GCSE book (public/books/gcse/) is built here too, from
 // src/book/topics.mjs (topic graph) and src/book/glossary.mjs (terms); see
 // docs/book-authoring.md.
 
@@ -91,7 +91,7 @@ function renderBookContent(page, raw) {
 const bookTopicPages = liveTopics.map((t) => ({
   slug: `books/gcse/${t.id}`,
   bookTopic: t.id,
-  title: `${t.title} | GCSE Maths Book (pilot) | Wright Maths Tuition`,
+  title: `${t.title} | GCSE Maths Book | Wright Maths Tuition`,
   description: `GCSE maths: ${t.title}. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.`,
 }));
 
@@ -105,7 +105,8 @@ const keyPages = [...liveTopics, ...PAPERS].map((t) => ({
   book: 'key',
   keyTopic: t.id,
   base: '../../../',
-  title: `${t.title}: teacher answer key | GCSE Maths Book (pilot) | Wright Maths Tuition`,
+  robots: 'noindex, nofollow', // the answers stay out of search results
+  title: `${t.title}: teacher answer key | GCSE Maths Book | Wright Maths Tuition`,
   description: `Answers and mark schemes for every question on the ${t.title} page.`,
 }));
 
@@ -169,7 +170,6 @@ function searchPageFor(page, html) {
 const bookPageDefaults = {
   base: '../../',
   active: null,
-  robots: 'noindex, nofollow',
   extraCss: ['css/book.css'],
   extraBootScripts: ['js/book-boot.js'],
   extraModuleScripts: ['js/book.mjs', 'js/book-search-ui.mjs'],

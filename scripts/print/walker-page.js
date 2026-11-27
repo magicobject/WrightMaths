@@ -1,4 +1,4 @@
-(function walkPage() {
+(function walkPage(features = [], vocabulary = null) {
   // Runs inside the page (JavaScript off, print media, light scheme). It turns <main> into a JSON tree.
   // It handles a closed set of elements; anything else is recorded in `unknown`, and a test fails if that list is not empty.
   // Anything the existing @media print CSS hides (display:none) is skipped, so that stylesheet decides what is screen-only.
@@ -20,7 +20,21 @@
   const LIST_KINDS = ['facts', 'tick', 'traps', 'checklist', 'needs', 'steps', 'markscheme', 'method', 'legend'];
   const BLOCK_TAGS = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'dl', 'table', 'figure', 'div', 'section', 'aside', 'details', 'article', 'hr']);
 
+  // data-print-if="short-answers first-hint" keeps an element only when every named feature is in force for this build
+  // (the print-only front matter says what the build does: see featuresFor in scripts/print/render.mjs).
+  // A word outside the vocabulary (a typo) would silently drop content, so it goes to `unknown` and the build's empty-unknown checks fail.
+  const checked = new WeakSet();
+  const wanted = (el) => {
+    const words = (el.getAttribute('data-print-if') || '').split(/\s+/).filter(Boolean);
+    if (vocabulary && !checked.has(el)) {
+      checked.add(el);
+      for (const w of words) if (!vocabulary.includes(w)) unknown.push({ where: 'data-print-if', tag: tagOf(el), cls: `data-print-if=${w}`, text: (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60) });
+    }
+    return words.every((f) => features.includes(f));
+  };
+
   function skip(el) {
+    if (el.hasAttribute('data-print-if') && !wanted(el)) return true;
     if (SKIP_TAG.has(tagOf(el)) || el.hidden) return true;
     if (SKIP_CLASS.some((c) => has(el, c))) return true;
     return getComputedStyle(el).display === 'none';
@@ -56,7 +70,10 @@
       if (text) out.push({ t: text, ...fmt });
       return;
     }
-    if (tag === 'span' && has(el, 'frac')) {
+    if (tag === 'span' && el.getAttribute('data-tier') === 'H') {
+      // Higher-only words inside a sentence (data-tier="H"): printed in the Higher book, cut from the Foundation book
+      inline(el, { ...fmt, hi: true }, out);
+    } else if (tag === 'span' && has(el, 'frac')) {
       out.push({ x: 'frac', num: runsOf(childByClass(el, 'fn')), den: runsOf(childByClass(el, 'fd')) });
     } else if (tag === 'span' && /^column vector/.test(el.getAttribute('aria-label') || '')) {
       out.push({ x: 'cvec', rows: [...el.children].map(runsOf) });
@@ -160,7 +177,7 @@
     const qid = el.getAttribute('data-qid');
     if (qid && Number(qid.split('-').pop()) !== qIndex) unknown.push({ where: 'question number', tag: 'div', cls: 'q', text: `${qid} is question ${qIndex} in page order` });
     const type = el.getAttribute('data-type') || 'typed';
-    const q = { t: 'q', n: qIndex, qid, type, answers: el.getAttribute('data-answers') || '', marks: Number(el.getAttribute('data-marks') || 0) || 0, body: [], options: [], ladder: [], wrong: [], solution: [], tags: { from: [] }, screenOnly: '' };
+    const q = { t: 'q', n: qIndex, qid, type, higher: el.getAttribute('data-tier') === 'H', answers: el.getAttribute('data-answers') || '', marks: Number(el.getAttribute('data-marks') || 0) || 0, body: [], options: [], ladder: [], wrong: [], solution: [], tags: { from: [] }, screenOnly: '' };
     if (!['typed', 'mc', 'show'].includes(type)) q.screenOnly = `question type "${type}"`;
     else if (el.querySelector('input, textarea, canvas, iframe, [draggable]')) q.screenOnly = 'has a form control or drag target';
     else if (getComputedStyle(el).display === 'none') q.screenOnly = 'hidden in print';
