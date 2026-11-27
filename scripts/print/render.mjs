@@ -29,7 +29,7 @@ const MONO_BOX = { fill: 'F0F0F0', line: '555555' };
 
 // ---------- the context passed to every render function ----------
 
-export function makeContext({ chapters, glossaryById, mono = false, noHints = false, noSlips = false, elsewhere = new Map(), elsewhereLabel = '' }) {
+export function makeContext({ chapters, glossaryById, mono = false, noHints = false, noSlips = false, shortAnswers = false, firstHint = false, elsewhere = new Map(), elsewhereLabel = '' }) {
   return {
     chapters,
     byId: new Map(chapters.map((c) => [c.id, c])),
@@ -39,6 +39,8 @@ export function makeContext({ chapters, glossaryById, mono = false, noHints = fa
     mono,
     noHints,
     noSlips,
+    shortAnswers,
+    firstHint,
     deadRefs: [],
     figureLog: [],
     removed: [],
@@ -353,7 +355,7 @@ export function chapterBody(chapter, ctx) {
 }
 
 /** The answer line of a question as runs. Every type goes through keyAnswer, the rule the teacher keys use. */
-export function answerLineRuns(q) {
+export function answerLineRuns(q, { fallback = false } = {}) {
   const correct = q.options.findIndex((o) => o.correct);
   if (q.type === 'mc' && correct < 0) throw new Error(`question ${q.n} is multiple choice but no option has data-correct`);
   const { answer, also } = keyAnswer({
@@ -362,19 +364,50 @@ export function answerLineRuns(q) {
     answers: q.answers,
   });
   if (q.type === 'mc') return [{ t: `${optionLetter(correct)}  `, b: true }, ...q.options[correct].runs];
-  if (q.type === 'show') return [{ t: answer }];
+  // short answers: a written question with no mark scheme is followed by its worked solution, so the line must not point to a mark scheme
+  if (q.type === 'show') return [{ t: fallback ? 'Written answer: see the worked answer below.' : answer }];
   const runs = answerRuns(answer);
   if (also.length) runs.push({ t: '  (also accept: ' }, ...also.flatMap((a, i) => [...(i ? [{ t: ', ' }] : []), ...answerRuns(a)]), { t: ')' });
   return runs;
 }
 
+/**
+ * What prints under a question's answer line. Full: the worked solution (which holds the mark scheme). Short answers: the mark
+ * scheme only; a question whose answer is "see the mark scheme" but has none keeps its worked solution, so it still has an answer
+ * (`fallback`).
+ */
+export function solutionFor(q, shortAnswers) {
+  if (!shortAnswers) return { blocks: q.solution, fallback: false };
+  const scheme = q.solution.filter((b) => b.t === 'list' && b.kind === 'markscheme');
+  if (scheme.length) return { blocks: scheme, fallback: false };
+  const needsOne = q.type === 'show' && q.solution.length > 0;
+  return { blocks: needsOne ? q.solution : [], fallback: needsOne };
+}
+
+/** The ladder steps a build prints for a question: all of them, or only the first clue. */
+export const hintsFor = (q, firstHint) => (firstHint ? q.ladder.slice(0, 1) : q.ladder);
+
+/** Every word data-print-if may use; featuresFor picks the ones in force. The walker reports any other word. */
+export const FEATURE_VOCABULARY = ['hints', 'no-hints', 'all-hints', 'first-hint', 'full-answers', 'short-answers', 'slips', 'no-slips'];
+
+/** The words the front matter's data-print-if attributes ask for, from the options in force. */
+export function featuresFor({ noHints = false, noSlips = false, shortAnswers = false, firstHint = false }) {
+  return [
+    noHints ? 'no-hints' : 'hints',
+    ...(noHints ? [] : [firstHint ? 'first-hint' : 'all-hints']),
+    shortAnswers ? 'short-answers' : 'full-answers',
+    noSlips || shortAnswers ? 'no-slips' : 'slips',
+  ];
+}
+
 function answerParagraphs(q, ctx, label) {
   const small = { size: SMALL, after: 60 };
   const out = [];
-  const answerRunsOut = answerLineRuns(q);
-  out.push(para([new TextRun({ text: label, bold: true, size: BODY, font: FONT }), new TextRun({ text: '\t', size: BODY }), ...runsFor(answerRunsOut, ctx, { size: BODY })], { after: 40 }, { indentLeft: 600, hanging: 600, keepNext: q.solution.length > 0, keepLines: true }));
-  if (q.solution.length) out.push(...renderBlocks(q.solution, ctx, { ...small, indent: 600 }));
-  if (!ctx.noSlips) {
+  const { blocks: solution, fallback } = solutionFor(q, ctx.shortAnswers);
+  const answerRunsOut = answerLineRuns(q, { fallback });
+  out.push(para([new TextRun({ text: label, bold: true, size: BODY, font: FONT }), new TextRun({ text: '	', size: BODY }), ...runsFor(answerRunsOut, ctx, { size: BODY })], { after: 40 }, { indentLeft: 600, hanging: 600, keepNext: solution.length > 0, keepLines: true }));
+  if (solution.length) out.push(...renderBlocks(solution, ctx, { ...small, indent: 600 }));
+  if (!ctx.noSlips && !ctx.shortAnswers) {
     const slips = [
       ...q.wrong.map((w) => ({ label: w.if, runs: w.runs })),
       ...q.options.map((o, i) => ({ label: optionLetter(i), runs: [{ t: o.why }], skip: o.correct || !o.why })).filter((s) => !s.skip),
@@ -421,8 +454,8 @@ export function chapterHints(chapter, ctx) {
   for (const q of questionsOf(chapter.tree.blocks)) {
     if (q.screenOnly || !q.ladder.length) continue;
     const lead = [new TextRun({ text: `${chapter.num}.${q.n}`, bold: true, size: SMALL, font: FONT }), new TextRun({ text: '\t', size: SMALL })];
-    q.ladder.forEach((blocks, i) => {
-      out.push(...renderBlocks(blocks, ctx, { size: SMALL, after: 40, indent: 600 }, [...(i === 0 ? lead : [new TextRun({ text: '\t', size: SMALL })]), new TextRun({ text: `Hint ${i + 1}: `, bold: true, size: SMALL, font: FONT })]));
+    hintsFor(q, ctx.firstHint).forEach((blocks, i) => {
+      out.push(...renderBlocks(blocks, ctx, { size: SMALL, after: 40, indent: 600 }, [...(i === 0 ? lead : [new TextRun({ text: '\t', size: SMALL })]), new TextRun({ text: ctx.firstHint ? 'Hint: ' : `Hint ${i + 1}: `, bold: true, size: SMALL, font: FONT })]));
     });
   }
   return out;

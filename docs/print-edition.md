@@ -22,7 +22,7 @@ No third party is involved: everything runs locally, and the web pages and their
 | Front | Title page, copyright page, "How to use this book" (print version), Contents | New print-only source `src/print/gcse/front.html`. Title, author name, ISBN and copyright line are **placeholders for Greg**: never invented. |
 | Chapters | One chapter per live topic, in pyramid order (base layer first, as the "whole book" route) | Built topic pages |
 | Foundation and Stretch | The mixed review chapters | `foundation.html`, `stretch.html` |
-| Answers | Per chapter: every exercise's answer and worked solution, the faded-example blanks, exam mark schemes, and **Common slips** (each wrong-answer message as "If you got X: …") | Same `.q` markup |
+| Answers | Per chapter: every exercise's answer and worked solution, the faded-example blanks, exam mark schemes, and **Common slips** (each wrong-answer message as "If you got X: …"). In a tier book these are **short** (see "Short answers and one hint" below) | Same `.q` markup |
 | Hints | Per chapter: the "Help, I'm stuck!" ladders, numbered to match the questions | `ol.ladder` |
 | Glossary | Every term with its definition and example | `src/book/glossary.mjs` |
 | Index | A Word INDEX field built from XE entries: every glossary term at each page it is used (bold page where it is defined), topic titles and key ideas | `{term:}` usage plus headings |
@@ -181,3 +181,36 @@ The **page estimate** (`scripts/print/estimate.mjs`) is worked out from the word
 * `test-unit/print-tier.test.mjs`: the Higher rules (section by h2, h3, single question, nested sections, sentence cuts, words marked `data-tier`), the numbering, the chapter and glossary lists for each book, the front-matter wording and the command line.
 * `test/print-tier.spec.ts`: builds a small Foundation book and a small Higher book from the same pages. Foundation: no Higher label, section or question survives (found from the source, not from a list), no printed question is graded 7 to 9, no orphan "See Identity" sentence, every printed question has an answer numbered the same. Higher: the Higher material of each page is there and the Foundation material is not, the lead-in lines, "(in the Foundation book)", numbering, glossary. Together: every question is in exactly one book.
 * `test-unit/book-higher-tags.test.mjs`: a source lint. Any question graded 7 or more (outside `stretch.html`) must be marked Higher (chip, `data-tier="H"`, or in a Higher section), or the Foundation book would print it. Grade 6 is allowed because the Foundation paper is "grades 4 to 6".
+
+## Short answers and one hint (Greg, 26 Nov 2026)
+
+The first estimates for the two paperbacks were about 647 pages (Foundation) and 447 (Higher), mostly from the Answers and Hints. Greg decided to shorten them: **short answers plus one hint.** Both are the **default for a `--tier` book**; the whole book (no `--tier`) stays full unless asked.
+
+| Part | Short (tier default) | Full |
+| --- | --- | --- |
+| Answer line | the same: typed answer (and "also accept"), the letter and option text for multiple choice, "Written answer: see the mark scheme" for a "show that" question (all from `keyAnswer`) | same |
+| Worked solution | not printed | printed |
+| Mark scheme (exam questions) | printed | printed (inside the solution) |
+| "If you got ..." / "If you chose ..." lines | not printed | printed (unless `--no-slips`) |
+| "Now you finish it" gap answers and check lines | printed | printed |
+| Hints | the first clue of each ladder, labelled "Hint:" | the whole ladder, "Hint 1:", "Hint 2:" ... (unless `--no-hints`) |
+
+**The one fallback.** A "show that" or written question whose answer is "see the mark scheme" but which has no mark scheme keeps its worked solution, so it still has an answer. The report lists these as `shortAnswerFallbacks` (and `stats.shortAnswerFallbacks` is the count); it is for information, not a `--release` failure.
+
+**Switches.**
+
+```
+--short-answers   short answers      (default with --tier; opt in for the whole book)
+--first-hint      first hint only    (default with --tier; opt in for the whole book)
+--full-answers    full answers       (opt out, with --tier)
+--all-hints       the whole ladder   (opt out, with --tier)
+--no-hints, --no-slips                 work as before and combine with any of the above
+```
+
+With short answers the "If you got" lines are not printed, so `--no-slips` changes nothing there.
+
+**The front matter follows the options.** `src/print/gcse/front.html` carries `data-print-if="word word"` on the paragraphs, list items and phrases that depend on them; the walker keeps an element only when every word is in force. The words come from `featuresFor` in `scripts/print/render.mjs`: `hints` or `no-hints`; `all-hints` or `first-hint`; `full-answers` or `short-answers`; `slips` or `no-slips`. So the "How to use this book" pages say "read the hint for that question" in the short book and "read Hint 1 only ... Hint 2" in the full one, and only mention the worked answer and the "If you got" lines when they are printed. `frontNeedsEdit` in the report still catches a mention the variants missed. The front matter says nothing about the website, which is still hidden.
+
+**The page estimate** counts lines as well as words for the Answers and Hints, because a short answer is one short line and fills a page by lines, not words (`LINES_PER_PAGE`, 42, in `scripts/print/estimate.mjs`). It is still a planning figure, good to about 20%; the real count is the exported PDF.
+
+**Tests.** `test-unit/print-build.test.mjs` (the answer line per question type, the mark-scheme and fallback rule, the first-hint rule, the option defaults, the front-matter features, the line-based estimate), `test/print-walker.spec.ts` (`data-print-if`, on `test/fixtures/print-if.html`) and `test/print-short.spec.ts` (builds small short and full tier books: no worked-solution text or "If you got" in the Answers, one hint per hinted question, every question answered once, the front matter accurate, and the opt-out flags restoring the old output).
