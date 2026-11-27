@@ -1,0 +1,1143 @@
+<main class="book strand-al-vectors" data-book-page="topic" data-topic="vectors-2d">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Vectors &middot; Year 1</span>
+      <h1>Vectors in two dimensions</h1>
+      <p class="lead">A vector is a journey: how far across and how far up or down. It is also an arrow: a length and a direction. This page shows you both views and how to move between them. You will write vectors as columns and in i, j notation. You will add and subtract them, find their magnitude and direction, and use position vectors. Then you will use vectors to prove that lines are parallel, that points are collinear and that a point divides a line in a given ratio.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Vectors in three dimensions, which adds a third direction to everything here. It also helps in Straight lines, because the vector between two points gives the gradient and the distance. Any geometry question that says &ldquo;prove&rdquo; or &ldquo;show that&rdquo; can use a vector proof.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Vectors in two dimensions</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses GCSE vectors, Pythagoras&rsquo; theorem and right-angled trigonometry. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+    <div class="key"><p><b>How vectors are written.</b> In print a vector is a bold letter, such as <b>a</b>. By hand, underline it: a with a line under it. The vector from point A to point B is written {m:vec(AB)}. A column vector is written {m:col(3, -2)}: 3 across, then 2 down. The size of <b>a</b> is written |<b>a</b>| and said &ldquo;the magnitude of a&rdquo;. When you type an answer, type a vector as a pair with the across number first, like (3, -2), or in i, j notation, like 3i-2j.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-vectors-and-column-vectors">Skip to the lesson</a></p>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Work out {m:5-(-3)}.</p>
+      <ol class="ladder"><li>Subtracting a negative number is the same as adding the positive number.</li><li>{m:5-(-3)=5+3}.</li></ol>
+      <ul class="wrong"><li data-if="2">You worked out {m:5-3}. The number you take away is {m:-3}, so you add 3.</li></ul>
+      <div class="solution"><p>{m:5-(-3)=5+3=8}. You will use this every time you subtract coordinates.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">A right-angled triangle has two short sides of length 6 and 8. Find the length of the longest side.</p>
+      <ol class="ladder"><li>Use Pythagoras&rsquo; theorem: the longest side squared is the sum of the other two squared.</li><li>Work out {m:6^2+8^2}, then take the square root.</li></ol>
+      <ul class="wrong"><li data-if="14">You added the two lengths. Square each one first: {m:36+64}.</li><li data-if="100">That is the square of the longest side. Take the square root to get the length.</li></ul>
+      <div class="solution"><p>{m:6^2+8^2=36+64=100}, and {m:sqrt(100)=10}.</p></div>
+    </div>
+    <div class="q" data-answers="36.9" data-mode="value">
+      <p class="qtext">An acute angle {m:theta} has {m:tan theta=frac(3, 4)}. Find {m:theta} to 1 decimal place.</p>
+      <ol class="ladder"><li>Use the inverse tangent button on your calculator, in degrees.</li><li>Work out {m:tan^(-1)(0.75)}.</li></ol>
+      <ul class="wrong"><li data-if="53.1">You used {m:frac(4, 3)}. The tangent is the number on top, 3, divided by the number below, 4.</li></ul>
+      <div class="solution"><p>{m:theta=tan^(-1)(frac(3, 4))=36.87}, which is 36.9 to 1 decimal place.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="8x+5" data-mode="exact">
+      <p class="qtext">Simplify {m:3(2x-1)+2(x+4)}. Type it like 5x+2.</p>
+      <ol class="ladder"><li>Expand each bracket first.</li><li>{m:3(2x-1)=6x-3} and {m:2(x+4)=2x+8}.</li><li>Collect the x terms and the numbers.</li></ol>
+      <ul class="wrong"><li data-if="8x+11">You wrote {m:+3} instead of {m:-3}. Multiply {m:3*(-1)}, which is {m:-3}.</li></ul>
+      <div class="solution"><p>{m:6x-3+2x+8=8x+5}.</p></div>
+    </div>
+    <div class="q" data-answers="18" data-mode="value">
+      <p class="qtext">Share 30 in the ratio 2 : 3. Find the larger share.</p>
+      <ol class="ladder"><li>Add the parts of the ratio: {m:2+3}.</li><li>One part is 30 divided by that total.</li><li>The larger share is 3 parts.</li></ol>
+      <ul class="wrong"><li data-if="12">That is the smaller share, 2 parts. The question asks for the larger one.</li><li data-if="20">You took {m:frac(2, 3)} of 30. There are 5 parts in all, so one part is {m:30/5}.</li></ul>
+      <div class="solution"><p>{m:2+3=5} parts, so one part is {m:30/5=6}. The larger share is {m:3*6=18}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Vectors and column vectors</h2>
+    <p>A {term:scalar} is a number with size only. A {term:vector} has a size and a direction. You draw a vector as an arrow. The length of the arrow shows the size, and the arrow points the way.</p>
+    <p>Where you draw the arrow does not matter. Two arrows with the same length and the same direction are the same vector.</p>
+    <figure class="figure-lg">{fig:vectors-2d-equal}<figcaption>Look at the two arrows. They start at different points, but both go 3 across and 2 up. They are the same vector, <b>a</b>.</figcaption></figure>
+    <p>A {term:column-vector|column vector} writes the journey as two numbers in brackets. The top number is the move across. The bottom number is the move up. A negative number means left or down. These two numbers are the {term:component|components} of the vector.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a vector is a journey. It says how to get there, not where you start.</p>
+      <ul class="tick">
+        <li>{m:col(4, -2)} means 4 across to the right and 2 down.</li>
+        <li>The vector does not change when you move the arrow to a new starting point.</li>
+        <li>To find where a journey ends, add the vector to the starting point.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: reading a vector from an arrow</h3>
+      <p>Write the vector <b>a</b> as a column vector.</p>
+      <ol class="steps">
+        <li>The arrow goes from the point {m:(1, 4)} to the point {m:(5, 2)}.</li>
+        <li>Across: {m:5-1=4}. The arrow goes to the right, so the top number is {m:4}.</li>
+        <li>Up or down: {m:2-4=-2}. The arrow goes down, so the bottom number is {m:-2}.</li>
+        <li>So <b>a</b> = {m:col(4, -2)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:vectors-2d-components}<figcaption>Look at the dashed lines. The arrow is 4 across and 2 down, so the column vector is {m:col(4, -2)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where does a journey end?</h3>
+      <p>A point starts at {m:(2, -1)} and moves by {m:col(-3, 4)}. Find where it finishes.</p>
+      <ol class="steps">
+        <li>Add the across move to the x-coordinate: {m:2+(-3)=-1}.</li>
+        <li>Add the up move to the y-coordinate: {m:-1+4=3}.</li>
+        <li>The point finishes at {m:(-1, 3)}.</li>
+      </ol>
+      <!-- No figure: the working is two additions. The picture of a journey is in the first worked example above. -->
+    </div>
+    <p>There is a second way to write a vector. The vector {m:col(1, 0)} is called <b>i</b>. It goes 1 across. The vector {m:col(0, 1)} is called <b>j</b>. It goes 1 up. This is {term:i-j-notation|i and j notation}. Every vector in two dimensions is some number of <b>i</b> plus some number of <b>j</b>.</p>
+    <figure class="figure-lg">{fig:vectors-2d-ij}<figcaption>Look at the long arrow. It is 3 steps of <b>i</b> to the right, then 2 steps down. Going down is a negative number of <b>j</b>. So the vector is 3<b>i</b> &minus; 2<b>j</b>.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the number in front of <b>i</b> is the top of the column. The number in front of <b>j</b> is the bottom.</p>
+      <p>{m:col(3, -2)} = 3<b>i</b> &minus; 2<b>j</b>. Do not leave out the letters: write 3<b>i</b> &minus; 2<b>j</b>, not 3 &minus; 2.</p>
+    </div>
+    <p>The {term:negative-vector|negative of a vector} has the same length and the opposite direction. You change the sign of both components. If <b>a</b> = {m:col(4, -2)}, then &minus;<b>a</b> = {m:col(-4, 2)}.</p>
+    <div class="worked">
+      <h3>Worked example: column vectors and i, j</h3>
+      <p>Write {m:col(-4, 1)} in i, j notation. Then write {m:col(0, 5)} in i, j notation.</p>
+      <ol class="steps">
+        <li>The top number is {m:-4}, so there are {m:-4} lots of <b>i</b>. The bottom number is 1, so there is 1 lot of <b>j</b>.</li>
+        <li>{m:col(-4, 1)} = &minus;4<b>i</b> + <b>j</b>. A coefficient of 1 is not written.</li>
+        <li>For {m:col(0, 5)}, the top number is 0, so there is no <b>i</b> part. It is 5<b>j</b>.</li>
+      </ol>
+      <!-- No figure: this is a change of notation, and the picture of i and j is above. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:col(-2, 5)} in i, j notation.</p>
+      <ol class="steps">
+        <li>The top number gives the <b>i</b> part: <span class="blank" data-answers="-2">___</span><b>i</b>.</li>
+        <li>The bottom number gives the <b>j</b> part: so the vector is {m:-2}<b>i</b> + <span class="blank" data-answers="5">___</span><b>j</b>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:col(-2, 5)} = &minus;2<b>i</b> + 5<b>j</b>. Check: the <b>i</b> part is the top number and the <b>j</b> part is the bottom number.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: vectors and column vectors</h2>
+    <div class="q" data-answers="3,-4" data-mode="exact">
+      <p class="qtext">Write the vector <b>a</b> shown as a column vector. Type it like (3, -2), with the across number first.</p>
+      <figure class="qfig-lg">{fig:vectors-2d-q-read}</figure>
+      <ol class="ladder"><li>Count how far the arrow goes across. Does it go right or left?</li><li>Count how far it goes up or down. Does it go up or down?</li></ol>
+      <ul class="wrong">
+        <li data-if="-3,4">That is the vector in the opposite direction, from the head back to the tail. Read the journey from the tail to the head.</li>
+        <li data-if="3,4">The arrow goes down, so the bottom number is negative.</li>
+      </ul>
+      <div class="solution"><p>The arrow starts at {m:(1, 5)} and ends at {m:(4, 1)}. Across: {m:4-1=3}. Up: {m:1-5=-4}. So <b>a</b> = {m:col(3, -4)}, typed (3, -4).</p></div>
+    </div>
+    <div class="q" data-answers="-5i+2j;2j-5i" data-mode="exact">
+      <p class="qtext">Write {m:col(-5, 2)} in i, j notation. Type it like 3i-2j.</p>
+      <ol class="ladder"><li>The top number goes with i. The bottom number goes with j.</li><li>The top number is {m:-5}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5i+2j;2j+5i">The top number is {m:-5}, so the i part is negative: {m:-5}i.</li>
+        <li data-if="2i-5j;-5j+2i">You swapped the two numbers. The top number, {m:-5}, goes with i.</li>
+      </ul>
+      <div class="solution"><p>The top number is {m:-5} and the bottom number is 2. So {m:col(-5, 2)} = &minus;5<b>i</b> + 2<b>j</b>.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the same vector as {m:col(4, -1)}?</p>
+      <ul class="options">
+        <li data-correct>The vector 4<b>i</b> &minus; <b>j</b></li>
+        <li data-why="The bottom number is &minus;1, so the j part is &minus;j. This answer has +j, which is the vector (4, 1).">The vector 4<b>i</b> + <b>j</b></li>
+        <li data-why="This swaps the two numbers. The top number, 4, goes with i. This answer is the vector (&minus;1, 4).">The vector &minus;<b>i</b> + 4<b>j</b></li>
+      </ul>
+      <ol class="ladder"><li>The top number goes with <b>i</b>.</li><li>The bottom number is negative. What does that make the <b>j</b> part?</li></ol>
+      <div class="solution"><p>The top number is 4, so the <b>i</b> part is 4<b>i</b>. The bottom number is {m:-1}, so the <b>j</b> part is &minus;<b>j</b>. Together: 4<b>i</b> &minus; <b>j</b>.</p></div>
+    </div>
+    <div class="q" data-answers="-1,3;-1, 3" data-mode="exact">
+      <p class="qtext">A point starts at {m:(2, -1)}. It moves by {m:col(-3, 4)}. Find its new position. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Add the vector to the starting point.</li><li>x: {m:2+(-3)}. y: {m:-1+4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5,-5">You subtracted the vector. A move adds the vector to the start: {m:2+(-3)} and {m:-1+4}.</li>
+        <li data-if="-3,4">That is the vector itself. Add it to the starting point.</li>
+      </ul>
+      <div class="solution"><p>x: {m:2+(-3)=-1}. y: {m:-1+4=3}. The new position is {m:(-1, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="-7i+3j;3j-7i" data-mode="exact">
+      <p class="qtext">The vector <b>p</b> is 7<b>i</b> &minus; 3<b>j</b>. Write &minus;<b>p</b> in i, j notation. Type it like 3i-2j.</p>
+      <ol class="ladder"><li>The negative of a vector has the opposite direction.</li><li>Change the sign of both parts.</li></ol>
+      <ul class="wrong">
+        <li data-if="-7i-3j;-3j-7i">You changed the sign of the i part only. The negative reverses both parts.</li>
+        <li data-if="7i+3j;3j+7i">You changed the sign of the j part only. The negative reverses both parts.</li>
+      </ul>
+      <div class="solution"><p>&minus;<b>p</b> = &minus;(7<b>i</b> &minus; 3<b>j</b>) = &minus;7<b>i</b> + 3<b>j</b>. Both signs change.</p></div>
+    </div>
+    <div class="q" data-answers="4,3;4, 3" data-mode="exact">
+      <p class="qtext">The vector from P to Q is 3<b>i</b> + 2<b>j</b>. The point P is {m:(1, 1)}. Find the coordinates of Q. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Q is where you finish. Add the vector to P.</li><li>x: {m:1+3}. y: {m:1+2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,2">That is the vector, not the point. Add the vector to P.</li>
+        <li data-if="-2,-1">You subtracted the vector from P. The journey goes from P to Q, so add it.</li>
+      </ul>
+      <div class="solution"><p>Q = P + the vector: x is {m:1+3=4} and y is {m:1+2=3}. So Q is {m:(4, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Adding, subtracting and multiplying vectors</h2>
+    <p>To add two vectors, add their components. Add the tops, then add the bottoms. Drawn as arrows, this is the {term:vector-addition|triangle law}. Start the second arrow at the head of the first. The sum goes from the start of the first to the end of the second. The sum is also called the {term:resultant}.</p>
+    <figure class="figure-lg">{fig:vectors-2d-triangle}<figcaption>Look at the two solid arrows. <b>a</b> goes 3 across and 1 up. <b>b</b> starts where <b>a</b> ends and goes 2 across and 3 up. The dashed arrow is <b>a</b> + <b>b</b>. It goes 5 across and 4 up.</figcaption></figure>
+    <p>If both vectors start at the same point, use the {term:parallelogram-law|parallelogram law}. Complete the parallelogram. The diagonal from the common point is the sum.</p>
+    <figure class="figure-lg">{fig:vectors-2d-parallelogram}<figcaption>Look at the dotted arrows. They are copies of <b>a</b> and <b>b</b> that complete the parallelogram. Both routes round it end at the same corner, so <b>a</b> + <b>b</b> = <b>b</b> + <b>a</b>.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: adding</h3>
+      <p>Find <b>a</b> + <b>b</b> when <b>a</b> = {m:col(3, 1)} and <b>b</b> = {m:col(2, 3)}.</p>
+      <ol class="steps">
+        <li>Add the tops: {m:3+2=5}.</li>
+        <li>Add the bottoms: {m:1+3=4}.</li>
+        <li>So <b>a</b> + <b>b</b> = {m:col(5, 4)}. This is the dashed arrow in the figure above.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: adding in i, j notation</h3>
+      <p>Find <b>a</b> + <b>b</b> when <b>a</b> = 3<b>i</b> + 2<b>j</b> and <b>b</b> = &minus;<b>i</b> + 4<b>j</b>.</p>
+      <ol class="steps">
+        <li>Add the <b>i</b> parts: {m:3+(-1)=2}.</li>
+        <li>Add the <b>j</b> parts: {m:2+4=6}.</li>
+        <li>So <b>a</b> + <b>b</b> = 2<b>i</b> + 6<b>j</b>.</li>
+      </ol>
+      <!-- No figure: this is the same method as the example above, in the other notation. -->
+    </div>
+    <p>To subtract a vector, take away its components. This is the same as adding the negative of the vector. {term:vector-subtraction|Subtracting} follows the same order as numbers: <b>a</b> &minus; <b>b</b> means start with <b>a</b>.</p>
+    <div class="worked">
+      <h3>Worked example: subtracting</h3>
+      <p>Find <b>a</b> &minus; <b>b</b> when <b>a</b> = {m:col(6, 1)} and <b>b</b> = {m:col(2, -3)}.</p>
+      <ol class="steps">
+        <li>Subtract the tops: {m:6-2=4}.</li>
+        <li>Subtract the bottoms: {m:1-(-3)=4}. Subtracting {m:-3} adds 3.</li>
+        <li>So <b>a</b> &minus; <b>b</b> = {m:col(4, 4)}.</li>
+      </ol>
+      <!-- No figure here: the picture of a subtraction, the vector from one arrow head to another, is the figure in lesson 4. -->
+    </div>
+    <p>A {term:scalar-multiple|scalar multiple} is a vector times a number. Multiply every component by the number. A positive number changes the length and keeps the direction. A negative number also reverses the direction.</p>
+    <figure class="figure-lg">{fig:vectors-2d-scalar}<figcaption>Look at the three arrows. 2<b>a</b> points the same way as <b>a</b> and is twice as long. The dashed arrow &minus;<b>a</b> is the same length as <b>a</b> and points the opposite way.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> two vectors are {term:parallel-vectors|parallel} when one is a scalar multiple of the other. The components must be in the same ratio.</p>
+      <p>If <b>b</b> = k<b>a</b>, the vectors are parallel. If k is negative, they point in opposite directions.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: are they parallel?</h3>
+      <p>Show that {m:col(2, -3)} and {m:col(-6, 9)} are parallel.</p>
+      <ol class="steps">
+        <li>Look for a number k with {m:-6=2k}. This gives {m:k=-3}.</li>
+        <li>Check the bottom: {m:-3*(-3)=9}. It matches.</li>
+        <li>So {m:col(-6, 9)} = {m:-3} times {m:col(2, -3)}. The vectors are parallel, and they point in opposite directions.</li>
+      </ol>
+      <!-- No figure: the scalar multiples figure above shows parallel arrows. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding a missing number</h3>
+      <p>The vector {m:col(p, 6)} is parallel to {m:col(2, 3)}. Find p.</p>
+      <ol class="steps">
+        <li>Compare the bottoms: {m:6=2*3}. The scale factor is 2.</li>
+        <li>The top must scale the same way: {m:p=2*2=4}.</li>
+        <li>Check: {m:col(4, 6)} = 2{m:col(2, 3)}.</li>
+      </ol>
+      <!-- No figure: the working is one scale factor. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: combining</h3>
+      <p>Given <b>a</b> = 3<b>i</b> + 2<b>j</b> and <b>b</b> = <b>i</b> &minus; 4<b>j</b>, find 2<b>a</b> &minus; 3<b>b</b>.</p>
+      <ol class="steps">
+        <li>Multiply: 2<b>a</b> = 6<b>i</b> + 4<b>j</b>, and 3<b>b</b> = 3<b>i</b> &minus; 12<b>j</b>.</li>
+        <li>Subtract the <b>i</b> parts: {m:6-3=3}.</li>
+        <li>Subtract the <b>j</b> parts: {m:4-(-12)=16}.</li>
+        <li>So 2<b>a</b> &minus; 3<b>b</b> = 3<b>i</b> + 16<b>j</b>.</li>
+      </ol>
+      <!-- No figure: this is arithmetic on components. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Given <b>a</b> = 2<b>i</b> + <b>j</b> and <b>b</b> = &minus;<b>i</b> + 3<b>j</b>, find <b>a</b> + 3<b>b</b>.</p>
+      <ol class="steps">
+        <li>3<b>b</b> = <span class="blank" data-answers="-3">___</span><b>i</b> + <span class="blank" data-answers="9">___</span><b>j</b>.</li>
+        <li>Add <b>a</b>: <b>a</b> + 3<b>b</b> = <span class="blank" data-answers="-1">___</span><b>i</b> + <span class="blank" data-answers="10">___</span><b>j</b>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>3<b>b</b> = &minus;3<b>i</b> + 9<b>j</b>. Then <b>a</b> + 3<b>b</b> = (2 &minus; 3)<b>i</b> + (1 + 9)<b>j</b> = &minus;<b>i</b> + 10<b>j</b>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: adding, subtracting and multiplying</h2>
+    <div class="q" data-answers="2,3;2, 3" data-mode="exact">
+      <p class="qtext">Find {m:col(3, -2)} + {m:col(-1, 5)}. Type your answer like (3, -2).</p>
+      <ol class="ladder"><li>Add the tops, then add the bottoms.</li><li>{m:3+(-1)} and {m:-2+5}.</li></ol>
+      <ul class="wrong">
+        <li data-if="4,-7;4, -7">You subtracted the second vector. The question adds it.</li>
+        <li data-if="4,3;4, 3">You subtracted the tops: {m:3-(-1)}. Add them: {m:3+(-1)=2}.</li>
+      </ul>
+      <div class="solution"><p>Tops: {m:3+(-1)=2}. Bottoms: {m:-2+5=3}. The sum is {m:col(2, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="3,4;3, 4" data-mode="exact">
+      <p class="qtext">In the triangle, the vector from A to B is {m:col(4, 1)} and the vector from B to C is {m:col(-1, 3)}. Find the vector from A to C. Type it like (3, -2).</p>
+      <figure class="qfig-lg">{fig:vectors-2d-q-triangle}</figure>
+      <ol class="ladder"><li>The journey from A to C goes by way of B.</li><li>Add the two vectors.</li></ol>
+      <ul class="wrong">
+        <li data-if="5,-2;5, -2">You subtracted. The journey A to B to C adds the two vectors.</li>
+        <li data-if="-3,-4;-3, -4">That is the vector from C to A, the journey backwards. The question asks for A to C.</li>
+      </ul>
+      <div class="solution"><p>The vector from A to C is the vector from A to B plus the vector from B to C: {m:col(4, 1)} + {m:col(-1, 3)} = {m:col(3, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2i+6j;6j-2i" data-mode="exact">
+      <p class="qtext">Given <b>p</b> = 2<b>i</b> + 5<b>j</b> and <b>q</b> = 4<b>i</b> &minus; <b>j</b>, find <b>p</b> &minus; <b>q</b>. Type it like 3i-2j.</p>
+      <ol class="ladder"><li>Subtract the i parts, then the j parts.</li><li>The j parts: {m:5-(-1)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="6i+4j;4j+6i">That is <b>p</b> + <b>q</b>. The question asks for <b>p</b> &minus; <b>q</b>.</li>
+        <li data-if="-2i+4j;4j-2i">The j parts give {m:5-(-1)}, and taking away {m:-1} adds 1. So {m:5+1=6}, not {m:5-1=4}.</li>
+      </ul>
+      <div class="solution"><p>i parts: {m:2-4=-2}. j parts: {m:5-(-1)=6}. So <b>p</b> &minus; <b>q</b> = &minus;2<b>i</b> + 6<b>j</b>.</p></div>
+    </div>
+    <div class="q" data-answers="8,-12;8, -12" data-mode="exact">
+      <p class="qtext">Given <b>a</b> = {m:col(2, -3)}, find 4<b>a</b>. Type it like (3, -2).</p>
+      <ol class="ladder"><li>Multiply both components by 4.</li><li>{m:4*2} and {m:4*(-3)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="8,-3;8, -3">You multiplied only the top number. Multiply both components.</li>
+        <li data-if="6,1;6, 1">You added 4 to each component. A scalar multiple multiplies.</li>
+      </ul>
+      <div class="solution"><p>{m:4*2=8} and {m:4*(-3)=-12}. So 4<b>a</b> = {m:col(8, -12)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these vectors is parallel to {m:col(3, -6)}?</p>
+      <ul class="options">
+        <li data-correct>The vector {m:col(-1, 2)}</li>
+        <li data-why="The components of the first vector are in the ratio 1 : &minus;2. These are in the ratio 1 : 2, so this is not a multiple of it.">The vector {m:col(1, 2)}</li>
+        <li data-why="This swaps the sizes of the two numbers. The ratio is 2 : &minus;1, but the first vector has the ratio 1 : &minus;2.">The vector {m:col(6, -3)}</li>
+      </ul>
+      <ol class="ladder"><li>Find a number k that turns 3 into the top of the option.</li><li>Check that the same k turns {m:-6} into the bottom.</li></ol>
+      <div class="solution"><p>{m:col(-1, 2)} = {m:-frac(1, 3)} times {m:col(3, -6)}: {m:3*(-frac(1, 3))=-1} and {m:-6*(-frac(1, 3))=2}. The other two options are not multiples.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">The vector {m:col(p, -9)} is parallel to {m:col(4, 6)}. Find p.</p>
+      <ol class="ladder"><li>Find the number that turns 6 into {m:-9}.</li><li>The scale factor is {m:-9/6}. It is negative.</li><li>Multiply 4 by the same scale factor.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">The scale factor is {m:-1.5}, not 1.5. The bottom changes sign, so the top must change sign too.</li>
+      </ul>
+      <div class="solution"><p>{m:-9=6*(-1.5)}, so the scale factor is {m:-1.5}. Then {m:p=4*(-1.5)=-6}. Check: {m:col(-6, -9)} = {m:-1.5} times {m:col(4, 6)}.</p></div>
+    </div>
+    <div class="q" data-answers="4i+2j;2j+4i" data-mode="exact">
+      <p class="qtext">Given <b>a</b> = 3<b>i</b> &minus; <b>j</b> and <b>b</b> = &minus;2<b>i</b> + 4<b>j</b>, find 2<b>a</b> + <b>b</b>. Type it like 3i-2j.</p>
+      <ol class="ladder"><li>Find 2<b>a</b> first: double both parts.</li><li>2<b>a</b> = 6<b>i</b> &minus; 2<b>j</b>.</li><li>Then add <b>b</b>.</li></ol>
+      <ul class="wrong">
+        <li data-if="4i+3j;3j+4i">You doubled the i part only. 2<b>a</b> = 6<b>i</b> &minus; 2<b>j</b>, so the j parts are {m:-2+4}.</li>
+        <li data-if="i+3j;3j+i">That is <b>a</b> + <b>b</b>. You did not double <b>a</b>.</li>
+      </ul>
+      <div class="solution"><p>2<b>a</b> = 6<b>i</b> &minus; 2<b>j</b>. Adding <b>b</b>: i parts {m:6+(-2)=4}, j parts {m:-2+4=2}. So 2<b>a</b> + <b>b</b> = 4<b>i</b> + 2<b>j</b>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Magnitude, unit vectors and direction</h2>
+    <p>The {term:magnitude} of a vector is its length. Write it |<b>a</b>|. The components of a vector are the two short sides of a right-angled triangle. The vector is the longest side. So you use Pythagoras&rsquo; theorem.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if <b>a</b> = {m:col(x, y)}, then |<b>a</b>| = {m:sqrt(x^2+y^2)}.</p>
+      <p>The signs disappear when you square. A magnitude is never negative.</p>
+    </div>
+    <figure class="figure-lg">{fig:vectors-2d-magnitude}<figcaption>Look at the right-angled triangle. The sides are 5 and 2, and the arrow <b>a</b> is the longest side. Its length is the square root of {m:5^2+2^2}, which is root 29.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: an exact magnitude</h3>
+      <p>Find the exact magnitude of <b>a</b> = {m:col(5, 2)}. Then give it to 3 significant figures.</p>
+      <ol class="steps">
+        <li>|<b>a</b>| = {m:sqrt(5^2+2^2)=sqrt(25+4)=sqrt(29)}.</li>
+        <li>{m:sqrt(29)~=5.385164}, so to 3 significant figures it is 5.39.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative component</h3>
+      <p>Find |<b>a</b>| when <b>a</b> = {m:col(-4, 3)}.</p>
+      <ol class="steps">
+        <li>Square each component: {m:(-4)^2=16} and {m:3^2=9}. The square of a negative number is positive.</li>
+        <li>|<b>a</b>| = {m:sqrt(16+9)=sqrt(25)=5}.</li>
+      </ol>
+      <!-- No figure: the triangle in the figure above shows the method, and here the sides are 4 and 3. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a root that simplifies</h3>
+      <p>Find the exact magnitude of 2<b>i</b> &minus; 6<b>j</b>.</p>
+      <ol class="steps">
+        <li>|2<b>i</b> &minus; 6<b>j</b>| = {m:sqrt(2^2+(-6)^2)=sqrt(4+36)=sqrt(40)}.</li>
+        <li>{m:sqrt(40)=sqrt(4)*sqrt(10)=2sqrt(10)}. To 3 significant figures this is 6.32.</li>
+      </ol>
+      <!-- No figure: this repeats the method of the first example. -->
+    </div>
+    <p>A {term:unit-vector} has magnitude 1. To find the unit vector in the direction of <b>a</b>, divide <b>a</b> by its magnitude. It is written {m:hat(a)}, read &ldquo;a hat&rdquo;.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the unit vector in the direction of <b>a</b> is {m:hat(a)}, read &ldquo;a hat&rdquo;. It is <b>a</b> divided by |<b>a</b>|. Any vector is its magnitude times its unit vector.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a unit vector</h3>
+      <p>Find the unit vector in the direction of {m:col(-5, 12)}.</p>
+      <ol class="steps">
+        <li>The magnitude is {m:sqrt(25+144)=sqrt(169)=13}.</li>
+        <li>Divide both components by 13: the unit vector is {m:col(-frac(5, 13), frac(12, 13))}.</li>
+        <li>Check: {m:(frac(5, 13))^2+(frac(12, 13))^2=frac(25+144, 169)=1}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a vector of a given length</h3>
+      <p>Find a vector of magnitude 10 in the direction of {m:col(3, 4)}.</p>
+      <ol class="steps">
+        <li>The magnitude of {m:col(3, 4)} is 5. The unit vector is {m:col(frac(3, 5), frac(4, 5))}.</li>
+        <li>Multiply the unit vector by 10: {m:10*col(frac(3, 5), frac(4, 5))=col(6, 8)}.</li>
+        <li>Check: {m:sqrt(36+64)=10}.</li>
+      </ol>
+    </div>
+    <p>The {term:direction-of-a-vector|direction} of a vector is the angle it makes with the positive x-axis. You measure it anticlockwise. Sketch the vector first. Then use the right-angled triangle that its components make.</p>
+    <figure class="figure-lg">{fig:vectors-2d-direction}<figcaption>Look at the arrow <b>a</b>, which goes 3 to the left and 4 up. The angle {m:theta} is measured anticlockwise from the positive x-axis, so it is more than 90&deg;.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> find the acute angle in the triangle with {m:tan^(-1)(frac(abs(y), abs(x)))}. Then use your sketch to turn it into the angle from the positive x-axis.</p>
+      <ul class="tick">
+        <li>Up and right: the acute angle is the direction.</li>
+        <li>Up and left: the direction is {m:180deg} minus the acute angle.</li>
+        <li>Down and left: the direction is {m:180deg} plus the acute angle.</li>
+        <li>Down and right: the direction is {m:360deg} minus the acute angle.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: up and left</h3>
+      <p>Find the direction of {m:col(-3, 4)}, measured anticlockwise from the positive x-axis. Give it to 1 decimal place.</p>
+      <ol class="steps">
+        <li>The vector goes up and left, so the angle is between {m:90deg} and {m:180deg}.</li>
+        <li>The acute angle in the triangle is {m:tan^(-1)(frac(4, 3))=53.13deg}.</li>
+        <li>The direction is {m:180deg-53.13deg=126.87deg}, which is {m:126.9deg} to 1 decimal place.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: down and left</h3>
+      <p>Find the direction of {m:col(-5, -2)}, measured anticlockwise from the positive x-axis. Give it to 1 decimal place.</p>
+      <ol class="steps">
+        <li>The vector goes down and left, so the angle is between {m:180deg} and {m:270deg}.</li>
+        <li>The acute angle is {m:tan^(-1)(frac(2, 5))=21.80deg}.</li>
+        <li>The direction is {m:180deg+21.80deg=201.80deg}, which is {m:201.8deg} to 1 decimal place.</li>
+      </ol>
+      <!-- No figure: the quadrant rules above and the figure of an up-and-left vector cover the method. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the direction of {m:col(3, -4)}, measured anticlockwise from the positive x-axis, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>The acute angle is {m:tan^(-1)(frac(4, 3))=}<span class="blank" data-answers="53.1">___</span>&deg; to 1 decimal place.</li>
+        <li>The vector goes down and right, so the direction is {m:360deg-53.13deg=}<span class="blank" data-answers="306.9">___</span>&deg;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The acute angle is {m:tan^(-1)(frac(4, 3))=53.13deg}. The vector is below the x-axis, so the direction is {m:360deg-53.13deg=306.87deg}, which is {m:306.9deg}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: magnitude, unit vectors and direction</h2>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">Find the magnitude of {m:col(6, 8)}.</p>
+      <ol class="ladder"><li>Use {m:sqrt(x^2+y^2)}.</li><li>Work out {m:6^2+8^2}, then take the square root.</li></ol>
+      <ul class="wrong">
+        <li data-if="14">You added the components. Square each one, add the squares, then take the square root.</li>
+        <li data-if="100">That is the magnitude squared. Take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:sqrt(6^2+8^2)=sqrt(36+64)=sqrt(100)=10}.</p></div>
+    </div>
+    <div class="q" data-answers="sqrt(53);&#8730;53;sqrt53" data-mode="exact">
+      <p class="qtext">Find the exact magnitude of {m:col(2, 7)}. Type it like sqrt(13).</p>
+      <ol class="ladder"><li>Work out {m:2^2+7^2}.</li><li>Leave the answer as a square root. Do not use a calculator.</li></ol>
+      <ul class="wrong">
+        <li data-if="9">You added the components. Square each one, add the squares, then take the square root.</li>
+        <li data-if="sqrt(45);3sqrt(5);&#8730;45;sqrt45;3sqrt5">You subtracted the squares: {m:7^2-2^2=45}. Magnitude adds the squares.</li>
+      </ul>
+      <div class="solution"><p>{m:sqrt(2^2+7^2)=sqrt(4+49)=sqrt(53)}. It does not simplify, because 53 has no square factor.</p></div>
+    </div>
+    <div class="q" data-answers="9.85" data-mode="value">
+      <p class="qtext">Find |<b>a</b>| when <b>a</b> = 4<b>i</b> &minus; 9<b>j</b>. Give your answer to 3 significant figures.</p>
+      <ol class="ladder"><li>The components are 4 and {m:-9}.</li><li>Work out {m:4^2+(-9)^2}. The square of {m:-9} is 81.</li></ol>
+      <ul class="wrong">
+        <li data-if="13">You added the components, ignoring the sign. Square them, add, then take the square root.</li>
+        <li data-if="8.06">You subtracted the squares: {m:81-16=65}, and the square root of 65 is 8.06. Magnitude adds the squares.</li>
+      </ul>
+      <div class="solution"><p>{m:sqrt(16+81)=sqrt(97)~=9.8489}, which is 9.85 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="5/13,12/13;5/13, 12/13" data-mode="exact">
+      <p class="qtext">Find the unit vector in the direction of {m:col(5, 12)}. Type it as fractions, like (3/5, 4/5).</p>
+      <ol class="ladder"><li>Find the magnitude first.</li><li>{m:sqrt(5^2+12^2)=13}.</li><li>Divide each component by the magnitude.</li></ol>
+      <ul class="wrong">
+        <li data-if="5/17,12/17;5/17, 12/17">You divided by {m:5+12}. Divide by the magnitude, {m:sqrt(5^2+12^2)}, which is 13.</li>
+      </ul>
+      <div class="solution"><p>The magnitude is {m:sqrt(25+144)=13}. The unit vector is {m:col(frac(5, 13), frac(12, 13))}. Check: {m:frac(25+144, 169)=1}.</p></div>
+    </div>
+    <div class="q" data-answers="9,12;9, 12" data-mode="exact">
+      <p class="qtext">Find the vector of magnitude 15 that points in the same direction as {m:col(3, 4)}. Type it like (3, -2).</p>
+      <ol class="ladder"><li>The magnitude of {m:col(3, 4)} is 5.</li><li>You need a vector 15 long, so scale by {m:15/5}.</li></ol>
+      <ul class="wrong">
+        <li data-if="15,20;15, 20">You multiplied by 5, the magnitude of {m:col(3, 4)}. The scale factor is {m:15/5=3}.</li>
+        <li data-if="45,60;45, 60">You multiplied by 15. First divide by the magnitude 5, then multiply by 15: the scale factor is 3.</li>
+      </ul>
+      <div class="solution"><p>The scale factor is {m:15/5=3}. So the vector is {m:3*col(3, 4)=col(9, 12)}. Check: {m:sqrt(81+144)=15}.</p></div>
+    </div>
+    <div class="q" data-answers="36.9" data-mode="value">
+      <p class="qtext">Find the direction of {m:col(4, 3)}, measured anticlockwise from the positive x-axis, to 1 decimal place.</p>
+      <ol class="ladder"><li>The vector goes up and right, so the acute angle is the direction.</li><li>The tangent is the up number divided by the across number.</li></ol>
+      <ul class="wrong">
+        <li data-if="53.1">You used {m:frac(4, 3)}. That is the angle with the y-axis. The direction is measured from the x-axis: {m:frac(3, 4)}.</li>
+        <li data-if="0.75">That is the value of tan. Use the inverse tangent to get the angle.</li>
+      </ul>
+      <div class="solution"><p>{m:tan theta=frac(3, 4)}, so {m:theta=tan^(-1)(0.75)=36.87deg}, which is {m:36.9deg} to 1 decimal place.</p></div>
+    </div>
+    <div class="q" data-answers="143.1" data-mode="value">
+      <p class="qtext">Find the direction of {m:col(-4, 3)}, measured anticlockwise from the positive x-axis, to 1 decimal place.</p>
+      <ol class="ladder"><li>Sketch the vector. It goes up and left.</li><li>The acute angle is {m:tan^(-1)(frac(3, 4))=36.87deg}.</li><li>For up and left, subtract the acute angle from {m:180deg}.</li></ol>
+      <ul class="wrong">
+        <li data-if="36.9">That is the acute angle in the triangle. The vector points up and left, so subtract it from 180.</li>
+        <li data-if="216.9">You added the acute angle to 180. That is for a vector that goes down and left.</li>
+        <li data-if="-36.9">That is what the calculator gives for {m:tan^(-1)(frac(3, -4))}. Sketch the vector to find the angle from the positive x-axis.</li>
+      </ul>
+      <div class="solution"><p>The acute angle is {m:36.87deg}. The vector goes up and left, so the direction is {m:180deg-36.87deg=143.13deg}, which is {m:143.1deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a unit vector?</p>
+      <ul class="options">
+        <li data-correct>The vector 0.6<b>i</b> &minus; 0.8<b>j</b></li>
+        <li data-why="The magnitude is the square root of 0.25 + 0.25, which is about 0.71. It is less than 1, so this is not a unit vector.">The vector 0.5<b>i</b> + 0.5<b>j</b></li>
+        <li data-why="The magnitude is the square root of 1 + 1, which is about 1.41. It is more than 1, so this is not a unit vector.">The vector <b>i</b> + <b>j</b></li>
+      </ul>
+      <ol class="ladder"><li>A unit vector has magnitude 1.</li><li>Work out the magnitude of each option.</li></ol>
+      <div class="solution"><p>{m:sqrt(0.6^2+(-0.8)^2)=sqrt(0.36+0.64)=1}. The other two have magnitudes {m:sqrt(0.5)} and {m:sqrt(2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Position vectors and the vector between two points</h2>
+    <p>A {term:position-vector|position vector} goes from the origin O to a point. Its components are the coordinates of the point. The point A at {m:(2, 4)} has position vector {m:vec(OA)} = <b>a</b> = {m:col(2, 4)}.</p>
+    <p>Now take two points, A and B. To go from A to B, you can go back to the origin and then out to B. That is the journey {m:vec(AO)} followed by {m:vec(OB)}. The result is the {term:displacement}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> {m:vec(AB)} = <b>b</b> &minus; <b>a</b>. It is the end minus the start.</p>
+      <p>The vector the other way, {m:vec(BA)}, is <b>a</b> &minus; <b>b</b>. It is the negative of {m:vec(AB)}.</p>
+    </div>
+    <figure class="figure-lg">{fig:vectors-2d-position}<figcaption>Look at the dashed arrow from A to B. Going from the origin to A and then along the dashed arrow reaches B. So <b>a</b> + {m:vec(AB)} = <b>b</b>, which gives {m:vec(AB)} = <b>b</b> &minus; <b>a</b>.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the vector between two points</h3>
+      <p>The point A is {m:(2, 4)} and the point B is {m:(6, 1)}. Find {m:vec(AB)} and its magnitude.</p>
+      <ol class="steps">
+        <li>{m:vec(AB)} = <b>b</b> &minus; <b>a</b> = {m:col(6, 1)} &minus; {m:col(2, 4)} = {m:col(4, -3)}.</li>
+        <li>The magnitude is {m:sqrt(4^2+(-3)^2)=sqrt(25)=5}.</li>
+        <li>The magnitude of {m:vec(AB)} is the distance from A to B, so A and B are 5 units apart.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: position vectors in i, j notation</h3>
+      <p>The points P and Q have position vectors <b>p</b> = 3<b>i</b> + 2<b>j</b> and <b>q</b> = &minus;<b>i</b> + 5<b>j</b>. Find {m:vec(PQ)}.</p>
+      <ol class="steps">
+        <li>{m:vec(PQ)} = <b>q</b> &minus; <b>p</b>.</li>
+        <li>The <b>i</b> parts: {m:-1-3=-4}. The <b>j</b> parts: {m:5-2=3}.</li>
+        <li>So {m:vec(PQ)} = &minus;4<b>i</b> + 3<b>j</b>.</li>
+      </ol>
+      <!-- No figure: the figure above shows the same idea, the end minus the start. -->
+    </div>
+    <p>The midpoint M of AB is halfway along it. Start at A and go half of {m:vec(AB)}. This gives the position vector of M as half the sum of <b>a</b> and <b>b</b>.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the midpoint of AB has position vector {m:frac(1, 2)}(<b>a</b> + <b>b</b>).</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a midpoint</h3>
+      <p>A is {m:(-2, 3)} and B is {m:(6, -1)}. Find the position vector of the midpoint of AB.</p>
+      <ol class="steps">
+        <li><b>a</b> + <b>b</b> = {m:col(-2, 3)} + {m:col(6, -1)} = {m:col(4, 2)}.</li>
+        <li>Half of this is {m:col(2, 1)}.</li>
+        <li>The midpoint is the point {m:(2, 1)}.</li>
+      </ol>
+      <!-- No figure: the point is the average of the coordinates, which the straight-lines page shows. -->
+    </div>
+    <p>A point P can divide the line AB in a ratio. Write {m:AP:PB=m:n}. This is a {term:dividing-in-a-ratio|point dividing a line in a ratio}. There are {m:m+n} equal parts in all, and P is {m:m} of them from A. So AP is {m:frac(m, m+n)} of AB.</p>
+    <figure class="figure-lg">{fig:vectors-2d-ratio}<figcaption>Look at the points A, P and B on one line. AP is 1 part and PB is 2 parts. There are 3 parts in all, so AP is one third of AB.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> if AP : PB = m : n, then {m:vec(AP)} = {m:frac(m, m+n)}{m:vec(AB)}. The position vector of P is <b>p</b> = <b>a</b> + {m:frac(m, m+n)}(<b>b</b> &minus; <b>a</b>).</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: dividing a line</h3>
+      <p>A is {m:(1, 1)} and B is {m:(7, 4)}. The point P is on AB with AP : PB = 1 : 2. Find P.</p>
+      <ol class="steps">
+        <li>{m:vec(AB)} = {m:col(7, 4)} &minus; {m:col(1, 1)} = {m:col(6, 3)}.</li>
+        <li>There are {m:1+2=3} parts. AP is one part, so {m:vec(AP)} = {m:frac(1, 3)}{m:col(6, 3)} = {m:col(2, 1)}.</li>
+        <li><b>p</b> = <b>a</b> + {m:vec(AP)} = {m:col(1, 1)} + {m:col(2, 1)} = {m:col(3, 2)}.</li>
+        <li>So P is {m:(3, 2)}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a ratio of 3 : 2</h3>
+      <p>A is {m:(-1, 4)} and B is {m:(9, -1)}. The point P is on AB with AP : PB = 3 : 2. Find P.</p>
+      <ol class="steps">
+        <li>{m:vec(AB)} = {m:col(9, -1)} &minus; {m:col(-1, 4)} = {m:col(10, -5)}.</li>
+        <li>There are {m:3+2=5} parts. AP is 3 of them, so {m:vec(AP)} = {m:frac(3, 5)}{m:col(10, -5)} = {m:col(6, -3)}.</li>
+        <li><b>p</b> = {m:col(-1, 4)} + {m:col(6, -3)} = {m:col(5, 1)}. So P is {m:(5, 1)}.</li>
+        <li>Check: P is nearer to B than to A, as 3 parts out of 5 would put it.</li>
+      </ol>
+      <!-- No figure: the figure above shows the method for a ratio of 1 : 2. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The points A and B have position vectors {m:col(3, 1)} and {m:col(7, 4)}. Find {m:vec(AB)} and its magnitude.</p>
+      <ol class="steps">
+        <li>{m:vec(AB)} = {m:col(7-3, 4-1)} = {m:col(4, "?")}, so the bottom number is <span class="blank" data-answers="3">___</span>.</li>
+        <li>The magnitude is {m:sqrt(4^2+3^2)=}<span class="blank" data-answers="5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:vec(AB)} = {m:col(4, 3)}. Its magnitude is {m:sqrt(16+9)=5}, so A and B are 5 units apart.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: position vectors</h2>
+    <div class="q" data-answers="5,-5;5, -5" data-mode="exact">
+      <p class="qtext">A is the point {m:(3, 7)} and B is the point {m:(8, 2)}. Find {m:vec(AB)}. Type it like (3, -2).</p>
+      <ol class="ladder"><li>{m:vec(AB)} is the end minus the start.</li><li>x: {m:8-3}. y: {m:2-7}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5,5;-5, 5">That is {m:vec(BA)}. For {m:vec(AB)}, take the start away from the end.</li>
+        <li data-if="11,9;11, 9">You added the coordinates. Subtract: end minus start.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AB)} = <b>b</b> &minus; <b>a</b> = {m:col(8-3, 2-7)} = {m:col(5, -5)}.</p></div>
+    </div>
+    <div class="q" data-answers="3i-4j;-4j+3i" data-mode="exact">
+      <p class="qtext">{m:vec(OA)} = 2<b>i</b> + 3<b>j</b> and {m:vec(OB)} = 5<b>i</b> &minus; <b>j</b>. Find {m:vec(AB)} in i, j notation. Type it like 3i-2j.</p>
+      <ol class="ladder"><li>{m:vec(AB)} = {m:vec(OB)} &minus; {m:vec(OA)}.</li><li>The i parts: {m:5-2}. The j parts: {m:-1-3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3i+4j;4j-3i">That is {m:vec(BA)}. For {m:vec(AB)}, take {m:vec(OA)} away from {m:vec(OB)}.</li>
+        <li data-if="7i+2j;2j+7i">You added the position vectors. Subtract: end minus start.</li>
+      </ul>
+      <div class="solution"><p>i parts: {m:5-2=3}. j parts: {m:-1-3=-4}. So {m:vec(AB)} = 3<b>i</b> &minus; 4<b>j</b>.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the distance between A {m:(1, -2)} and B {m:(5, 1)}.</p>
+      <ol class="ladder"><li>Find {m:vec(AB)} first.</li><li>{m:vec(AB)} = {m:col(4, 3)}. The distance is its magnitude.</li></ol>
+      <ul class="wrong">
+        <li data-if="7">You added the components, 4 and 3. Square them, add, then take the square root.</li>
+        <li data-if="25">That is the distance squared. Take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AB)} = {m:col(5-1, 1-(-2))} = {m:col(4, 3)}. The distance is {m:sqrt(16+9)=5}.</p></div>
+    </div>
+    <div class="q" data-answers="sqrt(41);&#8730;41;sqrt41" data-mode="exact">
+      <p class="qtext">Find the exact length of PQ, where P is {m:(-3, 2)} and Q is {m:(2, 6)}. Type it like sqrt(13).</p>
+      <ol class="ladder"><li>Find {m:vec(PQ)}.</li><li>{m:vec(PQ)} = {m:col(5, 4)}. The length is its magnitude.</li></ol>
+      <ul class="wrong">
+        <li data-if="9">You added the components, 5 and 4. Square them, add, then take the square root.</li>
+        <li data-if="3">You subtracted the squares: {m:25-16=9}, and the square root of 9 is 3. Magnitude adds the squares.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(PQ)} = {m:col(2-(-3), 6-2)} = {m:col(5, 4)}. The length is {m:sqrt(25+16)=sqrt(41)}.</p></div>
+    </div>
+    <div class="q" data-answers="2,4;2, 4" data-mode="exact">
+      <p class="qtext">A is {m:(-4, 1)} and B is {m:(8, 7)}. Find the position vector of the midpoint of AB. Type it like (3, -2).</p>
+      <ol class="ladder"><li>Add the two position vectors.</li><li>Then take half.</li></ol>
+      <ul class="wrong">
+        <li data-if="4,8;4, 8">That is <b>a</b> + <b>b</b>. The midpoint is half of it.</li>
+        <li data-if="6,3;6, 3">That is half of {m:vec(AB)}, the vector from A to the midpoint. The position vector of the midpoint starts at the origin.</li>
+      </ul>
+      <div class="solution"><p><b>a</b> + <b>b</b> = {m:col(4, 8)}. Half of it is {m:col(2, 4)}. The midpoint is {m:(2, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="4,3;4, 3" data-mode="exact">
+      <p class="qtext">A is {m:(0, 1)} and B is {m:(10, 6)}. The point P is on AB with AP : PB = 2 : 3. Find P. Type it like (3, -2).</p>
+      <ol class="ladder"><li>{m:vec(AB)} = {m:col(10, 5)}.</li><li>There are 5 parts. AP is 2 of them.</li><li>Add {m:vec(AP)} to A.</li></ol>
+      <ul class="wrong">
+        <li data-if="6,4;6, 4">You took 3 parts for AP. AP : PB = 2 : 3 means AP is 2 parts out of 5.</li>
+        <li data-if="5,3.5;5, 3.5">That is the midpoint, which is the ratio 1 : 1. Here AP is 2 parts out of 5.</li>
+        <li data-if="4,2;4, 2">That is the vector {m:vec(AP)}. Add it to A to get the point P.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AP)} = {m:frac(2, 5)}{m:col(10, 5)} = {m:col(4, 2)}. P = {m:col(0, 1)} + {m:col(4, 2)} = {m:col(4, 3)}. So P is {m:(4, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="4,2;4, 2" data-mode="exact">
+      <p class="qtext">The vector {m:vec(AB)} is {m:col(3, -2)} and A is the point {m:(1, 4)}. Find the coordinates of B. Type it like (2, 5).</p>
+      <ol class="ladder"><li>{m:vec(OB)} = {m:vec(OA)} + {m:vec(AB)}.</li><li>Add the vector to the coordinates of A.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2,6;-2, 6">You subtracted {m:vec(AB)} from A. To reach B from A, add the vector.</li>
+        <li data-if="3,-2;3, -2">That is {m:vec(AB)} itself. Add it to A.</li>
+      </ul>
+      <div class="solution"><p>B = A + {m:vec(AB)} = {m:col(1+3, 4-2)} = {m:col(4, 2)}. So B is {m:(4, 2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is the vector {m:vec(AB)}?</p>
+      <ul class="options">
+        <li data-correct>The vector <b>b</b> &minus; <b>a</b></li>
+        <li data-why="This is the vector from B to A, the journey backwards. For the vector from A to B, take the start away from the end.">The vector <b>a</b> &minus; <b>b</b></li>
+        <li data-why="The sum of two position vectors is twice the position vector of the midpoint. It is not the vector between the points.">The vector <b>a</b> + <b>b</b></li>
+      </ul>
+      <ol class="ladder"><li>The vector from A to B is the end minus the start.</li><li>Which point is the end?</li></ol>
+      <div class="solution"><p>Go from A back to O, then out to B: {m:vec(AO)} + {m:vec(OB)} = &minus;<b>a</b> + <b>b</b> = <b>b</b> &minus; <b>a</b>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Geometric proof with vectors</h2>
+    <p>A {term:vector-proof|vector proof} uses vectors to show a fact about a shape. The method has three steps.</p>
+    <div class="key">
+      <p><b>Key idea:</b> choose two vectors as your base, such as <b>a</b> and <b>b</b>. Write every other vector in the diagram using only those two. Then compare.</p>
+      <ul class="tick">
+        <li>To show two lines are parallel, show that one vector is a scalar multiple of the other.</li>
+        <li>To show three points are {term:collinear}, show that two vectors between them are parallel and that they share a point.</li>
+        <li>To find a ratio of lengths, use the scale factor between the two vectors.</li>
+      </ul>
+    </div>
+    <p>To write a vector, find a path from its start to its end along vectors you know. Going along a known vector adds it. Going against it subtracts it.</p>
+    <div class="worked">
+      <h3>Worked example: parallel lines</h3>
+      <p>In triangle OAB, {m:vec(OA)} = <b>a</b> and {m:vec(OB)} = <b>b</b>. M is the midpoint of OA and N is the midpoint of OB. Show that MN is parallel to AB, and find the ratio of their lengths.</p>
+      <ol class="steps">
+        <li>The path from M to N goes from M to O, then from O to N. {m:vec(MO)} = &minus;{m:frac(1, 2)}<b>a</b> and {m:vec(ON)} = {m:frac(1, 2)}<b>b</b>.</li>
+        <li>{m:vec(MN)} = {m:vec(MO)} + {m:vec(ON)} = &minus;{m:frac(1, 2)}<b>a</b> + {m:frac(1, 2)}<b>b</b> = {m:frac(1, 2)}(<b>b</b> &minus; <b>a</b>).</li>
+        <li>{m:vec(AB)} = <b>b</b> &minus; <b>a</b>, so {m:vec(MN)} = {m:frac(1, 2)}{m:vec(AB)}.</li>
+        <li>One vector is a scalar multiple of the other, so MN is parallel to AB. MN is half as long as AB.</li>
+      </ol>
+      <figure class="figure-lg">{fig:vectors-2d-proof}<figcaption>Look at the dotted arrow from M to N. It points the same way as the dashed arrow from A to B, and it is half as long.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: collinear points</h3>
+      <p>A is {m:(1, 1)}, B is {m:(3, 2)} and C is {m:(7, 4)}. Show that A, B and C are collinear, and find AB : BC.</p>
+      <ol class="steps">
+        <li>{m:vec(AB)} = {m:col(3-1, 2-1)} = {m:col(2, 1)}.</li>
+        <li>{m:vec(BC)} = {m:col(7-3, 4-2)} = {m:col(4, 2)} = 2{m:col(2, 1)} = 2{m:vec(AB)}.</li>
+        <li>{m:vec(BC)} is a multiple of {m:vec(AB)}, so the two vectors are parallel. They share the point B. So A, B and C lie on one straight line.</li>
+        <li>BC is twice as long as AB, so AB : BC = 1 : 2.</li>
+      </ol>
+      <figure class="figure-lg">{fig:vectors-2d-collinear}<figcaption>Look at the arrows AB and BC. They point the same way and join end to end, so they make one straight line. BC is twice as long as AB.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a ratio, with letters</h3>
+      <p>{m:vec(OA)} = <b>a</b> and {m:vec(OB)} = <b>b</b>. The point P is on AB with AP : PB = 1 : 2. Write {m:vec(OP)} in terms of <b>a</b> and <b>b</b>.</p>
+      <ol class="steps">
+        <li>AP is one part out of three, so {m:vec(AP)} = {m:frac(1, 3)}{m:vec(AB)} = {m:frac(1, 3)}(<b>b</b> &minus; <b>a</b>).</li>
+        <li>{m:vec(OP)} = {m:vec(OA)} + {m:vec(AP)} = <b>a</b> + {m:frac(1, 3)}(<b>b</b> &minus; <b>a</b>).</li>
+        <li>Collect the terms: {m:vec(OP)} = {m:frac(2, 3)}<b>a</b> + {m:frac(1, 3)}<b>b</b>.</li>
+        <li>Check: the two fractions add to 1, and P is nearer to A, so <b>a</b> has the bigger fraction.</li>
+      </ol>
+      <!-- No figure: the ratio figure in lesson 4 shows a ratio of 1 : 2 with numbers. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the diagonals of a parallelogram</h3>
+      <p>OABC is a parallelogram with {m:vec(OA)} = <b>a</b> and {m:vec(OC)} = <b>c</b>. Show that the diagonals OB and AC cross at their midpoints.</p>
+      <ol class="steps">
+        <li>{m:vec(OB)} = <b>a</b> + <b>c</b>, because {m:vec(AB)} = {m:vec(OC)} = <b>c</b>. The midpoint of OB is {m:frac(1, 2)}(<b>a</b> + <b>c</b>).</li>
+        <li>{m:vec(AC)} = <b>c</b> &minus; <b>a</b>. The midpoint of AC is <b>a</b> + {m:frac(1, 2)}(<b>c</b> &minus; <b>a</b>) = {m:frac(1, 2)}(<b>a</b> + <b>c</b>).</li>
+        <li>The two midpoints have the same position vector. So they are the same point, and the diagonals bisect each other.</li>
+      </ol>
+      <!-- No figure: the parallelogram figure in lesson 2 and the question figure below show the shape. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>{m:vec(OA)} = 2<b>i</b> + <b>j</b> and {m:vec(OB)} = 6<b>i</b> + 3<b>j</b>. Show that O, A and B are collinear.</p>
+      <ol class="steps">
+        <li>{m:vec(OB)} = <span class="blank" data-answers="3">___</span> &times; {m:vec(OA)}.</li>
+        <li>The vectors are parallel and share the point O, so O, A and B are on one line. OB is <span class="blank" data-answers="3">___</span> times as long as OA.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>3(2<b>i</b> + <b>j</b>) = 6<b>i</b> + 3<b>j</b>, so {m:vec(OB)} = 3{m:vec(OA)}. They are parallel and share O, so the points are collinear. OB is 3 times as long as OA.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: geometric proof</h2>
+    <div class="q" data-answers="1/2(a+b);1/2a+1/2b;0.5a+0.5b;(a+b)/2;0.5(a+b)" data-mode="exact">
+      <p class="qtext">{m:vec(OA)} = <b>a</b> and {m:vec(OB)} = <b>b</b>. M is the midpoint of AB. Write {m:vec(OM)} in terms of a and b. Type it like 1/2(a+b).</p>
+      <ol class="ladder"><li>Start from O, go to A, then go half of {m:vec(AB)}.</li><li>{m:vec(AB)} = <b>b</b> &minus; <b>a</b>.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/2(b-a);0.5(b-a);1/2b-1/2a;(b-a)/2">That is {m:vec(AM)}, the vector from A to M. {m:vec(OM)} starts at O: add {m:vec(OA)}.</li>
+        <li data-if="a+b">That is the full sum. M is halfway, so take half of it.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(OM)} = <b>a</b> + {m:frac(1, 2)}(<b>b</b> &minus; <b>a</b>) = {m:frac(1, 2)}(<b>a</b> + <b>b</b>).</p></div>
+    </div>
+    <div class="q" data-answers="c-a;-a+c" data-mode="exact">
+      <p class="qtext">OABC is a parallelogram with {m:vec(OA)} = <b>a</b> and {m:vec(OC)} = <b>c</b>. Find {m:vec(AC)} in terms of a and c. Type it like a+2c.</p>
+      <figure class="qfig-lg">{fig:vectors-2d-q-pgram}</figure>
+      <ol class="ladder"><li>Go from A to O, then from O to C.</li><li>Going from A to O is the negative of {m:vec(OA)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="a-c;-c+a">That is {m:vec(CA)}, the journey the other way. For {m:vec(AC)}, go from A to C.</li>
+        <li data-if="a+c;c+a">That is {m:vec(OB)}, the other diagonal. The vector from A to C is C minus A.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AC)} = {m:vec(AO)} + {m:vec(OC)} = &minus;<b>a</b> + <b>c</b> = <b>c</b> &minus; <b>a</b>.</p></div>
+    </div>
+    <div class="q" data-answers="3/4a+1/4b;(3a+b)/4;1/4(3a+b);0.25(3a+b);0.75a+0.25b;3a/4+b/4;(3/4)a+(1/4)b" data-mode="exact">
+      <p class="qtext">{m:vec(OA)} = <b>a</b> and {m:vec(OB)} = <b>b</b>. P is on AB with AP : PB = 1 : 3. Write {m:vec(OP)} in terms of a and b. Type it like 1/2a+1/2b.</p>
+      <ol class="ladder"><li>There are {m:1+3=4} parts. AP is one of them.</li><li>{m:vec(AP)} = {m:frac(1, 4)}(<b>b</b> &minus; <b>a</b>).</li><li>{m:vec(OP)} = <b>a</b> + {m:vec(AP)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/4a+3/4b;(a+3b)/4;0.25a+0.75b;a/4+3b/4;(1/4)a+(3/4)b">You put the 3 parts with <b>b</b>, which puts P near B. AP : PB = 1 : 3 means P is nearer to A.</li>
+        <li data-if="2/3a+1/3b;(2a+b)/3;a*2/3+b/3;(2/3)a+(1/3)b">You took AP as one third of AB. In the ratio 1 : 3 there are 4 parts, so AP is one quarter.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(OP)} = <b>a</b> + {m:frac(1, 4)}(<b>b</b> &minus; <b>a</b>) = {m:frac(3, 4)}<b>a</b> + {m:frac(1, 4)}<b>b</b>. The fractions add to 1, and the bigger one goes with <b>a</b>, the nearer point.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The points A {m:(1, 2)}, B {m:(3, 3)} and C {m:(7, k)} are collinear. Find k.</p>
+      <ol class="ladder"><li>{m:vec(AB)} = {m:col(2, 1)}. {m:vec(AC)} = {m:col(6, k-2)}.</li><li>For the points to be collinear, {m:vec(AC)} must be a multiple of {m:vec(AB)}.</li><li>Find the multiple from the top numbers.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the bottom number of {m:vec(AC)}, which is {m:k-2}. Add the 2: {m:k=3+2}.</li>
+      </ul>
+      <div class="solution"><p>{m:col(6, k-2)} = 3{m:col(2, 1)} = {m:col(6, 3)}, so {m:k-2=3} and {m:k=5}. Check: {m:vec(BC)} = {m:col(4, 2)} = 2{m:vec(AB)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which fact proves that the points A, B and C are collinear?</p>
+      <ul class="options">
+        <li data-correct>{m:vec(AB)} is a scalar multiple of {m:vec(BC)}, so they are parallel, and they share the point B</li>
+        <li data-why="Two vectors of the same length can point in different directions, so this does not put the points on one line.">{m:vec(AB)} and {m:vec(BC)} have the same magnitude</li>
+        <li data-why="Parallel vectors alone are not enough. They could lie on two different lines. The vectors must also share a point.">{m:vec(AB)} is parallel to {m:vec(CD)}, for another point D</li>
+      </ul>
+      <ol class="ladder"><li>Collinear means on one straight line.</li><li>What must the two vectors share, as well as being parallel?</li></ol>
+      <div class="solution"><p>Parallel vectors point the same way along lines that never meet. If they also share the point B, the two lines are the same line. So A, B and C are on one line.</p></div>
+    </div>
+    <div class="q" data-answers="3b-2a;-2a+3b" data-mode="exact">
+      <p class="qtext">{m:vec(OA)} = 2<b>a</b> and {m:vec(OB)} = 3<b>b</b>. Find {m:vec(AB)} in terms of a and b. Type it like a+2b.</p>
+      <ol class="ladder"><li>{m:vec(AB)} = {m:vec(OB)} &minus; {m:vec(OA)}.</li><li>Take away 2<b>a</b>, not <b>a</b>.</li></ol>
+      <ul class="wrong">
+        <li data-if="2a-3b;-3b+2a">That is {m:vec(BA)}. For {m:vec(AB)}, take {m:vec(OA)} away from {m:vec(OB)}.</li>
+        <li data-if="3b-a;-a+3b">You took away <b>a</b>. {m:vec(OA)} is 2<b>a</b>, so take away 2<b>a</b>.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AB)} = {m:vec(OB)} &minus; {m:vec(OA)} = 3<b>b</b> &minus; 2<b>a</b>.</p></div>
+    </div>
+    <div class="q" data-answers="p+q;q+p" data-mode="exact">
+      <p class="qtext">ABCD is a parallelogram with {m:vec(AB)} = <b>p</b> and {m:vec(AD)} = <b>q</b>. Find {m:vec(AC)} in terms of p and q. Type it like p+2q.</p>
+      <ol class="ladder"><li>In a parallelogram, {m:vec(DC)} = {m:vec(AB)}.</li><li>Go from A to D, then from D to C.</li></ol>
+      <ul class="wrong">
+        <li data-if="p-q;-q+p">That is {m:vec(DB)}, the other diagonal. {m:vec(AC)} is the sum of two adjacent sides.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(AC)} = {m:vec(AD)} + {m:vec(DC)} = <b>q</b> + <b>p</b>, because {m:vec(DC)} = {m:vec(AB)} = <b>p</b>.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">{m:vec(AB)} = <b>a</b> + 2<b>b</b> and {m:vec(CD)} = 3<b>a</b> + 6<b>b</b>. The vector {m:vec(CD)} is k times {m:vec(AB)}. Find k.</p>
+      <ol class="ladder"><li>Compare the <b>a</b> parts: 3 and 1.</li><li>Check the <b>b</b> parts with the same k.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/3;0.333">That is the other way round: {m:vec(AB)} = {m:frac(1, 3)}{m:vec(CD)}. The question asks for {m:vec(CD)} = k{m:vec(AB)}.</li>
+        <li data-if="6">That is the <b>b</b> part of {m:vec(CD)}. Divide it by the <b>b</b> part of {m:vec(AB)}, which is 2.</li>
+      </ul>
+      <div class="solution"><p>3<b>a</b> + 6<b>b</b> = 3(<b>a</b> + 2<b>b</b>), so {m:vec(CD)} = 3{m:vec(AB)} and k is 3. The two lines are parallel, and CD is three times as long as AB.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: a vector as a journey, and a vector as an arrow</h2>
+    <p>You have used a vector in two ways. As a journey it is two numbers: across and up. As an arrow it is a length and a direction. Now move between them in both directions.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a journey to an arrow. Write the components, then use Pythagoras for the magnitude and inverse tangent for the direction.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From an arrow to a journey. Start from the magnitude and the direction. The across part is the magnitude times cos of the angle. The up part is the magnitude times sin of the angle.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from magnitude and direction to components</h3>
+      <p>A vector has magnitude 8 and direction {m:40deg} anticlockwise from the positive x-axis. Write it as a column vector, to 2 decimal places.</p>
+      <ol class="steps">
+        <li>Draw the right-angled triangle. The longest side is 8, and the angle at the origin is {m:40deg}.</li>
+        <li>The across part is next to the angle: {m:8 cos 40deg=6.13}.</li>
+        <li>The up part is opposite the angle: {m:8 sin 40deg=5.14}.</li>
+        <li>So the vector is {m:col(6.13, 5.14)}.</li>
+        <li>Check: {m:sqrt(6.13^2+5.14^2)=sqrt(37.58+26.42)=8.0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:vectors-2d-flip}<figcaption>Look at the dashed triangle. The side along the x-axis is {m:8 cos 40deg} and the upright side is {m:8 sin 40deg}.</figcaption></figure>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From two points to a vector. The vector from P to Q is Q minus P.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a point and a vector to the other point. Q is P plus the vector. The arrow can start anywhere, but the journey is the same.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from two points, and back</h3>
+      <p>P is {m:(-1, 3)} and Q is {m:(4, -2)}. Find {m:vec(PQ)}, its magnitude and its direction. Then check that P plus {m:vec(PQ)} gives Q.</p>
+      <ol class="steps">
+        <li>{m:vec(PQ)} = {m:col(4-(-1), -2-3)} = {m:col(5, -5)}.</li>
+        <li>The magnitude is {m:sqrt(25+25)=sqrt(50)=5sqrt(2)}, which is 7.07 to 3 significant figures.</li>
+        <li>The vector goes down and right. The acute angle is {m:tan^(-1)(frac(5, 5))=45deg}, so the direction is {m:360deg-45deg=315deg}.</li>
+        <li>Backwards: P plus the vector is {m:col(-1+5, 3-5)} = {m:col(4, -2)}, which is Q.</li>
+      </ol>
+      <!-- No figure: the first example in this section shows the triangle, and the arrow here is the one in lesson 1 with different numbers. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="10.9,5.1;10.9, 5.1" data-mode="exact">
+      <p class="qtext">A vector has magnitude 12 and direction {m:25deg} anticlockwise from the positive x-axis. Write it as a column vector with each number to 1 decimal place. Type it like (3.5, 1.2).</p>
+      <ol class="ladder"><li>The across part is next to the angle.</li><li>Across: {m:12 cos 25deg}. Up: {m:12 sin 25deg}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5.1,10.9;5.1, 10.9">You swapped them. The across part uses cos and the up part uses sin.</li>
+      </ul>
+      <div class="solution"><p>Across: {m:12 cos 25deg=10.88}, which is 10.9. Up: {m:12 sin 25deg=5.07}, which is 5.1. The vector is {m:col(10.9, 5.1)}.</p></div>
+    </div>
+    <div class="q" data-answers="-5.4i+4.5j;4.5j-5.4i" data-mode="exact">
+      <p class="qtext">A vector has magnitude 7 and direction {m:140deg} anticlockwise from the positive x-axis. Write it in i, j notation with each number to 1 decimal place. Type it like 3.5i-1.2j.</p>
+      <ol class="ladder"><li>Use {m:7 cos 140deg} for the i part and {m:7 sin 140deg} for the j part.</li><li>An angle between {m:90deg} and {m:180deg} points up and left. What sign does cos give?</li></ol>
+      <ul class="wrong">
+        <li data-if="5.4i+4.5j;4.5j+5.4i">You used the acute angle {m:40deg}. The vector points left, so the i part is negative. {m:cos 140deg} is negative.</li>
+        <li data-if="4.5i-5.4j;-5.4j+4.5i">You swapped the parts. The i part uses cos and the j part uses sin.</li>
+      </ul>
+      <div class="solution"><p>{m:7 cos 140deg=-5.36}, which is {m:-5.4}. {m:7 sin 140deg=4.50}, which is 4.5. The vector is &minus;5.4<b>i</b> + 4.5<b>j</b>.</p></div>
+    </div>
+    <div class="q" data-answers="5,-5;5, -5" data-mode="exact">
+      <p class="qtext">P is the point {m:(-1, 3)} and Q is the point {m:(4, -2)}. Write {m:vec(PQ)} as a column vector. Type it like (3, -2).</p>
+      <ol class="ladder"><li>The vector is the end minus the start.</li><li>x: {m:4-(-1)}. y: {m:-2-3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5,5;-5, 5">That is {m:vec(QP)}. For {m:vec(PQ)}, take P away from Q.</li>
+        <li data-if="3,1;3, 1">You added the coordinates. Subtract: end minus start.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(PQ)} = {m:col(4-(-1), -2-3)} = {m:col(5, -5)}.</p></div>
+    </div>
+    <div class="q" data-answers="135" data-mode="value">
+      <p class="qtext">Find the direction of {m:col(-6, 6)}, measured anticlockwise from the positive x-axis, in degrees.</p>
+      <ol class="ladder"><li>Sketch it. The vector goes up and left.</li><li>The acute angle is {m:tan^(-1)(frac(6, 6))=45deg}.</li><li>Subtract it from {m:180deg}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-45">That is what the calculator gives for {m:tan^(-1)(frac(6, -6))}. Sketch the vector to find the angle from the positive x-axis.</li>
+        <li data-if="45">That is the acute angle in the triangle. The vector points up and left, so subtract it from 180.</li>
+        <li data-if="225">That is the direction of {m:col(-6, -6)}, which points down and left. This vector points up and left.</li>
+      </ul>
+      <div class="solution"><p>The acute angle is {m:45deg} and the vector goes up and left, so the direction is {m:180deg-45deg=135deg}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">An arrow represents the vector <b>a</b>. You move the arrow so that it starts at a different point, without turning it or changing its length. What happens to <b>a</b>?</p>
+      <ul class="options">
+        <li data-correct>It does not change, because a vector has no fixed starting point</li>
+        <li data-why="A vector is a journey, not a place. The new arrow makes the same journey, so it is the same vector.">It becomes a different vector, because it starts somewhere else</li>
+        <li data-why="The components are the across and up parts of the journey. These are the same wherever the arrow starts.">Its components change by the amount the arrow moved</li>
+      </ul>
+      <ol class="ladder"><li>Think of the vector as a journey: 3 across and 2 up.</li><li>Does the journey change if you start it somewhere else?</li></ol>
+      <div class="solution"><p>A vector is defined by its length and direction only. Any arrow with the same length and direction is the same vector. Only a position vector is tied to a start, the origin.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dan says:</b> the magnitude of 3<b>i</b> &minus; 4<b>j</b> is {m:3-4=-1}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He subtracted the components. The magnitude is the square root of {m:3^2+(-4)^2}, which is 5</li>
+        <li data-why="The magnitude is never negative, but changing the sign to 1 is not the method either. Pythagoras gives 5.">He should have written 1, because a magnitude cannot be negative</li>
+        <li data-why="The sign of 4 does not matter. Squaring makes it positive. The mistake is in how the two numbers are combined.">He should have used +4 instead of &minus;4</li>
+      </ul>
+      <ol class="ladder"><li>Magnitude is a length. What theorem gives the length of the longest side of a right-angled triangle?</li></ol>
+      <div class="solution"><p>The magnitude is {m:sqrt(3^2+(-4)^2)=sqrt(25)=5}. You square the components, add the squares and take the square root.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Meera says:</b> A is {m:(1, 2)} and B is {m:(4, 6)}, so {m:vec(AB)} = {m:col(-3, -4)}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Both subtractions are done correctly in the order she used, so the arithmetic is fine. The mistake is the order.">She made an arithmetic error in both components</li>
+        <li data-correct>She found start minus end, which is {m:vec(BA)}. {m:vec(AB)} is end minus start, {m:col(3, 4)}</li>
+        <li data-why="The y-coordinates are used for the bottom number. Her working uses them correctly. The mistake is the order of subtraction.">She should have used the x-coordinates for the bottom number</li>
+      </ul>
+      <ol class="ladder"><li>Find {m:1-4} and {m:2-6}. Which point did she take away from which?</li></ol>
+      <div class="solution"><p>{m:vec(AB)} = {m:col(4-1, 6-2)} = {m:col(3, 4)}. Her answer is {m:vec(BA)}, the same vector with both signs changed.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> {m:col(2, 3)} and {m:col(4, 5)} are parallel, because both have positive components. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The size of the numbers is not the test. The vectors (2, 3) and (4, 6) are parallel, but they have different magnitudes.">Parallel vectors must have the same magnitude</li>
+        <li data-correct>Parallel vectors need components in the same ratio. {m:frac(4, 2)=2} but {m:frac(5, 3)} is not 2</li>
+        <li data-why="Vectors with different signs can be parallel. The vectors (2, 3) and (&minus;2, &minus;3) are parallel, pointing opposite ways.">Parallel vectors must have components of different signs</li>
+      </ul>
+      <ol class="ladder"><li>Parallel vectors are scalar multiples of each other.</li><li>Is there one number that turns 2 into 4 and 3 into 5?</li></ol>
+      <div class="solution"><p>To turn 2 into 4 you multiply by 2. Then 3 would need to become 6, but it is 5. So the vectors are not parallel.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="7.07" data-mode="value">
+      <p class="qtext">Given <b>a</b> = 2<b>i</b> + 3<b>j</b> and <b>b</b> = &minus;<b>i</b> + 4<b>j</b>, find |<b>a</b> + <b>b</b>| to 3 significant figures.</p>
+      <ol class="ladder"><li>Find <b>a</b> + <b>b</b> first.</li><li><b>a</b> + <b>b</b> = <b>i</b> + 7<b>j</b>.</li><li>Then find its magnitude.</li></ol>
+      <ul class="wrong">
+        <li data-if="7.73">You added the two magnitudes, {m:sqrt(13)+sqrt(17)}. The magnitude of a sum is not the sum of the magnitudes. Add the vectors first.</li>
+        <li data-if="3.16">You found |<b>a</b> &minus; <b>b</b>|. The question adds the vectors.</li>
+      </ul>
+      <div class="solution"><p><b>a</b> + <b>b</b> = {m:col(1, 7)}. Its magnitude is {m:sqrt(1+49)=sqrt(50)~=7.071}, which is 7.07 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="4.12" data-mode="value">
+      <p class="qtext">{m:vec(OA)} = {m:col(1, 5)} and {m:vec(OB)} = {m:col(7, -3)}. M is the midpoint of AB. Find |{m:vec(OM)}| to 3 significant figures.</p>
+      <ol class="ladder"><li>The position vector of M is half of {m:vec(OA)} + {m:vec(OB)}.</li><li>Then find its magnitude.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is half of {m:vec(AB)}, which is {m:col(3, -4)}. {m:vec(OM)} is half of the sum, not half of the difference.</li>
+      </ul>
+      <div class="solution"><p>{m:vec(OM)} = {m:frac(1, 2)}{m:col(8, 2)} = {m:col(4, 1)}. Its magnitude is {m:sqrt(16+1)=sqrt(17)~=4.123}, which is 4.12.</p></div>
+    </div>
+    <div class="q" data-answers="-4/5,3/5;-4/5, 3/5;-0.8,0.6;-0.8, 0.6" data-mode="exact">
+      <p class="qtext">Find the unit vector in the direction of {m:col(-8, 6)}. Type it like (3/5, 4/5).</p>
+      <ol class="ladder"><li>Find the magnitude: {m:sqrt(64+36)}.</li><li>Divide both components by it.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4/7,3/7;-4/7, 3/7">You divided by {m:8+6}. Divide by the magnitude, {m:sqrt(8^2+6^2)}, which is 10.</li>
+        <li data-if="4/5,3/5;4/5, 3/5;0.8,0.6;0.8, 0.6">You lost the minus sign of the x-component. The unit vector points the same way as the original, which is left.</li>
+      </ul>
+      <div class="solution"><p>The magnitude is {m:sqrt(64+36)=10}. The unit vector is {m:col(-frac(8, 10), frac(6, 10))} = {m:col(-frac(4, 5), frac(3, 5))}.</p></div>
+    </div>
+    <div class="q" data-answers="201.8" data-mode="value">
+      <p class="qtext">Find the direction of {m:col(-5, -2)}, measured anticlockwise from the positive x-axis, to 1 decimal place.</p>
+      <ol class="ladder"><li>Sketch it. The vector goes down and left.</li><li>The acute angle is {m:tan^(-1)(frac(2, 5))}.</li></ol>
+      <ul class="wrong">
+        <li data-if="21.8">That is the acute angle in the triangle. The vector points down and left, so add it to 180.</li>
+        <li data-if="158.2">You subtracted the acute angle from 180. That is for a vector that goes up and left.</li>
+      </ul>
+      <div class="solution"><p>The acute angle is {m:21.80deg}. The vector is in the third quadrant, so the direction is {m:180deg+21.80deg=201.8deg}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The points A {m:(2, 1)}, B {m:(8, 5)} and C {m:(5, k)} are collinear. Find k.</p>
+      <ol class="ladder"><li>{m:vec(AB)} = {m:col(6, 4)} and {m:vec(AC)} = {m:col(3, k-1)}.</li><li>The top of {m:vec(AC)} is half the top of {m:vec(AB)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is the bottom number of {m:vec(AC)}, which is {m:k-1}. Add the 1: {m:k=2+1}.</li>
+      </ul>
+      <div class="solution"><p>{m:col(3, k-1)} = {m:frac(1, 2)}{m:col(6, 4)} = {m:col(3, 2)}, so {m:k-1=2} and {m:k=3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement or fact.</p>
+    <div class="q" data-answers="sqrt(37);&#8730;37;sqrt37" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] <b>p</b> = 4<b>i</b> &minus; 3<b>j</b> and <b>q</b> = <b>i</b> + 2<b>j</b>. Find the exact value of |<b>p</b> + 2<b>q</b>|. Type it like sqrt(13).</p>
+      <ol class="ladder"><li>Find 2<b>q</b> first.</li><li>Add it to <b>p</b>.</li><li>Then find the magnitude of the result.</li></ol>
+      <ul class="wrong">
+        <li data-if="sqrt(53);&#8730;53;sqrt53">You found <b>p</b> &minus; 2<b>q</b>. The question adds.</li>
+        <li data-if="7">You added the components of {m:col(6, 1)}. Square them, add, then take the square root.</li>
+      </ul>
+      <div class="solution">
+        <p>2<b>q</b> = 2<b>i</b> + 4<b>j</b>. So <b>p</b> + 2<b>q</b> = 6<b>i</b> + <b>j</b>. Its magnitude is {m:sqrt(6^2+1^2)=sqrt(37)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for <b>p</b> + 2<b>q</b></li>
+          <li><b>A1</b> for 6<b>i</b> + <b>j</b></li>
+          <li><b>A1</b> for {m:sqrt(37)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="5,-1;5, -1" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] A is the point {m:(-1, 2)} and B is the point {m:(9, -3)}. The point P is on AB with AP : PB = 3 : 2. Find the coordinates of P. Type it like (3, -2).</p>
+      <ol class="ladder"><li>Find {m:vec(AB)}.</li><li>AP is {m:frac(3, 5)} of {m:vec(AB)}.</li><li>Add {m:vec(AP)} to the position vector of A.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,0;3, 0">You took AP as 2 parts out of 5. AP : PB = 3 : 2 means AP is 3 parts out of 5.</li>
+        <li data-if="6,-3;6, -3">That is the vector {m:vec(AP)}. Add it to A to get the point P.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:vec(AB)} = {m:col(10, -5)}. {m:vec(AP)} = {m:frac(3, 5)}{m:col(10, -5)} = {m:col(6, -3)}. So P = {m:col(-1, 2)} + {m:col(6, -3)} = {m:col(5, -1)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:vec(AB)} = {m:col(10, -5)}</li>
+          <li><b>M1</b> for {m:vec(AP)} = {m:frac(3, 5)}{m:vec(AB)}</li>
+          <li><b>A1</b> for {m:col(6, -3)}</li>
+          <li><b>A1</b> for P = {m:(5, -1)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="112.6" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] <b>p</b> = &minus;5<b>i</b> + 12<b>j</b>. Find the angle between <b>p</b> and the positive x-axis, measured anticlockwise, to 1 decimal place.</p>
+      <ol class="ladder"><li>Sketch <b>p</b>. It goes up and left.</li><li>The acute angle is {m:tan^(-1)(frac(12, 5))}.</li><li>Subtract it from {m:180deg}.</li></ol>
+      <ul class="wrong">
+        <li data-if="67.4">That is the acute angle in the triangle. The vector points up and left, so subtract it from 180.</li>
+        <li data-if="-67.4">That is what the calculator gives for {m:tan^(-1)(frac(12, -5))}. Sketch the vector to find the angle from the positive x-axis.</li>
+        <li data-if="247.4">You added the acute angle to 180. That is for a vector that goes down and left.</li>
+      </ul>
+      <div class="solution">
+        <p>The acute angle is {m:tan^(-1)(frac(12, 5))=67.38deg}. The vector goes up and left, so the direction is {m:180deg-67.38deg=112.62deg}, which is {m:112.6deg}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:tan^(-1)(frac(12, 5))} or equivalent</li>
+          <li><b>M1</b> for {m:180deg-67.38deg}</li>
+          <li><b>A1</b> for {m:112.6deg}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="a+1/2c;a+c/2;a+0.5c;a+(1/2)c" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] OABC is a parallelogram with {m:vec(OA)} = <b>a</b> and {m:vec(OC)} = <b>c</b>. M is the midpoint of AB. Find {m:vec(OM)} in terms of a and c. Type it like a+1/2c.</p>
+      <ol class="ladder"><li>In a parallelogram, {m:vec(AB)} = {m:vec(OC)}.</li><li>Go from O to A, then half of the way from A to B.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/2a+c;0.5a+c;c+1/2a;a/2+c">That is the midpoint of CB. M is the midpoint of AB, so start from A.</li>
+        <li data-if="a+c;c+a">That is {m:vec(OB)}, which reaches B. M is halfway along AB.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:vec(AB)} = {m:vec(OC)} = <b>c</b>. So {m:vec(OM)} = {m:vec(OA)} + {m:frac(1, 2)}{m:vec(AB)} = <b>a</b> + {m:frac(1, 2)}<b>c</b>.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:vec(AB)} = <b>c</b></li>
+          <li><b>M1</b> for {m:vec(OA)} + {m:frac(1, 2)}{m:vec(AB)}</li>
+          <li><b>A1</b> for <b>a</b> + {m:frac(1, 2)}<b>c</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The points A, B and C have position vectors <b>a</b>, <b>b</b> and <b>c</b>, where <b>c</b> = 3<b>b</b> &minus; 2<b>a</b>. Show that A, B and C are collinear by finding k, where {m:vec(BC)} = k{m:vec(AB)}.</p>
+      <ol class="ladder"><li>Find {m:vec(AB)} and {m:vec(BC)} in terms of <b>a</b> and <b>b</b>.</li><li>{m:vec(AB)} = <b>b</b> &minus; <b>a</b>.</li><li>{m:vec(BC)} = <b>c</b> &minus; <b>b</b>.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the number in front of <b>b</b> in <b>c</b>. {m:vec(BC)} = <b>c</b> &minus; <b>b</b>, so take away <b>b</b> first.</li>
+        <li data-if="-2">That is the number in front of <b>a</b> in <b>c</b>. Write {m:vec(BC)} and {m:vec(AB)} in full, then compare.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:vec(AB)} = <b>b</b> &minus; <b>a</b>. {m:vec(BC)} = <b>c</b> &minus; <b>b</b> = 3<b>b</b> &minus; 2<b>a</b> &minus; <b>b</b> = 2<b>b</b> &minus; 2<b>a</b> = 2(<b>b</b> &minus; <b>a</b>). So k is 2. The vectors are parallel and share B, so A, B and C are collinear.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:vec(AB)} = <b>b</b> &minus; <b>a</b></li>
+          <li><b>M1</b> for {m:vec(BC)} = <b>c</b> &minus; <b>b</b></li>
+          <li><b>A1</b> for {m:vec(BC)} = 2<b>b</b> &minus; 2<b>a</b>, so k is 2</li>
+          <li><b>B1</b> for parallel, with the common point B, so collinear</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>A vector is a journey.</b> It records how far across and how far up, with no starting point. That is why two arrows of the same length and direction are the same vector.</li>
+      <li><b>Adding follows the journey.</b> Going along <b>a</b> and then along <b>b</b> is the same as one journey, the sum. Adding components does the same thing to the across parts and the up parts.</li>
+      <li><b>End minus start.</b> The journey from A to B can go back to the origin and out again: {m:vec(AO)} then {m:vec(OB)}. That is &minus;<b>a</b> + <b>b</b>, so {m:vec(AB)} = <b>b</b> &minus; <b>a</b>.</li>
+      <li><b>Magnitude is Pythagoras.</b> The across part and the up part meet at a right angle. The vector is the longest side of the triangle.</li>
+      <li><b>A unit vector separates direction from size.</b> Dividing by the magnitude leaves length 1 and the same direction. Multiplying by a number then sets any length you like.</li>
+      <li><b>Parallel means a scalar multiple.</b> A scalar multiple keeps the direction (or reverses it) and changes only the length. Sharing a point as well puts both vectors on one line.</li>
+      <li><b>A ratio is a fraction of a journey.</b> AP : PB = m : n puts P a fraction {m:frac(m, m+n)} of the way along AB. Walk that fraction of {m:vec(AB)} from A.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Finding {m:vec(AB)} as start minus end. It is end minus start.</li>
+      <li>Giving the across number and the up number in the wrong order. The across number is on top.</li>
+      <li>Forgetting to change the sign of both components of a negative vector.</li>
+      <li>Adding magnitudes: |<b>a</b> + <b>b</b>| is not |<b>a</b>| + |<b>b</b>|, unless the vectors point the same way.</li>
+      <li>Subtracting the squares of the components when finding a magnitude. Add them.</li>
+      <li>Giving the acute angle as the direction without checking which way the vector points.</li>
+      <li>Dividing by the sum of the components, instead of by the magnitude, to make a unit vector.</li>
+      <li>Putting the ratio the wrong way round. In AP : PB = 1 : 3, P is nearer to A.</li>
+      <li>Claiming points are collinear because two vectors are parallel, without saying they share a point.</li>
+      <li>Leaving out the vector letters: write 3<b>i</b> &minus; 2<b>j</b>, not 3 &minus; 2.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="vectors-2d">
+      <li><label><input type="checkbox"> read a vector from an arrow, and write it as a column vector or in i, j notation</label></li>
+      <li><label><input type="checkbox"> add and subtract vectors, and multiply a vector by a number</label></li>
+      <li><label><input type="checkbox"> say whether two vectors are parallel, and find a missing component</label></li>
+      <li><label><input type="checkbox"> find a magnitude and a unit vector, and find a direction in the right quadrant</label></li>
+      <li><label><input type="checkbox"> find the vector between two points, the distance between them, and a midpoint</label></li>
+      <li><label><input type="checkbox"> find the point that divides a line in a given ratio</label></li>
+      <li><label><input type="checkbox"> use vectors to show that lines are parallel, that points are collinear, or to find a ratio of lengths</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
