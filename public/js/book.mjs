@@ -4,12 +4,12 @@
 //
 // Privacy: progress lives in this browser's localStorage only. Nothing is sent
 // anywhere, and every storage call is wrapped because storage can be blocked.
-import { matches, rightValueWrongForm, splitList, diagnose, feedbackOrDefault, decimalCommaTip } from './book-answer.mjs?m=40';
+import { matches, rightValueWrongForm, splitList, diagnose, feedbackOrDefault, decimalCommaTip, hasNonLinearBracket } from './book-answer.mjs?m=41';
 import { review, isDue, sanitize } from './book-queue.mjs?m=39';
 import { rankVoice, bestVoice, voiceLabel } from './book-voice.mjs?m=39';
 import { splitSentences } from './book-speech.mjs?m=44';
 import { unitText, playClip, stopClip } from './book-audio.mjs?m=46';
-import { enhanceFaded } from './book-blanks.mjs?m=43';
+import { enhanceFaded } from './book-blanks.mjs?m=44';
 import { calcAllowed, layoutFor, createCalculator } from './book-calc.mjs?m=39';
 import { parseRanges, rangeBanner } from './book-ranges.mjs?m=39';
 import { isReviewMode, annotateForReview, startReviewMode } from './book-review.mjs?m=39';
@@ -345,6 +345,7 @@ export function enhanceQuestion(q, index) {
   } else {
     const answers = splitList(q.dataset.answers);
     const mode = q.dataset.mode === 'exact' ? 'exact' : 'value';
+    const options = q.dataset.complete === 'linear' ? { complete: 'linear' } : {}; // "factorise completely": every bracket must be linear
     const wrongs = wrongBox
       ? [...wrongBox.children].map((li) => ({ list: splitList(li.dataset.if), message: li.innerHTML }))
       : [];
@@ -385,11 +386,15 @@ export function enhanceQuestion(q, index) {
       }
       // The question and its worked solution tell the checker which units are sensible (a typed "60 km" is not right for metres).
       const unitContext = `${text?.textContent ?? ''} ${solution?.textContent ?? ''}`;
-      if (matches(value, answers, mode, unitContext)) {
+      if (matches(value, answers, mode, unitContext, options)) {
         input.readOnly = true;
         success();
         const commaTip = decimalCommaTip(value, answers);
         if (commaTip) feedback.append(` ${commaTip}`);
+        return;
+      }
+      if (options.complete === 'linear' && hasNonLinearBracket(value)) {
+        failure(null, 'Factorise the quadratic as well.');
         return;
       }
       const specific = wrongs.find((w) => matches(value, w.list, mode));
