@@ -1,6 +1,6 @@
 # Writing for the GCSE book
 
-The book lives at `/books/gcse/` (hidden pilot: not linked anywhere, not in the sitemap, `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
+The book lives at `/books/gcse/`, public since 27 Nov 2026 (linked from the Books page; answer keys stay `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
 
 ## The one-paragraph version
 

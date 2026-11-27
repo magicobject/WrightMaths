@@ -55,19 +55,18 @@ export const PAGES = [
     title: 'Maths Books | Wright Maths Tuition',
     description: 'Free online maths books written by a tutor, starting with a GCSE maths book built from the ground up.',
     active: 'books/',
-    robots: 'noindex',
     canonicalPath: 'books/',
     base: '../', // this page lives one folder down, so its stylesheet and script are one level up
   },
-  // ---- The GCSE book: hidden pilot at /books/gcse/ ----
-  // Not in NAV, not in sitemap.xml, not linked from any other page, and
-  // noindex. Topic pages are generated from src/book/topics.mjs, not listed here.
+  // ---- The GCSE book at /books/gcse/ (public since 27 Nov 2026) ----
+  // Linked from the Books page and listed in sitemap.xml. Its answer keys stay noindex.
+  // Topic pages are generated from src/book/topics.mjs, not listed here.
   {
     slug: 'books/gcse/index',
     searchSections: false,
     searchWords: 'home hub contents pyramid map',
     book: 'hub',
-    title: 'GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'GCSE Maths Book | Wright Maths Tuition',
     description: 'A colourful, interactive GCSE maths book: every idea from both sides, every term explained, and help whenever you are stuck.',
     canonicalPath: 'books/gcse/',
   },
@@ -85,56 +84,56 @@ export const PAGES = [
     slug: 'books/gcse/glossary',
     searchWords: 'dictionary words definitions terms vocabulary',
     book: 'glossary',
-    title: 'Maths Glossary | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Maths Glossary | GCSE Maths Book | Wright Maths Tuition',
     description: 'Every mathematical term in the GCSE book, in plain English, with an example, a warning about common traps and the reverse side of the idea.',
   },
   {
     slug: 'books/gcse/diagnostic',
     searchWords: 'quiz test gaps where to start where do i start',
     book: 'diagnostic',
-    title: 'Find Your Gaps | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Find Your Gaps | GCSE Maths Book | Wright Maths Tuition',
     description: 'Eleven quick questions, one for each foundation topic, to show you which GCSE maths topic to start with and how far you have come.',
   },
   {
     slug: 'books/gcse/practice',
     searchWords: 'mixed questions revision',
     book: 'practice',
-    title: 'Mixed Practice | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Mixed Practice | GCSE Maths Book | Wright Maths Tuition',
     description: 'Five mixed questions at a time from across the GCSE book, favouring the ones you have not finished yet.',
   },
   {
     slug: 'books/gcse/command-words',
     searchWords: 'command words question words exam',
     book: 'commands',
-    title: 'Question Words Explained | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Question Words Explained | GCSE Maths Book | Wright Maths Tuition',
     description: 'What work out, calculate, show that, explain and the other exam question words ask you to do, with a short example of each.',
   },
   {
     slug: 'books/gcse/stretch',
     searchWords: 'higher tier grade 9 harder papers',
     book: 'stretch',
-    title: 'Grade 7 to 9 Stretch Papers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Grade 7 to 9 Stretch Papers | GCSE Maths Book | Wright Maths Tuition',
     description: 'Real-paper style questions for Higher tier students aiming at grades 7, 8 and 9, with calculator and non-calculator labels and a mark scheme you tick off yourself.',
   },
   {
     slug: 'books/gcse/route',
     searchWords: 'plan timetable weeks revision schedule',
     book: 'route',
-    title: 'Study Routes | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Study Routes | GCSE Maths Book | Wright Maths Tuition',
     description: 'Week-by-week routes through the GCSE maths book: a resit to grade 4, the whole book in 12 weeks, a short route for a few weak topics, and a grade 7 to 9 top-up.',
   },
   {
     slug: 'books/gcse/foundation',
     searchWords: 'foundation tier practice papers exam timed',
     book: 'foundation',
-    title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book | Wright Maths Tuition',
     description: 'Real-paper style questions for grades 4, 5 and 6, with calculator and non-calculator labels, a mark scheme you tick off yourself and a timed set.',
   },
   {
     slug: 'books/gcse/teachers',
     searchWords: 'teacher answer key answers mark scheme classroom worksheet printable',
     book: 'teachers',
-    title: 'For Teachers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'For Teachers | GCSE Maths Book | Wright Maths Tuition',
     description: 'How to use the GCSE maths book in a classroom: printable worksheets, a teacher answer key for every topic, mark schemes, and what is stored.',
   },
   {
@@ -142,21 +141,21 @@ export const PAGES = [
     searchSections: false,
     searchWords: 'parent carer help child',
     book: 'parents',
-    title: 'A Guide for Parents and Carers | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'A Guide for Parents and Carers | GCSE Maths Book | Wright Maths Tuition',
     description: 'How to help your child use the GCSE maths book: where to start, what to say when they are stuck, what is stored on their device, and what the grades mean.',
   },
   {
     slug: 'books/gcse/how-to-use',
     searchWords: 'help listen accessibility dyslexia screen reader typing sqrt pi print homework words',
     book: 'how-to-use',
-    title: 'How to Use This Book | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'How to Use This Book | GCSE Maths Book | Wright Maths Tuition',
     description: 'Plain-English help for the GCSE maths book: the Listen button and reading options, how to type answers, getting clues, timed sets, printing and the everyday words in questions.',
   },
   {
     slug: 'books/gcse/raise-your-grade',
     searchWords: 'grades improve marks method',
     book: 'grades',
-    title: 'How to Raise Your Grade | GCSE Maths Book (pilot) | Wright Maths Tuition',
+    title: 'How to Raise Your Grade | GCSE Maths Book | Wright Maths Tuition',
     description: 'What changes at each step from grade 1 to grade 9, and the habits that move your results to the right.',
   },
   {

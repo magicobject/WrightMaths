@@ -30,7 +30,7 @@ Unlike kington-parishes/kingtonfoodbank, this repo has no `site.config.mjs` cent
 
 ## The GCSE book (hidden pilot at `/books/gcse/`)
 A colourful, interactive online GCSE maths textbook, built from the same source for a later print edition. Read `docs/book-authoring.md` before adding a topic or a term; the plan is `docs/textbook-plan.md`.
-- **Hidden on purpose.** Not in the nav, the footer, `sitemap.xml` or `robots.txt`, and no other page links to it; every book page is `noindex`. `test/book.spec.ts` fails if any existing page, the sitemap or robots mentions it. Don't link it until Greg says.
+- **Public since 27 Nov 2026 (Greg's decision).** Reached from the Books page (in the main menu); the book home, glossary and Books page are in `sitemap.xml`, and book pages can be indexed. The teacher answer keys (`books/gcse/key/`) and the recordings review page stay `noindex` and out of the sitemap. `test/book.spec.ts` checks all of this. The A-level book is still a hidden preview.
 - **Topic graph and glossary are single sources.** `src/book/topics.mjs` (what each topic `needs`; layer and unlocks are derived) and `src/book/glossary.mjs`. The build fails on an unknown prerequisite, a cycle, an unknown `{term:...}` or a live topic with no page.
 - **Never hand-edit `public/books/`**; edit `src/pages/books/gcse/*.html` and rebuild. `public/css/book.css` and `public/js/book*.{mjs,js}` are hand-maintained.
 - **Every topic** has Check-your-knowledge sets after each chunk, a Flip-it section, a "Help, I'm stuck!" ladder on every question, and wrong-answer messages for the common slips. `test/book.spec.ts` enforces minimum counts.

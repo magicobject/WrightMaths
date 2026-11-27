@@ -17,6 +17,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/books/a-level/straight-lines.html', titleContains: 'Straight lines', heading: /^Straight lines$/ },
   { path: '/books/a-level/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
   { path: '/books/a-level/simultaneous.html', titleContains: 'Simultaneous equations', heading: /^Simultaneous equations$/ },
+  { path: '/books/a-level/inequalities.html', titleContains: 'Inequalities', heading: /^Inequalities$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
