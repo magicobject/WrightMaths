@@ -94,7 +94,17 @@ function fit(corners, box) {
 const BOX = { left: 120, right: W - 120, bottom: 90, top: H - 70 };
 
 /** A canvas where one unit is one pixel and y points up. */
-const canvas = () => plane({ width: W, height: H, left: 0, right: 0, top: 0, bottom: 0, xmin: 0, xmax: W, ymin: 0, ymax: H, grid: false, axes: false, ticks: false });
+/** Records every edge drawn (solid or dashed, labelled or not) in p.edges, and which edge each side label belongs to in p.sideLabels. */
+const canvas = () => {
+  const p = plane({ width: W, height: H, left: 0, right: 0, top: 0, bottom: 0, xmin: 0, xmax: W, ymin: 0, ymax: H, grid: false, axes: false, ticks: false });
+  const draw = p.line;
+  p.edges = [];
+  p.sideLabels = [];
+  p.line = (x1, y1, x2, y2, o) => { if (o?.cls !== 'guide') p.edges.push([[x1, y1], [x2, y2]]); return draw(x1, y1, x2, y2, o); };
+  return p;
+};
+/** Say that the label just drawn belongs to the edge from corner `from` to corner `to`. */
+const tagSide = (p, text, from, to) => p.sideLabels.push({ text, from, to });
 
 const HALO = 'paint-order:stroke;stroke:var(--paper);stroke-width:8px;stroke-linejoin:round';
 const finish = (p, meta) => p.svg(meta).replace(/<text class="svg-t([^>]*)>([\s\S]*?)<\/text>/g, (whole, attrs, body) => (body.includes('<tspan') ? whole : `<text style="${HALO}" class="svg-t${attrs}>${body}</text>`));
@@ -129,7 +139,8 @@ function markAngle(p, v, toward1, toward2, degrees, text) {
 }
 
 /** A side label: beside the middle of the side P-Q, on the side away from `awayFrom`. */
-function labelSide(p, P, Q, awayFrom, text) {
+function labelSide(p, P, Q, awayFrom, text, ends) {
+  if (ends) tagSide(p, text, ...ends);
   const m = mid(P, Q);
   const n = unit(sub(m, awayFrom));
   const off = 18 + halfWidth(text) * Math.abs(n[0]) + 12 * Math.abs(n[1]);
@@ -189,7 +200,7 @@ function buildSingle(id) {
     const shown = spec.schematic ? k : spec.given[k] != null ? `${num(spec.given[k])} cm` : spec.unknown === k ? 'x' : null;
     if (!shown) continue;
     const [P, Q] = SIDE_ENDS[k];
-    labelSide(p, corners[P], corners[Q], corners[ANGLES.find((K) => K !== P && K !== Q)], shown);
+    labelSide(p, corners[P], corners[Q], corners[ANGLES.find((K) => K !== P && K !== Q)], shown, [P, Q]);
     if (spec.given[k] != null && !spec.schematic) lengths.push({ from: P, to: Q, value: spec.given[k] });
   }
   for (const K of ANGLES) {
@@ -207,7 +218,7 @@ function buildSingle(id) {
       ? { kind: 'length', from: SIDE_ENDS[spec.unknown][0], to: SIDE_ENDS[spec.unknown][1] }
       : { kind: 'angle', at: spec.unknown, from: ANGLES.filter((o) => o !== spec.unknown)[0], to: ANGLES.filter((o) => o !== spec.unknown)[1] };
   }
-  return { svg: finish(p, { id, title: spec.title, desc: spec.desc }), corners, ...facts(lengths, angles, areas), unknown, kind: 'shape' };
+  return { svg: finish(p, { id, title: spec.title, desc: spec.desc }), corners, ...facts(lengths, angles, areas), unknown, kind: 'shape', edges: p.edges, sideLabels: p.sideLabels };
 }
 
 // ---- the ambiguous case: two triangles that share the corners A and C ----
@@ -232,10 +243,13 @@ function buildAmbiguous(id) {
   p.text(k.B_2[0] - 6, k.B_2[1] - 34, 'B_2', { cls: 'alt', anchor: 'middle', dy: 8 });
   const mAC = mid(k.A, k.C);
   p.text(mAC[0] - 54, mAC[1] + 30, '10 cm', { dy: 8 });
+  tagSide(p, '10 cm', 'A', 'C');
   const m1 = mid(k.C, k.B_1);
   p.text(m1[0] + 52, m1[1] + 18, '7 cm', { dy: 8 });
+  tagSide(p, '7 cm', 'C', 'B_1');
   const m2 = mid(k.C, k.B_2);
   p.text(m2[0] + 18, m2[1] - 6, '7 cm', { anchor: 'start', dy: 8 });
+  tagSide(p, '7 cm', 'C', 'B_2');
   return {
     svg: finish(p, { id, title: 'Two different triangles that fit the same measurements', desc: 'Corner A at the left and corner C above and to the right of it. The side AC is 10 centimetres and the angle at A, between AC and the bottom line, is 30 degrees. Two lines each 7 centimetres long run from C down to the bottom line: a solid line to B sub 1, farther from A, and a dashed line to B sub 2, nearer to A. Triangle A B sub 1 C and triangle A B sub 2 C both fit the measurements.' }),
     corners: k,
@@ -245,6 +259,8 @@ function buildAmbiguous(id) {
     ),
     unknown: null,
     kind: 'shape',
+    edges: p.edges,
+    sideLabels: p.sideLabels,
   };
 }
 
@@ -268,11 +284,15 @@ function buildFlipArea(id) {
   p.text(k.B_1[0] + 30, k.B_1[1] + 8, 'B_1', { cls: 'alt', anchor: 'start', dy: 8 });
   p.text(k.B_2[0] - 30, k.B_2[1] + 8, 'B_2', { cls: 'alt', anchor: 'end', dy: 8 });
   p.text((k.A[0] + k.C[0]) / 2, k.A[1] - 30, '12 cm', { dy: 8 });
-  // near the B_1 end of AB_1, where the dashed line B_2 C is far away
-  const m1 = [k.A[0] + 0.78 * (k.B_1[0] - k.A[0]), k.A[1] + 0.78 * (k.B_1[1] - k.A[1])];
-  p.text(m1[0] - 24, m1[1] + 14, '9 cm', { anchor: 'end', dy: 8 });
+  tagSide(p, '12 cm', 'A', 'C');
+  // Beside AB_1, toward B_1, on the outer (left) side. Inside the triangle the label is wider than the gap
+  // between AB_1 and B_1 C, so it would sit nearer B_1 C; out here AB_1 is clearly the nearest edge.
+  const m1 = [k.A[0] + 0.85 * (k.B_1[0] - k.A[0]), k.A[1] + 0.85 * (k.B_1[1] - k.A[1])];
+  p.text(m1[0] - 10, m1[1] - 10, '9 cm', { anchor: 'end', dy: 8 });
+  tagSide(p, '9 cm', 'A', 'B_1');
   const m2 = mid(k.A, k.B_2);
   p.text(m2[0] - 16, m2[1] + 4, '9 cm', { anchor: 'end', dy: 8 });
+  tagSide(p, '9 cm', 'A', 'B_2');
   return {
     svg: finish(p, { id, title: 'Two triangles with the same two sides and the same area', desc: 'Corner A with a base AC of 12 centimetres running to the right. Two sides of 9 centimetres leave A: one up and to the right, to B sub 1, making an angle of 47.8 degrees with the base, and one up and to the left, to B sub 2, making an angle of 132.2 degrees with the base. Triangles A B sub 1 C and A B sub 2 C have the same area.' }),
     corners: k,
@@ -283,6 +303,8 @@ function buildFlipArea(id) {
     ),
     unknown: null,
     kind: 'shape',
+    edges: p.edges,
+    sideLabels: p.sideLabels,
   };
 }
 
@@ -308,10 +330,10 @@ function buildField(id) {
   p.line(...k.A, ...k.C, { cls: 'curve-b', clip: false });
   for (const [P, Q] of [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'A']]) p.line(...k[P], ...k[Q], { cls: 'line', clip: false });
   for (const K of ['A', 'B', 'C', 'D']) labelCorner(p, k[K], c, K);
-  labelSide(p, k.A, k.B, c, '6 cm');
-  labelSide(p, k.B, k.C, c, '9 cm');
-  labelSide(p, k.C, k.D, c, '7 cm');
-  labelSide(p, k.D, k.A, c, '8 cm');
+  labelSide(p, k.A, k.B, c, '6 cm', ['A', 'B']);
+  labelSide(p, k.B, k.C, c, '9 cm', ['B', 'C']);
+  labelSide(p, k.C, k.D, c, '7 cm', ['C', 'D']);
+  labelSide(p, k.D, k.A, c, '8 cm', ['D', 'A']);
   markAngle(p, k.B, k.A, k.C, FIELD.b, `110${DEG}`);
   return {
     svg: finish(p, { id, title: 'A four-sided field ABCD with the diagonal AC', desc: 'A four-sided shape ABCD. AB is 6 centimetres, BC is 9 centimetres, CD is 7 centimetres and DA is 8 centimetres. The angle at B, between AB and BC, is 110 degrees. A dashed line joins A to C and splits the shape into two triangles.' }),
@@ -322,6 +344,8 @@ function buildField(id) {
     ),
     unknown: null,
     kind: 'shape',
+    edges: p.edges,
+    sideLabels: p.sideLabels,
   };
 }
 

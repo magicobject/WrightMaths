@@ -228,30 +228,47 @@ test('every figure is drawn to the measurements it states: lengths, angles and a
   expect(problems).toEqual([]);
 });
 
-test('each side label sits nearest its own segment', async () => {
+test('each side label sits nearer its own edge than any other drawn edge, dashed and unlabelled ones included', async () => {
   const { ids, geo } = await allGeometry();
   const problems: string[] = [];
   let checked = 0;
-  const H = 400; // the drawing height: the corners have y up, the text has y down
+  const H = 400; // the drawing height: corners have y up, the text has y down
   const toSegment = (p: number[], a: number[], b: number[]) => {
     const [dx, dy] = [b[0] - a[0], b[1] - a[1]];
     const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy)));
     return Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy));
   };
   for (const id of ids) {
-    const g = geo(id);
-    if (g.kind !== 'shape' || !g.lengths?.length) continue;
-    const segs = g.lengths.map((l) => ({ value: l.value, a: [g.corners[l.from][0], H - g.corners[l.from][1]], b: [g.corners[l.to][0], H - g.corners[l.to][1]] }));
-    for (const m of g.svg.matchAll(/<text[^>]* x="([\d.-]+)" y="([\d.-]+)"[^>]*>(?:<tspan[^>]*>)?([\d.]+) cm</g)) {
+    const g = geo(id) as Geo & { edges?: number[][][]; sideLabels?: { text: string; from: string; to: string }[] };
+    if (g.kind !== 'shape' || !g.sideLabels?.length) continue;
+    const name = (pt: number[]) => Object.keys(g.corners).find((k) => Math.hypot(g.corners[k][0] - pt[0], g.corners[k][1] - pt[1]) < 0.5) ?? '?';
+    // every edge drawn in the figure, with its corner names
+    const edges = g.edges!.map(([a, b]) => ({ id: [name(a), name(b)].sort().join('-'), a, b }));
+    expect(edges.every((e) => !e.id.includes('?')), `${id}: an edge does not join two corners`).toBe(true);
+    // the "N cm" labels in the picture, in the order they were drawn
+    const texts = [...g.svg.matchAll(/<text[^>]* x="([\d.-]+)" y="([\d.-]+)" text-anchor="(\w+)">([^<]+)<\/text>/g)];
+    // the tagged labels, found in the picture in the order they were drawn
+    let from = 0;
+    const found = g.sideLabels.map((l) => {
+      const at = texts.findIndex((t, k) => k >= from && t[4] === l.text);
+      from = at + 1;
+      return texts[at];
+    });
+    expect(found.every(Boolean), `${id}: a tagged label is not in the picture`).toBe(true);
+    found.forEach((m, i) => {
       checked += 1;
-      const at = [Number(m[1]), Number(m[2]) - 8]; // the label's baseline was moved down 8 to centre it
-      const nearest = segs.reduce((best, s) => (toSegment(at, s.a, s.b) < toSegment(at, best.a, best.b) ? s : best));
-      if (nearest.value !== Number(m[3])) problems.push(`${id}: the label "${m[3]} cm" is nearer a ${nearest.value} cm side`);
-    }
+      const half = m[4].length * 6.5 + 4;
+      const x = Number(m[1]) + (m[3] === 'start' ? half : m[3] === 'end' ? -half : 0);
+      const at = [x, H - (Number(m[2]) - 8)]; // the text's baseline was moved down 8 to centre it
+      const nearest = edges.reduce((best, e) => (toSegment(at, e.a, e.b) < toSegment(at, best.a, best.b) ? e : best));
+      const own = [g.sideLabels![i].from, g.sideLabels![i].to].sort().join('-');
+      if (nearest.id !== own) problems.push(`${id}: the label "${m[4]}" belongs to ${own} but is nearest ${nearest.id}`);
+    });
   }
   expect(checked).toBeGreaterThan(30);
   expect(problems).toEqual([]);
 });
+
 
 test('every bearing diagram is drawn from its bearings and distances', async () => {
   const { ids, geo } = await allGeometry();
