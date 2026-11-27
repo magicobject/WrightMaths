@@ -10,7 +10,7 @@ const W = 600; // at 320px wide the page shows a figure about 273px wide: 27px t
 const LEFT = 64;
 const BOTTOM = 52;
 const ROW = 46; // the height of one row of the key (the text with a superscript is about 36 tall)
-const TIMES = '×'; // the multiplication sign, kept out of the source so the file stays plain ASCII
+const TIMES = '\u00d7'; // the multiplication sign, kept out of the source so the file stays plain ASCII
 
 /** The picture's size and range, kept so the test can turn a pixel back into graph coordinates. */
 export const GEOM = {};

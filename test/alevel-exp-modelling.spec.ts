@@ -400,7 +400,7 @@ test('every simple sum written as {m:a*b=c} or {m:a+b=c} on the page is right', 
 });
 
 test('no equation holds an ellipsis or a not-equals written with an exclamation mark', () => {
-  const bad = [...SOURCE.matchAll(/\{md?:([^}]*)\}/g)].map((m) => m[1]).filter((t) => /(\.\.\.|…|&hellip;|!=)/.test(t));
+  const bad = [...SOURCE.matchAll(/\{md?:([^}]*)\}/g)].map((m) => m[1]).filter((t) => /(\.\.\.|\u2026|&hellip;|!=)/.test(t));
   expect(bad).toEqual([]);
 });
 
@@ -496,7 +496,7 @@ const EXPECTED: Record<string, ((x: number) => number)[]> = {
   'exp-modelling-flip': [(t) => 0.5 * t + 1.4], // ln y = 0.5t + 1.4
 };
 const SOME_CLASSES = ['curve', 'curve-b', 'curve-c'];
-const minusText = (s: string) => s.replace(/−/g, '-').replace(/​/g, '');
+const minusText = (s: string) => s.replace(/\u2212/g, '-').replace(/\u200b/g, '');
 const labelsOf = (svg: string) => [...svg.matchAll(/<text [^>]*>([\s\S]*?)<\/text>/g)].map((m) => minusText(m[1].replace(/<[^>]+>/g, '')));
 
 test('each figure curve is drawn from its equation, and each marked point lies on its curve and carries its own coordinates', async () => {
@@ -663,8 +663,8 @@ for (const width of [320, 1100]) {
         if (!svg) { out.push(`${id}: figure not on the page`); continue; }
         const vb = svg.viewBox.baseVal;
         const scale = svg.getBoundingClientRect().width / vb.width;
-        const texts = [...svg.querySelectorAll('text')].filter((t) => (t.textContent ?? '').replace(/​/g, '').trim());
-        const boxes = texts.map((t) => ({ t, name: (t.textContent ?? '').replace(/​/g, '').replace(/−/g, '-').trim(), b: t.getBBox() }));
+        const texts = [...svg.querySelectorAll('text')].filter((t) => (t.textContent ?? '').replace(/\u200b/g, '').trim());
+        const boxes = texts.map((t) => ({ t, name: (t.textContent ?? '').replace(/\u200b/g, '').replace(/\u2212/g, '-').trim(), b: t.getBBox() }));
         // text inside the picture, and big enough to read
         for (const { t, name, b } of boxes) {
           if (b.x < 0 || b.y < 0 || b.x + b.width > vb.width || b.y + b.height > vb.height) out.push(`${id}: "${name}" is outside the picture`);
