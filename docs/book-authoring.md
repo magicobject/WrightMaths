@@ -98,6 +98,8 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 
 **Higher-only sections** carry `<span class="chip chip-higher">Higher</span>` in their heading.
 
+**Higher-only questions and words** carry the chip at the start of the question text. Where there is no chip, put `data-tier="H"` on the `<div class="q">`, or wrap the Higher words of a sentence in `<span data-tier="H">...</span>`. The web page looks the same; the Foundation print book (`docs/print-edition.md`) cuts them out. A question graded 7 or more must carry one of these (a test checks). Phrases such as "Higher tier", "(Higher)" or "Higher only" in running text are treated as Higher markers by the print build; "Higher" in its everyday sense is fine.
+
 **Glossary examples** may be an array (one line each). Use the identity sign with `{term:identity|&equiv;}` only for Higher-tier notes.
 
 **Spaced revisit.** A question answered right first time with no hint is scheduled to come back (1, 3, 7, 21, 60 days: `public/js/book-queue.mjs`). "Give me five" shows up to three due questions. Everything is in `localStorage`; the queue ignores malformed data.
