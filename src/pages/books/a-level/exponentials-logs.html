@@ -1,0 +1,1194 @@
+<main class="book strand-al-exponentials" data-book-page="topic" data-topic="exponentials-logs">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Exponentials and logarithms &middot; Year 1</span>
+      <h1>Exponentials and logarithms</h1>
+      <p class="lead">Some numbers grow by multiplying, not by adding. In {m:2^x} the unknown x is in the power. This page shows the graphs of these functions, including the special number e. Then it introduces the logarithm, which finds the power for you. You will learn three laws for logarithms. You will use them to solve equations and inequalities where the unknown is in a power.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Exponential modelling, to describe growth and decay. Also in Differentiation, to differentiate {m:e^x} and {m:ln x}. You use it too in Geometric series, to find how many terms you need.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Exponentials and logarithms</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="indices-surds.html">Indices and surds</a>. You need the laws of indices, negative powers and fractional powers. The warm-up shows you where to look if you have forgotten any of it. The page does not use change of base, a formula some books add for logarithms. Where the working shows a long decimal, such as 3.3219, the last digit is rounded. On your own calculator, keep every digit.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-exponential-functions-and-their-graphs">Skip to the lesson</a></p>
+    <div class="q" data-answers="1/8" data-mode="value">
+      <p class="qtext">Write {m:2^(-3)} as a fraction. Type it like 1/5.</p>
+      <ol class="ladder"><li>A negative power means one over the positive power.</li><li>{m:2^(-3)=frac(1, 2^3)}. Work out {m:2^3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-8">A negative power does not make the answer negative. It means one over the positive power.</li>
+        <li data-if="1/6">You multiplied 2 by 3. The power 3 means {m:2*2*2}, and the minus sign puts the result under 1.</li>
+      </ul>
+      <div class="solution"><p>{m:2^(-3)=frac(1, 2^3)=frac(1, 8)}.</p></div>
+    </div>
+    <div class="q" data-answers="128" data-mode="value">
+      <p class="qtext">Find the value of {m:2^3*2^4}. Type only the number.</p>
+      <ol class="ladder"><li>The bases are the same, so use the first law of indices.</li><li>Add the powers: {m:2^(3+4)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="4096">You multiplied the powers to get {m:2^12}. When you multiply powers of the same base, you add the powers.</li>
+        <li data-if="16384">You multiplied the bases to get {m:4^7}. The base stays 2 and the powers add.</li>
+      </ul>
+      <div class="solution"><p>{m:2^3*2^4=2^7=128}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the value of {m:9^(frac(1,2))}. Type only the number.</p>
+      <ol class="ladder"><li>The power {m:frac(1,2)} means square root.</li></ol>
+      <ul class="wrong">
+        <li data-if="4.5">You halved 9. The power {m:frac(1,2)} means the square root, not half.</li>
+        <li data-if="81">You squared 9. The power {m:frac(1,2)} means the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:9^(frac(1,2))=sqrt(9)=3}.</p></div>
+    </div>
+    <div class="q" data-answers="64" data-mode="value">
+      <p class="qtext">Find the value of {m:(2^3)^2}. Type only the number.</p>
+      <ol class="ladder"><li>A power of a power: multiply the powers.</li><li>{m:(2^3)^2=2^(3*2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="32">You added the powers to get {m:2^5}. For a power of a power, multiply them.</li>
+        <li data-if="512">You worked out {m:2^9}, which is {m:2^(3^2)}. The brackets show that {m:2^3} is raised to the power 2.</li>
+      </ul>
+      <div class="solution"><p>{m:(2^3)^2=2^6=64}. Check: {m:2^3=8} and {m:8^2=64}.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;-4" data-mode="exact">
+      <p class="qtext">Solve {m:-2x<8}. Type it like x&gt;3.</p>
+      <ol class="ladder"><li>Divide both sides by {m:-2}.</li><li>Dividing by a negative number reverses the inequality sign.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;-4">You did not reverse the sign. Dividing both sides by a negative number turns {m:<} into {m:>}.</li>
+      </ul>
+      <div class="solution"><p>{m:-2x<8}. Divide by {m:-2} and reverse the sign: {m:x>-4}.</p></div>
+    </div>
+    <div class="q" data-answers="7.39" data-mode="value">
+      <p class="qtext">Use your calculator to find {m:e^2} to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Find the e<sup>x</sup> key. Enter 2.</li><li>Round to 3 significant figures. Look at the fourth digit.</li></ol>
+      <ul class="wrong">
+        <li data-if="7.38">You cut the number off. The digits are 7.389&hellip;, and the fourth digit is 9, so round up.</li>
+        <li data-if="5.44">You worked out {m:2*e}. The power 2 means {m:e*e}.</li>
+      </ul>
+      <div class="solution"><p>{m:e^2=7.389}, which is 7.39 to 3 significant figures.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Exponential functions and their graphs</h2>
+    <p>An {term:exponential-function|exponential function} has the unknown in the power, as in {m:y=a^x}. The number a is the {term:base-number|base}. It is positive and it is not 1.</p>
+    <p>Here is a table for {m:y=2^x}. Each step of 1 in x multiplies y by 2.</p>
+    <table class="data">
+      <thead><tr><th scope="col">x</th><th scope="col">{m:-2}</th><th scope="col">{m:-1}</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th></tr></thead>
+      <tbody><tr><th scope="row">{m:2^x}</th><td>{m:frac(1,4)}</td><td>{m:frac(1,2)}</td><td>1</td><td>2</td><td>4</td><td>8</td></tr></tbody>
+    </table>
+    <figure class="figure-lg">{fig:exponentials-logs-powers}<figcaption>Look at the point {m:(0, 1)}. Both curves pass through it. The solid curve {m:y=2^x} rises. The dashed curve {m:y=(frac(1,2))^x} falls. Each is the mirror image of the other in the y-axis.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=a^x} always passes through {m:(0, 1)}, because {m:a^0=1}. It is always above the x-axis, because a positive number to any power is positive. The x-axis is an {term:asymptote}: the graph gets closer and closer to it but never reaches it. If {m:a>1} the graph rises, and the function is an {term:increasing-function|increasing function}. If {m:0<a<1} the graph falls.</p>
+    </div>
+    <h3>The number e</h3>
+    <p>One base is special. The number {term:euler-number|e} is about 2.718. It is an irrational number, like {m:pi}. The function {term:natural-exponential|natural exponential function} is the one whose gradient at every point equals its height. You will use this in Differentiation.</p>
+    <figure class="figure-lg">{fig:exponentials-logs-e}<figcaption>Look at the order of the three curves to the right of the y-axis. Since 2 is less than e and e is less than 3, the curve {m:y=e^x} lies between {m:y=2^x} and {m:y=3^x}.</figcaption></figure>
+    <p>On a calculator, use the e<sup>x</sup> key. For example, {m:e^1=2.718} and {m:e^(-1)=0.368}.</p>
+    <h3>The graph of y = e<sup>ax+b</sup> + c</h3>
+    <p>The graph of {m:y=e^(ax+b)+c} has the same shape as {m:y=e^x}, moved and squeezed. Three facts help you to sketch it.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for {m:y=e^(ax+b)+c}, find three things. First, the horizontal asymptote is {m:y=c}, because {m:e^(ax+b)} gets close to 0 on one side. Second, the y-intercept is found by putting {m:x=0}: it is {m:e^b+c}. Third, if {m:a>0} the graph rises, and if {m:a<0} the graph falls.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a falling exponential</h3>
+      <p>Sketch the main features of {m:y=e^(-x)+2}.</p>
+      <ol class="steps">
+        <li>Compare with {m:e^(ax+b)+c}. Here {m:a=-1}, {m:b=0} and {m:c=2}.</li>
+        <li>The asymptote is {m:y=c}, so it is {m:y=2}.</li>
+        <li>Put {m:x=0}: {m:y=e^0+2=1+2=3}. The y-intercept is {m:(0, 3)}.</li>
+        <li>The number a is negative, so the graph falls from left to right.</li>
+      </ol>
+      <p>For large positive x, {m:e^(-x)} is very small. So y is a little above 2 and gets closer to it. For large negative x, y becomes very large. The graph never goes below the asymptote.</p>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-shift}<figcaption>Look at the dashed line {m:y=2}. The curve falls towards it and never reaches it. The curve crosses the y-axis at {m:(0, 3)}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a rising exponential</h3>
+      <p>Find the asymptote and the y-intercept of {m:y=e^(2x+1)-5}.</p>
+      <ol class="steps">
+        <li>Here {m:a=2}, {m:b=1} and {m:c=-5}. The asymptote is {m:y=-5}.</li>
+        <li>Put {m:x=0}: {m:y=e^1-5=e-5}.</li>
+        <li>The calculator gives {m:e-5=-2.28} to 3 significant figures.</li>
+      </ol>
+      <p>The asymptote is {m:y=-5}. The y-intercept is {m:(0, e-5)}, which is about {m:(0, -2.28)}. The graph rises, because {m:a=2} is positive.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the asymptote and the y-intercept of {m:y=e^(x-1)+3}.</p>
+      <ol class="steps">
+        <li>Here {m:c=3}, so the asymptote is {m:y=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>Put {m:x=0}: {m:y=e^(-1)+3}. The calculator gives {m:y=}<span class="blank" data-answers="3.37">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The asymptote is {m:y=3}. The y-intercept is {m:(0, e^(-1)+3)}, which is about {m:(0, 3.37)}. The graph rises, because the number in front of x is positive.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: exponential functions</h2>
+    <div class="q" data-answers="1/9" data-mode="value">
+      <p class="qtext">Find the value of y when {m:x=-2} on the graph of {m:y=3^x}. Type it like 1/5.</p>
+      <ol class="ladder"><li>Put {m:x=-2} into {m:3^x}.</li><li>A negative power means one over the positive power.</li></ol>
+      <ul class="wrong">
+        <li data-if="-9">A negative power does not make the answer negative. {m:3^(-2)=frac(1, 3^2)}.</li>
+        <li data-if="-6">You multiplied 3 by {m:-2}. The unknown is in the power, so {m:3^(-2)} is not {m:3*(-2)}.</li>
+        <li data-if="9">You dropped the minus sign. A negative power gives one over {m:3^2}, not {m:3^2}.</li>
+      </ul>
+      <div class="solution"><p>{m:3^(-2)=frac(1, 3^2)=frac(1, 9)}. The point {m:(-2, frac(1,9))} is on the graph. It is very close to the x-axis.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is true for every graph of {m:y=a^x} with {m:a>1}?</p>
+      <ul class="options">
+        <li data-why="At x = 1 the graph gives y = a, not 0. The point (1, 0) is on the graph of a logarithm, not of an exponential.">It passes through the point where x is 1 and y is 0</li>
+        <li data-correct>It passes through the point where x is 0 and y is 1, and it is always above the x-axis</li>
+        <li data-why="At x = 0 the graph gives y = 1, not 0. The graph gets closer to the x-axis but never meets it.">It meets the x-axis at the point where x is 0</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=0} into {m:a^x}.</li><li>Can a positive number to a power ever equal 0?</li></ol>
+      <div class="solution"><p>{m:a^0=1}, so the graph passes through {m:(0, 1)}. A positive number to any power is positive, so the graph stays above the x-axis.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The curve {m:y=a^x} passes through {m:(0, 1)} and {m:(2, 9)}. Find the value of a. Type only the number.</p>
+      <figure class="qfig-lg">{fig:exponentials-logs-q-base}</figure>
+      <ol class="ladder"><li>The point {m:(2, 9)} is on the curve, so {m:a^2=9}.</li><li>The base a is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="4.5">You divided 9 by 2. The equation is {m:a^2=9}, so a is the square root of 9.</li>
+        <li data-if="81">You squared 9. The equation is {m:a^2=9}, so you take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:a^2=9}, so {m:a=3}, because the base is positive. Check: {m:3^0=1} and {m:3^2=9}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Find the y-intercept of {m:y=e^(2x)+5}. Type only the number.</p>
+      <ol class="ladder"><li>The y-intercept is where {m:x=0}.</li><li>{m:e^(2*0)=e^0}. What is {m:e^0}?</li></ol>
+      <ul class="wrong">
+        <li data-if="5">You used {m:e^0=0}. Any number to the power 0 is 1, so {m:e^0=1}.</li>
+        <li data-if="7">You multiplied by the 2 in the power: {m:2*1+5}. The 2 is in the power, and {m:e^(2*0)=e^0=1}.</li>
+      </ul>
+      <div class="solution"><p>At {m:x=0}, {m:y=e^0+5=1+5=6}. The y-intercept is {m:(0, 6)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The curve {m:y=e^(2x)+c} crosses the y-axis at {m:(0, -1)}. Find the value of c. Type only the number.</p>
+      <figure class="qfig-lg">{fig:exponentials-logs-q-shift}</figure>
+      <ol class="ladder"><li>Put {m:x=0} into the equation. {m:e^0=1}.</li><li>The equation is {m:1+c=-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1">That is the y-intercept. At {m:x=0}, {m:y=e^0+c=1+c}, so {m:1+c=-1}.</li>
+        <li data-if="0">You added 1 instead of subtracting it. From {m:1+c=-1}, subtract 1 from both sides.</li>
+      </ul>
+      <div class="solution"><p>At {m:x=0}, {m:y=e^0+c=1+c}. So {m:1+c=-1} and {m:c=-2}. The asymptote is {m:y=-2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Logarithms: the power that gives a number</h2>
+    <p>You can solve {m:2^x=8} by eye, because {m:2^3=8}. Now try {m:2^x=10}. There is no whole number. You need a new tool that finds the power.</p>
+    <p>A {term:logarithm|logarithm} is that tool. It is the power you must raise the base to, to get a given number.</p>
+    <div class="key">
+      <p><b>Key idea:</b> {m:log_a x=y} means exactly the same as {m:a^y=x}. Read {m:log_2 8} as &ldquo;log to the base 2 of 8&rdquo;. The base a is positive and not 1, and the number x is positive. Two facts are always true: {m:log_a 1=0}, because {m:a^0=1}, and {m:log_a a=1}, because {m:a^1=a}.</p>
+    </div>
+    <table class="data">
+      <thead><tr><th scope="col">Power form</th><th scope="col">Logarithm form</th></tr></thead>
+      <tbody>
+        <tr><td>{m:2^3=8}</td><td>{m:log_2 8=3}</td></tr>
+        <tr><td>{m:10^(-2)=0.01}</td><td>{m:log_10 0.01=-2}</td></tr>
+        <tr><td>{m:5^0=1}</td><td>{m:log_5 1=0}</td></tr>
+        <tr><td>{m:7^1=7}</td><td>{m:log_7 7=1}</td></tr>
+      </tbody>
+    </table>
+    <p>Two bases have their own names. The {term:common-logarithm|common logarithm} has base 10. It is the log key on your calculator. The {term:natural-logarithm|natural logarithm} has base e. It is written {m:ln x}, and it is the ln key. So {m:ln x=y} means {m:e^y=x}.</p>
+    <div class="worked">
+      <h3>Worked example: evaluate a logarithm</h3>
+      <p>Find {m:log_3 81}, {m:log_2 (frac(1,8))} and {m:log_4 2}.</p>
+      <ol class="steps">
+        <li>{m:log_3 81} asks: 3 to what power is 81? {m:3^4=81}, so {m:log_3 81=4}.</li>
+        <li>{m:log_2 (frac(1,8))} asks: 2 to what power is {m:frac(1,8)}? {m:2^(-3)=frac(1,8)}, so the answer is {m:-3}.</li>
+        <li>{m:log_4 2} asks: 4 to what power is 2? {m:4^(frac(1,2))=sqrt(4)=2}, so the answer is {m:frac(1,2)}.</li>
+      </ol>
+      <p>A logarithm is a power, so it can be negative or a fraction.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find the base or the number</h3>
+      <p>Solve {m:log_x 49=2} and {m:log_2 x=5}. In the first, x is the base.</p>
+      <ol class="steps">
+        <li>{m:log_x 49=2} means {m:x^2=49}. So {m:x=7} or {m:x=-7}.</li>
+        <li>A base must be positive. So {m:x=7}.</li>
+        <li>{m:log_2 x=5} means {m:2^5=x}. So {m:x=32}.</li>
+      </ol>
+      <p>Check the first: {m:7^2=49}. Check the second: {m:log_2 32=5}.</p>
+    </div>
+    <h3>Logarithms undo powers</h3>
+    <p>A logarithm and a power with the same base undo each other. This is what &ldquo;{term:log-exp-inverse|inverse}&rdquo; means here.</p>
+    <div class="key">
+      <p><b>Key idea:</b> {m:log_a (a^x)=x} and {m:a^(log_a x)=x}. In particular {m:ln(e^x)=x} and {m:e^(ln x)=x}. The base of the power and the base of the logarithm must be the same. The second form needs {m:x>0}.</p>
+    </div>
+    <p>So {m:ln(e^4)=4} and {m:e^(ln 7)=7}. But {m:10^(ln 7)} is not 7, because the bases differ.</p>
+    <figure class="figure-lg">{fig:exponentials-logs-inverse}<figcaption>Look at the two marked points. The point {m:(0, 1)} is on {m:y=e^x}. Swap its coordinates and you get {m:(1, 0)}, which is on {m:y=ln x}. Every point swaps in this way, so each graph is the mirror image of the other in the line {m:y=x}.</figcaption></figure>
+    <p>The {term:log-graph|graph of a logarithm} follows from this picture. The graph of {m:y=ln x} passes through {m:(1, 0)}. It exists only for {m:x>0}. The y-axis is its asymptote. The graph rises, but slowly.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find {m:log_2 64} and {m:log_2 (frac(1,4))}.</p>
+      <ol class="steps">
+        <li>{m:log_2 64} asks: 2 to what power is 64? {m:2^6=64}, so the answer is <span class="blank" data-answers="6">___</span>.</li>
+        <li>{m:log_2 (frac(1,4))} asks: 2 to what power is {m:frac(1,4)}? The power is negative: <span class="blank" data-answers="-2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:log_2 64=6}, because {m:2^6=64}. {m:log_2 (frac(1,4))=-2}, because {m:2^(-2)=frac(1,4)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: logarithms</h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the value of {m:log_2 32}. Type only the number.</p>
+      <ol class="ladder"><li>Ask: 2 to what power is 32?</li><li>Write out the powers of 2: 2, 4, 8, 16, 32.</li></ol>
+      <ul class="wrong">
+        <li data-if="16">You divided 32 by 2. A logarithm is the power: 2 to what power is 32?</li>
+      </ul>
+      <div class="solution"><p>{m:2^5=32}, so {m:log_2 32=5}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">Find the value of {m:log_3 (frac(1,27))}. Type only the number.</p>
+      <ol class="ladder"><li>Ask: 3 to what power is {m:frac(1,27)}?</li><li>{m:3^3=27}. Which sign of power gives one over 27?</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the power in {m:3^3=27}. Here you need one over 27, so the power is negative.</li>
+        <li data-if="27">That is the number under the fraction line. The answer is the power of 3, which is {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:3^(-3)=frac(1, 3^3)=frac(1, 27)}, so {m:log_3 (frac(1,27))=-3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which logarithm statement says the same as {m:5^2=25}?</p>
+      <ul class="options">
+        <li data-correct>The log to the base 5 of 25 is 2</li>
+        <li data-why="This puts the wrong number in the base. The base of the power, 5, must be the base of the logarithm.">The log to the base 2 of 25 is 5</li>
+        <li data-why="The number 25 goes inside the logarithm, not in the base. The base stays 5.">The log to the base 25 of 5 is 2</li>
+      </ul>
+      <ol class="ladder"><li>In {m:log_a x=y}, the base a is also the base of the power.</li><li>The answer to a logarithm is the power.</li></ol>
+      <div class="solution"><p>{m:5^2=25} says that 5 to the power 2 is 25. So {m:log_5 25=2}: the base is 5, the number is 25 and the logarithm is the power 2.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Find the value of {m:ln(e^4)+e^(ln 3)}. Type only the number.</p>
+      <ol class="ladder"><li>A logarithm and a power with the same base undo each other.</li><li>Simplify each part separately. Then add.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">You multiplied {m:4*3}. The two parts are added: {m:4+3}.</li>
+        <li data-if="57.6">You worked out {m:e^4=54.6} and added 3. But {m:ln(e^4)} is 4, because ln undoes the power.</li>
+      </ul>
+      <div class="solution"><p>{m:ln(e^4)=4} and {m:e^(ln 3)=3}. So the value is {m:4+3=7}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Solve {m:log_x 49=2}, where x is positive. Type only the number.</p>
+      <ol class="ladder"><li>Write the logarithm as a power: {m:x^2=49}.</li></ol>
+      <ul class="wrong">
+        <li data-if="98">You multiplied 49 by 2. Rewrite as a power: {m:x^2=49}.</li>
+        <li data-if="24.5">You divided 49 by 2. Rewrite as a power: {m:x^2=49}.</li>
+        <li data-if="2401">You worked out {m:49^2}. The base is x, and the equation is {m:x^2=49}.</li>
+      </ul>
+      <div class="solution"><p>{m:log_x 49=2} means {m:x^2=49}. So {m:x=7}, because a base is positive.</p></div>
+    </div>
+    <div class="q" data-answers="1/8" data-mode="value">
+      <p class="qtext">Solve {m:log_2 x=-3}. Type it like 1/5.</p>
+      <ol class="ladder"><li>Write the logarithm as a power: {m:2^(-3)=x}.</li><li>A negative power means one over the positive power.</li></ol>
+      <ul class="wrong">
+        <li data-if="-8">That is {m:-(2^3)}. A negative power gives a fraction, not a negative number.</li>
+        <li data-if="8">You used {m:2^3}. The power is {m:-3}, so the answer is one over {m:2^3}.</li>
+        <li data-if="-6">You multiplied 2 by {m:-3}. A logarithm is a power, so write {m:2^(-3)=x}.</li>
+      </ul>
+      <div class="solution"><p>{m:log_2 x=-3} means {m:x=2^(-3)=frac(1,8)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. The laws of logarithms</h2>
+    <p>The laws of indices have matching laws for logarithms. Each one turns a hard operation into an easier one.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for any base a, and for {m:x>0} and {m:y>0}, there are three laws.</p>
+      <p>The {term:log-product-law|product law}: {m:log_a x+log_a y=log_a (x y)}.</p>
+      <p>The {term:log-quotient-law|quotient law}: {m:log_a x-log_a y=log_a frac(x, y)}.</p>
+      <p>The {term:log-power-law|power law}: {m:log_a (x^k)=k log_a x}.</p>
+      <p>Every logarithm in a law has the same base.</p>
+    </div>
+    <p>Two special cases follow. {m:log_a frac(1, x)=-log_a x}, from the quotient law with {m:log_a 1=0}. And {m:log_a sqrt(x)=frac(1,2) log_a x}, from the power law with {m:k=frac(1,2)}.</p>
+    <p>There is no law for {m:log_a (x+y)}. It is not {m:log_a x+log_a y}. There is no law for a product of logarithms either.</p>
+    <div class="worked">
+      <h3>Worked example: write as a single logarithm</h3>
+      <p>Write {m:3 log_2 5-log_2 25} as a single logarithm.</p>
+      <ol class="steps">
+        <li>Use the power law on the first term: {m:3 log_2 5=log_2 (5^3)=log_2 125}.</li>
+        <li>Now both terms have the form {m:log_2}: {m:log_2 125-log_2 25}.</li>
+        <li>Use the quotient law: {m:log_2 frac(125, 25)=log_2 5}.</li>
+      </ol>
+      <p>The answer is {m:log_2 5}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find a number</h3>
+      <p>Find the value of {m:log_6 4+log_6 9}.</p>
+      <ol class="steps">
+        <li>The bases are the same. Use the product law: {m:log_6 (4*9)=log_6 36}.</li>
+        <li>{m:6^2=36}, so {m:log_6 36=2}.</li>
+      </ol>
+      <p>The value is 2.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: give an answer in terms of letters</h3>
+      <p>Given that {m:log_a 2=p} and {m:log_a 5=q}, write {m:log_a 20} and {m:log_a (frac(2,5))} in terms of p and q.</p>
+      <ol class="steps">
+        <li>Split 20 into factors that you know: {m:20=2*2*5}. So {m:log_a 20=log_a 2+log_a 2+log_a 5}.</li>
+        <li>That is {m:p+p+q=2p+q}.</li>
+        <li>Use the quotient law for the second: {m:log_a (frac(2,5))=log_a 2-log_a 5=p-q}.</li>
+      </ol>
+      <p>So {m:log_a 20=2p+q} and {m:log_a (frac(2,5))=p-q}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: using a law in an equation</h3>
+      <p>Solve {m:ln x+ln 3=4}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Use the product law on the left: {m:ln(3x)=4}.</li>
+        <li>A natural logarithm equals 4, so the {term:log-argument|argument} equals {m:e^4}: {m:3x=e^4}.</li>
+        <li>So {m:x=frac(e^4, 3)=18.199}, which is 18.2 to 3 significant figures.</li>
+      </ol>
+      <p>Check: {m:x} is positive, so {m:ln x} exists. And {m:ln 18.2+ln 3=2.90+1.10=4.00}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the value of {m:log_3 18-log_3 2}.</p>
+      <ol class="steps">
+        <li>Use the quotient law. The number inside the logarithm is {m:18/2=}<span class="blank" data-answers="9">___</span>.</li>
+        <li>So the value is {m:log_3 9}. Since {m:3^2=9}, the value is <span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:log_3 18-log_3 2=log_3 (frac(18,2))=log_3 9=2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the laws</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the value of {m:log_2 12-log_2 3}. Type only the number.</p>
+      <ol class="ladder"><li>Subtracting logarithms with the same base divides the numbers inside.</li><li>Work out {m:12/3}. Then find the logarithm.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is {m:12/3}, the number inside the logarithm. Now find {m:log_2 4}.</li>
+        <li data-if="3.17">You worked out {m:log_2 (12-3)=log_2 9}. Subtracting logarithms divides the numbers, so it is {m:log_2 (12/3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:log_2 12-log_2 3=log_2 (frac(12,3))=log_2 4=2}.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Find the value of {m:3 log_2 4}. Type only the number.</p>
+      <ol class="ladder"><li>First find {m:log_2 4}.</li><li>The 3 multiplies the logarithm.</li></ol>
+      <ul class="wrong">
+        <li data-if="8">You cubed the logarithm: {m:(log_2 4)^3}. The 3 multiplies it: {m:3*2}.</li>
+        <li data-if="12">You multiplied 3 by 4. The logarithm {m:log_2 4} is 2, so the value is {m:3*2}.</li>
+        <li data-if="64">That is {m:4^3}, the number inside {m:log_2 (4^3)}. You still need to find the logarithm of it.</li>
+      </ul>
+      <div class="solution"><p>{m:log_2 4=2}, so {m:3 log_2 4=3*2=6}. Check with the power law: {m:log_2 (4^3)=log_2 64=6}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the value of {m:log_5 2+log_5 12.5}. Type only the number.</p>
+      <ol class="ladder"><li>Adding logarithms with the same base multiplies the numbers inside.</li><li>{m:2*12.5=25}. Now find the logarithm.</li></ol>
+      <ul class="wrong">
+        <li data-if="25">That is the number inside the logarithm, {m:2*12.5}. Now find {m:log_5 25}.</li>
+      </ul>
+      <div class="solution"><p>{m:log_5 2+log_5 12.5=log_5 (2*12.5)=log_5 25=2}.</p></div>
+    </div>
+    <div class="q" data-answers="log_a 36;log_a(36)" data-mode="exact">
+      <p class="qtext">Write {m:2 log_a 3+log_a 4} as a single logarithm. Type it like log_a 5.</p>
+      <ol class="ladder"><li>Use the power law on {m:2 log_a 3}.</li><li>{m:2 log_a 3=log_a (3^2)}. Then use the product law.</li></ol>
+      <ul class="wrong">
+        <li data-if="log_a 10;log_a(10)">You worked out {m:2*3+4=10}. The laws combine the numbers inside the logarithm: {m:3^2} first, then multiply by 4.</li>
+        <li data-if="log_a 144;log_a(144)">You squared the product {m:3*4}. The power 2 applies to the 3 only: {m:3^2*4}.</li>
+      </ul>
+      <div class="solution"><p>{m:2 log_a 3=log_a 9}. Then {m:log_a 9+log_a 4=log_a (9*4)=log_a 36}.</p></div>
+    </div>
+    <div class="q" data-answers="1.26" data-mode="value">
+      <p class="qtext">Given that {m:log_a 2=0.3} and {m:log_a 3=0.48}, find {m:log_a 18}. Type only the number.</p>
+      <ol class="ladder"><li>Write 18 using the numbers 2 and 3: {m:18=2*3*3}.</li><li>Use the product law. Each 3 adds {m:log_a 3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.78">You used {m:2*3=6}, and {m:log_a 6=0.3+0.48}. But {m:18=2*3^2}, so there are two lots of {m:log_a 3}.</li>
+        <li data-if="1.74">You used {m:3} three times, as in {m:2*3^3}. That is 54. Here {m:18=2*3^2}.</li>
+        <li data-if="0.144">You multiplied the logarithms, {m:0.3*0.48}. Multiplying numbers adds their logarithms.</li>
+      </ul>
+      <div class="solution"><p>{m:log_a 18=log_a (2*3^2)=log_a 2+2 log_a 3=0.3+2*0.48=1.26}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which expression is equal to {m:log_a 5-log_a 2}?</p>
+      <ul class="options">
+        <li data-correct>The logarithm to the base a of {m:frac(5,2)}</li>
+        <li data-why="Subtracting logarithms divides the numbers inside. It does not subtract them. The number inside would be 5 divided by 2, not 5 minus 2.">The logarithm to the base a of 3</li>
+        <li data-why="A quotient of two logarithms is a different thing. The quotient law says the difference of two logarithms is one logarithm of a quotient of numbers.">One logarithm divided by the other, {m:frac(log_a 5, log_a 2)}</li>
+      </ul>
+      <ol class="ladder"><li>The quotient law turns a subtraction of logarithms into one logarithm.</li><li>Which number goes on the top?</li></ol>
+      <div class="solution"><p>By the quotient law, {m:log_a 5-log_a 2=log_a (frac(5,2))}. The first number goes on the top.</p></div>
+    </div>
+    <div class="q" data-answers="18.2" data-mode="value">
+      <p class="qtext">Solve {m:ln x+ln 3=4}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Use the product law to write the left side as one logarithm.</li><li>{m:ln(3x)=4} means {m:3x=e^4}. Then divide by 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="164">You multiplied {m:e^4} by 3. From {m:3x=e^4} you divide by 3.</li>
+        <li data-if="54.6">That is {m:e^4}. But {m:ln(3x)=4} gives {m:3x=e^4}, so divide by 3 to find x.</li>
+      </ul>
+      <div class="solution"><p>{m:ln(3x)=4} gives {m:3x=e^4=54.598}, so {m:x=18.199}. To 3 significant figures, {m:x=18.2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Solving equations like a<sup>x</sup> = b</h2>
+    <p>Now you can solve {m:2^x=10}. The unknown is in the power. The tool is to take logarithms of both sides, then use the power law to bring the power down.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to solve {m:a^x=b}, follow these steps. First, get the power on its own on one side. Second, {term:taking-logs|take logarithms of both sides}. You can use ln or log. Third, use the power law to bring the unknown down: {m:x ln a=ln b}. Last, divide by {m:ln a}. Keep the full calculator value until the last step, and round once at the end.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the basic equation</h3>
+      <p>Solve {m:2^x=10}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take natural logarithms of both sides: {m:ln(2^x)=ln 10}.</li>
+        <li>Use the power law: {m:x ln 2=ln 10}.</li>
+        <li>Divide by {m:ln 2}: {m:x=frac(ln 10, ln 2)=3.3219}.</li>
+      </ol>
+      <p>So {m:x=3.32} to 3 significant figures. Check: {m:2^3=8} and {m:2^4=16}, and 10 is between them.</p>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-solve}<figcaption>Look at the marked point. The curve {m:y=2^x} meets the line {m:y=10} where x is about 3.32. This one point is the one solution.</figcaption></figure>
+    <p>The same answer can be written exactly. From the meaning of a logarithm, {m:2^x=10} gives {m:x=log_2 10}. Taking logs of both sides shows that this equals {m:frac(ln 10, ln 2)}.</p>
+    <div class="worked">
+      <h3>Worked example: the power is an expression</h3>
+      <p>Solve {m:5^(2x+1)=30}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take logarithms of both sides and use the power law: {m:(2x+1) ln 5=ln 30}.</li>
+        <li>Divide by {m:ln 5}: {m:2x+1=frac(ln 30, ln 5)=2.1133}.</li>
+        <li>Subtract 1: {m:2x=1.1133}. Divide by 2: {m:x=0.5566}.</li>
+      </ol>
+      <p>So {m:x=0.557} to 3 significant figures. Check: {m:2*0.5566+1=2.113}, and {m:5^2.113=30}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a different base on each side</h3>
+      <p>Solve {m:2^(x+1)=3^x}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take logarithms of both sides: {m:(x+1) ln 2=x ln 3}.</li>
+        <li>Expand: {m:x ln 2+ln 2=x ln 3}.</li>
+        <li>Collect the x terms on one side: {m:ln 2=x ln 3-x ln 2=x(ln 3-ln 2)}.</li>
+        <li>So {m:x=frac(ln 2, ln 3-ln 2)=1.7095}.</li>
+      </ol>
+      <p>So {m:x=1.71} to 3 significant figures. Check: {m:2^2.7095=6.54} and {m:3^1.7095=6.54}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: divide first</h3>
+      <p>Solve {m:3*2^x=48}.</p>
+      <ol class="steps">
+        <li>The 3 multiplies the whole power {m:2^x}. Divide both sides by 3 first: {m:2^x=16}.</li>
+        <li>16 is a power of 2: {m:2^4=16}. So {m:x=4}.</li>
+      </ol>
+      <p>You could also take logarithms: {m:x=frac(ln 16, ln 2)=4}. Look for a whole-number answer first.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: no solution</h3>
+      <p>Solve {m:3^x=-4}.</p>
+      <ol class="steps">
+        <li>The graph of {m:y=3^x} is always above the x-axis. So {m:3^x} is positive for every x.</li>
+        <li>A positive number cannot equal {m:-4}.</li>
+      </ol>
+      <p>There is no solution. If you took logarithms, you would need {m:ln(-4)}, which does not exist.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:4^x=30}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take logarithms of both sides and use the power law: {m:x ln 4=ln 30}.</li>
+        <li>Divide by {m:ln 4}: {m:x=frac(ln 30, ln 4)}. The calculator gives {m:x=}<span class="blank" data-answers="2.45">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:x=frac(3.4012, 1.3863)=2.4534}, so {m:x=2.45}. Check: {m:4^2=16} and {m:4^3=64}, and 30 is between them.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: a<sup>x</sup> = b</h2>
+    <div class="q" data-answers="5.64" data-mode="value">
+      <p class="qtext">Solve {m:2^x=50}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides. Use the power law to bring x down.</li><li>{m:x ln 2=ln 50}. Divide by {m:ln 2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="25">You divided 50 by 2. The unknown is in the power, so take logarithms: {m:x=frac(ln 50, ln 2)}.</li>
+        <li data-if="1.96">You divided {m:ln 50} by 2. You need to divide by {m:ln 2}, which is 0.693&hellip;</li>
+        <li data-if="3.91">That is {m:ln 50}. You still need to divide by {m:ln 2}.</li>
+      </ul>
+      <div class="solution"><p>{m:x ln 2=ln 50}, so {m:x=frac(ln 50, ln 2)=5.6439}. To 3 significant figures, {m:x=5.64}. Check: {m:2^5=32} and {m:2^6=64}.</p></div>
+    </div>
+    <div class="q" data-answers="2.54" data-mode="value">
+      <p class="qtext">Solve {m:7^(x-1)=20}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides: {m:(x-1) ln 7=ln 20}.</li><li>Divide by {m:ln 7}. Then add 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.54">That is {m:x-1}. You still need to add 1.</li>
+      </ul>
+      <div class="solution"><p>{m:x-1=frac(ln 20, ln 7)=1.5395}, so {m:x=2.5395}. To 3 significant figures, {m:x=2.54}.</p></div>
+    </div>
+    <div class="q" data-answers="0.886" data-mode="value">
+      <p class="qtext">Solve {m:3^(2x)=7}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides: {m:2x ln 3=ln 7}.</li><li>Divide by {m:2 ln 3}. It is common to forget the 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.77">That is {m:2x}, which equals {m:frac(ln 7, ln 3)}. Divide by 2 to find x.</li>
+      </ul>
+      <div class="solution"><p>{m:2x ln 3=ln 7}, so {m:2x=frac(ln 7, ln 3)=1.7712} and {m:x=0.8856}. To 3 significant figures, {m:x=0.886}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What is the best first step to solve {m:4^x=9}?</p>
+      <ul class="options">
+        <li data-correct>Take logarithms of both sides, and use the power law to write x ln 4 on the left</li>
+        <li data-why="Dividing by 4 would solve 4x = 9, where x is a factor. In 4 to the power x, the unknown is in the power, so dividing by 4 does not isolate it.">Divide both sides by 4</li>
+        <li data-why="A square root halves the power. It does not remove x from the power, so it cannot solve the equation.">Take the square root of both sides</li>
+      </ul>
+      <ol class="ladder"><li>Where is the unknown?</li><li>Which law brings a power down to the front?</li></ol>
+      <div class="solution"><p>The unknown is in the power. Taking logarithms and using the power law gives {m:x ln 4=ln 9}. Then {m:x=frac(ln 9, ln 4)=1.585}.</p></div>
+    </div>
+    <div class="q" data-answers="1.71" data-mode="value">
+      <p class="qtext">Solve {m:2^(x+1)=3^x}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides: {m:(x+1) ln 2=x ln 3}.</li><li>Expand, then collect the x terms on one side.</li><li>{m:ln 2=x(ln 3-ln 2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1.71">You made a sign slip when collecting. From {m:x ln 2+ln 2=x ln 3} you get {m:ln 2=x(ln 3-ln 2)}, not {m:ln 2=x(ln 2-ln 3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x ln 2+ln 2=x ln 3}, so {m:ln 2=x(ln 3-ln 2)}. Then {m:x=frac(ln 2, ln 3-ln 2)=1.7095}, which is 1.71 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Solve {m:3*2^x=48}. Type only the number.</p>
+      <ol class="ladder"><li>Divide both sides by 3 first.</li><li>Then ask: 2 to what power is the number you have?</li></ol>
+      <ul class="wrong">
+        <li data-if="16">That is {m:2^x}, after dividing by 3. The unknown x is the power: {m:2^4=16}.</li>
+      </ul>
+      <div class="solution"><p>{m:2^x=16}, so {m:x=4}. Check: {m:3*2^4=3*16=48}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many solutions does {m:3^x=-4} have?</p>
+      <ul class="options">
+        <li data-correct>None, because {m:3^x} is always positive</li>
+        <li data-why="This needs the logarithm of a negative number, which does not exist. You can only take the logarithm of a positive number.">One, which is log to the base 3 of negative 4</li>
+        <li data-why="This treats 3 to the power x as 3 times x. The unknown is in the power, so dividing by 3 does not solve it.">One, which is negative 4 divided by 3</li>
+      </ul>
+      <ol class="ladder"><li>Look at the graph of {m:y=3^x}. Is it ever below the x-axis?</li></ol>
+      <div class="solution"><p>The graph of {m:y=3^x} is always above the x-axis, so it never meets the line {m:y=-4}. There is no solution.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Equations with e and ln</h2>
+    <p>The same ideas solve equations with e and ln. Here the base is e. So the logarithm to use is ln, and it undoes {m:e^x} exactly.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to solve {m:e^(ax+b)=p}, take ln of both sides: {m:ax+b=ln p}. This needs {m:p>0}. To solve {m:ln(ax+b)=q}, raise e to the power of both sides: {m:ax+b=e^q}. Then solve for x. For a logarithm equation, check that the argument {m:ax+b} is positive.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: e to a power</h3>
+      <p>Solve {m:e^(2x-1)=5}. Give the exact answer, then x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides: {m:2x-1=ln 5}. The ln undoes the e.</li>
+        <li>Add 1: {m:2x=1+ln 5}. Divide by 2: {m:x=frac(1+ln 5, 2)}.</li>
+        <li>The calculator gives {m:ln 5=1.6094}, so {m:x=1.3047}.</li>
+      </ol>
+      <p>The exact answer is {m:x=frac(1+ln 5, 2)}. To 3 significant figures, {m:x=1.30}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a logarithm equals a number</h3>
+      <p>Solve {m:ln(3x+2)=4}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Raise e to the power of both sides: {m:3x+2=e^4}.</li>
+        <li>Subtract 2: {m:3x=e^4-2}. Divide by 3: {m:x=frac(e^4-2, 3)}.</li>
+        <li>The calculator gives {m:e^4=54.598}, so {m:x=17.533}.</li>
+      </ol>
+      <p>To 3 significant figures, {m:x=17.5}. Check: {m:3*17.53+2=54.6}, which is positive, so the logarithm exists.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative answer and no answer</h3>
+      <p>Solve {m:e^x=0.2}. Then solve {m:e^x=-3}.</p>
+      <ol class="steps">
+        <li>{m:e^x=0.2} gives {m:x=ln 0.2=-1.6094}. So {m:x=-1.61} to 3 significant figures.</li>
+        <li>{m:e^x} is always positive, so {m:e^x=-3} has no solution.</li>
+      </ol>
+      <p>A logarithm of a number between 0 and 1 is negative. That is not a mistake.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where a graph crosses the axes</h3>
+      <p>Find where the curve {m:y=e^(2x)-4} crosses the axes, and its asymptote.</p>
+      <ol class="steps">
+        <li>The asymptote is {m:y=-4}, from {m:c=-4}.</li>
+        <li>Put {m:x=0}: {m:y=e^0-4=-3}. The y-intercept is {m:(0, -3)}.</li>
+        <li>Put {m:y=0}: {m:e^(2x)=4}. Take ln of both sides: {m:2x=ln 4}.</li>
+        <li>Use the power law: {m:ln 4=ln (2^2)=2 ln 2}. So {m:2x=2 ln 2} and {m:x=ln 2}.</li>
+      </ol>
+      <p>The curve crosses the x-axis at {m:(ln 2, 0)}, where {m:ln 2=0.693}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-crossing}<figcaption>Look at the two marked points. The curve {m:y=e^(2x)-4} crosses the y-axis at {m:(0, -3)} and the x-axis at {m:(ln 2, 0)}. It falls towards the dashed line {m:y=-4} on the left.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the logarithm of 1</h3>
+      <p>Solve {m:ln(2x-5)=0}.</p>
+      <ol class="steps">
+        <li>Raise e to the power of both sides: {m:2x-5=e^0=1}.</li>
+        <li>So {m:2x=6} and {m:x=3}.</li>
+      </ol>
+      <p>Check: {m:ln(2*3-5)=ln 1=0}. The argument is 1, which is positive.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:e^(3x+1)=10}. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides: {m:3x+1=ln 10=2.3026}.</li>
+        <li>Subtract 1: {m:3x=}<span class="blank" data-answers="1.3026;1.303;1.30;1.3">___</span>.</li>
+        <li>Divide by 3: {m:x=}<span class="blank" data-answers="0.434">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:3x=2.3026-1=1.3026}, so {m:x=0.4342}. To 3 significant figures, {m:x=0.434}. Check: {m:3*0.4342+1=2.3026}, and {m:e^2.3026=10}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: e and ln</h2>
+    <div class="q" data-answers="ln4;ln(4);2ln2;2ln(2)" data-mode="exact">
+      <p class="qtext">Solve {m:e^x=4}. Give the exact answer, in the form ln k, where k is a whole number. Type it like ln 5.</p>
+      <ol class="ladder"><li>Take ln of both sides.</li><li>The ln undoes the e, so x equals ln of the number on the right.</li></ol>
+      <ul class="wrong">
+        <li data-if="e^4;54.6">You raised e to the power 4. The equation {m:e^x=4} asks which power of e gives 4, and that is {m:ln 4}.</li>
+        <li data-if="1.39;1.386">That is {m:ln 4} as a decimal. The question asks for the exact answer, so write {m:ln 4}.</li>
+      </ul>
+      <div class="solution"><p>Take ln of both sides: {m:x=ln 4}. This is also {m:2 ln 2}, by the power law.</p></div>
+    </div>
+    <div class="q" data-answers="1.3;1.30" data-mode="value">
+      <p class="qtext">Solve {m:e^(2x-1)=5}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take ln of both sides: {m:2x-1=ln 5}.</li><li>Add 1 to both sides. Then divide everything by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="2.61">You added 1 to {m:ln 5} and forgot to divide by 2. You have {m:2x}, not x.</li>
+        <li data-if="0.305">You subtracted 1 instead of adding it: {m:frac(ln 5-1, 2)}. From {m:2x-1=ln 5}, add 1 to both sides.</li>
+      </ul>
+      <div class="solution"><p>{m:2x-1=ln 5=1.6094}, so {m:2x=2.6094} and {m:x=1.3047}. To 3 significant figures, {m:x=1.30}.</p></div>
+    </div>
+    <div class="q" data-answers="17.5" data-mode="value">
+      <p class="qtext">Solve {m:ln(3x+2)=4}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Raise e to the power of both sides: {m:3x+2=e^4}.</li><li>Subtract 2, then divide by 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="18.2">You divided {m:e^4} by 3 but left out the 2. Subtract 2 first: {m:frac(e^4-2, 3)}.</li>
+        <li data-if="16.2">You divided {m:e^4} by 3 and then subtracted 2. The 2 is subtracted before dividing: {m:frac(e^4-2, 3)}.</li>
+        <li data-if="0.667">You used 4 where {m:e^4} belongs, giving {m:3x+2=4}. The equation is {m:3x+2=e^4}.</li>
+      </ul>
+      <div class="solution"><p>{m:3x+2=e^4=54.598}, so {m:3x=52.598} and {m:x=17.533}. To 3 significant figures, {m:x=17.5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many solutions does {m:e^x=-3} have?</p>
+      <ul class="options">
+        <li data-correct>None, because {m:e^x} is always positive</li>
+        <li data-why="The ln of a negative number does not exist, so x = ln(-3) is not a real number.">One, which is ln of negative 3</li>
+        <li data-why="If x were minus ln 3, then e to the x would be one third, which is positive. It does not equal negative 3.">One, which is negative ln 3</li>
+      </ul>
+      <ol class="ladder"><li>Look at the graph of {m:y=e^x}. Is it ever below the x-axis?</li></ol>
+      <div class="solution"><p>{m:e^x>0} for every x, so {m:e^x} cannot equal {m:-3}. There is no solution.</p></div>
+    </div>
+    <div class="q" data-answers="2.1;2.10" data-mode="value">
+      <p class="qtext">The curve {m:y=e^(x-1)-3} crosses the x-axis at one point. Find its x-coordinate to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>At the x-axis, {m:y=0}. So {m:e^(x-1)=3}.</li><li>Take ln of both sides: {m:x-1=ln 3}. Then add 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.1;1.10">That is {m:x-1=ln 3}. You still need to add 1.</li>
+        <li data-if="0.0986">You subtracted 1 from {m:ln 3}. From {m:x-1=ln 3}, add 1 to both sides.</li>
+      </ul>
+      <div class="solution"><p>{m:e^(x-1)=3}, so {m:x-1=ln 3=1.0986} and {m:x=2.0986}. To 3 significant figures, {m:x=2.10}.</p></div>
+    </div>
+    <div class="q" data-answers="0.135" data-mode="value">
+      <p class="qtext">Solve {m:ln x=-2}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Raise e to the power of both sides.</li><li>{m:x=e^(-2)}. A negative power gives a small positive number.</li></ol>
+      <ul class="wrong">
+        <li data-if="-7.39">You worked out {m:-(e^2)}. The power is negative, not the whole number: {m:e^(-2)=frac(1, e^2)}.</li>
+        <li data-if="7.39">You used {m:e^2}. The power is {m:-2}, so {m:x=e^(-2)=frac(1, e^2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x=e^(-2)=frac(1, e^2)=0.1353}. To 3 significant figures, {m:x=0.135}. It is positive, as {m:ln x} needs.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">Solve {m:ln(2x-1)=0}. Type only the number.</p>
+      <ol class="ladder"><li>Raise e to the power of both sides. What is {m:e^0}?</li><li>{m:2x-1=1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.5">You set {m:2x-1=0}. The equation is {m:ln(2x-1)=0}, so {m:2x-1=e^0=1}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x-1=e^0=1}, so {m:2x=2} and {m:x=1}. Check: {m:ln(2*1-1)=ln 1=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Inequalities with exponentials</h2>
+    <p>You can solve an inequality in the same way as an equation. Take logarithms of both sides. You must decide whether the sign stays or reverses.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the function {m:ln x} is increasing. If {m:A>B>0}, then {m:ln A>ln B}. So taking ln of both sides keeps the inequality sign. Then you divide by {m:ln a} to find x. If {m:a>1}, {m:ln a} is positive and the sign stays. If {m:0<a<1}, {m:ln a} is negative and the sign reverses.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: base greater than 1</h3>
+      <p>Solve {m:2^x>10}. Give the boundary to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides. The sign stays: {m:x ln 2>ln 10}.</li>
+        <li>Divide by {m:ln 2}, which is positive: {m:x>frac(ln 10, ln 2)=3.32}.</li>
+      </ol>
+      <p>The solution is {m:x>3.32}. The curve {m:y=2^x} is above the line {m:y=10} for these values.</p>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-region}<figcaption>Look at the thick dotted bar on the x-axis. It starts at {m:x=3.32} and runs to the right. For these values of x, the curve {m:y=2^x} is above the line {m:y=10}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: base between 0 and 1</h3>
+      <p>Solve {m:0.5^x<0.2}. Give the boundary to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides: {m:x ln 0.5<ln 0.2}.</li>
+        <li>{m:ln 0.5=-0.693} is negative. Divide both sides by it and reverse the sign: {m:x>frac(ln 0.2, ln 0.5)}.</li>
+        <li>The calculator gives {m:frac(ln 0.2, ln 0.5)=2.3219}.</li>
+      </ol>
+      <p>The solution is {m:x>2.32}. Check with {m:x=3}: {m:0.5^3=0.125}, which is less than 0.2. The check agrees.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an inequality with e</h3>
+      <p>Solve {m:e^(2x-1)<=5}. Give the boundary to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides. The sign stays: {m:2x-1<=ln 5}.</li>
+        <li>Add 1 and divide by 2: {m:x<=frac(1+ln 5, 2)}.</li>
+      </ol>
+      <p>The solution is {m:x<=1.30} to 3 significant figures. This matches the equation in section 5, where {m:e^(2x-1)=5} gave {m:x=1.30}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a whole number</h3>
+      <p>Find the smallest whole number n for which {m:1.5^n>100}.</p>
+      <ol class="steps">
+        <li>Take ln of both sides: {m:n ln 1.5>ln 100}.</li>
+        <li>Divide by {m:ln 1.5}, which is positive: {m:n>frac(ln 100, ln 1.5)=11.358}.</li>
+        <li>The smallest whole number greater than 11.358 is 12.</li>
+      </ol>
+      <p>Check: {m:1.5^11=86.5}, which is less than 100. And {m:1.5^12=129.7}, which is greater. So {m:n=12}.</p>
+    </div>
+    <p>One more case. A positive number is always greater than a negative number. So {m:e^x>-2} is true for every value of x, and no logarithm is needed.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:3^x>=50}. Give the boundary to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Take ln of both sides. The sign stays: {m:x ln 3>=ln 50}.</li>
+        <li>Divide by {m:ln 3}, which is positive: {m:x>=frac(ln 50, ln 3)=}<span class="blank" data-answers="3.56">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(3.9120, 1.0986)=3.5609}, so {m:x>=3.56}. Check: {m:3^3=27} and {m:3^4=81}, and 50 is between them.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: inequalities</h2>
+    <div class="q" data-answers="x&gt;2.73;2.73&lt;x" data-mode="exact">
+      <p class="qtext">Solve {m:3^x>20}. Give the boundary to 3 significant figures. Type it like x&gt;1.5.</p>
+      <ol class="ladder"><li>Take ln of both sides: {m:x ln 3>ln 20}.</li><li>{m:ln 3} is positive, so the sign stays when you divide.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;2.73;2.73&gt;x">You reversed the sign. {m:ln 3} is positive, so dividing by it keeps the sign. Also {m:3^x} grows as x grows.</li>
+        <li data-if="x&gt;6.67;6.67&lt;x">You divided 20 by 3. The unknown is in the power, so take ln: {m:x>frac(ln 20, ln 3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x ln 3>ln 20}, so {m:x>frac(ln 20, ln 3)=2.7268}. The solution is {m:x>2.73}.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;5.4;x&gt;5.40;5.4&lt;x;5.40&lt;x" data-mode="exact">
+      <p class="qtext">Solve {m:0.8^x<0.3}. Give the boundary to 3 significant figures. Type it like x&gt;1.5.</p>
+      <ol class="ladder"><li>Take ln of both sides: {m:x ln 0.8<ln 0.3}.</li><li>{m:ln 0.8} is negative. What happens to the sign when you divide by it?</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;5.4;x&lt;5.40;5.4&gt;x;5.40&gt;x">You did not reverse the sign. {m:ln 0.8} is negative, so dividing by it reverses the sign.</li>
+      </ul>
+      <div class="solution"><p>{m:x ln 0.8<ln 0.3}. Divide by {m:ln 0.8=-0.2231} and reverse the sign: {m:x>frac(ln 0.3, ln 0.8)=5.3955}. The solution is {m:x>5.40}.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">Find the smallest whole number n for which {m:2.5^n>1000}. Type only the number.</p>
+      <ol class="ladder"><li>Take ln of both sides: {m:n ln 2.5>ln 1000}.</li><li>Divide by {m:ln 2.5}. Then choose the next whole number up.</li></ol>
+      <ul class="wrong">
+        <li data-if="7">You rounded 7.54&hellip; down. The inequality needs n to be greater than 7.54&hellip;, so the smallest whole number is 8.</li>
+        <li data-if="7.54">That is the boundary, and it is not a whole number. The smallest whole number greater than it is 8.</li>
+      </ul>
+      <div class="solution"><p>{m:n>frac(ln 1000, ln 2.5)=7.539}, so the smallest whole number is 8. Check: {m:2.5^7=610.4} is too small and {m:2.5^8=1525.9} is greater than 1000.</p></div>
+    </div>
+    <div class="q" data-answers="x&lt;0.303;0.303&gt;x" data-mode="exact">
+      <p class="qtext">Solve {m:e^(x+2)<10}. Give the boundary to 3 significant figures. Type it like x&gt;1.5.</p>
+      <ol class="ladder"><li>Take ln of both sides. The sign stays: {m:x+2<ln 10}.</li><li>Subtract 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;4.3;x&lt;4.30;4.3&gt;x;4.30&gt;x">You added 2. From {m:x+2<ln 10} you subtract 2 from both sides.</li>
+        <li data-if="x&gt;0.303;0.303&lt;x">You reversed the sign. The function {m:ln x} is increasing, so taking ln keeps the sign.</li>
+      </ul>
+      <div class="solution"><p>{m:x+2<ln 10=2.3026}, so {m:x<0.3026}. The solution is {m:x<0.303}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">For which values of x is {m:e^x>-2} true?</p>
+      <ul class="options">
+        <li data-correct>Every real number x</li>
+        <li data-why="This needs the logarithm of negative 2, which does not exist. It also takes the logarithm of a negative number, which is not allowed.">Only when x is greater than ln of negative 2</li>
+        <li data-why="e to the power x is always positive, and every positive number is greater than negative 2. So there are values of x that work, in fact all of them.">No value of x</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:e^x} ever negative?</li><li>Compare any positive number with {m:-2}.</li></ol>
+      <div class="solution"><p>{m:e^x} is always positive. A positive number is greater than {m:-2}. So the inequality is true for every x.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: power &harr; logarithm</h2>
+    <p>A power and a logarithm are the same fact written two ways. You can go either way.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a base and a power to a number. Raise the base to the power.</p><p>{m:2^3=8}. The base is 2, the power is 3 and the number is 8.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a base and a number to the power. Take the logarithm.</p><p>{m:log_2 8=3}. The same three numbers, in a different order.</p></div>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From an equation to its solution. {m:a^x=b} gives {m:x=log_a b}.</p><p>{m:e^x=5} gives {m:x=ln 5}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a solution to the equation that has it. Raise the base to the solution.</p><p>If {m:x=ln 5} solves {m:e^x=k}, then {m:k=e^(ln 5)=5}.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-flip}<figcaption>Look at the two marked points. The point {m:(3, 8)} is on {m:y=2^x}. Swap its coordinates and you get {m:(8, 3)}, which is on {m:y=log_2 x}. This is the same swap as in {m:2^3=8} and {m:log_2 8=3}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from a point on a graph to the base</h3>
+      <p>The curve {m:y=log_a x} passes through {m:(8, 3)}. Find a. Then find the y-value when {m:x=3} on the curve {m:y=a^x}.</p>
+      <ol class="steps">
+        <li>The point is on the curve, so {m:log_a 8=3}.</li>
+        <li>Write the logarithm as a power: {m:a^3=8}. So {m:a=2}.</li>
+        <li>For {m:y=2^x}, put {m:x=3}: {m:y=2^3=8}.</li>
+      </ol>
+      <p>So {m:a=2}, and the point {m:(3, 8)} is on {m:y=2^x}. This is the swapped point in the figure.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">Given that {m:log_a 64=3}, find the value of a. Type only the number.</p>
+      <ol class="ladder"><li>Write the logarithm as a power: {m:a^3=64}.</li><li>Which number multiplied by itself three times is 64?</li></ol>
+      <ul class="wrong">
+        <li data-if="192">You multiplied 64 by 3. Write it as a power: {m:a^3=64}.</li>
+        <li data-if="21.3">You divided 64 by 3. Write it as a power: {m:a^3=64}, so a is the cube root of 64.</li>
+      </ul>
+      <div class="solution"><p>{m:log_a 64=3} means {m:a^3=64}. So {m:a=4}, because {m:4*4*4=64}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The curve {m:y=a^x} passes through {m:(3, 125)}. Find the value of a. Type only the number.</p>
+      <ol class="ladder"><li>Put the point into the equation: {m:a^3=125}.</li><li>Find the cube root of 125.</li></ol>
+      <ul class="wrong">
+        <li data-if="41.7">You divided 125 by 3. The equation is {m:a^3=125}, so a is the cube root.</li>
+        <li data-if="375">You multiplied 125 by 3. The equation is {m:a^3=125}, so a is the cube root.</li>
+      </ul>
+      <div class="solution"><p>{m:a^3=125}, so {m:a=5}. Check: {m:5^3=125}.</p></div>
+    </div>
+    <div class="q" data-answers="20.1" data-mode="value">
+      <p class="qtext">Given that {m:ln x=3}, find x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Write the logarithm as a power with base e.</li><li>{m:x=e^3}. Use the e<sup>x</sup> key.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.1;1.10">You took {m:ln 3}. Here you are given {m:ln x=3}, so x is {m:e^3}.</li>
+        <li data-if="8.15">You worked out {m:3e}. The 3 is the power: {m:e^3=e*e*e}.</li>
+      </ul>
+      <div class="solution"><p>{m:ln x=3} means {m:x=e^3=20.0855}. To 3 significant figures, {m:x=20.1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The point {m:(2, 9)} is on the curve {m:y=3^x}. Which point is on the curve {m:y=log_3 x}?</p>
+      <ul class="options">
+        <li data-correct>The point where x is 9 and y is 2</li>
+        <li data-why="This is the original point. The logarithm curve is the mirror image, so the coordinates swap, and (2, 9) is not on it: the log to the base 3 of 2 is not 9.">The point where x is 2 and y is 9</li>
+        <li data-why="Only the coordinates swap. The sign of the 2 does not change. Check: 3 to the power negative 2 is one ninth, not 9.">The point where x is 9 and y is negative 2</li>
+      </ul>
+      <ol class="ladder"><li>{m:3^2=9} is the same as {m:log_3 9=2}.</li><li>Which number is x and which is y in {m:log_3 9=2}?</li></ol>
+      <div class="solution"><p>{m:3^2=9} says the same as {m:log_3 9=2}. So {m:(9, 2)} is on {m:y=log_3 x}. The coordinates swap, as in the figure.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Amy says:</b> {m:ln(x+3)=ln x+ln 3}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She split the logarithm of a sum, and there is no law that allows it</li>
+        <li data-why="Multiplying logarithms is not a law either. The product law says the sum of two logarithms is the logarithm of a product.">She should have multiplied the logarithms, ln x times ln 3</li>
+        <li data-why="Both logarithms are natural logarithms, so the base is the same. The base is not the problem.">She used the wrong base for ln 3</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=1}.</li><li>Work out {m:ln(1+3)} and {m:ln 1+ln 3}.</li></ol>
+      <div class="solution"><p>At {m:x=1}, {m:ln 4=1.386} but {m:ln 1+ln 3=0+1.099}. They differ. The product law gives {m:ln x+ln 3=ln(3x)}, which is not {m:ln(x+3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> to solve {m:3^x=20}, divide by 3, so {m:x=frac(20,3)=6.67}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He treated the power like a multiplier, but x is in the power, so he needed logarithms</li>
+        <li data-why="Multiplying by 3 would solve 3x = 20 in the same wrong way. The unknown is in the power, so a logarithm is needed.">He should have multiplied 20 by 3</li>
+        <li data-why="A square root halves a power. It does not isolate x, so it cannot solve this equation.">He should have taken the square root of 20</li>
+      </ul>
+      <ol class="ladder"><li>Test it. Is {m:3^6.67} close to 20?</li><li>{m:3^6.67} is about 1500. How do you bring x down from the power?</li></ol>
+      <div class="solution"><p>{m:3^6.67=1522}, not 20. Ben solved {m:3x=20}. The correct method is {m:x ln 3=ln 20}, so {m:x=frac(ln 20, ln 3)=2.73}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> to solve {m:e^(2x)=5}, take ln of both sides to get {m:2x=5}, so {m:x=2.5}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="Raising e to the power 5 would be the step for ln(2x) = 5. Here the e is already in the equation, and ln undoes it.">She should have written 2x equals e to the power 5</li>
+        <li data-correct>She forgot to take ln of the 5 as well, so it should be {m:2x=ln 5}</li>
+        <li data-why="The e is not a factor, so dividing by it does nothing helpful. The ln undoes e to a power, and it has to be applied to the 5 as well.">She should have divided both sides by e</li>
+      </ul>
+      <ol class="ladder"><li>Taking ln of both sides applies ln to the whole left side and the whole right side.</li><li>What is {m:ln(e^(2x))}? What is the right side after taking ln?</li></ol>
+      <div class="solution"><p>{m:ln(e^(2x))=2x} and the right side becomes {m:ln 5}. So {m:2x=ln 5=1.609} and {m:x=0.805}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> from {m:0.5^x<0.2} you get {m:x ln 0.5<ln 0.2}, so {m:x<frac(ln 0.2, ln 0.5)=2.32}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>{m:ln 0.5} is negative, so dividing by it should reverse the sign</li>
+        <li data-why="Taking logarithms of both sides is a fine step here. The mistake comes later, when he divides by a negative number.">He should not have taken logarithms of both sides</li>
+        <li data-why="Any base can be used if it is the same on both sides, and the result is the same. The problem is the sign of the number he divided by.">He should have used log to the base 10, not ln</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:ln 0.5} positive or negative?</li><li>Check with {m:x=3}: is {m:0.5^3<0.2}?</li></ol>
+      <div class="solution"><p>{m:ln 0.5=-0.693}, so the sign reverses and {m:x>2.32}. Check: {m:0.5^3=0.125<0.2}, and 3 is greater than 2.32. Dev&rsquo;s answer would have excluded {m:x=3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">Find the value of {m:log_10 0.001}. Type only the number.</p>
+      <ol class="ladder"><li>Ask: 10 to what power is 0.001?</li><li>{m:0.001=frac(1,1000)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the power for 1000. Here the number is one over 1000, so the power is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:10^(-3)=frac(1,1000)=0.001}, so {m:log_10 0.001=-3}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the value of {m:log_2 40-log_2 5+log_2 4}. Type only the number.</p>
+      <ol class="ladder"><li>Subtracting divides and adding multiplies. Work from left to right.</li><li>{m:log_2 (40/5)+log_2 4=log_2 (8*4)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is {m:log_2 8}. You left out the last term {m:+log_2 4}, which multiplies by 4.</li>
+        <li data-if="1">You divided by 4 as well, {m:log_2 (frac(40, 5*4))}. The last term is added, so it multiplies by 4.</li>
+      </ul>
+      <div class="solution"><p>{m:log_2 40-log_2 5=log_2 8}. Then {m:log_2 8+log_2 4=log_2 32=5}.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">Solve {m:4^x=frac(1,4)}. Type only the number.</p>
+      <ol class="ladder"><li>Write {m:frac(1,4)} as a power of 4.</li><li>A negative power means one over the positive power.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">{m:4^1=4}, not {m:frac(1,4)}. A negative power gives one over the number.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(1,4)=4^(-1)}, so {m:x=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="4.97" data-mode="value">
+      <p class="qtext">Solve {m:e^(0.5x)=12}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take ln of both sides: {m:0.5x=ln 12}.</li><li>Dividing by 0.5 doubles the number.</li></ol>
+      <ul class="wrong">
+        <li data-if="2.48">That is {m:ln 12}, which equals {m:0.5x}. Divide by 0.5 to find x.</li>
+        <li data-if="1.24">You halved {m:ln 12}. Dividing by 0.5 doubles it.</li>
+        <li data-if="24">You divided 12 by 0.5, as in a linear equation. The unknown is in a power, so take ln: {m:x=2 ln 12}.</li>
+      </ul>
+      <div class="solution"><p>{m:0.5x=ln 12=2.4849}, so {m:x=2*2.4849=4.9698}. To 3 significant figures, {m:x=4.97}.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;=8.83;8.83&lt;=x" data-mode="exact">
+      <p class="qtext">Solve {m:1.2^x>=5}. Give the boundary to 3 significant figures. Type it like x&gt;=1.5.</p>
+      <ol class="ladder"><li>Take ln of both sides. {m:ln 1.2} is positive.</li><li>{m:x ln 1.2>=ln 5}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&lt;=8.83;8.83&gt;=x">You reversed the sign. {m:ln 1.2} is positive, so the sign stays.</li>
+        <li data-if="x&gt;=4.17;4.17&lt;=x">You divided 5 by 1.2. The unknown is in the power, so take ln: {m:x>=frac(ln 5, ln 1.2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x>=frac(ln 5, ln 1.2)=8.8275}. The solution is {m:x>=8.83}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is true for the graph of {m:y=ln x}?</p>
+      <ul class="options">
+        <li data-correct>It passes through the point where x is 1 and y is 0, and it exists only for positive x</li>
+        <li data-why="The point where x is 0 and y is 1 is on the graph of e to the power x. For ln x, the graph passes through where x is 1 and y is 0.">It passes through the point where x is 0 and y is 1</li>
+        <li data-why="You cannot take the logarithm of zero or a negative number, so the graph stops at the y-axis. It has no points for x less than or equal to 0.">It exists for every real value of x</li>
+      </ul>
+      <ol class="ladder"><li>{m:ln 1=0}, because {m:e^0=1}.</li><li>What is the domain of a logarithm?</li></ol>
+      <div class="solution"><p>{m:ln 1=0}, so the graph passes through {m:(1, 0)}. The logarithm exists only when the argument is positive, so the graph exists only for {m:x>0}.</p></div>
+    </div>
+    <div class="q" data-answers="3.5" data-mode="value">
+      <p class="qtext">Find the value of y on the curve {m:y=e^(-x)+3} when {m:x=ln 2}. Type only the number.</p>
+      <ol class="ladder"><li>{m:e^(-ln 2)=frac(1, e^(ln 2))}.</li><li>{m:e^(ln 2)=2}, because e and ln undo each other.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">You used {m:e^(ln 2)=2}. But the power is {m:-ln 2}, so {m:e^(-ln 2)=frac(1,2)}.</li>
+        <li data-if="0.5">That is {m:e^(-ln 2)}. You still need to add 3.</li>
+      </ul>
+      <div class="solution"><p>{m:e^(-ln 2)=frac(1, e^(ln 2))=frac(1,2)}. So {m:y=frac(1,2)+3=3.5}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="1.65" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] Solve {m:5^(2x-1)=40}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides and use the power law: {m:(2x-1) ln 5=ln 40}.</li><li>Divide by {m:ln 5}, add 1, then divide by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.15">You forgot to add 1. From {m:2x-1=frac(ln 40, ln 5)}, add 1 before you divide by 2.</li>
+        <li data-if="3.29">That is {m:2x}. You still need to divide by 2.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:(2x-1) ln 5=ln 40}, so {m:2x-1=frac(ln 40, ln 5)=2.2920}. Then {m:2x=3.2920} and {m:x=1.6460}, which is 1.65 to 3 significant figures.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for taking logarithms of both sides</li>
+          <li><b>M1</b> for using the power law to write {m:(2x-1) ln 5=ln 40}</li>
+          <li><b>A1</b> for {m:x=1.65}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="ln2;ln(2)" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The curve {m:y=e^(2x)-4} crosses the x-axis at the point P. Find the exact x-coordinate of P, in the form ln k, where k is a whole number. Type it like ln 5.</p>
+      <ol class="ladder"><li>At the x-axis, {m:y=0}. So {m:e^(2x)=4}.</li><li>Take ln of both sides: {m:2x=ln 4}. Then use the power law on {m:ln 4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="ln4;ln(4)">You forgot to divide by 2. From {m:2x=ln 4}, {m:x=frac(ln 4, 2)}, and {m:frac(ln 4, 2)=ln 2}.</li>
+        <li data-if="2">You solved {m:2x=4}, as if the e were not there. Take ln of both sides: {m:2x=ln 4}.</li>
+        <li data-if="0.693">That is the right value as a decimal. The question asks for the exact answer, which is {m:ln 2}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:e^(2x)=4}, so {m:2x=ln 4=2 ln 2}. So {m:x=ln 2}. The point is {m:P(ln 2, 0)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for putting {m:y=0} to get {m:e^(2x)=4}</li>
+          <li><b>M1</b> for taking ln of both sides to get {m:2x=ln 4}</li>
+          <li><b>A1</b> for {m:x=ln 2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="10.6" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Solve {m:ln(2x+1)-ln 3=2}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Use the quotient law: {m:ln frac(2x+1, 3)=2}.</li><li>Raise e to the power of both sides: {m:frac(2x+1, 3)=e^2}.</li><li>Multiply by 3, subtract 1, then divide by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="3.19">You forgot to multiply {m:e^2} by 3. From {m:frac(2x+1, 3)=e^2} you get {m:2x+1=3e^2}.</li>
+        <li data-if="11.6">You added 1 instead of subtracting it. From {m:2x+1=3e^2} you subtract 1.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:ln frac(2x+1, 3)=2}, so {m:frac(2x+1, 3)=e^2} and {m:2x+1=3e^2=22.167}. Then {m:2x=21.167} and {m:x=10.584}, which is 10.6 to 3 significant figures. The argument {m:2x+1} is positive, so the solution is valid.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for using the quotient law</li>
+          <li><b>M1</b> for writing {m:frac(2x+1, 3)=e^2}</li>
+          <li><b>M1</b> for rearranging to find x</li>
+          <li><b>A1</b> for {m:x=10.6}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x&gt;1.88;1.88&lt;x" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Find the set of values of x for which {m:2^(3x)>50}. Give the boundary to 3 significant figures. Type it like x&gt;1.5.</p>
+      <ol class="ladder"><li>Take logarithms of both sides. The sign stays: {m:3x ln 2>ln 50}.</li><li>Divide by {m:3 ln 2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;5.64;5.64&lt;x">That is {m:3x}. You still need to divide by 3.</li>
+        <li data-if="x&lt;1.88;1.88&gt;x">You reversed the sign. {m:ln 2} is positive, so the sign stays.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:3x ln 2>ln 50}, so {m:3x>frac(ln 50, ln 2)=5.6439} and {m:x>1.8813}. The solution is {m:x>1.88}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for taking logarithms and using the power law</li>
+          <li><b>M1</b> for dividing by {m:ln 2}, and then by 3</li>
+          <li><b>A1</b> for {m:x>1.88}, with the sign the right way round</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-0.347" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The curve {m:y=e^(-2x)+3} meets the line {m:y=5} at the point Q. Find the x-coordinate of Q to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:y=5}: {m:e^(-2x)+3=5}. Subtract 3.</li><li>{m:e^(-2x)=2}. Take ln of both sides: {m:-2x=ln 2}.</li><li>Divide by {m:-2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.347">You lost the minus sign. From {m:-2x=ln 2}, dividing by {m:-2} gives a negative answer.</li>
+        <li data-if="-0.693">That is {m:-ln 2}. You still need to divide by 2.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:e^(-2x)+3=5} gives {m:e^(-2x)=2}. So {m:-2x=ln 2} and {m:x=-frac(ln 2, 2)=-0.3466}. To 3 significant figures, {m:x=-0.347}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:e^(-2x)=2}</li>
+          <li><b>M1</b> for taking ln of both sides to get {m:-2x=ln 2}</li>
+          <li><b>A1</b> for {m:x=-frac(ln 2, 2)}</li>
+          <li><b>A1</b> for {m:-0.347}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1.76" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] Solve {m:2^x=5^(x-1)}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides: {m:x ln 2=(x-1) ln 5}.</li><li>Expand, then collect the x terms on one side.</li><li>{m:ln 5=x(ln 5-ln 2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1.76">You have a sign slip. From {m:x ln 2=x ln 5-ln 5} you get {m:ln 5=x(ln 5-ln 2)}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x ln 2=x ln 5-ln 5}, so {m:ln 5=x ln 5-x ln 2=x(ln 5-ln 2)}. Then {m:x=frac(ln 5, ln 5-ln 2)=1.7565}, which is 1.76 to 3 significant figures.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for taking logarithms of both sides</li>
+          <li><b>M1</b> for the power law on both sides, {m:x ln 2=(x-1) ln 5}</li>
+          <li><b>M1</b> for expanding and collecting the x terms</li>
+          <li><b>M1</b> for factorising to {m:x(ln 5-ln 2)}</li>
+          <li><b>A1</b> for {m:x=1.76}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2p+q;q+2p" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Given that {m:log_a 3=p} and {m:log_a 5=q}, write {m:log_a 45} in terms of p and q. Type it like 3p+q.</p>
+      <ol class="ladder"><li>Write 45 using the numbers 3 and 5: {m:45=3*3*5}.</li><li>Use the product law, or the power law for the repeated 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="p+q">You used {m:3*5=15}, which gives {m:log_a 15}. Here {m:45=3^2*5}, so there are two lots of p.</li>
+        <li data-if="pq">You multiplied the logarithms. Multiplying numbers adds their logarithms.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:45=3^2*5}, so {m:log_a 45=2 log_a 3+log_a 5=2p+q}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for writing 45 as {m:3^2*5}, or {m:3*3*5}</li>
+          <li><b>M1</b> for using the product and power laws</li>
+          <li><b>A1</b> for {m:2p+q}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>A logarithm is a power.</b> The statement {m:log_a x=y} is the same statement as {m:a^y=x}, written another way. Every rule about logarithms is a rule about powers in disguise.</li>
+      <li><b>The product law.</b> Write {m:x=a^m} and {m:y=a^n}. Then {m:log_a x=m} and {m:log_a y=n}. And {m:x y=a^m*a^n=a^(m+n)}, so {m:log_a (x y)=m+n}. Adding the powers is the law of indices for multiplying.</li>
+      <li><b>The quotient law.</b> The same working with {m:frac(a^m, a^n)=a^(m-n)}. The power law comes from {m:(a^m)^k=a^(m k)}.</li>
+      <li><b>Why you may take logarithms of both sides.</b> If two positive numbers are equal, their logarithms are equal. And the function {m:ln x} is increasing, so a larger positive number has a larger logarithm. That is why the inequality sign stays when you take ln.</li>
+      <li><b>Why the sign sometimes reverses.</b> After taking ln you divide by {m:ln a}. If {m:0<a<1}, then {m:ln a} is negative. Dividing an inequality by a negative number reverses it.</li>
+      <li><b>Why the graph of ln is a mirror image.</b> If {m:b=a^c}, then {m:c=log_a b}. So the point {m:(c, b)} is on {m:y=a^x} exactly when {m:(b, c)} is on {m:y=log_a x}. Swapping x and y is a reflection in the line {m:y=x}.</li>
+      <li><b>Why the argument must be positive.</b> {m:a^y} is positive for every y. So the equation {m:a^y=x} has no solution for {m:x<=0}, and {m:log_a x} does not exist there.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Dividing by the base when the unknown is in the power. In {m:3^x=20}, take logarithms. Do not write {m:x=frac(20,3)}.</li>
+      <li>Writing {m:ln(x+y)} as {m:ln x+ln y}. There is no law for the logarithm of a sum.</li>
+      <li>Writing {m:frac(ln x, ln y)} as {m:ln(x-y)}. The quotient law is for a difference of logarithms.</li>
+      <li>Writing {m:ln(x^2)} as {m:(ln x)^2}. The power law gives {m:2 ln x}.</li>
+      <li>Forgetting that {m:e^x} is always positive. {m:e^x=-3} has no solution.</li>
+      <li>Forgetting to check the argument. A solution that makes the inside of a logarithm zero or negative must be rejected.</li>
+      <li>Taking the logarithm of one term at a time. {m:ln(3^x+1)} is not {m:x ln 3+ln 1}. Take the logarithm of the whole side.</li>
+      <li>Not reversing the inequality sign when you divide by {m:ln a} with {m:0<a<1}.</li>
+      <li>Rounding in the middle. Keep the full calculator value until the last line.</li>
+      <li>Forgetting that {m:log_a 1=0} and {m:log_a a=1}. A logarithm can also be negative or a fraction.</li>
+      <li>Mixing bases in a law. {m:log_2 x+log_3 y} cannot be combined by the product law.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="exponentials-logs">
+      <li><label><input type="checkbox"> sketch the graph of {m:y=a^x} and of {m:y=e^(ax+b)+c}, with its asymptote and y-intercept</label></li>
+      <li><label><input type="checkbox"> write a power as a logarithm, and a logarithm as a power</label></li>
+      <li><label><input type="checkbox"> say that {m:ln x} and {m:e^x} are inverses, and sketch both graphs</label></li>
+      <li><label><input type="checkbox"> use the product, quotient and power laws to simplify, or to write as a single logarithm</label></li>
+      <li><label><input type="checkbox"> solve {m:a^x=b} by taking logarithms of both sides</label></li>
+      <li><label><input type="checkbox"> solve {m:e^(ax+b)=p} and {m:ln(ax+b)=q}, and check the argument is positive</label></li>
+      <li><label><input type="checkbox"> solve an inequality with an exponential, and decide whether the sign reverses</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

@@ -261,6 +261,30 @@ export const TERMS = [
     aka: ['modelling', 'initial value', 'population model'],
   },
 
+  {
+    id: 'log-argument', term: 'Argument of a logarithm', strand: 'al-exponentials', level: 'Y1',
+    def: 'The number or expression inside a logarithm. In log to the base a of x, the argument is x. It must be greater than 0.',
+    example: [
+      'In {m:ln(3x+2)} the argument is {m:3x+2}. So {m:3x+2>0}, and {m:x>-frac(2,3)}.',
+      'In {m:log_2 8} the argument is 8.',
+    ],
+    watch: 'A solution that makes the argument zero or negative must be rejected, because you cannot take the logarithm of such a number. {m:ln(-5)} does not exist.',
+    see: ['logarithm', 'natural-logarithm', 'log-graph'],
+    aka: ['argument', 'inside the log'],
+  },
+  {
+    id: 'taking-logs', term: 'Taking logarithms of both sides', strand: 'al-exponentials', level: 'Y1',
+    def: 'Applying the same logarithm to both sides of an equation, so that the power law can bring an unknown power down to the front.',
+    example: [
+      '{m:3^x=20} becomes {m:ln(3^x)=ln 20}, so {m:x ln 3=ln 20}. Then {m:x=frac(ln 20, ln 3)}.',
+      '{m:e^(2x-1)=5} becomes {m:2x-1=ln 5}, because {m:ln(e^(2x-1))=2x-1}.',
+    ],
+    watch: 'Both sides must be positive, and you must take the logarithm of the whole side. {m:ln(3^x+1)} is not {m:x ln 3+ln 1}.',
+    flip: 'Raising e (or the base) to the power of both sides undoes a logarithm: {m:ln x=4} becomes {m:x=e^4}.',
+    see: ['exponential-equation', 'log-power-law', 'log-exp-inverse'],
+    aka: ['take logs', 'taking logs'],
+  },
+
   // ---------- Year 2 ----------
   {
     id: 'continuous-growth-model', term: 'Continuous growth model (rate proportional to size)', strand: 'al-exponentials', level: 'Y2',
