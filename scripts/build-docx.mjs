@@ -114,8 +114,8 @@ async function gather(opts, chosen, ctx) {
     const f = await walk('/__front/front.html', 'front');
     const front = { tree: { blocks: opts.tier ? retitleFront(f.blocks, opts.tier) : f.blocks }, figures: f.figures };
     for (const c of chosen) {
-      const t = await walk(`/books/gcse/${c.id}.html`, c.id);
-      const expected = extractKey(read(`src/pages/books/gcse/${c.id}.html`)).length;
+      const t = await walk(`/courses/gcse/${c.id}.html`, c.id);
+      const expected = extractKey(read(`src/pages/courses/gcse/${c.id}.html`)).length;
       if (t.qCount !== expected) mismatches.push({ page: c.id, walker: t.qCount, extractKey: expected });
       Object.assign(c, { tree: { blocks: t.blocks }, figures: t.figures, qCount: t.qCount });
       walkedTotal += t.qCount;
@@ -178,15 +178,15 @@ function findings(opts, front, chosen, ctx, unknown, blocked) {
 export async function buildDocx(opts) {
   const started = Date.now();
   const topics = TOPICS.map((t) => ({ ...t }));
-  const graph = buildGraph(topics, { hasPage: (id) => existsSync(join(root, `src/pages/books/gcse/${id}.html`)) });
+  const graph = buildGraph(topics, { hasPage: (id) => existsSync(join(root, `src/pages/courses/gcse/${id}.html`)) });
   // A Foundation topic gets a chapter in the Higher book only if it has Higher material. The page source says which can (a chip or
   // a data-tier marker); the walk below drops any that turn out to have none, and the chapters are numbered after that.
-  const hasHigherMarker = (id) => /chip-higher|data-tier="H"/.test(read(`src/pages/books/gcse/${id}.html`));
+  const hasHigherMarker = (id) => /chip-higher|data-tier="H"/.test(read(`src/pages/courses/gcse/${id}.html`));
   const higherParts = new Set(opts.tier === 'higher' ? topics.filter((t) => t.status === 'live' && t.tier === 'F' && hasHigherMarker(t.id)).map((t) => t.id) : []);
   let all = buildChapters(graph, papersForTier(PAPERS, opts.tier), { tier: opts.tier, higherParts });
   for (const id of opts.pages ?? []) if (!all.some((c) => c.id === id)) throw new Error(`--pages: "${id}" is not a chapter`);
   let chosen = opts.pages ? all.filter((c) => opts.pages.includes(c.id)) : all;
-  if (!existsSync(join(root, 'public/books/gcse/fractions.html'))) throw new Error('public/ is not built: run npm run build first');
+  if (!existsSync(join(root, 'public/courses/gcse/fractions.html'))) throw new Error('public/ is not built: run npm run build first');
 
   const walkCtx = { page: '', removed: [] };
   const { front, unknown, mismatches, blocked, walkedTotal } = await gather(opts, chosen, walkCtx);

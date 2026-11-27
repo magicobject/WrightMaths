@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Walks one page and prints the tree as JSON (the figures as sizes only). Used by the tests and for looking at a page.
-//   node scripts/print/walk-page.mjs /books/gcse/fractions.html
+//   node scripts/print/walk-page.mjs /courses/gcse/fractions.html
 //   node scripts/print/walk-page.mjs /__fixtures/print-walker.html
 //   node scripts/print/walk-page.mjs /__front/front.html short-answers,first-hint   (the words data-print-if asks for)
 

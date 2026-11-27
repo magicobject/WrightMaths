@@ -1,4 +1,4 @@
-// Figures for the Trigonometry in triangles page (src/pages/books/a-level/trig-triangles.html).
+// Figures for the Trigonometry in triangles page (src/pages/courses/a-level/trig-triangles.html).
 // Every triangle is DRAWN FROM ITS MEASUREMENTS: solve() finds all three sides and all three angles from the numbers the
 // question gives, and the corners are placed from those, so the picture is to scale. A side or angle the question asks for
 // is labelled x or theta, never with its value. Bearing diagrams are drawn from the distances and bearings in the question.

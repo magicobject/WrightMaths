@@ -9,7 +9,7 @@ import { test, expect } from './support/fixtures';
 //   - every label in a figure is nearer its own arrow than any other, and no text leaves its picture;
 //   - every number written in a {m:...} calculation on the page is right.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'vectors-2d.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'vectors-2d.html'), 'utf8');
 
 type Vec = [number, number];
 const add = (a: Vec, b: Vec): Vec => [a[0] + b[0], a[1] + b[1]];
@@ -432,7 +432,7 @@ test('a question figure describes the picture without giving the answer', async 
 });
 
 test('no figure text leaves its picture', async ({ page }) => {
-  await page.goto('/books/a-level/vectors-2d.html');
+  await page.goto('/courses/a-level/vectors-2d.html');
   const outside = await page.evaluate(() => {
     const out: string[] = [];
     for (const svg of document.querySelectorAll('main svg.graph-svg')) {

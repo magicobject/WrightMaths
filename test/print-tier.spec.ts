@@ -58,7 +58,7 @@ const chapterNumber = (paragraphs: string[], title: string) => {
 
 /** Typed answers of the questions of a page in order, with the Higher ones (by the page's own markers) left out when asked. */
 function sourceQuestions(page: string, withoutHigher: boolean) {
-  const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', `${page}.html`), 'utf8');
+  const raw = readFileSync(join(ROOT, 'src/pages/courses/gcse', `${page}.html`), 'utf8');
   const tokens = raw.split(/(?=<h2[ >]|<div class="q")/);
   let higherSection = false;
   const out: { type: string; first: string }[] = [];
@@ -77,7 +77,7 @@ function sourceQuestions(page: string, withoutHigher: boolean) {
 
 /** What the source itself marks Higher on a page: the headings with the chip, and the start of the text of each Higher question. */
 function higherMarkers(page: string) {
-  const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', page + '.html'), 'utf8');
+  const raw = readFileSync(join(ROOT, 'src/pages/courses/gcse', page + '.html'), 'utf8');
   const plain = (html: string) => html.replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/gi, '\u0000').split('\u0000')[0].split(/ ?\(?Type /)[0].replace(/\{[^}]*\}?/g, '').match(/^[A-Za-z ,.':-]*/)![0].trim();
   const headings: string[] = [];
   const questions: string[] = [];
@@ -252,7 +252,7 @@ test.describe('the two books together', () => {
     expect(new Set(h).size).toBe(h.length);
     const all: string[] = [];
     for (const page of [...PAGES, 'foundation', 'stretch', 'surds']) {
-      const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', page + '.html'), 'utf8');
+      const raw = readFileSync(join(ROOT, 'src/pages/courses/gcse', page + '.html'), 'utf8');
       const n = (raw.match(/<div class="q"[ >]/g) ?? []).length;
       for (let i = 1; i <= n; i += 1) all.push(page + '-' + i);
     }

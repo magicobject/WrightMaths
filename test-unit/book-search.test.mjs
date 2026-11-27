@@ -100,7 +100,7 @@ test('headings repeated on many pages are left out so "Check your knowledge" doe
 });
 
 test('the built index (when built) is small, relative to the book, and finds the key things', () => {
-  const file = new URL('../public/books/gcse/search-index.json', import.meta.url);
+  const file = new URL('../public/courses/gcse/search-index.json', import.meta.url);
   if (!existsSync(file)) return; // npm run build creates it
   const raw = readFileSync(file, 'utf8');
   assert.ok(raw.length < 150_000, `index is ${raw.length} bytes`);
@@ -163,7 +163,7 @@ test('typo matching does not make short words match everything', () => {
 });
 
 test('the built index has no HTML entities, no one-letter headings, no meta sections, and no "past papers"', () => {
-  const file = new URL('../public/books/gcse/search-index.json', import.meta.url);
+  const file = new URL('../public/courses/gcse/search-index.json', import.meta.url);
   if (!existsSync(file)) return;
   const index = JSON.parse(readFileSync(file, 'utf8'));
   for (const e of index) {
@@ -220,7 +220,7 @@ test('a heading with the same name does not outrank the topic page', () => {
 });
 
 test('everyday words find the right page in the real index', () => {
-  const file = new URL('../public/books/gcse/search-index.json', import.meta.url);
+  const file = new URL('../public/courses/gcse/search-index.json', import.meta.url);
   if (!existsSync(file)) return;
   // The synonyms are added here as well, so this holds before and after the next build.
   const index = JSON.parse(readFileSync(file, 'utf8')).map((e) => ({ ...e, y: SEARCH_SYNONYMS[e.u] ?? e.y }));

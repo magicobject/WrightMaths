@@ -1,10 +1,10 @@
 # Writing for the GCSE book
 
-The book lives at `/books/gcse/`, public since 27 Nov 2026 (linked from the Books page; answer keys stay `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
+The book lives at `/courses/gcse/`, public since 27 Nov 2026 (linked from the Books page; answer keys stay `noindex`). This guide is for anyone adding a topic or a glossary term. The plan and the reasoning are in [textbook-plan.md](textbook-plan.md).
 
 ## The one-paragraph version
 
-Topics are listed once in `src/book/topics.mjs` with what they **need**. Terms are defined once in `src/book/glossary.mjs`. A topic page is plain HTML in `src/pages/books/gcse/<id>.html` using a few shorthands. `npm run build` stitches it all together and **fails loudly** if a prerequisite is missing, there is a cycle, a term is unknown, or a live topic has no page.
+Topics are listed once in `src/book/topics.mjs` with what they **need**. Terms are defined once in `src/book/glossary.mjs`. A topic page is plain HTML in `src/pages/courses/gcse/<id>.html` using a few shorthands. `npm run build` stitches it all together and **fails loudly** if a prerequisite is missing, there is a cycle, a term is unknown, or a live topic has no page.
 
 ## Why a pyramid
 
@@ -23,7 +23,7 @@ Those drive the pyramid on the hub, the "Before you start" box at the top of eac
    - `tier`: `F` (Foundation and Higher) or `H` (Higher only).
    - `flip`: the reverse side of the topic, in plain words.
    - Foundations a new topic needs but that do not exist yet go in as `planned` entries. That is how the base of the pyramid gets built before it is written.
-2. Create `src/pages/books/gcse/<id>.html`. Copy the shape of `fractions.html`.
+2. Create `src/pages/courses/gcse/<id>.html`. Copy the shape of `fractions.html`.
 3. `npm run build` and `npm test`.
 
 ### Page shape (every topic follows this)
@@ -119,7 +119,7 @@ No accounts, no analytics, no cookies, nothing sent anywhere. Progress is stored
 
 Every book page has a search box in the header (and only book pages: the rest of the site has none). Type "circle theorems" and the topic page is the first result; glossary words, command words, section headings, the practice papers and the parents and teachers pages are found the same way.
 
-**How the index is built.** `npm run build` writes `public/books/gcse/search-index.json` (never edit it) from the finished pages, in `scripts/book-search-lib.mjs`. It holds only titles, headings, glossary words and short descriptions:
+**How the index is built.** `npm run build` writes `public/courses/gcse/search-index.json` (never edit it) from the finished pages, in `scripts/book-search-lib.mjs`. It holds only titles, headings, glossary words and short descriptions:
 
 - every topic and page: its title, strand and a one-line description (a topic's "flip" line), plus the glossary words from its "Words you need" strip as extra names;
 - every `h2` and `h3` that has an id (the build now gives every heading an id), as a "Section" result that links to the anchor and names the page it is in;
@@ -160,7 +160,7 @@ A voice says only the words on the page, so a bare number is spoken bare. Write 
 
 The voice does not read the page as written. `public/js/book-speech.mjs` turns the displayed words into spoken words: numbers become words ("4,872" is "four thousand, eight hundred and seventy-two", "0.643" is "zero point six four three", "045" is "zero four five"), symbols and units are spelled out, money is pounds and pence. Recordings are keyed to that spoken text.
 
-Labels at the very start of a question (the Higher chip, a part letter like "(a)", "[3 marks]", the marks, calculator and grade tags, any number of them in a row) are not read, nor are tags anywhere in it such as "Uses: Fractions". After re-recording, run `npm run book:audio -- all` then `npm run book:review` so `/books/gcse/audio-review.html` plays the new clips: Listen reads just the question (`dropLeadingLabels` in `public/js/book-audio.mjs`).
+Labels at the very start of a question (the Higher chip, a part letter like "(a)", "[3 marks]", the marks, calculator and grade tags, any number of them in a row) are not read, nor are tags anywhere in it such as "Uses: Fractions". After re-recording, run `npm run book:audio -- all` then `npm run book:review` so `/courses/gcse/audio-review.html` plays the new clips: Listen reads just the question (`dropLeadingLabels` in `public/js/book-audio.mjs`).
 
 When the automatic version is not good enough, give the sentence its own spoken wording with `data-say` on the `.qtext` or `.key` element, for example `<p class="qtext" data-say="x squared minus five x">x&sup2; &minus; 5x</p>`. The spoken text is what gets recorded; the displayed text is untouched. `npm run book:audio -- todo` lists the spoken text of every sentence that still needs a recording.
 

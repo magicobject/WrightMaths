@@ -6,7 +6,7 @@ import { test, expect } from './support/fixtures';
 // descriptions in the figure files, and the data-why reasons on multiple-choice options, and fails on any of these
 // words (maths, tags and comments are left out of the page text).
 const BOOK = join(__dirname, '..', 'src');
-const PAGES = join(BOOK, 'pages', 'books', 'a-level');
+const PAGES = join(BOOK, 'pages', 'courses', 'a-level');
 const FIGURES = join(BOOK, 'book', 'alevel', 'figures');
 const BANNED = /\b(?:just|simply|clearly|obviously|easy(?!-read)|easily)\b/gi; // "easy-read" is the name of a reading option
 

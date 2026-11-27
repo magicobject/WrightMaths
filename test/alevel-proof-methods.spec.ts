@@ -7,7 +7,7 @@ import { test, expect } from './support/fixtures';
 // the counterexample questions, the exhaustion questions, the identities, every sum written as numbers, the marks in
 // each mark scheme, and the figure.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'proof-methods.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'proof-methods.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -203,7 +203,7 @@ test('the always-positive figure and the page agree', async () => {
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/proof-methods.html');
+  await page.goto('/courses/a-level/proof-methods.html');
   // The "Words you need" strip lists each glossary entry under its full name, so it is left out.
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(15);

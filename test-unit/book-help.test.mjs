@@ -11,7 +11,7 @@ import { PAGES } from '../src/pages.config.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(root, rel), 'utf8');
-const page = (name) => read(`src/pages/books/gcse/${name}.html`);
+const page = (name) => read(`src/pages/courses/gcse/${name}.html`);
 const ids = new Set(GLOSSARY.map((g) => g.id));
 
 const COMMAND_WORDS = ['hence', 'deduce', 'justify', 'evaluate', 'sketch', 'prove', 'describe', 'estimate', 'explain-command'];
@@ -38,7 +38,7 @@ test('every {term:id} on the help pages is a real glossary term', () => {
 });
 
 test('the how-to-use page is registered, has no skipped heading levels and covers the main help topics', () => {
-  assert.ok(PAGES.some((p) => p.slug === 'books/gcse/how-to-use' && p.book === 'how-to-use'), 'not in pages.config.mjs');
+  assert.ok(PAGES.some((p) => p.slug === 'courses/gcse/how-to-use' && p.book === 'how-to-use'), 'not in pages.config.mjs');
   assert.match(read('test/support/book-pages.ts'), /how-to-use\.html/);
   const html = page('how-to-use');
   const levels = [...html.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
@@ -47,7 +47,7 @@ test('the how-to-use page is registered, has no skipped heading levels and cover
   for (const word of ['Listen', 'Reading options', 'Hide the Listen buttons', 'No clock', 'Extra time', 'screen reader', 'sqrt', '5.60', '+-', '?q=', 'Print worksheet']) {
     assert.ok(html.toLowerCase().includes(word.toLowerCase()), `how-to-use.html should mention "${word}"`);
   }
-  assert.match(read('src/pages/books/gcse/index.html'), /href="how-to-use\.html"/, 'the hub should link to it');
+  assert.match(read('src/pages/courses/gcse/index.html'), /href="how-to-use\.html"/, 'the hub should link to it');
 });
 
 test('the parents guide opens with the "Tonight" box, keeps every privacy point, and has no rubber duck', () => {

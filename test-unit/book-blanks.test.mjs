@@ -62,7 +62,7 @@ test('brackets already printed beside a gap may be typed, unless the key itself 
 });
 
 // ---- content: every gap's key must appear in the box's own "Check my answer" text ----
-const dir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'pages', 'books', 'gcse');
+const dir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'pages', 'courses', 'gcse');
 const decode = (s) => s.replace(/<[^>]+>/g, ' ').replace(/&minus;/g, '-').replace(/&[a-z]+;/g, ' ').replace(/,/g, '');
 
 test('every gap in a "Now you finish it" box is keyed, and its key appears in that box\'s worked answer', () => {

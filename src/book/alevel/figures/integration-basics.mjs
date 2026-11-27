@@ -1,4 +1,4 @@
-// Figures for the topic "Integration as reverse differentiation" (src/pages/books/a-level/integration-basics.html).
+// Figures for the topic "Integration as reverse differentiation" (src/pages/courses/a-level/integration-basics.html).
 // Every graph is drawn from its function with plane() (../figure-lib.mjs). The picture-only diagrams (arrows and
 // boxes) are drawn on a blank plane() with the small helpers below. One idea per figure; labels are on the picture.
 import { plane, label } from '../figure-lib.mjs';

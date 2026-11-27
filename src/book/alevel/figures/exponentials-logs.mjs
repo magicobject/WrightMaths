@@ -1,4 +1,4 @@
-// Figures for the Exponentials and logarithms topic page (src/pages/books/a-level/exponentials-logs.html).
+// Figures for the Exponentials and logarithms topic page (src/pages/courses/a-level/exponentials-logs.html).
 // Every curve is drawn from the function listed in CURVES, so a picture cannot disagree with its equation.
 // test/alevel-exponentials-logs.spec.ts reads GEOM, CURVES and POINTS to check each path and each marked point.
 // Axes have no scale numbers: the points that matter are labelled on the picture. A key at the top names each

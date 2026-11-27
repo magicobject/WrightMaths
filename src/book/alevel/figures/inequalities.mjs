@@ -1,4 +1,4 @@
-// Figures for the Inequalities topic page (src/pages/books/a-level/inequalities.html).
+// Figures for the Inequalities topic page (src/pages/courses/a-level/inequalities.html).
 // Number lines come from numberLine(); every curve and line is drawn from its equation, and every shaded region
 // is built from the same equation, so a picture cannot disagree with its inequality.
 // Shading is HATCHED (diagonal lines on a light tint), so it shows without colour as well as with it. A boundary

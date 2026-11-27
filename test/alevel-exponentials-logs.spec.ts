@@ -8,7 +8,7 @@ import { test, expect } from './support/fixtures';
 //  - the decimals shown in the working are recomputed,
 //  - every figure's curves and marked points are compared with the equation they claim to show.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'exponentials-logs.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'exponentials-logs.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-', hellip: '...' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -485,7 +485,7 @@ test('equal-scale pictures use the same scale on both axes', async () => {
 test('every figure keeps its text inside its picture, on a phone and on a desktop', async ({ page }) => {
   for (const width of [320, 1100]) {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/books/a-level/exponentials-logs.html');
+    await page.goto('/courses/a-level/exponentials-logs.html');
     const problems = await page.evaluate(() => {
       const out: string[] = [];
       for (const svg of document.querySelectorAll('main svg.graph-svg')) {
@@ -504,7 +504,7 @@ test('every figure keeps its text inside its picture, on a phone and on a deskto
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/exponentials-logs.html');
+  await page.goto('/courses/a-level/exponentials-logs.html');
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(15);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);

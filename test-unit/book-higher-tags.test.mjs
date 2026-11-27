@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-const DIR = join(import.meta.dirname, '..', 'src', 'pages', 'books', 'gcse');
+const DIR = join(import.meta.dirname, '..', 'src', 'pages', 'courses', 'gcse');
 
 test('every question graded 7 or more outside stretch.html is marked Higher (chip, data-tier="H" or a Higher section)', () => {
   const bad = [];
@@ -29,7 +29,7 @@ test('every question graded 7 or more outside stretch.html is marked Higher (chi
 
 test('a Foundation section never points the reader at a Higher section that is cut from the Foundation book', async () => {
   const { readdirSync, readFileSync } = await import('node:fs');
-  const dir = new URL('../src/pages/books/gcse/', import.meta.url);
+  const dir = new URL('../src/pages/courses/gcse/', import.meta.url);
   const higher = (s) => /chip chip-higher/.test(s.slice(0, s.indexOf('</h2>')));
   const bad = [];
   for (const f of readdirSync(dir).filter((n) => n.endsWith('.html') && n !== 'stretch.html')) {

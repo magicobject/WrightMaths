@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ROOT = join(import.meta.dirname, '..', 'src', 'pages', 'books');
+const ROOT = join(import.meta.dirname, '..', 'src', 'pages', 'courses');
 
 function pages(dir) {
   return readdirSync(dir).flatMap((name) => {

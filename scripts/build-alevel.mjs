@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Builds the hidden A-level book (public/books/a-level/) from src/book/alevel/ (topic graph, glossary, pages)
-// and src/pages/books/a-level/*.html. scripts/build.mjs runs this at the end, so `npm run build` and the
+// Builds the hidden A-level book (public/courses/a-level/) from src/book/alevel/ (topic graph, glossary, pages)
+// and src/pages/courses/a-level/*.html. scripts/build.mjs runs this at the end, so `npm run build` and the
 // pre-commit hook build both books; it can also be run on its own.
 //
 // It shares the page shell (scripts/page-shell.mjs) and the helpers (scripts/book-lib.mjs, book-math.mjs) with
@@ -46,7 +46,7 @@ const expandFigures = (html, where) => html.replace(/\{fig:([a-z0-9-]+)\}/g, (_,
   if (!FIGURES[id]) throw new Error(`${where}: unknown figure "${id}"`);
   return FIGURES[id]();
 });
-const SRC = `src/pages/books/${BOOK}`;
+const SRC = `src/pages/courses/${BOOK}`;
 const shell = loadShell(root);
 
 const topics = TOPICS.map((t) => ({ ...t, strandName: STRANDS[t.strand].short }));
@@ -116,13 +116,13 @@ function renderYearList(year) {
 }
 
 const bookTopicPages = liveTopics.map((t) => ({
-  slug: `books/${BOOK}/${t.id}`,
+  slug: `courses/${BOOK}/${t.id}`,
   bookTopic: t.id,
   title: alevelTopicTitle(t),
   description: alevelTopicDescription(t),
 }));
 const keyPages = liveTopics.map((t) => ({
-  slug: `books/${BOOK}/key/${t.id}`,
+  slug: `courses/${BOOK}/key/${t.id}`,
   book: 'key',
   keyTopic: t.id,
   base: '../../../',
@@ -165,7 +165,7 @@ for (const page of ordered) {
     content = content.replace('<main class="book', `<main id="main" tabindex="-1" data-book-id="${BOOK}" data-audio="off" class="book`);
     const topic = merged.bookTopic ? graph.get(merged.bookTopic) : null;
     searchPages.push({
-      href: `${merged.slug.replace(`books/${BOOK}/`, '')}.html`,
+      href: `${merged.slug.replace(`courses/${BOOK}/`, '')}.html`,
       title: plainText(merged.title.split(' | ')[0]),
       kind: topic ? 'Topic' : 'Page',
       sub: topic ? topic.strandName : 'Book',
@@ -178,7 +178,7 @@ for (const page of ordered) {
     content = content.replace('<main class="book', '<main id="main" tabindex="-1" class="book');
   }
 
-  const html = renderShell({ shell, nav: NAV, merged, content, isBook: true, searchBox: renderSearchBox(merged.base ?? '', `books/${BOOK}`) });
+  const html = renderShell({ shell, nav: NAV, merged, content, isBook: true, searchBox: renderSearchBox(merged.base ?? '', `courses/${BOOK}`) });
   const outFile = join(root, 'public', `${merged.slug}.html`);
   mkdirSync(dirname(outFile), { recursive: true });
   writeFileSync(outFile, html);
@@ -186,5 +186,5 @@ for (const page of ordered) {
 }
 
 const searchIndex = buildSearchIndex({ pages: searchPages, glossary: GLOSSARY, strands: STRANDS, glossaryHref: 'glossary.html', synonyms: {} });
-writeFileSync(join(root, `public/books/${BOOK}/search-index.json`), JSON.stringify(searchIndex));
-console.log(`built public/books/${BOOK}/search-index.json (${searchIndex.length} entries)`);
+writeFileSync(join(root, `public/courses/${BOOK}/search-index.json`), JSON.stringify(searchIndex));
+console.log(`built public/courses/${BOOK}/search-index.json (${searchIndex.length} entries)`);

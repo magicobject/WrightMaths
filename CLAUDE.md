@@ -17,7 +17,7 @@ These apply to every change here, not just when explicitly asked for.
 - Don't add third-party scripts, trackers, or embeds without checking what they contribute to CSP/privacy first.
 
 ## Build pipeline
-- `public/**/*.html` and `public/books/*/search-index.json` are **not in git**. They are generated from `templates/*.html` + `src/pages/*.html` + `src/pages.config.mjs` by `scripts/build.mjs`, and Cloudflare runs `npm run build` on every deploy (`build.command` in `wrangler.json`). `npm test` builds first. Edit the source, never `public/*.html`.
+- `public/**/*.html` and `public/courses/*/search-index.json` are **not in git**. They are generated from `templates/*.html` + `src/pages/*.html` + `src/pages.config.mjs` by `scripts/build.mjs`, and Cloudflare runs `npm run build` on every deploy (`build.command` in `wrangler.json`). `npm test` builds first. Edit the source, never `public/*.html`.
 - `public/css/style.css` and the hand-written `public/js/*` are the hand-maintained files in `public/`; `public/audio/book/` (the recordings, `manifest.json`, `review.json`) is committed.
 - The cache-busting `?v=...` on css and js links is a random token made at build time (`readBuildId` in `scripts/page-shell.mjs`; `WM_BUILD_ID` pins it). It is never written to a committed file, so a PR only shows real changes. Don't put a build or version number in anything committed.
 - The `?m=NN` on the book's own `import ... from './x.mjs?m=NN'` lines is different: it is in hand-written source and is bumped by hand when that module changes (a test checks every import carries one).
@@ -28,11 +28,11 @@ This repo no longer has a `build-number.json`, a pre-commit hook, `build-<date>.
 ## Data kept in sync by hand
 Unlike kington-parishes/kingtonfoodbank, this repo has no `site.config.mjs` centralizing contact details — phone (`+447449301083` / `07449 301083`) and email (`info@wrightmaths.uk`) are hardcoded independently in three places: `templates/footer.html`, `src/pages/contact.html`, and the JSON-LD `ProfessionalService` block in `templates/page.html`. Nothing tests that they agree. Change one, change all three.
 
-## The GCSE book (hidden pilot at `/books/gcse/`)
+## The GCSE book (hidden pilot at `/courses/gcse/`)
 A colourful, interactive online GCSE maths textbook, built from the same source for a later print edition. Read `docs/book-authoring.md` before adding a topic or a term; the plan is `docs/textbook-plan.md`.
-- **Public since 27 Nov 2026 (Greg's decision).** Reached from the Books page (in the main menu); the book home, glossary and Books page are in `sitemap.xml`, and book pages can be indexed. The teacher answer keys (`books/gcse/key/`) and the recordings review page stay `noindex` and out of the sitemap. `test/book.spec.ts` checks all of this. The A-level book is still a hidden preview.
+- **Public since 27 Nov 2026 (Greg's decision).** Reached from the Books page (in the main menu); the book home, glossary and Books page are in `sitemap.xml`, and book pages can be indexed. The teacher answer keys (`courses/gcse/key/`) and the recordings review page stay `noindex` and out of the sitemap. `test/book.spec.ts` checks all of this. The A-level book is still a hidden preview.
 - **Topic graph and glossary are single sources.** `src/book/topics.mjs` (what each topic `needs`; layer and unlocks are derived) and `src/book/glossary.mjs`. The build fails on an unknown prerequisite, a cycle, an unknown `{term:...}` or a live topic with no page.
-- **Never hand-edit `public/books/`**; edit `src/pages/books/gcse/*.html` and rebuild. `public/css/book.css` and `public/js/book*.{mjs,js}` are hand-maintained.
+- **Never hand-edit `public/courses/`**; edit `src/pages/courses/gcse/*.html` and rebuild. `public/css/book.css` and `public/js/book*.{mjs,js}` are hand-maintained.
 - **Every topic** has Check-your-knowledge sets after each chunk, a Flip-it section, a "Help, I'm stuck!" ladder on every question, and wrong-answer messages for the common slips. `test/book.spec.ts` enforces minimum counts.
 - **No third-party requests, ever, from book pages** (no web fonts, no CDN): tested on every page. Listen uses on-device voices only unless the student picks an online one. See "Privacy and accessibility rules" in `docs/book-authoring.md`.
 - **Question figures:** `<figure class="figure qfig">` after the qtext, with a title and desc that do not give the answer; keep recap questions in `details.recap` and faded answers in `details.check-line`.

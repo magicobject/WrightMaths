@@ -1,4 +1,4 @@
-// Figures for the Circles topic page (src/pages/books/a-level/circles.html).
+// Figures for the Circles topic page (src/pages/courses/a-level/circles.html).
 // Every circle is drawn from its centre and radius, and every line from its equation or its points.
 // Both axes use the SAME scale (see eq() below), so a circle looks round and a right angle looks like one.
 // Axes have no scale numbers: the points that matter are labelled on the picture itself.

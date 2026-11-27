@@ -7,7 +7,7 @@ import { test, expect } from './support/fixtures';
 //  - the wrong-answer values that come from a named slip are recomputed too,
 //  - every figure is measured: the drawn lengths, angles, areas and bearings are compared with what the question states.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'trig-triangles.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'trig-triangles.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-', deg: '°' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -347,7 +347,7 @@ test('the ambiguous figure shows two triangles that both fit, and the flip figur
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/trig-triangles.html');
+  await page.goto('/courses/a-level/trig-triangles.html');
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(8);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);

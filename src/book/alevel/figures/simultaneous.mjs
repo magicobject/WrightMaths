@@ -1,4 +1,4 @@
-// Figures for the Simultaneous equations topic page (src/pages/books/a-level/simultaneous.html).
+// Figures for the Simultaneous equations topic page (src/pages/courses/a-level/simultaneous.html).
 // Every line and curve is drawn from its equation, so a picture cannot disagree with the working.
 // Both axes use the SAME scale (see eq() below). Axes have no scale numbers: the points that matter are labelled.
 // A key at the top names each line or curve with a short sample of how it is drawn, so no label sits on a line.

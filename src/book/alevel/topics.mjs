@@ -4,7 +4,7 @@
 // DERIVED by scripts/book-lib.mjs, never written by hand. The build fails on an unknown prerequisite, a cycle,
 // a live topic with no page, or a planned topic that already has one.
 //
-// status: 'live'    = has a page in src/pages/books/a-level/<id>.html
+// status: 'live'    = has a page in src/pages/courses/a-level/<id>.html
 //         'planned' = shown greyed on the pyramid with "coming soon", no page yet
 // year:   1 = Year 1 (AS and first year), 2 = Year 2 (A-level only). The split follows the DfE content.
 // flip:   the reverse side of this topic (plain text, shown on the page and the map)

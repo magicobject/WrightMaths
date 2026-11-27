@@ -71,7 +71,7 @@ test.describe('the Word build', () => {
     for (const p of paragraphs) { const c = /^Chapter (\d+)\|\t\|(.*)$/.exec(p); if (c) chapterNo.set(c[2], c[1]); }
     const norm = (s: string) => s.replace(/sqrt|pi/g, '').replace(/[^0-9a-z]/gi, '').toLowerCase();
     for (const [id, title] of [['fractions', 'Fractions'], ['percentages', 'Percentages'], ['vectors', 'Vectors']]) {
-      const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', `${id}.html`), 'utf8');
+      const raw = readFileSync(join(ROOT, 'src/pages/courses/gcse', `${id}.html`), 'utf8');
       const parts = raw.split(/(?=<div class="q")/).filter((q) => q.startsWith('<div class="q"'));
       expect(parts.length, id).toBeGreaterThan(30);
       parts.forEach((part, i) => {

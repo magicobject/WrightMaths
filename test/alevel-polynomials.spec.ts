@@ -5,7 +5,7 @@ import { test, expect } from './support/fixtures';
 // Checks for the Polynomials page that a general test cannot make: the typed answer of each polynomial question is
 // recomputed here from the question's own polynomial, and no wrong-answer value is also a right answer.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'polynomials.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'polynomials.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -199,7 +199,7 @@ test('the figure captions and descriptions name the roots the curves have', asyn
 });
 
 test('in the browser, a partial factorisation is refused with a hint and the full one is accepted', async ({ page }) => {
-  await page.goto('/books/a-level/polynomials.html');
+  await page.goto('/courses/a-level/polynomials.html');
   const q = page.locator('.q[data-complete="linear"]').first();
   const input = q.locator('input.q-input');
   await input.fill('(x-1)(x^2+3x+2)');
@@ -212,7 +212,7 @@ test('in the browser, a partial factorisation is refused with a hint and the ful
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/polynomials.html');
+  await page.goto('/courses/a-level/polynomials.html');
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(10);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);

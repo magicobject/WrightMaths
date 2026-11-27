@@ -1,4 +1,4 @@
-// Figures for the Binomial expansion (positive whole-number powers) topic page (src/pages/books/a-level/binomial-positive.html).
+// Figures for the Binomial expansion (positive whole-number powers) topic page (src/pages/courses/a-level/binomial-positive.html).
 // Both are drawn in pixels only. Pascal's triangle is built by adding, from row 0, so the numbers on the picture
 // cannot disagree with the rule they illustrate.
 import { plane } from '../figure-lib.mjs';

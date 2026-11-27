@@ -6,7 +6,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const dir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'pages', 'books', 'gcse');
+const dir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'pages', 'courses', 'gcse');
 const pages = readdirSync(dir).filter((f) => f.endsWith('.html'));
 const read = (f) => readFileSync(join(dir, f), 'utf8');
 

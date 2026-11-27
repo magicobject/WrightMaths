@@ -7,7 +7,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { matches } from '../public/js/book-answer.mjs';
 
-const ROOT = join(import.meta.dirname, '..', 'src', 'pages', 'books');
+const ROOT = join(import.meta.dirname, '..', 'src', 'pages', 'courses');
 const ENTITIES = { quot: '"', lt: '<', gt: '>', amp: '&', le: '≤', ge: '≥', minus: '-', times: '×', deg: '°', pi: 'π', sup2: '²', sup3: '³', pound: '£', divide: '÷', radic: '√', ne: '≠', plusmn: '±' };
 const decode = (t) => t.replace(/&#39;/g, "'").replace(/&([a-z0-9]+);/gi, (m, n) => ENTITIES[n] ?? m);
 const attr = (attrs, name) => { const m = new RegExp(`${name}="([^"]*)"`).exec(attrs); return m ? decode(m[1]) : undefined; };

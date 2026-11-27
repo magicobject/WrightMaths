@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 
-const dir = new URL('../src/pages/books/gcse/', import.meta.url);
+const dir = new URL('../src/pages/courses/gcse/', import.meta.url);
 const pages = readdirSync(dir).filter((f) => f.endsWith('.html'));
 
 // Every "Now you finish it" box is a typed-gap box: each ___ must be a span.blank with its answers, or the student has nowhere to type.

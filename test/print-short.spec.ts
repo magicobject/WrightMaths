@@ -68,7 +68,7 @@ test.describe('the short Foundation book (the default for a tier book)', () => {
     const full = belowAnswerLines(fullBook());
     const texts: string[] = [];
     for (const id of PAGES) {
-      const raw = readFileSync(join(ROOT, 'src/pages/books/gcse', `${id}.html`), 'utf8');
+      const raw = readFileSync(join(ROOT, 'src/pages/courses/gcse', `${id}.html`), 'utf8');
       for (const m of raw.matchAll(/<div class="solution"><p>([^<{&]{25,}?)[.<]/g)) texts.push(m[1].trim().slice(0, 40));
     }
     const printedInFull = texts.filter((t) => full.includes(t));

@@ -33,7 +33,7 @@ const pageFilter = (process.argv.find((a) => a.startsWith('--pages=')) ?? '').sl
 async function collectUnits() {
   const server = await serve();
   const base = `http://127.0.0.1:${server.address().port}`;
-  const pages = readdirSync(join(PUBLIC, 'books', 'gcse'))
+  const pages = readdirSync(join(PUBLIC, 'courses', 'gcse'))
     .filter((f) => f.endsWith('.html') && (!pageFilter.length || pageFilter.includes(f.replace(/\.html$/, ''))))
     .sort();
   if (pageFilter.length && !pages.length) throw new Error(`no book page matches --pages=${pageFilter.join(',')}`);
@@ -42,7 +42,7 @@ async function collectUnits() {
   try {
     const page = await browser.newPage();
     for (const name of pages) {
-      await page.goto(`${base}/books/gcse/${name}`);
+      await page.goto(`${base}/courses/gcse/${name}`);
       const units = await page.evaluate(async () => (await import('/js/book-audio.mjs')).speechUnits(document));
       for (const u of units) if (!seen.has(u.hash)) seen.set(u.hash, u);
     }
@@ -57,7 +57,7 @@ async function collectUnits() {
 async function collectReview() {
   const server = await serve();
   const base = `http://127.0.0.1:${server.address().port}`;
-  const pages = readdirSync(join(PUBLIC, 'books', 'gcse'))
+  const pages = readdirSync(join(PUBLIC, 'courses', 'gcse'))
     .filter((f) => f.endsWith('.html') && (!pageFilter.length || pageFilter.includes(f.replace(/\.html$/, ''))))
     .sort();
   const browser = await chromium.launch();
@@ -65,7 +65,7 @@ async function collectReview() {
   try {
     const page = await browser.newPage();
     for (const name of pages) {
-      await page.goto(`${base}/books/gcse/${name}`);
+      await page.goto(`${base}/courses/gcse/${name}`);
       const found = await page.evaluate(async () => {
         const { unitText, hashText } = await import('/js/book-audio.mjs');
         return [...document.querySelectorAll('.qtext, .key')].map((node) => {
