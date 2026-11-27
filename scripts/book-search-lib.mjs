@@ -1,4 +1,4 @@
-// Builds the book's search index (public/books/gcse/search-index.json). Pure functions: pages and glossary in,
+// Builds the book's search index (public/courses/gcse/search-index.json). Pure functions: pages and glossary in,
 // a list of small entries out. scripts/build.mjs feeds it the rendered pages; docs/book-authoring.md explains it.
 //
 // Entry: { t: title, u: link (relative to the book folder), k: kind, s?: strand, d?: snippet, a?: aliases, p?: page title }.
@@ -106,7 +106,7 @@ export function buildSearchIndex({ pages, glossary, strands, glossaryHref, gener
  * The header search box (book pages only). Hidden until book-search-ui.mjs starts it, so nothing dead shows without JavaScript.
  * The index address is relative to the page, so it is always fetched from this site.
  */
-export function renderSearchBox(base, bookRoot = 'books/gcse') {
+export function renderSearchBox(base, bookRoot = 'courses/gcse') {
   return `
     <form class="book-search" role="search" aria-label="Search the whole book" data-index="${base}${bookRoot}/search-index.json" autocomplete="off" hidden>
       <label class="sr-only" for="book-search-input">Search the whole book (topics, words and sections)</label>

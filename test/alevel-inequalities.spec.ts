@@ -6,7 +6,7 @@ import { test, expect } from './support/fixtures';
 // the wrong-answer values of every inequality question, what a question figure's description gives away,
 // and the link text of defined words.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'inequalities.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'inequalities.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -109,7 +109,7 @@ test('the region figures describe their solid and dashed edges the way the page 
 });
 
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/inequalities.html');
+  await page.goto('/courses/a-level/inequalities.html');
   // The "Words you need" strip lists each glossary entry under its full name, so it is left out.
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(20);

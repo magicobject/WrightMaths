@@ -5,7 +5,7 @@ import { test, expect } from './support/fixtures';
 // Checks for the Binomial expansion page that a general test cannot make. Every coefficient, every typed key and every
 // estimate is recomputed here with BigInt arithmetic (no floating point), then compared with what the page says.
 const ROOT = join(__dirname, '..');
-const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'books', 'a-level', 'binomial-positive.html'), 'utf8');
+const SOURCE = readFileSync(join(ROOT, 'src', 'pages', 'courses', 'a-level', 'binomial-positive.html'), 'utf8');
 
 const ENTITIES: Record<string, string> = { lt: '<', gt: '>', amp: '&', quot: '"', minus: '-' };
 const decode = (t: string) => t.replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n] ?? m);
@@ -345,14 +345,14 @@ test('the term figure states the same arithmetic as the worked example it sits i
 
 // ---- the page, as a student sees it ----
 test('a defined word is linked with its plain name, with no bracketed extra in the link text', async ({ page }) => {
-  await page.goto('/books/a-level/binomial-positive.html');
+  await page.goto('/courses/a-level/binomial-positive.html');
   const texts = await page.locator('main a.term:not(.words-strip a)').allTextContents();
   expect(texts.length).toBeGreaterThan(8);
   expect(texts.filter((t) => t.includes('('))).toEqual([]);
 });
 
 test('the page has the sections the book promises, and each nCr symbol reads as "n C r" to a screen reader', async ({ page }) => {
-  await page.goto('/books/a-level/binomial-positive.html');
+  await page.goto('/courses/a-level/binomial-positive.html');
   await expect(page.locator('section.flip-section')).toHaveCount(1);
   await expect(page.locator('.q')).not.toHaveCount(0);
   const alts = await page.locator('main math[alttext$="C2"], main math[alttext$="C3"]').evaluateAll((els) => els.map((e) => e.getAttribute('alttext')));
@@ -362,7 +362,7 @@ test('the page has the sections the book promises, and each nCr symbol reads as 
 
 test('every text in every figure stays inside the figure at 320px', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
-  await page.goto('/books/a-level/binomial-positive.html');
+  await page.goto('/courses/a-level/binomial-positive.html');
   const outside = await page.evaluate(() => {
     const out: string[] = [];
     for (const svg of document.querySelectorAll('main figure svg')) {

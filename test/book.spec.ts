@@ -7,20 +7,20 @@ import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
 const PUBLIC = join(__dirname, '..', 'public');
 
 test.describe('the GCSE book is public (Greg, 27 Nov 2026)', () => {
-  test('the main site reaches it through the Books page (menu and footer); the sitemap lists it and its answer keys stay noindex', async ({ page }) => {
+  test('the main site reaches it through the Courses page (menu and footer); the sitemap lists it and its answer keys stay noindex', async ({ page }) => {
     for (const sitePage of ALL_PAGES) {
       await page.goto(sitePage.path);
-      // Greg's decision (24 Nov 2026): Books is in the main menu (and so the footer); the GCSE book is one click further on.
-      await expect(page.locator('a[href*="books"]'), `${sitePage.path} links to more than the Books page`).toHaveCount(sitePage.path === '/404.html' ? 3 : 2);
-      if (sitePage.path !== '/books/') {
+      // Greg's decision (24 Nov 2026): Books (now Courses, 27 Nov 2026) is in the main menu (and so the footer); the GCSE book is one click further on.
+      await expect(page.locator('a[href*="courses"]:not([href^="http"])'), `${sitePage.path} links to more than the Courses page`).toHaveCount(sitePage.path === '/404.html' ? 3 : 2);
+      if (sitePage.path !== '/courses/') {
         await expect(page.locator('a[href*="gcse"]'), `${sitePage.path} links straight to the book`).toHaveCount(0);
       }
     }
     const sitemap = readFileSync(join(PUBLIC, 'sitemap.xml'), 'utf8');
-    for (const loc of ['books/', 'books/gcse/', 'books/gcse/glossary.html']) expect(sitemap, loc).toContain(`<loc>https://wrightmaths.uk/${loc}</loc>`);
+    for (const loc of ['courses/', 'courses/gcse/', 'courses/gcse/glossary.html']) expect(sitemap, loc).toContain(`<loc>https://wrightmaths.uk/${loc}</loc>`);
     expect(sitemap, 'no answer key in the sitemap').not.toMatch(/key\/|audio-review/);
-    expect(readFileSync(join(PUBLIC, 'robots.txt'), 'utf8')).not.toMatch(/Disallow:\s*\/books/i);
-    await page.goto('/books/gcse/key/fractions.html');
+    expect(readFileSync(join(PUBLIC, 'robots.txt'), 'utf8')).not.toMatch(/Disallow:\s*\/courses/i);
+    await page.goto('/courses/gcse/key/fractions.html');
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   });
 
@@ -43,7 +43,7 @@ test.describe('the recordings review page', () => {
     const walk = (dir: string): string[] => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
     const linking = walk(PUBLIC).filter((f) => /\.(html|js|mjs|xml|txt)$/.test(f) && !here.has(basename(f)) && /audio-review/.test(readFileSync(f, 'utf8')));
     expect(linking, 'only the review page itself may mention it').toEqual([]);
-    await page.goto('/books/gcse/audio-review.html');
+    await page.goto('/courses/gcse/audio-review.html');
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     await expect(page.locator('h1')).toHaveText('Listen recordings review');
     await expect(page.locator('.ar-item')).toHaveCount(25);
@@ -65,8 +65,8 @@ test.describe('the recordings review page', () => {
 
 test.describe('the book is well formed', () => {
   test('the folder URL redirects to the slashed form so relative links work', async ({ page }) => {
-    await page.goto('/books/gcse');
-    await expect(page).toHaveURL(/\/books\/gcse\/$/);
+    await page.goto('/courses/gcse');
+    await expect(page).toHaveURL(/\/courses\/gcse\/$/);
     await expect(page.locator('h1')).toHaveText(/built from the ground up/i);
   });
 
@@ -116,7 +116,7 @@ test.describe('the book is well formed', () => {
   });
 
   test('the pyramid shows the live topics as links, the planned ones as "coming soon", base layer last', async ({ page }) => {
-    await page.goto('/books/gcse/');
+    await page.goto('/courses/gcse/');
     const live = page.locator('.pyr-node.live a');
     await expect(live).toHaveCount(BOOK_TOPICS.length);
     // Every topic on the pyramid is written: nothing is left marked "coming soon" (a future planned topic would show here).
@@ -127,7 +127,7 @@ test.describe('the book is well formed', () => {
 
   test('each topic page names what it stands on and what it unlocks, matching the pyramid', async ({ page }) => {
     test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
-    await page.goto('/books/gcse/pythagoras.html');
+    await page.goto('/courses/gcse/pythagoras.html');
     await expect(page.locator('.bys').first()).toContainText('Squares and square roots');
     await expect(page.locator('.bys').first()).toContainText('Shapes and angles');
     await expect(page.locator('.bys.unlocks')).toContainText('Trigonometry');
@@ -150,7 +150,7 @@ test.describe('the book is well formed', () => {
 });
 
 test.describe('the book source proofreads clean', () => {
-  const SRC = join(__dirname, '..', 'src', 'pages', 'books', 'gcse');
+  const SRC = join(__dirname, '..', 'src', 'pages', 'courses', 'gcse');
   const sources = readdirSync(SRC).filter((f) => f.endsWith('.html')).map((f) => ({ f, html: readFileSync(join(SRC, f), 'utf8') }));
   const key = (s: string) =>
     s.replace(/<[^>]+>|&deg;|°|\s/g, '').replace(/&radic;|√/g, 'sqrt').replace(/&minus;|−/g, '-').replace(/\.$/, '').toLowerCase();
@@ -187,14 +187,14 @@ test.describe('the book source proofreads clean', () => {
 
 test.describe('the glossary', () => {
   test('is generated with plenty of terms, each with a definition and an example', async ({ page }) => {
-    await page.goto('/books/gcse/glossary.html');
+    await page.goto('/courses/gcse/glossary.html');
     expect(await page.locator('.g-entry').count()).toBeGreaterThanOrEqual(60);
     expect(await page.locator('.g-entry').evaluateAll((es) => es.filter((e) => !e.querySelector('.g-def') || !e.querySelector('.g-example')).length)).toBe(0);
     await expect(page.locator('#denominator .g-used')).toContainText('Fractions');
   });
 
   test('can be filtered by strand and searched', async ({ page }) => {
-    await page.goto('/books/gcse/glossary.html');
+    await page.goto('/courses/gcse/glossary.html');
     const total = await page.locator('.g-entry:visible').count();
     await page.locator('[data-glossary-filter]').selectOption('geometry');
     const geometry = await page.locator('.g-entry:visible').count();
@@ -208,7 +208,7 @@ test.describe('the glossary', () => {
 
 test.describe('words in teal', () => {
   test('tapping a term shows its meaning, Escape closes it, and it links to the glossary', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const term = page.locator('a.term', { hasText: 'denominator' }).first();
     await term.click();
     const pop = page.locator('.term-pop');
@@ -222,7 +222,7 @@ test.describe('words in teal', () => {
 
 test.describe('questions', () => {
   test('a right answer is accepted in any equivalent form and shows why', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q').first(); // 5/8
     await q.getByLabel('Your answer').fill('0.625');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -232,7 +232,7 @@ test.describe('questions', () => {
   });
 
   test('a known wrong answer gets a specific explanation, not just "wrong"', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/16');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -241,7 +241,7 @@ test.describe('questions', () => {
   });
 
   test('an unsimplified fraction is told it is the right value in the wrong form', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q', { hasText: 'Simplify' }).first();
     await q.getByLabel('Your answer').fill('4/6');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -249,7 +249,7 @@ test.describe('questions', () => {
   });
 
   test('"Help, I\'m stuck!" reveals clues one at a time, then a think-it-through step, then a person, then the answer', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     await expect(q.locator('.solution')).toBeHidden();
     const help = q.getByRole('button', { name: /Give me a clue|Another clue|Show me the answer/ });
@@ -270,7 +270,7 @@ test.describe('questions', () => {
   test('what is typed in the think-it-through step is never stored or sent anywhere', async ({ page }) => {
     const requests: string[] = [];
     page.on('request', (r) => { if (r.method() !== 'GET') requests.push(r.url()); });
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
@@ -288,7 +288,7 @@ test.describe('questions', () => {
   });
 
   test('multiple choice explains a wrong pick and celebrates the right one', async ({ page }) => {
-    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.goto('/courses/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only the final answer counts/ }).click();
     await expect(q.locator('.q-feedback')).toContainText('A mark scheme gives separate marks for correct method');
@@ -298,12 +298,12 @@ test.describe('questions', () => {
   });
 
   test('progress is saved on this device only, and shows on the pyramid', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q').first();
     await q.getByLabel('Your answer').fill('5/8');
     await q.getByRole('button', { name: 'Check' }).click();
     await expect(page.locator('[data-topic-progress]')).toContainText('You have finished 1 of');
-    await page.goto('/books/gcse/');
+    await page.goto('/courses/gcse/');
     await expect(page.locator('[data-progress-for="fractions"]')).toContainText(/^1 of \d+ done$/);
     expect(await page.evaluate(() => Object.keys(window.localStorage))).toEqual(['wm-gcse-v1']);
     page.once('dialog', (d) => d.accept());
@@ -317,7 +317,7 @@ test.describe('questions', () => {
     for (const topic of BOOK_TOPICS) {
       await page.goto(topic.path);
       const onPage = await page.locator('.q').count();
-      await page.goto('/books/gcse/');
+      await page.goto('/courses/gcse/');
       const id = topic.path.split('/').pop()!.replace('.html', '');
       expect(Number(await page.locator(`[data-progress-for="${id}"]`).getAttribute('data-total'))).toBe(onPage);
     }
@@ -328,7 +328,7 @@ test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
   test('hints and worked answers are all visible, so nothing is lost', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     await expect(page.locator('.q .ladder').first()).toBeVisible();
     await expect(page.locator('.q .solution').first()).toBeVisible();
     await expect(page.locator('.q-form')).toHaveCount(0);
@@ -337,7 +337,7 @@ test.describe('without JavaScript', () => {
 
 test.describe('feedback that helps instead of scolds', () => {
   test('a right value in the wrong form gets an amber "nearly", not a cross, and does not count as a wrong try', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q', { hasText: 'Simplify' }).first();
     await q.getByLabel('Your answer').fill('4/6');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -346,7 +346,7 @@ test.describe('feedback that helps instead of scolds', () => {
   });
 
   test('a slipped decimal point or a wrong sign gets a generic hint even with no hand-written message', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 100' }).first();
     await q.getByLabel('Your answer').fill('10000');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -354,7 +354,7 @@ test.describe('feedback that helps instead of scolds', () => {
   });
 
   test('a typed minus in any style, a pound sign and x= are all accepted', async ({ page }) => {
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     const q = page.locator('.q', { hasText: 'Work out \u22124 \u2212 3.' }).first();
     await q.getByLabel('Your answer').fill('\u2212 7');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -364,14 +364,14 @@ test.describe('feedback that helps instead of scolds', () => {
   test('multiple-choice options are shuffled across loads but always contain the right one', async ({ page }) => {
     const orders = new Set<string>();
     for (let i = 0; i < 6; i += 1) {
-      await page.goto('/books/gcse/raise-your-grade.html');
+      await page.goto('/courses/gcse/raise-your-grade.html');
       orders.add((await page.locator('.q').first().locator('.mc-option').allTextContents()).join('|'));
     }
     expect(orders.size).toBeGreaterThan(1);
   });
 
   test('a question with several clues offers the think-it-through step; a one-clue question skips it', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const qs = page.locator('.q');
     const oneHint = qs.filter({ hasText: 'Work out 10 \u00d7 10.' }).first();
     const help = oneHint.getByRole('button', { name: /Give me a clue/ });
@@ -382,7 +382,7 @@ test.describe('feedback that helps instead of scolds', () => {
 
 test.describe('reading options and listen', () => {
   test('text size, easy-read font, tint and ruler can be switched on, and are remembered', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.locator('.read-tools summary').click();
     await page.getByRole('button', { name: 'Bigger text' }).click();
     await page.getByRole('button', { name: 'Easy-read font' }).click();
@@ -401,7 +401,7 @@ test.describe('reading options and listen', () => {
   });
 
   test('questions and key ideas have a Listen button that uses the browser voice only', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     expect(await page.locator('.qtext .listen').count()).toBeGreaterThan(10);
     expect(await page.locator('.key .listen').count()).toBeGreaterThan(2);
   });
@@ -409,7 +409,7 @@ test.describe('reading options and listen', () => {
 
 test.describe('mixed practice', () => {
   test('deals five mixed questions, they work, and a new set is different', async ({ page }) => {
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     const qs = page.locator('[data-practice-set] .q');
     await expect(qs).toHaveCount(5);
     const before = await qs.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.qid));
@@ -421,7 +421,7 @@ test.describe('mixed practice', () => {
   });
 
   test('only the topics ticked are used', async ({ page }) => {
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
     await page.locator('input[name="practice-topic"][value="pythagoras"]').check();
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
@@ -435,7 +435,7 @@ test.describe('mixed practice', () => {
   });
 
   test('finishing any question records a practice day on this device, once a day', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 10.' }).first();
     await q.getByLabel('Your answer').fill('100');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -450,7 +450,7 @@ test.describe('display on a phone', () => {
   test.use({ viewport: { width: 375, height: 812 } });
 
   test('the header does not stick, and the main tap targets are at least 44px high', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     expect(await page.locator('.site-header').evaluate((e) => getComputedStyle(e).position)).toBe('static');
     await page.locator('.read-tools summary').click();
     const heights = await page.locator('.read-tools summary, .read-btn, .header-cta, a.brand').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().height)));
@@ -458,7 +458,7 @@ test.describe('display on a phone', () => {
   });
 
   test('a topic page has an On this page list whose links go to real headings, and a back-to-top button', async ({ page }) => {
-    await page.goto('/books/gcse/shapes-angles.html');
+    await page.goto('/courses/gcse/shapes-angles.html');
     await page.locator('.toc summary').click();
     const hrefs = await page.locator('.toc a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
     expect(hrefs.length).toBeGreaterThanOrEqual(8);
@@ -471,7 +471,7 @@ test.describe('display on a phone', () => {
   });
 
   test('reading options show a clear on/off state and the current text size', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.locator('.read-tools summary').click();
     await expect(page.locator('.read-size')).toContainText('Text size 1 of 4');
     await page.getByRole('button', { name: 'Bigger text' }).click();
@@ -483,7 +483,7 @@ test.describe('display on a phone', () => {
   });
 
   test('the pyramid comes before the list of what is built into every page on the hub', async ({ page }) => {
-    await page.goto('/books/gcse/');
+    await page.goto('/courses/gcse/');
     const order = await page.evaluate(() => {
       const a = document.querySelector('#pyramid')!.getBoundingClientRect().top;
       const b = [...document.querySelectorAll('h2')].find((h) => h.textContent?.includes('What is built into every page'))!.getBoundingClientRect().top;
@@ -495,7 +495,7 @@ test.describe('display on a phone', () => {
 
 test.describe('feedback round 2: hover definitions, Help after answering, human voice, identity sign', () => {
   test('technical words inside questions are linked automatically and show a definition with a picture on hover', async ({ page }) => {
-    await page.goto('/books/gcse/shapes-angles.html');
+    await page.goto('/courses/gcse/shapes-angles.html');
     const term = page.locator('.qtext a.term[data-term="reflex-angle"]').first();
     await expect(term).toBeVisible();
     await term.hover();
@@ -508,7 +508,7 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
   });
 
   test('Help, I\'m stuck stays available after a right answer, for another way to see it', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     await q.getByLabel('Your answer').fill('1000');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -545,7 +545,7 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
         },
       });
     });
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     await page.locator('.q', { hasText: 'Work out (−5) × (−6).' }).first().locator('.listen').click();
     await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
     const spoken = await page.evaluate(() => (window as any).__spoken as { text: string; voice: string }[]);
@@ -558,7 +558,7 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
   });
 
   test('the identity sign is in the glossary, linked from the examples, each example on its own line', async ({ page }) => {
-    await page.goto('/books/gcse/glossary.html');
+    await page.goto('/courses/gcse/glossary.html');
     await expect(page.locator('#identity h3')).toContainText('Identity');
     await expect(page.locator('#identity')).toContainText('≡');
     expect(await page.locator('#factorise .g-line').count()).toBe(2);
@@ -569,7 +569,7 @@ test.describe('feedback round 2: hover definitions, Help after answering, human 
 
 test.describe('ready to revisit', () => {
   test('a clean answer is scheduled for tomorrow, and a due question comes back in Give me five', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 10.' }).first();
     await q.getByLabel('Your answer').fill('100');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -583,7 +583,7 @@ test.describe('ready to revisit', () => {
       data.rq[id] = { b: 1, due: '2020-01-01', last: '2019-12-31', miss: 0 };
       window.localStorage.setItem('wm-gcse-v1', JSON.stringify(data));
     }, qid!);
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     for (const box of await page.locator('input[name="practice-topic"]').all()) await box.uncheck();
     await page.locator('input[name="practice-topic"][value="place-value"]').check();
     await page.getByRole('button', { name: 'Give me five new questions' }).click();
@@ -596,14 +596,14 @@ test.describe('ready to revisit', () => {
     await page.addInitScript(() => {
       window.localStorage.setItem('wm-gcse-v1', JSON.stringify({ done: {}, ticks: {}, rq: { '__proto__': { b: 1 }, 'x y': 1, 'place-value-1': { b: 99 } }, days: 'nope', diag: [{ score: 'a' }] }));
     });
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     await expect(page.locator('[data-practice-set] .q')).toHaveCount(5);
   });
 });
 
 test.describe('find your gaps', () => {
   test('scores in the browser, recommends the lowest topics first, remembers the result, shows a history', async ({ page }) => {
-    await page.goto('/books/gcse/diagnostic.html');
+    await page.goto('/courses/gcse/diagnostic.html');
     const answers: Record<string, string> = { 'place-value': '600', 'four-operations': '282', 'negative-numbers': '5', 'order-of-operations': '17' };
     for (const d of await page.locator('.dq').all()) {
       const topic = await d.getAttribute('data-topic');
@@ -622,7 +622,7 @@ test.describe('find your gaps', () => {
 
   test('the hub offers it first', async ({ page }) => {
     test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
-    await page.goto('/books/gcse/');
+    await page.goto('/courses/gcse/');
     await expect(page.getByRole('link', { name: /Find my gaps/ }).first()).toBeVisible();
   });
 });
@@ -639,7 +639,7 @@ test.describe('privacy and keyboard access', () => {
   }
 
   test('there is a skip link first in the tab order, and it lands on the main content', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.keyboard.press('Tab');
     const skip = page.locator('.skip-link');
     await expect(skip).toBeFocused();
@@ -648,7 +648,7 @@ test.describe('privacy and keyboard access', () => {
   });
 
   test('every question and answer box has its own name, and every Listen button is distinct', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const names = await page.locator('.q-input').evaluateAll((els) => els.map((e) => (document.querySelector(`label[for="${e.id}"]`) as HTMLElement | null)?.textContent));
     expect(names.length).toBeGreaterThan(10);
     expect(new Set(names).size).toBe(names.length);
@@ -658,7 +658,7 @@ test.describe('privacy and keyboard access', () => {
   });
 
   test('a term pop-up can be reached and left with the keyboard', async ({ page }) => {
-    await page.goto('/books/gcse/shapes-angles.html');
+    await page.goto('/courses/gcse/shapes-angles.html');
     const term = page.locator('.qtext a.term').first();
     await term.focus();
     await expect(page.locator('.term-pop')).toBeVisible();
@@ -670,7 +670,7 @@ test.describe('privacy and keyboard access', () => {
   });
 
   test('asking for hints keeps focus on the Help button, and a very long answer does not freeze the page', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
@@ -680,7 +680,7 @@ test.describe('privacy and keyboard access', () => {
   });
 
   test('the footer headings follow the page headings without skipping a level', async ({ page }) => {
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     const levels = await page.$$eval('h1,h2,h3,h4,h5,h6', (hs) => hs.map((h) => Number(h.tagName[1])));
     levels.forEach((level, i) => { if (i > 0) expect(level - levels[i - 1]).toBeLessThanOrEqual(1); });
   });
@@ -688,7 +688,7 @@ test.describe('privacy and keyboard access', () => {
 
 test.describe('lettered hints', () => {
   test('hints are lettered A, B, C (not numbered), and start again from A after a right answer', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 \u00d7 100.' }).first();
     const help = q.getByRole('button', { name: /Give me a clue/ });
     await help.click();
@@ -711,7 +711,7 @@ test.describe('lettered hints', () => {
   test('the static hint list (no script) is lettered too', async ({ browser, baseURL }) => {
     const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
     const page = await context.newPage();
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const content = await page.locator('.q .ladder li').first().evaluate((e) => getComputedStyle(e, '::before').content);
     expect(content).toContain('upper-alpha');
     await context.close();
@@ -720,7 +720,7 @@ test.describe('lettered hints', () => {
 
 test.describe('phone-friendly answers', () => {
   test('a number answer gets the number pad, and the symbol row types a minus', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     const input = q.getByLabel(/Your answer/);
     await expect(input).toHaveAttribute('inputmode', 'decimal');
@@ -730,7 +730,7 @@ test.describe('phone-friendly answers', () => {
   });
 
   test('the ask-a-person step does not mention lessons', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     const help = q.locator('.btn-stuck');
     for (let i = 0; i < 6; i += 1) { if (await help.isEnabled()) await help.click(); }
@@ -743,7 +743,7 @@ test.describe('phone-friendly answers', () => {
 test.describe('phone layout', () => {
   test('the Top button never covers the sticky Check button', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.locator('.q-input').first().scrollIntoViewIfNeeded();
     await page.locator('.q-input').first().focus();
     await page.mouse.wheel(0, 600);
@@ -770,14 +770,14 @@ test('Listen stays silent when the device has no voice of its own', async ({ pag
     Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { getVoices: () => [], speak: (u: any) => spoken.push(u.text), cancel: () => {}, addEventListener: () => {}, onvoiceschanged: null } });
     (window as any).SpeechSynthesisUtterance = function (t: string) { (this as any).text = t; };
   });
-  await page.goto('/books/gcse/place-value.html');
+  await page.goto('/courses/gcse/place-value.html');
   await page.getByRole('button', { name: /Listen/ }).first().click();
   expect(await page.evaluate(() => (window as any).__spoken.length)).toBe(0);
 });
 
 test.describe('stretch papers', () => {
   test('a show-that question reveals its mark scheme, and ticking marks counts them on screen only', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const q = page.locator('.q[data-type="show"]').first();
     const total = await q.locator('ul.markscheme > li').count();
     expect(total).toBeGreaterThanOrEqual(3);
@@ -794,7 +794,7 @@ test.describe('stretch papers', () => {
   });
 
   test('every stretch question says how many marks, calculator or not, and the mark scheme adds up', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const qs = page.locator('.q');
     const n = await qs.count();
     expect(n).toBeGreaterThanOrEqual(24);
@@ -808,7 +808,7 @@ test.describe('stretch papers', () => {
   });
 
   test('topic pages have a fast route that folds away recaps and check sets', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const toggle = page.getByRole('button', { name: 'Skip the basics' });
     await toggle.click();
     await expect(page.locator('section.ckw').first()).toBeHidden();
@@ -817,34 +817,34 @@ test.describe('stretch papers', () => {
   });
 });
 
-test.describe('the Books page', () => {
-  test('/books leads to the GCSE book, and the 404 page leads to /books', async ({ page }) => {
-    await page.goto('/books');
-    await expect(page).toHaveURL(/\/books\/$/);
-    await expect(page).toHaveTitle(/Maths Books/);
-    await expect(page.locator('h1')).toHaveText(/Maths books, written by a tutor/);
+test.describe('the Courses page', () => {
+  test('/courses leads to the GCSE book, and the 404 page leads to /courses', async ({ page }) => {
+    await page.goto('/courses');
+    await expect(page).toHaveURL(/\/courses\/$/);
+    await expect(page).toHaveTitle(/Maths Courses/);
+    await expect(page.locator('h1')).toHaveText(/Maths courses, written by a tutor/);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-    await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Books');
+    await expect(page.locator('nav.mainnav a[aria-current="page"]')).toHaveText('Courses');
     // A-level Year 1 is an early preview with one link to its home page. Year 2 and Further Pure are "Coming soon" and link to Contact.
     const year1 = page.locator('.card', { hasText: 'A-level Pure Maths, Year 1' });
-    await expect(year1).toContainText('Early preview');
-    await expect(year1.getByRole('link', { name: /Open the early preview/ })).toHaveAttribute('href', 'a-level/');
+    await expect(year1).toContainText('Work in progress');
+    await expect(year1.getByRole('link', { name: /Open the work in progress/ })).toHaveAttribute('href', 'a-level/');
     for (const name of ['A-level Pure Maths, Year 2', 'Further Pure Maths']) {
       const card = page.locator('.card', { hasText: name });
       await expect(card, name).toContainText('Coming soon');
       await expect(card.getByRole('link', { name: /Get in touch/ })).toHaveAttribute('href', '../contact.html');
     }
     await expect(page.locator('a[href*="a-level"]')).toHaveCount(1);
-    await page.getByRole('link', { name: /Open the GCSE Maths Book/ }).click();
-    await expect(page).toHaveURL(/\/books\/gcse\/$/);
+    await page.getByRole('link', { name: /Open the GCSE Maths Course/ }).click();
+    await expect(page).toHaveURL(/\/courses\/gcse\/$/);
     const response = await page.goto('/this-page-does-not-exist.html');
     expect(response?.status()).toBe(404);
-    await page.getByRole('link', { name: /Go to Books/ }).click();
-    await expect(page).toHaveURL(/\/books\/$/);
+    await page.getByRole('link', { name: /Go to Courses/ }).click();
+    await expect(page).toHaveURL(/\/courses\/$/);
   });
 
   test('the Books page and every book page load their own stylesheet and script, and the nav goes to the real site', async ({ page }) => {
-    for (const path of ['/books/', ...BOOK_PAGES.map((b) => b.path)]) {
+    for (const path of ['/courses/', ...BOOK_PAGES.map((b) => b.path)]) {
       await page.goto(path);
       const urls = await page.evaluate(() => [
         ...[...document.querySelectorAll('link[rel="stylesheet"]')].map((l) => ({ url: (l as HTMLLinkElement).href, kind: 'css' })),
@@ -858,16 +858,16 @@ test.describe('the Books page', () => {
         expect(res.headers()['content-type'], `${path} -> ${url}`).toMatch(kind === 'css' ? /text\/css/ : /javascript/);
       }
     }
-    await page.goto('/books/');
+    await page.goto('/courses/');
     await page.locator('nav.mainnav').getByRole('link', { name: 'Home', exact: true }).click();
     await expect(page).toHaveURL(/\/(index\.html)?$/);
-    await expect(page).not.toHaveURL(/books/);
+    await expect(page).not.toHaveURL(/courses/);
   });
 });
 
 test.describe('round 3 finishing touches', () => {
   test('a half-finished Find my gaps survives a reload, and is forgotten on finishing', async ({ page }) => {
-    await page.goto('/books/gcse/diagnostic.html');
+    await page.goto('/courses/gcse/diagnostic.html');
     await page.getByLabel('Your answer to question 1', { exact: true }).fill('42');
     await expect(page.locator('.diag-progress')).toContainText('Saved while you work');
     await page.reload();
@@ -887,7 +887,7 @@ test.describe('round 3 finishing touches', () => {
       Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { getVoices: () => [voice], speak: (u: any) => spoken.push(u.text), cancel: () => {}, speaking: false, addEventListener: () => {}, onvoiceschanged: null } });
       (window as any).SpeechSynthesisUtterance = function (t: string) { (this as any).text = t; };
     });
-    await page.goto('/books/gcse/pythagoras.html');
+    await page.goto('/courses/gcse/pythagoras.html');
     const q = page.locator('.q:has(.qfig)').first();
     await q.getByRole('button', { name: /Listen to question/ }).click();
     await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
@@ -896,7 +896,7 @@ test.describe('round 3 finishing touches', () => {
   });
 
   test('a timed set shows five questions with no hints, then lets you mark them', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const everyQuestion = await page.locator('.q').count();
     await page.getByRole('button', { name: /Start a timed set/ }).click();
     await expect(page.locator('.q:visible')).toHaveCount(5);
@@ -914,7 +914,7 @@ test.describe('round 3 finishing touches', () => {
 
 test.describe('round 4 fixes', () => {
   test('feedback only says "Close, but not yet" when the answer is near, and never shows a cross', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     const input = q.getByLabel('Your answer', { exact: false }).first();
     await input.fill('7');
@@ -929,7 +929,7 @@ test.describe('round 4 fixes', () => {
   });
 
   test('the fast route keeps Going further visible and hides the warm-up', async ({ page }) => {
-    await page.goto('/books/gcse/factors-multiples.html');
+    await page.goto('/courses/gcse/factors-multiples.html');
     await page.getByRole('button', { name: 'Skip the basics' }).click();
     await expect(page.locator('section.going-further')).toBeVisible();
     await expect(page.locator('section.warmup-sec')).toBeHidden();
@@ -937,21 +937,21 @@ test.describe('round 4 fixes', () => {
   });
 
   test('Give me five says when you have finished, and offers a kind stop', async ({ page }) => {
-    await page.goto('/books/gcse/practice.html');
+    await page.goto('/courses/gcse/practice.html');
     await expect(page.getByRole('button', { name: 'Stop for today' })).toBeVisible();
     await page.getByRole('button', { name: 'Stop for today' }).click();
     await expect(page.locator('[data-practice-status]')).toContainText('Done for today');
   });
 
   test('multiple-choice options with fractions show their text, not markup', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const html = await page.locator('main').innerHTML();
     expect(html).not.toContain('which is bigger.">');
     expect(html).not.toContain('37.5%, so they are close but not equal.">');
   });
 
   test('printing a worksheet hides the worked answers unless "with answers" is chosen', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('.q .solution').first()).toBeHidden();
     await page.evaluate(() => document.querySelector('main')!.classList.add('print-answers'));
@@ -960,20 +960,20 @@ test.describe('round 4 fixes', () => {
 });
 
 test('marks you give yourself are saved on this device and listed on the hub, lowest first', async ({ page }) => {
-  await page.goto('/books/gcse/stretch.html');
+  await page.goto('/courses/gcse/stretch.html');
   const q = page.locator('.q[data-type="show"]').first();
   await q.getByRole('button', { name: /show me the mark scheme/ }).click();
   await q.locator('.mark-box').first().check();
   const stored = await page.evaluate(() => JSON.parse(window.localStorage.getItem('wm-gcse-v1') ?? '{}').marks);
   expect(Object.keys(stored).length).toBe(1);
-  await page.goto('/books/gcse/');
+  await page.goto('/courses/gcse/');
   await expect(page.locator('[data-marks-summary]')).toBeVisible();
   await expect(page.locator('[data-marks-list] li').first()).toContainText('Stretch papers');
   await expect(page.locator('[data-marks-list] li').first()).toContainText(/1 of \d+ marks/);
 });
 test.describe('reviewer mode (?review=1)', () => {
   test('opens every hint, wrong-answer message, answer and solution, and saves nothing', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html?review=1');
+    await page.goto('/courses/gcse/place-value.html?review=1');
     await expect(page.locator('.review-banner')).toContainText('Reviewer mode');
     const first = page.locator('.q').first();
     await expect(first.locator('ol.ladder')).toBeVisible();
@@ -987,7 +987,7 @@ test.describe('reviewer mode (?review=1)', () => {
   });
 
   test('without ?review=1 the student view is unchanged: hints wait to be asked for', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     await expect(page.locator('.review-banner')).toHaveCount(0);
     await expect(page.locator('.q').first().locator('.q-form')).toBeVisible();
     await expect(page.locator('.q').first().locator('.solution')).toBeHidden();
@@ -1018,7 +1018,7 @@ test.describe('recorded audio for Listen', () => {
 
   test('a recording of exactly this sentence plays instead of the browser voice, and a second press stops it', async ({ page }) => {
     await page.addInitScript(stubs);
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     const first = page.locator('.q').first();
     const hash = await page.evaluate(async () => {
       const { unitText, hashText } = await import('/js/book-audio.mjs');
@@ -1038,7 +1038,7 @@ test.describe('recorded audio for Listen', () => {
   test('a sentence with no recording, or a manifest entry that is not a plain clip name, falls back to the browser voice', async ({ page }) => {
     await page.addInitScript(stubs);
     await page.route(MANIFEST, (route) => route.fulfill({ json: { '0123456789abcdef': '../../secret.mp3' } }));
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     await page.locator('.q').first().locator('.listen').click();
     await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
     expect(await page.evaluate(() => (window as any).__played.length)).toBe(0);
@@ -1074,12 +1074,12 @@ test.describe('the calculator', () => {
   });
 
   test('the diagnostic, which is no-calculator throughout, has no calculator button', async ({ page }) => {
-    await page.goto('/books/gcse/diagnostic.html');
+    await page.goto('/courses/gcse/diagnostic.html');
     await expect(page.locator('.calc-toggle')).toHaveCount(0);
   });
 
   test('the keypad does sums, keeps Ans, refuses a second decimal point and reports errors', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     const toggle = q.locator('.calc-toggle');
     const panel = q.locator('.calc');
@@ -1112,7 +1112,7 @@ test.describe('the calculator', () => {
   });
 
   test('the keyboard works inside the calculator, Escape closes it and focus returns to its button', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     await q.locator('.calc-toggle').click();
     await expect(q.locator('.calc')).toBeFocused();
@@ -1128,7 +1128,7 @@ test.describe('the calculator', () => {
   });
 
   test('typing in the answer box never drives the calculator, and the calculator stores nothing', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     await q.locator('.calc-toggle').click();
     await page.keyboard.type('99=');
@@ -1141,7 +1141,7 @@ test.describe('the calculator', () => {
 
 test.describe('the calculator, small kindnesses', () => {
   test('result stays blank until equals; a second operator replaces the first; no leading zero; an error clears on the next digit', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     await q.locator('.calc-toggle').click();
     const panel = q.locator('.calc');
@@ -1169,7 +1169,7 @@ test.describe('the calculator, small kindnesses', () => {
   });
 
   test('the Calculator button sits straight under the answer area, before the clue button', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     const order = await q.evaluate((node) => [...node.children].map((c) => c.className.split(' ')[0]).filter((c) => ['q-form', 'q-feedback', 'q-calc', 'q-help'].includes(c)));
     expect(order).toEqual(['q-form', 'q-feedback', 'q-calc', 'q-help']);
@@ -1178,7 +1178,7 @@ test.describe('the calculator, small kindnesses', () => {
 
 test.describe('the calculator, from the tester\'s report', () => {
   test('a typed square-root sign presses the root key, and Escape from a key returns focus to the button', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     const q = page.locator('.q:has(.calc-toggle)').first();
     await q.locator('.calc-toggle').click();
     // Playwright's typing inserts text without a key event for this symbol, so send the key event itself.
@@ -1194,7 +1194,7 @@ test.describe('the calculator, from the tester\'s report', () => {
 
 test.describe('the scientific calculator', () => {
   const open = async (page: import('@playwright/test').Page, text: string) => {
-    await page.goto('/books/gcse/trigonometry.html');
+    await page.goto('/courses/gcse/trigonometry.html');
     const q = page.locator('.q', { hasText: text }).first();
     await q.locator('.calc-toggle').click();
     return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
@@ -1211,7 +1211,7 @@ test.describe('the scientific calculator', () => {
     await expect(panel.locator('.calc-result')).toHaveText('0.6427876097');
     await expect(panel.locator('.calc-mode')).toContainText('DEG');
 
-    await page.goto('/books/gcse/trigonometry.html');
+    await page.goto('/courses/gcse/trigonometry.html');
     for (const text of ['without a calculator', 'exact value of sin 30', 'What is the exact value of tan 60']) {
       const q = page.locator('.q', { hasText: text }).first();
       await expect(q, text).toBeVisible();
@@ -1256,7 +1256,7 @@ test.describe('the scientific calculator', () => {
 
 test.describe('the scientific calculator, from the second tester\'s report', () => {
   const open = async (page: import('@playwright/test').Page, text: string) => {
-    await page.goto('/books/gcse/trigonometry.html');
+    await page.goto('/courses/gcse/trigonometry.html');
     const q = page.locator('.q', { hasText: text }).first();
     await q.locator('.calc-toggle').click();
     return { q, panel: q.locator('.calc'), key: (name: string) => q.locator('.calc').getByRole('button', { name, exact: true }) };
@@ -1304,7 +1304,7 @@ test.describe('the scientific calculator, from the second tester\'s report', () 
 
 test.describe('round 5 fixes', () => {
   test('a timed set puts focus on the first question, announces time, and can pause and add time', async ({ page }) => {
-    await page.goto('/books/gcse/foundation.html');
+    await page.goto('/courses/gcse/foundation.html');
     await page.getByRole('button', { name: /Start a timed set/ }).click();
     // The announcement of the set comes first; focus follows a moment later.
     await expect.poll(() => page.evaluate(() => document.activeElement?.closest('.q') !== null), { timeout: 6000 }).toBe(true);
@@ -1320,22 +1320,22 @@ test.describe('round 5 fixes', () => {
   });
 
   test('?q=5-12 shows only those questions, and every question has an anchor', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html?q=5-12');
+    await page.goto('/courses/gcse/percentages.html?q=5-12');
     await expect(page.locator('.q:visible')).toHaveCount(8);
     await expect(page.locator('.range-banner')).toContainText('5-12');
-    await page.goto('/books/gcse/percentages.html');
+    await page.goto('/courses/gcse/percentages.html');
     expect(await page.locator('#q12').count()).toBe(1);
   });
 
   test('the symbol keys are not extra Tab stops, and a ratio question has a colon key', async ({ page }) => {
-    await page.goto('/books/gcse/ratio.html');
+    await page.goto('/courses/gcse/ratio.html');
     const keys = page.locator('.sym-btn');
     expect(await keys.first().getAttribute('tabindex')).toBe('-1');
     expect(await page.locator('.sym-btn', { hasText: ':' }).count()).toBeGreaterThan(0);
   });
 
   test('Skip the basics is remembered on this device', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.getByRole('button', { name: 'Skip the basics' }).click();
     await page.reload();
     await expect(page.getByRole('button', { name: 'Show everything again' })).toHaveAttribute('aria-pressed', 'true');
@@ -1343,7 +1343,7 @@ test.describe('round 5 fixes', () => {
   });
 
   test('after a right multiple-choice answer every option is switched off', async ({ page }) => {
-    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.goto('/courses/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Method marks/ }).click();
     await expect(q).toHaveClass(/q-correct/);
@@ -1351,7 +1351,7 @@ test.describe('round 5 fixes', () => {
   });
 
   test('a worksheet prints questions only: no hero, no solutions, a name line', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.emulateMedia({ media: 'print' });
     await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
     await expect(page.locator('.print-name')).toBeVisible();
@@ -1362,10 +1362,10 @@ test.describe('round 5 fixes', () => {
 
   test('answer keys: full question text, figure notes and worked solutions on request, also for the papers', async ({ page }) => {
     for (const id of ['percentages', 'foundation', 'stretch']) {
-      const response = await page.goto(`/books/gcse/key/${id}.html`);
+      const response = await page.goto(`/courses/gcse/key/${id}.html`);
       expect(response?.status()).toBe(200);
     }
-    await page.goto('/books/gcse/key/percentages.html');
+    await page.goto('/courses/gcse/key/percentages.html');
     const text = await page.locator('.key-table tbody').innerText();
     expect(text).not.toContain('...');
     await expect(page.locator('.key-working').first()).toBeHidden();
@@ -1374,16 +1374,16 @@ test.describe('round 5 fixes', () => {
   });
 
   test('the route page lists four routes and every topic page ends with a next link (except the last)', async ({ page }) => {
-    await page.goto('/books/gcse/route.html');
+    await page.goto('/courses/gcse/route.html');
     await expect(page.locator('section.route')).toHaveCount(4);
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     await expect(page.locator('.next-up a.btn')).toHaveAttribute('href', 'four-operations.html');
   });
 });
 
 test.describe('what the voice reads', () => {
   test('numbers are spoken as words, and data-say replaces the displayed words for the voice', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const spoken = await page.evaluate(async () => {
       const { unitText } = await import('/js/book-audio.mjs');
       const make = (html: string, say?: string) => {
@@ -1424,7 +1424,7 @@ test.describe('what the voice reads', () => {
   });
 
   test('a function with a power of minus one is "inverse", and other powers are untouched', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const spoken = await page.evaluate(async () => {
       const { unitText } = await import('/js/book-audio.mjs');
       const make = (html: string) => {
@@ -1445,7 +1445,7 @@ test.describe('what the voice reads', () => {
 
 test.describe('round 6 engine and look', () => {
   test('the first press on Give me a clue after a wrong answer works (the button must not move between mouse down and mouse up)', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     await q.getByLabel(/Your answer/).fill('7');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -1461,7 +1461,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('clues are named "Clue A" for a screen reader, and the think-it-through step has no duck in it', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     const help = q.locator('.btn-stuck');
     await help.click();
@@ -1477,7 +1477,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('the easy-read font puts the clue label on its own line, so it never touches the words', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     await page.evaluate(() => document.documentElement.classList.add('read-easy'));
     const q = page.locator('.q').first();
     await q.locator('.btn-stuck').click();
@@ -1485,7 +1485,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('wrong-answer messages are never empty', async ({ page }) => {
-    await page.goto('/books/gcse/place-value.html');
+    await page.goto('/courses/gcse/place-value.html');
     const q = page.locator('.q', { hasText: 'Work out 10 × 100.' }).first();
     await q.getByLabel(/Your answer/).fill('banana');
     await q.getByRole('button', { name: 'Check' }).click();
@@ -1493,14 +1493,14 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('a wrong multiple-choice option says "incorrect" in words, not only by colour', async ({ page }) => {
-    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.goto('/courses/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only/ }).click();
     await expect(q.locator('.mc-option.is-wrong .sr-only')).toHaveText(/incorrect/);
   });
 
   test('a "show that" question moves focus to the mark scheme and says what to do', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const q = page.locator('.q[data-type="show"]').first();
     await q.getByRole('button', { name: /show me the mark scheme/ }).click();
     await expect(q.locator('.solution')).toBeFocused();
@@ -1508,25 +1508,25 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('?q= ranges: several ranges are listed as written, and nonsense is ignored instead of guessed at', async ({ page }) => {
-    await page.goto('/books/gcse/percentages.html?q=1-3,40-42');
+    await page.goto('/courses/gcse/percentages.html?q=1-3,40-42');
     await expect(page.locator('.range-banner')).toContainText('Showing questions 1-3 and 40-42 only.');
     await expect(page.locator('.q:visible')).toHaveCount(6);
-    await page.goto('/books/gcse/percentages.html?q=5+to+8');
+    await page.goto('/courses/gcse/percentages.html?q=5+to+8');
     await expect(page.locator('.range-banner')).toContainText('Showing questions 5-8 only.');
-    await page.goto('/books/gcse/percentages.html?q=7');
+    await page.goto('/courses/gcse/percentages.html?q=7');
     await expect(page.locator('.range-banner')).toContainText('Showing question 7 only.');
     const total = await page.locator('.q').count();
     for (const bad of ['-5', '12-5', '5-', 'abc', '9999']) {
-      await page.goto(`/books/gcse/percentages.html?q=${bad}`);
+      await page.goto(`/courses/gcse/percentages.html?q=${bad}`);
       await expect(page.locator('.range-banner')).toHaveCount(0);
       await expect(page.locator('.q:visible')).toHaveCount(total);
     }
-    await page.goto('/books/gcse/percentages.html?q=3-5,12-5,9999');
+    await page.goto('/courses/gcse/percentages.html?q=3-5,12-5,9999');
     await expect(page.locator('.range-banner')).toContainText('Showing questions 3-5 only.');
   });
 
   test('Skip the basics says what it did, folds away the starting parts and lands on Exam style', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await page.getByRole('button', { name: 'Skip the basics' }).click();
     await expect(page.locator('.fast-route [role="status"]')).toHaveText('Showing only the harder parts.');
     await expect(page.locator('.bys:not(.unlocks)')).toBeHidden();
@@ -1538,7 +1538,7 @@ test.describe('round 6 engine and look', () => {
 
   test('the Top button fades while it would sit on a clue (phone)', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const q = page.locator('.q').nth(3);
     await q.locator('.btn-stuck').scrollIntoViewIfNeeded();
     await q.locator('.btn-stuck').click();
@@ -1550,7 +1550,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('the Listen buttons can be hidden, and that is remembered', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     await expect(page.locator('.qtext .listen').first()).toBeVisible();
     await page.locator('.read-tools summary').click();
     await page.getByRole('button', { name: 'Hide the Listen buttons' }).click();
@@ -1560,7 +1560,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('a worksheet prints multiple choice in the written order with letters, and leaves out "Type it like"', async ({ page }) => {
-    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.goto('/courses/gcse/raise-your-grade.html');
     await page.emulateMedia({ media: 'print' });
     await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
     const options = await page.locator('.q').first().locator('.mc-option').evaluateAll((nodes) => nodes.map((n) => ({
@@ -1570,7 +1570,7 @@ test.describe('round 6 engine and look', () => {
     const inPrintOrder = [...options].sort((a, b) => Number(a.order) - Number(b.order)).map((o) => o.letter);
     expect(inPrintOrder).toEqual(['A', 'B', 'C', 'D'].slice(0, options.length));
     for (const o of options) expect(o.label).toContain(`${o.letter})`);
-    await page.goto('/books/gcse/inequalities.html');
+    await page.goto('/courses/gcse/inequalities.html');
     await page.emulateMedia({ media: 'print' });
     await page.evaluate(() => document.querySelector('main')!.classList.add('print-sheet'));
     const hint = page.locator('.type-hint').first();
@@ -1579,7 +1579,7 @@ test.describe('round 6 engine and look', () => {
   });
 
   test('the hero line "Where you will use this" is readable on the navy (4.5:1 or better)', async ({ page }) => {
-    await page.goto('/books/gcse/surds.html');
+    await page.goto('/courses/gcse/surds.html');
     const colour = await page.locator('.where-use').evaluate((e) => getComputedStyle(e).color);
     const [r, g, b] = colour.match(/\d+/g)!.map(Number);
     const lin = (v: number) => { const c = v / 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
@@ -1614,7 +1614,7 @@ test.describe('round 6 engine: Listen', () => {
     await page.addInitScript(stubs);
     const asked: string[] = [];
     page.on('request', (r) => { if (r.url().endsWith('/audio/book/manifest.json')) asked.push(r.url()); });
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     await page.waitForLoadState('networkidle');
     expect(asked).toEqual([]);
     await page.locator('.q').first().locator('.listen').click();
@@ -1623,7 +1623,7 @@ test.describe('round 6 engine: Listen', () => {
 
   test('three quick presses give one clip; another question switches in one press; the button says Stop while playing', async ({ page }) => {
     await page.addInitScript(stubs);
-    await page.goto('/books/gcse/negative-numbers.html');
+    await page.goto('/courses/gcse/negative-numbers.html');
     const hashes = await page.evaluate(async () => {
       const { unitText, hashText } = await import('/js/book-audio.mjs');
       return [...document.querySelectorAll('.q .qtext')].slice(0, 2).map((n) => hashText(unitText(n)));
@@ -1655,7 +1655,7 @@ test.describe('round 6 engine: Listen', () => {
 
 test.describe('round 6 engine: timed set', () => {
   test('No clock mode: no clock, no pause, no extra minutes, but marking and ticking still work', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     await page.getByLabel(/No clock/).check();
     await page.getByRole('button', { name: /Start a timed set/ }).click();
     await expect(page.locator('.timed-status')).toContainText('no clock');
@@ -1670,7 +1670,7 @@ test.describe('round 6 engine: timed set', () => {
   test('extra time adds a quarter, and adding minutes says how much time is left', async ({ page }) => {
     // the five questions are drawn at random and their marks set the time, so fix the draw
     await page.addInitScript(() => { Math.random = () => 0.5; });
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const clockSeconds = async () => {
       const [m, s] = (await page.locator('.timed-clock').innerText()).replace('Time left: ', '').split(':').map(Number);
       return m * 60 + s;
@@ -1688,7 +1688,7 @@ test.describe('round 6 engine: timed set', () => {
   });
 
   test('the set is announced before focus moves, a topic and calculator choice returns only matching questions, and empty headings are hidden', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     const all = await page.locator('.q').evaluateAll((nodes) => nodes.map((n) => ({
       calc: n.querySelector('.qtag-calc')?.textContent?.trim() ?? '', topic: n.querySelector('.qtag-from')?.getAttribute('href') ?? '',
     })));
@@ -1714,7 +1714,7 @@ test.describe('round 6 engine: timed set', () => {
   });
 
   test('a wrong typed answer in a timed set gets a message', async ({ page }) => {
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     // The five questions are drawn at random and about one set in forty has no typed-answer box, so draw again until one does.
     const typed = page.locator('.q:visible:has(.q-input)').first();
     for (let attempt = 0; attempt < 10; attempt += 1) {
@@ -1729,7 +1729,7 @@ test.describe('round 6 engine: timed set', () => {
 
   test('on a 360px phone the clock row does not sit on the "Uses:" tag', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
-    await page.goto('/books/gcse/stretch.html');
+    await page.goto('/courses/gcse/stretch.html');
     await page.getByRole('button', { name: /Start a timed set/ }).click();
     await page.waitForTimeout(400);
     const clock = await page.locator('.timed-clock').boundingBox();
@@ -1744,7 +1744,7 @@ test.describe('round 6 engine: timed set', () => {
 
 test.describe('glossary Listen', () => {
   test('every glossary entry has a Listen button that reads the term, its meaning and examples, not the chips or links', async ({ page }) => {
-    await page.goto('/books/gcse/glossary.html');
+    await page.goto('/courses/gcse/glossary.html');
     const entries = await page.locator('.g-entry').count();
     expect(entries).toBeGreaterThan(200);
     await expect(page.locator('.g-entry > h3 > .listen')).toHaveCount(entries);
@@ -1762,7 +1762,7 @@ test.describe('glossary Listen', () => {
 
 test.describe('"Now you finish it" gaps (pilot: fractions, averages)', () => {
   test('the gaps become typed boxes; a wrong one is flagged, the right one locks, and the worked answer opens only when all are right', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const box = page.locator('.worked.faded');
     await expect(box.locator('.blank-input')).toHaveCount(2);
     const details = box.locator('details.check-line');
@@ -1781,7 +1781,7 @@ test.describe('"Now you finish it" gaps (pilot: fractions, averages)', () => {
   });
 
   test('an empty gap asks for an answer and a word gap accepts the word', async ({ page }) => {
-    await page.goto('/books/gcse/averages.html');
+    await page.goto('/courses/gcse/averages.html');
     const box = page.locator('.worked.faded', { hasText: 'shoe shop' });
     await box.getByRole('button', { name: 'Check' }).click();
     await expect(box.locator('.blank-status')).toContainText('Fill in every gap');
@@ -1793,7 +1793,7 @@ test.describe('"Now you finish it" gaps (pilot: fractions, averages)', () => {
 
 test.describe('term links mean the right thing', () => {
   test('where a question asks for the name of the rule, "sine" and "cosine" link to the sine rule and cosine rule, not to the functions', async ({ page }) => {
-    await page.goto('/books/gcse/sine-cosine-rules.html');
+    await page.goto('/courses/gcse/sine-cosine-rules.html');
     const asks = page.locator('.qtext', { hasText: /Type (the name of the rule, )?sine or cosine/ });
     await expect(asks).toHaveCount(2);
     for (const q of await asks.all()) {
@@ -1806,13 +1806,13 @@ test.describe('term links mean the right thing', () => {
 
 test.describe('calculator where a calculator is needed', () => {
   test('rounded Pythagoras answers (for example question 10) offer the calculator', async ({ page }) => {
-    await page.goto('/books/gcse/pythagoras.html');
+    await page.goto('/courses/gcse/pythagoras.html');
     await expect(page.locator('[data-qid="pythagoras-10"] .calc-toggle')).toHaveCount(1);
     await expect(page.locator('[data-qid="pythagoras-9"] .calc-toggle')).toHaveCount(1);
   });
 
   test('the sine and cosine rules page gives a scientific calculator, on questions and on "Now you finish it" boxes', async ({ page }) => {
-    await page.goto('/books/gcse/sine-cosine-rules.html');
+    await page.goto('/courses/gcse/sine-cosine-rules.html');
     const q = page.locator('[data-qid="sine-cosine-rules-24"]');
     await q.locator('.calc-toggle').click();
     await expect(q.getByRole('button', { name: 'sin, sine', exact: true })).toBeVisible();
@@ -1822,7 +1822,7 @@ test.describe('calculator where a calculator is needed', () => {
   });
 
   test('a "Now you finish it" box with typed gaps accepts the right answers (sine rule, first box)', async ({ page }) => {
-    await page.goto('/books/gcse/sine-cosine-rules.html');
+    await page.goto('/courses/gcse/sine-cosine-rules.html');
     const box = page.locator('.worked.faded').first();
     const inputs = box.locator('.blank-input');
     await expect(inputs).toHaveCount(5);

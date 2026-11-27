@@ -41,7 +41,7 @@ for (const bookPage of [...BOOK_PAGES, ...ALEVEL_PAGES]) {
 
 test.describe('the book in its interactive states', () => {
   test('after answering right and wrong, with hints open, and with a term pop-up open', async ({ page }) => {
-    await page.goto('/books/gcse/fractions.html');
+    await page.goto('/courses/gcse/fractions.html');
     const first = page.locator('.q').first();
     await first.getByLabel('Your answer').fill('5/16');
     await first.getByRole('button', { name: 'Check' }).click();
@@ -56,7 +56,7 @@ test.describe('the book in its interactive states', () => {
   });
 
   test('with the duck open', async ({ page }) => {
-    await page.goto('/books/gcse/solving-equations.html');
+    await page.goto('/courses/gcse/solving-equations.html');
     const q = page.locator('.q').first();
     const help = q.getByRole('button', { name: /Give me a clue|Another clue/ });
     await help.click();
@@ -67,7 +67,7 @@ test.describe('the book in its interactive states', () => {
   });
 
   test('multiple choice, right and wrong', async ({ page }) => {
-    await page.goto('/books/gcse/raise-your-grade.html');
+    await page.goto('/courses/gcse/raise-your-grade.html');
     const q = page.locator('.q').first();
     await q.getByRole('button', { name: /Nothing: only/ }).click();
     expect(await violations(page)).toEqual([]);
@@ -76,7 +76,7 @@ test.describe('the book in its interactive states', () => {
   });
 
   test('the glossary filtered', async ({ page }) => {
-    await page.goto('/books/gcse/glossary.html');
+    await page.goto('/courses/gcse/glossary.html');
     await page.locator('[data-glossary-filter]').selectOption('algebra');
     expect(await violations(page)).toEqual([]);
   });
@@ -94,7 +94,7 @@ test.describe('the book in its interactive states', () => {
 });
 
 test('the calculator, open with a result showing, has no axe violations', async ({ page }) => {
-  await page.goto('/books/gcse/percentages.html');
+  await page.goto('/courses/gcse/percentages.html');
   const q = page.locator('.q:has(.calc-toggle)').first();
   await q.locator('.calc-toggle').click();
   await page.keyboard.type('6*7=');

@@ -1,6 +1,6 @@
 // "Now you finish it" boxes: each ___ becomes a small typed gap, with one Check button for the whole box.
 //
-// Markup (written in src/pages/books/gcse/*.html):
+// Markup (written in src/pages/courses/gcse/*.html):
 //   <span class="blank" data-answers="9;9.0">___</span>
 // The ___ stays in the page, so it still reads correctly with no script and on a worksheet.
 // data-answers is a list split on ";" (same rule as .q). data-mode="exact" on the box makes written form matter.

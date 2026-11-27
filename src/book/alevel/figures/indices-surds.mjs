@@ -1,4 +1,4 @@
-// Figures for the Indices and surds topic page (src/pages/books/a-level/indices-surds.html).
+// Figures for the Indices and surds topic page (src/pages/courses/a-level/indices-surds.html).
 // Every graph is drawn from the function that defines it. Axes have no scale numbers: the points that matter
 // are labelled with their coordinates on the picture itself, and the equation sits in a band above the graph.
 import { plane, numberLine } from '../figure-lib.mjs';

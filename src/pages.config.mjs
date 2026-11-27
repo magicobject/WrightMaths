@@ -7,8 +7,8 @@ export const NAV = [
   { href: 'about.html', label: 'About' },
   { href: 'lessons.html', label: 'Lessons' },
   { href: 'safeguarding.html', label: 'Safeguarding' },
+  { href: 'courses/', label: 'Courses' },
   { href: 'resources.html', label: 'Resources' },
-  { href: 'books/', label: 'Books' },
   { href: 'contact.html', label: 'Contact' },
 ];
 
@@ -51,27 +51,27 @@ export const PAGES = [
     cta: { href: 'tel:+447449301083', text: 'Call now' },
   },
   {
-    slug: 'books/index',
-    title: 'Maths Books | Wright Maths Tuition',
-    description: 'Free online maths books written by a tutor, starting with a GCSE maths book built from the ground up.',
-    active: 'books/',
-    canonicalPath: 'books/',
+    slug: 'courses/index',
+    title: 'Maths Courses | Wright Maths Tuition',
+    description: 'Free online maths courses written by a tutor: the GCSE course is live, and the A-level courses are being written.',
+    active: 'courses/',
+    canonicalPath: 'courses/',
     base: '../', // this page lives one folder down, so its stylesheet and script are one level up
   },
-  // ---- The GCSE book at /books/gcse/ (public since 27 Nov 2026) ----
-  // Linked from the Books page and listed in sitemap.xml. Its answer keys stay noindex.
+  // ---- The GCSE book at /courses/gcse/ (public since 27 Nov 2026) ----
+  // Linked from the Courses page and listed in sitemap.xml. Its answer keys stay noindex.
   // Topic pages are generated from src/book/topics.mjs, not listed here.
   {
-    slug: 'books/gcse/index',
+    slug: 'courses/gcse/index',
     searchSections: false,
     searchWords: 'home hub contents pyramid map',
     book: 'hub',
     title: 'GCSE Maths Book | Wright Maths Tuition',
     description: 'A colourful, interactive GCSE maths book: every idea from both sides, every term explained, and help whenever you are stuck.',
-    canonicalPath: 'books/gcse/',
+    canonicalPath: 'courses/gcse/',
   },
   {
-    slug: 'books/gcse/audio-review',
+    slug: 'courses/gcse/audio-review',
     title: 'Listen Recordings Review | Wright Maths Tuition',
     description: 'Private working page for listening to the GCSE book recordings and flagging any that sound wrong. Not linked from anywhere.',
     active: null,
@@ -81,63 +81,63 @@ export const PAGES = [
     extraModuleScripts: ['js/audio-review.mjs'],
   },
   {
-    slug: 'books/gcse/glossary',
+    slug: 'courses/gcse/glossary',
     searchWords: 'dictionary words definitions terms vocabulary',
     book: 'glossary',
     title: 'Maths Glossary | GCSE Maths Book | Wright Maths Tuition',
     description: 'Every mathematical term in the GCSE book, in plain English, with an example, a warning about common traps and the reverse side of the idea.',
   },
   {
-    slug: 'books/gcse/diagnostic',
+    slug: 'courses/gcse/diagnostic',
     searchWords: 'quiz test gaps where to start where do i start',
     book: 'diagnostic',
     title: 'Find Your Gaps | GCSE Maths Book | Wright Maths Tuition',
     description: 'Eleven quick questions, one for each foundation topic, to show you which GCSE maths topic to start with and how far you have come.',
   },
   {
-    slug: 'books/gcse/practice',
+    slug: 'courses/gcse/practice',
     searchWords: 'mixed questions revision',
     book: 'practice',
     title: 'Mixed Practice | GCSE Maths Book | Wright Maths Tuition',
     description: 'Five mixed questions at a time from across the GCSE book, favouring the ones you have not finished yet.',
   },
   {
-    slug: 'books/gcse/command-words',
+    slug: 'courses/gcse/command-words',
     searchWords: 'command words question words exam',
     book: 'commands',
     title: 'Question Words Explained | GCSE Maths Book | Wright Maths Tuition',
     description: 'What work out, calculate, show that, explain and the other exam question words ask you to do, with a short example of each.',
   },
   {
-    slug: 'books/gcse/stretch',
+    slug: 'courses/gcse/stretch',
     searchWords: 'higher tier grade 9 harder papers',
     book: 'stretch',
     title: 'Grade 7 to 9 Stretch Papers | GCSE Maths Book | Wright Maths Tuition',
     description: 'Real-paper style questions for Higher tier students aiming at grades 7, 8 and 9, with calculator and non-calculator labels and a mark scheme you tick off yourself.',
   },
   {
-    slug: 'books/gcse/route',
+    slug: 'courses/gcse/route',
     searchWords: 'plan timetable weeks revision schedule',
     book: 'route',
     title: 'Study Routes | GCSE Maths Book | Wright Maths Tuition',
     description: 'Week-by-week routes through the GCSE maths book: a resit to grade 4, the whole book in 12 weeks, a short route for a few weak topics, and a grade 7 to 9 top-up.',
   },
   {
-    slug: 'books/gcse/foundation',
+    slug: 'courses/gcse/foundation',
     searchWords: 'foundation tier practice papers exam timed',
     book: 'foundation',
     title: 'Practice Papers for Grades 4 to 6 | GCSE Maths Book | Wright Maths Tuition',
     description: 'Real-paper style questions for grades 4, 5 and 6, with calculator and non-calculator labels, a mark scheme you tick off yourself and a timed set.',
   },
   {
-    slug: 'books/gcse/teachers',
+    slug: 'courses/gcse/teachers',
     searchWords: 'teacher answer key answers mark scheme classroom worksheet printable',
     book: 'teachers',
     title: 'For Teachers | GCSE Maths Book | Wright Maths Tuition',
     description: 'How to use the GCSE maths book in a classroom: printable worksheets, a teacher answer key for every topic, mark schemes, and what is stored.',
   },
   {
-    slug: 'books/gcse/parents',
+    slug: 'courses/gcse/parents',
     searchSections: false,
     searchWords: 'parent carer help child',
     book: 'parents',
@@ -145,14 +145,14 @@ export const PAGES = [
     description: 'How to help your child use the GCSE maths book: where to start, what to say when they are stuck, what is stored on their device, and what the grades mean.',
   },
   {
-    slug: 'books/gcse/how-to-use',
+    slug: 'courses/gcse/how-to-use',
     searchWords: 'help listen accessibility dyslexia screen reader typing sqrt pi print homework words',
     book: 'how-to-use',
     title: 'How to Use This Book | GCSE Maths Book | Wright Maths Tuition',
     description: 'Plain-English help for the GCSE maths book: the Listen button and reading options, how to type answers, getting clues, timed sets, printing and the everyday words in questions.',
   },
   {
-    slug: 'books/gcse/raise-your-grade',
+    slug: 'courses/gcse/raise-your-grade',
     searchWords: 'grades improve marks method',
     book: 'grades',
     title: 'How to Raise Your Grade | GCSE Maths Book | Wright Maths Tuition',
@@ -160,7 +160,7 @@ export const PAGES = [
   },
   {
     slug: '404',
-    base: '/', // served at any depth (e.g. /books/gcse/bad), so links and assets must be root-absolute
+    base: '/', // served at any depth (e.g. /courses/gcse/bad), so links and assets must be root-absolute
     title: 'Page Not Found | Wright Maths Tuition',
     description: "This page couldn't be found. Find your way back to Wright Maths Tuition's home, lessons, resources or contact page.",
     active: null,

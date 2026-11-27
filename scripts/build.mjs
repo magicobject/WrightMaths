@@ -3,7 +3,7 @@
 // Run `npm run build` after editing anything in templates/ or src/, and commit the
 // regenerated public/*.html — Cloudflare serves that directory as-is.
 //
-// The GCSE book (public/books/gcse/) is built here too, from
+// The GCSE book (public/courses/gcse/) is built here too, from
 // src/book/topics.mjs (topic graph) and src/book/glossary.mjs (terms); see
 // docs/book-authoring.md.
 
@@ -35,7 +35,7 @@ const shell = loadShell(root);
 
 const topics = TOPICS.map((t) => ({ ...t, strandName: STRANDS[t.strand].short }));
 const graph = buildGraph(topics, {
-  hasPage: (id) => existsSync(join(root, `src/pages/books/gcse/${id}.html`)),
+  hasPage: (id) => existsSync(join(root, `src/pages/courses/gcse/${id}.html`)),
 });
 const glossaryById = new Map(GLOSSARY.map((g) => [g.id, g]));
 if (glossaryById.size !== GLOSSARY.length) throw new Error('glossary: duplicate term id');
@@ -53,7 +53,7 @@ for (const id of Object.keys(TERM_FIGURES)) {
 const usage = new Map(); // term id -> Set of topic ids that use it
 
 const questionCounts = new Map(
-  liveTopics.map((t) => [t.id, countQuestions(read(`src/pages/books/gcse/${t.id}.html`))]),
+  liveTopics.map((t) => [t.id, countQuestions(read(`src/pages/courses/gcse/${t.id}.html`))]),
 );
 
 function renderBookContent(page, raw) {
@@ -89,7 +89,7 @@ function renderBookContent(page, raw) {
 
 // Topic pages come from the graph, so their title/description are never written twice.
 const bookTopicPages = liveTopics.map((t) => ({
-  slug: `books/gcse/${t.id}`,
+  slug: `courses/gcse/${t.id}`,
   bookTopic: t.id,
   title: `${t.title} | GCSE Maths Book | Wright Maths Tuition`,
   description: `GCSE maths: ${t.title}. Explanations, worked examples and check-your-knowledge questions with help when you are stuck.`,
@@ -101,7 +101,7 @@ const PAPERS = [
   { id: 'stretch', title: 'Grade 7 to 9 stretch papers' },
 ];
 const keyPages = [...liveTopics, ...PAPERS].map((t) => ({
-  slug: `books/gcse/key/${t.id}`,
+  slug: `courses/gcse/key/${t.id}`,
   book: 'key',
   keyTopic: t.id,
   base: '../../../',
@@ -112,14 +112,14 @@ const keyPages = [...liveTopics, ...PAPERS].map((t) => ({
 
 function renderTeacherTable() {
   const rows = [...liveTopics].sort((a, b) => a.layer - b.layer || a.title.localeCompare(b.title)).map((t) => {
-    const items = extractKey(read(`src/pages/books/gcse/${t.id}.html`));
+    const items = extractKey(read(`src/pages/courses/gcse/${t.id}.html`));
     const marked = items.filter((r) => r.marks).length;
     const marks = items.reduce((n, r) => n + r.marks, 0);
     const refs = (SPEC_REFS[t.id] ?? []).join(', ') || '–';
     return `<tr><th scope="row"><a href="${t.id}.html">${t.title}</a></th><td>${t.tier === 'H' ? 'Higher' : 'Foundation and Higher'}</td><td>${t.strandName}</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${Math.max(1, Math.ceil(items.length / 12))}</td><td>${refs}</td><td><a href="key/${t.id}.html">Answer key</a></td></tr>`;
   });
   for (const p of PAPERS) {
-    const items = extractKey(read(`src/pages/books/gcse/${p.id}.html`));
+    const items = extractKey(read(`src/pages/courses/gcse/${p.id}.html`));
     const marked = items.filter((r) => r.marks).length;
     const marks = items.reduce((n, r) => n + r.marks, 0);
     rows.push(`<tr><th scope="row"><a href="${p.id}.html">${p.title}</a></th><td>${p.id === 'stretch' ? 'Higher' : 'Foundation and Higher'}</td><td>Mixed</td><td>${items.length}</td><td>${marked} (${marks} marks)</td><td>${Math.max(1, Math.ceil(marks / 20))}</td><td>\u2013</td><td><a href="key/${p.id}.html">Answer key</a></td></tr>`);
@@ -156,7 +156,7 @@ const searchPages = [];
 function searchPageFor(page, html) {
   const topic = page.bookTopic ? graph.get(page.bookTopic) : null;
   return {
-    href: `${page.slug.replace('books/gcse/', '')}.html`,
+    href: `${page.slug.replace('courses/gcse/', '')}.html`,
     title: plainText(page.title.split(' | ')[0]),
     kind: topic ? 'Topic' : 'Page',
     sub: topic ? topic.strandName : 'Book',
@@ -189,7 +189,7 @@ for (const page of ordered) {
   const isBook = Boolean(page.book || page.bookTopic);
   const merged = isBook ? { ...bookPageDefaults, ...page } : page;
   let content = merged.keyTopic
-    ? renderAnswerKey(graph.get(merged.keyTopic) ?? PAPERS.find((p) => p.id === merged.keyTopic), read(`src/pages/books/gcse/${merged.keyTopic}.html`))
+    ? renderAnswerKey(graph.get(merged.keyTopic) ?? PAPERS.find((p) => p.id === merged.keyTopic), read(`src/pages/courses/gcse/${merged.keyTopic}.html`))
     : read(`src/pages/${merged.slug}.html`).trimEnd();
   if (isBook && !merged.keyTopic) {
     content = renderBookContent(merged, content);
@@ -215,8 +215,8 @@ for (const page of ordered) {
 
 // The book's own search index: titles, headings, glossary words and short descriptions only (see docs/book-authoring.md).
 const searchIndex = buildSearchIndex({ pages: searchPages, glossary: GLOSSARY, strands: STRANDS, glossaryHref: 'glossary.html' });
-writeFileSync(join(root, 'public/books/gcse/search-index.json'), JSON.stringify(searchIndex));
-console.log(`built public/books/gcse/search-index.json (${searchIndex.length} entries)`);
+writeFileSync(join(root, 'public/courses/gcse/search-index.json'), JSON.stringify(searchIndex));
+console.log(`built public/courses/gcse/search-index.json (${searchIndex.length} entries)`);
 
 // The A-level book is built from its own script (it shares the helpers above).
 await import('./build-alevel.mjs');

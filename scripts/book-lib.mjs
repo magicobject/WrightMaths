@@ -1,4 +1,4 @@
-// Pure helpers for building the GCSE book (public/books/gcse/). No file I/O
+// Pure helpers for building the GCSE book (public/courses/gcse/). No file I/O
 // here so test-unit/book-lib.test.mjs can exercise every function directly.
 
 import { expandMath, mathToLinear, toLinear } from './book-math.mjs';

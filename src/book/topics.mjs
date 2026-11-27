@@ -5,7 +5,7 @@
 // scripts/book-lib.mjs, never written by hand. The build fails if a `needs`
 // id does not exist, if there is a cycle, or if a `live` topic has no page.
 //
-// status: 'live'    = has a page in src/pages/books/gcse/<id>.html
+// status: 'live'    = has a page in src/pages/courses/gcse/<id>.html
 //         'planned' = shown greyed on the pyramid, no page yet
 // strand: n Number, a Algebra, r Ratio, g Geometry, p Probability, s Statistics
 // tier:   'F' = Foundation and Higher, 'H' = Higher only

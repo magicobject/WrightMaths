@@ -1,6 +1,6 @@
 # Writing for the A-level book
 
-The book lives at `/books/a-level/` (early preview since 26 Nov 2026, at Greg's request: linked only from the Books page, never from the nav or other pages, not in the sitemap, every page `noindex`; `test/alevel-book.spec.ts` enforces this). The content plan is [alevel-pure-syllabus.md](alevel-pure-syllabus.md): 47 topics, 10 areas, Year 1 and Year 2, checked against the AQA, Edexcel, OCR A and OCR MEI specifications. **Read [book-authoring.md](book-authoring.md) first**: the A-level book works the same way as the GCSE book. This guide lists only what is different or new.
+The book lives at `/courses/a-level/` (early preview since 26 Nov 2026, at Greg's request: linked only from the Books page, never from the nav or other pages, not in the sitemap, every page `noindex`; `test/alevel-book.spec.ts` enforces this). The content plan is [alevel-pure-syllabus.md](alevel-pure-syllabus.md): 47 topics, 10 areas, Year 1 and Year 2, checked against the AQA, Edexcel, OCR A and OCR MEI specifications. **Read [book-authoring.md](book-authoring.md) first**: the A-level book works the same way as the GCSE book. This guide lists only what is different or new.
 
 ## What is different from the GCSE book
 
@@ -11,14 +11,14 @@ The book lives at `/books/a-level/` (early preview since 26 Nov 2026, at Greg's 
 | Levels | Foundation / Higher (`tier`) | `year: 1` or `2` on a topic; glossary `level: 'Y1'` or `'Y2'` |
 | Maths | HTML entities, `<sup>`, `{frac:}` | native **MathML** from `{m:...}` and `{md:...}` (below). `{frac:}` and `<sup>` still work in running text |
 | Figures | hand-written SVG | **generated** by `src/book/alevel/figure-lib.mjs`, one file per topic (below) |
-| Source | `src/book/topics.mjs`, `glossary.mjs`, `src/pages/books/gcse/` | `src/book/alevel/topics.mjs`, `glossary.mjs`, `figures/`, `src/pages/books/a-level/` |
+| Source | `src/book/topics.mjs`, `glossary.mjs`, `src/pages/courses/gcse/` | `src/book/alevel/topics.mjs`, `glossary.mjs`, `figures/`, `src/pages/courses/a-level/` |
 | Build | `scripts/build.mjs` | `scripts/build-alevel.mjs` (run by `npm run build`) |
 | Progress key | `wm-gcse-v1` | `wm-a-level-v1`, kept separate |
 
 ## Add a topic
 
 1. In `src/book/alevel/topics.mjs` change the topic's `status` from `'planned'` to `'live'`, fill in `words` (the glossary ids shown in "Words you need").
-2. Create `src/pages/books/a-level/<id>.html` (copy the page shape from `docs/book-authoring.md`; same sections: hero, `{prereqs}`, `{words}`, warm-up and recap, numbered lessons with Key idea / Worked / faded example, a Check-your-knowledge set after every chunk, one Flip-it section, spot the mistake, mixed review, exam style, why it works, common traps, "I can", `{unlocks}`). The root element is `<main class="book strand-<area-id>" data-book-page="topic" data-topic="<id>">`, for example `strand-al-algebra`.
+2. Create `src/pages/courses/a-level/<id>.html` (copy the page shape from `docs/book-authoring.md`; same sections: hero, `{prereqs}`, `{words}`, warm-up and recap, numbered lessons with Key idea / Worked / faded example, a Check-your-knowledge set after every chunk, one Flip-it section, spot the mistake, mixed review, exam style, why it works, common traps, "I can", `{unlocks}`). The root element is `<main class="book strand-<area-id>" data-book-page="topic" data-topic="<id>">`, for example `strand-al-algebra`.
 3. Every term in its `words` list and every `{term:id}` must exist in `src/book/alevel/glossary.mjs`.
 4. Add the page to `ALEVEL_TOPICS` in `test/support/alevel-pages.ts`.
 5. `npm run build` and `npm test`.

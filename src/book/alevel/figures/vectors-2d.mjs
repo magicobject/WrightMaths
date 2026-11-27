@@ -1,4 +1,4 @@
-// Figures for the Vectors in two dimensions topic page (src/pages/books/a-level/vectors-2d.html).
+// Figures for the Vectors in two dimensions topic page (src/pages/courses/a-level/vectors-2d.html).
 //
 // Every arrow is drawn FROM the vector it stands for: arrow(p, { name, from, vec }) puts the tip at from + vec, so a
 // picture cannot disagree with its components. Each arrow is a <g class="vec" data-name data-from data-vec>, which

@@ -1,4 +1,4 @@
-// Figures for the Straight lines topic page (src/pages/books/a-level/straight-lines.html).
+// Figures for the Straight lines topic page (src/pages/courses/a-level/straight-lines.html).
 // Every line is drawn from its equation or from its points. Both axes use the SAME scale (see eq() below),
 // so a right angle looks like one and a gradient looks like its number. Axes have no scale numbers: the points
 // that matter are labelled with their coordinates on the picture itself, and the equation sits in a band above.

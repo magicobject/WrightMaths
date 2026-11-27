@@ -1,4 +1,4 @@
-// Figures for the Polynomials and the factor theorem topic page (src/pages/books/a-level/polynomials.html).
+// Figures for the Polynomials and the factor theorem topic page (src/pages/courses/a-level/polynomials.html).
 // Every curve is drawn from the polynomial that defines it, so a picture cannot disagree with the working.
 // The two axes do not share a scale (a cubic is steep), so each picture is a sketch: the points that matter are
 // labelled with their coordinates on the picture itself, and the equation sits in a band above the graph.

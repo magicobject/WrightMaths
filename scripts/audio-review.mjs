@@ -1,5 +1,5 @@
 // Writes public/audio/book/review.json: the list behind the private review page
-// (/books/gcse/audio-review.html, not linked from anywhere), which plays every Listen
+// (/courses/gcse/audio-review.html, not linked from anywhere), which plays every Listen
 // recording and lets Greg flag the ones that sound wrong.
 //
 //   npm run book:audio -- all     (writes audio-work/all.json, every sentence)

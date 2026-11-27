@@ -1,4 +1,4 @@
-// Figures for the Quadratics topic page (src/pages/books/a-level/quadratics.html).
+// Figures for the Quadratics topic page (src/pages/courses/a-level/quadratics.html).
 // Every graph is drawn from the function that defines it. Axes have no scale numbers: the points that matter
 // are labelled with their coordinates on the picture itself, and the equation sits in a band above the graph.
 import { plane } from '../figure-lib.mjs';

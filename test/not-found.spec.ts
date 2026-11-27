@@ -26,8 +26,8 @@ test('the 404 page is not indexed by search engines', async ({ page }) => {
 
 test('a deep unknown URL still gets styles, scripts and working links', async ({ page }) => {
   const failed: string[] = [];
-  page.on('response', (r) => { if (r.status() >= 400 && !r.url().endsWith('/books/gcse/bad')) failed.push(r.url()); });
-  const response = await page.goto('/books/gcse/bad');
+  page.on('response', (r) => { if (r.status() >= 400 && !r.url().endsWith('/courses/gcse/bad')) failed.push(r.url()); });
+  const response = await page.goto('/courses/gcse/bad');
   expect(response?.status()).toBe(404);
   await expect(page.locator('h1')).toHaveText(/doesn't add up/i);
   // The stylesheet applied (unstyled, the h1 would be Times at 32px).

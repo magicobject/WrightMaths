@@ -1,4 +1,4 @@
-// Figures for the Proof topic page (src/pages/books/a-level/proof-methods.html).
+// Figures for the Proof topic page (src/pages/courses/a-level/proof-methods.html).
 // One picture only: the completed-square form (x - 3)^2 + 1 drawn as a curve that stays above the x-axis.
 // The curve and the lowest point are both worked out from the same numbers, so the picture cannot disagree with the page.
 import { plane } from '../figure-lib.mjs';

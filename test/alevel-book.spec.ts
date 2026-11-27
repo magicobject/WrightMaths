@@ -6,15 +6,15 @@ import { ALEVEL_PAGES, ALEVEL_TOPICS } from './support/alevel-pages';
 
 const PUBLIC = join(__dirname, '..', 'public');
 
-test.describe('the A-level book is an early preview: linked only from the Books page, never indexed', () => {
-  test('only the Books page links to it, once, to its home page; the sitemap and robots.txt never mention it', async ({ page }) => {
+test.describe('the A-level book is an early preview: linked only from the Courses page, never indexed', () => {
+  test('only the Courses page links to it, once, to its home page; the sitemap and robots.txt never mention it', async ({ page }) => {
     const toBook = 'a:not([href^="http"])[href*="a-level"], a:not([href^="http"])[href*="alevel"]';
     for (const sitePage of [...ALL_PAGES, { path: '/404.html' }]) {
-      if (sitePage.path === '/books/' || sitePage.path === '/books') continue;
+      if (sitePage.path === '/courses/' || sitePage.path === '/courses') continue;
       await page.goto(sitePage.path);
       await expect(page.locator(toBook), `${sitePage.path} links to the A-level book`).toHaveCount(0);
     }
-    await page.goto('/books/');
+    await page.goto('/courses/');
     await expect(page.locator(toBook), 'the Books page links to the A-level preview once').toHaveCount(1);
     await expect(page.locator(toBook)).toHaveAttribute('href', 'a-level/');
     for (const file of ['sitemap.xml', 'robots.txt']) {
@@ -51,13 +51,13 @@ test.describe('the A-level book has no voice and sends nothing anywhere', () => 
 
   test('there are no recorded audio clips for the A-level book, and no page points at any', async () => {
     expect(readdirSync(join(PUBLIC, 'audio')).filter((f) => /a-level|alevel/i.test(f))).toEqual([]);
-    for (const file of readdirSync(join(PUBLIC, 'books', 'a-level')).filter((f) => f.endsWith('.html'))) {
-      expect(readFileSync(join(PUBLIC, 'books', 'a-level', file), 'utf8'), file).not.toMatch(/data-say|\.ogg|audio\/book/);
+    for (const file of readdirSync(join(PUBLIC, 'courses', 'a-level')).filter((f) => f.endsWith('.html'))) {
+      expect(readFileSync(join(PUBLIC, 'courses', 'a-level', file), 'utf8'), file).not.toMatch(/data-say|\.ogg|audio\/book/);
     }
   });
 
   test('progress is kept under its own key, separate from the GCSE book', async ({ page }) => {
-    await page.goto('/books/a-level/');
+    await page.goto('/courses/a-level/');
     const keys = await page.evaluate(() => Object.keys(window.localStorage));
     expect(keys.filter((k) => k.startsWith('wm-gcse'))).toEqual([]);
   });
@@ -65,7 +65,7 @@ test.describe('the A-level book has no voice and sends nothing anywhere', () => 
 
 test.describe('the A-level hub', () => {
   test('lists all 47 topics in two years, with Year 2 and Further Pure marked as coming soon', async ({ page }) => {
-    await page.goto('/books/a-level/');
+    await page.goto('/courses/a-level/');
     await expect(page.locator('.year-list').first().locator('li')).toHaveCount(21);
     await expect(page.locator('.year-list').nth(1).locator('li')).toHaveCount(26);
     await expect(page.locator('.pyr-node')).toHaveCount(47);
@@ -76,7 +76,7 @@ test.describe('the A-level hub', () => {
   });
 
   test('the pyramid reaches every topic through its prerequisites: no topic is unreachable', async ({ page }) => {
-    await page.goto('/books/a-level/');
+    await page.goto('/courses/a-level/');
     const nodes = await page.locator('.pyr-node .node-title').allInnerTexts();
     expect(new Set(nodes).size).toBe(47);
   });
@@ -84,7 +84,7 @@ test.describe('the A-level hub', () => {
 
 test.describe('the A-level glossary', () => {
   test('shows each term with its year and area, and renders the maths as MathML with a text alternative', async ({ page }) => {
-    await page.goto('/books/a-level/glossary.html');
+    await page.goto('/courses/a-level/glossary.html');
     const entries = page.locator('.g-entry');
     expect(await entries.count()).toBeGreaterThan(0);
     for (const entry of await entries.all()) {
@@ -95,7 +95,7 @@ test.describe('the A-level glossary', () => {
   });
 
   test('filtering by area shows only that area', async ({ page }) => {
-    await page.goto('/books/a-level/glossary.html');
+    await page.goto('/courses/a-level/glossary.html');
     await page.locator('[data-glossary-filter]').selectOption('al-differentiation');
     const visible = page.locator('.g-entry:visible');
     expect(await visible.count()).toBeGreaterThan(0);

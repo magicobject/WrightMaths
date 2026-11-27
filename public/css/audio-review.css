@@ -1,4 +1,4 @@
-/* Private review page for the Listen recordings (/books/gcse/audio-review.html). Not linked anywhere. */
+/* Private review page for the Listen recordings (/courses/gcse/audio-review.html). Not linked anywhere. */
 .ar-bar { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; margin: 0 0 1rem; padding: .6rem 0; }
 .ar-bar select, .ar-bar button, .ar-item button, .ar-item input { font: inherit; padding: .4rem .8rem; border: 1px solid #5a6472; border-radius: .4rem; background: #fff; color: #1b1b1b; cursor: pointer; }
 .ar-item { border: 1px solid #9aa3ae; border-left-width: 6px; border-radius: .5rem; padding: .8rem 1rem; margin: 0 0 .8rem; background: #f6f7f9; color: #1b1b1b; }

@@ -37,16 +37,16 @@ export const PAGES: SitePage[] = [
     heading: /safety comes first/i,
   },
   {
+    path: '/courses/',
+    navLabel: 'Courses',
+    titleContains: 'Maths Courses',
+    heading: /Maths courses, written by a tutor/i,
+  },
+  {
     path: '/resources.html',
     navLabel: 'Resources',
     titleContains: 'Free Maths Resources',
     heading: /best free maths resources/i,
-  },
-  {
-    path: '/books/',
-    navLabel: 'Books',
-    titleContains: 'Maths Books',
-    heading: /Maths books, written by a tutor/i,
   },
   {
     path: '/contact.html',
