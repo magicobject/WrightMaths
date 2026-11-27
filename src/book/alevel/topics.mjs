@@ -63,7 +63,7 @@ export const TOPICS = [
   t('trig-compound', 'Addition formulae, double angles and the R-form', 'trigonometry', 2, ['trig-reciprocal-inverse'], 'Splitting an angle sum, and combining a sum into one wave'),
 
   // Exponentials and logarithms
-  t('exponentials-logs', 'Exponentials and logarithms', 'exponentials', 1, ['indices-surds'], 'Raising a number to a power, and taking a logarithm to get the power back'),
+  t('exponentials-logs', 'Exponentials and logarithms', 'exponentials', 1, ['indices-surds'], 'Raising a number to a power, and taking a logarithm to get the power back', { aka: 'exponential logarithm log ln e to the x natural logarithm laws of logarithms solving a to the x take logs inverse', status: 'live', words: ['exponential-function', 'base-number', 'euler-number', 'natural-exponential', 'asymptote', 'logarithm', 'natural-logarithm', 'common-logarithm', 'log-argument', 'log-exp-inverse', 'log-product-law', 'log-quotient-law', 'log-power-law', 'taking-logs', 'exponential-equation', 'log-graph', 'increasing-function'] }),
   t('exp-modelling', 'Exponential modelling', 'exponentials', 1, ['exponentials-logs', 'straight-lines'], 'Predicting from a model, and finding the model from data'),
 
   // Differentiation

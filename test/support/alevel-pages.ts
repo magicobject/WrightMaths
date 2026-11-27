@@ -22,6 +22,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/books/a-level/binomial-positive.html', titleContains: 'Binomial expansion', heading: /^Binomial expansion \(positive whole-number powers\)$/ },
   { path: '/books/a-level/proof-methods.html', titleContains: 'Proof: direct, exhaustion, counterexample', heading: /^Proof: direct, exhaustion, counterexample$/ },
   { path: '/books/a-level/polynomials.html', titleContains: 'Polynomials and the factor theorem', heading: /^Polynomials and the factor theorem$/ },
+  { path: '/books/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
