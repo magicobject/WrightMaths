@@ -62,7 +62,7 @@ export const FIGURES = {
     key(p, [['curve', `N = 100${TIMES}1.5^t`], ['curve-b', `N = 100${TIMES}0.6^t`]]);
     draw(p, id, [
       { cls: 'curve', fn: (t) => 100 * 1.5 ** t, from: 0 },
-      { cls: 'curve-b', fn: (t) => 100 * 0.6 ** t, from: 0 },
+      { cls: 'curve-b', fn: (t) => 100 * 0.6 ** t, from: 0, to: 3 },
     ], [onAxis(100, '(0, 100)')]);
     return finish(p, {
       id,

@@ -5,7 +5,7 @@
       <span class="eyebrow">Exponential modelling &middot; Year 1</span>
       <h1>Exponential modelling</h1>
       <p class="lead">Some quantities grow or shrink by the same factor in every equal step. A formula such as {m:N=100*1.5^t} describes them. This page shows what each number in the formula means, and what happens when t is large. Then it shows how to turn a curve into a straight line using logarithms, so that you can read the numbers off a graph. You will meet the gradient of {m:e^(k x)}. Last, you will ask when a model can be trusted, and how to improve it.</p>
-      <p class="where-use"><b>Where you will use this:</b> in Differentiation, where you prove the gradient of {m:e^(k x)}. In First-order differential equations, to solve problems about a rate of change. Also in other subjects, wherever a graph of real data has to be turned into a formula.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Differentiating standard functions, where you prove the gradient of {m:e^(k x)}. In First-order differential equations, to solve problems about a rate of change. Also in other subjects, wherever a graph of real data has to be turned into a formula.</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
   </div>
@@ -113,7 +113,7 @@
       </ol>
       <p>After 4 years the car is worth about 6264 pounds. The factor {m:0.85} is between 0 and 1, so the value decays.</p>
     </div>
-    <figure class="figure-lg">{fig:exp-modelling-car}<figcaption>Look at the marked point {m:(4, 6264)}. The curve starts at {m:(0, 12000)} and falls. After 4 years the car has lost more than half of its value.</figcaption></figure>
+    <figure class="figure-lg">{fig:exp-modelling-car}<figcaption>Look at the marked point {m:(4, 6264)}. The curve starts at {m:(0, 12000)} and falls. After 4 years the car has lost a little under half of its value: about 5736 pounds.</figcaption></figure>
     <!-- The next two worked examples have no picture of their own: the first only converts a percentage into a factor, and the second reads values from the table above and from the picture of decay already shown. -->
     <div class="worked">
       <h3>Worked example: from a percentage to a factor</h3>
@@ -371,7 +371,7 @@
     {md:log y=log(a x^n)=log a+n log x}
     <p>Compare with the straight line {m:Y=m X+c}. Here {m:Y=log y} and {m:X=log x}. The gradient is {m:m=n} and the intercept is {m:c=log a}.</p>
     <div class="key">
-      <p><b>Key idea:</b> if {m:y=a x^n} with {m:a>0}, then {m:log y=n log x+log a}. So the graph of {m:log y} (vertical) against {m:log x} (horizontal) is a straight line. Its gradient is n. Its vertical intercept is {m:log a}, not a. Use the same base for both logarithms. To get a back, undo the logarithm: {m:a=10^c} for base 10, or {m:a=e^c} for {m:ln}.</p>
+      <p><b>Key idea:</b> if {m:y=a x^n} with {m:a>0} and {m:x>0}, then {m:log y=n log x+log a}. So the graph of {m:log y} (vertical) against {m:log x} (horizontal) is a straight line. Its gradient is n. Its vertical intercept is {m:log a}, not a. Use the same base for both logarithms. To get a back, undo the logarithm: {m:a=10^c} for base 10, or {m:a=e^c} for {m:ln}.</p>
     </div>
     <p>This graph is a {term:log-log-graph|log-log graph}, because both axes show logarithms. The gradient between two points on it is {m:n=frac(log y_2-log y_1, log x_2-log x_1)}.</p>
     <div class="worked">
@@ -438,7 +438,7 @@
         <li data-why="Here the unknown x is in the power. This model gives a straight line when you plot log y against x, not against log x.">y equals 4 times 3 to the power x</li>
         <li data-why="This is a straight line when you plot y against x. When you plot log y against log x it is a curve.">y equals 4x plus 3</li>
       </ul>
-      <ol class="ladder"><li>Take logarithms of each model. Look for the form {m:Y=m X+c}.</li><li>For a straight line you need {m:log x} to appear to the first power only.</li></ol>
+      <ol class="ladder"><li>Take logarithms of each model. Look for the form {m:Y=m X+c}.</li><li>For a straight line, {m:log y} must equal a number times {m:log x} plus a constant.</li></ol>
       <div class="solution"><p>{m:log(4 x^3)=log 4+3 log x} is a straight line in {m:log x}. The other two models do not give that form.</p></div>
     </div>
     <div class="q" data-answers="4" data-mode="value">
@@ -498,7 +498,7 @@
     {md:log y=log(k*b^x)=log k+x log b}
     <p>Write this as {m:log y=(log b) x+log k}. Compare with {m:Y=m X+c}. Now {m:Y=log y}, but {m:X=x} itself. Only the y-values are changed to logarithms. This graph is a {term:semi-log-graph|semi-log graph}.</p>
     <div class="key">
-      <p><b>Key idea:</b> if {m:y=k*b^x} with {m:k>0} and {m:b>0}, then {m:log y=(log b) x+log k}. So the graph of {m:log y} against x is a straight line. Its gradient is {m:log b} and its vertical intercept is {m:log k}. For {m:y=A e^(k x)}, use ln: {m:ln y=k x+ln A}, so the gradient is k and the intercept is {m:ln A}. Undo the logarithm to get back to b or A.</p>
+      <p><b>Key idea:</b> if {m:y=k*b^x} with {m:k>0} and {m:b>0}, then {m:log y=(log b) x+log k}. So the graph of {m:log y} against x is a straight line. Its gradient is {m:log b} and its vertical intercept is {m:log k}. For {m:y=A e^(k x)} with {m:A>0}, use ln: {m:ln y=k x+ln A}, so the gradient is k and the intercept is {m:ln A}. Undo the logarithm to get back to b or A.</p>
     </div>
     <div class="worked">
       <h3>Worked example: an exponential becomes a line</h3>
@@ -638,11 +638,11 @@
       <thead><tr><th scope="col">h</th><th scope="col">0.1</th><th scope="col">0.01</th><th scope="col">0.001</th></tr></thead>
       <tbody><tr><th scope="row">gradient of the chord</th><td>2.2140</td><td>2.0201</td><td>2.0020</td></tr></tbody>
     </table>
-    <p>The values get close to 2. At {m:x=0}, the height is {m:e^0=1}. So the gradient at {m:x=0} is 2 times the height.</p>
+    <p>The values get close to 2. At {m:x=0}, the height is {m:e^0=1}. The table suggests that the gradient at {m:x=0} is 2 times the height.</p>
     <div class="key">
       <p><b>Key idea:</b> for any constant k, the gradient of {m:y=e^(k x)} is {m:k e^(k x)}. That is {m:frac(dy, dx)=k e^(k x)}, read as &ldquo;dy by dx equals k e to the kx&rdquo;. For {m:y=A e^(k x)} the gradient is {m:A k e^(k x)=k y}. So the gradient at any point is k times the height of the curve there. The proof comes in the topic Differentiating standard functions.</p>
     </div>
-    <p>This is why exponential models describe growth. In {m:P=A e^(k t)} the rate of change of P is {m:k P}. It is proportional to P. When P doubles, the rate of growth doubles too.</p>
+    <p>This is why exponential models fit quantities whose rate of change is proportional to their size. In {m:P=A e^(k t)} the rate of change of P is {m:k P}. It is proportional to P. When P doubles, the rate of growth doubles too.</p>
     <div class="worked">
       <h3>Worked example: the gradient at a point</h3>
       <p>Find the gradient of {m:y=e^(0.5x)} at {m:x=2}, to 3 significant figures.</p>
@@ -652,7 +652,7 @@
       </ol>
       <p>The gradient is 1.36. It is half of the height {m:e^1=2.72}, because {m:k=0.5}. This is the gradient of the {term:tangent} at that point.</p>
     </div>
-    <figure class="figure-lg">{fig:exp-modelling-tangent}<figcaption>Look at the marked point {m:(2, 2.72)}. The tangent there touches the curve and has gradient 1.36. The tangent is half as steep as the height {m:2.72}, because {m:k=0.5}.</figcaption></figure>
+    <figure class="figure-lg">{fig:exp-modelling-tangent}<figcaption>Look at the marked point {m:(2, 2.72)}. The tangent there touches the curve and has gradient 1.36. Its gradient, 1.36, is half of the height 2.72, because {m:k=0.5}.</figcaption></figure>
     <!-- No picture for the next two worked examples: the picture above shows the same idea of a gradient at a point. -->
     <div class="worked">
       <h3>Worked example: a rate of change</h3>
@@ -921,7 +921,7 @@
         <li data-why="The base of the logarithm does not matter, as long as it is the same on both sides. The problem is which quantity goes on the horizontal axis.">She should have used natural logarithms</li>
         <li data-why="Taking logarithms of y is correct. The change needed is on the horizontal axis, not the vertical one.">She should not have taken a logarithm of y</li>
       </ul>
-      <ol class="ladder"><li>Take logarithms of both sides of {m:y=5 x^2}.</li><li>Which quantity multiplies the 2: x or {m:log x}?</li></ol>
+      <ol class="ladder"><li>Take logarithms of both sides of {m:y=5 x^2}.</li><li>Compare your result with {m:Y=m X+c}. What is X?</li></ol>
       <div class="solution"><p>{m:log y=2 log x+log 5}. This is a straight line in {m:log x}. Plotted against x, {m:log y} is a curve. Check with x equal to 1, 2 and 3. Then {m:log y} is 0.699, 1.301 and 1.653. The steps are 0.602 and then 0.352, which are not equal, so the points are not on a straight line.</p></div>
     </div>
     <div class="q" data-type="mc">
@@ -937,7 +937,7 @@
     <div class="q" data-type="mc">
       <p class="qtext"><b>Cara says:</b> the graph of {m:log y} against {m:log x} has intercept 0.9, so a is 0.9. What went wrong?</p>
       <ul class="options">
-        <li data-why="The base of the logarithm is not the problem. The problem is that the intercept is a logarithm, and it was not undone.">She should have used the gradient instead</li>
+        <li data-why="The gradient is the power n. It is the intercept that gives a, once the logarithm is undone.">She should have used the gradient instead</li>
         <li data-correct>The intercept is {m:log a}, so she must undo the logarithm: {m:a=10^(0.9)=7.94}</li>
         <li data-why="The value 0.9 is the intercept of the graph. It has a meaning: it gives a once the logarithm is undone.">The intercept tells you nothing about a</li>
       </ul>
@@ -1077,7 +1077,7 @@
       <p class="qtext">[5 marks] The temperature of a drink is modelled by {m:T=18+62 e^(-k t)}, where T is in degrees Celsius and t is in minutes. When {m:t=10}, {m:T=40}. Find k to 3 significant figures. Type only the number.</p>
       <ol class="ladder"><li>Put {m:t=10} and {m:T=40}. Subtract 18 from both sides.</li><li>Divide by 62, take ln of both sides, then divide by {m:-10}.</li></ol>
       <ul class="wrong">
-        <li data-if="0.0693">You used {m:T=80 e^(-k t)}, without the 18. The model has the constant 18, so subtract it first.</li>
+        <li data-if="0.0693">You added 18 to 62 and used {m:T=80 e^(-k t)}. The 18 is not multiplied by the exponential, so subtract it first.</li>
         <li data-if="-0.104">The sign is wrong. The model has {m:e^(-k t)}, so k is positive when the drink cools.</li>
       </ul>
       <div class="solution">
@@ -1117,9 +1117,9 @@
       <li><b>Why A is the initial value.</b> Put {m:t=0} into {m:A*b^t}. Since {m:b^0=1}, you get A. In {m:A e^(k t)}, {m:e^0=1} gives A in the same way.</li>
       <li><b>Why b is a factor.</b> {m:A*b^(t+1)=A*b^t*b}. Each step of 1 in t multiplies the value by b. That is why a fall of r% has {m:b=1-frac(r, 100)}.</li>
       <li><b>Why {m:b=e^k}.</b> Any positive b can be written as {m:b=e^(ln b)}. So {m:A*b^t=A*(e^(ln b))^t=A e^((ln b) t)}, and {m:k=ln b}.</li>
-      <li><b>Why the large-t table shows what it does.</b> If {m:b>1}, the number {m:b^t} gets bigger every step, so it passes any number you choose. If {m:0<b<1}, each step multiplies by a number less than 1, so the value shrinks. It is multiplied by a positive number each time, so it stays positive.</li>
+      <li><b>Why the large-t table shows what it does.</b> If {m:b>1}, write {m:b=1+d} with {m:d>0}. Expanding the bracket gives {m:(1+d)^t>=1+t d} for whole t, and {m:1+t d} passes any number you choose. If {m:0<b<1}, each step multiplies by a number less than 1, so the value shrinks. It is multiplied by a positive number each time, so it stays positive.</li>
       <li><b>Why logarithms give a straight line.</b> The product law turns a product into a sum, and the power law brings a power down in front. For {m:y=a x^n}, that gives {m:log y=log a+n log x}. For {m:y=k*b^x}, it gives {m:log y=log k+x log b}. Each is of the form {m:Y=m X+c}.</li>
-      <li><b>Why the gradient of {m:e^(k x)} is {m:k e^(k x)}.</b> For {m:k>0}, the curve {m:y=e^(k x)} is the curve {m:y=e^x} stretched along the x-axis by a factor of {m:frac(1, k)}. That makes every slope k times as steep. The curve {m:y=e^x} has gradient equal to its height, so the gradient of {m:e^(k x)} is k times its height. The table of chords showed this for {m:k=2}.</li>
+      <li><b>Why the gradient of {m:e^(k x)} is {m:k e^(k x)}.</b> For {m:k>0}, the curve {m:y=e^(k x)} is the curve {m:y=e^x} stretched along the x-axis by a factor of {m:frac(1, k)}. That makes every slope k times as steep. The curve {m:y=e^x} has gradient equal to its height, so the gradient of {m:e^(k x)} is k times its height. For {m:k<0} the same result holds, and {m:k=0} gives a constant. Both are proved in Differentiating standard functions. The table of chords showed this for {m:k=2} at {m:x=0}.</li>
       <li><b>Why a model can fail.</b> A model is a rule chosen to fit some data. It says nothing outside the range of the data unless its assumptions stay true. Checking a prediction against a measurement tests the assumptions as well as the arithmetic.</li>
     </ul>
     <h2>Common traps</h2>

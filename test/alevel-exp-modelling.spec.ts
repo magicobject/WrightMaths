@@ -728,3 +728,15 @@ test('the topic is live, in the page lists, and its words all exist', async ({ p
   const strip = await page.locator('.words-strip a').count();
   expect(strip).toBeGreaterThanOrEqual(words.length - 2);
 });
+
+test('the wording the review asked for is on the page, and the numbers in it are right', () => {
+  expect(Math.round(12000 - 12000 * 0.85 ** 4)).toBe(5736);
+  expect(12000 - 12000 * 0.85 ** 4).toBeLessThan(6000);
+  expect(BODY).toContain('a little under half of its value: about 5736 pounds');
+  expect(18 + 62).toBe(80);
+  expect(BODY).toContain('You added 18 to 62 and used {m:T=80 e^(-k t)}');
+  expect(BODY).toContain('{m:(1+d)^t>=1+t d}');
+  expect(BODY).toContain('{m:a>0} and {m:x>0}');
+  expect(BODY).toContain('with {m:A>0}, use ln');
+  expect(BODY).not.toMatch(/in Differentiation[,.]/);
+});
