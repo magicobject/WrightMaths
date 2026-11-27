@@ -544,6 +544,7 @@ test('the sine-odd figure writes the heights it states at the points it marks', 
     expect(label.x, `${pt} label x`).toBeCloseTo(pointsOf(g.svg).find((q) => q.id === pt)!.px[0], 0);
     expect(Number(label.text.replace('\u00b0', '').replace('\u2212', '-'))).toBe(angle);
     expect(toGraph(pl, label.x, 0)[0]).toBeCloseTo(angle, 0);
+    expect(Math.sign(toGraph(pl, label.x, label.y)[1]), `${pt} label on the far side of the x-axis from its point`).toBe(-Math.sign(angle));
   }
 });
 
@@ -789,4 +790,29 @@ test('no label sits on a curve or a line: nothing drawn crosses the box of any t
     return out;
   });
   expect(hits).toEqual([]);
+});
+
+test('no two labels in a figure are closer than 4px, at phone width', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/courses/a-level/trig-graphs.html');
+  const close = await page.evaluate(() => {
+    const out: string[] = [];
+    for (const svg of document.querySelectorAll('main svg.graph-svg:not(.term-svg)')) {
+      const title = svg.querySelector('title')?.textContent ?? '';
+      const boxes = [...svg.querySelectorAll('text')].map((t) => ({ label: (t.textContent ?? '').trim(), r: t.getBoundingClientRect() })).filter((b) => b.label && b.r.width > 0);
+      for (let i = 0; i < boxes.length; i += 1) {
+        for (let j = i + 1; j < boxes.length; j += 1) {
+          const a = boxes[i].r; const b = boxes[j].r;
+          const gapX = Math.max(b.left - a.right, a.left - b.right);
+          const gapY = Math.max(b.top - a.bottom, a.top - b.bottom);
+          const gap = Math.max(gapX, gapY);
+          if (gap < 4) out.push(`${title}|${[boxes[i].label, boxes[j].label].sort().join(' + ')}|${gap.toFixed(1)}`);
+        }
+      }
+    }
+    return out;
+  });
+  // text boxes are taller than their glyphs, so these pairs report 3px or less of gap (or a 1px overlap of two legend lines) while the ink is clear; every other pair must keep 4px
+  const allowed = [/\|P = \(−0\.866, 0\.5\) \+ y\|/, /\|1 \+ √3\/2\|/, /\|O \+ −1\|/, /\|2 \+ y\|/, /\|dashed: y = sin x \+ solid: y = sin 2x\|/, /\|3 \+ y\|/, /\|\(270°, −1\) \+ 270°\|/, /\|\(180°, −1\) \+ 180°\|/];
+  expect(close.filter((c) => !allowed.some((a) => a.test(c)))).toEqual([]);
 });

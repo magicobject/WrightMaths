@@ -292,8 +292,8 @@ function buildSineOdd(id) {
   guideH(p, -0.5, -30, 0);
   guideV(p, 30, 0, 0.5);
   guideV(p, -30, 0, -0.5);
-  p.raw(`<text class="svg-t" data-yvalue="p30" x="${f(p.X(0) - 12)}" y="${f(p.Y(0.5) + 8)}" text-anchor="end">0.5</text>`);
-  p.raw(`<text class="svg-t" data-yvalue="m30" x="${f(p.X(0) + 12)}" y="${f(p.Y(-0.5) + 8)}" text-anchor="start">${MINUS}0.5</text>`);
+  p.raw(`<text class="svg-t" data-yvalue="p30" x="${f(p.X(0) - 12)}" y="${f(p.Y(0.5) - 8)}" text-anchor="end">0.5</text>`);
+  p.raw(`<text class="svg-t" data-yvalue="m30" x="${f(p.X(0) + 12)}" y="${f(p.Y(-0.5) + 24)}" text-anchor="start">${MINUS}0.5</text>`);
   meta.yvalues = [{ x: 30, y: 0.5, text: '0.5' }, { x: -30, y: -0.5, text: `${MINUS}0.5` }];
   xrow(p, [-180, -90, 90, 180]);
   meta.facts = ['30', '0.5'];
