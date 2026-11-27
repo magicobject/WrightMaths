@@ -463,6 +463,15 @@ test('a question figure describes the picture and never gives the answer away', 
   expect(qs.length).toBe(2);
 });
 
+test('a description that says dotted has a dotted (curve-c) element in the picture', async () => {
+  const { FIGURES } = await figureModule();
+  for (const id of Object.keys(FIGURES)) {
+    const svg: string = FIGURES[id]();
+    const desc = /<desc[^>]*>([\s\S]*?)<\/desc>/.exec(svg)?.[1] ?? '';
+    if (/dotted/i.test(desc)) expect(svg, id).toMatch(/class="curve-c"/);
+  }
+});
+
 test('equal-scale pictures use the same scale on both axes', async () => {
   const { GEOM } = await figureModule();
   for (const id of ['exponentials-logs-powers', 'exponentials-logs-e', 'exponentials-logs-inverse', 'exponentials-logs-flip']) {

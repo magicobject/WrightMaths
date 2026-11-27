@@ -553,7 +553,7 @@
       <ul class="options">
         <li data-correct>Take logarithms of both sides, and use the power law to write x ln 4 on the left</li>
         <li data-why="Dividing by 4 would solve 4x = 9, where x is a factor. In 4 to the power x, the unknown is in the power, so dividing by 4 does not isolate it.">Divide both sides by 4</li>
-        <li data-why="A square root halves the power. It does not remove x from the power, so it cannot solve the equation.">Take the square root of both sides</li>
+        <li data-why="Taking the square root gives 2^x = 3, which still has x in the power. Taking logarithms solves it in one step.">Take the square root of both sides</li>
       </ul>
       <ol class="ladder"><li>Where is the unknown?</li><li>Which law brings a power down to the front?</li></ol>
       <div class="solution"><p>The unknown is in the power. Taking logarithms and using the power law gives {m:x ln 4=ln 9}. Then {m:x=frac(ln 9, ln 4)=1.585}.</p></div>
@@ -828,7 +828,7 @@
       <p class="qtext">For which values of x is {m:e^x>-2} true?</p>
       <ul class="options">
         <li data-correct>Every real number x</li>
-        <li data-why="This needs the logarithm of negative 2, which does not exist. It also takes the logarithm of a negative number, which is not allowed.">Only when x is greater than ln of negative 2</li>
+        <li data-why="This needs the logarithm of negative 2, which does not exist.">Only when x is greater than ln of negative 2</li>
         <li data-why="e to the power x is always positive, and every positive number is greater than negative 2. So there are values of x that work, in fact all of them.">No value of x</li>
       </ul>
       <ol class="ladder"><li>Is {m:e^x} ever negative?</li><li>Compare any positive number with {m:-2}.</li></ol>
@@ -1161,7 +1161,7 @@
     <ul class="tick traps">
       <li>Dividing by the base when the unknown is in the power. In {m:3^x=20}, take logarithms. Do not write {m:x=frac(20,3)}.</li>
       <li>Writing {m:ln(x+y)} as {m:ln x+ln y}. There is no law for the logarithm of a sum.</li>
-      <li>Writing {m:frac(ln x, ln y)} as {m:ln(x-y)}. The quotient law is for a difference of logarithms.</li>
+      <li>Writing {m:ln x-ln y} as {m:frac(ln x, ln y)}, or {m:ln(frac(x, y))} as {m:frac(ln x, ln y)}. The quotient law turns a difference of logarithms into the logarithm of a quotient.</li>
       <li>Writing {m:ln(x^2)} as {m:(ln x)^2}. The power law gives {m:2 ln x}.</li>
       <li>Forgetting that {m:e^x} is always positive. {m:e^x=-3} has no solution.</li>
       <li>Forgetting to check the argument. A solution that makes the inside of a logarithm zero or negative must be rejected.</li>

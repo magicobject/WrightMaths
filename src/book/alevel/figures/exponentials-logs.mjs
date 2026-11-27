@@ -122,7 +122,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graphs of y = e^x and y = ln x are mirror images in the line y = x',
-      desc: 'Three lines on axes with the same scale. The solid curve y equals e to the power x passes through (0, 1) and rises steeply. The dashed curve y equals the natural logarithm of x passes through (1, 0), rises slowly and has the y-axis as an asymptote. A dotted straight line, y equals x, lies between them. Each curve is the reflection of the other in that line, so the point (0, 1) on one matches the point (1, 0) on the other.',
+      desc: 'Three lines on axes with the same scale. The solid curve y equals e to the power x passes through (0, 1) and rises steeply. The dashed curve y equals the natural logarithm of x passes through (1, 0), rises slowly and has the y-axis as an asymptote. A dashed straight line, y equals x, lies between them. Each curve is the reflection of the other in that line, so the point (0, 1) on one matches the point (1, 0) on the other.',
     });
   },
 
@@ -139,7 +139,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = 2^x meets the line y = 10 where x is about 3.32',
-      desc: 'A solid curve, y equals 2 to the power x, rising from near the x-axis on the left. A dotted horizontal line at y equals 10 cuts it at one marked point. A dotted vertical line drops from that point to the x-axis, where it is labelled x equals 3.32. The point is the only place where the curve is level with the line.',
+      desc: 'A solid curve, y equals 2 to the power x, rising from near the x-axis on the left. A dashed horizontal line at y equals 10 cuts it at one marked point. A dashed vertical line drops from that point to the x-axis, where it is labelled x equals 3.32. The point is the only place where the curve is level with the line.',
     });
   },
 
@@ -158,7 +158,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The curve y = 2^x is above the line y = 10 when x is greater than 3.32',
-      desc: 'A solid curve, y equals 2 to the power x, and a dotted horizontal line at y equals 10. They meet at the marked point, where x is 3.32. A thick dotted bar along the x-axis, starting at x equals 3.32 and running to the right, shows the values of x for which the curve is above the line.',
+      desc: 'A solid curve, y equals 2 to the power x, and a dashed horizontal line at y equals 10. They meet at the marked point, where x is 3.32. A thick dotted bar along the x-axis, starting at x equals 3.32 and running to the right, shows the values of x for which the curve is above the line.',
     });
   },
 
@@ -193,7 +193,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The point (3, 8) on y = 2^x becomes (8, 3) on y = log_2 x',
-      desc: 'Axes with the same scale. The solid curve y equals 2 to the power x rises steeply and passes through the marked point (3, 8). The dashed curve y equals the logarithm to base 2 of x rises slowly and passes through the marked point (8, 3). A dotted line, y equals x, lies between them. Swapping the two coordinates of a point on one curve gives a point on the other.',
+      desc: 'Axes with the same scale. The solid curve y equals 2 to the power x rises steeply and passes through the marked point (3, 8). The dashed curve y equals the logarithm to base 2 of x rises slowly and passes through the marked point (8, 3). A dashed line, y equals x, lies between them. Swapping the two coordinates of a point on one curve gives a point on the other.',
     });
   },
 
