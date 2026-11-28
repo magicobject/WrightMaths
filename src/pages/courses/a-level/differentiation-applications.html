@@ -1,0 +1,942 @@
+<main class="book strand-al-differentiation" data-book-page="topic" data-topic="differentiation-applications">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Differentiation &middot; Year 1</span>
+      <h1>Tangents, normals and stationary points</h1>
+      <p class="lead">The derivative tells you how steep a curve is at a point. Now you put it to work. You will write the equation of the straight line that touches a curve, find where a curve rises and where it falls, find the points where its gradient is zero, and decide whether each of them is a maximum, a minimum or neither.</p>
+      <p class="where-use"><b>Where you will use this:</b> the greatest area for a given length of fence, the least cost of making a container, the highest point of a path, and the sketching and rate-of-change work in every Year 2 calculus topic.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Tangents, normals and stationary points</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page assumes three skills. You can differentiate powers of x, including negative and fractional powers. You can write the equation of a straight line through a point with a given gradient. You know that two lines at right angles have gradients that multiply to {m:-1}. The warm-up checks all three. It covers all four English exam boards: nothing here is specific to one board.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you already know?</h2>
+    <p class="intro">Three quick questions. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-tangents-to-a-curve">Skip to the lesson</a></p>
+    <div class="q" data-answers="3x^2-10x+4" data-mode="exact">
+      <p class="qtext">Differentiate {m:y=x^3-5x^2+4x-1} with respect to x. Type {m:frac(dy, dx)} like 4x^2-3x+7.</p>
+      <ol class="ladder"><li>Differentiate each term separately.</li><li>Bring the power down as a multiplier, then take 1 off the power. A number on its own, like the last term, differentiates to 0.</li><li>The term {m:4x} has the power 1.</li></ol>
+      <ul class="wrong"><li data-if="3x^2-10x+3;3x^2-10x+4-1">The constant {m:-1} differentiates to 0. It does not stay in the answer.</li><li data-if="3x^2-10x">The term {m:4x} is {m:4x^1}. It differentiates to 4, so it does not disappear.</li><li data-if="3x^2-5x+4">The term {m:-5x^2} has the multiplier {m:-5*2=-10}, not {m:-5}. Bring the 2 down.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-10x+4}. The terms gave {m:3x^2}, {m:-10x}, 4 and 0.</p></div>
+    </div>
+    <div class="q" data-answers="y=3x+1;3x+1;1+3x;y=1+3x" data-mode="exact">
+      <p class="qtext">A straight line has gradient 3 and passes through (2, 7). Find its equation. Type it like y=5x+2.</p>
+      <ol class="ladder"><li>Write {m:y-y_1=m(x-x_1)}, where m is the gradient and {m:(x_1, y_1)} is the point.</li><li>Put in the numbers, then make y the subject.</li></ol>
+      <ul class="wrong"><li data-if="y=3x+7;3x+7;7+3x;y=7+3x">7 is the y-coordinate of the point, not the place where the line crosses the y-axis. Use {m:y-7=3(x-2)}.</li><li data-if="y=3x-6;3x-6;-6+3x;y=-6+3x">You stopped at {m:3(x-2)}. The equation is {m:y-7=3(x-2)}, so the 7 must be added back.</li></ul>
+      <div class="solution"><p>{m:y-7=3(x-2)}, so {m:y=3x-6+7=3x+1}. Check: at {m:x=2}, {m:y=7}. &#10003;</p></div>
+    </div>
+    <div class="q" data-answers="-5/4" data-mode="value">
+      <p class="qtext">A line has gradient {m:frac(4, 5)}. A second line is at right angles to it. Find the gradient of the second line. Give a fraction or a decimal.</p>
+      <ol class="ladder"><li>The gradients of two lines at right angles multiply to {m:-1}.</li><li>The new gradient is a negative reciprocal: turn the fraction upside down, and change the sign.</li></ol>
+      <ul class="wrong"><li data-if="5/4;1.25">The product must be {m:-1}, not 1. The new gradient is negative.</li><li data-if="-4/5;-0.8">You changed the sign but did not turn the fraction upside down.</li></ul>
+      <div class="solution"><p>{m:frac(4, 5)*(-frac(5, 4))=-1}, so the second gradient is {m:-frac(5, 4)}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of the algebra you need (skip if you are happy)</summary>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which values of x satisfy {m:x^2-4x+3 > 0}?</p>
+      <ul class="options">
+        <li data-correct>x &lt; 1 or x &gt; 3</li>
+        <li data-why="That is where x squared minus 4x plus 3 is less than 0: between the roots, the curve is below the x-axis.">1 &lt; x &lt; 3</li>
+        <li data-why="This gives only one of the two parts. The curve is also above the x-axis to the left of the smaller root.">x &gt; 3</li>
+      </ul>
+      <ol class="ladder"><li>Factorise: {m:x^2-4x+3=(x-1)(x-3)}. Where is it 0?</li><li>A U-shaped curve is above the x-axis outside its roots.</li></ol>
+      <div class="solution"><p>The curve {m:y=(x-1)(x-3)} is U-shaped and crosses the x-axis at 1 and 3. It is above the axis, so {m:y>0}, for {m:x<1} and for {m:x>3}.</p></div>
+    </div>
+    <div class="q" data-answers="8x^(-2);8x^-2" data-mode="exact">
+      <p class="qtext">Write {m:frac(8, x^2)} as a number times a power of x. Type it like 7x^(-2).</p>
+      <ol class="ladder"><li>A negative power means one over the positive power.</li><li>The 8 on top stays as a multiplier.</li></ol>
+      <ul class="wrong"><li data-if="8x^2;8x^(2)">The x is on the bottom of the fraction, so the power is negative.</li><li data-if="-8x^2">The minus sign belongs in the power, not in front of the 8.</li></ul>
+      <div class="solution"><p>{m:frac(8, x^2)=8*frac(1, x^2)=8x^(-2)}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Tangents to a curve</h2>
+    <p>You have already met the {term:tangent-to-curve|tangent} to a curve at a point. It is the straight line that touches the curve there and has the same gradient as the curve there. This lesson writes down the equation of that line.</p>
+    <p>A straight line needs two things: a point on it and its gradient. The point is on the curve. The gradient is the value of the derivative at that point.</p>
+    <div class="key">
+      <p><b>Key idea:</b> suppose {m:y=f(x)} has a derivative at {m:x=a}. The tangent at the point {m:(a, f(a))} is the straight line through that point with gradient {m:f'(a)}. Its equation is</p>
+      {md:y-f(a)=f'(a)(x-a)}
+      <p>The point comes from the equation of the curve. The gradient comes from the derivative.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-tangent-line}<figcaption>The tangent at A (3, 2) touches the curve {m:y=x^2-4x+5}. The dashed triangle goes across 1 and up 2, so the tangent has gradient 2.</figcaption></figure>
+    <p>The method has three steps. The picture below shows them for the curve above.</p>
+    <ol>
+      <li>Differentiate to find {m:frac(dy, dx)}. If the equation has roots or fractions, rewrite them as powers of x first.</li>
+      <li>Put the x-value into {m:frac(dy, dx)}. The result is the gradient m of the tangent.</li>
+      <li>Put the same x-value into the equation of the curve to find y. Then write {m:y-y_1=m(x-x_1)} with this point as {m:(x_1, y_1)}, and tidy it.</li>
+    </ol>
+    <figure class="figure-lg">{fig:differentiation-applications-tangent-method}<figcaption>The three steps for {m:y=x^2-4x+5} at {m:x=3}.</figcaption></figure>
+    <p>Do not mix the two equations up. The derivative gives the gradient. The original equation gives the y-coordinate.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the equation of the tangent to the curve {m:y=x^2-4x+5} at the point where {m:x=3}.</p>
+      <ol class="steps">
+        <li>Differentiate: {m:frac(dy, dx)=2x-4}.</li>
+        <li>At {m:x=3}, the gradient is {m:2(3)-4=2}.</li>
+        <li>At {m:x=3}, {m:y=9-12+5=2}. The point is (3, 2). The tangent is {m:y-2=2(x-3)}, which is {m:y=2x-4}.</li>
+      </ol>
+      <p>Check with the picture: the tangent crosses the x-axis where {m:2x-4=0}, at {m:x=2}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the equation of the tangent to {m:y=x^2+2x-3} at the point where {m:x=1}. Type the last answer like y=5x+2.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="2x+2;2+2x;2(x+1)">___</span>.</li>
+        <li>At {m:x=1}, the gradient is <span class="blank" data-answers="4">___</span>.</li>
+        <li>At {m:x=1}, {m:y=1+2-3=}<span class="blank" data-answers="0">___</span>. So the tangent is {m:y-0=4(x-1)}, which is <span class="blank" data-mode="exact" data-answers="y=4x-4;4x-4;-4+4x;y=-4+4x">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(dy, dx)=2x+2}, which is 4 at {m:x=1}. The point is (1, 0). The tangent is {m:y=4(x-1)=4x-4}.</p></details>
+    </div>
+    <p>Sometimes you are given the gradient and asked where it happens. Then solve {m:frac(dy, dx)=m} for x. On {m:y=x^2-4x+5}, the tangent has gradient 6 where {m:2x-4=6}, so {m:x=5}. The point is (5, 10).</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: tangents</h2>
+    <div class="q" data-answers="y=4x-6;4x-6;-6+4x;y=-6+4x" data-mode="exact">
+      <p class="qtext">The curve {m:y=x^2-2x+3} passes through the point P (3, 6). Find the equation of the tangent to the curve at P. Type it like y=5x+2.</p>
+      <figure class="qfig-lg">{fig:differentiation-applications-q-tangent}</figure>
+      <ol class="ladder"><li>Differentiate, then put {m:x=3} into your derivative to get the gradient.</li><li>Use the point (3, 6) and your gradient in {m:y-y_1=m(x-x_1)}.</li><li>Tidy it into the form {m:y=mx+c}.</li></ol>
+      <ul class="wrong"><li data-if="y=4x+6;4x+6;6+4x;y=6+4x">6 is the y-coordinate of P, not the place where the tangent crosses the y-axis. Use {m:y-6=4(x-3)}.</li><li data-if="y=4x-12;4x-12;-12+4x;y=-12+4x">You stopped at {m:4(x-3)}. The equation is {m:y-6=4(x-3)}, so the 6 must be added back.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x-2}, which is 4 at {m:x=3}. The tangent is {m:y-6=4(x-3)}, so {m:y=4x-12+6=4x-6}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Find the gradient of the tangent to {m:y=x^3-5x} at the point where {m:x=2}.</p>
+      <ol class="ladder"><li>Differentiate {m:x^3-5x} term by term.</li><li>Put {m:x=2} into the derivative, not into the equation of the curve.</li></ol>
+      <ul class="wrong"><li data-if="-2">That is the value of y at {m:x=2}: {m:8-10=-2}. The gradient comes from the derivative.</li><li data-if="12">That is the {m:3x^2} term on its own. The term {m:-5x} also has a derivative, {m:-5}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-5}. At {m:x=2}: {m:3*4-5=7}.</p></div>
+    </div>
+    <div class="q" data-answers="y=7x-5;7x-5;-5+7x;y=-5+7x" data-mode="exact">
+      <p class="qtext">Find the equation of the tangent to {m:y=x^2+3x-1} at the point where {m:x=2}. Type it like y=5x+2.</p>
+      <ol class="ladder"><li>Find the gradient from the derivative, and the y-coordinate from the curve.</li><li>Both come from putting {m:x=2} in, but into different equations.</li></ol>
+      <ul class="wrong"><li data-if="y=7x+9;7x+9;9+7x;y=9+7x">9 is the y-coordinate of the point, not the place where the tangent crosses the y-axis. Use {m:y-9=7(x-2)}.</li><li data-if="y=7x-14;7x-14;-14+7x;y=-14+7x">You stopped at {m:7(x-2)}. The equation is {m:y-9=7(x-2)}, so the 9 must be added back.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x+3}, which is 7 at {m:x=2}. At {m:x=2}, {m:y=4+6-1=9}. The tangent is {m:y-9=7(x-2)}, so {m:y=7x-14+9=7x-5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The tangent to a curve at the point P has equation {m:y=3x-2}. What is the gradient of the curve at P?</p>
+      <ul class="options">
+        <li data-correct>3, the gradient of the tangent</li>
+        <li data-why="Minus 2 is where the tangent crosses the y-axis. It is not a gradient.">Minus 2, the number on its own</li>
+        <li data-why="The curve and its tangent have the same gradient at P, and the equation of the tangent shows it: it is the number in front of x.">It cannot be found without the equation of the curve</li>
+      </ul>
+      <ol class="ladder"><li>The gradient of a curve at a point is the gradient of the tangent there.</li><li>In {m:y=mx+c}, which number is the gradient?</li></ol>
+      <div class="solution"><p>The gradient of the curve at P is the gradient of its tangent at P. In {m:y=3x-2} that is 3.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The tangent to the curve {m:y=x^2-4x+5} has gradient 6 at the point P. Find the x-coordinate of P.</p>
+      <ol class="ladder"><li>The gradient of the tangent is the value of the derivative.</li><li>Differentiate, then set the derivative equal to 6 and solve.</li></ol>
+      <ul class="wrong"><li data-if="1">You solved {m:2x-4=6} as {m:2x=6-4}. Add 4 to both sides: {m:2x=6+4}.</li><li data-if="10">10 is the y-coordinate of P: {m:25-20+5=10}. The question asks for the x-coordinate.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x-4}. Set {m:2x-4=6}, so {m:2x=10} and {m:x=5}.</p></div>
+    </div>
+    <div class="q" data-answers="y=-2x+6;-2x+6;6-2x;y=6-2x" data-mode="exact">
+      <p class="qtext">Find the equation of the tangent to {m:y=frac(8, x^2)} at the point where {m:x=2}. Type it like y=5x+2.</p>
+      <ol class="ladder"><li>Rewrite {m:frac(8, x^2)} as a number times a power of x before you differentiate.</li><li>Put {m:x=2} into the derivative for the gradient, and into the curve for y.</li></ol>
+      <ul class="wrong"><li data-if="y=2x-2;2x-2;-2+2x;y=-2+2x">The curve is falling at {m:x=2}, so the gradient is negative. The power is {m:-2}, so the multiplier is {m:8*(-2)=-16}, and {m:-16x^(-3)} is {m:-2} at {m:x=2}.</li><li data-if="y=-2x+4;-2x+4;4-2x;y=4-2x">You stopped at {m:-2(x-2)}. The equation is {m:y-2=-2(x-2)}, so the 2 must be added back.</li></ul>
+      <div class="solution"><p>{m:y=8x^(-2)}, so {m:frac(dy, dx)=-16x^(-3)}. At {m:x=2}: {m:-16*frac(1, 8)=-2}. At {m:x=2}, {m:y=frac(8, 4)=2}. The tangent is {m:y-2=-2(x-2)}, so {m:y=-2x+6}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Normals to a curve</h2>
+    <p>The {term:normal-to-curve|normal} to a curve at a point is the straight line through that point at right angles to the tangent there.</p>
+    <p>You know from Straight lines that two lines at right angles have gradients that multiply to {m:-1}. So the gradient of the normal is the {term:negative-reciprocal} of the gradient of the tangent: turn the fraction upside down, and change the sign.</p>
+    <div class="key">
+      <p><b>Key idea:</b> suppose the tangent to a curve at a point has gradient m, and m is not 0. The normal at the same point has gradient {m:-frac(1, m)}, so the two gradients multiply to {m:-1}. The normal passes through the same point as the tangent. If {m:m=0}, the tangent is horizontal, and the normal is the vertical line {m:x=a} through the point, where a is the x-coordinate of the point. (You cannot use {m:-frac(1, m)} when {m:m=0}: it would need a division by 0.)</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-tangent-normal}<figcaption>At A (3, 2) on {m:y=x^2-4x+5}, the tangent has gradient 2 and the normal has gradient {m:-frac(1, 2)}. Both axes have the same scale, so the right angle looks like one.</figcaption></figure>
+    <p>To find the equation of a normal, do the same three steps as for a tangent, then use the new gradient in the last step.</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the equation of the normal to {m:y=x^2-4x+5} at the point where {m:x=3}. Give your answer in the form {m:x+by=c}, with whole numbers b and c.</p>
+      <ol class="steps">
+        <li>From lesson 1, the tangent at {m:x=3} has gradient 2, and the point is (3, 2).</li>
+        <li>The normal has gradient {m:-frac(1, 2)}, because {m:2*(-frac(1, 2))=-1}.</li>
+        <li>{m:y-2=-frac(1, 2)(x-3)}. Multiply both sides by 2: {m:2y-4=-(x-3)=-x+3}. So {m:x+2y=7}. Check: at (3, 2), {m:3+4=7}. &#10003;</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the equation of the normal to {m:y=x^2-2x+3} at the point P (3, 6). Give your answer in the form {m:x+by=c}.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=2x-2}. At {m:x=3}, the gradient of the tangent is <span class="blank" data-answers="4">___</span>.</li>
+        <li>The gradient of the normal is <span class="blank" data-answers="-1/4;-0.25">___</span>.</li>
+        <li>{m:y-6=-frac(1, 4)(x-3)}. Multiply by 4: {m:4y-24=-x+3}. So {m:x+4y=}<span class="blank" data-answers="27">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The tangent has gradient 4, so the normal has gradient {m:-frac(1, 4)}. The equation is {m:x+4y=27}. Check: at (3, 6), {m:3+24=27}. &#10003;</p></details>
+    </div>
+    <h3>When the tangent is horizontal</h3>
+    <p>On {m:y=x^2-4x+5}, {m:frac(dy, dx)=2x-4} is 0 at {m:x=2}, and {m:y=4-8+5=1}. At the point (2, 1) the tangent is the horizontal line {m:y=1}. The normal is at right angles to it, so it is the vertical line {m:x=2}.</p>
+    <figure class="figure-lg">{fig:differentiation-applications-normal-vertical}<figcaption>At the lowest point (2, 1) of {m:y=x^2-4x+5} the tangent is horizontal and the normal is vertical. Both axes have the same scale.</figcaption></figure>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: normals</h2>
+    <div class="q" data-answers="-1/5;-0.2" data-mode="value">
+      <p class="qtext">The tangent to a curve at a point has gradient 5. Find the gradient of the normal at that point. Give a fraction or a decimal.</p>
+      <ol class="ladder"><li>The two gradients multiply to {m:-1}.</li><li>The normal gradient is the negative reciprocal of the tangent gradient.</li></ol>
+      <ul class="wrong"><li data-if="1/5;0.2">The product of the two gradients must be {m:-1}. This gradient is positive, so the product is 1.</li><li data-if="-5">You changed the sign but did not turn 5 upside down.</li><li data-if="5">That is the gradient of the tangent. The normal is at right angles to it.</li></ul>
+      <div class="solution"><p>{m:5*(-frac(1, 5))=-1}, so the normal has gradient {m:-frac(1, 5)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1/8;-0.125" data-mode="value">
+      <p class="qtext">Find the gradient of the normal to {m:y=x^2} at the point where {m:x=4}. Give a fraction or a decimal.</p>
+      <ol class="ladder"><li>First find the gradient of the tangent: differentiate and put {m:x=4} in.</li><li>Then take the negative reciprocal.</li></ol>
+      <ul class="wrong"><li data-if="1/8;0.125">The normal gradient is the negative reciprocal. The sign must change.</li><li data-if="-8">You changed the sign but did not take the reciprocal.</li><li data-if="-1/16;-0.0625">16 is the y-coordinate of the point. The gradient of the tangent comes from the derivative, {m:2x}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x}, which is 8 at {m:x=4}. The normal has gradient {m:-frac(1, 8)}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The normal to a curve at the point P (2, 4) passes through the point Q (6, 3). Find the gradient of the tangent to the curve at P.</p>
+      <figure class="qfig-lg">{fig:differentiation-applications-q-normal}</figure>
+      <ol class="ladder"><li>The normal is the straight line PQ. Find its gradient.</li><li>The tangent and the normal are at right angles.</li></ol>
+      <ul class="wrong"><li data-if="-1/4;-0.25">That is the gradient of the normal, the line PQ. The question asks for the tangent.</li><li data-if="1/4;0.25">You changed the sign of {m:-frac(1, 4)} but did not turn it upside down.</li><li data-if="-4">You turned {m:-frac(1, 4)} upside down but did not change the sign. The two gradients multiply to {m:-1}, so they have opposite signs.</li></ul>
+      <div class="solution"><p>The normal PQ has gradient {m:frac(3-4, 6-2)=-frac(1, 4)}. The tangent has gradient 4, because {m:4*(-frac(1, 4))=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="y=-4x+18;-4x+18;18-4x;y=18-4x" data-mode="exact">
+      <p class="qtext">Find the equation of the normal to {m:y=sqrt(x)} at the point where {m:x=4}. Type it like y=5x+2.</p>
+      <ol class="ladder"><li>Write {m:sqrt(x)} as {m:x^(1/2)} and differentiate. Put {m:x=4} in for the gradient of the tangent.</li><li>Take the negative reciprocal for the gradient of the normal, and use the point on the curve.</li></ol>
+      <ul class="wrong"><li data-if="y=4x-14;4x-14;-14+4x;y=-14+4x">You used the gradient 4. The product of the two gradients must be {m:-1}, and {m:frac(1, 4)*4=1}. The normal gradient is negative.</li><li data-if="y=-4x+16;-4x+16;16-4x;y=16-4x">You stopped at {m:-4(x-4)}. The equation is {m:y-2=-4(x-4)}, so the 2 must be added back.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=frac(1, 2)x^(-1/2)}, which is {m:frac(1, 2)*frac(1, 2)=frac(1, 4)} at {m:x=4}. The normal has gradient {m:-4}. At {m:x=4}, {m:y=2}. So {m:y-2=-4(x-4)}, which is {m:y=-4x+18}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The normal to {m:y=x^3-12x} at the point where {m:x=2} is a vertical line with equation {m:x=a}, where a is the x-coordinate of the point. Find a.</p>
+      <ol class="ladder"><li>Find the gradient of the tangent at this point.</li><li>What kind of line is at right angles to a line with that gradient? What does every point on it have in common?</li></ol>
+      <ul class="wrong"><li data-if="-16">{m:-16} is the y-coordinate of the point. A vertical line {m:x=a} is described by the x-coordinate.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-12}, which is 0 at {m:x=2}. The tangent is horizontal, so the normal is vertical. It passes through the point where {m:x=2}, so {m:x=2} and {m:a=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A line has gradient {m:frac(3, 4)}. A second line is at right angles to it. What is the gradient of the second line?</p>
+      <ul class="options">
+        <li data-correct>Minus four thirds</li>
+        <li data-why="Four thirds times three quarters is 1, not minus 1. The gradient must be negative.">Four thirds</li>
+        <li data-why="You changed the sign but did not turn the fraction upside down. Three quarters times minus three quarters is not minus 1.">Minus three quarters</li>
+      </ul>
+      <ol class="ladder"><li>The two gradients must multiply to {m:-1}.</li><li>Turn the fraction upside down, and change the sign.</li></ol>
+      <div class="solution"><p>{m:frac(3, 4)*(-frac(4, 3))=-1}, so the second gradient is {m:-frac(4, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Increasing and decreasing</h2>
+    <p>A curve rises where its gradient is positive, and falls where its gradient is negative. A function is {term:increasing-function|increasing} where its graph rises as x increases. It is {term:decreasing-function|decreasing} where its graph falls as x increases.</p>
+    <div class="key">
+      <p><b>Key idea:</b> on an interval where {m:frac(dy, dx) > 0} at every point, y is increasing as x increases. On an interval where {m:frac(dy, dx) < 0} at every point, y is decreasing as x increases. At a point where {m:frac(dy, dx)=0}, the tangent is horizontal.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-increasing-decreasing}<figcaption>The curve {m:y=x^3-6x^2+9x}. It is drawn solid where it rises and dashed where it falls. The gradient is 0 at the two marked points, where the curve changes between rising and falling.</figcaption></figure>
+    <p>To find where a function is increasing or decreasing, differentiate, then solve an inequality. Solve {m:frac(dy, dx) > 0} for the values of x where it is increasing. Solve {m:frac(dy, dx) < 0} for the values where it is decreasing. The answer is a set of x-values, not y-values. (Quadratic inequalities are in the Inequalities topic: find where the quadratic is 0, then decide which parts are above and below the x-axis.)</p>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the values of x for which {m:f(x)=x^3-6x^2+9x} is increasing, and the values for which it is decreasing.</p>
+      <ol class="steps">
+        <li>Differentiate: {m:f'(x)=3x^2-12x+9=3(x^2-4x+3)=3(x-1)(x-3)}.</li>
+        <li>{m:f'(x)=0} at {m:x=1} and {m:x=3}. The graph of {m:y=f'(x)} is U-shaped, because the coefficient of {m:x^2} is positive. It is below the x-axis between the roots, and above it outside them.</li>
+        <li>So {m:f'(x) > 0} for {m:x < 1} and for {m:x > 3}: f is increasing there. And {m:f'(x) < 0} for {m:1 < x < 3}: f is decreasing there.</li>
+      </ol>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-sign-chart}<figcaption>The sign of {m:frac(dy, dx)} for {m:y=x^3-6x^2+9x}, on a number line. The two marked points are where the gradient is 0.</figcaption></figure>
+    <p>This page writes {m:x < 1} and {m:x > 3}, where the gradient is strictly positive. Including the end points, {m:x <= 1} and {m:x >= 3}, is also correct, and is the form the glossary uses: the curve never goes down on those ranges.</p>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the values of x for which {m:f(x)=2x^3-3x^2-12x} is decreasing.</p>
+      <ol class="steps">
+        <li>{m:f'(x)=}<span class="blank" data-mode="exact" data-answers="6x^2-6x-12;6(x-2)(x+1);6(x^2-x-2)">___</span>.</li>
+        <li>{m:f'(x)=6(x-2)(x+1)}, which is 0 at {m:x=-1} and {m:x=2}.</li>
+        <li>The graph of {m:y=f'(x)} is U-shaped, so it is below the x-axis between the roots. So f is decreasing for <span class="blank" data-answers="-1">___</span> &lt; x &lt; <span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:f'(x)=6x^2-6x-12=6(x^2-x-2)=6(x-2)(x+1)}. It is negative between {m:-1} and 2, so f is decreasing for {m:-1 < x < 2}. For example, {m:f'(0)=-12}, which is negative.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: increasing and decreasing</h2>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">{m:f(x)=x^2-8x+3}. The function f is increasing for {m:x > a}. Find a.</p>
+      <ol class="ladder"><li>Differentiate. The function is increasing where {m:f'(x) > 0}.</li><li>Solve the inequality for x.</li></ol>
+      <ul class="wrong"><li data-if="-4">You solved {m:2x-8 > 0} as {m:2x > -8}. Add 8 to both sides, not subtract it.</li><li data-if="8">8 is the number in the derivative. Divide by the 2 in front of x.</li></ul>
+      <div class="solution"><p>{m:f'(x)=2x-8}. Solve {m:2x-8 > 0}: {m:2x > 8}, so {m:x > 4}. So {m:a=4}.</p></div>
+    </div>
+    <div class="q" data-answers="-10" data-mode="value">
+      <p class="qtext">The gradient of a curve is {m:frac(dy, dx)=(x-2)(x+5)}. Find the value of the gradient at {m:x=0}.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>Then multiply the two results.</li></ol>
+      <ul class="wrong"><li data-if="10">A negative number times a positive number is negative.</li><li data-if="3">The two brackets are multiplied, not added.</li></ul>
+      <div class="solution"><p>{m:(0-2)(0+5)=(-2)*5=-10}. The gradient is negative, so the curve is falling at {m:x=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">{m:f'(x)=x^2-9}. For which values of x is f decreasing?</p>
+      <ul class="options">
+        <li data-correct>&minus;3 &lt; x &lt; 3</li>
+        <li data-why="That is where the derivative is positive: outside the roots. There f is increasing.">x &lt; &minus;3 or x &gt; 3</li>
+        <li data-why="Try x equal to minus 4. The derivative is 7, which is positive, so f is increasing there.">x &lt; 3</li>
+      </ul>
+      <ol class="ladder"><li>Factorise: {m:x^2-9=(x-3)(x+3)}.</li><li>The graph of {m:y=x^2-9} is U-shaped. Where is it below the x-axis?</li></ol>
+      <div class="solution"><p>{m:x^2-9} is below the x-axis between its roots, {m:-3} and 3. So {m:f'(x) < 0} for {m:-3 < x < 3}, and f is decreasing there.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph shows {m:y=f(x)}. For which values of x is f decreasing?</p>
+      <figure class="qfig-lg">{fig:differentiation-applications-q-decreasing}</figure>
+      <ul class="options">
+        <li data-correct>Between x = &minus;2 and x = 2</li>
+        <li data-why="Those are the parts where the curve rises as you move to the right.">x &lt; &minus;2 or x &gt; 2</li>
+        <li data-why="The curve crosses the x-axis near minus 3.5 and 3.5. Where it crosses the axis does not decide where it falls. Look at where the curve turns.">Between x = &minus;3.5 and x = 3.5</li>
+      </ul>
+      <ol class="ladder"><li>The curve is decreasing where it goes down as you move to the right.</li><li>Find where it stops rising and starts falling, and where it stops falling and starts rising.</li></ol>
+      <div class="solution"><p>The curve rises up to the maximum point where {m:x=-2}, falls until the minimum point where {m:x=2}, then rises again. So it is decreasing for {m:-2 < x < 2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why is {m:f(x)=x^3+6x} increasing for every value of x?</p>
+      <ul class="options">
+        <li data-correct>{m:f'(x)=3x^2+6}, and {m:x^2} is never negative, so {m:f'(x)} is always positive</li>
+        <li data-why="Increasing is about the gradient, not the height. The function is negative at x equal to minus 1: f of minus 1 is minus 7.">f(x) is positive for every x</li>
+        <li data-why="The derivative at x equal to 0 is 6, not 0. It is never 0, because 3 times x squared is never negative.">{m:f'(x)=3x^2+6} is 0 at {m:x=0}, so the curve is increasing there</li>
+      </ul>
+      <ol class="ladder"><li>Find {m:f'(x)}.</li><li>Think about the smallest value {m:3x^2} can take.</li></ol>
+      <div class="solution"><p>{m:f'(x)=3x^2+6}. Since {m:x^2 >= 0}, {m:f'(x) >= 6 > 0} for every x. The gradient is always positive, so f is always increasing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Stationary points</h2>
+    <p>A {term:stationary-point|stationary point} is a point on a curve where the gradient is zero: {m:frac(dy, dx)=0}. The tangent there is horizontal.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a stationary point of {m:y=f(x)} is a point where {m:frac(dy, dx)=0}. To find the stationary points: differentiate; solve {m:frac(dy, dx)=0} to get every x-value; then put each x-value into {m:y=f(x)} to find its y-coordinate. Solving {m:frac(dy, dx)=0} gives only x-values. The y-coordinates come from the curve. At a stationary point the tangent is the horizontal line {m:y=k}, where k is the y-coordinate, and the normal is the vertical line {m:x=a}, where a is the x-coordinate of the point.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-stationary-cubic}<figcaption>The curve {m:y=x^3-12x} has a horizontal tangent at each of its two stationary points, (&minus;2, 16) and (2, &minus;16). The gradient of the curve is 0 at both.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the stationary points of {m:y=x^3-12x}.</p>
+      <ol class="steps">
+        <li>Differentiate: {m:frac(dy, dx)=3x^2-12}.</li>
+        <li>Solve {m:3x^2-12=0}: {m:x^2=4}, so {m:x=2} or {m:x=-2}. (Both values count: {m:x^2=4} has two solutions.)</li>
+        <li>Put each x-value into the curve. At {m:x=2}: {m:y=8-24=-16}. At {m:x=-2}: {m:y=-8+24=16}. The stationary points are (2, &minus;16) and (&minus;2, 16).</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the stationary points of {m:y=2x^3-6x}.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=}<span class="blank" data-mode="exact" data-answers="6x^2-6">___</span>.</li>
+        <li>{m:6x^2-6=0} gives {m:x^2=1}, so {m:x=1} or {m:x=-1}.</li>
+        <li>At {m:x=1}: {m:y=2-6=}<span class="blank" data-answers="-4">___</span>. At {m:x=-1}: {m:y=-2+6=}<span class="blank" data-answers="4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The stationary points are (1, &minus;4) and (&minus;1, 4).</p></details>
+    </div>
+    <h3>Solve every factor</h3>
+    <p>When {m:frac(dy, dx)} factorises, set each factor equal to 0. Do not divide both sides by x: that loses the solution {m:x=0}.</p>
+    <div class="worked">
+      <h3>Worked example: a derivative that factorises</h3>
+      <p>Find the stationary points of {m:y=x^3-6x^2}.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=3x^2-12x=3x(x-4)}.</li>
+        <li>{m:3x(x-4)=0} gives {m:x=0} or {m:x=4}.</li>
+        <li>At {m:x=0}: {m:y=0}. At {m:x=4}: {m:y=64-96=-32}. The stationary points are (0, 0) and (4, &minus;32).</li>
+      </ol>
+    </div>
+    <p>If the equation has a fraction or a root, rewrite it as powers of x before you differentiate. For example, take {m:y=x+frac(4, x)} for {m:x > 0}. Then {m:y=x+4x^(-1)} and {m:frac(dy, dx)=1-4x^(-2)}. Setting this equal to 0 gives {m:x^2=4}. The condition {m:x > 0} rules out {m:x=-2}, so {m:x=2}, and {m:y=2+2=4}. The stationary point is (2, 4).</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: stationary points</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the x-coordinate of the stationary point of {m:y=x^2-6x+4}.</p>
+      <ol class="ladder"><li>A stationary point is where {m:frac(dy, dx)=0}.</li><li>Differentiate, set the derivative equal to 0 and solve.</li></ol>
+      <ul class="wrong"><li data-if="-3">You solved {m:2x-6=0} as {m:2x=-6}. Add 6 to both sides.</li><li data-if="6">6 is the number in the derivative. Divide by the 2 in front of x.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x-6}. Set it equal to 0: {m:2x=6}, so {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="(3,-5);3,-5" data-mode="value">
+      <p class="qtext">Find the coordinates of the stationary point of {m:y=x^2-6x+4}. Type them like (2, 7).</p>
+      <ol class="ladder"><li>Find the x-coordinate from {m:frac(dy, dx)=0}.</li><li>Put that x-value into the equation of the curve to find y.</li></ol>
+      <ul class="wrong"><li data-if="(3,0);3,0">0 is the gradient at the point. The y-coordinate comes from the curve: put your x-value into {m:y=x^2-6x+4}.</li><li data-if="(-3,31);-3,31">You solved {m:2x-6=0} as {m:2x=-6}. Add 6 to both sides to get x.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x-6=0} gives {m:x=3}. Then {m:y=9-18+4=-5}. The stationary point is (3, &minus;5).</p></div>
+    </div>
+    <div class="q" data-answers="-32" data-mode="value">
+      <p class="qtext">The curve {m:y=x^3-6x^2} has two stationary points. One is at {m:x=0}. Find the y-coordinate of the other one.</p>
+      <ol class="ladder"><li>Differentiate and factorise the derivative. Solve {m:frac(dy, dx)=0}.</li><li>Put the x-value of the other stationary point into the equation of the curve.</li></ol>
+      <ul class="wrong"><li data-if="0">That is the y-coordinate of the stationary point at {m:x=0}. The question asks for the other one.</li><li data-if="32">{m:64-96} is negative. Check the sign: {m:4^3=64} and {m:6*4^2=96}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-12x=3x(x-4)}, so the other stationary point has {m:x=4}. Then {m:y=64-96=-32}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">{m:y=x+frac(4, x)}, for {m:x > 0}. Find the x-coordinate of the stationary point.</p>
+      <ol class="ladder"><li>Write {m:frac(4, x)} as {m:4x^(-1)}, then differentiate.</li><li>Set the derivative equal to 0. Only keep an answer that satisfies {m:x > 0}.</li></ol>
+      <ul class="wrong"><li data-if="4">You differentiated {m:4x^(-1)} as {m:-4x^(-1)}. The power must go down by 1: it becomes {m:-4x^(-2)}.</li><li data-if="-2">{m:x^2=4} has two solutions, but the question says {m:x > 0}.</li></ul>
+      <div class="solution"><p>{m:y=x+4x^(-1)}, so {m:frac(dy, dx)=1-4x^(-2)}. Setting this to 0 gives {m:x^2=4}. Since {m:x > 0}, {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-16" data-mode="value">
+      <p class="qtext">A curve has a stationary point at (2, &minus;16). Write down the equation of the tangent to the curve at this point. Type it like y=7.</p>
+      <ol class="ladder"><li>What is the gradient of the tangent at a stationary point?</li><li>What is the equation of a horizontal line through the point?</li></ol>
+      <ul class="wrong"><li data-if="2">{m:x=2} is a vertical line. That is the normal. The tangent at a stationary point is horizontal.</li></ul>
+      <div class="solution"><p>The gradient is 0, so the tangent is horizontal. It passes through (2, &minus;16), so its equation is {m:y=-16}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Maximum, minimum or neither</h2>
+    <p>A stationary point can be a {term:maximum-point|maximum}, a {term:minimum-point|minimum}, or neither. A maximum or a minimum is also called a {term:turning-point}. Deciding which kind a stationary point is means finding its {term:nature-of-stationary-point|nature}. There are two tests, and you should be able to use both.</p>
+    <h3>Test 1: the second derivative</h3>
+    <p>The {term:second-derivative|second derivative}, {m:frac(d^2y, dx^2)}, tells you how fast the gradient is changing. At a stationary point the gradient is 0. If the gradient is increasing there, it goes from negative to positive, so the curve goes down and then up: a minimum. If the gradient is decreasing there, it goes from positive to negative: a maximum.</p>
+    <div class="key">
+      <p><b>Key idea:</b> at a stationary point of {m:y=f(x)}, where {m:frac(dy, dx)=0}, find {m:frac(d^2y, dx^2)} there. The second derivative must exist at the point. If {m:frac(d^2y, dx^2) > 0}, the point is a minimum. If {m:frac(d^2y, dx^2) < 0}, the point is a maximum. If {m:frac(d^2y, dx^2)=0}, the test does not decide: the point could be a minimum, a maximum or neither.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-nature-cubic}<figcaption>The curve {m:y=x^3-6x^2+9x} has a maximum point at (1, 4) and a minimum point at (3, 0).</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>Find the stationary points of {m:y=x^3-6x^2+9x}, and decide the nature of each.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=3x^2-12x+9=3(x-1)(x-3)}, which is 0 at {m:x=1} and {m:x=3}.</li>
+        <li>At {m:x=1}: {m:y=1-6+9=4}. At {m:x=3}: {m:y=27-54+27=0}. The stationary points are (1, 4) and (3, 0).</li>
+        <li>{m:frac(d^2y, dx^2)=6x-12}. At {m:x=1} it is {m:-6}, which is negative, so (1, 4) is a maximum. At {m:x=3} it is 6, which is positive, so (3, 0) is a minimum.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The curve {m:y=x^3-12x} has stationary points at (2, &minus;16) and (&minus;2, 16). Decide the nature of each. Type each word like maximum.</p>
+      <ol class="steps">
+        <li>{m:frac(d^2y, dx^2)=}<span class="blank" data-mode="exact" data-answers="6x">___</span>.</li>
+        <li>At {m:x=2}: {m:frac(d^2y, dx^2)=}<span class="blank" data-answers="12">___</span>. This is positive, so (2, &minus;16) is a <span class="blank" data-mode="exact" data-answers="minimum;min;a minimum;local minimum">___</span>.</li>
+        <li>At {m:x=-2}: {m:frac(d^2y, dx^2)=}<span class="blank" data-answers="-12">___</span>. This is negative, so (&minus;2, 16) is a <span class="blank" data-mode="exact" data-answers="maximum;max;a maximum;local maximum">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(d^2y, dx^2)=6x}. At {m:x=2} it is 12 (positive): a minimum. At {m:x=-2} it is {m:-12} (negative): a maximum. This matches the picture in lesson 4.</p></details>
+    </div>
+    <p>A maximum point means the curve is higher there than at every point close to it. The curve may go higher somewhere else. On {m:y=x^3-6x^2+9x}, the maximum point (1, 4) is lower than points far to the right, because y increases without limit as x increases. In the same way, the minimum point (3, 0) is higher than points far to the left, because y decreases without limit as x decreases.</p>
+    <h3>Test 2: the sign of the gradient either side</h3>
+    <p>The second test uses the sign of {m:frac(dy, dx)} a little to the left and a little to the right of the stationary point. Choose x-values close enough to the point that there is no other stationary point between them and it.</p>
+    <div class="key">
+      <p><b>Key idea:</b> go from left to right through a stationary point and look at the sign of {m:frac(dy, dx)}. If it goes from negative to positive, the point is a minimum. If it goes from positive to negative, the point is a maximum. If it has the same sign on both sides, the point is neither a maximum nor a minimum. For example, (0, 0) is a stationary point of {m:y=x^3}, and the curve rises on both sides of it.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-gradient-test-min}<figcaption>Three tangents to {m:y=x^2-4x+5}, with m the gradient of each. The gradient goes from {m:-2} to 0 to 2: from negative to positive, so the lowest point is a minimum.</figcaption></figure>
+    <h3>When the second derivative is 0</h3>
+    <p>Look at {m:y=x^4} and {m:y=x^3}. Both have a stationary point at (0, 0). For {m:y=x^4}: {m:frac(dy, dx)=4x^3} and {m:frac(d^2y, dx^2)=12x^2}. For {m:y=x^3}: {m:frac(dy, dx)=3x^2} and {m:frac(d^2y, dx^2)=6x}. In both cases the second derivative is 0 at {m:x=0}, so Test 1 does not say which kind of point it is. Test 2 does.</p>
+    <table class="data" data-table="gradient-test">
+      <thead><tr><th scope="col">x</th><th scope="col">{m:-0.5}</th><th scope="col">0</th><th scope="col">0.5</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">{m:frac(dy, dx)} for {m:y=x^4}</th><td>{m:-0.5}</td><td>0</td><td>0.5</td></tr>
+        <tr><th scope="row">{m:frac(dy, dx)} for {m:y=x^3}</th><td>0.75</td><td>0</td><td>0.75</td></tr>
+      </tbody>
+    </table>
+    <p>For {m:y=x^4} the gradient goes from negative to positive: (0, 0) is a minimum. For {m:y=x^3} the gradient is positive on both sides: (0, 0) is neither a maximum nor a minimum. It is called a stationary {term:point-of-inflection|point of inflection}: the tangent is horizontal there, but the curve does not turn. Points of inflection are defined in Year 2.</p>
+    <figure class="figure-lg">{fig:differentiation-applications-second-derivative-zero}<figcaption>Both curves have a stationary point at (0, 0), and the second derivative is 0 at that point for both. The solid curve {m:y=x^4} has a minimum there. The dashed curve {m:y=x^3} does not.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: using both tests</h3>
+      <p>Find the stationary points of {m:y=x^4-4x^3} and decide the nature of each.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=4x^3-12x^2=4x^2(x-3)}, which is 0 at {m:x=0} and {m:x=3}. At {m:x=0}, {m:y=0}. At {m:x=3}, {m:y=81-108=-27}.</li>
+        <li>{m:frac(d^2y, dx^2)=12x^2-24x}. At {m:x=3} it is {m:108-72=36}, which is positive, so (3, &minus;27) is a minimum.</li>
+        <li>At {m:x=0} the second derivative is 0, so the test does not decide. Use the gradient. At {m:x=-1}: {m:frac(dy, dx)=-4-12=-16}. At {m:x=1}: {m:frac(dy, dx)=4-12=-8}. Both are negative, so (0, 0) is neither a maximum nor a minimum.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: maximum, minimum or neither</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">At a stationary point, {m:frac(d^2y, dx^2)=-4}. What is the nature of the point?</p>
+      <ul class="options">
+        <li data-correct>A maximum</li>
+        <li data-why="A positive second derivative gives a minimum. This one is negative.">A minimum</li>
+        <li data-why="The test only fails to decide when the second derivative is 0. Here it is minus 4.">The test does not decide</li>
+      </ul>
+      <ol class="ladder"><li>Is the second derivative positive, negative or zero?</li><li>Negative means the gradient is decreasing.</li></ol>
+      <div class="solution"><p>The second derivative is negative, so the gradient is decreasing through the point: it goes from positive to negative. The point is a maximum.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">{m:y=2x^3-9x^2+12x} has stationary points at {m:x=1} and {m:x=2}. Find the value of {m:frac(d^2y, dx^2)} at {m:x=1}.</p>
+      <ol class="ladder"><li>Differentiate twice.</li><li>Put {m:x=1} into the second derivative.</li></ol>
+      <ul class="wrong"><li data-if="6">That is the value at {m:x=2}. The question asks about {m:x=1}.</li><li data-if="12">You differentiated {m:6x^2} as {m:12x}, but the term {m:-18x} also differentiates, to {m:-18}. The second derivative is {m:12x-18}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=6x^2-18x+12}, so {m:frac(d^2y, dx^2)=12x-18}. At {m:x=1}: {m:12-18=-6}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">{m:y=2x^3-9x^2+12x} has stationary points at {m:x=1} and {m:x=2}, and {m:frac(d^2y, dx^2)=12x-18}. Find the y-coordinate of the maximum point.</p>
+      <ol class="ladder"><li>Put each x-value into {m:12x-18}. Which one gives a negative value?</li><li>Put that x-value into the equation of the curve.</li></ol>
+      <ul class="wrong"><li data-if="4">That is the y-coordinate of the stationary point at {m:x=2}, which is the minimum. The second derivative at {m:x=2} is positive.</li><li data-if="1">1 is the x-coordinate of the maximum point. The question asks for the y-coordinate.</li><li data-if="-6">{m:-6} is the value of the second derivative at the maximum point. The y-coordinate comes from the equation of the curve.</li></ul>
+      <div class="solution"><p>At {m:x=1}: {m:12-18=-6}, negative, so the maximum is at {m:x=1}. Then {m:y=2-9+12=5}. At {m:x=2}: {m:24-18=6}, positive, a minimum, with {m:y=16-36+24=4}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">For {m:y=x^4}, {m:frac(d^2y, dx^2)=12x^2}, which is 0 at {m:x=0}. What can you conclude about the stationary point (0, 0)?</p>
+      <ul class="options">
+        <li data-correct>Nothing yet: use the sign of dy by dx on either side</li>
+        <li data-why="The second derivative being 0 does not show an inflection. The curve y equals x to the 4 is never below 0, so (0, 0) is a minimum.">It is a point of inflection</li>
+        <li data-why="The curve y equals x to the 4 is 0 at (0, 0) and positive either side, so (0, 0) is lower than the points near it. It is not a maximum.">It is a maximum</li>
+      </ul>
+      <ol class="ladder"><li>What does the second-derivative test say when the second derivative is 0?</li><li>Which other test could you use?</li></ol>
+      <div class="solution"><p>When {m:frac(d^2y, dx^2)=0}, Test 1 does not decide. Use the gradient: {m:frac(dy, dx)=4x^3} is negative for {m:x < 0} and positive for {m:x > 0}, so (0, 0) is a minimum.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The gradient {m:frac(dy, dx)} is positive a little to the left of a stationary point and negative a little to the right of it. What is the point?</p>
+      <ul class="options">
+        <li data-correct>A maximum</li>
+        <li data-why="A minimum has a negative gradient to the left of it and a positive gradient to the right.">A minimum</li>
+        <li data-why="The point is neither a maximum nor a minimum only when the gradient has the same sign on both sides. Here the sign changes.">Neither a maximum nor a minimum</li>
+      </ul>
+      <ol class="ladder"><li>Imagine moving along the curve from left to right through the point.</li><li>Is the curve rising or falling on each side?</li></ol>
+      <div class="solution"><p>The curve rises (positive gradient), then falls (negative gradient). So the stationary point is a maximum.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The gradient {m:frac(dy, dx)} is positive a little to the left of a stationary point and also positive a little to the right of it. What is the point?</p>
+      <ul class="options">
+        <li data-correct>Neither a maximum nor a minimum</li>
+        <li data-why="A maximum needs the gradient to change from positive to negative.">A maximum</li>
+        <li data-why="A minimum needs the gradient to change from negative to positive.">A minimum</li>
+      </ul>
+      <ol class="ladder"><li>Does the gradient change sign through the point?</li><li>Think of {m:y=x^3} at the origin.</li></ol>
+      <div class="solution"><p>The curve rises before the point and keeps rising after it, with a horizontal tangent at the point. It is neither a maximum nor a minimum.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">{m:y=x+frac(4, x)}, for {m:x > 0}. Find the value of {m:frac(d^2y, dx^2)} at {m:x=2}.</p>
+      <ol class="ladder"><li>Write {m:frac(4, x)} as {m:4x^(-1)} and differentiate twice.</li><li>Put {m:x=2} into the second derivative.</li></ol>
+      <ul class="wrong"><li data-if="-1">The derivative of {m:-4x^(-2)} is {m:-4*(-2)x^(-3)=+8x^(-3)}. A minus times a minus is a plus.</li><li data-if="2">The second derivative has the power {m:-3}, not {m:-2}. Differentiate {m:-4x^(-2)} once more.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=1-4x^(-2)} and {m:frac(d^2y, dx^2)=8x^(-3)}. At {m:x=2}: {m:frac(8, 8)=1}. This is positive, so the stationary point (2, 4) is a minimum.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Optimisation in context</h2>
+    <p>{term:optimisation|Optimisation} means finding the greatest or the least value of a quantity. Many problems fix a total, such as a length of fence or a perimeter, and ask for the best shape. The idea is the same as before: write the quantity as a function of one variable, then find where its derivative is 0.</p>
+    <ol>
+      <li>Name the quantity and the variable. Use any fixed total to write the quantity in terms of one variable.</li>
+      <li>Differentiate, and solve {m:frac(dQ, dx)=0}.</li>
+      <li>Use the second derivative, or the sign of the gradient, to check that the point is a maximum (or a minimum, whichever the question asks for).</li>
+      <li>Put the x-value into the quantity. Give the value the question asks for, with units. Check that the x-value is possible in the problem, such as a length that is positive. If it is the only stationary point in the allowed values, and those values form one unbroken range, a maximum there is the greatest value and a minimum there is the least value.</li>
+    </ol>
+    <div class="key">
+      <p><b>Key idea:</b> to find the greatest or least value of a quantity Q that depends on one variable x, write Q as a function of x, solve {m:frac(dQ, dx)=0}, and check the nature of each solution. Then put the x-value into Q. This finds a maximum or a minimum where the gradient is 0, so the x-value must be allowed in the problem. If the allowed values of x stop at an end point, the quantity at the end point must be compared too.</p>
+    </div>
+    <figure class="figure-lg">{fig:differentiation-applications-optimise-rectangle}<figcaption>The area {m:A=x(20-x)} of a rectangle with perimeter 40 cm, against its width x cm. The greatest area is at the marked maximum point, (10, 100).</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>A rectangle has perimeter 40 cm. Its width is x cm. Find the greatest possible area.</p>
+      <ol class="steps">
+        <li>The perimeter is 40, so the width plus the length is 20. The length is {m:20-x} cm. The area is {m:A=x(20-x)=20x-x^2} cm&sup2;, for {m:0 < x < 20}.</li>
+        <li>{m:frac(dA, dx)=20-2x}. Set it equal to 0: {m:x=10}.</li>
+        <li>{m:frac(d^2A, dx^2)=-2}, which is negative, so this is a maximum.</li>
+        <li>{m:A=10*10=100}. The greatest area is 100 cm&sup2;, when the rectangle is a square of side 10 cm.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A farmer has 60 m of fence. She uses it for three sides of a rectangular field. The fourth side is a wall. Find the greatest possible area of the field.</p>
+      <ol class="steps">
+        <li>Let the two sides at right angles to the wall be x m. The side along the wall is {m:60-2x} m. So {m:A=x(60-2x)=}<span class="blank" data-mode="exact" data-answers="60x-2x^2">___</span>.</li>
+        <li>{m:frac(dA, dx)=}<span class="blank" data-mode="exact" data-answers="60-4x">___</span>. Set it equal to 0: {m:x=}<span class="blank" data-answers="15">___</span>.</li>
+        <li>{m:frac(d^2A, dx^2)=-4}, which is negative: a maximum. {m:A=15*30=}<span class="blank" data-answers="450">___</span> m&sup2;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:A=60x-2x^2}, {m:frac(dA, dx)=60-4x}, so {m:x=15} and the side along the wall is 30 m. The greatest area is {m:15*30=450} m&sup2;.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: optimisation</h2>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Two numbers add up to 12. Find the greatest possible value of their product.</p>
+      <ol class="ladder"><li>Call one number x. What is the other number, in terms of x?</li><li>Write the product as a function of x, differentiate, and solve for x.</li><li>Then find the product itself.</li></ol>
+      <ul class="wrong"><li data-if="6">6 is the value of x that gives the greatest product. The question asks for the product.</li><li data-if="12">12 is the sum of the two numbers. The question asks for their product.</li></ul>
+      <div class="solution"><p>The numbers are x and {m:12-x}. The product is {m:P=x(12-x)=12x-x^2}. {m:frac(dP, dx)=12-2x=0} gives {m:x=6}. {m:frac(d^2P, dx^2)=-2} is negative: a maximum. {m:P=6*6=36}.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">The cost, in pounds, of making a container is {m:C=x+frac(16, x)}, for {m:x > 0}. Find the least possible value of C.</p>
+      <ol class="ladder"><li>Write {m:frac(16, x)} as {m:16x^(-1)}, then differentiate and solve {m:frac(dC, dx)=0}.</li><li>Only keep an answer that satisfies {m:x > 0}. Then put it into C.</li></ol>
+      <ul class="wrong"><li data-if="4">4 is the value of x that gives the least cost. The question asks for the least value of C.</li><li data-if="20">You wrote {m:4+16}. The second term is {m:frac(16, x)}, which is {m:frac(16, 4)=4} when {m:x=4}.</li></ul>
+      <div class="solution"><p>{m:C=x+16x^(-1)}, so {m:frac(dC, dx)=1-16x^(-2)}. Set it to 0: {m:x^2=16}, so {m:x=4} (the only solution with {m:x > 0}). {m:frac(d^2C, dx^2)=32x^(-3)}, which is {m:frac(32, 64)=frac(1, 2)} at {m:x=4}: positive, a minimum. {m:C=4+4=8}.</p></div>
+    </div>
+    <div class="q" data-answers="56.25;225/4" data-mode="value">
+      <p class="qtext">A rectangle has perimeter 30 cm. Find its greatest possible area, in cm&sup2;.</p>
+      <ol class="ladder"><li>Let the width be x cm. Use the perimeter to find the length in terms of x.</li><li>Write the area as a function of x, then find where its derivative is 0.</li></ol>
+      <ul class="wrong"><li data-if="7.5">7.5 is the width that gives the greatest area. The question asks for the area.</li><li data-if="225">You used a length of {m:30-x}. Half the perimeter, 15, is the width plus the length, so the length is {m:15-x}.</li><li data-if="112.5">You used a length of 15. The length is {m:15-x}, which is 7.5 when the width is 7.5.</li></ul>
+      <div class="solution"><p>The length is {m:15-x}. {m:A=x(15-x)=15x-x^2}. {m:frac(dA, dx)=15-2x=0} gives {m:x=7.5}. {m:frac(d^2A, dx^2)=-2}: a maximum. {m:A=7.5*7.5=56.25}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In an optimisation question you solve {m:frac(dA, dx)=0} and find x. Why do you then work out {m:frac(d^2A, dx^2)}?</p>
+      <ul class="options">
+        <li data-correct>To check whether the stationary point is a maximum or a minimum</li>
+        <li data-why="You find the value of A by putting x into the equation for A. The second derivative is not that value.">To find the greatest value of A</li>
+        <li data-why="The second derivative does not check your first derivative. To check that, you could differentiate again from the start or test with a number.">To check that you differentiated correctly</li>
+      </ul>
+      <ol class="ladder"><li>The first derivative is 0 at a maximum and at a minimum.</li><li>What tells the two apart?</li></ol>
+      <div class="solution"><p>{m:frac(dA, dx)=0} at both a maximum and a minimum. The sign of {m:frac(d^2A, dx^2)} says which one it is.</p></div>
+    </div>
+    <div class="q" data-answers="800" data-mode="value">
+      <p class="qtext">A farmer has 80 m of fence for three sides of a rectangular field. The fourth side is a wall. Find the greatest possible area of the field, in m&sup2;.</p>
+      <ol class="ladder"><li>Let the two sides at right angles to the wall be x m. Find the side along the wall.</li><li>Write the area as a function of x, differentiate, and solve.</li></ol>
+      <ul class="wrong"><li data-if="20">20 is the length of each short side. The question asks for the area.</li><li data-if="1600">You used a side of {m:80-x}. Only the two short sides count twice: the side along the wall is {m:80-2x}.</li><li data-if="40">40 is the length of the side along the wall. The question asks for the area.</li></ul>
+      <div class="solution"><p>The side along the wall is {m:80-2x}. {m:A=x(80-2x)=80x-2x^2}. {m:frac(dA, dx)=80-4x=0} gives {m:x=20}. {m:frac(d^2A, dx^2)=-4}: a maximum. {m:A=20*40=800}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from the stationary point back to the equation</h2>
+    <p>So far you started with an equation and found its stationary points. Now run it backwards: you are told about a stationary point, and you must find missing numbers in the equation.</p>
+    <h3>Forwards</h3>
+    <p>Start with {m:y=x^2-6x+7}. Then {m:frac(dy, dx)=2x-6}, which is 0 at {m:x=3}. At {m:x=3}, {m:y=9-18+7=-2}. The stationary point is (3, &minus;2), and {m:frac(d^2y, dx^2)=2} is positive, so it is a minimum.</p>
+    <h3>Backwards</h3>
+    <p>Start with a curve {m:y=x^2+bx+c} that has a minimum point at (3, &minus;2). Find b and c. A stationary point gives two facts about the curve.</p>
+    <ul>
+      <li>The gradient is 0 at {m:x=3}. Use the derivative.</li>
+      <li>The point (3, &minus;2) is on the curve. Use the equation of the curve.</li>
+    </ul>
+    <figure class="figure-lg">{fig:differentiation-applications-flip-minimum}<figcaption>The curve you will find. It has a minimum point at (3, &minus;2), where the tangent is horizontal, and it crosses the y-axis at (0, 7).</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> a stationary point at a known point gives two equations. The first is {m:frac(dy, dx)=0} at the x-value of the point. The second is that the y-value equals the equation of the curve at that x-value. Two equations are enough to find two unknown numbers.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example</h3>
+      <p>The curve {m:y=x^2+bx+c} has a minimum point at (3, &minus;2). Find b and c.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=2x+b}. At {m:x=3} the gradient is 0: {m:6+b=0}, so {m:b=-6}.</li>
+        <li>The point (3, &minus;2) is on the curve: {m:-2=9+3b+c=9-18+c}, so {m:c=7}.</li>
+        <li>The equation is {m:y=x^2-6x+7}. Check: {m:frac(d^2y, dx^2)=2} is positive, so the point is a minimum, as stated.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The curve {m:y=x^2+bx+c} has a minimum point at (&minus;1, 4). Find b and c.</p>
+      <ol class="steps">
+        <li>{m:frac(dy, dx)=2x+b}. At {m:x=-1} the gradient is 0: {m:-2+b=0}, so {m:b=}<span class="blank" data-answers="2">___</span>.</li>
+        <li>The point (&minus;1, 4) is on the curve: {m:4=1-b+c=1-2+c}, so {m:c=}<span class="blank" data-answers="5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:b=2} and {m:c=5}, so {m:y=x^2+2x+5}. At {m:x=-1}: {m:y=1-2+5=4}. &#10003;</p></details>
+    </div>
+    <p>The same flip works on graphs. If the graph of {m:y=f'(x)} crosses the x-axis from above to below, the gradient of f changes from positive to negative there, so f has a maximum. If it crosses from below to above, f has a minimum.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="-8" data-mode="value">
+      <p class="qtext">The curve {m:y=x^2+bx+9} has a stationary point where {m:x=4}. Find b.</p>
+      <ol class="ladder"><li>Differentiate. The gradient is 0 at a stationary point.</li><li>Put {m:x=4} into the derivative, set it equal to 0, and solve for b.</li></ol>
+      <ul class="wrong"><li data-if="8">You solved {m:8+b=0} as {m:b=8}. Subtract 8 from both sides: {m:b=0-8}.</li><li data-if="-4">You differentiated {m:x^2} as x. The derivative of {m:x^2} is {m:2x}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x+b}. At {m:x=4}: {m:8+b=0}, so {m:b=-8}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The curve {m:y=2x^2+bx+1} has a stationary point where {m:x=-1}. Find b.</p>
+      <ol class="ladder"><li>Differentiate each term. The gradient is 0 at a stationary point.</li><li>Put {m:x=-1} into the derivative, set it equal to 0, and solve for b.</li></ol>
+      <ul class="wrong"><li data-if="-4">You wrote {m:b=4x}. From {m:4x+b=0} you get {m:b=-4x}, which is {m:-4*(-1)=4} when {m:x=-1}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=4x+b}. At {m:x=-1}: {m:-4+b=0}, so {m:b=4}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The tangent to the curve {m:y=x^2+kx+3} at the point where {m:x=2} has gradient 7. Find k.</p>
+      <ol class="ladder"><li>The gradient of the tangent is the value of the derivative.</li><li>Differentiate, put {m:x=2} in, and set the result equal to 7.</li></ol>
+      <ul class="wrong"><li data-if="7">7 is the gradient of the tangent, which is {m:4+k}. It is not k.</li><li data-if="11">You solved {m:4+k=7} as {m:k=7+4}. Subtract 4 from both sides.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2x+k}. At {m:x=2}: {m:4+k=7}, so {m:k=3}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">The curve {m:y=ax^2+8x} has a maximum point where {m:x=2}. Find a.</p>
+      <ol class="ladder"><li>Differentiate. The gradient is 0 at a stationary point.</li><li>Put {m:x=2} into the derivative, set it equal to 0, and solve for a.</li></ol>
+      <ul class="wrong"><li data-if="2">The curve has a maximum, so the second derivative {m:2a} must be negative. Check the sign.</li><li data-if="-4">You wrote the derivative as {m:2a+8}. The derivative of {m:ax^2} is {m:2ax}, which is {m:4a} at {m:x=2}.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=2ax+8}. At {m:x=2}: {m:4a+8=0}, so {m:a=-2}. Check: {m:frac(d^2y, dx^2)=2a=-4} is negative, so the point is a maximum. &#10003;</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f'(x)} crosses the x-axis at {m:x=2}. As x increases, it goes from above the axis to below it. What does the graph of {m:y=f(x)} have at {m:x=2}?</p>
+      <ul class="options">
+        <li data-correct>A maximum point, because the gradient changes from positive to negative</li>
+        <li data-why="A minimum needs the gradient to change from negative to positive. Here it goes from positive to negative.">A minimum point, because the gradient changes from positive to negative</li>
+        <li data-why="The derivative is negative a little to the right of x equal to 2, so f is falling there. It is not increasing everywhere.">Nothing special: f is increasing everywhere</li>
+      </ul>
+      <ol class="ladder"><li>Above the x-axis means the gradient of f is positive. Below means negative.</li><li>Positive, then negative: does f rise then fall, or fall then rise?</li></ol>
+      <div class="solution"><p>{m:f'(x)} is positive, then zero, then negative. So f rises, has a horizontal tangent, then falls: a maximum point.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Asha says:</b> the tangent to {m:y=x^2} at {m:x=3} has gradient {m:2x=6}, so its equation is {m:y=6x}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She used the gradient but not the point. The tangent must pass through (3, 9): {m:y-9=6(x-3)}, so {m:y=6x-9}</li>
+        <li data-why="The derivative is right: the derivative of x squared is 2x, which is 6 at x equal to 3. The gradient is not the problem.">The gradient should be 2</li>
+        <li data-why="Test the point: the line y equals 6x gives 18 at x equal to 3, but the curve has y equal to 9 there. So the line does not touch the curve at that point.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>A tangent touches the curve. Does {m:y=6x} pass through the point on the curve where {m:x=3}?</li><li>Use {m:y-y_1=m(x-x_1)} with the point on the curve.</li></ol>
+      <div class="solution"><p>At {m:x=3}, the curve has {m:y=9}. The line {m:y=6x} gives 18, so it misses the point. The tangent is {m:y-9=6(x-3)}, which is {m:y=6x-9}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> the tangent to a curve has gradient 2, so the normal has gradient {m:-2}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He changed the sign but did not turn 2 upside down. The normal gradient is {m:-frac(1, 2)}</li>
+        <li data-why="Then the product of the gradients is 1, not minus 1. The normal gradient must be negative.">The normal gradient should be {m:frac(1, 2)}</li>
+        <li data-why="Two times minus 2 is minus 4, not minus 1. Lines at right angles have gradients that multiply to minus 1.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>The two gradients must multiply to {m:-1}. Multiply 2 by {m:-2}.</li></ol>
+      <div class="solution"><p>{m:2*(-2)=-4}, not {m:-1}. The normal gradient is {m:-frac(1, 2)}, because {m:2*(-frac(1, 2))=-1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Chen says:</b> for {m:y=x^3-3x^2}, {m:frac(dy, dx)=3x^2-6x}. I divide both sides of {m:3x^2-6x=0} by x to get {m:3x-6=0}, so the only stationary point is at {m:x=2}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>Dividing by x lost the solution {m:x=0}. Factorise instead: {m:3x(x-2)=0} gives {m:x=0} or {m:x=2}</li>
+        <li data-why="The derivative is right: 3x squared from x cubed, and minus 6x from minus 3x squared.">The derivative should be {m:3x^2-3x}</li>
+        <li data-why="At x equal to 2 the derivative is 12 minus 12, which is 0. So x equal to 2 is a stationary point.">{m:x=2} is not a stationary point</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:x=0} a solution of {m:3x^2-6x=0}?</li><li>If you divide by x, what happens to that solution?</li></ol>
+      <div class="solution"><p>{m:3x^2-6x=3x(x-2)}, which is 0 when {m:x=0} or {m:x=2}. The stationary points are (0, 0) and (2, &minus;4).</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dee says:</b> for {m:y=x^4}, {m:frac(d^2y, dx^2)=12x^2=0} at {m:x=0}, so (0, 0) is a point of inflection. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>A second derivative of 0 does not decide the nature. The gradient {m:4x^3} is negative for {m:x < 0} and positive for {m:x > 0}, so (0, 0) is a minimum</li>
+        <li data-why="The curve y equals x to the 4 is never below 0, so the point (0, 0) is lower than the points near it. It is not a maximum.">(0, 0) is a maximum</li>
+        <li data-why="y equals x to the 4 has a minimum at (0, 0). A second derivative of 0 is not enough to show an inflection.">Nothing, it is correct</li>
+      </ul>
+      <ol class="ladder"><li>What does the second derivative test say when the second derivative is 0?</li><li>Find the sign of {m:frac(dy, dx)=4x^3} on each side of 0.</li></ol>
+      <div class="solution"><p>When {m:frac(d^2y, dx^2)=0}, use the sign of the gradient. {m:4x^3} is negative for {m:x < 0} and positive for {m:x > 0}, so the gradient goes from negative to positive: a minimum.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="-4" data-mode="value">
+      <p class="qtext">Find the gradient of the tangent to {m:y=2x^3-5x^2+4} at the point where {m:x=1}.</p>
+      <ol class="ladder"><li>Differentiate, then put {m:x=1} into the derivative.</li></ol>
+      <ul class="wrong"><li data-if="1">That is the value of y at {m:x=1}: {m:2-5+4=1}. The gradient comes from the derivative.</li><li data-if="4">{m:6-10} is negative. Check the sign.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=6x^2-10x}. At {m:x=1}: {m:6-10=-4}.</p></div>
+    </div>
+    <div class="q" data-answers="y=4x-15;4x-15;-15+4x;y=-15+4x" data-mode="exact">
+      <p class="qtext">Find the equation of the normal to {m:y=frac(4, x)} at the point where {m:x=4}. Type it like y=5x+2.</p>
+      <ol class="ladder"><li>Rewrite {m:frac(4, x)} as {m:4x^(-1)} and differentiate. Put {m:x=4} in for the gradient of the tangent.</li><li>Take the negative reciprocal for the normal, and use the point on the curve.</li></ol>
+      <ul class="wrong"><li data-if="y=-4x+17;-4x+17;17-4x;y=17-4x">The tangent has gradient {m:-frac(1, 4)}, which is negative. The normal gradient is the negative reciprocal, so it is positive.</li><li data-if="y=4x-16;4x-16;-16+4x;y=-16+4x">You stopped at {m:4(x-4)}. The equation is {m:y-1=4(x-4)}, so the 1 must be added back.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=-4x^(-2)}, which is {m:-frac(4, 16)=-frac(1, 4)} at {m:x=4}. The normal has gradient 4. At {m:x=4}, {m:y=1}. So {m:y-1=4(x-4)}, which is {m:y=4x-15}.</p></div>
+    </div>
+    <div class="q" data-answers="(-1,6);-1,6" data-mode="value">
+      <p class="qtext">Find the coordinates of the maximum point of {m:y=x^3-3x^2-9x+1}. Type them like (2, 7).</p>
+      <ol class="ladder"><li>Find the stationary points: solve {m:frac(dy, dx)=0}, and find y for each.</li><li>Use the second derivative to decide which one is a maximum.</li></ol>
+      <ul class="wrong"><li data-if="(3,-26);3,-26">That is the minimum point: the second derivative {m:6x-6} is {m:12}, positive, at {m:x=3}.</li><li data-if="(-1,-12);-1,-12">{m:-12} is the value of the second derivative at {m:x=-1}. The y-coordinate comes from the equation of the curve.</li></ul>
+      <div class="solution"><p>{m:frac(dy, dx)=3x^2-6x-9=3(x-3)(x+1)}, so {m:x=3} or {m:x=-1}. {m:frac(d^2y, dx^2)=6x-6}: at {m:x=-1} it is {m:-12} (negative, a maximum), at {m:x=3} it is 12 (positive, a minimum). At {m:x=-1}: {m:y=-1-3+9+1=6}. The maximum point is (&minus;1, 6).</p></div>
+    </div>
+    <div class="q" data-answers="81" data-mode="value">
+      <p class="qtext">A rectangle has perimeter 36 cm. Find its greatest possible area, in cm&sup2;.</p>
+      <ol class="ladder"><li>Let the width be x cm. Use the perimeter to find the length in terms of x.</li><li>Write the area as a function of x, then find where its derivative is 0.</li></ol>
+      <ul class="wrong"><li data-if="9">9 is the width that gives the greatest area. The question asks for the area.</li><li data-if="324">You used a length of {m:36-x}. Half the perimeter, 18, is the width plus the length, so the length is {m:18-x}.</li></ul>
+      <div class="solution"><p>The length is {m:18-x}. {m:A=x(18-x)=18x-x^2}. {m:frac(dA, dx)=18-2x=0} gives {m:x=9}. {m:frac(d^2A, dx^2)=-2}: a maximum. {m:A=9*9=81}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. M marks are for method. A marks are for an accurate answer. B marks are for a correct fact or statement.</p>
+    <p class="muted">Write your working on paper, then type the answer.</p>
+    <div class="q" data-answers="3x^2-12x+9" data-mode="exact" data-marks="2">
+      <ul class="facts"><li>The curve C has equation {m:y=x^3-6x^2+9x+2}.</li></ul>
+      <p class="qtext"><b>(a)</b> [2 marks] Find {m:frac(dy, dx)}. Type it like 5x^2-3x+1.</p>
+      <ol class="ladder"><li>Differentiate each term. The constant term differentiates to 0.</li></ol>
+      <ul class="wrong"><li data-if="3x^2-12x+9+2;3x^2-12x+11">The constant 2 differentiates to 0. It does not stay in the answer.</li><li data-if="3x^2-6x+9">The term {m:-6x^2} has the multiplier {m:-6*2=-12}, not {m:-6}.</li></ul>
+      <div class="solution">
+        <p>{m:frac(dy, dx)=3x^2-12x+9}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for differentiating at least two terms correctly</li>
+          <li><b>A1</b> for {m:3x^2-12x+9}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="y=-3x+10;-3x+10;10-3x;y=10-3x" data-mode="exact" data-marks="4">
+      <p class="qtext"><b>(b)</b> [4 marks] Find the equation of the tangent to C at the point where {m:x=2}. Type it like y=5x+1.</p>
+      <ol class="ladder"><li>Find the y-coordinate of the point on C, and the gradient from your answer to part (a).</li><li>Use {m:y-y_1=m(x-x_1)}.</li></ol>
+      <ul class="wrong"><li data-if="y=-3x+4;-3x+4;4-3x;y=4-3x">4 is the y-coordinate of the point, not the place where the tangent crosses the y-axis. Use {m:y-4=-3(x-2)}.</li><li data-if="y=-3x+6;-3x+6;6-3x;y=6-3x">You stopped at {m:-3(x-2)}. The equation is {m:y-4=-3(x-2)}, so the 4 must be added back.</li></ul>
+      <div class="solution">
+        <p>At {m:x=2}: {m:y=8-24+18+2=4}, and {m:frac(dy, dx)=12-24+9=-3}. The tangent is {m:y-4=-3(x-2)}, so {m:y=-3x+10}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:y=4} when {m:x=2}</li>
+          <li><b>M1</b> for substituting {m:x=2} into {m:frac(dy, dx)}</li>
+          <li><b>M1</b> for {m:y-y_1=m(x-x_1)} with their gradient and point</li>
+          <li><b>A1</b> for {m:y=-3x+10}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(1,6);1,6" data-mode="value" data-marks="5">
+      <p class="qtext"><b>(c)</b> [5 marks] The curve C has a maximum point. Find its coordinates, and use the second derivative to show that it is a maximum. Type the coordinates like (2, 7).</p>
+      <ol class="ladder"><li>Solve {m:frac(dy, dx)=0}. Factorise your answer to part (a).</li><li>Find {m:frac(d^2y, dx^2)} at each stationary point. Which one is negative?</li></ol>
+      <ul class="wrong"><li data-if="(3,2);3,2">That is the minimum point: {m:frac(d^2y, dx^2)=6x-12} is positive at {m:x=3}.</li><li data-if="(1,-6);1,-6">{m:-6} is the value of the second derivative at {m:x=1}. The y-coordinate comes from the equation of C.</li></ul>
+      <div class="solution">
+        <p>{m:3x^2-12x+9=3(x-1)(x-3)=0} gives {m:x=1} or {m:x=3}. At {m:x=1}: {m:y=1-6+9+2=6}. At {m:x=3}: {m:y=27-54+27+2=2}. {m:frac(d^2y, dx^2)=6x-12}: at {m:x=1} it is {m:-6}, which is negative, so (1, 6) is a maximum. At {m:x=3} it is 6, positive: (3, 2) is a minimum.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for setting {m:frac(dy, dx)=0}</li>
+          <li><b>A1</b> for {m:x=1} and {m:x=3}</li>
+          <li><b>M1</b> for finding a y-coordinate</li>
+          <li><b>A1</b> for (1, 6)</li>
+          <li><b>B1</b> for {m:frac(d^2y, dx^2)=-6} at {m:x=1}, which is negative, so a maximum</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value" data-marks="4">
+      <ul class="facts"><li>The curve C has equation {m:y=x^2-4x+5}.</li><li>The point A on C has x-coordinate 3.</li><li>The normal to C at A meets the x-axis at the point D.</li></ul>
+      <p class="qtext"><b>(a)</b> [4 marks] Find the x-coordinate of D.</p>
+      <ol class="ladder"><li>Find the gradient of the tangent at A, then the gradient of the normal.</li><li>Write the equation of the normal. Where does {m:y=0}?</li></ol>
+      <ul class="wrong"><li data-if="2">2 is where the tangent meets the x-axis. The question asks about the normal.</li><li data-if="3.5;7/2">3.5 is where the normal crosses the y-axis. D is on the x-axis, where {m:y=0}.</li></ul>
+      <div class="solution">
+        <p>{m:frac(dy, dx)=2x-4}, which is 2 at {m:x=3}. At A, {m:y=9-12+5=2}. The normal has gradient {m:-frac(1, 2)}: {m:y-2=-frac(1, 2)(x-3)}. When {m:y=0}: {m:-2=-frac(1, 2)(x-3)}, so {m:x-3=4} and {m:x=7}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the gradient of the tangent at A</li>
+          <li><b>M1</b> for the gradient of the normal, {m:-frac(1, 2)}</li>
+          <li><b>M1</b> for the equation of the normal, and {m:y=0}</li>
+          <li><b>A1</b> for {m:x=7}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] The tangent to C at A meets the x-axis at the point B. Find the area of the triangle ABD.</p>
+      <ol class="ladder"><li>Find the equation of the tangent at A. Where does it meet the x-axis?</li><li>The base of the triangle is on the x-axis. The height is the y-coordinate of A.</li></ol>
+      <ul class="wrong"><li data-if="10">You forgot the half. The area of a triangle is {m:frac(1, 2)*"base"*"height"}.</li></ul>
+      <div class="solution">
+        <p>The tangent is {m:y-2=2(x-3)}, which is {m:y=2x-4}. It meets the x-axis at {m:x=2}, so B is (2, 0). D is (7, 0), so {m:BD=5}. The height of the triangle is the y-coordinate of A, 2. The area is {m:frac(1, 2)*5*2=5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the tangent, and where it meets the x-axis, {m:x=2}</li>
+          <li><b>M1</b> for {m:frac(1, 2)*"base"*"height"} with {m:BD=5} and height 2</li>
+          <li><b>A1</b> for 5</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4x^3-48x^2+144x;144x-48x^2+4x^3" data-mode="exact" data-marks="2">
+      <ul class="facts"><li>A box with no lid is made from a square sheet of card, 12 cm by 12 cm. A square of side x cm is cut from each corner, and the sides are folded up.</li><li>The base of the box is a square of side {m:12-2x} cm, and its height is x cm. Its volume is {m:V=x(12-2x)^2} cm&sup3;, for {m:0 < x < 6}.</li></ul>
+      <p class="qtext"><b>(a)</b> [2 marks] Expand and simplify {m:x(12-2x)^2}. Type it like 5x^3-2x^2+7x.</p>
+      <figure class="qfig-lg">{fig:differentiation-applications-q-box-net}</figure>
+      <ol class="ladder"><li>Expand {m:(12-2x)^2} first. It means {m:(12-2x)(12-2x)}.</li><li>Then multiply every term by x.</li></ol>
+      <ul class="wrong"><li data-if="144x-4x^3">{m:(12-2x)^2} is not {m:144-4x^2}. It has three terms: the middle term is {m:-48x}.</li></ul>
+      <div class="solution">
+        <p>{m:(12-2x)^2=144-48x+4x^2}. Multiply by x: {m:V=144x-48x^2+4x^3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for expanding {m:(12-2x)^2} with three terms</li>
+          <li><b>A1</b> for {m:4x^3-48x^2+144x}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="12x^2-96x+144" data-mode="exact" data-marks="2">
+      <p class="qtext"><b>(b)</b> [2 marks] Find {m:frac(dV, dx)}. Type it like 5x^2-3x+1.</p>
+      <ol class="ladder"><li>Use the expanded form of V from part (a).</li><li>Differentiate each term.</li></ol>
+      <ul class="wrong"><li data-if="12x^2-48x+144">{m:-48x^2} has the multiplier {m:-48*2=-96}, not {m:-48}.</li></ul>
+      <div class="solution">
+        <p>{m:frac(dV, dx)=12x^2-96x+144}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for differentiating at least two terms correctly</li>
+          <li><b>A1</b> for {m:12x^2-96x+144}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(c)</b> [3 marks] Find the value of x, with {m:0 < x < 6}, for which V is a maximum.</p>
+      <ol class="ladder"><li>Set {m:frac(dV, dx)=0}. Divide by 12 to make the numbers smaller, then factorise.</li><li>Use the condition {m:0 < x < 6}, and the second derivative, to choose between your answers.</li></ol>
+      <ul class="wrong"><li data-if="6">{m:x=6} is the other stationary point, but it is outside the allowed values {m:0 < x < 6}: the box has no volume there.</li></ul>
+      <div class="solution">
+        <p>{m:12x^2-96x+144=12(x^2-8x+12)=12(x-2)(x-6)=0}, so {m:x=2} or {m:x=6}. {m:frac(d^2V, dx^2)=24x-96}. At {m:x=2} it is {m:-48}, negative: a maximum. At {m:x=6} it is 48, positive: a minimum. So {m:x=2}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for setting {m:frac(dV, dx)=0}</li>
+          <li><b>A1</b> for {m:x=2} and {m:x=6}</li>
+          <li><b>A1</b> for {m:x=2}, with a reason: the second derivative is negative</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="128" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(d)</b> [2 marks] Find the greatest possible volume, in cm&sup3;.</p>
+      <ol class="ladder"><li>Put your value of x from part (c) into {m:V=x(12-2x)^2}.</li></ol>
+      <ul class="wrong"><li data-if="2">2 is the value of x that gives the greatest volume. The question asks for the volume itself.</li><li data-if="0">0 is the volume when {m:x=6}, which is the minimum, not the maximum.</li></ul>
+      <div class="solution">
+        <p>{m:V=2*(12-4)^2=2*64=128}. The greatest volume is 128 cm&sup3;.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for substituting {m:x=2} into V</li>
+          <li><b>A1</b> for 128</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value" data-marks="3">
+      <ul class="facts"><li>{m:f(x)=x^3+3x+5}.</li></ul>
+      <p class="qtext">[3 marks] Find the smallest value of {m:f'(x)}. Then, on paper, explain why f is increasing for every value of x.</p>
+      <ol class="ladder"><li>Find {m:f'(x)}. Think about how small {m:3x^2} can be.</li><li>{m:x^2} is never negative.</li></ol>
+      <ul class="wrong"><li data-if="0">{m:3x^2} can be 0, but the derivative also has the term 3, which is always there.</li></ul>
+      <div class="solution">
+        <p>{m:f'(x)=3x^2+3}. Since {m:x^2 >= 0}, {m:f'(x) >= 3}. The smallest value is 3, when {m:x=0}. The gradient is always positive, so f is increasing for every value of x.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:f'(x)=3x^2+3}</li>
+          <li><b>A1</b> for 3</li>
+          <li><b>B1</b> for a reason: {m:f'(x) > 0} for every x, so f is increasing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The tangent equation.</b> The gradient of a curve at a point is the gradient of the tangent there. A straight line is fixed by one point and its gradient, so the tangent is the line through the point on the curve with that gradient.</li>
+      <li><b>The normal.</b> A line with direction {m:(1, m)} turned through a right angle has direction {m:(-m, 1)}, and its gradient is {m:frac(1, -m)=-frac(1, m)}. So two lines at right angles have gradients that multiply to {m:-1}. If {m:m=0}, the direction {m:(-m, 1)} is {m:(0, 1)}: straight up, a vertical line.</li>
+      <li><b>Increasing and decreasing.</b> If the gradient is positive at every point of an interval, the curve rises as you move along it. A full proof needs ideas beyond A-level, but the picture is clear: a tangent that slopes up everywhere cannot belong to a curve that goes down.</li>
+      <li><b>Stationary points.</b> A smooth curve, with no break and no corner, can only turn from rising to falling, or from falling to rising, by passing through a point where its gradient is 0. That is why the stationary points are where to look for a maximum or a minimum. The reverse is not true: {m:y=x^3} has a stationary point at the origin and does not turn.</li>
+      <li><b>The second derivative test.</b> At a stationary point the gradient is 0. If {m:frac(d^2y, dx^2) > 0}, the gradient is increasing, so it is negative a little before and positive a little after: the curve goes down, then up. If {m:frac(d^2y, dx^2) < 0}, it is the other way round. If {m:frac(d^2y, dx^2)=0}, you cannot tell whether the gradient changes sign: {m:y=x^4} and {m:y=x^3} are two examples with different results.</li>
+      <li><b>Optimisation.</b> If a quantity has a greatest or a least value at a point inside the allowed values of x, and it can be differentiated there, the gradient at that point is 0, because the quantity has stopped rising and not yet started to fall (or the reverse). So you look at the stationary points, and check the end points of the allowed values of x.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Putting the x-value into the original equation to get the gradient, instead of into {m:frac(dy, dx)}.</li>
+      <li>Using the gradient as the y-intercept of the tangent, or forgetting to add the y-coordinate back when writing {m:y=m(x-x_1)+y_1}.</li>
+      <li>Using the gradient of the tangent as the gradient of the normal, or changing the sign without turning the fraction upside down.</li>
+      <li>Forgetting that a horizontal tangent has a vertical normal, {m:x=a} (a is the x-coordinate of the point), with no gradient to find.</li>
+      <li>Solving a derivative inequality and giving y-values instead of x-values.</li>
+      <li>Dividing both sides of {m:frac(dy, dx)=0} by x, and losing the solution {m:x=0}.</li>
+      <li>Giving only the x-coordinate of a stationary point, when the question asks for the point.</li>
+      <li>Saying a stationary point is a minimum because {m:frac(d^2y, dx^2)=0}, or an inflection because it is 0, without checking the sign of the gradient.</li>
+      <li>In optimisation, giving x when the question asks for the greatest value, and forgetting units.</li>
+      <li>Keeping a solution that is not allowed in the problem, such as a negative length.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="differentiation-applications">
+      <li><label><input type="checkbox"> find the equation of the tangent to a curve at a point</label></li>
+      <li><label><input type="checkbox"> find the equation of the normal, including when the tangent is horizontal</label></li>
+      <li><label><input type="checkbox"> use the sign of the derivative to say where a function is increasing or decreasing</label></li>
+      <li><label><input type="checkbox"> find the coordinates of a stationary point</label></li>
+      <li><label><input type="checkbox"> decide its nature with the second derivative, and with the sign of the gradient either side</label></li>
+      <li><label><input type="checkbox"> say why a second derivative of 0 does not decide the nature, with an example</label></li>
+      <li><label><input type="checkbox"> solve a short optimisation problem and check that the answer is a maximum or a minimum</label></li>
+      <li><label><input type="checkbox"> use a stationary point to find unknown numbers in an equation</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
