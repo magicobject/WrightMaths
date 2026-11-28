@@ -126,8 +126,8 @@ const CHECKS: Check[] = [
   // ----- 2. finding the other values -----
   { find: 'acute and sin theta=0.8', answer: String(clean(Math.sqrt(1 - 0.8 ** 2))), slips: [{ value: String(clean(1 - 0.8 ** 2)), says: /That is cos\^2 theta/ }, { value: String(clean(1 - 0.8)), says: /1-0.8.*squares/ }] },
   { find: 'obtuse and cos theta=-0.28', answer: String(clean(Math.sqrt(1 - 0.28 ** 2))), slips: [{ value: String(-clean(Math.sqrt(1 - 0.28 ** 2))), says: /sign is not.*sine is positive/ }, { value: String(clean(1 - 0.28 ** 2)), says: /That is sin\^2 theta/ }] },
-  { find: 'sin theta=-frac(5,13)', answer: '-12/13', slips: [{ value: String(12 / 13), says: /size is right but the sign is not.*cosine is negative/ }, { value: String(-144 / 169), says: /cos\^2 theta with a minus sign/ }] },
-  { find: 'obtuse and sin theta=frac(4,5)', answer: '-4/3', slips: [{ value: String(4 / 3), says: /sign is not.*tangent is negative/ }, { value: String(-3 / 4), says: /divided the cosine by the sine/ }] },
+  { find: 'sin theta=-frac(5,13)', answer: String(-Math.sqrt(1 - (5 / 13) ** 2)), slips: [{ value: String(12 / 13), says: /size is right but the sign is not.*cosine is negative/ }, { value: String(-144 / 169), says: /cos\^2 theta with a minus sign/ }] },
+  { find: 'obtuse and sin theta=frac(4,5)', answer: String(0.8 / -Math.sqrt(1 - 0.8 ** 2)), slips: [{ value: String(4 / 3), says: /sign is not.*tangent is negative/ }, { value: String(-3 / 4), says: /divided the cosine by the sine/ }] },
   // ----- 3. every solution in an interval -----
   { find: 'Solve sin x=0.9', answer: list1((x) => S(x) - 0.9, 0, 360), slips: [{ value: '64.2', says: /one solution.*second/ }, { value: pairs(asinD(0.9), 360 - asinD(0.9)), says: /360-64.2.*rule for cosine/ }] },
   { find: 'Solve cos x=-0.7', answer: list1((x) => C(x) + 0.7, 0, 360), slips: [{ value: pairs(acosD(-0.7), 180 - acosD(-0.7)), says: /180-134.4.*rule for sine/ }] },
@@ -167,8 +167,8 @@ const CHECKS: Check[] = [
   { find: 'Solve 2 sin^2 x=sin x', answer: listX((x) => 2 * S(x) ** 2 - S(x), 0, 360), slips: [{ value: '30 or 150', says: /divided both sides by sin x.*loses the solutions where sin x=0/ }] },
   { find: 'Solve cos 3x=-0.5', answer: listX((x) => C(3 * x) + 0.5, 0, 120), slips: [{ value: '120 or 240', says: /values of 3x.*divide each by 3/ }] },
   // ----- exam style -----
-  { find: 'Find the exact value of cos theta', answer: '-12/13', slips: [{ value: String(12 / 13), says: /size but not the sign.*cosine is negative/ }] },
-  { find: 'Using your answer to part (a)', answer: '-5/12', slips: [{ value: String(-12 / 5), says: /upside down.*sine goes on the top/ }] },
+  { find: 'Find the exact value of cos theta', answer: String(-Math.sqrt(1 - (5 / 13) ** 2)), slips: [{ value: String(12 / 13), says: /size but not the sign.*cosine is negative/ }] },
+  { find: 'Using your answer to part (a)', answer: String(5 / 13 / -Math.sqrt(1 - (5 / 13) ** 2)), slips: [{ value: String(-12 / 5), says: /upside down.*sine goes on the top/ }] },
   { find: 'Solve 6 cos^2 x+sin x-5=0', answer: list1((x) => 6 * C(x) ** 2 + S(x) - 5, 0, 360), slips: [{ value: '30 or 150', says: /only.*sin x=-frac\(1,3\)/ }] },
   { find: 'Solve cos(2x-40deg)=0.5', answer: listX((x) => C(2 * x - 40) - 0.5, 0, 180), slips: [{ value: '-10 or 50 or 170', says: /-10 is outside the interval/ }] },
   { find: 'Solve tan x=3 sin x', answer: list1((x) => T(x) - 3 * S(x), 0, 360), slips: [{ value: pairs(acosD(1 / 3), 360 - acosD(1 / 3)), says: /cancelled sin x.*loses the solutions/ }] },
@@ -656,7 +656,7 @@ test('every curve is read back from its drawn path and is the function the page 
       expect(meets.map((v) => Math.round(v)), id).toEqual([45, 225]);
     }
     // the tan graph has its asymptotes at 90 and 270: the drawn curve is in separate pieces
-    if (st.tan) expect(m.paths[0].pieces.length, `${id}: pieces of the tangent`).toBeGreaterThanOrEqual(3);
+    if (st.tan) expect(m.paths[0].pieces.length, `${id}: pieces of the tangent`).toBe(3);
     // the quad-sin figure: the line y = -1 touches the wave at its lowest point only
     if (id.endsWith('quad-sin')) {
       expect(sols((x) => S(x) + 1, 0, 360).map((v) => Math.round(v)), id).toEqual([270]);
@@ -862,10 +862,55 @@ test('the page states the conditions on each general rule exactly', () => {
   expect(text).toContain('In each, n is any whole number: positive, negative or zero.');
   expect(text).toContain('where k is a positive number, for a<=x<=b');
   expect(text).toContain('to solve an equation in x+c, where c is any number, for a<=x<=b');
-  expect(text).toContain('For an equation of the form a sin x=b cos x, where a is not 0, divide both sides by cos x to get tan x=frac(b, a).');
+  expect(text).toContain('For an equation of the form a sin x=b cos x, where a is not 0, divide both sides by a cos x to get tan x=frac(b, a).');
   expect(text).toContain('where s stands for sin x, cos x or tan x, and a is not 0');
   expect(text).toContain('Tangent can be any number.');
   expect(text).toContain('Never divide both sides by sin x or cos x'.replace('Never', 'Otherwise, never'));
   // the identities are never written as an equation to be solved
   expect(text).toContain('You solve an equation. You do not solve an identity');
+});
+
+test('the corrected rule sentences are pinned, and each is true', () => {
+  const text = plain(SOURCE);
+  // dividing: it could be 0 at a solution, and dividing by 0 loses that solution
+  expect(text).toContain('Otherwise, never divide both sides by sin x or cos x. It could be 0 at a solution, and dividing by 0 loses that solution.');
+  expect(text).toContain('Dividing both sides by sin x or cos x when it could be 0 at a solution.');
+  // one function only: the square of one function with the other, or both squares
+  expect(text).toContain('If the equation has the square of one function and the other function (such as cos^2 x with sin x, or sin^2 x with cos x), or both sin^2 x and cos^2 x, use sin^2 x+cos^2 x=1 to write it with one function only.');
+  // rejecting comes before solving each remaining value
+  expect(text.indexOf('Reject a value of s that cannot happen.')).toBeGreaterThan(0);
+  expect(text.indexOf('Reject a value of s that cannot happen.')).toBeLessThan(text.indexOf('For each remaining value of s, solve'));
+  // two angles 180 apart have the same tangent, and share a sine or cosine only when it is 0
+  expect(text).toContain('Two angles 180° apart always have the same tangent. They share a sine or a cosine only when that value is 0.');
+  for (const a of [10, 33, 71, 123, 250]) {
+    expect(T(a + 180)).toBeCloseTo(T(a), 9);
+    expect(Math.abs(S(a + 180) - S(a))).toBeGreaterThan(0.1);
+    expect(Math.abs(C(a + 180) - C(a))).toBeGreaterThan(0.1);
+  }
+  expect(S(180) - S(0)).toBeCloseTo(0, 12);
+  expect(C(270) - C(90)).toBeCloseTo(0, 12);
+  // sin x + cos x = 1 is true at 0 and 90 but not everywhere
+  expect(S(0) + C(0)).toBe(1);
+  expect(S(90) + C(90)).toBeCloseTo(1, 12);
+  expect(S(30) + C(30)).not.toBeCloseTo(1, 2);
+});
+
+test('the tangent figure description says three pieces, and three pieces are drawn', async () => {
+  const { FIGURES } = await import('../src/book/alevel/figures/trig-identities.mjs');
+  const svg = (FIGURES as Record<string, () => string>)['trig-identities-flip-tan']();
+  const desc = /<desc id="[^"]*">([^<]*)<\/desc>/.exec(svg)?.[1] ?? '';
+  const pieces = (/<path class="curve" d="([^"]*)"/.exec(svg)?.[1] ?? '').split('M').filter(Boolean).length;
+  expect(pieces).toBe(3);
+  expect(desc).toContain('in three pieces separated by vertical asymptotes at 90° and 270°');
+  expect(desc).toContain('climbs from far below through 0 at 180°');
+  // the asymptotes are where the cosine is 0, and the tangent is 0 at 0, 180 and 360
+  expect([90, 270].map((x) => Math.abs(C(x)) < 1e-12)).toEqual([true, true]);
+  expect([0, 180, 360].map((x) => Math.abs(T(x)) < 1e-12)).toEqual([true, true, true]);
+});
+
+test('the ways a student types a list of angles are accepted, and one angle alone is not', async () => {
+  const { matches } = await import('../public/js/book-answer.mjs');
+  const key = ['30 or 150'];
+  for (const typed of ['30 or 150', '150 or 30', '30, 150', '30,150', '30 150', 'x=30 or x=150', '30°, 150°', '150 and 30', '30 and 150']) expect(matches(typed, key, 'value'), typed).toBe(true);
+  for (const typed of ['30', '150', '30 or 151', '30 or 150 or 210', '']) expect(matches(typed, key, 'value'), typed).toBe(false);
 });

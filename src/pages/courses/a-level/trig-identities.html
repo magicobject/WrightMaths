@@ -4,7 +4,7 @@
     <div>
       <span class="eyebrow">Trigonometry &middot; Year 1</span>
       <h1>Trigonometric identities and equations</h1>
-      <p class="lead">An identity is a fact about sine, cosine and tangent that is true for every angle. You meet two of them: {m:tan theta=frac(sin theta, cos theta)} and {m:sin^2 theta+cos^2 theta=1}. Then you use them to solve equations. An equation such as {m:sin x=0.5} is true for only some angles. You find every such angle in a stated interval, even when the angle is {m:2x} or {m:x+30deg}, and even when the equation is a quadratic in {m:sin x}. All angles on this page are in degrees.</p>
+      <p class="lead">An identity is a fact about sine, cosine and tangent that is true for every angle where both sides have a value. You meet two of them: {m:tan theta=frac(sin theta, cos theta)} and {m:sin^2 theta+cos^2 theta=1}. Then you use them to solve equations. An equation such as {m:sin x=0.5} is true for only some angles. You find every such angle in a stated interval, even when the angle is {m:2x} or {m:x+30deg}, and even when the equation is a quadratic in {m:sin x}. All angles on this page are in degrees.</p>
       <p class="where-use"><b>Where you will use this:</b> in Reciprocal and inverse trigonometric functions, and in Addition formulae, double angles and the R-form (both Year 2), where you prove identities and solve harder equations by the same steps. It is also needed in Parametric equations (Year 2).</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="q" data-answers="30 or 150" data-mode="value">
       <p class="qtext">Solve {m:sin x=0.5} for {m:0deg<=x<=360deg}. Type your answers like 11 or 22.</p>
-      <ol class="ladder"><li>The calculator gives the first angle, {m:sin^(-1)(0.5)}.</li><li>The sine graph has a mirror line at 90&deg;. The pair of {m:x} is {m:180-x}.</li></ol>
+      <ol class="ladder"><li>The calculator gives the first angle, {m:sin^(-1)(0.5)}.</li><li>The sine graph has a mirror line at 90&deg;. If the calculator gives {m:alpha}, the other angle is {m:180deg-alpha}.</li></ol>
       <ul class="wrong"><li data-if="30">That is one solution. The line {m:y=0.5} cuts the sine wave twice, so there is a second solution, {m:180-30}.</li></ul>
       <div class="solution"><p>{m:sin^(-1)(0.5)=30deg}. The other solution is {m:180-30=150}. So {m:x=30deg} or {m:x=150deg}.</p></div>
     </div>
@@ -306,7 +306,7 @@
         <li>The calculator gives {m:alpha=sin^(-1)(-0.6)=-36.9deg}. This is outside the interval.</li>
         <li>The second angle is {m:180-(-36.9)=216.9}. This is inside the interval.</li>
         <li>Add 360&deg; to the first angle to bring it inside: {m:-36.9+360=323.1}.</li>
-        <li>The solutions are {m:x=216.9deg} and {m:x=323.1deg}. Both are in quadrants 3 and 4, where sine is negative.</li>
+        <li>The solutions are {m:x=216.9deg} and {m:x=323.1deg}. {m:216.9deg} is in quadrant 3 and {m:323.1deg} is in quadrant 4, where sine is negative.</li>
       </ol>
       <!-- No figure: the sine graph picture above shows the pairs, and quadrants 3 and 4 are the same pattern shifted down. -->
     </div>
@@ -341,13 +341,13 @@
     <div class="q" data-answers="64.2 or 115.8" data-mode="value">
       <p class="qtext">Solve {m:sin x=0.9} for {m:0deg<=x<=360deg}. Give your answers in degrees to 1 decimal place. Type your answers like 11.5 or 22.5.</p>
       <figure class="qfig-lg">{fig:trig-identities-q-sin-line}</figure>
-      <ol class="ladder"><li>The calculator gives the first angle.</li><li>For sine the pair of {m:x} is {m:180-x}.</li></ol>
+      <ol class="ladder"><li>The calculator gives the first angle.</li><li>If the calculator gives {m:alpha}, the other angle for sine is {m:180deg-alpha}.</li></ol>
       <ul class="wrong"><li data-if="64.2">That is one solution. The line cuts the wave twice, so there is a second: {m:180-64.2}.</li><li data-if="64.2 or 295.8">You used {m:360-64.2}, which is the rule for cosine. For sine, the pair is {m:x} and {m:180-x}.</li></ul>
       <div class="solution"><p>{m:sin^(-1)(0.9)=64.2deg}. The other solution is {m:180-64.2=115.8}. So {m:x=64.2deg} or {m:x=115.8deg}.</p></div>
     </div>
     <div class="q" data-answers="134.4 or 225.6" data-mode="value">
       <p class="qtext">Solve {m:cos x=-0.7} for {m:0deg<=x<=360deg}. Give your answers in degrees to 1 decimal place. Type your answers like 11.5 or 22.5.</p>
-      <ol class="ladder"><li>The calculator gives an angle between 0&deg; and 180&deg;.</li><li>For cosine the pair of {m:x} is {m:360-x}.</li></ol>
+      <ol class="ladder"><li>The calculator gives an angle between 0&deg; and 180&deg;.</li><li>If the calculator gives {m:alpha}, the other angle for cosine is {m:360deg-alpha}.</li></ol>
       <ul class="wrong"><li data-if="134.4 or 45.6">You used {m:180-134.4}, which is the rule for sine. For cosine, the pair is {m:x} and {m:360-x}.</li></ul>
       <div class="solution"><p>{m:cos^(-1)(-0.7)=134.4deg}. The other solution is {m:360-134.4=225.6}. So {m:x=134.4deg} or {m:x=225.6deg}.</p></div>
     </div>
@@ -614,8 +614,8 @@
     <div class="key">
       <p><b>Key idea:</b> two ways to handle an equation with sine and cosine.</p>
       <ul class="tick">
-        <li>For an equation of the form {m:a sin x=b cos x}, where a is not 0, divide both sides by {m:cos x} to get {m:tan x=frac(b, a)}. This is safe here. If {m:cos x} were 0, the equation would force {m:sin x} to be 0 as well, and sine and cosine are never both 0.</li>
-        <li>Otherwise, never divide both sides by {m:sin x} or {m:cos x}. That angle could be 0, and dividing by 0 loses solutions. Move every term to one side and factorise instead.</li>
+        <li>For an equation of the form {m:a sin x=b cos x}, where a is not 0, divide both sides by {m:a cos x} to get {m:tan x=frac(b, a)}. This is safe here. If {m:cos x} were 0, the equation would force {m:sin x} to be 0 as well, and sine and cosine are never both 0.</li>
+        <li>Otherwise, never divide both sides by {m:sin x} or {m:cos x}. It could be 0 at a solution, and dividing by 0 loses that solution. Move every term to one side and factorise instead.</li>
         <li>When a product of factors is 0, set each factor equal to 0 and solve each one separately.</li>
       </ul>
     </div>
@@ -722,10 +722,10 @@
     <div class="key">
       <p><b>Key idea:</b> to solve a quadratic in sin, cos or tan:</p>
       <ol class="steps">
-        <li>If the equation has both {m:sin^2 x} and {m:cos^2 x}, or {m:sin^2 x} and {m:cos x}, use {m:sin^2 x+cos^2 x=1} to write it with one function only. For example, replace {m:cos^2 x} by {m:1-sin^2 x}.</li>
+        <li>If the equation has the square of one function and the other function (such as {m:cos^2 x} with {m:sin x}, or {m:sin^2 x} with {m:cos x}), or both {m:sin^2 x} and {m:cos^2 x}, use {m:sin^2 x+cos^2 x=1} to write it with one function only. For example, replace {m:cos^2 x} by {m:1-sin^2 x}.</li>
         <li>Rearrange to the form {m:a s^2+b s+c=0}, where s stands for {m:sin x}, {m:cos x} or {m:tan x}, and a is not 0. Solve for s by factorising or by the quadratic formula.</li>
-        <li>For each value of s, solve {m:sin x=s} (or cos, or tan) in the interval, as in lesson 3.</li>
         <li>Reject a value of s that cannot happen. This is a {term:rejected-value|rejected value}. For sine and cosine, s must be between {m:-1} and 1 (including both). Tangent can be any number.</li>
+        <li>For each remaining value of s, solve {m:sin x=s} (or cos, or tan) in the interval, as in lesson 3.</li>
       </ol>
     </div>
     <div class="worked">
@@ -835,10 +835,10 @@
 <section class="flip-section">
   <div class="wrap narrow">
     <h2>Flip it: from the equation to the solutions, and back</h2>
-    <p>You have found the angles from an equation. Each is the reverse of the other.</p>
+    <p>You have found the angles from an equation. Now go the other way: find the equation from its angles. Each is the reverse of the other.</p>
     <div class="flip-grid">
       <div class="flip-side"><h3>Forwards</h3><p>From the equation to the angles. Solve {m:tan x=2.747} for {m:0deg<=x<=360deg} and read off every angle that works.</p><p>{m:tan x=2.747} gives {m:x=70deg} or {m:x=250deg}.</p></div>
-      <div class="flip-side"><h3>Backwards</h3><p>From the angles to an equation. If two angles are solutions, work out what value they share. A value shared by two angles that are 180&deg; apart is a tangent.</p><p>The angles {m:70deg} and {m:250deg} both give {m:tan x=2.747}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the angles to an equation. If two angles are solutions, work out what value they share. Two angles 180&deg; apart always have the same tangent. They share a sine or a cosine only when that value is 0.</p><p>The angles {m:70deg} and {m:250deg} both give {m:tan x=2.747}.</p></div>
     </div>
     <figure class="figure-lg">{fig:trig-identities-flip-tan}<figcaption>Look at the dashed line at height 2.747. It cuts the tangent graph at 70&deg; and at 250&deg;, which are 180&deg; apart. Read forwards, the equation gives both angles. Read backwards, the two angles give the equation.</figcaption></figure>
     <div class="worked">
@@ -895,7 +895,7 @@
         <li data-why="Taking a square root is allowed. The mistake is how she took it: she took the root of each term separately.">You cannot take a square root of an identity</li>
       </ul>
       <ol class="ladder"><li>Test her result at {m:x=30deg}.</li><li>{m:sin(30deg)=0.5} and {m:cos(30deg)=0.866}. Add them.</li></ol>
-      <div class="solution"><p>At {m:x=30deg}, {m:sin x+cos x=0.5+0.866=1.366}, not 1. So her result is false. The square root of {m:a^2+b^2} is not {m:a+b}.</p></div>
+      <div class="solution"><p>At {m:x=30deg}, {m:sin x+cos x=0.5+0.866=1.366}, not 1. So her result is false. The square root of {m:a^2+b^2} is not usually {m:a+b}. Her equation is true at some angles, such as 0&deg; and 90&deg;, but not at every angle, so it is not an identity.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext"><b>Ben says:</b> &ldquo;{m:sin x cos x=cos x}. Divide both sides by {m:cos x}, so {m:sin x=1}, so {m:x=90deg}.&rdquo; What is missing, for {m:0deg<=x<=360deg}?</p>
@@ -1058,7 +1058,7 @@
       <li>Using the wrong pair. Sine uses {m:x} and {m:180deg-x}. Cosine uses {m:x} and {m:-x}, which is {m:360deg-x} in a 0&deg; to 360&deg; interval. Tangent uses {m:x} and {m:x+180deg}.</li>
       <li>Solving for {m:2x} or {m:x+30deg} and forgetting to finish. Divide or subtract at the end to get x.</li>
       <li>Using the interval for x as the interval for {m:2x} or for {m:x+30deg}. Work out the new interval first.</li>
-      <li>Dividing both sides by {m:sin x} or {m:cos x}. Move every term to one side and factorise instead.</li>
+      <li>Dividing both sides by {m:sin x} or {m:cos x} when it could be 0 at a solution. Move every term to one side and factorise instead.</li>
       <li>Forgetting a factor. When you factorise, every factor gives its own solutions.</li>
       <li>Forgetting the second sign when you take a square root: {m:cos^2 x=0.25} gives {m:cos x=0.5} and {m:cos x=-0.5}.</li>
       <li>Forgetting that an end point counts when the interval uses {m:<=} or {m:>=}.</li>

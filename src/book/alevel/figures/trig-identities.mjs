@@ -343,7 +343,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = tan x from 0 degrees to 360 degrees, cut by the line y = 2.747 at two points 180 degrees apart',
-      desc: `The tangent graph from 0${DEG} to 360${DEG}, in two pieces that each climb steeply towards a vertical asymptote at 90${DEG} and at 270${DEG}. A dashed horizontal line, labelled y = 2.747, cuts the graph at two marked points: (70${DEG}, 2.747) and (250${DEG}, 2.747). They are 180${DEG} apart, which is the period of tangent.`,
+      desc: `The tangent graph from 0${DEG} to 360${DEG}, in three pieces separated by vertical asymptotes at 90${DEG} and 270${DEG}. It climbs from 0 at 0${DEG} towards the asymptote at 90${DEG}, climbs from far below through 0 at 180${DEG} to the asymptote at 270${DEG}, then climbs from far below to 0 at 360${DEG}. A dashed horizontal line, labelled y = 2.747, cuts the graph at two marked points: (70${DEG}, 2.747) and (250${DEG}, 2.747). They are 180${DEG} apart, which is the period of tangent.`,
     });
   },
 
