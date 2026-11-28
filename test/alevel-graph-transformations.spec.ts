@@ -101,6 +101,13 @@ const sinD = (x: number) => Math.sin(rad(x));
 type Slip = { value: string; says: RegExp; fn?: (x: number) => number };
 type Check = { find: string; answer: string; fn?: (x: number) => number; slips?: Slip[] };
 
+/** The largest value of a wave over one turn, by scanning. */
+const topOf = (fn: (x: number) => number) => Math.round(Math.max(...Array.from({ length: 3601 }, (_, i) => fn(i / 10))) * 1e9) / 1e9;
+/** The period of a wave in degrees: the smallest shift that leaves it unchanged. */
+const periodOf = (fn: (x: number) => number) => { for (let t = 1; t <= 720; t += 1) if ([0, 17, 41, 77].every((x) => close(fn(x + t), fn(x), 1e-9))) return t; return NaN; };
+/** The value of the unknown a that makes g(a) = target (g is linear in a). */
+const solveA = (g: (a: number) => number, target: number) => { const g0 = g(0); const m = g(1) - g0; return (target - g0) / m; };
+
 // the graphs the equation questions name, written here from the question's own numbers
 const parabF = (x: number) => (x - 2) ** 2 - 3; // the figure of "form y=(x-a)^2+b": lowest point (2, -3), through (0, 1)
 const recipF = (x: number) => 8 / (x - 2) - 1; // the figure of "form y=frac(a, x+b)+c": asymptotes x = 2 and y = -1, through (0, -5)
@@ -132,9 +139,9 @@ const CHECKS: Check[] = [
   // 4. the reciprocal graph, moved
   { find: 'has a vertical asymptote x=k', answer: (() => { const f = (x: number) => 3 / (x + 5) + 1; expect(isPole(f, -5)).toBe(true); return String(-5); })(), slips: [{ value: '5', says: /copied the number/ }, { value: String(Math.round(((x: number) => 3 / (x + 5) + 1)(1e9))), says: /horizontal asymptote/ }] },
   { find: 'The asymptotes of y=frac(4, x-3)-2 cross', answer: (() => { const f = (x: number) => 4 / (x - 3) - 2; expect(isPole(f, 3)).toBe(true); return pt([3, Math.round(f(1e9))]); })(), slips: [{ value: pt([-3, 2]), says: /copied the signs/ }, { value: pt([-2, 3]), says: /y-value first/ }] },
-  { find: 'y=frac(6, x+3)-1 meets the y-axis', answer: String(6 / 3 - 1), slips: [{ value: String(6 / 3), says: /left out the -1/ }, { value: String(6 / -3 - 1), says: /used -3 for the bracket/ }] },
+  { find: 'y=frac(6, x+3)-1 meets the y-axis', answer: String(((x: number) => 6 / (x + 3) - 1)(0)), slips: [{ value: String(((x: number) => 6 / (x + 3))(0)), says: /left out the -1/ }, { value: String(6 / -3 - 1), says: /used -3 for the bracket/ }] },
   { find: 'y=frac(4, x-1)+2 meets the x-axis', answer: String(solve((x) => 4 / (x - 1) + 2)[0]), slips: [{ value: String(solve((x) => 4 / (x - 1) - 2)[0]), says: /dropped the minus sign/ }, { value: String(-2), says: /left out the last step/ }] },
-  { find: 'y=frac(a, x-2)+1 passes through the point (0, 4)', answer: String((4 - 1) * (0 - 2)), slips: [{ value: String((4 - 1) * (0 + 2)), says: /is -2, not 2/ }, { value: String((4 - 1) / (0 - 2)), says: /divided 3 by -2/ }] },
+  { find: 'y=frac(a, x-2)+1 passes through the point (0, 4)', answer: String(solveA((a) => a / (0 - 2) + 1, 4)), slips: [{ value: String((4 - 1) * (0 + 2)), says: /is -2, not 2/ }, { value: String((4 - 1) / (0 - 2)), says: /divided 3 by -2/ }] },
   // 5. combining
   { find: 'y=4f(x+1)-5', answer: pt(img([2, 3], { a: 4, c: 1, d: -5 })), slips: [{ value: pt([2 + 1, 4 * 3 - 5]), says: /added 1 to the x-coordinate/ }, { value: pt([2 - 1, 4 * 3 + 5]), says: /added 5 at the end/ }] },
   { find: 'y=-f(x-3)+2', answer: pt(img([-1, 4], { a: -1, c: -3, d: 2 })), slips: [{ value: pt([-1 - 3, -4 + 2]), says: /subtracted 3 from the x-coordinate/ }, { value: pt([-1 + 3, 4 + 2]), says: /left out the minus sign/ }] },
@@ -142,26 +149,26 @@ const CHECKS: Check[] = [
   { find: 'moved 3 units up and then reflected', answer: '-x^2-3', fn: (x) => -(x * x + 3), slips: [{ value: '-x^2+3', fn: (x) => -(x * x) + 3, says: /reflection first and then a move up/ }] },
   { find: 'lowest point of the new graph', answer: pt(img([0, 0], { a: 3, c: 2, d: -1 })), slips: [{ value: pt(img([0, 0], { c: -2, d: -1 })), says: /copied the sign/ }, { value: pt([-2, 3 * -1]), says: /multiplied the -1 by 3/ }] },
   // 6. trigonometric and exponential graphs
-  { find: 'largest value of y=4*sin x+2', answer: String(4 * 1 + 2), slips: [{ value: String(4 * 1), says: /largest value of 4\*sin x/ }, { value: String(4 * (1 + 2)), says: /added 2 before you multiplied/ }] },
-  { find: 'period of y=sin 3x', answer: String(360 / 3), slips: [{ value: String(360 * 3), says: /multiplied by 3/ }, { value: '360', says: /period of sin x/ }] },
+  { find: 'largest value of y=4*sin x+2', answer: String(topOf((x) => 4 * sinD(x) + 2)), slips: [{ value: String(4 * 1), says: /largest value of 4\*sin x/ }, { value: String(4 * (1 + 2)), says: /added 2 before you multiplied/ }] },
+  { find: 'period of y=sin 3x', answer: String(periodOf((x) => sinD(3 * x))), slips: [{ value: String(360 * 3), says: /multiplied by 3/ }, { value: '360', says: /period of sin x/ }] },
   { find: 'its first highest point for x greater than 0', answer: String(img([90, 1], { c: -40 })[0]), slips: [{ value: String(90 - 40), says: /moved the point to the left/ }, { value: '90', says: /where the highest point of sin x is/ }] },
   { find: 'horizontal asymptote y=k', answer: String(0 - 5), slips: [{ value: '5', says: /Down means a smaller y-value/ }, { value: '0', says: /before the move/ }] },
-  { find: 'y=2^x+3 meets the y-axis', answer: String(2 ** 0 + 3), slips: [{ value: String(0 + 3), says: /treated 2\^0 as 0/ }, { value: String(2 + 3), says: /2\^0 as 2/ }] },
+  { find: 'y=2^x+3 meets the y-axis', answer: String(((x: number) => 2 ** x + 3)(0)), slips: [{ value: String(0 + 3), says: /treated 2\^0 as 0/ }, { value: String(2 + 3), says: /2\^0 as 2/ }] },
   // flip it
   { find: 'form y=(x-a)^2+b', answer: '(x-2)^2-3', fn: parabF, slips: [{ value: '(x+2)^2-3', fn: (x) => (x + 2) ** 2 - 3, says: /copied the sign/ }, { value: '(x-2)^2+3', fn: (x) => (x - 2) ** 2 + 3, says: /below the x-axis/ }] },
   { find: 'in the form y=frac(a, x+b)+c', answer: '8/(x-2)-1', fn: recipF, slips: [{ value: '-8/(x-2)-1', fn: (x) => -8 / (x - 2) - 1, says: /does not fit/ }, { value: '8/(x+2)-1', fn: (x) => 8 / (x + 2) - 1, says: /bracket must be 0 when x=2/ }] },
   { find: 'y=a*sin x+c. Find a and c', answer: `${trigA},${trigC}`, slips: [{ value: `${trigC},${trigA}`, says: /gave c first/ }, { value: '5,1', says: /highest and lowest values/ }] },
-  { find: 'f(x+k)', answer: String(4 - 1), slips: [{ value: String(-(4 - 1)), says: /3 to the right/ }, { value: String(4 + 1), says: /added the two numbers/ }] },
+  { find: 'f(x+k)', answer: String(solve((k) => 4 - k - 1)[0]), slips: [{ value: String(-(4 - 1)), says: /3 to the right/ }, { value: String(4 + 1), says: /added the two numbers/ }] },
   // mixed review
   { find: 'y=f(-x)-4', answer: pt(img([-3, 2], { b: -1, d: -4 })), slips: [{ value: pt([-3, 2 - 4]), says: /reflects the graph in the y-axis/ }, { value: pt([3, 2 + 4]), says: /added 4/ }] },
   { find: 'y=frac(2, x+3)-4 meets the x-axis', answer: String(solve((x) => 2 / (x + 3) - 4)[0]), slips: [{ value: String(0.5 + 3), says: /added 3/ }, { value: '0.5', says: /last step/ }] },
   { find: 'y=f(3x) crosses the x-axis. Type them like 1 or 2.', answer: typedList([-3, 3].map((r) => img([r, 0], { b: 3 })[0])), slips: [{ value: typedList([-3, 3].map((r) => r * 3)), says: /multiplied by 3/ }, { value: typedList([-3, 3]), says: /original crossing points/ }] },
-  { find: 'smallest value of y=3*sin x-2', answer: String(3 * -1 - 2), slips: [{ value: String(3 * -1), says: /smallest value of 3\*sin x/ }, { value: String(3 * (-1 - 2)), says: /subtracted 2 before you multiplied/ }] },
+  { find: 'smallest value of y=3*sin x-2', answer: String(-topOf((x) => -(3 * sinD(x) - 2))), slips: [{ value: String(3 * -1), says: /smallest value of 3\*sin x/ }, { value: String(3 * (-1 - 2)), says: /subtracted 2 before you multiplied/ }] },
   { find: 'lowest point of the graph of y=2f(x)+5', answer: pt(img([3, -1], { a: 2, d: 5 })), slips: [{ value: pt([3, -1 + 5]), says: /did not multiply by 2/ }, { value: pt([6, 2 * -1 + 5]), says: /doubled the x-coordinate/ }] },
   // exam style
   { find: 'y=3f(frac(x, 2))', answer: pt(img([4, -1], { a: 3, b: 0.5 })), slips: [{ value: pt(img([4, -1], { a: 3, b: 2 })), says: /halved the x-coordinate/ }, { value: pt([8, -1]), says: /left out the 3/ }] },
   { find: 'y=frac(5, x-2)+1. Find the x-coordinate', answer: String(solve((x) => 5 / (x - 2) + 1)[0]), slips: [{ value: String(solve((x) => 5 / (x - 2) - 1)[0]), says: /dropped the minus sign/ }, { value: String(-5), says: /last step/ }] },
-  { find: 'has the asymptotes x=-3 and y=2', answer: String((4 - 2) * (0 + 3)), slips: [{ value: String(4 * 3), says: /left out the \+2/ }, { value: String(4 - 2), says: /last step/ }] },
+  { find: 'has the asymptotes x=-3 and y=2', answer: String(solveA((a) => a / (0 + 3) + 2, 4)), slips: [{ value: String(4 * 3), says: /left out the \+2/ }, { value: String(4 - 2), says: /last step/ }] },
   { find: 'first highest point of the new graph', answer: pt(img([90, 1], { a: 2, c: -30 })), slips: [{ value: pt([90 - 30, 2]), says: /moved the point to the left/ }, { value: pt([120, 1]), says: /left out the stretch/ }] },
   { find: 'y=f(2x+1)-2', answer: pt(img([-3, 6], { b: 2, c: 1, d: -2 })), slips: [{ value: pt([(-3 + 1) / 2, 4]), says: /added 1 instead of taking it away/ }, { value: pt([-3 - 1, 4]), says: /last step/ }] },
 ];
@@ -642,4 +649,32 @@ test('the skip link goes to the first lesson heading (heading ids are cut at 40 
   const first = /<h2>(1\.[^<]*)<\/h2>/.exec(SOURCE)![1];
   const id = `s-${plain(first).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}`;
   expect(SOURCE).toContain(`href="#${id}"`);
+});
+
+test('the "build the graph in steps" rule is the corrected one, and it gives the f(2x-4) root 5', () => {
+  const text = plain(SOURCE);
+  expect(text).toContain('Inside the bracket, first write the bracket as a(x-h): stretch with scale factor frac(1, a), then move h.');
+  expect(text).toContain('move 1 to the right, then stretch in the y-direction with scale factor 2, then move 3 up');
+  expect(text).toContain('changes the size of an earlier move in the same direction');
+  expect(text).not.toContain('Subtract 1: a translation 1 to the right. Apply f.');
+  // by the rule: 2x - 4 = 2(x - 2), so the root 6 is stretched to 6 / 2 and then moved 2 to the right
+  const byRule = 6 / 2 + 2;
+  expect(byRule).toBe(5);
+  expect(solve((x) => 2 * x - 4 - 6)[0]).toBe(byRule);
+  expect(SOURCE).toContain('{m:f(2x-4)=f(2(x-2))}');
+  // moving up 3 and then reflecting in the x-axis is not reflecting and then moving up 3
+  const upThenFlip = (x: number) => -(x * x + 3);
+  const flipThenUp = (x: number) => -(x * x) + 3;
+  expect(upThenFlip(1)).not.toBe(flipThenUp(1));
+});
+
+test('the page states the conditions on a and b, and the reflection facts are worded exactly', () => {
+  const text = plain(SOURCE);
+  expect(text).toContain('a negative a also reflects the graph in the x-axis');
+  expect(text).toContain('a negative a also reflects the graph in the y-axis');
+  expect(text).toContain('For a positive a, y=a*sin x has amplitude a.');
+  expect(text).toContain('For a positive b, y=sin(b*x) has period');
+  expect(text).toContain('if b=0 the y-axis is the asymptote');
+  expect(text).toContain('If c=0 there is no x-intercept.');
+  expect(text).toContain('Roots stay under a stretch in the y-direction or a reflection in the x-axis.');
 });

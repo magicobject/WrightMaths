@@ -16,7 +16,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Transformations of graphs</span></nav>
     {prereqs}
     {words}
-    <div class="key"><p>This page uses sketching a cubic from its roots, the graph of {m:frac(a, x)} and its asymptotes, and the graph of {m:y=sin x} in degrees. Lesson 6 also uses the graph of {m:y=2^x}, which is in <a href="exponentials-logs.html">Exponentials and logarithms</a>. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+    <div class="key"><p>This page uses sketching a cubic from its roots, the graph of {m:frac(a, x)} and its asymptotes, the graph of {m:y=sin x} in degrees, and the graph of {m:y=2^x}. The warm-up shows you where to look if you have forgotten any of it.</p></div>
     <div class="key"><p><b>How to type your answers.</b> A point is typed as a pair with x first, like (2, 5). A list of numbers is typed like 1 or 2 or 3. An equation is typed like y=(x-3)^2+2 or y=2/(x-1)+1, with ^ for a power.</p></div>
   </div>
 </section>
@@ -73,7 +73,7 @@
     <p>The graph of {m:y=f(x)} shows every point {m:(x, y)} where y is the output of the {term:function} f for the input x. To transform the graph, you change the equation. A {term:translation-of-graph|translation} slides the whole graph. It does not turn it or change its size.</p>
     <p>Here is the graph that the cubic examples on this page use. It is {m:y=f(x)}, where {m:f(x)=(x+1)(x-1)(x-3)}.</p>
     <figure class="figure-lg">{fig:graph-transformations-base}<figcaption>Look at the four marked points. The curve crosses the x-axis at {m:-1}, 1 and 3, and meets the y-axis at {m:(0, 3)}. Keep these points in mind. You will see where each one goes.</figcaption></figure>
-    <p>First add a number <b>outside</b> the function: {m:y=f(x)+3}. Every y-value is 3 bigger. So every point goes up 3, and the whole graph moves up 3.</p>
+    <p>First add a number <b>outside</b> the function: {m:y=f(x)+3}. Every y-value is 3 bigger. So every point goes up 3, and the whole graph moves up 3. For example, with the graph of {m:y=x^2}:</p>
     <figure class="figure-lg">{fig:graph-transformations-up}<figcaption>Look at the lowest points. The solid curve {m:y=x^2} has its lowest point at {m:(0, 0)}. The dashed curve {m:y=x^2+3} has its lowest point at {m:(0, 3)}. Every point has moved up 3.</figcaption></figure>
     <p>Now add a number <b>inside</b>, next to x: {m:y=f(x+1)}. The number changes the input. To get the same output as before, you need an input that is 1 smaller. So every point goes 1 to the left. A number inside the bracket moves the graph the opposite way to what you might expect.</p>
     <p>Check it with a point. The point {m:(1, 0)} is on {m:y=f(x)}, because {m:f(1)=0}. On {m:y=f(x+1)}, the input {m:x=0} gives {m:f(0+1)=f(1)=0}. So the point {m:(0, 0)} is on the new graph. The point moved from {m:x=1} to {m:x=0}, which is 1 to the left.</p>
@@ -206,9 +206,9 @@
     <div class="key">
       <p><b>Key idea:</b> a number multiplying the function stretches the graph up and down. A number multiplying x stretches it left and right, and it works the opposite way.</p>
       <ul class="tick">
-        <li>{m:y=a*f(x)} is a stretch in the y-direction with scale factor a. The point {m:(p, q)} goes to {m:(p, a*q)}. The roots do not move.</li>
-        <li>{m:y=f(a*x)} is a stretch in the x-direction with scale factor {m:frac(1, a)}. The point {m:(p, q)} goes to {m:(frac(p, a), q)}. The y-intercept does not move.</li>
-        <li>If a is between 0 and 1, {m:a*f(x)} squashes the graph down, and {m:f(a*x)} stretches it wider.</li>
+        <li>{m:y=a*f(x)} is a stretch in the y-direction with scale factor a (a positive; a negative a also reflects the graph in the x-axis). The point {m:(p, q)} goes to {m:(p, a*q)}. The roots do not move.</li>
+        <li>{m:y=f(a*x)} is a stretch in the x-direction with scale factor {m:frac(1, a)} (a positive; a negative a also reflects the graph in the y-axis). The point {m:(p, q)} goes to {m:(frac(p, a), q)}. The y-intercept does not move.</li>
+        <li>If a is between 0 and 1, {m:a*f(x)} squashes the graph towards the x-axis, and {m:f(a*x)} stretches it wider.</li>
       </ul>
     </div>
     <div class="worked">
@@ -287,7 +287,7 @@
       <p class="qtext">The graph of {m:y=f(x)} is changed to the graph of {m:y=f(4x)}. Which description is correct?</p>
       <ul class="options">
         <li data-correct>A stretch in the x-direction with scale factor one quarter</li>
-        <li data-why="To get the old output you now need an input that is 4 times smaller. So each x-coordinate is divided by 4, and the scale factor is one quarter, not 4.">A stretch in the x-direction with scale factor 4</li>
+        <li data-why="To get the old output you now need an input that is a quarter as big. So each x-coordinate is divided by 4, and the scale factor is one quarter, not 4.">A stretch in the x-direction with scale factor 4</li>
         <li data-why="The 4 is inside the bracket, next to x. A number there changes the x-values. A stretch in the y-direction needs the 4 outside, as in 4f(x).">A stretch in the y-direction with scale factor 4</li>
       </ul>
       <ol class="ladder"><li>Is the 4 inside the bracket or outside it?</li><li>A number inside works the opposite way to what you expect.</li></ol>
@@ -314,7 +314,7 @@
     <div class="q" data-answers="-1 or 1 or 2" data-mode="value">
       <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=-3}, {m:x=3} and {m:x=6}. Find the x-coordinates of the points where {m:y=f(3x)} crosses the x-axis. Type them like 1 or 2 or 3.</p>
       <ol class="ladder"><li>The 3 is inside the bracket, so it changes the x-coordinates.</li><li>Is each x-coordinate multiplied by 3 or divided by 3?</li></ol>
-      <ul class="wrong"><li data-if="-9 or 9 or 18">You multiplied by 3. In {m:f(3x)} you need an input that is 3 times smaller, so you divide each x-coordinate by 3.</li></ul>
+      <ul class="wrong"><li data-if="-9 or 9 or 18">You multiplied by 3. In {m:f(3x)} you need an input that is a third as big, so you divide each x-coordinate by 3.</li></ul>
       <div class="solution"><p>Divide each x-coordinate by 3: {m:frac(-3, 3)=-1}, {m:frac(3, 3)=1} and {m:frac(6, 3)=2}.</p></div>
     </div>
     <div class="q" data-answers="4x^2-5" data-mode="exact">
@@ -453,8 +453,8 @@
       <ul class="tick">
         <li>The asymptotes are {m:x=-b} and {m:y=c}. They cross at the point {m:(-b, c)}.</li>
         <li>If a is positive, the branches are in the top right and the bottom left of that point. If a is negative, they are in the top left and the bottom right.</li>
-        <li>The y-intercept: put {m:x=0}. You get {m:y=frac(a, b)+c}.</li>
-        <li>The x-intercept: put {m:y=0}, so {m:frac(a, x+b)=-c}, and solve for x.</li>
+        <li>The y-intercept: put {m:x=0}. You get {m:y=frac(a, b)+c} (if b is not 0; if {m:b=0} the y-axis is the asymptote).</li>
+        <li>The x-intercept: put {m:y=0}, so {m:frac(a, x+b)=-c}, and solve for x. If {m:c=0} there is no x-intercept.</li>
         <li>The graph has no point with {m:x=-b}, because you cannot divide by 0. It has no point with {m:y=c}, because {m:frac(a, x+b)} is never 0.</li>
       </ul>
     </div>
@@ -588,14 +588,14 @@
     <h2>5. Combining transformations</h2>
     <p>Often several changes happen at once, as in {m:y=2f(x-1)+3}. There are two reliable ways to deal with them.</p>
     <p><b>Follow a point.</b> Take a point {m:(p, q)} on {m:y=f(x)}. The new x-coordinate is the x that makes the inside of the bracket equal to p. Solve for it. The new y-coordinate comes from the outside: put q through the same steps as the equation. For {m:y=2f(x-1)+3}, solve {m:x-1=p} to get {m:x=p+1}. Then work out {m:2q+3}. The point goes to {m:(p+1, 2q+3)}.</p>
-    <p><b>Build the graph in steps.</b> Do the changes in the order you would work out the equation for a number x. For {m:y=2f(x-1)+3}, start with x. Subtract 1: a translation 1 to the right. Apply f. Multiply by 2: a stretch in the y-direction with scale factor 2. Add 3: a translation 3 up. The order matters, because a stretch or a reflection changes the size of a move that comes after it.</p>
+    <p><b>Build the graph in steps.</b> Outside the bracket, do the steps in the order you would work out the equation for a number x. Inside the bracket, first write the bracket as {m:a(x-h)}: stretch with scale factor {m:frac(1, a)}, then move h. For {m:y=2f(x-1)+3}: move 1 to the right, then stretch in the y-direction with scale factor 2, then move 3 up. The order matters, because a stretch or a reflection changes the size of an earlier move in the same direction.</p>
     <div class="key">
       <p><b>Key idea:</b> the inside of the bracket gives the new x-coordinate. The outside gives the new y-coordinate.</p>
       <ul class="tick">
         <li>New x-coordinate: solve (the inside of the bracket) = (the old x-coordinate).</li>
         <li>New y-coordinate: put the old y-coordinate through the steps outside the bracket, in order.</li>
         <li>A bracket such as {m:f(2x-4)} can be written {m:f(2(x-2))}. The 2 squashes the graph towards the y-axis first. Then the graph moves 2 to the right.</li>
-        <li>The order of the steps matters. A translation followed by a reflection gives a different graph from a reflection followed by the same translation.</li>
+        <li>The order matters when two steps act in the same direction. A move up followed by a reflection in the x-axis gives a different graph from the reflection followed by the same move.</li>
       </ul>
     </div>
     <div class="worked">
@@ -709,7 +709,7 @@
     </div>
     <div class="q" data-answers="-2,-1;-2, -1" data-mode="exact">
       <p class="qtext">The graph of {m:y=x^2} is transformed to the graph of {m:y=3(x+2)^2-1}. Find the coordinates of the lowest point of the new graph. Type it like (2, 5).</p>
-      <ol class="ladder"><li>The lowest point of {m:y=x^2} is {m:(0, 0)}. Where does each step take it?</li><li>The bracket is 0 when the x-coordinate is right. The {m:-1} is added after the 3 multiplies.</li></ol>
+      <ol class="ladder"><li>The lowest point of {m:y=x^2} is {m:(0, 0)}. Where does each step take it?</li><li>The bracket is 0 at the x-coordinate of the lowest point. The {m:-1} is added after the 3 multiplies.</li></ol>
       <ul class="wrong">
         <li data-if="2,-1;2, -1">You copied the sign from the bracket. {m:x+2=0} gives {m:x=-2}.</li>
         <li data-if="-2,-3;-2, -3">You multiplied the {m:-1} by 3. The 3 multiplies {m:(x+2)^2} only, and then 1 is subtracted.</li>
@@ -726,8 +726,8 @@
     <div class="key">
       <p><b>Key idea:</b> the same rules work on the sine curve. The cosine curve behaves in the same way.</p>
       <ul class="tick">
-        <li>{m:y=a*sin x} has amplitude a. Its highest value is a and its lowest is {m:-a}. The period does not change.</li>
-        <li>{m:y=sin(b*x)} has period {m:frac(360deg, b)}. It is a stretch in the x-direction with scale factor {m:frac(1, b)}.</li>
+        <li>For a positive a, {m:y=a*sin x} has amplitude a. Its highest value is a and its lowest is {m:-a}. The period does not change.</li>
+        <li>For a positive b, {m:y=sin(b*x)} has period {m:frac(360deg, b)}. It is a stretch in the x-direction with scale factor {m:frac(1, b)}.</li>
         <li>{m:y=sin(x-c)} is the curve moved c degrees to the right. If c is negative, it moves left.</li>
         <li>{m:y=sin x+d} is the curve moved d up. Its highest value is {m:1+d} and its lowest is {m:-1+d}.</li>
       </ul>
@@ -772,7 +772,7 @@
       </ol>
       <!-- No figure: the two pictures above show a stretch and a move, and this example adds the two numbers. -->
     </div>
-    <p>Now the exponential graph. The graph of {m:y=2^x} is an {term:exponential-function|exponential graph}. It passes through {m:(0, 1)} and {m:(1, 2)}, rises more and more steeply, and has the x-axis, {m:y=0}, as an asymptote. The same rules apply.</p>
+    <p>Now the exponential graph. The graph of {m:y=2^x} is an {term:exponential-function|exponential function}. It passes through {m:(0, 1)} and {m:(1, 2)}, rises more and more steeply, and has the x-axis, {m:y=0}, as an asymptote. The same rules apply.</p>
     <div class="key">
       <p><b>Key idea:</b> the rules move the asymptote and the y-intercept in the way you expect.</p>
       <ul class="tick">
@@ -808,7 +808,7 @@
       <ol class="steps">
         <li>The {m:+3} is inside, next to x, so the graph moves 3 to the left. The asymptote stays {m:y=0}.</li>
         <li>Put {m:x=0}. {m:2^(0+3)=2^3=8}.</li>
-        <li>The y-intercept is {m:(0, 8)}. Check: the point {m:(0, 1)} went to {m:(-3, 1)}, and {m:2^0=1}.</li>
+        <li>The y-intercept is {m:(0, 8)}. Check: the point {m:(3, 8)} on {m:y=2^x} moves 3 to the left, to {m:(0, 8)}.</li>
       </ol>
       <!-- No figure: the picture above of y = 2^x - 2 and the sine picture on a sideways move show the rule. -->
     </div>
@@ -1152,9 +1152,9 @@
       <li><b>The graph is every pair (x, y) with y = f(x).</b> Changing the equation changes which pairs are on the graph. Every rule on this page comes from asking which pairs satisfy the new equation.</li>
       <li><b>A number outside changes y directly.</b> In {m:y=f(x)+3}, the output is 3 more than before for the same x. So every point goes up 3. In {m:y=2f(x)} every output is doubled, and in {m:y=-f(x)} every output changes sign.</li>
       <li><b>A number inside changes the input, so it works in reverse.</b> In {m:y=f(x+3)}, the point that gave the output f(0) used to be at {m:x=0}. Now it needs {m:x+3=0}, so it is at {m:x=-3}. The inside rule always undoes the number: add becomes subtract, multiply becomes divide.</li>
-      <li><b>Roots stay under a stretch or reflection in the y-direction.</b> A root has {m:y=0}, and {m:a*0=0} and {m:-0=0}. In the same way, the y-intercept stays under a change that only touches x, because {m:a*0=0}.</li>
+      <li><b>Roots stay under a stretch in the y-direction or a reflection in the x-axis.</b> A root has {m:y=0}, and {m:a*0=0} and the opposite of 0 is 0. In the same way, the y-intercept stays under a stretch in the x-direction or a reflection in the y-axis, because {m:a*0=0}.</li>
       <li><b>The asymptotes move with the graph.</b> A translation moves every point, and the asymptotes are lines that the points get close to. So the asymptotes of {m:frac(a, x)} move by the same amounts as the curve: {m:x=0} moves to {m:x=-b} and {m:y=0} moves to {m:y=c}.</li>
-      <li><b>The order matters.</b> A reflection or a stretch multiplies the size of everything before it, including an earlier translation. So moving up 3 and then reflecting is not the same as reflecting and then moving up 3.</li>
+      <li><b>The order matters.</b> A reflection or a stretch multiplies the size of an earlier translation in the same direction. So moving up 3 and then reflecting in the x-axis is not the same as reflecting and then moving up 3.</li>
     </ul>
     <h2>Common traps</h2>
     <ul class="tick traps">

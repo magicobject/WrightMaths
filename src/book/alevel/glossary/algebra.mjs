@@ -604,7 +604,7 @@ export const TERMS = [
     strand: 'al-algebra',
     level: 'Y1',
     def: 'A point that does not move when a graph is transformed.',
-    example: ['Under {m:y=3f(x)} every point on the x-axis stays where it is, because {m:3*0=0}.', 'Under {m:y=f(-x)} every point on the y-axis stays where it is, because x is 0 and the opposite of 0 is 0.'],
+    example: ['Under {m:y=3f(x)} every point of the graph that is on the x-axis stays where it is, because {m:3*0=0}.', 'Under {m:y=f(-x)} every point of the graph that is on the y-axis stays where it is, because x is 0 and the opposite of 0 is 0.'],
     watch: 'Only the points on the axis that the stretch or reflection works from stay fixed. A stretch in the y-direction leaves the roots alone. A stretch in the x-direction leaves the y-intercept alone.',
     see: ['stretch-of-graph', 'reflection-of-graph'],
   },

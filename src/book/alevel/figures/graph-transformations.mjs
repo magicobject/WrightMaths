@@ -227,8 +227,8 @@ export const FIGURES = {
   'graph-transformations-up': () => {
     const id = 'graph-transformations-up';
     const p = sketch(id, { xmin: -3.2, xmax: 3.2, ymin: -2, ymax: 13, rows: 2 });
-    keyRow(p, id, 0, 'curve', 'y = f(x) = x^2');
-    keyRow(p, id, 1, 'curve-b', 'y = f(x) + 3 = x^2 + 3');
+    keyRow(p, id, 0, 'curve', 'y = x^2');
+    keyRow(p, id, 1, 'curve-b', 'y = x^2 + 3');
     draw(p, id, [{ name: 'f', fn: sq }, { name: 'moved', cls: 'curve-b', fn: sqUp }]);
     mark(p, id, { name: 'v0', x: 0, y: 0, text: '(0, 0)' });
     mark(p, id, { name: 'v1', x: 0, y: 3, text: '(0, 3)' });
