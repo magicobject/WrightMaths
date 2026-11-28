@@ -1,0 +1,1194 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="graph-transformations">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra &middot; Year 1</span>
+      <h1>Transformations of graphs</h1>
+      <p class="lead">A transformation changes a graph in a regular way. It moves the graph, stretches it or flips it. Each change to the equation does one thing to the graph. This page shows you which change does what. You find where a point goes, you write the equation of the new graph, and you sketch it. You meet the graph of {m:y=frac(a, x+b)+c}, which is the graph of {m:frac(a, x)} moved. Then you use the same rules on trigonometric and exponential graphs.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Functions in Year 2, where the inverse of a function is a reflection. It also leads on to Differentiation from first principles. Any question that says &ldquo;sketch the graph of {m:y=f(x+2)}&rdquo; or &ldquo;describe the transformation&rdquo; uses the rules on this page.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Transformations of graphs</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses sketching a cubic from its roots, the graph of {m:frac(a, x)} and its asymptotes, and the graph of {m:y=sin x} in degrees. Lesson 6 also uses the graph of {m:y=2^x}, which is in <a href="exponentials-logs.html">Exponentials and logarithms</a>. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+    <div class="key"><p><b>How to type your answers.</b> A point is typed as a pair with x first, like (2, 5). A list of numbers is typed like 1 or 2 or 3. An equation is typed like y=(x-3)^2+2 or y=2/(x-1)+1, with ^ for a power.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-translating-a-graph-f-x-a-and-f-x-a">Skip to the lesson</a></p>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=x^2-3x}. Work out {m:f(-2)}.</p>
+      <ol class="ladder"><li>Put {m:-2} in place of every x.</li><li>A negative number squared is positive. Then work out {m:-3*(-2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">You worked out {m:(-2)^2} as {m:-4}. A negative number squared is positive: {m:(-2)^2=4}.</li>
+        <li data-if="-2">You worked out {m:-3*(-2)} as {m:-6}. A negative times a negative is positive, so it is {m:6}.</li>
+      </ul>
+      <div class="solution"><p>{m:(-2)^2=4} and {m:-3*(-2)=6}. So {m:f(-2)=4+6=10}.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">Solve {m:frac(2, x-1)=-1}.</p>
+      <ol class="ladder"><li>Multiply both sides by {m:x-1}.</li><li>You get {m:2=-1*(x-1)}. Solve this for x.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">You found {m:x-1=-2} but left out the last step. Add 1 to both sides.</li>
+        <li data-if="3">You dropped the minus sign. {m:2=-(x-1)} gives {m:x-1=-2}, not {m:x-1=2}.</li>
+      </ul>
+      <div class="solution"><p>{m:2=-(x-1)}, so {m:x-1=-2} and {m:x=-1}. Check: {m:frac(2, -1-1)=frac(2, -2)=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">As x gets very large, {m:frac(1, x)+3} gets closer and closer to which number?</p>
+      <ol class="ladder"><li>What does {m:frac(1, x)} get close to when x is very large?</li><li>The 3 does not change. Add the two parts.</li></ol>
+      <ul class="wrong"><li data-if="0">{m:frac(1, x)} does get close to 0, but the 3 is added on. The whole expression gets close to {m:0+3}.</li></ul>
+      <div class="solution"><p>When x is very large, {m:frac(1, x)} is very small, close to 0. So {m:frac(1, x)+3} is close to {m:0+3=3}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">What is the largest value of {m:sin x}?</p>
+      <ol class="ladder"><li>Think of the wave of {m:y=sin x}. How high does it go?</li><li>The question asks for the value of y, not for the angle.</li></ol>
+      <ul class="wrong"><li data-if="90">{m:90deg} is the angle where the largest value happens. The question asks for the largest value of {m:sin x} itself.</li></ul>
+      <div class="solution"><p>The wave of {m:y=sin x} goes up to 1 and down to {m:-1}. The largest value is 1, and it happens at {m:x=90deg}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 3" data-mode="value">
+      <p class="qtext">Find the x-coordinates of the points where {m:y=(x+1)(x-3)} meets the x-axis. Type them like 1 or 2.</p>
+      <ol class="ladder"><li>On the x-axis, {m:y=0}. One of the brackets must be 0.</li><li>{m:x+1=0} gives one answer. {m:x-3=0} gives the other.</li></ol>
+      <ul class="wrong"><li data-if="1 or -3">You copied the numbers from the brackets with the signs as they are. {m:x+1=0} gives {m:x=-1}.</li></ul>
+      <div class="solution"><p>{m:x+1=0} gives {m:x=-1}. {m:x-3=0} gives {m:x=3}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Translating a graph: f(x) + a and f(x + a)</h2>
+    <p>The graph of {m:y=f(x)} shows every point {m:(x, y)} where y is the output of the {term:function} f for the input x. To transform the graph, you change the equation. A {term:translation-of-graph|translation} slides the whole graph. It does not turn it or change its size.</p>
+    <p>Here is the graph that the cubic examples on this page use. It is {m:y=f(x)}, where {m:f(x)=(x+1)(x-1)(x-3)}.</p>
+    <figure class="figure-lg">{fig:graph-transformations-base}<figcaption>Look at the four marked points. The curve crosses the x-axis at {m:-1}, 1 and 3, and meets the y-axis at {m:(0, 3)}. Keep these points in mind. You will see where each one goes.</figcaption></figure>
+    <p>First add a number <b>outside</b> the function: {m:y=f(x)+3}. Every y-value is 3 bigger. So every point goes up 3, and the whole graph moves up 3.</p>
+    <figure class="figure-lg">{fig:graph-transformations-up}<figcaption>Look at the lowest points. The solid curve {m:y=x^2} has its lowest point at {m:(0, 0)}. The dashed curve {m:y=x^2+3} has its lowest point at {m:(0, 3)}. Every point has moved up 3.</figcaption></figure>
+    <p>Now add a number <b>inside</b>, next to x: {m:y=f(x+1)}. The number changes the input. To get the same output as before, you need an input that is 1 smaller. So every point goes 1 to the left. A number inside the bracket moves the graph the opposite way to what you might expect.</p>
+    <p>Check it with a point. The point {m:(1, 0)} is on {m:y=f(x)}, because {m:f(1)=0}. On {m:y=f(x+1)}, the input {m:x=0} gives {m:f(0+1)=f(1)=0}. So the point {m:(0, 0)} is on the new graph. The point moved from {m:x=1} to {m:x=0}, which is 1 to the left.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a number added to a function moves the graph. It does not turn it or change its size.</p>
+      <ul class="tick">
+        <li>{m:y=f(x)+a} moves the graph <b>up</b> by a. If a is negative, it moves the graph down.</li>
+        <li>{m:y=f(x+a)} moves the graph <b>left</b> by a. If a is negative, it moves the graph right.</li>
+        <li>A number outside the bracket changes the y-values. A number inside changes the x-values, and it works the opposite way.</li>
+        <li>The point {m:(p, q)} on {m:y=f(x)} goes to {m:(p, q+a)} on {m:y=f(x)+a}. It goes to {m:(p-a, q)} on {m:y=f(x+a)}.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where a point goes</h3>
+      <p>The point {m:(2, 5)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=f(x+4)-2}.</p>
+      <ol class="steps">
+        <li>The {m:+4} is inside the bracket, so it moves the graph 4 to the left. The new x-coordinate is {m:2-4=-2}.</li>
+        <li>The {m:-2} is outside, so it moves the graph down 2. The new y-coordinate is {m:5-2=3}.</li>
+        <li>The matching point is {m:(-2, 3)}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with one point. The picture above shows the same two rules. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the crossing points after a move</h3>
+      <p>The graph of {m:y=f(x)} above crosses the x-axis at {m:-1}, 1 and 3. Find where {m:y=f(x+1)} meets each axis.</p>
+      <ol class="steps">
+        <li>The graph moves 1 to the left. Each crossing point loses 1 from its x-coordinate: {m:-1-1=-2}, {m:1-1=0} and {m:3-1=2}.</li>
+        <li>For the y-axis, put {m:x=0} into {m:f(x+1)}. You get {m:f(1)=0}, so the graph meets the y-axis at {m:(0, 0)}.</li>
+        <li>Check with the brackets: {m:f(x+1)=(x+2)(x)(x-2)}. The brackets are 0 at {m:x=-2}, {m:x=0} and {m:x=2}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-left}<figcaption>Look at the three marked points. The dashed curve is the solid curve moved 1 to the left. Its crossing points are {m:(-2, 0)}, {m:(0, 0)} and {m:(2, 0)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: describing a translation</h3>
+      <p>Describe the translation that takes {m:y=f(x)} to {m:y=f(x-4)+6}.</p>
+      <ol class="steps">
+        <li>The {m:-4} is inside the bracket, so it moves the graph 4 to the right.</li>
+        <li>The {m:+6} is outside the bracket, so it moves the graph 6 up.</li>
+        <li>The graph moves 4 to the right and 6 up.</li>
+      </ol>
+      <!-- No figure: the two pictures above show an upward move and a sideways move. This example combines them. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: writing the new equation</h3>
+      <p>The graph of {m:y=x^2} is moved 2 to the left and 5 down. Write the equation of the new graph.</p>
+      <ol class="steps">
+        <li>Moving 2 to the left means replacing x by {m:x+2}. This gives {m:y=(x+2)^2}.</li>
+        <li>Moving 5 down means subtracting 5. This gives {m:y=(x+2)^2-5}.</li>
+        <li>Check: the lowest point was {m:(0, 0)}. It is now at {m:(-2, -5)}, because {m:x+2=0} when {m:x=-2}.</li>
+      </ol>
+      <!-- No figure: the glossary picture for translation shows a parabola moved in the same way. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The point {m:(5, 2)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=f(x-3)+1}.</p>
+      <ol class="steps">
+        <li>The {m:-3} is inside the bracket, so the graph moves 3 to the right. The new x-coordinate is {m:5+3} = <span class="blank" data-answers="8">___</span>.</li>
+        <li>The {m:+1} is outside the bracket, so the graph moves 1 up. The new y-coordinate is {m:2+1} = <span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The matching point is {m:(8, 3)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: translating a graph</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is moved to give the graph of {m:y=f(x)-4}. Which statement is true?</p>
+      <ul class="options">
+        <li data-correct>The graph moves 4 units down</li>
+        <li data-why="A number inside the bracket, next to x, moves the graph sideways. Here the 4 is outside the bracket, so the graph moves up or down.">The graph moves 4 units to the left</li>
+        <li data-why="The number is minus 4, so every y-value is 4 smaller. A smaller y-value is lower down.">The graph moves 4 units up</li>
+      </ul>
+      <ol class="ladder"><li>Is the 4 inside the bracket, with x, or outside it?</li><li>A number outside changes the y-values.</li></ol>
+      <div class="solution"><p>The {m:-4} is outside the bracket, so it changes every y-value. Each y-value is 4 smaller, so the graph moves 4 down.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is moved to give the graph of {m:y=f(x+5)}. Which statement is true?</p>
+      <ul class="options">
+        <li data-correct>The graph moves 5 units to the left</li>
+        <li data-why="To get the old output you now need an input that is 5 smaller. So each point moves left. A plus sign inside the bracket moves the graph to the left.">The graph moves 5 units to the right</li>
+        <li data-why="The 5 is inside the bracket, next to x. A number there changes the x-values, so the graph moves sideways, not up.">The graph moves 5 units up</li>
+      </ul>
+      <ol class="ladder"><li>Is the 5 inside the bracket, with x, or outside it?</li><li>When {m:x=-5}, what is the bracket {m:x+5}? Compare it with {m:x=0} on the original graph.</li></ol>
+      <div class="solution"><p>The 5 is inside the bracket, so it changes the x-values, and it works the opposite way. The point that was at {m:x=0} is now at {m:x=-5}. The graph moves 5 to the left.</p></div>
+    </div>
+    <div class="q" data-answers="4,1;4, 1" data-mode="exact">
+      <p class="qtext">The lowest point of {m:y=x^2} is {m:(0, 0)}. Write down the lowest point of {m:y=(x-4)^2+1}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The graph is {m:y=x^2} moved. Which number is inside the bracket? Which is outside?</li><li>Inside moves the graph sideways, the opposite way. Outside moves it up or down.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4,1;-4, 1">You copied the sign from the bracket. {m:x-4=0} gives {m:x=4}, so the graph moved 4 to the right.</li>
+        <li data-if="1,4;1, 4">You gave the y-value first. A point is written with x first.</li>
+      </ul>
+      <div class="solution"><p>The {m:-4} inside the bracket moves the graph 4 to the right. The {m:+1} outside moves it 1 up. The lowest point moves from {m:(0, 0)} to {m:(4, 1)}.</p></div>
+    </div>
+    <div class="q" data-answers="9,3;9, 3" data-mode="exact">
+      <p class="qtext">The point {m:(6, -2)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f(x-3)+5}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Find the new x-coordinate first. The number inside the bracket works the opposite way.</li><li>Then find the new y-coordinate. The number outside moves the point up or down.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,3;3, 3">You moved the point left. {m:f(x-3)} moves the graph 3 to the right, so the x-coordinate goes up by 3.</li>
+        <li data-if="9,-7;9, -7">You moved the point down by 5. The {m:+5} is outside the bracket and moves the point up.</li>
+      </ul>
+      <div class="solution"><p>New x-coordinate: {m:6+3=9}. New y-coordinate: {m:-2+5=3}. The matching point is {m:(9, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-3)^2" data-mode="exact">
+      <p class="qtext">The graph of {m:y=x^2} is moved 3 units to the right. Write the equation of the new graph in the form {m:y=(x-a)^2}, with a number in place of a. Type it like y=(x+1)^2.</p>
+      <ol class="ladder"><li>A move sideways changes the number inside the bracket.</li><li>The lowest point of the new graph is at {m:x=3}. What makes the bracket 0 when {m:x=3}?</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+3)^2">That moves the graph 3 to the left. The lowest point must be at {m:x=3}, so the bracket must be 0 when {m:x=3}: {m:(x-3)}.</li>
+        <li data-if="x^2-3">That moves the graph 3 down. A move to the right changes the number inside the bracket, with x.</li>
+      </ul>
+      <div class="solution"><p>Moving right by 3 replaces x by {m:x-3}. The equation is {m:y=(x-3)^2}. Its lowest point is {m:(3, 0)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 4" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=2} and {m:x=7}. Find the x-coordinates of the points where the graph of {m:y=f(x+3)} crosses the x-axis. Type them like 1 or 2.</p>
+      <ol class="ladder"><li>Is the graph moved left or right? The number inside the bracket works the opposite way.</li><li>Move each crossing point by 3 in that direction.</li></ol>
+      <ul class="wrong"><li data-if="5 or 10">You moved the graph to the right. {m:f(x+3)} moves the graph 3 to the left, so each x-coordinate goes down by 3.</li></ul>
+      <div class="solution"><p>{m:f(x+3)} moves the graph 3 to the left. The crossing points move from {m:x=2} and {m:x=7} to {m:2-3=-1} and {m:7-3=4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Stretching a graph: af(x) and f(ax)</h2>
+    <p>A {term:stretch-of-graph|stretch} makes a graph taller, shorter, wider or narrower. It works in one direction only. The size of a stretch is its {term:scale-factor|scale factor}: the number that lengths are multiplied by.</p>
+    <p>Multiply the whole function by a number: {m:y=2f(x)}. Every y-value is doubled. The point {m:(p, q)} goes to {m:(p, 2q)}. This is a stretch in the y-direction with scale factor 2. A point on the x-axis has {m:q=0}, and {m:2*0=0}, so the crossing points of the x-axis do not move. A point that does not move is an {term:invariant-point|invariant point}.</p>
+    <p>Now multiply x by a number inside the bracket: {m:y=f(2x)}. To get the old output you need an input that is half as big. So every x-coordinate is halved. The point {m:(p, q)} goes to {m:(frac(p, 2), q)}. This is a stretch in the x-direction with scale factor {m:frac(1, 2)}. The graph is squashed towards the y-axis. A point on the y-axis has {m:p=0}, so the y-intercept does not move.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a number multiplying the function stretches the graph up and down. A number multiplying x stretches it left and right, and it works the opposite way.</p>
+      <ul class="tick">
+        <li>{m:y=a*f(x)} is a stretch in the y-direction with scale factor a. The point {m:(p, q)} goes to {m:(p, a*q)}. The roots do not move.</li>
+        <li>{m:y=f(a*x)} is a stretch in the x-direction with scale factor {m:frac(1, a)}. The point {m:(p, q)} goes to {m:(frac(p, a), q)}. The y-intercept does not move.</li>
+        <li>If a is between 0 and 1, {m:a*f(x)} squashes the graph down, and {m:f(a*x)} stretches it wider.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where a point goes</h3>
+      <p>The point {m:(4, 6)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=3f(x)}, and the matching point on {m:y=f(2x)}.</p>
+      <ol class="steps">
+        <li>For {m:y=3f(x)}, multiply the y-coordinate by 3: {m:3*6=18}. The x-coordinate stays. The point is {m:(4, 18)}.</li>
+        <li>For {m:y=f(2x)}, divide the x-coordinate by 2: {m:4/2=2}. The y-coordinate stays. The point is {m:(2, 6)}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with one point. The next two examples show the same rules as pictures. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a stretch in the y-direction</h3>
+      <p>Find where {m:y=2f(x)} meets each axis. The graph of {m:y=f(x)} is the cubic on this page, with roots {m:-1}, 1 and 3, and y-intercept {m:(0, 3)}.</p>
+      <ol class="steps">
+        <li>The roots are on the x-axis, where {m:y=0}. Doubling 0 gives 0, so the roots do not move: {m:x=-1}, {m:x=1} and {m:x=3}.</li>
+        <li>The y-intercept is doubled: {m:2*3=6}. The graph meets the y-axis at {m:(0, 6)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-vstretch}<figcaption>Look at the point {m:(0, 6)}. The dashed curve is twice as tall as the solid curve. Both curves cross the x-axis at the same three points.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a stretch in the x-direction</h3>
+      <p>Find where {m:y=f(2x)} meets each axis, for the same cubic.</p>
+      <ol class="steps">
+        <li>Each x-coordinate is divided by 2. The roots move from {m:-1}, 1 and 3 to {m:frac(-1, 2)=-0.5}, {m:frac(1, 2)=0.5} and {m:frac(3, 2)=1.5}.</li>
+        <li>The y-intercept does not move, because {m:2*0=0}. Check: {m:f(2*0)=f(0)=3}. The graph meets the y-axis at {m:(0, 3)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-hstretch}<figcaption>Look at the three marked points on the x-axis. The dashed curve is squashed towards the y-axis. Every crossing point is half as far from the y-axis as before.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a scale factor bigger than 1 in the x-direction</h3>
+      <p>The graph of {m:y=f(x)} crosses the x-axis at {m:-1}, 1 and 3. Find where {m:y=f(frac(x, 2))} crosses.</p>
+      <ol class="steps">
+        <li>The number multiplying x is {m:frac(1, 2)}. So the scale factor is the reciprocal: 2.</li>
+        <li>Every x-coordinate is multiplied by 2: {m:-1*2=-2}, {m:1*2=2} and {m:3*2=6}.</li>
+        <li>The graph is stretched wider, away from the y-axis.</li>
+      </ol>
+      <!-- No figure: it is the picture above in reverse. Squashing the solid curve gives the dashed curve; here the dashed curve is stretched wider than the solid one. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: writing the new equation</h3>
+      <p>Let {m:f(x)=x^2-x}. Write {m:y=3f(x)} and {m:y=f(2x)} in simplified form.</p>
+      <ol class="steps">
+        <li>{m:3f(x)=3(x^2-x)=3x^2-3x}.</li>
+        <li>For {m:f(2x)}, replace every x by {m:2x}: {m:(2x)^2-2x}.</li>
+        <li>{m:(2x)^2=4x^2}, not {m:2x^2}. So {m:f(2x)=4x^2-2x}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra of the new equation. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The graph of {m:y=f(x)} crosses the x-axis at {m:x=4} and {m:x=-6}. Find where {m:y=f(2x)} crosses.</p>
+      <ol class="steps">
+        <li>Divide each x-coordinate by 2. The first is {m:frac(4, 2)} = <span class="blank" data-answers="2">___</span>.</li>
+        <li>The second is {m:frac(-6, 2)} = <span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:y=f(2x)} crosses the x-axis at {m:x=2} and {m:x=-3}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: stretching a graph</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is stretched to give the graph of {m:y=3f(x)}. What happens to the points where the graph crosses the x-axis?</p>
+      <ul class="options">
+        <li data-correct>They stay where they are</li>
+        <li data-why="Multiplying by 3 changes the heights, not the places where the height is 0. A root is where y = 0, and 3 times 0 is 0.">They are multiplied by 3</li>
+        <li data-why="That is what happens to the x-coordinates in y = f(3x), where the 3 is inside the bracket. Here the 3 is outside, so it changes the y-values only.">They are divided by 3</li>
+      </ul>
+      <ol class="ladder"><li>On the x-axis, {m:y=0}.</li><li>What is {m:3*0}?</li></ol>
+      <div class="solution"><p>A crossing point has {m:y=0}. After the stretch, the y-value is {m:3*0=0}. So every crossing point stays where it is.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f(x)} is changed to the graph of {m:y=f(4x)}. Which description is correct?</p>
+      <ul class="options">
+        <li data-correct>A stretch in the x-direction with scale factor one quarter</li>
+        <li data-why="To get the old output you now need an input that is 4 times smaller. So each x-coordinate is divided by 4, and the scale factor is one quarter, not 4.">A stretch in the x-direction with scale factor 4</li>
+        <li data-why="The 4 is inside the bracket, next to x. A number there changes the x-values. A stretch in the y-direction needs the 4 outside, as in 4f(x).">A stretch in the y-direction with scale factor 4</li>
+      </ul>
+      <ol class="ladder"><li>Is the 4 inside the bracket or outside it?</li><li>A number inside works the opposite way to what you expect.</li></ol>
+      <div class="solution"><p>The 4 multiplies x inside the bracket, so the stretch is in the x-direction. The x-coordinates are divided by 4, so the scale factor is {m:frac(1, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="3,10;3, 10" data-mode="exact">
+      <p class="qtext">The point {m:(3, 5)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=2f(x)}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The 2 is outside the bracket. Which coordinate does it change?</li><li>Multiply that coordinate by 2. The other one stays.</li></ol>
+      <ul class="wrong">
+        <li data-if="6,5;6, 5">You doubled the x-coordinate. The 2 is outside the bracket, so it multiplies the y-coordinate.</li>
+        <li data-if="3,2.5;3, 2.5">You halved the y-coordinate. {m:2f(x)} multiplies every y-value by 2.</li>
+      </ul>
+      <div class="solution"><p>The x-coordinate stays 3. The y-coordinate is multiplied by 2: {m:2*5=10}. The matching point is {m:(3, 10)}.</p></div>
+    </div>
+    <div class="q" data-answers="3,-4;3, -4" data-mode="exact">
+      <p class="qtext">The point {m:(6, -4)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f(2x)}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The 2 is inside the bracket, with x. Which coordinate does it change?</li><li>It works the opposite way to what you expect.</li></ol>
+      <ul class="wrong">
+        <li data-if="12,-4;12, -4">You doubled the x-coordinate. In {m:f(2x)} you need an input half as big, so the x-coordinate is halved.</li>
+        <li data-if="6,-8;6, -8">You doubled the y-coordinate. The 2 is inside the bracket, so it changes the x-coordinate.</li>
+      </ul>
+      <div class="solution"><p>The x-coordinate is halved: {m:6/2=3}. The y-coordinate stays {m:-4}. The matching point is {m:(3, -4)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 1 or 2" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=-3}, {m:x=3} and {m:x=6}. Find the x-coordinates of the points where {m:y=f(3x)} crosses the x-axis. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>The 3 is inside the bracket, so it changes the x-coordinates.</li><li>Is each x-coordinate multiplied by 3 or divided by 3?</li></ol>
+      <ul class="wrong"><li data-if="-9 or 9 or 18">You multiplied by 3. In {m:f(3x)} you need an input that is 3 times smaller, so you divide each x-coordinate by 3.</li></ul>
+      <div class="solution"><p>Divide each x-coordinate by 3: {m:frac(-3, 3)=-1}, {m:frac(3, 3)=1} and {m:frac(6, 3)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^2-5" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^2-5}. Write {m:f(2x)} in simplified form. Type it like y=3x^2+1.</p>
+      <ol class="ladder"><li>Replace every x in {m:x^2-5} by {m:2x}.</li><li>Square the whole of {m:2x}, including the 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x^2-5">You squared the x but not the 2. {m:(2x)^2=2^2*x^2=4x^2}.</li>
+        <li data-if="2x^2-10">That is {m:2f(x)}, with the 2 outside. For {m:f(2x)}, the 2 is inside and replaces x.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2x)=(2x)^2-5=4x^2-5}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Reflecting a graph: -f(x) and f(-x)</h2>
+    <p>A {term:reflection-of-graph|reflection} flips the graph over a line, like a mirror. Two reflections matter here: in the x-axis and in the y-axis.</p>
+    <p>Put a minus sign <b>outside</b>: {m:y=-f(x)}. Every y-value changes sign. The point {m:(p, q)} goes to {m:(p, -q)}. Points above the x-axis go below it, and points below go above. This is the reflection in the x-axis. The crossing points of the x-axis have {m:q=0}, and the opposite of 0 is 0, so they do not move.</p>
+    <p>Put a minus sign <b>inside</b>: {m:y=f(-x)}. To get the old output you need the opposite input. So every x-coordinate changes sign. The point {m:(p, q)} goes to {m:(-p, q)}. This is the reflection in the y-axis. The y-intercept does not move.</p>
+    <div class="key">
+      <p><b>Key idea:</b> a minus sign outside flips the graph up and down. A minus sign inside flips it left and right.</p>
+      <ul class="tick">
+        <li>{m:y=-f(x)} is the reflection of {m:y=f(x)} in the x-axis. The point {m:(p, q)} goes to {m:(p, -q)}. The roots do not move.</li>
+        <li>{m:y=f(-x)} is the reflection of {m:y=f(x)} in the y-axis. The point {m:(p, q)} goes to {m:(-p, q)}. The y-intercept does not move.</li>
+        <li>A point that is on the line of reflection is an invariant point.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a reflection in the x-axis</h3>
+      <p>The point {m:(-2, 5)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=-f(x)}. Then find where {m:y=-f(x)} meets the y-axis, for the cubic on this page.</p>
+      <ol class="steps">
+        <li>Change the sign of the y-coordinate. The matching point is {m:(-2, -5)}.</li>
+        <li>The cubic meets the y-axis at {m:(0, 3)}. The reflection is {m:(0, -3)}.</li>
+        <li>The roots {m:-1}, 1 and 3 do not move.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-xreflect}<figcaption>Look at the point {m:(0, -3)}. The dashed curve is the mirror image of the solid curve in the x-axis. The two curves cross the x-axis at the same three points.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a reflection in the y-axis</h3>
+      <p>The point {m:(-2, 5)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=f(-x)}. Then find where {m:y=f(-x)} crosses the x-axis, for the cubic on this page.</p>
+      <ol class="steps">
+        <li>Change the sign of the x-coordinate. The matching point is {m:(2, 5)}.</li>
+        <li>The roots {m:-1}, 1 and 3 change sign: {m:1}, {m:-1} and {m:-3}.</li>
+        <li>The y-intercept {m:(0, 3)} does not move.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-yreflect}<figcaption>Look at the three marked points on the x-axis. The dashed curve is the mirror image of the solid curve in the y-axis. Both curves meet the y-axis at {m:(0, 3)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: writing the new equation</h3>
+      <p>Let {m:f(x)=x^2+2x}. Write {m:y=-f(x)} and {m:y=f(-x)} in simplified form.</p>
+      <ol class="steps">
+        <li>{m:-f(x)=-(x^2+2x)=-x^2-2x}. The minus sign changes every term.</li>
+        <li>For {m:f(-x)}, replace every x by {m:-x}: {m:(-x)^2+2(-x)}.</li>
+        <li>{m:(-x)^2=x^2} and {m:2(-x)=-2x}. So {m:f(-x)=x^2-2x}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra of the new equation. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a graph that is its own reflection</h3>
+      <p>Describe the reflection of {m:y=x^2} in the y-axis.</p>
+      <ol class="steps">
+        <li>Replace x by {m:-x}: {m:(-x)^2=x^2}.</li>
+        <li>The equation does not change, so the graph does not change. The graph of {m:y=x^2} is symmetrical in the y-axis.</li>
+      </ol>
+      <!-- No figure: the glossary picture for reflection and the picture of y = x^2 above show this symmetry. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The point {m:(3, 4)} is on the graph of {m:y=f(x)}. Find the matching points on {m:y=-f(x)} and on {m:y=f(-x)}.</p>
+      <ol class="steps">
+        <li>For {m:y=-f(x)}, the y-coordinate changes sign. The point is {m:(3, y)}, with y = <span class="blank" data-answers="-4">___</span>.</li>
+        <li>For {m:y=f(-x)}, the x-coordinate changes sign. The point is {m:(x, 4)}, with x = <span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The matching points are {m:(3, -4)} and {m:(-3, 4)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: reflecting a graph</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which equation gives the reflection of {m:y=f(x)} in the y-axis?</p>
+      <ul class="options">
+        <li data-correct>y = f(&minus;x)</li>
+        <li data-why="A minus sign outside the function changes the sign of every y-value. That is the reflection in the x-axis.">y = &minus;f(x)</li>
+        <li data-why="Subtracting 1 inside the bracket moves the graph 1 to the right. It does not flip the graph.">y = f(x &minus; 1)</li>
+      </ul>
+      <ol class="ladder"><li>The y-axis is a vertical line. A reflection in it changes the x-coordinates.</li><li>Which minus sign changes x: the one inside the bracket or the one outside?</li></ol>
+      <div class="solution"><p>A reflection in the y-axis changes the sign of every x-coordinate. So x is replaced by {m:-x}, and the equation is {m:y=f(-x)}.</p></div>
+    </div>
+    <div class="q" data-answers="5,3;5, 3" data-mode="exact">
+      <p class="qtext">The point {m:(5, -3)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=-f(x)}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The minus sign is outside the bracket. Which coordinate does it change?</li><li>Change the sign of that coordinate. The other one stays.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5,-3;-5, -3">You changed the sign of the x-coordinate. The minus sign is outside the bracket, so it changes the y-coordinate.</li>
+        <li data-if="-5,3;-5, 3">You changed both signs. That would be a half turn about the origin. {m:-f(x)} changes only the y-coordinate.</li>
+      </ul>
+      <div class="solution"><p>The x-coordinate stays 5. The y-coordinate {m:-3} becomes 3. The matching point is {m:(5, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="4,7;4, 7" data-mode="exact">
+      <p class="qtext">The point {m:(-4, 7)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f(-x)}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The minus sign is inside the bracket, with x. Which coordinate does it change?</li><li>Change the sign of that coordinate. The other one stays.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4,-7;-4, -7">You changed the sign of the y-coordinate. The minus sign is inside the bracket, so it changes the x-coordinate.</li>
+        <li data-if="4,-7;4, -7">You changed both signs. {m:f(-x)} changes only the x-coordinate.</li>
+      </ul>
+      <div class="solution"><p>The x-coordinate {m:-4} becomes 4. The y-coordinate stays 7. The matching point is {m:(4, 7)}.</p></div>
+    </div>
+    <div class="q" data-answers="-5 or -1 or 2" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=-2}, {m:x=1} and {m:x=5}. Find the x-coordinates of the points where {m:y=f(-x)} crosses the x-axis. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>The minus sign is inside the bracket. It changes the x-coordinates.</li><li>Change the sign of each root.</li></ol>
+      <ul class="wrong"><li data-if="-2 or 1 or 5">These are the original roots. That would be {m:y=-f(x)}, where the roots do not move. In {m:f(-x)} each x-coordinate changes sign.</li></ul>
+      <div class="solution"><p>Change the sign of each root: {m:-(-2)=2}, {m:-1} and {m:-5}. The crossing points are at {m:x=-5}, {m:x=-1} and {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-x^3-x;-(x^3+x)" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^3+x}. Write {m:f(-x)} in simplified form. Type it like y=2x^3-x.</p>
+      <ol class="ladder"><li>Replace every x by {m:-x}.</li><li>A negative number cubed is negative. {m:(-x)^3} is not {m:x^3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^3+x">You did not change any signs. {m:(-x)^3=-x^3}, because a negative number cubed is negative.</li>
+        <li data-if="-x^3+x">You changed the sign of the cubed term but not the second term. Replacing x by {m:-x} also makes the second term {m:-x}.</li>
+      </ul>
+      <div class="solution"><p>{m:f(-x)=(-x)^3+(-x)=-x^3-x}. Both terms change sign, because both have an odd power of x.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. The reciprocal graph, moved</h2>
+    <p>The graph of {m:y=frac(a, x)} has two {term:branch|branches} and two {term:asymptote|asymptotes}, {m:x=0} and {m:y=0}. Now use lesson 1. The graph of {m:y=frac(a, x+b)+c} is the graph of {m:y=frac(a, x)} moved. The {m:+b} inside the bracket moves it b to the left. The {m:+c} outside moves it c up.</p>
+    <p>The asymptotes move with the graph. The vertical asymptote {m:x=0} moves b to the left, to {m:x=-b}. The horizontal asymptote {m:y=0} moves c up, to {m:y=c}. The {term:reciprocal-graph|reciprocal graph} keeps its shape. Only its position changes.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=frac(a, x+b)+c} has two branches and two asymptotes.</p>
+      <ul class="tick">
+        <li>The asymptotes are {m:x=-b} and {m:y=c}. They cross at the point {m:(-b, c)}.</li>
+        <li>If a is positive, the branches are in the top right and the bottom left of that point. If a is negative, they are in the top left and the bottom right.</li>
+        <li>The y-intercept: put {m:x=0}. You get {m:y=frac(a, b)+c}.</li>
+        <li>The x-intercept: put {m:y=0}, so {m:frac(a, x+b)=-c}, and solve for x.</li>
+        <li>The graph has no point with {m:x=-b}, because you cannot divide by 0. It has no point with {m:y=c}, because {m:frac(a, x+b)} is never 0.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a positive number on top</h3>
+      <p>Sketch {m:y=frac(4, x-2)+1}. Mark where it crosses each axis.</p>
+      <ol class="steps">
+        <li>The bracket is {m:x-2}, which is 0 at {m:x=2}. The vertical asymptote is {m:x=2}. The horizontal asymptote is {m:y=1}.</li>
+        <li>The number 4 is positive, so the branches are in the top right and the bottom left of the point {m:(2, 1)}.</li>
+        <li>y-intercept: put {m:x=0}. {m:frac(4, -2)+1=-2+1=-1}. The point is {m:(0, -1)}.</li>
+        <li>x-intercept: put {m:y=0}. {m:frac(4, x-2)=-1}, so {m:x-2=-4} and {m:x=-2}. The point is {m:(-2, 0)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-recip-shift}<figcaption>Look at the two dashed lines. They are the asymptotes {m:x=2} and {m:y=1}. The dashed curve is the solid curve {m:y=frac(4, x)} moved 2 to the right and 1 up. The bottom left branch passes through {m:(-2, 0)} and {m:(0, -1)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative number on top</h3>
+      <p>Sketch {m:y=frac(-3, x+1)+1}. Mark where it crosses each axis.</p>
+      <ol class="steps">
+        <li>The bracket {m:x+1} is 0 at {m:x=-1}. The vertical asymptote is {m:x=-1}. The horizontal asymptote is {m:y=1}.</li>
+        <li>The number {m:-3} is negative, so the branches are in the top left and the bottom right of the point {m:(-1, 1)}.</li>
+        <li>y-intercept: {m:frac(-3, 1)+1=-2}. The point is {m:(0, -2)}.</li>
+        <li>x-intercept: {m:frac(-3, x+1)=-1}, so {m:x+1=3} and {m:x=2}. The point is {m:(2, 0)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-recip-neg}<figcaption>Look at the point where the dashed lines cross, {m:(-1, 1)}. The branch on the right passes through {m:(0, -2)} and {m:(2, 0)}. The other branch is in the top left.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: reading the asymptotes</h3>
+      <p>Write down the asymptotes of {m:y=frac(5, x+3)-2}.</p>
+      <ol class="steps">
+        <li>The bracket {m:x+3} is 0 when {m:x=-3}. The vertical asymptote is {m:x=-3}.</li>
+        <li>The number outside, {m:-2}, moves the graph down 2. The horizontal asymptote is {m:y=-2}.</li>
+        <li>Check: as x gets very large, {m:frac(5, x+3)} gets close to 0, so y gets close to {m:-2}.</li>
+      </ol>
+      <!-- No figure: the two pictures above show an asymptote pair labelled on the graph. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: where the graph meets the x-axis</h3>
+      <p>Find where {m:y=frac(3, x+1)-2} meets each axis.</p>
+      <ol class="steps">
+        <li>For the x-axis, put {m:y=0}: {m:frac(3, x+1)=2}. Multiply both sides by {m:x+1}: {m:3=2(x+1)}.</li>
+        <li>So {m:x+1=1.5} and {m:x=0.5}. The point is {m:(0.5, 0)}.</li>
+        <li>For the y-axis, put {m:x=0}: {m:frac(3, 1)-2=1}. The point is {m:(0, 1)}.</li>
+      </ol>
+      <!-- No figure: the method is the same as in the two examples above, with different numbers. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find where {m:y=frac(6, x+2)-1} meets each axis.</p>
+      <ol class="steps">
+        <li>Put {m:x=0}: {m:frac(6, 2)-1} = <span class="blank" data-answers="2">___</span>. This is the y-coordinate of the y-intercept.</li>
+        <li>Put {m:y=0}: {m:frac(6, x+2)=1}, so {m:x+2=6}. This gives {m:x} = <span class="blank" data-answers="4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The graph meets the y-axis at {m:(0, 2)} and the x-axis at {m:(4, 0)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the reciprocal graph, moved</h2>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">The graph of {m:y=frac(3, x+5)+1} has a vertical asymptote {m:x=k}. Find k.</p>
+      <ol class="ladder"><li>The vertical asymptote is where the bottom of the fraction is 0.</li><li>Solve {m:x+5=0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">You copied the number from the bracket. {m:x+5=0} gives {m:x=-5}.</li>
+        <li data-if="1">That is the horizontal asymptote, {m:y=1}. The question asks for the vertical one.</li>
+      </ul>
+      <div class="solution"><p>The bottom is 0 when {m:x+5=0}, so {m:x=-5}. The vertical asymptote is {m:x=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="3,-2;3, -2" data-mode="exact">
+      <p class="qtext">The asymptotes of {m:y=frac(4, x-3)-2} cross at a point. Find its coordinates. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Find the vertical asymptote and the horizontal asymptote.</li><li>The point has the x-value of one and the y-value of the other.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3,2;-3, 2">You copied the signs as they are. The bracket {m:x-3} is 0 at {m:x=3}, and the {m:-2} outside moves the graph down 2.</li>
+        <li data-if="-2,3;-2, 3">You gave the y-value first. A point is written with x first.</li>
+      </ul>
+      <div class="solution"><p>The vertical asymptote is {m:x=3}, where {m:x-3=0}. The horizontal asymptote is {m:y=-2}. They cross at {m:(3, -2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which description fits the graph of {m:y=frac(-4, x+2)+1}?</p>
+      <ul class="options">
+        <li data-correct>Branches in the top left and bottom right of the point (&minus;2, 1)</li>
+        <li data-why="A negative number on top puts the branches in the top left and the bottom right, as for y = &minus;4/x. Branches in the top right and bottom left need a positive number on top.">Branches in the top right and bottom left of the point (&minus;2, 1)</li>
+        <li data-why="The asymptotes are x = &minus;2, because x + 2 = 0 there, and y = 1. They cross at (&minus;2, 1), not at (2, &minus;1).">Branches in the top left and bottom right of the point (2, &minus;1)</li>
+      </ul>
+      <ol class="ladder"><li>Find the asymptotes first. Where do they cross?</li><li>Is the number on top positive or negative?</li></ol>
+      <div class="solution"><p>The asymptotes are {m:x=-2} and {m:y=1}, so they cross at {m:(-2, 1)}. The number on top is {m:-4}, which is negative. So the branches are in the top left and the bottom right.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">The graph of {m:y=frac(6, x+3)-1} meets the y-axis at {m:(0, k)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:x=0} into the equation.</li><li>Work out {m:frac(6, 0+3)} first.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">You left out the {m:-1}. After {m:frac(6, 3)=2}, subtract 1.</li>
+        <li data-if="-3">You used {m:-3} for the bracket. At {m:x=0}, {m:x+3=3}, not {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(6, 0+3)-1=2-1=1}. The graph meets the y-axis at {m:(0, 1)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">The graph of {m:y=frac(4, x-1)+2} meets the x-axis at {m:(k, 0)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:y=0}. Move the 2 to the other side.</li><li>You get {m:frac(4, x-1)=-2}. Multiply both sides by {m:x-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">You dropped the minus sign. {m:frac(4, x-1)=-2} gives {m:x-1=-2}, not {m:x-1=2}.</li>
+        <li data-if="-2">You found {m:x-1=-2} but left out the last step. Add 1 to both sides.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(4, x-1)=-2}, so {m:4=-2(x-1)}. Then {m:x-1=-2} and {m:x=-1}. Check: {m:frac(4, -2)+2=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">The graph of {m:y=frac(a, x-2)+1} passes through the point {m:(0, 4)}. Find a.</p>
+      <ol class="ladder"><li>Put {m:x=0} and {m:y=4} into the equation.</li><li>You get {m:4=frac(a, -2)+1}. Move the 1 across, then multiply by {m:-2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">At {m:x=0}, the bracket {m:x-2} is {m:-2}, not 2. Check the sign of your answer.</li>
+        <li data-if="-1.5;-3/2">You divided 3 by {m:-2}. {m:frac(a, -2)=3} means a is {m:3*(-2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:4=frac(a, 0-2)+1=frac(a, -2)+1}. So {m:frac(a, -2)=3} and {m:a=3*(-2)=-6}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is true of the graph of {m:y=frac(2, x-1)+1}?</p>
+      <ul class="options">
+        <li data-correct>The graph has no point with x = 1</li>
+        <li data-why="At x = &minus;1, y = 2/(&minus;2) + 1 = 0, so the point (&minus;1, 0) is on the graph. The x-value that is missing is 1, where the bottom is 0.">The graph has no point with x = &minus;1</li>
+        <li data-why="y = 0 when x = &minus;1, so the graph crosses the x-axis there. The y-value that is never reached is 1, the horizontal asymptote.">The graph has no point with y = 0</li>
+      </ul>
+      <ol class="ladder"><li>Which x-value makes the bottom of the fraction 0?</li><li>Put {m:x=-1} into the equation and see what y is.</li></ol>
+      <div class="solution"><p>When {m:x=1} the bottom is 0, so there is no point with {m:x=1}. When {m:x=-1}, {m:y=frac(2, -2)+1=0}, so the graph does cross the x-axis at {m:(-1, 0)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Combining transformations</h2>
+    <p>Often several changes happen at once, as in {m:y=2f(x-1)+3}. There are two reliable ways to deal with them.</p>
+    <p><b>Follow a point.</b> Take a point {m:(p, q)} on {m:y=f(x)}. The new x-coordinate is the x that makes the inside of the bracket equal to p. Solve for it. The new y-coordinate comes from the outside: put q through the same steps as the equation. For {m:y=2f(x-1)+3}, solve {m:x-1=p} to get {m:x=p+1}. Then work out {m:2q+3}. The point goes to {m:(p+1, 2q+3)}.</p>
+    <p><b>Build the graph in steps.</b> Do the changes in the order you would work out the equation for a number x. For {m:y=2f(x-1)+3}, start with x. Subtract 1: a translation 1 to the right. Apply f. Multiply by 2: a stretch in the y-direction with scale factor 2. Add 3: a translation 3 up. The order matters, because a stretch or a reflection changes the size of a move that comes after it.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the inside of the bracket gives the new x-coordinate. The outside gives the new y-coordinate.</p>
+      <ul class="tick">
+        <li>New x-coordinate: solve (the inside of the bracket) = (the old x-coordinate).</li>
+        <li>New y-coordinate: put the old y-coordinate through the steps outside the bracket, in order.</li>
+        <li>A bracket such as {m:f(2x-4)} can be written {m:f(2(x-2))}. The 2 squashes the graph towards the y-axis first. Then the graph moves 2 to the right.</li>
+        <li>The order of the steps matters. A translation followed by a reflection gives a different graph from a reflection followed by the same translation.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: following a point</h3>
+      <p>The point {m:(4, 6)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=2f(x-1)+3}.</p>
+      <ol class="steps">
+        <li>Inside the bracket: {m:x-1=4}, so {m:x=5}.</li>
+        <li>Outside the bracket: multiply by 2 and add 3. {m:2*6+3=15}.</li>
+        <li>The matching point is {m:(5, 15)}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with one point. The next examples show combined moves as pictures. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a reflection and a translation</h3>
+      <p>The point {m:(4, 6)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=-f(x+2)+1}.</p>
+      <ol class="steps">
+        <li>Inside the bracket: {m:x+2=4}, so {m:x=2}.</li>
+        <li>Outside the bracket: change the sign, then add 1. {m:-6+1=-5}.</li>
+        <li>The matching point is {m:(2, -5)}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with one point. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a bracket with a number in front of x</h3>
+      <p>The graph of {m:y=f(x)} crosses the x-axis at {m:x=6}. Find where {m:y=f(2x-4)} crosses the x-axis.</p>
+      <ol class="steps">
+        <li>Solve (the inside of the bracket) = 6: {m:2x-4=6}. So {m:2x=10} and {m:x=5}.</li>
+        <li>Check with steps: {m:f(2x-4)=f(2(x-2))}. The 2 halves the x-coordinate: {m:frac(6, 2)=3}. Then the graph moves 2 to the right: {m:3+2=5}.</li>
+        <li>The graph crosses the x-axis at {m:x=5}.</li>
+      </ol>
+      <!-- No figure: the numbers are one root of an unspecified function. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: three changes to a parabola</h3>
+      <p>Describe how {m:y=2(x-1)^2+3} comes from {m:y=x^2}. Find its lowest point and its y-intercept.</p>
+      <ol class="steps">
+        <li>Write {m:f(x)=x^2}. Then {m:y=2f(x-1)+3}.</li>
+        <li>Move 1 to the right, then stretch in the y-direction with scale factor 2, then move 3 up.</li>
+        <li>The lowest point {m:(0, 0)} goes to {m:(1, 0)}, then stays at {m:(1, 0)} because {m:2*0=0}, then goes to {m:(1, 3)}.</li>
+        <li>y-intercept: put {m:x=0}. {m:2(0-1)^2+3=2+3=5}. The point is {m:(0, 5)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-combo-quad}<figcaption>Look at the lowest point {m:(1, 3)} of the dashed curve. It is narrower than the solid curve and its line of symmetry is {m:x=1}. It meets the y-axis at {m:(0, 5)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the order matters</h3>
+      <p>The graph of {m:y=x^2} is moved up 3 and then reflected in the x-axis. Write the equation of the final graph.</p>
+      <ol class="steps">
+        <li>Move up 3: {m:y=x^2+3}.</li>
+        <li>Reflect in the x-axis. Change the sign of the whole right-hand side: {m:y=-(x^2+3)=-x^2-3}.</li>
+        <li>If you reflected first and then moved up 3, you would get {m:y=-x^2+3}. That is a different graph.</li>
+      </ol>
+      <!-- No figure: the point of the example is the algebra, and the two equations are shown in the text. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The point {m:(3, 5)} is on the graph of {m:y=f(x)}. Find the matching point on {m:y=3f(x+2)-1}.</p>
+      <ol class="steps">
+        <li>Inside the bracket: {m:x+2=3}, so {m:x} = <span class="blank" data-answers="1">___</span>.</li>
+        <li>Outside the bracket: multiply by 3, then subtract 1. {m:3*5-1} = <span class="blank" data-answers="14">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The matching point is {m:(1, 14)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: combining transformations</h2>
+    <div class="q" data-answers="1,7;1, 7" data-mode="exact">
+      <p class="qtext">The point {m:(2, 3)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=4f(x+1)-5}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Find the new x-coordinate first: solve {m:x+1=2}.</li><li>Then find the new y-coordinate: multiply 3 by 4, then subtract 5.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,7;3, 7">You added 1 to the x-coordinate. {m:x+1=2} gives {m:x=1}: the graph moves left.</li>
+        <li data-if="1,17;1, 17">You added 5 at the end. The {m:-5} means subtract 5.</li>
+      </ul>
+      <div class="solution"><p>{m:x+1=2} gives {m:x=1}. Then {m:4*3-5=7}. The matching point is {m:(1, 7)}.</p></div>
+    </div>
+    <div class="q" data-answers="2,-2;2, -2" data-mode="exact">
+      <p class="qtext">The point {m:(-1, 4)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=-f(x-3)+2}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Solve {m:x-3=-1} for the new x-coordinate.</li><li>For the new y-coordinate, change the sign of 4, then add 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4,-2;-4, -2">You subtracted 3 from the x-coordinate. {m:x-3=-1} gives {m:x=2}: the graph moves right.</li>
+        <li data-if="2,6;2, 6">You left out the minus sign in front of f. It changes the sign of the 4 before you add 2.</li>
+      </ul>
+      <div class="solution"><p>{m:x-3=-1} gives {m:x=2}. Then {m:-4+2=-2}. The matching point is {m:(2, -2)}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=10}. Find the x-coordinate of the point where the graph of {m:y=f(2x+6)} crosses the x-axis.</p>
+      <ol class="ladder"><li>Solve (the inside of the bracket) = 10.</li><li>The inside is {m:2x+6}. Take away 6, then divide by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">You took away 6 but did not divide by 2. {m:2x+6=10} gives {m:2x=4}, and then {m:x=2}.</li>
+        <li data-if="-1">You halved 10 and then took away 6. The 6 is inside the bracket with the {m:2x}. Solve {m:2x+6=10}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x+6=10} gives {m:2x=4}, so {m:x=2}. Check: {m:2*2+6=10}.</p></div>
+    </div>
+    <div class="q" data-answers="-x^2-3;-(x^2+3)" data-mode="exact">
+      <p class="qtext">The graph of {m:y=x^2} is moved 3 units up and then reflected in the x-axis. Write the equation of the final graph. Type it like y=x^2-5.</p>
+      <ol class="ladder"><li>Write the equation after the move up. Then reflect that graph.</li><li>A reflection in the x-axis changes the sign of the whole right-hand side.</li></ol>
+      <ul class="wrong"><li data-if="-x^2+3">That is a reflection first and then a move up. The reflection came second, so it changes the sign of {m:x^2+3}, including the 3.</li></ul>
+      <div class="solution"><p>Moving up gives {m:y=x^2+3}. Reflecting in the x-axis gives {m:y=-(x^2+3)=-x^2-3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which description of the change from {m:y=f(x)} to {m:y=f(2x-4)} is correct?</p>
+      <ul class="options">
+        <li data-correct>A stretch in the x-direction with scale factor one half, then a translation 2 to the right</li>
+        <li data-why="f(2x &minus; 4) = f(2(x &minus; 2)). After the stretch, the graph moves 2 to the right, not 4. The 4 is shared with the 2 in front of x.">A stretch in the x-direction with scale factor one half, then a translation 4 to the right</li>
+        <li data-why="A number multiplying x, inside the bracket, gives a scale factor that is its reciprocal. The 2 gives scale factor one half, not 2.">A stretch in the x-direction with scale factor 2, then a translation 2 to the right</li>
+      </ul>
+      <ol class="ladder"><li>Take out the common factor 2 from {m:2x-4}.</li><li>Then read the number inside the bracket with x.</li></ol>
+      <div class="solution"><p>{m:2x-4=2(x-2)}, so {m:f(2x-4)=f(2(x-2))}. The 2 gives a stretch with scale factor {m:frac(1, 2)}. The {m:x-2} gives a move 2 to the right.</p></div>
+    </div>
+    <div class="q" data-answers="-2,-1;-2, -1" data-mode="exact">
+      <p class="qtext">The graph of {m:y=x^2} is transformed to the graph of {m:y=3(x+2)^2-1}. Find the coordinates of the lowest point of the new graph. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The lowest point of {m:y=x^2} is {m:(0, 0)}. Where does each step take it?</li><li>The bracket is 0 when the x-coordinate is right. The {m:-1} is added after the 3 multiplies.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,-1;2, -1">You copied the sign from the bracket. {m:x+2=0} gives {m:x=-2}.</li>
+        <li data-if="-2,-3;-2, -3">You multiplied the {m:-1} by 3. The 3 multiplies {m:(x+2)^2} only, and then 1 is subtracted.</li>
+      </ul>
+      <div class="solution"><p>The bracket {m:(x+2)} is 0 when {m:x=-2}, and then {m:y=3*0-1=-1}. The lowest point is {m:(-2, -1)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Trigonometric and exponential graphs</h2>
+    <p>The rules work for any graph. Here they are used on two families. Angles are in degrees on this page. The graph of {m:y=sin x} is a wave. Its highest value is 1 and its lowest is {m:-1}. It repeats every {m:360deg}. The {term:amplitude} of a wave is half the distance between its highest and lowest values. The {term:period} is the length of one full wave. For {m:y=sin x} the amplitude is 1 and the period is {m:360deg}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the same rules work on the sine curve. The cosine curve behaves in the same way.</p>
+      <ul class="tick">
+        <li>{m:y=a*sin x} has amplitude a. Its highest value is a and its lowest is {m:-a}. The period does not change.</li>
+        <li>{m:y=sin(b*x)} has period {m:frac(360deg, b)}. It is a stretch in the x-direction with scale factor {m:frac(1, b)}.</li>
+        <li>{m:y=sin(x-c)} is the curve moved c degrees to the right. If c is negative, it moves left.</li>
+        <li>{m:y=sin x+d} is the curve moved d up. Its highest value is {m:1+d} and its lowest is {m:-1+d}.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a stretch in the y-direction</h3>
+      <p>Describe the graph of {m:y=2*sin x} for {m:0deg} to {m:360deg}.</p>
+      <ol class="steps">
+        <li>Every y-value is doubled. The amplitude is 2. The highest value is 2 and the lowest is {m:-2}.</li>
+        <li>The highest point {m:(90deg, 1)} goes to {m:(90deg, 2)}. The lowest point {m:(270deg, -1)} goes to {m:(270deg, -2)}.</li>
+        <li>The graph crosses the x-axis at the same places as before, because {m:2*0=0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-sin-amp}<figcaption>Look at the highest point {m:(90deg, 2)} and the lowest point {m:(270deg, -2)} of the dashed curve. It has the same shape as the solid curve, but twice as tall.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a translation to the right</h3>
+      <p>Describe the graph of {m:y=sin(x-60deg)}.</p>
+      <ol class="steps">
+        <li>The {m:-60deg} is inside the bracket, so the graph moves {m:60deg} to the right.</li>
+        <li>The point {m:(0deg, 0)} goes to {m:(60deg, 0)}. The highest point {m:(90deg, 1)} goes to {m:(150deg, 1)}.</li>
+        <li>The height of the wave does not change.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-sin-shift}<figcaption>Look at the two marked points {m:(60deg, 0)} and {m:(150deg, 1)}. The dashed curve is the solid curve moved {m:60deg} to the right.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a stretch in the x-direction</h3>
+      <p>Describe the graph of {m:y=sin 2x}.</p>
+      <ol class="steps">
+        <li>The 2 multiplies x, so every x-coordinate is halved. The scale factor is {m:frac(1, 2)}.</li>
+        <li>The period is {m:frac(360deg, 2)=180deg}. The graph has two full waves from {m:0deg} to {m:360deg}.</li>
+        <li>The highest point {m:(90deg, 1)} goes to {m:(45deg, 1)}. The lowest point {m:(270deg, -1)} goes to {m:(135deg, -1)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-sin-period}<figcaption>Look at the two marked points {m:(45deg, 1)} and {m:(135deg, -1)}. The dashed curve has the same height as the solid curve, but it repeats twice as often.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a stretch and a translation together</h3>
+      <p>Find the highest and lowest values of {m:y=3*sin x+1}.</p>
+      <ol class="steps">
+        <li>First the wave is stretched with scale factor 3. Its highest value is 3 and its lowest is {m:-3}.</li>
+        <li>Then the wave moves up 1. The highest value is {m:3+1=4}. The lowest value is {m:-3+1=-2}.</li>
+        <li>The middle of the wave is the line {m:y=1}.</li>
+      </ol>
+      <!-- No figure: the two pictures above show a stretch and a move, and this example adds the two numbers. -->
+    </div>
+    <p>Now the exponential graph. The graph of {m:y=2^x} is an {term:exponential-function|exponential graph}. It passes through {m:(0, 1)} and {m:(1, 2)}, rises more and more steeply, and has the x-axis, {m:y=0}, as an asymptote. The same rules apply.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the rules move the asymptote and the y-intercept in the way you expect.</p>
+      <ul class="tick">
+        <li>{m:y=2^x+c} moves the graph c up. The asymptote becomes {m:y=c}. The y-intercept is {m:(0, 1+c)}.</li>
+        <li>{m:y=2^(x+b)} moves the graph b to the left. The asymptote is still {m:y=0}. The y-intercept is {m:(0, 2^b)}.</li>
+        <li>{m:y=2^(-x)} is the reflection in the y-axis. It falls from left to right. The point {m:(0, 1)} does not move.</li>
+        <li>{m:y=-2^x} is the reflection in the x-axis. The graph is below the axis.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exponential graph moved down</h3>
+      <p>Sketch {m:y=2^x-2}. Give the asymptote and where it meets each axis.</p>
+      <ol class="steps">
+        <li>The graph of {m:y=2^x} moves 2 down. The asymptote moves from {m:y=0} to {m:y=-2}.</li>
+        <li>y-intercept: put {m:x=0}. {m:2^0-2=1-2=-1}. The point is {m:(0, -1)}.</li>
+        <li>x-intercept: put {m:y=0}. {m:2^x=2}, so {m:x=1}. The point is {m:(1, 0)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-exp-shift}<figcaption>Look at the dashed line {m:y=-2}. The dashed curve gets closer and closer to it on the left. The point {m:(0, 1)} on the solid curve moves down to {m:(0, -1)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exponential graph reflected in the y-axis</h3>
+      <p>The point {m:(2, 4)} is on {m:y=2^x}. Find the matching point on {m:y=2^(-x)}.</p>
+      <ol class="steps">
+        <li>The minus sign is inside, so the x-coordinate changes sign. The matching point is {m:(-2, 4)}.</li>
+        <li>Check: {m:2^(-(-2))=2^2=4}.</li>
+        <li>The point {m:(0, 1)} is on the y-axis, so it does not move.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-exp-mirror}<figcaption>Look at the points {m:(2, 4)} and {m:(-2, 4)}. They are mirror images in the y-axis. Both curves pass through {m:(0, 1)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a number added to the power</h3>
+      <p>Find the y-intercept of {m:y=2^(x+3)}.</p>
+      <ol class="steps">
+        <li>The {m:+3} is inside, next to x, so the graph moves 3 to the left. The asymptote stays {m:y=0}.</li>
+        <li>Put {m:x=0}. {m:2^(0+3)=2^3=8}.</li>
+        <li>The y-intercept is {m:(0, 8)}. Check: the point {m:(0, 1)} went to {m:(-3, 1)}, and {m:2^0=1}.</li>
+      </ol>
+      <!-- No figure: the picture above of y = 2^x - 2 and the sine picture on a sideways move show the rule. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the highest and lowest values of {m:y=3*sin x-1}.</p>
+      <ol class="steps">
+        <li>The highest value of {m:sin x} is 1. So the highest value is {m:3*1-1} = <span class="blank" data-answers="2">___</span>.</li>
+        <li>The lowest value of {m:sin x} is {m:-1}. So the lowest value is {m:3*(-1)-1} = <span class="blank" data-answers="-4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The highest value is 2 and the lowest is {m:-4}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: trigonometric and exponential graphs</h2>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">Find the largest value of {m:y=4*sin x+2}.</p>
+      <ol class="ladder"><li>What is the largest value of {m:sin x}?</li><li>Multiply by 4 first, then add 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the largest value of {m:4*sin x}. The graph is also moved up 2, so add 2.</li>
+        <li data-if="12">You added 2 before you multiplied. The {m:+2} is outside, so it is added last: {m:4*1+2}.</li>
+      </ul>
+      <div class="solution"><p>The largest value of {m:sin x} is 1. So the largest value of y is {m:4*1+2=6}.</p></div>
+    </div>
+    <div class="q" data-answers="120" data-mode="value">
+      <p class="qtext">Find the period of {m:y=sin 3x}, in degrees.</p>
+      <ol class="ladder"><li>The period of {m:y=sin x} is {m:360deg}.</li><li>The 3 is inside, with x. Does it make the wave longer or shorter?</li></ol>
+      <ul class="wrong">
+        <li data-if="1080">You multiplied by 3. The 3 inside the bracket squashes the wave, so the period is divided by 3.</li>
+        <li data-if="360">That is the period of {m:sin x}. The 3 multiplying x changes it.</li>
+      </ul>
+      <div class="solution"><p>The wave is squashed with scale factor {m:frac(1, 3)}. The period is {m:frac(360, 3)=120} degrees.</p></div>
+    </div>
+    <div class="q" data-answers="130" data-mode="value">
+      <p class="qtext">The graph of {m:y=sin x} is moved {m:40deg} to the right. The new graph has equation {m:y=sin(x-40deg)}. Write down the x-coordinate of its first highest point for x greater than 0, in degrees.</p>
+      <ol class="ladder"><li>The first highest point of {m:y=sin x} is at {m:x=90deg}.</li><li>Move that point {m:40deg} to the right.</li></ol>
+      <ul class="wrong">
+        <li data-if="50">You moved the point to the left. {m:sin(x-40deg)} moves the graph to the right.</li>
+        <li data-if="90">That is where the highest point of {m:sin x} is. The graph has moved, so the point has moved too.</li>
+      </ul>
+      <div class="solution"><p>The highest point moves from {m:90deg} to {m:90deg+40deg=130deg}. Check: {m:sin(130deg-40deg)=sin 90deg=1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which equation is the graph of {m:y=sin x} stretched in the y-direction with scale factor 3?</p>
+      <ul class="options">
+        <li data-correct>y = 3 sin x</li>
+        <li data-why="sin 3x has the 3 inside, next to x. It squashes the wave sideways, so it repeats every 120 degrees. It does not make the wave taller.">y = sin 3x</li>
+        <li data-why="Adding 3 outside moves the whole wave up 3. The wave is the same height as before.">y = sin x + 3</li>
+      </ul>
+      <ol class="ladder"><li>A stretch in the y-direction multiplies every y-value.</li><li>Which of the three multiplies the whole function?</li></ol>
+      <div class="solution"><p>Multiplying every y-value by 3 gives {m:y=3*sin x}. The highest value becomes 3 and the lowest becomes {m:-3}.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">The graph of {m:y=2^x} is moved 5 units down. The new graph has the horizontal asymptote {m:y=k}. Find k.</p>
+      <ol class="ladder"><li>The asymptote of {m:y=2^x} is {m:y=0}.</li><li>Move that line down 5.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">Down means a smaller y-value, so the number is negative: {m:0-5}.</li>
+        <li data-if="0">That is the asymptote before the move. The asymptote moves with the graph.</li>
+      </ul>
+      <div class="solution"><p>The new equation is {m:y=2^x-5}. The asymptote moves from {m:y=0} to {m:y=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The graph of {m:y=2^x+3} meets the y-axis at {m:(0, k)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:x=0} into the equation.</li><li>What is {m:2^0}?</li></ol>
+      <ul class="wrong">
+        <li data-if="3">You treated {m:2^0} as 0. Any number to the power 0 is 1, so {m:2^0=1}.</li>
+        <li data-if="5">You worked out {m:2^0} as 2. Any number to the power 0 is 1.</li>
+      </ul>
+      <div class="solution"><p>{m:2^0+3=1+3=4}. The graph meets the y-axis at {m:(0, 4)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from the change to the new graph, and back again</h2>
+    <p>So far you have started with a graph and worked out what a change does to it. Now go the other way. Start with the old graph and the new graph, and find the change.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a change to a point. Solve the inside of the bracket for the new x-coordinate. Put the old y-coordinate through the outside steps for the new y-coordinate.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From two matching points to the change. The x-coordinates give the numbers inside the bracket. The y-coordinates give the numbers outside it.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from two points to the equation</h3>
+      <p>The point {m:(1, 4)} is on {m:y=f(x)}. The matching point on the graph of {m:y=a*f(x-b)} is {m:(3, 8)}. Find a and b.</p>
+      <ol class="steps">
+        <li>The x-coordinate: the inside of the bracket {m:x-b} must equal 1 when {m:x=3}. So {m:3-b=1} and {m:b=2}.</li>
+        <li>The y-coordinate: a multiplies 4 and gives 8. So {m:4a=8} and {m:a=2}.</li>
+        <li>The equation is {m:y=2f(x-2)}.</li>
+        <li>Check: put {m:x=3} into {m:2f(x-2)}. You get {m:2f(1)=2*4=8}.</li>
+      </ol>
+      <!-- No figure: the numbers are one point on an unspecified graph. -->
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From {m:y=frac(a, x+b)+c} to the asymptotes {m:x=-b} and {m:y=c}, and to the points where the graph crosses the axes.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the asymptotes and one point to the equation. The asymptotes give b and c. The point gives a.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from the asymptotes and a point to the equation</h3>
+      <p>The graph has the asymptotes {m:x=-1} and {m:y=2}, and passes through {m:(0, 5)}. Its equation is {m:y=frac(a, x+b)+c}. Find a, b and c.</p>
+      <ol class="steps">
+        <li>The vertical asymptote is {m:x=-b}. It is {m:x=-1}, so {m:b=1}.</li>
+        <li>The horizontal asymptote is {m:y=c}. It is {m:y=2}, so {m:c=2}. The equation has the form {m:y=frac(a, x+1)+2}.</li>
+        <li>Put in the point {m:(0, 5)}: {m:5=frac(a, 1)+2}. So {m:a=3}.</li>
+        <li>The equation is {m:y=frac(3, x+1)+2}.</li>
+        <li>Check: a is positive, so the branches are in the top right and the bottom left of {m:(-1, 2)}. The point {m:(0, 5)} is in the top right.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graph-transformations-flip-recip}<figcaption>Look at the two dashed lines and the marked point. The lines are {m:x=-1} and {m:y=2}. The point {m:(0, 5)} is on the branch in the top right.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="(x-2)^2-3" data-mode="exact">
+      <p class="qtext">The graph shows a curve with the same shape as {m:y=x^2}, moved. Find its equation in the form {m:y=(x-a)^2+b}, with numbers in place of a and b. Type it like y=(x+1)^2+4.</p>
+      <figure class="qfig-lg">{fig:graph-transformations-q-parab}</figure>
+      <ol class="ladder"><li>The lowest point of {m:y=x^2} is {m:(0, 0)}. Where is the lowest point of this curve?</li><li>The bracket must be 0 at the x-value of the lowest point. The number outside is the y-value of the lowest point.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+2)^2-3">You copied the sign. The lowest point is at {m:x=2}, so the bracket must be 0 when {m:x=2}: it is {m:(x-2)}.</li>
+        <li data-if="(x-2)^2+3">The lowest point is below the x-axis, at {m:y=-3}. So the number outside the bracket is {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>The lowest point is {m:(2, -3)}. The graph moved 2 to the right and 3 down. The equation is {m:y=(x-2)^2-3}. Check with the marked point: {m:(0-2)^2-3=4-3=1}.</p></div>
+    </div>
+    <div class="q" data-answers="6/(x-3)-1;-1+6/(x-3)" data-mode="exact">
+      <p class="qtext">The graph shows a reciprocal curve with its asymptotes and one marked point. Find its equation in the form {m:y=frac(a, x+b)+c}, with numbers in place of a, b and c. Type it like y=2/(x+1)+5.</p>
+      <figure class="qfig-lg">{fig:graph-transformations-q-recip}</figure>
+      <ol class="ladder"><li>The vertical asymptote is {m:x=-b}. The horizontal asymptote is {m:y=c}.</li><li>Write the equation with those two numbers. Then put the marked point into it and solve for a.</li></ol>
+      <ul class="wrong">
+        <li data-if="-6/(x-3)-1">With a negative number on top, the point {m:(0, -3)} does not fit: {m:frac(-6, -3)-1=1}. Put the point into {m:frac(a, x-3)-1} and solve for a.</li>
+        <li data-if="6/(x+3)-1">The vertical asymptote is {m:x=3}, so the bracket must be 0 when {m:x=3}: it is {m:(x-3)}.</li>
+      </ul>
+      <div class="solution"><p>The asymptotes are {m:x=3} and {m:y=-1}, so {m:y=frac(a, x-3)-1}. Put in {m:(0, -3)}: {m:-3=frac(a, -3)-1}. So {m:frac(a, -3)=-2} and {m:a=6}. The equation is {m:y=frac(6, x-3)-1}.</p></div>
+    </div>
+    <div class="q" data-answers="2,3;2, 3" data-mode="exact">
+      <p class="qtext">The graph shows a curve with the equation {m:y=a*sin x+c}. Find a and c. Type your answer as a pair (a, c), like (1, 4).</p>
+      <figure class="qfig-lg">{fig:graph-transformations-q-trig}</figure>
+      <ol class="ladder"><li>The highest and lowest values are marked. The amplitude is half the distance between them.</li><li>The middle value of the wave is c. It is halfway between the highest and the lowest.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,2;3, 2">You gave c first. The pair is (a, c), with a first.</li>
+        <li data-if="5,1;5, 1">These are the highest and lowest values. The number a is half the distance between them, and c is the middle value.</li>
+      </ul>
+      <div class="solution"><p>The distance between the highest value 5 and the lowest value 1 is 4, so the amplitude is {m:frac(4, 2)=2}. The middle value is {m:frac(5+1, 2)=3}. So {m:a=2} and {m:c=3}. The equation is {m:y=2*sin x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=4}. The graph of {m:y=f(x+k)} crosses the x-axis at {m:x=1}. Find k.</p>
+      <ol class="ladder"><li>The crossing point moved from {m:x=4} to {m:x=1}. Did it move left or right? By how much?</li><li>{m:f(x+k)} moves the graph k to the left.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">That would move the graph 3 to the right. The crossing point moved left, from 4 to 1, so the graph moved 3 to the left.</li>
+        <li data-if="5">You added the two numbers. The graph moved by the difference: {m:4-1}.</li>
+      </ul>
+      <div class="solution"><p>The graph moved 3 to the left, so {m:k=3}. Check: {m:f(x+3)} is 0 when {m:x+3=4}, which gives {m:x=1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dan says:</b> the graph of {m:y=f(x+3)} is the graph of {m:y=f(x)} moved 3 to the right, because x + 3 is bigger than x. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>A number inside the bracket works the opposite way, so the graph moves 3 to the left</li>
+        <li data-why="A graph moves up when the number is added outside the bracket, as in f(x) + 3. Here the 3 is inside, so the graph moves sideways.">The graph should move 3 up, because the 3 is added</li>
+        <li data-why="Check with a point. The value f(0) now appears when x + 3 = 0, which is at x = &minus;3. So the graph moves to the left.">Nothing, because x + 3 is bigger than x</li>
+      </ul>
+      <ol class="ladder"><li>For {m:f(x+3)}, find the value of x that makes the bracket equal 0.</li><li>On the original graph that point was at {m:x=0}. Where is it now?</li></ol>
+      <div class="solution"><p>The bracket {m:x+3} is 0 when {m:x=-3}. The point that was at {m:x=0} is now at {m:x=-3}. The graph moves 3 to the left.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Meera says:</b> {m:y=f(2x)} is a stretch in the x-direction with scale factor 2, so a root at {m:x=4} moves to {m:x=8}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The scale factor is one half, so the root moves to x = 2</li>
+        <li data-why="A number multiplying x, inside the bracket, changes the x-values. A stretch in the y-direction needs the number outside, as in 2f(x).">The stretch is in the y-direction, so the root stays at x = 4</li>
+        <li data-why="Multiplying x by 2 does not add 2. To get the same output you need an input half as big, so each x-coordinate is halved.">The root moves to x = 6, because 4 + 2 = 6</li>
+      </ul>
+      <ol class="ladder"><li>In {m:f(2x)}, the input to f is {m:2x}. For f to get the input 4, what must x be?</li><li>Solve {m:2x=4}.</li></ol>
+      <div class="solution"><p>f needs the input 4, so {m:2x=4} and {m:x=2}. The root moves from {m:x=4} to {m:x=2}. The scale factor is {m:frac(1, 2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> the graph of {m:y=frac(3, x+2)} has the vertical asymptote {m:x=2}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The bottom is 0 when x + 2 = 0, which gives x = &minus;2. The asymptote is x = &minus;2</li>
+        <li data-why="A horizontal asymptote needs a number added outside the fraction, as in y = 3/(x + 2) &minus; 2. This graph has the horizontal asymptote y = 0.">The asymptote should be y = &minus;2</li>
+        <li data-why="At x = &minus;2 the bottom is 0, and you cannot divide by 0. So there is no point there, and the graph has a vertical asymptote.">The graph has no vertical asymptote</li>
+      </ul>
+      <ol class="ladder"><li>The vertical asymptote is where the bottom of the fraction is 0.</li><li>Solve {m:x+2=0}.</li></ol>
+      <div class="solution"><p>{m:x+2=0} gives {m:x=-2}. The graph has the vertical asymptote {m:x=-2}. It moved 2 to the left, as a number inside the bracket does.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="3,-2;3, -2" data-mode="exact">
+      <p class="qtext">The point {m:(-3, 2)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f(-x)-4}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Solve {m:-x=-3} for the new x-coordinate.</li><li>The {m:-4} is outside the bracket. Subtract 4 from the old y-coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3,-2;-3, -2">The minus sign inside the bracket reflects the graph in the y-axis, so the x-coordinate changes sign.</li>
+        <li data-if="3,6;3, 6">You added 4. The {m:-4} outside the bracket means subtract 4 from the y-coordinate.</li>
+      </ul>
+      <div class="solution"><p>{m:-x=-3} gives {m:x=3}. Then {m:2-4=-2}. The matching point is {m:(3, -2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-2.5" data-mode="value">
+      <p class="qtext">The graph of {m:y=frac(2, x+3)-4} meets the x-axis at {m:(k, 0)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:y=0}: {m:frac(2, x+3)=4}.</li><li>Multiply both sides by {m:x+3}, then solve for x.</li></ol>
+      <ul class="wrong">
+        <li data-if="3.5">You added 3. The bracket is {m:x+3}, so subtract 3 from both sides.</li>
+        <li data-if="0.5">You found {m:x+3=0.5} but left out the last step. Subtract 3 from both sides.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(2, x+3)=4} gives {m:2=4(x+3)}. So {m:x+3=0.5} and {m:x=-2.5}. Check: {m:frac(2, 0.5)-4=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 1" data-mode="value">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:x=-3} and {m:x=3}. Find the x-coordinates of the points where {m:y=f(3x)} crosses the x-axis. Type them like 1 or 2.</p>
+      <ol class="ladder"><li>The 3 is inside the bracket. It changes the x-coordinates.</li><li>Each x-coordinate is divided by 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="-9 or 9">You multiplied by 3. In {m:f(3x)} each x-coordinate is divided by 3.</li>
+        <li data-if="-3 or 3">These are the original crossing points. The 3 inside the bracket moves them.</li>
+      </ul>
+      <div class="solution"><p>Divide each x-coordinate by 3: {m:frac(-3, 3)=-1} and {m:frac(3, 3)=1}.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">Find the smallest value of {m:y=3*sin x-2}.</p>
+      <ol class="ladder"><li>What is the smallest value of {m:sin x}?</li><li>Multiply by 3 first, then subtract 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">That is the smallest value of {m:3*sin x}. The graph also moves down 2, so subtract 2.</li>
+        <li data-if="-9">You subtracted 2 before you multiplied. The {m:-2} is outside, so it comes last: {m:3*(-1)-2}.</li>
+      </ul>
+      <div class="solution"><p>The smallest value of {m:sin x} is {m:-1}. So the smallest value is {m:3*(-1)-2=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="3,3;3, 3" data-mode="exact">
+      <p class="qtext">The graph of {m:y=f(x)} has its lowest point at {m:(3, -1)}. Find the lowest point of the graph of {m:y=2f(x)+5}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The 2 and the 5 are both outside the bracket. They change the y-coordinate only.</li><li>Multiply {m:-1} by 2, then add 5.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,4;3, 4">You added 5 but did not multiply by 2. The 2 multiplies the y-coordinate first.</li>
+        <li data-if="6,3;6, 3">You doubled the x-coordinate. The 2 is outside the bracket, so it changes only the y-coordinate.</li>
+      </ul>
+      <div class="solution"><p>The x-coordinate stays 3. The y-coordinate is {m:2*(-1)+5=3}. The lowest point is {m:(3, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement or fact.</p>
+    <div class="q" data-answers="8,-3;8, -3" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The curve C has equation {m:y=f(x)} and passes through the point {m:(4, -1)}. The curve D has equation {m:y=3f(frac(x, 2))}. Find the coordinates of the point on D that matches the point {m:(4, -1)}. Type it like (2, 5).</p>
+      <ol class="ladder"><li>The inside of the bracket is {m:frac(x, 2)}. Solve {m:frac(x, 2)=4} for the new x-coordinate.</li><li>The 3 is outside the bracket. It multiplies the y-coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,-3;2, -3">You halved the x-coordinate. In {m:f(frac(x, 2))} you need {m:frac(x, 2)=4}, so x is doubled.</li>
+        <li data-if="8,-1;8, -1">You left out the 3 in front of f. It multiplies the y-coordinate.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:frac(x, 2)=4} gives {m:x=8}. The y-coordinate is {m:3*(-1)=-3}. The point is {m:(8, -3)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:frac(x, 2)=4}</li>
+          <li><b>A1</b> for {m:x=8}</li>
+          <li><b>A1</b> for {m:y=-3}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] The curve C has equation {m:y=frac(5, x-2)+1}. Find the x-coordinate of the point where C meets the x-axis.</p>
+      <ol class="ladder"><li>Put {m:y=0}. Move the 1 to the other side.</li><li>Then solve {m:frac(5, x-2)=-1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="7">You dropped the minus sign. {m:frac(5, x-2)=-1} gives {m:x-2=-5}, not {m:x-2=5}.</li>
+        <li data-if="-5">You found {m:x-2=-5} but left out the last step. Add 2 to both sides.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:frac(5, x-2)+1=0} gives {m:frac(5, x-2)=-1}. So {m:5=-(x-2)}, {m:x-2=-5} and {m:x=-3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for putting {m:y=0}</li>
+          <li><b>M1</b> for {m:x-2=-5}</li>
+          <li><b>A1</b> for {m:x=-3}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The curve {m:y=frac(a, x+b)+c} has the asymptotes {m:x=-3} and {m:y=2}. It passes through the point {m:(0, 4)}. Find the value of a.</p>
+      <ol class="ladder"><li>The vertical asymptote is {m:x=-b}. The horizontal asymptote is {m:y=c}. Find b and c.</li><li>Put {m:x=0} and {m:y=4} into the equation and solve for a.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">You left out the {m:+2}. {m:4=frac(a, 3)+2} gives {m:frac(a, 3)=2}, and then {m:a=6}.</li>
+        <li data-if="2">You found {m:frac(a, 3)=2} but left out the last step. Multiply both sides by 3.</li>
+      </ul>
+      <div class="solution">
+        <p>The asymptotes give {m:b=3} and {m:c=2}. So {m:y=frac(a, x+3)+2}. At {m:(0, 4)}: {m:4=frac(a, 3)+2}, so {m:frac(a, 3)=2} and {m:a=6}.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:b=3}</li>
+          <li><b>B1</b> for {m:c=2}</li>
+          <li><b>M1</b> for {m:4=frac(a, 3)+2}</li>
+          <li><b>A1</b> for {m:a=6}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="120,2;120, 2" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The graph of {m:y=sin x} is transformed to the graph of {m:y=2*sin(x-30deg)}. Find the coordinates of the first highest point of the new graph for x greater than 0, with x in degrees. Type it like (45, 1).</p>
+      <ol class="ladder"><li>The first highest point of {m:y=sin x} is {m:(90deg, 1)}.</li><li>Move it {m:30deg} to the right. The 2 changes the y-coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="60,2;60, 2">You moved the point to the left. {m:sin(x-30deg)} moves the graph to the right.</li>
+        <li data-if="120,1;120, 1">You left out the stretch. The highest value of {m:2*sin(x-30deg)} is 2.</li>
+      </ul>
+      <div class="solution">
+        <p>The highest point moves from {m:(90deg, 1)} to {m:(90deg+30deg, 2*1)}, which is {m:(120deg, 2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for moving the point to the right</li>
+          <li><b>A1</b> for {m:x=120deg}</li>
+          <li><b>A1</b> for {m:y=2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-2,4;-2, 4" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The point P {m:(-3, 6)} is on the curve {m:y=f(x)}. The point Q is the matching point on the curve {m:y=f(2x+1)-2}. Find the coordinates of Q. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Solve {m:2x+1=-3} for the x-coordinate of Q.</li><li>Then subtract 2 from the y-coordinate of P.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1,4;-1, 4">You added 1 instead of taking it away. {m:2x+1=-3} gives {m:2x=-4}.</li>
+        <li data-if="-4,4;-4, 4">You found {m:2x=-4} but left out the last step. Divide both sides by 2.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:2x+1=-3} gives {m:2x=-4} and {m:x=-2}. The y-coordinate is {m:6-2=4}. So Q is {m:(-2, 4)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:2x+1=-3}</li>
+          <li><b>A1</b> for {m:x=-2}</li>
+          <li><b>M1</b> for {m:6-2}</li>
+          <li><b>A1</b> for {m:y=4}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The graph is every pair (x, y) with y = f(x).</b> Changing the equation changes which pairs are on the graph. Every rule on this page comes from asking which pairs satisfy the new equation.</li>
+      <li><b>A number outside changes y directly.</b> In {m:y=f(x)+3}, the output is 3 more than before for the same x. So every point goes up 3. In {m:y=2f(x)} every output is doubled, and in {m:y=-f(x)} every output changes sign.</li>
+      <li><b>A number inside changes the input, so it works in reverse.</b> In {m:y=f(x+3)}, the point that gave the output f(0) used to be at {m:x=0}. Now it needs {m:x+3=0}, so it is at {m:x=-3}. The inside rule always undoes the number: add becomes subtract, multiply becomes divide.</li>
+      <li><b>Roots stay under a stretch or reflection in the y-direction.</b> A root has {m:y=0}, and {m:a*0=0} and {m:-0=0}. In the same way, the y-intercept stays under a change that only touches x, because {m:a*0=0}.</li>
+      <li><b>The asymptotes move with the graph.</b> A translation moves every point, and the asymptotes are lines that the points get close to. So the asymptotes of {m:frac(a, x)} move by the same amounts as the curve: {m:x=0} moves to {m:x=-b} and {m:y=0} moves to {m:y=c}.</li>
+      <li><b>The order matters.</b> A reflection or a stretch multiplies the size of everything before it, including an earlier translation. So moving up 3 and then reflecting is not the same as reflecting and then moving up 3.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Moving {m:f(x+3)} to the right. A number inside the bracket moves the graph the opposite way: it moves left.</li>
+      <li>Treating {m:f(2x)} as a stretch with scale factor 2. The scale factor is {m:frac(1, 2)}: each x-coordinate is halved.</li>
+      <li>Changing the x-coordinate for {m:2f(x)}. The 2 is outside, so it changes the y-coordinate.</li>
+      <li>Writing {m:f(2x)} for {m:x^2-5} as {m:2x^2-5}. Replace x by {m:2x} and square it: {m:(2x)^2=4x^2}.</li>
+      <li>Forgetting that {m:-f(x)} changes every term, including the constant: {m:-(x^2+3)=-x^2-3}.</li>
+      <li>Reading the asymptote of {m:frac(3, x+2)} as {m:x=2}. It is {m:x=-2}, where the bottom is 0.</li>
+      <li>Treating the number added at the end as the vertical asymptote. In {m:frac(a, x+b)+c} it gives the horizontal asymptote {m:y=c}.</li>
+      <li>Breaking a bracket like {m:f(2x-4)} into a move of 4. Take out the 2 first: {m:f(2(x-2))} moves 2.</li>
+      <li>Drawing a branch across an asymptote, or forgetting to label both asymptotes with their equations.</li>
+      <li>Giving a point as (y, x). A point is written with x first.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="graph-transformations">
+      <li><label><input type="checkbox"> say what {m:f(x)+a} and {m:f(x+a)} do to a graph, and which way each one moves it</label></li>
+      <li><label><input type="checkbox"> say what {m:a*f(x)} and {m:f(a*x)} do to a graph, and which points stay where they are</label></li>
+      <li><label><input type="checkbox"> reflect a graph in the x-axis and in the y-axis, and write the new equation</label></li>
+      <li><label><input type="checkbox"> find where a point goes under a combination of transformations</label></li>
+      <li><label><input type="checkbox"> take a bracket such as {m:f(2x-4)} apart into a stretch and a translation</label></li>
+      <li><label><input type="checkbox"> sketch {m:y=frac(a, x+b)+c}, with its asymptotes and its crossing points</label></li>
+      <li><label><input type="checkbox"> find a, b and c for a reciprocal graph from its asymptotes and a point</label></li>
+      <li><label><input type="checkbox"> use the same rules on a sine graph and on an exponential graph</label></li>
+      <li><label><input type="checkbox"> work out which transformation took a graph to its new position</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
