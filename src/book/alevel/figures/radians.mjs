@@ -43,7 +43,7 @@ function sketch(id, { xmin, xmax, ymin, ymax, rows = 2, height, equal = false, y
   CURVES[id] = [];
   ITEMS[id] = [];
   REGIONS[id] = [];
-  PENDING[id] = { points: [], levels: [], segs: [], taken: [] };
+  PENDING[id] = { points: [], levels: [], segs: [], tags: [], taken: [] };
   return plane({ grid: false, ticks: false, tickLabels: false, width: W, height: h, top, xmin, xmax, ymin, ymax, ylabel });
 }
 
@@ -86,6 +86,18 @@ function mark(p, id, { name, x, y, text }) {
   PENDING[id].points.push({ name, x, y, text });
 }
 
+/**
+ * The angle at O: a small arc round O, and the angle's own label inside the wedge, on the bisector of the two radii.
+ * The arc has radius r / 5 and the label's target is 0.6 r along the bisector; the test checks both against the page.
+ */
+function angleMark(p, id, { r, theta, text }) {
+  draw(p, id, [arcOf('angle', r / 5, 0, theta, 'curve-b')]);
+  const x = 0.6 * r * Math.cos(theta / 2);
+  const y = 0.6 * r * Math.sin(theta / 2);
+  ITEMS[id].push({ name: 'ang', kind: 'tag', x, y, text });
+  PENDING[id].tags.push({ name: 'ang', x, y, text });
+}
+
 /** A dashed line across the picture at height y (the right-hand side of an equation). Its equation is written beside it, near `at`. */
 function level(p, id, { name, y, text, at }) {
   ITEMS[id].push({ name, kind: 'hline', y, text });
@@ -115,7 +127,7 @@ function distToSeg(qx, qy, ax, ay, bx, by) {
  */
 function place(p, id) {
   const g = GEOM[id];
-  const { points, levels, segs, taken } = PENDING[id];
+  const { points, levels, segs, tags, taken } = PENDING[id];
   const px = (x) => p.X(x);
   const py = (y) => p.Y(y);
   // the drawn curves and segments as pixel points, as the test samples them
@@ -151,6 +163,7 @@ function place(p, id) {
     ...circles.map((c) => ({ name: c.name, at: (qx, qy) => Math.hypot(qx - c.cx, qy - c.cy), point: true })),
     ...levels.map((l) => ({ name: l.name, at: (qx, qy) => Math.abs(qy - py(l.y)), point: false })),
     ...segs.map((s) => ({ name: s.name, at: (qx, qy) => distToSeg(qx, qy, px(s.x1), py(s.y1), px(s.x2), py(s.y2)), point: false })),
+    ...tags.map((t) => ({ name: t.name, at: (qx, qy) => Math.hypot(qx - px(t.x), qy - py(t.y)), point: false })),
   ];
   const placed = [];
   const boxOf = (text, x, y, anchor) => {
@@ -203,6 +216,7 @@ function place(p, id) {
     cands.sort((a, b) => a.cost - b.cost);
     put(items.find((i) => i.name === l.name), l.text, cands, false, ' alt');
   }
+  for (const t of tags) put(items.find((i) => i.name === t.name), t.text, around(px(t.x), py(t.y)), false, '');
   for (const s of segs) if (s.text) put(items.find((i) => i.name === s.name), s.text, around((px(s.x1) + px(s.x2)) / 2, (py(s.y1) + py(s.y2)) / 2), false, ' alt');
   for (const c of circles) p.raw(`<circle class="pt" data-name="${c.name}" cx="${f2(c.cx)}" cy="${f2(c.cy)}" r="7"/>`);
   for (const t of out) p.raw(t);
@@ -220,13 +234,14 @@ const t3 = (v) => (Math.round(v * 1000) / 1000).toString();
 const R = (r, a) => [r * Math.cos(a), r * Math.sin(a)];
 
 /** A sector of the circle of radius r and angle theta (at most a quarter turn): the two radii, the arc and the points O, A, B. */
-function sectorOutline(p, id, { r, theta, oText, radiusText, shade = false }) {
+function sectorOutline(p, id, { r, theta, angleText, radiusText, shade = false }) {
   const [bx, by] = R(r, theta);
   if (shade) region(p, id, { name: 'sector', pts: [[0, 0], ...arcPoints(r, 0, theta)] });
   draw(p, id, [arcOf('arc', r, 0, theta)]);
   seg(p, id, { name: 'oa', x1: 0, y1: 0, x2: r, y2: 0, text: radiusText });
   seg(p, id, { name: 'ob', x1: 0, y1: 0, x2: bx, y2: by, text: radiusText });
-  mark(p, id, { name: 'o', x: 0, y: 0, text: oText });
+  angleMark(p, id, { r, theta, text: angleText });
+  mark(p, id, { name: 'o', x: 0, y: 0, text: 'O' });
   mark(p, id, { name: 'a', x: r, y: 0, text: 'A' });
   mark(p, id, { name: 'b', x: bx, y: by, text: 'B' });
 }
@@ -244,21 +259,23 @@ export const FIGURES = {
     const [bx, by] = R(1, 1);
     seg(p, id, { name: 'oa', x1: 0, y1: 0, x2: 1, y2: 0, text: 'r' });
     seg(p, id, { name: 'ob', x1: 0, y1: 0, x2: bx, y2: by, text: 'r' });
-    mark(p, id, { name: 'o', x: 0, y: 0, text: '1 radian' });
+    angleMark(p, id, { r: 1, theta: 1, text: '1 rad' });
+    mark(p, id, { name: 'o', x: 0, y: 0, text: 'O' });
     mark(p, id, { name: 'a', x: 1, y: 0, text: 'A' });
     mark(p, id, { name: 'b', x: bx, y: by, text: 'B' });
     return finish(p, {
       id,
       title: 'A circle with two radii that make an angle of one radian, and the arc between them, which is as long as a radius',
-      desc: `A circle with centre O at the origin, drawn as a dotted line. Two solid radii run from O. One goes along the positive x-axis to the marked point A (1, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). Each radius is labelled r. The angle between the radii, at O, is 1 radian, about 57.3 degrees. The solid arc AB, between A and B, is exactly as long as a radius.`,
+      desc: `A circle with centre O at the origin, drawn as a dotted line. Two solid radii run from O. One goes along the positive x-axis to the marked point A (1, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). Each radius is labelled r. The angle between the radii, at O, is 1 radian, about 57.3 degrees. A small dashed arc at O marks the angle, labelled 1 rad. The solid arc AB, between A and B, is exactly as long as a radius.`,
     });
   },
 
   // ---- 2. the unit circle with radian angles ----
   'radians-unit-circle': () => {
     const id = 'radians-unit-circle';
-    const p = sketch(id, { xmin: -1.5, xmax: 1.5, ymin: -1.5, ymax: 1.5, rows: 1, equal: true });
-    keyRow(p, id, 0, 'curve', `The angle at the centre, in radians`);
+    const p = sketch(id, { xmin: -1.5, xmax: 1.5, ymin: -1.5, ymax: 1.5, rows: 2, equal: true });
+    keyRow(p, id, 0, 'curve', 'The unit circle');
+    keyRow(p, id, 1, 'curve', 'Each point shows its angle in radians');
     draw(p, id, [{ name: 'top', fn: upperArc(1), from: -1, to: 1, arc: { r: 1, a0: 0, a1: Math.PI } }, { name: 'bottom', fn: lowerArc(1), from: -1, to: 1, arc: { r: 1, a0: Math.PI, a1: 2 * Math.PI } }]);
     const at = (name, a, text) => { const [x, y] = R(1, a); mark(p, id, { name, x, y, text }); };
     at('p6', Math.PI / 6, `${PI}/6`);
@@ -279,12 +296,12 @@ export const FIGURES = {
     const id = 'radians-arc';
     const p = sketch(id, { xmin: -1, xmax: 6, ymin: -1, ymax: 6, rows: 1, equal: true });
     keyRow(p, id, 0, 'curve', 'The arc AB has length 6');
-    sectorOutline(p, id, { r: 5, theta: 1.2, oText: '1.2 rad', radiusText: 'r = 5' });
+    sectorOutline(p, id, { r: 5, theta: 1.2, angleText: '1.2 rad', radiusText: 'r = 5' });
     const [bx, by] = R(5, 1.2);
     return finish(p, {
       id,
       title: 'A sector with radius 5 and angle 1.2 radians, whose arc AB has length 6',
-      desc: `A sector of a circle with centre O at the origin. Two solid radii each have length 5, labelled r = 5. One goes along the positive x-axis to the marked point A (5, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). The angle at O between them is 1.2 radians, labelled 1.2 rad. The curved arc AB has length 6, which is 5 multiplied by 1.2.`,
+      desc: `A sector of a circle with centre O at the origin. Two solid radii each have length 5, labelled r = 5. One goes along the positive x-axis to the marked point A (5, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). The angle at O between them is 1.2 radians. A small dashed arc at O marks it, and the label 1.2 rad sits inside the sector. The curved arc AB has length 6, which is 5 multiplied by 1.2.`,
     });
   },
 
@@ -293,12 +310,12 @@ export const FIGURES = {
     const id = 'radians-sector';
     const p = sketch(id, { xmin: -1, xmax: 7, ymin: -1, ymax: 7, rows: 1, equal: true });
     keyRow(p, id, 0, 'shade', 'The shaded sector has area 27');
-    sectorOutline(p, id, { r: 6, theta: 1.5, oText: '1.5 rad', radiusText: 'r = 6', shade: true });
+    sectorOutline(p, id, { r: 6, theta: 1.5, angleText: '1.5 rad', radiusText: 'r = 6', shade: true });
     const [bx, by] = R(6, 1.5);
     return finish(p, {
       id,
       title: 'A shaded sector with radius 6 and angle 1.5 radians, whose area is 27',
-      desc: `A shaded sector of a circle with centre O at the origin. Two solid radii each have length 6, labelled r = 6. One goes along the positive x-axis to the marked point A (6, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). The angle at O between them is 1.5 radians, labelled 1.5 rad. The sector between the radii and the arc AB is shaded, and its area is 27, which is a half of 6 squared, multiplied by 1.5.`,
+      desc: `A shaded sector of a circle with centre O at the origin. Two solid radii each have length 6, labelled r = 6. One goes along the positive x-axis to the marked point A (6, 0). The other goes to the marked point B (${t3(bx)}, ${t3(by)}). The angle at O between them is 1.5 radians. A small dashed arc at O marks it, and the label 1.5 rad sits inside the sector. The sector between the radii and the arc AB is shaded, and its area is 27, which is a half of 6 squared, multiplied by 1.5.`,
     });
   },
 
@@ -312,13 +329,14 @@ export const FIGURES = {
     seg(p, id, { name: 'oa', x1: 0, y1: 0, x2: 10, y2: 0, text: 'r = 10' });
     seg(p, id, { name: 'ob', x1: 0, y1: 0, x2: 0, y2: 10, text: 'r = 10' });
     seg(p, id, { name: 'ab', x1: 10, y1: 0, x2: 0, y2: 10, text: 'chord' });
-    mark(p, id, { name: 'o', x: 0, y: 0, text: `${PI}/2` });
+    angleMark(p, id, { r: 10, theta: Math.PI / 2, text: `${PI}/2` });
+    mark(p, id, { name: 'o', x: 0, y: 0, text: 'O' });
     mark(p, id, { name: 'a', x: 10, y: 0, text: 'A' });
     mark(p, id, { name: 'b', x: 0, y: 10, text: 'B' });
     return finish(p, {
       id,
       title: 'A sector with radius 10 and angle pi over 2, with its chord AB, and the segment between the chord and the arc shaded',
-      desc: `A sector of a circle with centre O at the origin, with two solid radii of length 10, labelled r = 10. One goes along the positive x-axis to the marked point A (10, 0). The other goes up the y-axis to the marked point B (0, 10). The angle at O is ${PI}/2, a quarter turn. A solid straight line, labelled chord, joins A to B. The curved arc AB bulges out beyond the chord. The shaded segment is the region between the chord and the arc. The triangle OAB is not shaded.`,
+      desc: `A sector of a circle with centre O at the origin, with two solid radii of length 10, labelled r = 10. One goes along the positive x-axis to the marked point A (10, 0). The other goes up the y-axis to the marked point B (0, 10). The angle at O is ${PI}/2, a quarter turn, marked by a small dashed arc and labelled ${PI}/2 inside the sector. A solid straight line, labelled chord, joins A to B. The curved arc AB bulges out beyond the chord. The shaded segment is the region between the chord and the arc. The triangle OAB is not shaded.`,
     });
   },
 
@@ -383,11 +401,12 @@ export const FIGURES = {
     draw(p, id, [arcOf('arc', 8, 0, 0.9)]);
     seg(p, id, { name: 'oa', x1: 0, y1: 0, x2: 8, y2: 0, text: '8 cm' });
     seg(p, id, { name: 'ob', x1: 0, y1: 0, x2: bx, y2: by, text: '8 cm' });
-    mark(p, id, { name: 'o', x: 0, y: 0, text: '0.9 rad' });
+    angleMark(p, id, { r: 8, theta: 0.9, text: '0.9 rad' });
+    mark(p, id, { name: 'o', x: 0, y: 0, text: 'O' });
     return finish(p, {
       id,
       title: 'A sector with radius 8 centimetres and angle 0.9 radians',
-      desc: `A sector of a circle with centre O at the origin. Its two straight edges are radii, each labelled 8 cm. One lies along the positive x-axis. The other is higher up, so that the angle between them at the marked point O (0, 0) is 0.9 radians, labelled 0.9 rad. The curved edge of the sector is an arc of the circle.`,
+      desc: `A sector of a circle with centre O at the origin. Its two straight edges are radii, each labelled 8 cm. One lies along the positive x-axis. The other is higher up, so that the angle between them at the marked point O (0, 0) is 0.9 radians. A small dashed arc at O marks it, and the label 0.9 rad sits inside the sector. The curved edge of the sector is an arc of the circle.`,
     });
   },
 
@@ -415,14 +434,15 @@ export const FIGURES = {
     seg(p, id, { name: 'oa', x1: 0, y1: 0, x2: 12, y2: 0, text: '12 cm' });
     seg(p, id, { name: 'at', x1: 12, y1: 0, x2: 12, y2: ty });
     seg(p, id, { name: 'ot', x1: 0, y1: 0, x2: 12, y2: ty });
-    mark(p, id, { name: 'o', x: 0, y: 0, text: `${PI}/6` });
+    angleMark(p, id, { r: 12, theta: Math.PI / 6, text: `${PI}/6` });
+    mark(p, id, { name: 'o', x: 0, y: 0, text: 'O' });
     mark(p, id, { name: 'a', x: 12, y: 0, text: 'A' });
     mark(p, id, { name: 'b', x: bx, y: by, text: 'B' });
     mark(p, id, { name: 't', x: 12, y: ty, text: 'T' });
     return finish(p, {
       id,
       title: 'A sector OAB of radius 12 centimetres and angle pi over 6, with the tangent at A meeting OB extended at T',
-      desc: `A sector OAB of a circle with centre O at the origin. The radius OA, labelled 12 cm, lies along the positive x-axis to the marked point A (12, 0). The angle at O, between OA and OB, is ${PI}/6, labelled ${PI}/6. The point B (${t3(bx)}, ${t3(by)}) is on the arc. A straight line from O through B carries on to the marked point T. A vertical line from A up to T is the tangent to the circle at A. It makes a right angle with OA. The region R, bounded by the arc AB, the straight line BT and the tangent TA, is shaded.`,
+      desc: `A sector OAB of a circle with centre O at the origin. The radius OA, labelled 12 cm, lies along the positive x-axis to the marked point A (12, 0). The angle at O, between OA and OB, is ${PI}/6. A small dashed arc at O marks it, and the label ${PI}/6 sits inside the sector. The point B (${t3(bx)}, ${t3(by)}) is on the arc. A straight line from O through B carries on to the marked point T. A vertical line from A up to T is the tangent to the circle at A. It makes a right angle with OA. The region R, bounded by the arc AB, the straight line BT and the tangent TA, is shaded.`,
     });
   },
 };

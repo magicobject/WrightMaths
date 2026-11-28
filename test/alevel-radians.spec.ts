@@ -180,7 +180,7 @@ const CHECKS: Check[] = [
   { find: 'area of the shaded region R', answer: sf(regionR), slips: [{ typed: '37.7', calc: 0.5 * 144 * (PI / 6), says: /area of the sector OAB only/ }, { typed: '41.6', calc: triangleOAT, says: /area of the whole triangle OAT/ }] },
   { find: 'perimeter is 20 cm and its area is 16', answer: radii.map((r) => Math.round(r * 1e6) / 1e6), slips: [{ typed: '8', calc: 8, says: /one of the two roots/ }] },
   { find: 'One of the two values of r', answer: (20 - 2 * 8) / 8, slips: [{ typed: '8', calc: (20 - 2 * 2) / 2, says: /angle for r=2/ }] },
-  { find: 'frac(1-cos(2*theta), theta*tan theta)', answer: (1 - Math.cos(2e-4)) / (1e-4 * Math.tan(1e-4)) > 1.999 ? 2 : NaN, slips: [{ typed: '0.5', calc: 0.5, says: /used theta instead of 2\*theta/ }, { typed: '4', calc: 4, says: /left out the half/ }] },
+  { find: 'frac(1-cos(2*theta), theta*tan theta)', answer: Math.round(((1 - Math.cos(2e-3)) / (1e-3 * Math.tan(1e-3))) * 1e3) / 1e3, slips: [{ typed: '0.5', calc: 0.5, says: /used theta instead of 2\*theta/ }, { typed: '4', calc: 4, says: /left out the half/ }] },
   { find: 'Solve 2 sin^2 x-3 sin x+1=0', answer: quad.map((v) => sf(v)), slips: [{ typed: '0.524 or 2.62', calc: [PI / 6, (5 * PI) / 6], says: /sin x=frac\(1, 2\) only/ }, { typed: '30 or 90 or 150', calc: [30, 90, 150], says: /degree mode/ }] },
   { find: 'Find the angle AOB', answer: sf(angleAOB), slips: [{ typed: '53.1', calc: angleAOB / RAD, says: /angle in degrees/ }, { typed: '0.644', calc: Math.atan2(3, 4), says: /used frac\(3, 4\)/ }] },
   { find: 'area of the sector OAB', answer: sf(0.5 * 25 * angleAOB), slips: [{ typed: '23.2', calc: 25 * angleAOB, says: /left out the half/ }] },
@@ -211,6 +211,13 @@ test('every typed key is recomputed, and every wrong-answer value is tied to the
       const calc = list(s.calc);
       if (!sameList(val(s.typed), calc, 0.006)) problems.push(`${c.find}: the slip "${s.typed}" is not what its working gives, ${calc}`);
       for (const v of li.values) if (!sameList(val(v), calc, 0.006)) problems.push(`${c.find}: "${v}" is listed with the slip but is not ${calc}`);
+    }
+    // the right value typed as a decimal, on a question that asks for an exact answer: its values are the key's value, rounded
+    for (const w of q.wrongs) {
+      if (w.claimed || !/That is the decimal value/.test(plain(w.text))) continue;
+      w.claimed = true;
+      if (q.mode !== 'exact' || !q.answers.some((a) => /pi|sqrt|radic/.test(a))) problems.push(`${c.find}: a decimal slip on a question that does not ask for an exact answer`);
+      for (const v of w.values) if (!sameList(val(v), want, 0.006)) problems.push(`${c.find}: the decimal "${v}" is not the value ${want}`);
     }
     for (const w of q.wrongs) if (!w.claimed) problems.push(`${c.find}: wrong-answer entry "${w.values.slice(0, 2).join(' | ')}" has no recomputed slip`);
   }
@@ -332,18 +339,24 @@ test('the blanks in every "Now you finish it" are recomputed', () => {
     [0.5 * 100], [0.5 * 100 * 0.6], // sector area 50 then 30
     [0.5 * 16 * (PI / 3)], [0.5 * 16 * Math.sin(PI / 3)], [sf(0.5 * 16 * (PI / 3) - 0.5 * 16 * Math.sin(PI / 3), 3)], // segment: sector, triangle, difference
     [Math.asin(sqrt3 / 2)], [PI - Math.asin(sqrt3 / 2)], // sin x = sqrt(3)/2: pi/3 and 2pi/3
-    ['4theta;4*theta;theta*4'], [4 / 2], // sin 4 theta ~ 4 theta, then 4/2
+    ['theta'], [4 / 2], // sin 4 theta ~ 4 theta (the keys are read with theta = 0.37), then 4/2
   ];
   expect(blanks.length).toBe(expected.length);
   blanks.forEach((b, i) => {
     const keys = decode(b).split(';').map((x) => x.trim());
     const want = expected[i];
-    if (typeof want[0] === 'string') expect(keys, `blank ${i}`).toEqual((want[0] as string).split(';'));
+    if (typeof want[0] === 'string') {
+      // 4 theta, written 4theta, 4*theta, theta*4 or with the symbol: every key is 4 x theta, at a value of theta
+      const t = 0.37;
+      expect(keys.length, `blank ${i}`).toBe(6);
+      for (const k of keys) expect(close(one(k.replace(/theta|\u03b8/g, `(${t})`)), 4 * t), `blank ${i} "${k}"`).toBe(true);
+      expect(keys.some((k) => /\u03b8/.test(k)) && keys.some((k) => /theta/.test(k))).toBe(true);
+    }
     else for (const k of keys) expect(sameList(val(k), want as number[]), `blank ${i} "${k}" is ${val(k)}, expected ${want}`).toBe(true);
   });
   // the same facts, checked directly
   expect(Math.cos((5 * PI) / 6)).toBeCloseTo(-sqrt3 / 2, 12);
-  expect(Math.sin((5 * PI) / 6) * 0 + Math.tan(PI / 3)).toBeCloseTo(sqrt3, 12);
+  expect(Math.tan(PI / 3)).toBeCloseTo(sqrt3, 12);
   expect(dp(8 * PI / 3 - 4 * sqrt3, 2)).toBe(1.45);
 });
 
@@ -529,6 +542,20 @@ test('lesson 6: the period, the asymptotes, and the pairs of solutions in an int
   expect(Math.sin(0.4 + PI) / Math.cos(0.4 + PI)).toBeCloseTo(-Math.sin(0.4) / -Math.cos(0.4), 12);
 });
 
+test('sin x = 1 or -1 and cos x = 1 or -1 have one solution in a turn, not two', () => {
+  for (const [fn, k] of [[Math.sin, 1], [Math.sin, -1], [Math.cos, 1], [Math.cos, -1]] as [Fn, number][]) {
+    // the angles where the wave touches the line: points within 1e-9 of it, grouped when they are within 0.01 of each other
+    const hits: number[] = [];
+    for (let i = 0; i <= 200000; i += 1) { const x = ((2 * PI - 0.01) * i) / 200000; if (Math.abs(fn(x) - k) < 1e-9) hits.push(x); }
+    const groups = hits.filter((x, i) => i === 0 || x - hits[i - 1] > 0.01).length;
+    expect(groups, `${k}`).toBe(1);
+  }
+  expect(PI - Math.asin(1)).toBeCloseTo(Math.asin(1), 12); // alpha and pi - alpha are the same angle
+  expect(Math.acos(1)).toBe(-Math.acos(1) + 0);
+  expect(Math.abs(Math.acos(-1) - -Math.acos(-1))).toBeCloseTo(2 * PI, 12); // alpha and -alpha differ by a whole turn
+  expect(sols((x) => Math.sin(x) - 0.5, 0, 2 * PI - 1e-6).length).toBe(2); // any other value in range gives two
+});
+
 test('lesson 7: the small-angle approximations, the table, the errors and the ratios', () => {
   const small = [0.001, 0.01, 0.05, 0.1, 0.2];
   for (const th of small) {
@@ -547,7 +574,7 @@ test('lesson 7: the small-angle approximations, the table, the errors and the ra
     expect(dp(Math.tan(th), 4), `tan ${th}`).toBe(t);
     expect(dp(Math.cos(th), 4), `cos ${th}`).toBe(c);
     expect(dp(1 - th ** 2 / 2, 4), `1 - ${th}^2/2`).toBe(a);
-    for (const cell of [String(s), String(t), a === 0.5 ? '0.5000' : a.toFixed(4)]) expect(SOURCE, `${th}: ${cell}`).toContain(cell.length === 6 ? cell : cell);
+    for (const cell of [s.toFixed(4), t.toFixed(4), c.toFixed(4), a.toFixed(4)]) expect(SOURCE, `${th}: ${cell}`).toContain(`<td>${cell}</td>`);
   }
   expect(SOURCE).toContain('<td>0.9950</td><td>0.9950</td>');
   expect(SOURCE).toContain('<td>0.8776</td><td>0.8750</td>');
@@ -634,24 +661,26 @@ test('every calculation {m:a=b=c} on the page is right', () => {
 test('every calculator value, exact value and rounded value the page quotes is right', () => {
   // [how it is written on the page, the true value, the value the page quotes, the decimal places it is quoted to]
   const quotes: [string, number, number, number][] = [
-    ['sin 0.8=0.717', Math.sin(0.8), 0.717, 3], ['tan 1.2=2.57', Math.tan(1.2), 2.57, 2], ['sin 30=-0.988', Math.sin(30), -0.988, 3], ['cos 2=-0.416', Math.cos(2), -0.416, 3],
+    ['sin 0.8=0.717', Math.sin(0.8), 0.717, 3], ['tan 1.2=2.57', Math.tan(1.2), 2.57, 2], ['-0.988', Math.sin(30), -0.988, 3], ['cos 2=-0.416', Math.cos(2), -0.416, 3],
     ['sin 1=0.8415', Math.sin(1), 0.8415, 4], ['sin 0.2=0.1987', Math.sin(0.2), 0.1987, 4], ['cos 0.3=0.9553', Math.cos(0.3), 0.9553, 4], ['cos 0.2=0.9801', Math.cos(0.2), 0.9801, 4],
     ['sin^(-1)(0.8)=0.927', Math.asin(0.8), 0.927, 3], ['sin^(-1)(0.3)=0.3047', Math.asin(0.3), 0.3047, 4], ['pi-0.9273=2.21', PI - 0.9273, 2.21, 2], ['pi-0.3047=2.8369', PI - 0.3047, 2.8369, 4],
     ['tan^(-1)(frac(4, 3))=0.927', Math.atan(4 / 3), 0.927, 3], ['180-30=150', 150, 150, 0],
     ['2*frac(180, pi)=frac(360, pi)', 2 * (180 / PI), 360 / PI, 9], ['frac(360, pi)=114.6', 360 / PI, 114.6, 1], ['1.75*frac(180, pi)=100.3deg', 1.75 * (180 / PI), 100.3, 1],
-    ['0.5*frac(180, pi)=28.6deg', 0.5 * (180 / PI), 28.6, 1], ['1*frac(180, pi)=57.3', 180 / PI, 57.3, 1], ['1.5*frac(180, pi)=85.9', 1.5 * (180 / PI), 85.9, 1],
-    ['frac(pi, 3)=1.047', PI / 3, 1.047, 3], ['frac(8*pi, 3)=8.378', (8 * PI) / 3, 8.378, 3], ['4*sqrt(3)=6.928', 4 * sqrt3, 6.928, 3], ['0.1047', PI / 30, 0.1047, 4], ['0.924', 0, 0, 0],
+    ['0.5*frac(180, pi)=28.6deg', 0.5 * (180 / PI), 28.6, 1], ['1.5*frac(180, pi)=85.9', 1.5 * (180 / PI), 85.9, 1],
+    ['frac(8*pi, 3)=8.378', (8 * PI) / 3, 8.378, 3], ['4*sqrt(3)=6.928', 4 * sqrt3, 6.928, 3],
     ['9*pi=28.3', 9 * PI, 28.3, 1], ['6*sqrt(3)=10.4', 6 * sqrt3, 10.4, 1], ['3*pi=9.425', 3 * PI, 9.425, 3], ['24*sqrt(3)=41.57', 24 * sqrt3, 41.57, 2], ['12*pi=37.70', 12 * PI, 37.7, 2],
   ];
+  const missing: string[] = [];
+  const maths = [...SOURCE.matchAll(/\{m:([^}]*)\}/g)].map((m) => m[1]);
   for (const [name, v, quoted, places] of quotes) {
-    if (name === '0.924') continue;
-    const written = name.replace(/\*/g, '*');
-    // the page writes it as shorthand; the text of the name must be on the page (with its rounded value)
-    const alt = written.replace(/^pi-/, 'pi-');
-    const found = SOURCE.includes(alt) || SOURCE.includes(alt.replace(/=-?[\d.]+(deg)?$/, '')) || SOURCE.includes(alt.split('=')[0]);
-    expect(found, name).toBe(true);
+    // the whole quoted equation, as the page writes it, is inside one {m:...}
+    if (!maths.some((m) => m.includes(name))) missing.push(name);
     expect(Math.abs(v - quoted), name).toBeLessThanOrEqual(0.5 * 10 ** -places + 1e-9);
   }
+  expect(missing, 'quotes that are not inside one {m:...} on the page').toEqual([]);
+  expect(plain(SOURCE)).toContain('In degrees, 1*frac(180, pi) is about 57.3\u00b0.');
+  expect(plain(SOURCE)).toContain('1 radian is about 57.3deg.');
+  expect(plain(SOURCE)).toContain('The decimal 1.047 is its rounded value.');
   expect(dp(6 * RAD, 4)).toBe(0.1047);
   expect(dp(2 * (180 / PI), 1)).toBe(114.6);
 });
@@ -664,12 +693,14 @@ const upper = (r: number): Fx => (x) => Math.sqrt(Math.max(0, r * r - x * x));
 const lower = (r: number): Fx => (x) => -Math.sqrt(Math.max(0, r * r - x * x));
 const pol = (r: number, a: number): Pt => [r * Math.cos(a), r * Math.sin(a)];
 /** What each picture is meant to show, written here from the page's own numbers (not read from the figure code). */
+type Tag = { at: Pt; text: string; r: number; theta: number };
 type Stated = {
   curves: { cls: string; f: Fx; from: number; to: number }[];
   points: Record<string, Pt>;
   labels: Record<string, string>;
   on: Record<string, number[]>;
   segs?: Record<string, { a: Pt; b: Pt; text: string }>;
+  tags?: Record<string, Tag>;
   hlines?: Record<string, { y: number; text: string }>;
   regions?: { area: number; label: string }[];
   silent?: string[]; // a point whose coordinates are not given in the description (they would give away the answer)
@@ -677,10 +708,21 @@ type Stated = {
   tan?: boolean;
 };
 const a12 = 1.2;
+/** The small arc at O (a fifth of the radius), and the angle's own label on the bisector at 0.6 of the radius. */
+const wedge = (r: number, th: number, text: string) => ({
+  curve: { cls: 'curve-b', f: upper(r / 5), from: (r / 5) * Math.cos(th), to: r / 5 },
+  tags: { ang: { at: [0.6 * r * Math.cos(th / 2), 0.6 * r * Math.sin(th / 2)] as Pt, text, r, theta: th } },
+});
+const W1 = wedge(1, 1, '1 rad');
+const W2 = wedge(5, a12, '1.2 rad');
+const W3 = wedge(6, 1.5, '1.5 rad');
+const W4 = wedge(10, PI / 2, `${PIC}/2`);
+const W5 = wedge(8, 0.9, '0.9 rad');
+const W6 = wedge(12, PI / 6, `${PIC}/6`);
 const STATED: Record<string, Stated> = {
   'radians-one-radian': {
-    curves: [{ cls: 'curve-c', f: upper(1), from: -1, to: 1 }, { cls: 'curve-c', f: lower(1), from: -1, to: 1 }, { cls: 'curve', f: upper(1), from: Math.cos(1), to: 1 }],
-    points: { o: [0, 0], a: [1, 0], b: pol(1, 1) }, labels: { o: '1 radian', a: 'A', b: 'B' }, on: { o: [], a: [0, 2], b: [0, 2] }, equal: true,
+    curves: [{ cls: 'curve-c', f: upper(1), from: -1, to: 1 }, { cls: 'curve-c', f: lower(1), from: -1, to: 1 }, { cls: 'curve', f: upper(1), from: Math.cos(1), to: 1 }, W1.curve],
+    tags: W1.tags, points: { o: [0, 0], a: [1, 0], b: pol(1, 1) }, labels: { o: 'O', a: 'A', b: 'B' }, on: { o: [], a: [0, 2], b: [0, 2] }, equal: true,
     segs: { oa: { a: [0, 0], b: [1, 0], text: 'r' }, ob: { a: [0, 0], b: pol(1, 1), text: 'r' } },
   },
   'radians-unit-circle': {
@@ -690,19 +732,19 @@ const STATED: Record<string, Stated> = {
     on: { p6: [0], p4: [0], p3: [0], p2: [0], p1: [0], p32: [1] }, equal: true,
   },
   'radians-arc': {
-    curves: [{ cls: 'curve', f: upper(5), from: 5 * Math.cos(a12), to: 5 }],
-    points: { o: [0, 0], a: [5, 0], b: pol(5, a12) }, labels: { o: '1.2 rad', a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
+    curves: [{ cls: 'curve', f: upper(5), from: 5 * Math.cos(a12), to: 5 }, W2.curve],
+    tags: W2.tags, points: { o: [0, 0], a: [5, 0], b: pol(5, a12) }, labels: { o: 'O', a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
     segs: { oa: { a: [0, 0], b: [5, 0], text: 'r = 5' }, ob: { a: [0, 0], b: pol(5, a12), text: 'r = 5' } },
   },
   'radians-sector': {
-    curves: [{ cls: 'curve', f: upper(6), from: 6 * Math.cos(1.5), to: 6 }],
-    points: { o: [0, 0], a: [6, 0], b: pol(6, 1.5) }, labels: { o: '1.5 rad', a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
+    curves: [{ cls: 'curve', f: upper(6), from: 6 * Math.cos(1.5), to: 6 }, W3.curve],
+    tags: W3.tags, points: { o: [0, 0], a: [6, 0], b: pol(6, 1.5) }, labels: { o: 'O', a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
     segs: { oa: { a: [0, 0], b: [6, 0], text: 'r = 6' }, ob: { a: [0, 0], b: pol(6, 1.5), text: 'r = 6' } },
     regions: [{ area: 0.5 * 36 * 1.5, label: 'the sector' }],
   },
   'radians-segment': {
-    curves: [{ cls: 'curve', f: upper(10), from: 0, to: 10 }],
-    points: { o: [0, 0], a: [10, 0], b: [0, 10] }, labels: { o: `${PIC}/2`, a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
+    curves: [{ cls: 'curve', f: upper(10), from: 0, to: 10 }, W4.curve],
+    tags: W4.tags, points: { o: [0, 0], a: [10, 0], b: [0, 10] }, labels: { o: 'O', a: 'A', b: 'B' }, on: { o: [], a: [0], b: [0] }, equal: true,
     segs: { oa: { a: [0, 0], b: [10, 0], text: 'r = 10' }, ob: { a: [0, 0], b: [0, 10], text: 'r = 10' }, ab: { a: [10, 0], b: [0, 10], text: 'chord' } },
     regions: [{ area: 0.5 * 100 * (PI / 2 - 1), label: 'the segment' }],
   },
@@ -720,8 +762,8 @@ const STATED: Record<string, Stated> = {
     points: { u: [1, 1], v: [1, Math.sin(1)] }, labels: { u: '(1, 1)', v: `(1, ${t3(Math.sin(1))})` }, on: { u: [1], v: [0] },
   },
   'radians-q-sector': {
-    curves: [{ cls: 'curve', f: upper(8), from: 8 * Math.cos(0.9), to: 8 }],
-    points: { o: [0, 0] }, labels: { o: '0.9 rad' }, on: { o: [] }, equal: true,
+    curves: [{ cls: 'curve', f: upper(8), from: 8 * Math.cos(0.9), to: 8 }, W5.curve],
+    tags: W5.tags, points: { o: [0, 0] }, labels: { o: 'O' }, on: { o: [] }, equal: true,
     segs: { oa: { a: [0, 0], b: [8, 0], text: '8 cm' }, ob: { a: [0, 0], b: pol(8, 0.9), text: '8 cm' } },
   },
   'radians-q-sin-line': {
@@ -729,8 +771,8 @@ const STATED: Record<string, Stated> = {
     points: {}, labels: {}, on: {}, hlines: { k: { y: 0.8, text: 'y = 0.8' } },
   },
   'radians-q-tangent': {
-    curves: [{ cls: 'curve', f: upper(12), from: 12 * Math.cos(PI / 6), to: 12 }],
-    points: { o: [0, 0], a: [12, 0], b: pol(12, PI / 6), t: [12, tanT] }, labels: { o: `${PIC}/6`, a: 'A', b: 'B', t: 'T' }, on: { o: [], a: [0], b: [0], t: [] }, equal: true, silent: ['t'],
+    curves: [{ cls: 'curve', f: upper(12), from: 12 * Math.cos(PI / 6), to: 12 }, W6.curve],
+    tags: W6.tags, points: { o: [0, 0], a: [12, 0], b: pol(12, PI / 6), t: [12, tanT] }, labels: { o: 'O', a: 'A', b: 'B', t: 'T' }, on: { o: [], a: [0], b: [0], t: [] }, equal: true, silent: ['t'],
     segs: { oa: { a: [0, 0], b: [12, 0], text: '12 cm' }, at: { a: [12, 0], b: [12, tanT], text: '' }, ot: { a: [0, 0], b: [12, tanT], text: '' } },
     regions: [{ area: regionR, label: 'the region R' }],
   },
@@ -829,6 +871,11 @@ test('every curve is read back from its drawn path and is the function the page 
       const area = shoelace(m.regions[i]);
       if (Math.abs(area - r.area) > 0.01 * r.area) problems.push(`${id}: ${r.label} is drawn with area ${area.toFixed(3)} but should be ${r.area.toFixed(3)}`);
     });
+    // the small arc at O is a fifth of the radius, and its label is on the bisector
+    for (const t of Object.values(st.tags ?? {})) {
+      expect(Math.atan2(t.at[1], t.at[0]), id).toBeCloseTo(t.theta / 2, 9);
+      expect(Math.hypot(t.at[0], t.at[1]), id).toBeCloseTo(0.6 * t.r, 9);
+    }
     // a tangent graph has its asymptotes where cos x = 0: the drawn curve is in separate pieces
     if (st.tan) expect(m.paths[0].pieces.length, `${id}: pieces of the tangent`).toBe(3);
     // the sector pictures: both radii have the length the labels say, and the angle at O is the angle the label says
@@ -861,6 +908,7 @@ test('every label says its own point, and is nearest its own item and 4px clear 
     const items: { name: string; point: boolean; at: (px: number, py: number) => number }[] = [
       ...m.circles.map((c) => ({ name: c.name, point: true, at: (qx: number, qy: number) => Math.hypot(qx - c.px, qy - c.py) })),
       ...Object.entries(st.hlines ?? {}).map(([name, h]) => ({ name, point: false, at: (_qx: number, qy: number) => Math.abs(qy - m.py(h.y)) })),
+      ...Object.entries(st.tags ?? {}).map(([name, t]) => ({ name, point: false, at: (qx: number, qy: number) => Math.hypot(qx - m.px(t.at[0]), qy - m.py(t.at[1])) })),
       ...Object.entries(st.segs ?? {}).map(([name, s]) => ({
         name, point: false,
         at: (qx: number, qy: number) => {
@@ -885,6 +933,16 @@ test('every label says its own point, and is nearest its own item and 4px clear 
       // what the label says
       if (st.points[l.for]) { if (l.text !== st.labels[l.for]) problems.push(`${id}: the label "${l.text}" is not "${st.labels[l.for]}" for "${l.for}"`); }
       else if (st.hlines?.[l.for]) { if (l.text !== st.hlines[l.for].text) problems.push(`${id}: the guide label "${l.text}" is not "${st.hlines[l.for].text}"`); }
+      else if (st.tags?.[l.for]) {
+        const t = st.tags[l.for];
+        if (l.text !== t.text) problems.push(`${id}: the angle label "${l.text}" is not "${t.text}"`);
+        // the label's centre is inside the sector: between the two radii (angle strictly between 0 and theta) and nearer O than the arc
+        const gx = m.toX(cx);
+        const gy = m.toY(cy);
+        const ang = Math.atan2(gy, gx);
+        if (!(ang > 0.02 && ang < t.theta - 0.02)) problems.push(`${id}: the angle label "${l.text}" is at angle ${ang.toFixed(3)}, not between the radii (0 and ${t.theta.toFixed(3)})`);
+        if (Math.hypot(gx, gy) >= t.r) problems.push(`${id}: the angle label "${l.text}" is outside the circle`);
+      }
       else if (st.segs?.[l.for]) { if (l.text !== st.segs[l.for].text) problems.push(`${id}: the segment label "${l.text}" is not "${st.segs[l.for].text}"`); }
       // a label never sits on a curve or a segment: their drawn points stay out of the label's box
       const box = { name: l.text, x0: cx - width / 2, x1: cx + width / 2, y0: l.y - 26, y1: l.y + 8 };
@@ -917,8 +975,9 @@ test('every label says its own point, and is nearest its own item and 4px clear 
         if (gapX < 4 && gapY < 4) problems.push(`${id}: labels "${a.name}" and "${b.name}" are closer than 4px`);
       }
     }
+    if (st.points.o) expect(m.labels.find((l) => l.for === 'o')?.text, `${id}: the centre is labelled O`).toBe('O');
     // every marked point, guide line and labelled segment has a label (and an unlabelled segment has none)
-    for (const name of [...Object.keys(st.points), ...Object.keys(st.hlines ?? {}), ...Object.entries(st.segs ?? {}).filter(([, s]) => s.text !== '').map(([n]) => n)]) if (!m.labels.some((l) => l.for === name)) problems.push(`${id}: "${name}" has no label`);
+    for (const name of [...Object.keys(st.points), ...Object.keys(st.tags ?? {}), ...Object.keys(st.hlines ?? {}), ...Object.entries(st.segs ?? {}).filter(([, s]) => s.text !== '').map(([n]) => n)]) if (!m.labels.some((l) => l.for === name)) problems.push(`${id}: "${name}" has no label`);
     for (const [name, s] of Object.entries(st.segs ?? {})) if (s.text === '' && m.labels.some((l) => l.for === name)) problems.push(`${id}: the unlabelled segment "${name}" has a label`);
   }
   expect(labelled).toBeGreaterThan(40);
@@ -939,6 +998,8 @@ test('every figure states every marked coordinate, label and guide line in its t
       if (st.silent?.includes(name)) { if (desc.includes(coords)) problems.push(`${id}: the description gives away the point "${name}" ${coords}`); }
       else if (!desc.includes(coords)) problems.push(`${id}: the description does not name the point ${coords}`);
     }
+    for (const t of Object.values(st.tags ?? {})) if (!desc.includes(t.text)) problems.push(`${id}: the description does not mention the angle label "${t.text}"`);
+    if (st.points.o && !/small dashed arc/.test(desc)) problems.push(`${id}: the description does not mention the small arc at O`);
     for (const [name, text] of Object.entries(st.labels)) if (!desc.includes(text)) problems.push(`${id}: the description does not mention the label "${text}" of "${name}"`);
     for (const h of Object.values(st.hlines ?? {})) if (!desc.includes(h.text)) problems.push(`${id}: the description does not name ${h.text}`);
     for (const s of Object.values(st.segs ?? {})) if (s.text !== '' && !desc.includes(s.text)) problems.push(`${id}: the description does not mention the segment label "${s.text}"`);
@@ -985,6 +1046,17 @@ test('at 320px every figure label is 4px clear of every other label', async ({ p
     return out;
   });
   expect(close4).toEqual([]);
+});
+
+test('every figure with a marked point O has a small arc and an angle label inside the sector', async () => {
+  const { ITEMS, FIGURES } = await import('../src/book/alevel/figures/radians.mjs');
+  for (const make of Object.values(FIGURES) as (() => string)[]) make();
+  for (const [id, st] of Object.entries(STATED)) {
+    if (!st.points.o) continue;
+    const tags = (ITEMS as Record<string, { kind: string; name: string }[]>)[id].filter((i) => i.kind === 'tag');
+    expect(tags.map((t) => t.name), id).toEqual(['ang']);
+    expect(st.curves.some((c) => c.cls === 'curve-b'), id).toBe(true);
+  }
 });
 
 test('every figure on the page exists, is used once, and every figure file entry is used', async () => {
@@ -1106,6 +1178,13 @@ test('the page states the conditions on each general rule exactly', () => {
   expect(text).toContain('Sine uses alpha and pi-alpha. Cosine uses alpha and 2*pi-alpha in an interval from 0 to 2*pi. Tangent uses alpha and alpha+pi.');
   expect(text).toContain('A segment has no radii on its boundary: its boundary is the arc and the chord.');
   expect(text).toContain('Both need theta in radians.');
+  expect(text).toContain('When sin x=1 or sin x=-1, and when cos x=1 or cos x=-1, the two solutions in each turn are the same angle. There is one solution in each turn, not two.');
+  expect(text).toContain('Keep the whole sum inside the brackets of sin.');
+  expect(text).toContain('Type theta for theta.');
+  expect(text).toContain('A small angle means one close to 0, such as 0.1 or 0.2. At 1 radian the approximations are poor.');
+  expect(text).toContain('The segment is much smaller than the sector, because the chord stays close to the arc.');
+  expect(text).toContain('a number that divides neatly');
+  expect((text.match(/cancels because theta is not 0/g) ?? []).length).toBe(3);
 });
 
 test('the corrected rule sentences are pinned, and each is true', () => {
@@ -1158,8 +1237,37 @@ test('the on-page calculator works in degrees, and the way the page tells studen
   expect(sf(calc('cos(2\u00d7180\u00f7\u03c0)'))).toBe(-0.416);
   expect(sf(calc('sin(1\u00d7180\u00f7\u03c0)'))).toBe(0.841);
   // the inverse sine gives degrees: multiply by pi/180 for radians (the hint of the sin x = 0.8 question)
-  expect(calc('sin\u207b\u00b9'.length ? 'asin(0.8)' : '')).toBeCloseTo(Math.asin(0.8) / RAD, 9);
+  expect(calc('asin(0.8)')).toBeCloseTo(Math.asin(0.8) / RAD, 9);
   expect(calc('asin(0.8)\u00d7\u03c0\u00f7180')).toBeCloseTo(Math.asin(0.8), 9);
+});
+
+test('a length, an area or an exact value is refused when it is typed with rad or radians; an angle is accepted', async () => {
+  const { matches } = await import('../public/js/book-answer.mjs');
+  const qs = questions();
+  const blanks = [...SOURCE.matchAll(/class="blank" data-answers="([^"]*)"/g)].map((m) => decode(m[1]).split(';'));
+  const lengths: [string, string[], string[]][] = [
+    ['the arc, 4pi cm', qs.find((q) => q.plain.includes('Find the exact arc length'))!.answers, ['4pi', '4pi cm']],
+    ['the area, 6pi cm', qs.find((q) => q.plain.includes('Find its exact area'))!.answers, ['6pi', '6pi cm^2']],
+    ['the exam arc, 2pi cm', qs.find((q) => q.plain.includes('exact length of the arc AB'))!.answers, ['2pi']],
+    ['the sector blank, 8pi/3', blanks[8], ['8pi/3']],
+  ];
+  expect(blanks[8].some((k) => /pi\/3|\u03c0\/3/.test(k))).toBe(true);
+  for (const [name, keys, good] of lengths) {
+    for (const g of good) expect(matches(g, keys, 'exact'), `${name}: "${g}" is right`).toBe(true);
+    for (const base of good.filter((g) => !/cm/.test(g))) {
+      const alt = base.replace('pi', '\u03c0');
+      for (const bad of [`${base} radians`, `${base} rad`, `${alt} rad`, `${alt} radians`, `${base}radians`]) expect(matches(bad, keys, 'exact'), `${name}: "${bad}" is refused`).toBe(false);
+    }
+  }
+  // an angle takes the units, and so does the period
+  for (const q of ['Write 120\u00b0 in radians', 'Write 112.5\u00b0 in radians', 'period of y=sin x']) {
+    const keys = qs.find((x) => x.plain.includes(q))!.answers;
+    const first = keys[0];
+    expect(matches(`${first} rad`, keys, 'exact'), q).toBe(true);
+    expect(matches(`${first} radians`, keys, 'exact'), q).toBe(true);
+  }
+  expect(blanks[0].every((k) => !/rad/.test(k))).toBe(true); // 7/6 is a number, not an angle with a unit
+  expect(blanks[1].some((k) => /radians$/.test(k))).toBe(true); // 210 degrees in radians: an angle
 });
 
 test('the ways a student types an answer are accepted, and a wrong one is not', async () => {
@@ -1177,7 +1285,7 @@ test('the ways a student types an answer are accepted, and a wrong one is not', 
   yes(piOver, ['2pi/3', '2\u03c0/3', '(2pi)/3', '(2/3)pi', '2pi/3 rad']);
   no(piOver, ['pi/3', '3pi/2', '2.09']);
   const one = get('Find its circumference in terms of pi');
-  yes(one, ['10pi', '10\u03c0', '10pi cm', '10 pi', '10pi rad'.replace(' rad', '')]);
+  yes(one, ['10pi', '10\u03c0', '10pi cm', '10 pi']);
   no(one, ['25pi', '10', '31.4', 'pi']);
   // a list of two answers in terms of pi, in either order, with the usual separators
   const pair = get('Solve cos x=frac(1, 2)');
