@@ -56,7 +56,7 @@ export const TOPICS = [
 
   // Trigonometry
   t('trig-triangles', 'Trigonometry in triangles', 'trigonometry', 1, [], 'Finding a missing length or angle, and choosing the right rule', { aka: 'sine rule cosine rule area of a triangle ambiguous case bearings triangle missing side angle', status: 'live', words: ['sine', 'cosine', 'included-angle', 'sine-rule', 'cosine-rule', 'area-of-triangle-sine', 'ambiguous-case', 'bearing'] }),
-  t('trig-graphs', 'Trigonometric graphs and exact values', 'trigonometry', 1, ['trig-triangles'], 'Reading values from a graph, and drawing a graph from values'),
+  t('trig-graphs', 'Trigonometric graphs and exact values', 'trigonometry', 1, ['trig-triangles'], 'Reading values from a graph, and drawing a graph from values', { aka: 'sine graph cosine graph tan graph unit circle exact values 30 45 60 period amplitude asymptote quadrant CAST symmetry solve sin x = k from graph degrees', status: 'live', words: ['unit-circle', 'quadrant', 'cast-diagram', 'sine', 'cosine', 'tangent-function', 'exact-value', 'period', 'amplitude', 'asymptote'] }),
   t('trig-identities', 'Trigonometric identities and equations', 'trigonometry', 1, ['trig-graphs', 'quadratics'], 'Solving an equation for the angle, and showing that two expressions are the same'),
   t('radians', 'Radians, arcs and sectors', 'trigonometry', 2, ['trig-graphs'], 'Measuring an angle in degrees, and measuring it in radians'),
   t('trig-reciprocal-inverse', 'Reciprocal and inverse trigonometric functions', 'trigonometry', 2, ['functions', 'trig-identities'], 'A function and its reciprocal, and a function and its inverse'),
