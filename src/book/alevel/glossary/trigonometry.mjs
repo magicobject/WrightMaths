@@ -223,6 +223,27 @@ export const TERMS = [
     watch: 'It is not defined when {m:cos theta=0}, which is at 90&deg;, 270&deg; and so on. Use it to turn an equation with both sin and cos into one with only tan. To turn it into one with only sin or only cos, use the {term:pythagorean-identity}.',
     see: ['tangent-function', 'pythagorean-identity', 'trigonometric-identity'],
   },
+  {
+    id: 'trig-quadratic', term: 'Quadratic in sin, cos or tan', strand: 'al-trigonometry', level: 'Y1',
+    def: 'An equation that is a quadratic when sin x, cos x or tan x is treated as one unknown.',
+    example: [
+      'Solve {m:2 sin^2 x+sin x-1=0} for {m:0deg<=x<=360deg}. Let s stand for {m:sin x}. Then {m:2s^2+s-1=(2s-1)(s+1)=0}, so {m:sin x=frac(1,2)} or {m:sin x=-1}.',
+      'That gives {m:x=30deg}, {m:150deg} or {m:270deg}.',
+    ],
+    watch: 'Finding the values of s is only half of the work. Solve each equation {m:sin x=} value for the angles, and reject a value of sin x or cos x outside {m:-1} to 1. If the equation has both {m:sin^2 x} and {m:cos x}, use {m:sin^2 x=1-cos^2 x} first, so that only one function is left.',
+    see: ['quadratic-in-disguise', 'pythagorean-identity', 'rejected-value', 'trigonometric-equation'],
+    aka: ['quadratic in sin', 'quadratic in cos', 'quadratic in tan'],
+  },
+  {
+    id: 'rejected-value', term: 'Rejected value', strand: 'al-trigonometry', level: 'Y1',
+    def: 'A value that comes out of the working but cannot be a solution, so you leave it out.',
+    example: [
+      'Solve {m:sin^2 x-sin x-2=0}. It factorises as {m:(sin x-2)(sin x+1)=0}.',
+      'The value {m:sin x=2} is rejected, because the sine of an angle is never more than 1. Only {m:sin x=-1} is kept, which gives {m:x=270deg}.',
+    ],
+    watch: 'Say why you reject a value. The sine and the cosine are always between {m:-1} and 1, so any other value has no angle. The tangent can be any number, so no value of it is rejected for size.',
+    see: ['trig-quadratic', 'trigonometric-equation', 'sine', 'cosine'],
+  },
 
   // ---------- Year 2: radians, reciprocal and inverse functions, formulae ----------
   {
