@@ -1,0 +1,1159 @@
+<main class="book strand-al-exponentials" data-book-page="topic" data-topic="exp-modelling">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Exponential modelling &middot; Year 1</span>
+      <h1>Exponential modelling</h1>
+      <p class="lead">Some quantities grow or shrink by the same factor in every equal step. A formula such as {m:N=100*1.5^t} describes them. This page shows what each number in the formula means, and what happens when t is large. Then it shows how to turn a curve into a straight line using logarithms, so that you can read the numbers off a graph. You will meet the gradient of {m:e^(k x)}. Last, you will ask when a model can be trusted, and how to improve it.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Differentiating standard functions, where you prove the gradient of {m:e^(k x)}. In First-order differential equations, to solve problems about a rate of change. Also in other subjects, wherever a graph of real data has to be turned into a formula.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Exponential modelling</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="exponentials-logs.html">Exponentials and logarithms</a> and <a href="straight-lines.html">Straight lines</a>. You need the laws of logarithms, how to solve {m:a^x=b} by taking logarithms, and the equation {m:y=m x+c} of a line. The warm-up shows you where to look if you have forgotten any of it. In this page, {m:log} means the logarithm to base 10 (the log key) and {m:ln} means the logarithm to base e. Where the working shows a long decimal, such as 0.4055, the last digit is rounded. On your own calculator, keep every digit.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-growth-and-decay-models">Skip to the lesson</a></p>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">A straight line passes through {m:(1, 3)} and {m:(3, 11)}. Find its gradient. Type only the number.</p>
+      <ol class="ladder"><li>The gradient is the rise divided by the run.</li><li>The rise is the change in y. The run is the change in x.</li></ol>
+      <ul class="wrong">
+        <li data-if="3.5">You added the coordinates. The rise and the run are differences, so subtract.</li>
+        <li data-if="0.25">You put the run on the top. The gradient is the change in y divided by the change in x.</li>
+        <li data-if="8">That is the change in y only. Divide it by the change in x as well.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(11-3, 3-1)=frac(8, 2)=4}. The line rises 4 for each 1 along.</p></div>
+    </div>
+    <div class="q" data-answers="4.32" data-mode="value">
+      <p class="qtext">Solve {m:2^x=20}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The unknown is in the power. Take logarithms of both sides.</li><li>Use the power law to bring x down: {m:x ln 2=ln 20}.</li></ol>
+      <ul class="wrong">
+        <li data-if="10">You divided 20 by 2. The unknown is in the power, so take logarithms.</li>
+        <li data-if="1.5">You divided {m:ln 20} by 2. The equation is {m:x ln 2=ln 20}, so divide by {m:ln 2}.</li>
+      </ul>
+      <div class="solution"><p>{m:x ln 2=ln 20}, so {m:x=frac(ln 20, ln 2)=4.3219}. To 3 significant figures, {m:x=4.32}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Find the value of {m:log_10 200-log_10 2}. Type only the number.</p>
+      <ol class="ladder"><li>Subtracting logarithms with the same base divides the numbers inside.</li><li>Work out the quotient first. Then find the logarithm.</li></ol>
+      <ul class="wrong">
+        <li data-if="100">That is the number inside the logarithm after you divide. Now find the logarithm of it.</li>
+        <li data-if="2.3">You worked out {m:log_10 (200-2)}. Subtracting logarithms divides the numbers inside.</li>
+      </ul>
+      <div class="solution"><p>{m:log_10 200-log_10 2=log_10 (frac(200, 2))=log_10 100=2}.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">A straight line has gradient 3 and passes through {m:(0, -2)}. Find y when {m:x=4}. Type only the number.</p>
+      <ol class="ladder"><li>Write the line as {m:y=m x+c}. Read m and c.</li><li>The intercept c is the value of y when {m:x=0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="14">You used {m:c=2}. The line passes through {m:(0, -2)}, so {m:c=-2}.</li>
+        <li data-if="12">You left out the intercept. The equation is {m:y=m x+c}, so add c.</li>
+      </ul>
+      <div class="solution"><p>{m:y=3x-2}. At {m:x=4}, {m:y=3*4-2=10}.</p></div>
+    </div>
+    <div class="q" data-answers="1.63" data-mode="value">
+      <p class="qtext">Use your calculator to find {m:1.05^10} to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Use the power key, then enter 10.</li><li>Round to 3 significant figures. Look at the fourth digit.</li></ol>
+      <ul class="wrong">
+        <li data-if="10.5">You multiplied 1.05 by 10. The power 10 means ten lots of 1.05 multiplied together.</li>
+        <li data-if="1.62">You cut the number off. The digits are 1.6288&hellip;, and the fourth digit is 8, so round up.</li>
+        <li data-if="0.5">You multiplied 0.05 by 10. The power 10 means 1.05 multiplied by itself ten times.</li>
+      </ul>
+      <div class="solution"><p>{m:1.05^10=1.6289}, which is 1.63 to 3 significant figures.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Growth and decay models</h2>
+    <p>An {term:exponential-model|exponential model} is a formula such as {m:y=A*b^t}. Here t is time, and A and b are fixed numbers. The unknown t is in the power. Many real quantities fit it: a bank balance, the number of bacteria in a dish, the value of a car.</p>
+    <p>Here is a table for {m:N=100*1.5^t}, where N is the number of bacteria and t is the time in hours. Each hour multiplies N by 1.5. The model gives 337.5, which is not a whole number. A model describes a trend, so its values need not be whole numbers.</p>
+    <table class="data">
+      <thead><tr><th scope="col">t</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+      <tbody><tr><th scope="row">{m:N}</th><td>100</td><td>150</td><td>225</td><td>337.5</td><td>506.25</td></tr></tbody>
+    </table>
+    <figure class="figure-lg">{fig:exp-modelling-growth-decay}<figcaption>Look at the point {m:(0, 100)}. Both curves start there. The solid curve is {m:N=100*1.5^t}, and it rises more and more steeply. The dashed curve is {m:N=100*0.6^t}, and it falls towards the t-axis.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> in the model {m:y=A*b^t}, A and b are positive and b is not 1. The number A is the {term:initial-value|initial value}, the value of y when {m:t=0}. The number b is the {term:growth-factor|growth factor}: each time t goes up by 1, y is multiplied by b. If {m:b>1}, y grows, and this is {term:exponential-growth|exponential growth}. If {m:0<b<1}, y falls, and this is {term:exponential-decay|exponential decay}. A rise of r% in each step has {m:b=1+frac(r, 100)}. A fall of r% has {m:b=1-frac(r, 100)}.</p>
+    </div>
+    <h3>What happens for large t?</h3>
+    <p>Put big values of t into the two models. The table gives each value to 3 significant figures.</p>
+    <table class="data" data-table="large-t">
+      <thead><tr><th scope="col">t</th><th scope="col">10</th><th scope="col">20</th><th scope="col">30</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">{m:100*1.5^t}</th><td>5770</td><td>333000</td><td>19200000</td></tr>
+        <tr><th scope="row">{m:100*0.6^t}</th><td>0.605</td><td>0.00366</td><td>0.0000221</td></tr>
+      </tbody>
+    </table>
+    <div class="key">
+      <p><b>Key idea:</b> take {m:y=A*b^t} with {m:A>0}. If {m:b>1}, then y becomes larger than any number you choose, once t is large enough. If {m:0<b<1}, then y gets closer and closer to 0 as t gets large, but y is never equal to 0. The t-axis is an {term:asymptote}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a car loses value</h3>
+      <p>A car costs 12000 pounds when new. It loses 15% of its value each year. Write a model for its value V pounds after t years. Find its value after 4 years, to the nearest pound.</p>
+      <ol class="steps">
+        <li>The initial value is {m:A=12000}.</li>
+        <li>A fall of 15% leaves 85% of the value. So {m:b=1-frac(15, 100)=0.85}.</li>
+        <li>The model is {m:V=12000*0.85^t}.</li>
+        <li>Put {m:t=4}: {m:V=12000*0.85^4=12000*0.52200625=6264.075}.</li>
+      </ol>
+      <p>After 4 years the car is worth about 6264 pounds. The factor {m:0.85} is between 0 and 1, so the value decays.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-car}<figcaption>Look at the marked point {m:(4, 6264)}. The curve starts at {m:(0, 12000)} and falls. After 4 years the car has lost a little under half of its value: about 5736 pounds.</figcaption></figure>
+    <!-- The next two worked examples have no picture of their own: the first only converts a percentage into a factor, and the second reads values from the table above and from the picture of decay already shown. -->
+    <div class="worked">
+      <h3>Worked example: from a percentage to a factor</h3>
+      <p>Write the growth factor b for each change in one step: a rise of 4%, a fall of 7%, and a quantity that doubles.</p>
+      <ol class="steps">
+        <li>A rise of 4%: {m:b=1+frac(4, 100)=1.04}.</li>
+        <li>A fall of 7%: {m:b=1-frac(7, 100)=0.93}.</li>
+        <li>A quantity that doubles is multiplied by 2, so {m:b=2}. That is a rise of 100%.</li>
+      </ol>
+      <p>A factor above 1 means growth. A factor between 0 and 1 means decay.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a large value of t</h3>
+      <p>A quantity is modelled by {m:P=5000*0.9^t}. Find P when {m:t=50}, to 3 significant figures. Say what happens to P for larger t.</p>
+      <ol class="steps">
+        <li>Put {m:t=50}: {m:P=5000*0.9^50=25.77}, which is 25.8 to 3 significant figures.</li>
+        <li>The factor {m:0.9} is between 0 and 1, and {m:A=5000} is positive. So P gets closer and closer to 0 as t grows.</li>
+      </ol>
+      <p>P is very small but it is never 0. A model of decay does not reach zero in a finite time.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A colony of bacteria starts with 400 cells and grows by 20% each hour. Write {m:N=400*b^t}. Find N after 3 hours.</p>
+      <ol class="steps">
+        <li>A rise of 20% gives {m:b=1+frac(20, 100)=}<span class="blank" data-answers="1.2">___</span>.</li>
+        <li>Put {m:t=3}: {m:N=400*1.2^3=}<span class="blank" data-answers="691.2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:b=1.2}, so {m:N=400*1.2^3=400*1.728=691.2}. After 3 hours there are about 691 cells.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: growth and decay</h2>
+    <div class="q" data-answers="432" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:N=250*1.2^t}. Find N when {m:t=3}. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=3} into the model.</li><li>Work out the power first. Then multiply by 250.</li></ol>
+      <ul class="wrong">
+        <li data-if="900">You multiplied {m:250*1.2*3}. The t is a power, so {m:1.2^3} means 1.2 multiplied by itself three times.</li>
+        <li data-if="1.73">That is {m:1.2^3}. You still need to multiply by 250.</li>
+      </ul>
+      <div class="solution"><p>{m:N=250*1.2^3=250*1.728=432}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A quantity starts at 80 and falls by 15% each hour. Which model describes it, with t in hours?</p>
+      <ul class="options">
+        <li data-correct>P equals 80 times 0.85 to the power t</li>
+        <li data-why="The number 0.15 is the size of the fall. The factor is what is left after the fall: 1 minus 0.15, which is 0.85.">P equals 80 times 0.15 to the power t</li>
+        <li data-why="The factor 1.15 would be a rise of 15%. A fall of 15% leaves 85% of the value.">P equals 80 times 1.15 to the power t</li>
+      </ul>
+      <ol class="ladder"><li>After one hour, what percentage of the old value is left?</li><li>Write that percentage as a decimal. That is the growth factor b.</li></ol>
+      <div class="solution"><p>The initial value is 80, so {m:A=80}. A fall of 15% leaves 85%, so {m:b=0.85}. The model is {m:P=80*0.85^t}.</p></div>
+    </div>
+    <div class="q" data-answers="0.88" data-mode="value">
+      <p class="qtext">A quantity falls by 12% in each time step. Write down the growth factor b. Type only the number.</p>
+      <ol class="ladder"><li>The factor is what is left after the fall.</li><li>Take the percentage fall away from 100%. Then write the result as a decimal.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.12">That is the size of the fall. The factor is what is left after the fall.</li>
+        <li data-if="1.12">That would be a rise of 12%. A fall gives a factor less than 1.</li>
+      </ul>
+      <div class="solution"><p>{m:b=1-frac(12, 100)=0.88}. The factor is between 0 and 1, so the quantity decays.</p></div>
+    </div>
+    <div class="q" data-answers="40" data-mode="value">
+      <p class="qtext">A model is {m:P=A*1.5^t}. When {m:t=2}, {m:P=90}. Find A. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=2} into the model. Then {m:A*1.5^2=90}.</li><li>Work out {m:1.5^2}. Then divide.</li></ol>
+      <ul class="wrong">
+        <li data-if="60">You divided 90 by 1.5. The power 2 means {m:1.5*1.5}, so divide by {m:1.5^2}.</li>
+        <li data-if="135">You multiplied 90 by 1.5. You must undo the multiplication, so divide.</li>
+        <li data-if="202.5">You multiplied 90 by {m:1.5^2}. You must undo the multiplication, so divide.</li>
+      </ul>
+      <div class="solution"><p>{m:A*1.5^2=90}, so {m:A*2.25=90} and {m:A=frac(90, 2.25)=40}. Check: {m:40*1.5^2=90}.</p></div>
+    </div>
+    <div class="q" data-answers="0.0665" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:N=500*0.8^t}. Find N when {m:t=40}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=40} into the model. Use the power key.</li><li>The answer is small. Count the significant figures from the first non-zero digit.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.000133">That is {m:0.8^40}. You still need to multiply by 500.</li>
+        <li data-if="0">N is very small but it is not 0. A quantity that decays never reaches 0.</li>
+      </ul>
+      <div class="solution"><p>{m:N=500*0.8^40=500*0.00013292=0.066461}. To 3 significant figures, {m:N=0.0665}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A quantity is modelled by {m:P=3000*1.1^t}. What happens to P as t gets very large?</p>
+      <ul class="options">
+        <li data-correct>P grows and becomes larger than any number you choose</li>
+        <li data-why="The number 3300 is the value of P when t is 1. The factor 1.1 is greater than 1, so P keeps rising and never levels off.">P levels off close to 3300</li>
+        <li data-why="That happens when the factor is between 0 and 1. Here the factor is 1.1, which is greater than 1.">P gets closer and closer to 0</li>
+      </ul>
+      <ol class="ladder"><li>Is the factor greater than 1, or between 0 and 1?</li><li>What does multiplying by the same number again and again do to a quantity, when that number is greater than 1?</li></ol>
+      <div class="solution"><p>The factor {m:b=1.1} is greater than 1 and {m:A=3000} is positive. So P grows without limit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. The model with e, and finding the constants</h2>
+    <p>The same family of curves can be written with the number e. The usual form is {m:y=A e^(k t)}. The number k is called the {term:rate-constant|rate constant}. Its sign decides the shape.</p>
+    <figure class="figure-lg">{fig:exp-modelling-e}<figcaption>Look at the point {m:(0, 50)}. Both curves start there. In the solid curve {m:k=0.3}, which is positive, and the curve rises. In the dashed curve {m:k=-0.3}, which is negative, and the curve falls.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> in the model {m:y=A e^(k t)}, take {m:A>0}. The number A is the initial value, because {m:e^0=1}. If {m:k>0}, y grows and becomes larger than any number you choose. If {m:k<0}, y decays towards 0 and never reaches it. The model is the same as {m:y=A*b^t} when {m:b=e^k}, which means {m:k=ln b}. Each unit of t multiplies y by {m:e^k}. It does not multiply y by k.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: change the form</h3>
+      <p>Write {m:y=5*1.5^t} in the form {m:y=5 e^(k t)}.</p>
+      <ol class="steps">
+        <li>Use {m:e^(ln b)=b}. So {m:1.5=e^(ln 1.5)}.</li>
+        <li>Then {m:1.5^t=(e^(ln 1.5))^t=e^((ln 1.5) t)}.</li>
+        <li>So {m:k=ln 1.5=0.4055}, and {m:y=5 e^(0.4055 t)}.</li>
+      </ol>
+      <p>Check: {m:e^(0.4055)=1.5}, so each unit of t multiplies y by 1.5.</p>
+    </div>
+    <!-- No picture for the next example: it is a calculation with the two curves already shown in the figure above. -->
+    <div class="worked">
+      <h3>Worked example: what k means</h3>
+      <p>A population is {m:P=50 e^(0.3t)}. By what percentage does it rise in each unit of time? Give your answer to 2 significant figures.</p>
+      <ol class="steps">
+        <li>Each unit of t multiplies P by {m:e^(0.3)}.</li>
+        <li>{m:e^(0.3)=1.3499}, which is 1.35 to 3 significant figures.</li>
+        <li>A factor of 1.35 is a rise of 35%.</li>
+      </ol>
+      <p>The population rises by 35% in each unit of time, not by 30%. The rate constant {m:k=0.3} is not a percentage.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find A and k from two readings</h3>
+      <p>A population is modelled by {m:P=A e^(k t)}. When {m:t=0}, {m:P=30}. When {m:t=4}, {m:P=90}. Find A and k.</p>
+      <ol class="steps">
+        <li>Put {m:t=0}: {m:A e^0=A}. So {m:A=30}.</li>
+        <li>Put {m:t=4}: {m:30 e^(4k)=90}. Divide by 30: {m:e^(4k)=3}.</li>
+        <li>Take ln of both sides: {m:4k=ln 3}. So {m:k=frac(ln 3, 4)=0.2747}.</li>
+      </ol>
+      <p>So {m:A=30} and {m:k=0.275} to 3 significant figures. The model is {m:P=30 e^(0.275t)}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-fit}<figcaption>Look at the two marked points, {m:(0, 30)} and {m:(4, 90)}. The curve is steeper on the right. Over 4 units of t, the population is multiplied by 3.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: when does the quantity reach a value?</h3>
+      <p>Use the model {m:P=30 e^(k t)} with {m:k=frac(ln 3, 4)}. Find t when {m:P=500}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Put {m:P=500}: {m:30 e^(k t)=500}. Divide by 30: {m:e^(k t)=frac(500, 30)}.</li>
+        <li>Take ln of both sides: {m:k t=ln frac(500, 30)=2.8134}.</li>
+        <li>Divide by k. Keep the full value {m:k=0.27465}: {m:t=frac(2.8134, 0.27465)=10.24}.</li>
+      </ol>
+      <p>So {m:t=10.2} to 3 significant figures. The figure shows the curve reaching the line {m:P=500}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-reach}<figcaption>Look at the marked point where the curve meets the dashed line {m:P=500}. Read down to the t-axis. The value of t there is the answer to the question above.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: the half-life</h3>
+      <p>A substance decays as {m:m=m_0 e^(-0.2t)}, with t in days. Find the {term:half-life|half-life}: the time for m to fall to half of its value. Give your answer to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The mass after t days is half of {m:m_0}: {m:m_0 e^(-0.2t)=frac(m_0, 2)}.</li>
+        <li>Divide by {m:m_0}: {m:e^(-0.2t)=frac(1, 2)}.</li>
+        <li>Take ln of both sides: {m:-0.2t=ln frac(1, 2)=-ln 2}.</li>
+        <li>So {m:t=frac(ln 2, 0.2)=3.4657}.</li>
+      </ol>
+      <p>The half-life is 3.47 days to 3 significant figures. The starting mass {m:m_0} cancelled, so the half-life is the same wherever you start.</p>
+    </div>
+    <h3>A model with a limiting value</h3>
+    <p>Some quantities do not decay to 0. A hot drink cools towards the temperature of the room. A model for that adds a constant: {m:y=c+A e^(-k t)}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> take {m:y=c+A e^(-k t)} with A and k positive. The term {m:A e^(-k t)} is positive and gets close to 0 as t gets large. So y gets close to c from above. The number c is the {term:limiting-value|limiting value}, and the line {m:y=c} is an asymptote. The initial value is {m:c+A}, not A.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a limiting value</h3>
+      <p>A quantity is modelled by {m:P=20+80 e^(-0.5t)}. Find P when {m:t=0}. Say what happens for large t.</p>
+      <ol class="steps">
+        <li>Put {m:t=0}: {m:P=20+80 e^0=100}.</li>
+        <li>Put {m:t=10}: {m:P=20+80 e^(-5)=20.539}. Put {m:t=20}: {m:P=20+80 e^(-10)=20.004}.</li>
+        <li>The term {m:80 e^(-0.5t)} gets close to 0 but is always positive. So P gets close to 20 from above.</li>
+      </ol>
+      <p>The initial value is 100. The limiting value is 20.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-limit}<figcaption>Look at the dashed line {m:P=20}. The curve starts at {m:(0, 100)} and falls towards the line. It never reaches the line.</figcaption></figure>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A population is {m:P=A e^(k t)}. When {m:t=0}, {m:P=12}. When {m:t=3}, {m:P=48}. Find A and k.</p>
+      <ol class="steps">
+        <li>Put {m:t=0}: {m:A=}<span class="blank" data-answers="12">___</span>.</li>
+        <li>Put {m:t=3}: {m:12 e^(3k)=48}, so {m:e^(3k)=}<span class="blank" data-answers="4">___</span>.</li>
+        <li>Take ln of both sides: {m:3k=ln 4}, so {m:k=frac(ln 4, 3)=}<span class="blank" data-answers="0.462">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:A=12}. Then {m:e^(3k)=frac(48, 12)=4}, so {m:3k=ln 4=1.3863} and {m:k=0.4621}, which is 0.462 to 3 significant figures.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the model with e</h2>
+    <div class="q" data-answers="179" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:P=40 e^(0.25t)}. Find P when {m:t=6}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=6}. Work out the power {m:0.25*6}.</li><li>Use the e<sup>x</sup> key. Then multiply by 40.</li></ol>
+      <ul class="wrong">
+        <li data-if="60">You multiplied 40 by the power. The power is the exponent of e, so work out {m:e} to that power first.</li>
+        <li data-if="4.48">That is {m:e^(1.5)}. You still need to multiply by 40.</li>
+      </ul>
+      <div class="solution"><p>{m:P=40 e^(0.25*6)=40 e^(1.5)=40*4.4817=179.27}. To 3 significant figures, {m:P=179}.</p></div>
+    </div>
+    <div class="q" data-answers="0.693" data-mode="value">
+      <p class="qtext">A model is {m:y=A*2^t}. Written as {m:y=A e^(k t)}, find k to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The two forms agree when {m:e^k=2}.</li><li>Take ln of both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">The number k is not the factor. The factor is {m:e^k}, so {m:e^k=2} and k is the logarithm.</li>
+        <li data-if="7.39">That is {m:e^2}. You need k such that {m:e^k=2}, so take ln of 2.</li>
+        <li data-if="0.301">That is {m:log_10 2}. The base of the power is e, so use {m:ln}.</li>
+      </ul>
+      <div class="solution"><p>{m:e^k=2}, so {m:k=ln 2=0.6931}. To 3 significant figures, {m:k=0.693}.</p></div>
+    </div>
+    <div class="q" data-answers="0.536" data-mode="value">
+      <p class="qtext">A model is {m:P=12 e^(k t)}. When {m:t=3}, {m:P=60}. Find k to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=3}. Divide both sides by 12 before you take ln.</li><li>Take ln of both sides, then divide by 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.61">You forgot to divide by 3. From {m:3k=ln 5}, divide by 3 to find k.</li>
+        <li data-if="1.36">You took ln of 60 without dividing by 12 first. Divide by 12 to leave {m:e^(3k)} on its own.</li>
+      </ul>
+      <div class="solution"><p>{m:12 e^(3k)=60}, so {m:e^(3k)=5} and {m:3k=ln 5=1.6094}. So {m:k=0.5365}, which is 0.536 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A quantity is modelled by {m:P=90 e^(-0.3t)}. Which statement is true?</p>
+      <ul class="options">
+        <li data-correct>P falls and gets closer and closer to 0, but never reaches it</li>
+        <li data-why="Any power of e is positive, so 90 times a power of e is positive for every t. It is never equal to 0.">P falls and reaches 0 after a certain time</li>
+        <li data-why="The factor for each unit of t is e to the power minus 0.3, which is about 0.74. That is a fall of about 26%, not 30%.">P falls by 30% in each unit of time</li>
+      </ul>
+      <ol class="ladder"><li>The rate constant is negative. What does that say about the shape?</li><li>Can a power of e ever be 0?</li></ol>
+      <div class="solution"><p>The number {m:k=-0.3} is negative, so P decays. And {m:e^(-0.3t)>0} for every t, so P never reaches 0. The factor is {m:e^(-0.3)=0.7408}, a fall of about 26% in each unit.</p></div>
+    </div>
+    <div class="q" data-answers="5.49" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:P=150 e^(-0.2t)}. Find the time t when {m:P=50}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:P=50}, then divide by 150.</li><li>Take ln of both sides. Be careful with the signs.</li></ol>
+      <ul class="wrong">
+        <li data-if="-19.6">You took ln of 50 without dividing by 150 first. Divide by 150 to leave {m:e^(-0.2t)} on its own.</li>
+        <li data-if="-5.49">You wrote {m:-0.2t=ln 3}. But {m:e^(-0.2t)=frac(1, 3)}, so the right side is {m:ln frac(1, 3)}, which is negative. A time cannot be negative here.</li>
+      </ul>
+      <div class="solution"><p>{m:150 e^(-0.2t)=50}, so {m:e^(-0.2t)=frac(1, 3)}. Then {m:-0.2t=ln frac(1, 3)=-1.0986}, so {m:t=5.493}. To 3 significant figures, {m:t=5.49}.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:P=12+40 e^(-0.1t)}. What value does P get close to when t is very large? Type only the number.</p>
+      <ol class="ladder"><li>What does {m:e^(-0.1t)} get close to when t is large?</li><li>What is left of the model when that term is 0?</li></ol>
+      <ul class="wrong">
+        <li data-if="52">That is the value of P when {m:t=0}. The question asks about large t.</li>
+        <li data-if="40">That is the number multiplying the exponential. That part gets close to 0 for large t.</li>
+        <li data-if="0">That is the limiting value of {m:A e^(-k t)} alone. Here the constant 12 stays.</li>
+      </ul>
+      <div class="solution"><p>For large t, {m:e^(-0.1t)} gets close to 0, so {m:40 e^(-0.1t)} gets close to 0. So P gets close to 12 from above. The limiting value is 12.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Straight lines from y = a x<sup>n</sup></h2>
+    <p>A curve is hard to read. A straight line can be read quickly: its {term:gradient} and its intercept show the numbers. The method of {term:linearising|reducing to a straight line} uses logarithms to turn a curve into a straight line.</p>
+    <p>Take the power model {m:y=a x^n}. Here a and x and y are positive. Take logarithms of both sides, and use the product law and then the power law:</p>
+    {md:log y=log(a x^n)=log a+n log x}
+    <p>Compare with the straight line {m:Y=m X+c}. Here {m:Y=log y} and {m:X=log x}. The gradient is {m:m=n} and the intercept is {m:c=log a}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if {m:y=a x^n} with {m:a>0} and {m:x>0}, then {m:log y=n log x+log a}. So the graph of {m:log y} (vertical) against {m:log x} (horizontal) is a straight line. Its gradient is n. Its vertical intercept is {m:log a}, not a. Use the same base for both logarithms. To get a back, undo the logarithm: {m:a=10^c} for base 10, or {m:a=e^c} for {m:ln}.</p>
+    </div>
+    <p>This graph is a {term:log-log-graph|log-log graph}, because both axes show logarithms. The gradient between two points on it is {m:n=frac(log y_2-log y_1, log x_2-log x_1)}.</p>
+    <div class="worked">
+      <h3>Worked example: a power law becomes a line</h3>
+      <p>The curve {m:y=3 x^2} passes through {m:(1, 3)}, {m:(2, 12)} and {m:(4, 48)}. Show that a graph of {m:log y} against {m:log x} is a straight line. State its gradient and intercept.</p>
+      <ol class="steps">
+        <li>Take logarithms: {m:log y=2 log x+log 3}. This has the form {m:Y=m X+c}.</li>
+        <li>So the graph is a straight line with gradient 2 and intercept {m:log 3=0.477}.</li>
+        <li>Check with the table below. When x goes from 1 to 2, {m:log x} goes up by 0.301 and {m:log y} goes up by 0.602. The gradient is {m:frac(0.602, 0.301)=2}.</li>
+      </ol>
+      <table class="data">
+        <thead><tr><th scope="col">x</th><th scope="col">1</th><th scope="col">2</th><th scope="col">4</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">y</th><td>3</td><td>12</td><td>48</td></tr>
+          <tr><th scope="row">{m:log x}</th><td>0</td><td>0.301</td><td>0.602</td></tr>
+          <tr><th scope="row">{m:log y}</th><td>0.477</td><td>1.079</td><td>1.681</td></tr>
+        </tbody>
+      </table>
+      <p>Between {m:x=2} and {m:x=4}, {m:log x} goes up by 0.301 and {m:log y} goes up by 0.602. The gradient is 2 again, so the points lie on a line.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-power}<figcaption>Look at the three marked points on the curve {m:y=3x^2}. The curve bends, so its gradient and intercept cannot be read off.</figcaption></figure>
+    <figure class="figure-lg">{fig:exp-modelling-power-line}<figcaption>Look at the same model after taking logarithms. The graph is a straight line. It meets the vertical axis at {m:(0, 0.477)}. The small triangle shows its gradient: up 1 for each 0.5 along, which is 2.</figcaption></figure>
+    <!-- No picture for the next two worked examples: they read numbers from a line like the one above and from the question figure below. -->
+    <div class="worked">
+      <h3>Worked example: read n and a from a graph</h3>
+      <p>The graph of {m:log y} against {m:log x} is a straight line through {m:(0, 0.7)} and {m:(2, 1.9)}. The model is {m:y=a x^n}. Find n and a. Give a to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The gradient is {m:n=frac(1.9-0.7, 2-0)=0.6}.</li>
+        <li>The point {m:(0, 0.7)} is on the vertical axis, so the intercept is {m:log a=0.7}.</li>
+        <li>Undo the logarithm: {m:a=10^(0.7)=5.0119}.</li>
+      </ol>
+      <p>So {m:n=0.6} and {m:a=5.01} to 3 significant figures. The model is {m:y=5.01 x^(0.6)}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: find n and a from two data points</h3>
+      <p>A power model {m:y=a x^n} passes through {m:(2, 12)} and {m:(4, 48)}. Use natural logarithms to find n and a.</p>
+      <ol class="steps">
+        <li>Take ln of both sides: {m:ln y=n ln x+ln a}. So n is the gradient of the line of {m:ln y} against {m:ln x}.</li>
+        <li>{m:ln 12=2.4849}, {m:ln 48=3.8712}, {m:ln 2=0.6931} and {m:ln 4=1.3863}.</li>
+        <li>The gradient is {m:n=frac(3.8712-2.4849, 1.3863-0.6931)=frac(1.3863, 0.6931)=2}.</li>
+        <li>The intercept is {m:ln a=2.4849-2*0.6931=1.0987}. So {m:a=e^(1.0987)=3}.</li>
+      </ol>
+      <p>The model is {m:y=3 x^2}. Check: {m:3*4^2=48}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Take logarithms of {m:y=2 x^3} using base 10. The graph of {m:log y} against {m:log x} is a straight line. Find its gradient and its intercept.</p>
+      <ol class="steps">
+        <li>{m:log y=3 log x+log 2}. The gradient is <span class="blank" data-answers="3">___</span>.</li>
+        <li>The intercept is {m:log 2=}<span class="blank" data-answers="0.301">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:log y=log(2 x^3)=log 2+3 log x}. The gradient is 3. The intercept is {m:log 2=0.3010}, which is 0.301 to 3 significant figures.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: y = a x<sup>n</sup></h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which model gives a straight line when you plot {m:log y} against {m:log x}?</p>
+      <ul class="options">
+        <li data-correct>y equals 4 times x cubed</li>
+        <li data-why="Here the unknown x is in the power. This model gives a straight line when you plot log y against x, not against log x.">y equals 4 times 3 to the power x</li>
+        <li data-why="This is a straight line when you plot y against x. When you plot log y against log x it is a curve.">y equals 4x plus 3</li>
+      </ul>
+      <ol class="ladder"><li>Take logarithms of each model. Look for the form {m:Y=m X+c}.</li><li>For a straight line, {m:log y} must equal a number times {m:log x} plus a constant.</li></ol>
+      <div class="solution"><p>{m:log(4 x^3)=log 4+3 log x} is a straight line in {m:log x}. The other two models do not give that form.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">A model is {m:y=5 x^4}. The graph of {m:log y} against {m:log x} is a straight line. Find its gradient. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms of both sides. Use the product law and the power law.</li><li>Compare with {m:Y=m X+c}.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is the number a in the model. The gradient is the power n.</li>
+        <li data-if="0.699">That is {m:log 5}, the intercept. The gradient is the power n.</li>
+      </ul>
+      <div class="solution"><p>{m:log y=4 log x+log 5}. The gradient is 4, and the intercept is {m:log 5=0.699}.</p></div>
+    </div>
+    <div class="q" data-answers="2.3" data-mode="value">
+      <p class="qtext">A model is {m:y=200 x^(0.5)}. The graph of {m:log y} against {m:log x}, with logarithms to base 10, is a straight line. Find its vertical intercept to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms to base 10 and compare with {m:Y=m X+c}.</li><li>The intercept is the logarithm of one of the two numbers in the model.</li></ol>
+      <ul class="wrong">
+        <li data-if="200">That is the number a. The intercept is the logarithm of a.</li>
+        <li data-if="5.3">That is {m:ln 200}. The graph uses logarithms to base 10, so use the log key.</li>
+        <li data-if="0.5">That is the gradient. The intercept is the logarithm of a.</li>
+      </ul>
+      <div class="solution"><p>{m:log y=0.5 log x+log 200}. The intercept is {m:log 200=2.3010}, which is 2.30 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="3.16" data-mode="value">
+      <p class="qtext">The graph of {m:log y} against {m:log x}, with logarithms to base 10, is a straight line with gradient 3 and intercept 0.5. The model is {m:y=a x^n}. Find a to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The intercept is {m:log a}.</li><li>Undo a logarithm to base 10 by raising 10 to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.5">That is {m:log a}. Undo the logarithm to find a.</li>
+        <li data-if="1.65">That is {m:e^(0.5)}. The logarithms are to base 10, so raise 10 to the power.</li>
+      </ul>
+      <div class="solution"><p>{m:log a=0.5}, so {m:a=10^(0.5)=3.1623}. To 3 significant figures, {m:a=3.16}. The model is {m:y=3.16 x^3}.</p></div>
+    </div>
+    <div class="q" data-answers="1.5" data-mode="value">
+      <p class="qtext">The graph of {m:ln y} against {m:ln x} is a straight line through {m:(0, 1.5)} and {m:(2, 4.5)}. The model is {m:y=a x^n}. Find n. Type only the number.</p>
+      <figure class="qfig-lg">{fig:exp-modelling-q-loglog}</figure>
+      <ol class="ladder"><li>The number n is the gradient of the line.</li><li>Gradient is the change in the vertical value divided by the change in the horizontal value.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the rise only. Divide it by the run as well.</li>
+        <li data-if="0.667">You divided the run by the rise. The gradient has the rise on the top.</li>
+      </ul>
+      <div class="solution"><p>{m:n=frac(4.5-1.5, 2-0)=frac(3, 2)=1.5}.</p></div>
+    </div>
+    <div class="q" data-answers="3.32" data-mode="value">
+      <p class="qtext">A model {m:y=a x^n} gives {m:ln y=2 ln x+1.2}. Find a to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The intercept is {m:ln a}.</li><li>Undo the natural logarithm by raising e to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.2">That is {m:ln a}. Undo the logarithm to find a.</li>
+        <li data-if="2.4">You doubled the intercept. The intercept is {m:ln a}, and the 2 is the gradient n.</li>
+      </ul>
+      <div class="solution"><p>{m:ln a=1.2}, so {m:a=e^(1.2)=3.3201}. To 3 significant figures, {m:a=3.32}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Straight lines from y = k b<sup>x</sup></h2>
+    <p>The exponential model is {m:y=k*b^x}, where k and b are positive. Take logarithms of both sides. Use the product law and then the power law:</p>
+    {md:log y=log(k*b^x)=log k+x log b}
+    <p>Write this as {m:log y=(log b) x+log k}. Compare with {m:Y=m X+c}. Now {m:Y=log y}, but {m:X=x} itself. Only the y-values are changed to logarithms. This graph is a {term:semi-log-graph|semi-log graph}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if {m:y=k*b^x} with {m:k>0} and {m:b>0}, then {m:log y=(log b) x+log k}. So the graph of {m:log y} against x is a straight line. Its gradient is {m:log b} and its vertical intercept is {m:log k}. For {m:y=A e^(k x)} with {m:A>0}, use ln: {m:ln y=k x+ln A}, so the gradient is k and the intercept is {m:ln A}. Undo the logarithm to get back to b or A.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exponential becomes a line</h3>
+      <p>Write {m:y=2*3^x} as a straight line using logarithms to base 10. State the gradient and the intercept, and the value of {m:log y} when {m:x=2}.</p>
+      <ol class="steps">
+        <li>Take logarithms: {m:log y=log 2+x log 3}. So {m:log y=(log 3) x+log 2}.</li>
+        <li>The gradient is {m:log 3=0.477}. The intercept is {m:log 2=0.301}.</li>
+        <li>Put {m:x=2}: {m:log y=0.4771*2+0.3010=1.2552}, so the point {m:(2, 1.255)} is on the line.</li>
+      </ol>
+      <p>Check: when {m:x=2}, {m:y=2*9=18} and {m:log 18=1.2553}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-semilog}<figcaption>Look at the straight line {m:log y=0.477x+0.301}. It meets the vertical axis at {m:(0, 0.301)}, which is {m:log 2}. The curve {m:y=2*3^x} has become a line.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: read A and k from a graph</h3>
+      <p>The graph of {m:ln y} against t is a straight line through {m:(0, 2)} and {m:(5, 3.5)}. The model is {m:y=A e^(k t)}. Find A and k. Give A to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The gradient is {m:k=frac(3.5-2, 5-0)=0.3}.</li>
+        <li>The intercept is {m:ln A=2}. Undo the logarithm: {m:A=e^2=7.389}.</li>
+      </ol>
+      <p>So {m:A=7.39} and {m:k=0.3}. The model is {m:y=7.39 e^(0.3t)}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-semilog-read}<figcaption>Look at the two marked points. The first, {m:(0, 2)}, gives the intercept. The second, {m:(5, 3.5)}, lets you work out the gradient.</figcaption></figure>
+    <!-- No picture for the next two worked examples: the first only solves two equations, and the second compares tables of numbers. -->
+    <div class="worked">
+      <h3>Worked example: find b and k from two points</h3>
+      <p>The model {m:y=k*b^x} passes through {m:(1, 6)} and {m:(3, 54)}. Find b and k.</p>
+      <ol class="steps">
+        <li>Use logarithms to base 10: {m:log 6=0.778} and {m:log 54=1.732}.</li>
+        <li>The gradient is {m:log b=frac(1.732-0.778, 3-1)=0.477}. So {m:b=10^(0.477)=3}.</li>
+        <li>The line gives {m:log k=0.778-0.477*1=0.301}. So {m:k=10^(0.301)=2}.</li>
+      </ol>
+      <p>The model is {m:y=2*3^x}. Check: {m:2*3^3=54}.</p>
+    </div>
+    <h3>Which graph is straight?</h3>
+    <p>You may not know which model fits some data. Plot both graphs, or work out the numbers for both. Real data lie close to a line, not exactly on it.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if {m:log y} against {m:log x} is a straight line, then {m:y=a x^n} fits. If {m:log y} against x is a straight line, then {m:y=k*b^x} fits. A straight line has the same gradient between every pair of points.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: choose the model</h3>
+      <p>The table gives data. Decide whether {m:y=a x^n} or {m:y=k*b^x} fits better.</p>
+      <table class="data">
+        <thead><tr><th scope="col">x</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">y</th><td>6</td><td>18</td><td>54</td><td>162</td></tr>
+          <tr><th scope="row">{m:log y}</th><td>0.7782</td><td>1.2553</td><td>1.7324</td><td>2.2095</td></tr>
+          <tr><th scope="row">{m:log x}</th><td>0.0000</td><td>0.3010</td><td>0.4771</td><td>0.6021</td></tr>
+        </tbody>
+      </table>
+      <ol class="steps">
+        <li>Plot {m:log y} against x. When x goes up by 1, {m:log y} goes up by 0.4771 each time. The gradient is the same every time.</li>
+        <li>Plot {m:log y} against {m:log x}. The gradient from {m:x=1} to {m:x=2} is {m:frac(0.4771, 0.3010)=1.585}. From {m:x=2} to {m:x=3} it is {m:frac(0.4771, 0.1761)=2.709}.</li>
+        <li>The second gradient is different, so that graph is not a straight line.</li>
+      </ol>
+      <p>The model {m:y=k*b^x} fits. Here {m:log b=0.4771}, so {m:b=3}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:y=5*2^x} as a straight line using logarithms to base 10. Find the gradient and the intercept.</p>
+      <ol class="steps">
+        <li>{m:log y=(log 2) x+log 5}. The gradient is {m:log 2=}<span class="blank" data-answers="0.301">___</span> to 3 significant figures.</li>
+        <li>The intercept is {m:log 5=}<span class="blank" data-answers="0.699">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:log y=log 5+x log 2}. The gradient is {m:log 2=0.3010}, which is 0.301. The intercept is {m:log 5=0.6990}, which is 0.699.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: y = k b<sup>x</sup></h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which model gives a straight line when you plot {m:ln y} against x?</p>
+      <ul class="options">
+        <li data-correct>y equals 6 times e to the power 0.2x</li>
+        <li data-why="Here x is the base. This model gives a straight line when you plot ln y against ln x, not against x.">y equals 6 times x to the power 0.2</li>
+        <li data-why="This is a straight line when you plot y against x. When you plot ln y against x it is a curve.">y equals 6 plus 0.2x</li>
+      </ul>
+      <ol class="ladder"><li>Take ln of each model. Which one gives {m:ln y=m x+c}?</li><li>For a straight line, x must appear to the first power and not inside a logarithm.</li></ol>
+      <div class="solution"><p>{m:ln(6 e^(0.2x))=ln 6+0.2x}. This is a straight line in x, with gradient 0.2 and intercept {m:ln 6}.</p></div>
+    </div>
+    <div class="q" data-answers="0.176" data-mode="value">
+      <p class="qtext">A model is {m:y=7*1.5^x}. The graph of {m:log y} against x, with logarithms to base 10, is a straight line. Find its gradient to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Take logarithms to base 10. Compare with {m:Y=m X+c}.</li><li>The gradient is the logarithm of one of the two numbers in the model.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.5">That is b, not its logarithm. The gradient is {m:log b}.</li>
+        <li data-if="0.405">That is {m:ln 1.5}. The graph uses base 10, so use the log key.</li>
+        <li data-if="0.845">That is {m:log 7}, the intercept. The gradient is {m:log b}.</li>
+      </ul>
+      <div class="solution"><p>{m:log y=(log 1.5) x+log 7}. The gradient is {m:log 1.5=0.17609}, which is 0.176 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="3.67" data-mode="value">
+      <p class="qtext">A model {m:y=A e^(k x)} gives the straight line {m:ln y=0.4x+1.3}. Find A to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The intercept is {m:ln A}.</li><li>Undo the natural logarithm by raising e to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.3">That is {m:ln A}. Undo the logarithm to find A.</li>
+        <li data-if="20">That is {m:10^(1.3)}. The logarithm is natural, so raise e to the power.</li>
+      </ul>
+      <div class="solution"><p>{m:ln A=1.3}, so {m:A=e^(1.3)=3.6693}. To 3 significant figures, {m:A=3.67}.</p></div>
+    </div>
+    <div class="q" data-answers="2.51" data-mode="value">
+      <p class="qtext">The graph of {m:log y} against x, with logarithms to base 10, is a straight line through {m:(0, 1.2)} and {m:(4, 2.8)}. The model is {m:y=k*b^x}. Find b to 3 significant figures. Type only the number.</p>
+      <figure class="qfig-lg">{fig:exp-modelling-q-semilog}</figure>
+      <ol class="ladder"><li>The gradient of the line is {m:log b}.</li><li>Find the gradient. Then raise 10 to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.4">That is {m:log b}. Undo the logarithm to find b.</li>
+        <li data-if="1.6">That is the rise only. Divide by the run to find the gradient, then undo the logarithm.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:log b=frac(2.8-1.2, 4-0)=0.4}. So {m:b=10^(0.4)=2.5119}, which is 2.51 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">A model {m:y=k*b^x} passes through {m:(2, 20)} and {m:(4, 80)}. Find b. Type only the number.</p>
+      <ol class="ladder"><li>Write one equation for each point.</li><li>Divide the equation for the larger x by the other. The k cancels.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is {m:b^2}, which is what the division gives. Take the square root to find b.</li>
+        <li data-if="30">That is the gradient of a straight line through the two points. The model is exponential, so divide the two equations.</li>
+      </ul>
+      <div class="solution"><p>{m:k b^2=20} and {m:k b^4=80}. Divide: {m:b^2=4}. So {m:b=2}, because b is positive.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">A model {m:y=k*b^x} passes through {m:(2, 20)} and {m:(4, 80)}. Find k. Type only the number.</p>
+      <ol class="ladder"><li>First find b by dividing the two equations.</li><li>Put b into the equation for the point {m:(2, 20)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="10">You divided 20 by 2. The equation is {m:k b^2=20}, so divide by {m:b^2}.</li>
+        <li data-if="40">You multiplied 20 by 2. You must undo the multiplication by {m:b^2}, so divide.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2=4}, so {m:b=2}. Then {m:k*2^2=20}, so {m:k=5}. Check: {m:5*2^4=80}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. The gradient of e<sup>kx</sup></h2>
+    <p>The steepness of the curve {m:y=e^(k x)} depends on its height. The gradient at a point depends on the height there. The table shows the gradient of the {term:chord-of-curve|chord} from {m:x=0} to {m:x=h} for {m:y=e^(2x)}, for smaller and smaller h. Each chord joins two points on the curve. The gradient is {m:frac(e^(2h)-1, h)}.</p>
+    <table class="data" data-table="chords">
+      <thead><tr><th scope="col">h</th><th scope="col">0.1</th><th scope="col">0.01</th><th scope="col">0.001</th></tr></thead>
+      <tbody><tr><th scope="row">gradient of the chord</th><td>2.2140</td><td>2.0201</td><td>2.0020</td></tr></tbody>
+    </table>
+    <p>The values get close to 2. At {m:x=0}, the height is {m:e^0=1}. The table suggests that the gradient at {m:x=0} is 2 times the height.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for any constant k, the gradient of {m:y=e^(k x)} is {m:k e^(k x)}. That is {m:frac(dy, dx)=k e^(k x)}, read as &ldquo;dy by dx equals k e to the kx&rdquo;. For {m:y=A e^(k x)} the gradient is {m:A k e^(k x)=k y}. So the gradient at any point is k times the height of the curve there. The proof comes in the topic Differentiating standard functions.</p>
+    </div>
+    <p>This is why exponential models fit quantities whose rate of change is proportional to their size. In {m:P=A e^(k t)} the rate of change of P is {m:k P}. It is proportional to P. When P doubles, the rate of growth doubles too.</p>
+    <div class="worked">
+      <h3>Worked example: the gradient at a point</h3>
+      <p>Find the gradient of {m:y=e^(0.5x)} at {m:x=2}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Here {m:k=0.5}. The gradient is {m:0.5 e^(0.5x)}.</li>
+        <li>Put {m:x=2}: {m:0.5 e^1=0.5*2.7183=1.359}.</li>
+      </ol>
+      <p>The gradient is 1.36. It is half of the height {m:e^1=2.72}, because {m:k=0.5}. This is the gradient of the {term:tangent} at that point.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-tangent}<figcaption>Look at the marked point {m:(2, 2.72)}. The tangent there touches the curve and has gradient 1.36. Its gradient, 1.36, is half of the height 2.72, because {m:k=0.5}.</figcaption></figure>
+    <!-- No picture for the next two worked examples: the picture above shows the same idea of a gradient at a point. -->
+    <div class="worked">
+      <h3>Worked example: a rate of change</h3>
+      <p>A population is {m:P=40 e^(0.05t)}, with t in years. Find the rate of change of P when {m:t=10}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The rate of change is {m:frac(dP, dt)=40*0.05 e^(0.05t)=2 e^(0.05t)}.</li>
+        <li>Put {m:t=10}: {m:2 e^(0.5)=2*1.6487=3.2974}.</li>
+      </ol>
+      <p>The population is rising by about 3.30 for each year at that moment. Check: {m:k P=0.05*40 e^(0.5)=3.2974}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where is the gradient a given value?</h3>
+      <p>Find the value of x at which the gradient of {m:y=e^(2x)} is 5. Give x to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The gradient is {m:2 e^(2x)}. Set it equal to 5: {m:2 e^(2x)=5}.</li>
+        <li>Divide by 2: {m:e^(2x)=2.5}.</li>
+        <li>Take ln of both sides: {m:2x=ln 2.5=0.9163}. So {m:x=0.4581}.</li>
+      </ol>
+      <p>So {m:x=0.458} to 3 significant figures.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the gradient of {m:y=e^(4x)} at {m:x=0.25}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The gradient is <span class="blank" data-answers="4">___</span> {m:e^(4x)}.</li>
+        <li>Put {m:x=0.25}. The power is {m:4*0.25=1}. The gradient is {m:4 e^1=}<span class="blank" data-answers="10.9">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The gradient is {m:4 e^(4x)}. At {m:x=0.25}, it is {m:4 e^1=4*2.7183=10.873}, which is 10.9 to 3 significant figures.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the gradient of e<sup>kx</sup></h2>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">Find the gradient of {m:y=e^(5x)} at the point where {m:x=0}. Type only the number.</p>
+      <ol class="ladder"><li>The gradient of {m:e^(k x)} is {m:k e^(k x)}.</li><li>What is {m:e^0}?</li></ol>
+      <ul class="wrong">
+        <li data-if="1">That is the height of the curve at {m:x=0}. The gradient is k times the height.</li>
+        <li data-if="148">That is {m:e^5}. At {m:x=0} the power is 0, not 5.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:5 e^(5x)}. At {m:x=0}, {m:5 e^0=5*1=5}.</p></div>
+    </div>
+    <div class="q" data-answers="14.8" data-mode="value">
+      <p class="qtext">Find the gradient of {m:y=e^(2x)} at the point where {m:x=1}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Write the gradient as {m:k e^(k x)} with {m:k=2}.</li><li>Put {m:x=1} into the whole expression.</li></ol>
+      <ul class="wrong">
+        <li data-if="7.39">That is the height {m:e^2}. The gradient is k times the height.</li>
+        <li data-if="5.44">That is {m:2 e}. The power is {m:2x}, so with {m:x=1} it is {m:e^2}.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:2 e^(2x)}. At {m:x=1}, {m:2 e^2=2*7.3891=14.778}. To 3 significant figures, 14.8.</p></div>
+    </div>
+    <div class="q" data-answers="4.95" data-mode="value">
+      <p class="qtext">A model is {m:y=30 e^(0.1x)}. Find its gradient at {m:x=5}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The gradient of {m:A e^(k x)} is {m:A k e^(k x)}.</li><li>Multiply 30 by k, then by the power of e.</li></ol>
+      <ul class="wrong">
+        <li data-if="49.5">That is the height of the curve. The gradient is k times the height.</li>
+        <li data-if="1.65">That is {m:e^(0.5)}. You still need to multiply by {m:A k}.</li>
+        <li data-if="3">That is {m:A k}. You still need to multiply by {m:e^(0.5)}.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:30*0.1 e^(0.1x)=3 e^(0.1x)}. At {m:x=5}, {m:3 e^(0.5)=3*1.6487=4.946}. To 3 significant figures, 4.95.</p></div>
+    </div>
+    <div class="q" data-answers="-1.1" data-mode="value">
+      <p class="qtext">A model is {m:y=6 e^(-0.5x)}. Find its gradient at {m:x=2}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Here {m:k=-0.5}. The gradient is {m:A k e^(k x)}.</li><li>The gradient of a decaying curve is negative.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.1">You lost the minus sign. The number k is negative, so the gradient is negative: the curve falls.</li>
+        <li data-if="-0.184">That is {m:k e^(k x)}. You still need to multiply by 6.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:6*(-0.5) e^(-0.5x)=-3 e^(-0.5x)}. At {m:x=2}, {m:-3 e^(-1)=-3*0.36788=-1.1036}. To 3 significant figures, {m:-1.10}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The curve {m:y=A e^(k x)} passes through {m:(0, 2)}. The gradient of the curve at that point is 6. Find k. Type only the number.</p>
+      <figure class="qfig-lg">{fig:exp-modelling-q-gradient}</figure>
+      <ol class="ladder"><li>The gradient at any point is k times the height of the curve there.</li><li>Write an equation using the gradient and the height at the marked point.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">That is the gradient. The gradient is k times the height, so divide by the height.</li>
+        <li data-if="12">You multiplied the gradient by the height. The gradient equals k times the height, so divide.</li>
+      </ul>
+      <div class="solution"><p>The height at the point is 2, and the gradient is {m:k*2=6}. So {m:k=3}. Check: {m:A=2}, and {m:y=2 e^(3x)} has gradient {m:6 e^(3x)}, which is 6 at {m:x=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Assumptions and refining a model</h2>
+    <p>A model is a simple description of something real. It rests on assumptions. If an assumption is false, the model can give nonsense, even when the arithmetic is right.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the model {m:y=A*b^t} assumes that y is multiplied by the same factor in every equal step, and that nothing limits it. To judge a model, compare what it predicts with real data, and ask whether its assumptions are reasonable. To refine a model, change the assumption that failed, and then test the new model against the data again.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a model for fish</h3>
+      <p>The number of fish in a lake is modelled by {m:P=500 e^(0.2t)}, with t in years. The lake can hold at most 20000 fish. After how many years does the model first predict more than 20000 fish? Give t to 3 significant figures. What does the model assume that cannot be true?</p>
+      <ol class="steps">
+        <li>Set {m:500 e^(0.2t)=20000}. Divide by 500: {m:e^(0.2t)=40}.</li>
+        <li>Take ln of both sides: {m:0.2t=ln 40=3.6889}.</li>
+        <li>So {m:t=frac(3.6889, 0.2)=18.44}.</li>
+      </ol>
+      <p>After 18.4 years the model predicts more than the lake can hold. At {m:t=30}, it predicts {m:500 e^6=201714}, about 202000 fish. The model assumes that the rate of growth is proportional to the number of fish for ever. That ignores limits on food and space.</p>
+    </div>
+    <!-- No picture for the fish example: the picture of the cooling drink below shows the same idea of a model that fails for large t. -->
+    <div class="worked">
+      <h3>Worked example: compare two models with a measurement</h3>
+      <p>A drink starts at 80 degrees Celsius in a room at 20 degrees Celsius. Model 1 is {m:T=80 e^(-0.1t)}. Model 2 is {m:T=20+60 e^(-0.1t)}. After 10 minutes the drink is measured at 42 degrees. Which model fits? What does each predict for large t?</p>
+      <ol class="steps">
+        <li>Model 1 at {m:t=10}: {m:T=80 e^(-1)=29.4}. That is far from 42.</li>
+        <li>Model 2 at {m:t=10}: {m:T=20+60 e^(-1)=42.07}. That agrees with 42.</li>
+        <li>For large t, model 1 gets close to 0, which is below room temperature. Model 2 gets close to 20.</li>
+      </ol>
+      <p>Model 2 fits. It is a refinement of model 1: it adds the assumption that the drink cools towards the room temperature, not towards 0.</p>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-cooling}<figcaption>Look at the marked point {m:(10, 42)}, the measurement. It lies on the solid curve of model 2. The dashed curve of model 1 is lower at {m:t=10} and keeps falling below the room temperature.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: use the refined model</h3>
+      <p>Use model 2, {m:T=20+60 e^(-0.1t)}. When does the drink reach 30 degrees? Give t to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Set {m:20+60 e^(-0.1t)=30}. Subtract 20: {m:60 e^(-0.1t)=10}.</li>
+        <li>Divide by 60: {m:e^(-0.1t)=frac(1, 6)}.</li>
+        <li>Take ln of both sides: {m:-0.1t=ln frac(1, 6)=-1.7918}. So {m:t=17.918}.</li>
+      </ol>
+      <p>The drink reaches 30 degrees after 17.9 minutes. The model is trusted only while the drink loses heat in the way assumed, for example without being stirred or reheated.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Use model 2, {m:T=20+60 e^(-0.1t)}. Find T when {m:t=20}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Put {m:t=20}: the power is {m:-0.1*20=}<span class="blank" data-answers="-2">___</span>.</li>
+        <li>So {m:T=20+60 e^(-2)=}<span class="blank" data-answers="28.1">___</span> to 3 significant figures.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:T=20+60 e^(-2)=20+60*0.13534=28.12}, which is 28.1 degrees to 3 significant figures. It is above 20, as the model says it must be.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: assumptions and refining</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">A population is modelled by {m:P=300 e^(0.1t)}. Which statement describes what the model assumes?</p>
+      <ul class="options">
+        <li data-correct>The rate of growth is proportional to the size of the population, with nothing limiting it</li>
+        <li data-why="Growth by the same amount each year is a straight line, which is a different model. Here the population is multiplied by the same factor each year.">The population grows by the same amount in each year</li>
+        <li data-why="This model has a positive rate constant, so it keeps growing. It does not level off.">The population stops growing after some time</li>
+      </ul>
+      <ol class="ladder"><li>What does a positive k say about the gradient?</li><li>What does the rate of growth depend on, in this model?</li></ol>
+      <div class="solution"><p>The gradient is {m:0.1 P}, so the rate of growth is proportional to P. The population keeps growing, and nothing limits it.</p></div>
+    </div>
+    <div class="q" data-answers="28.1" data-mode="value">
+      <p class="qtext">A population is modelled by {m:P=300 e^(0.1t)}, with t in years. The habitat holds at most 5000. After how many years does the model first predict more than 5000? Give t to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Set {m:300 e^(0.1t)=5000}, then divide by 300.</li><li>Take ln of both sides, then divide by 0.1.</li></ol>
+      <ul class="wrong">
+        <li data-if="85.2">You took ln of 5000 without dividing by 300 first. Divide by 300 to leave {m:e^(0.1t)} on its own.</li>
+        <li data-if="2.81">That is {m:0.1t}. You still need to divide by 0.1.</li>
+      </ul>
+      <div class="solution"><p>{m:e^(0.1t)=frac(5000, 300)=16.667}, so {m:0.1t=ln 16.667=2.8134}. So {m:t=28.134}. To 3 significant figures, {m:t=28.1}.</p></div>
+    </div>
+    <div class="q" data-answers="38.9" data-mode="value">
+      <p class="qtext">The temperature of an object is modelled by {m:T=15+65 e^(-0.2t)}. Find T when {m:t=5}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=5}. The power is {m:-0.2*5}.</li><li>Work out the exponential term. Then add 15.</li></ol>
+      <ul class="wrong">
+        <li data-if="80">That is the value at {m:t=0}. The question asks for {m:t=5}.</li>
+        <li data-if="23.9">That is {m:65 e^(-1)}. You still need to add 15.</li>
+      </ul>
+      <div class="solution"><p>{m:T=15+65 e^(-1)=15+65*0.36788=15+23.912=38.912}. To 3 significant figures, {m:T=38.9}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A cup of tea is in a room at 20 degrees Celsius. It is modelled by {m:T=90 e^(-0.05t)}. What is wrong with the prediction for large t?</p>
+      <ul class="options">
+        <li data-correct>It predicts that T gets close to 0, which is below the room temperature</li>
+        <li data-why="The rate constant is negative, so the model falls. It does not rise.">It predicts that T rises for large t</li>
+        <li data-why="This model has no constant added, so its limiting value is 0, not 20. A model with a limiting value of 20 would be T equals 20 plus a decaying term.">It predicts that T gets close to 20</li>
+      </ul>
+      <ol class="ladder"><li>What does {m:e^(-0.05t)} get close to for large t?</li><li>Compare that with the room temperature.</li></ol>
+      <div class="solution"><p>For large t, {m:90 e^(-0.05t)} gets close to 0. A cup of tea in a room does not cool below the room temperature. The refinement is {m:T=20+70 e^(-0.05t)}, which gets close to 20.</p></div>
+    </div>
+    <div class="q" data-answers="24.8" data-mode="value">
+      <p class="qtext">Use the model {m:T=20+60 e^(-0.1t)}. Find the time t when {m:T=25}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Subtract 20 from both sides first. Then divide by 60.</li><li>Take ln of both sides, then divide by {m:-0.1}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2.48">That is {m:ln 12}. You still need to divide by 0.1.</li>
+        <li data-if="8.75">You forgot to subtract 20 first. Subtract 20 from both sides before you divide by 60.</li>
+      </ul>
+      <div class="solution"><p>{m:60 e^(-0.1t)=5}, so {m:e^(-0.1t)=frac(1, 12)}. Then {m:-0.1t=ln frac(1, 12)=-2.4849}, so {m:t=24.849}. To 3 significant figures, {m:t=24.8}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: model &harr; straight line</h2>
+    <p>Taking logarithms turns a model into a line. You can go back the other way, from a line to the model.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the model to the line. Take logarithms of both sides.</p><p>{m:y=A e^(k t)} gives {m:ln y=k t+ln A}. The gradient is k and the intercept is {m:ln A}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the line to the model. Read the gradient and the intercept, then undo the logarithm.</p><p>A line {m:ln y=m t+c} gives {m:y=e^c e^(m t)}. So {m:A=e^c} and {m:k=m}.</p></div>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a power model to its log-log line. Take logarithms of both sides.</p><p>{m:y=a x^n} gives {m:log y=n log x+log a}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the line to the power model. Raise 10 to each side.</p><p>{m:log y=n log x+c} gives {m:y=10^c x^n}. So {m:a=10^c}.</p></div>
+    </div>
+    <figure class="figure-lg">{fig:exp-modelling-flip}<figcaption>Look at the two marked points. The line passes through {m:(0, 1.4)} and {m:(4, 3.4)}. Its gradient is 0.5 and its intercept is 1.4. Work backwards to find the model {m:y=A e^(k t)}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: from a line back to the model</h3>
+      <p>The graph of {m:ln y} against t is the line in the figure. Write the model {m:y=A e^(k t)}, with A to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The gradient is {m:k=frac(3.4-1.4, 4-0)=0.5}.</li>
+        <li>The intercept is {m:ln A=1.4}. So {m:A=e^(1.4)=4.0552}.</li>
+      </ol>
+      <p>The model is {m:y=4.06 e^(0.5t)}. Check: at {m:t=4}, {m:y=4.0552 e^2=29.96} and {m:ln 29.96=3.4}.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext">A model gives {m:ln y=0.5x+1.4}. Find y when {m:x=4}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Work out the right side when {m:x=4}. That gives {m:ln y}.</li><li>Undo the natural logarithm by raising e to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="3.4">That is {m:ln y}. Undo the logarithm to find y.</li>
+        <li data-if="7.39">You raised e to {m:0.5x} only. The whole right side is in the power, so include the 1.4.</li>
+      </ul>
+      <div class="solution"><p>{m:ln y=0.5*4+1.4=3.4}, so {m:y=e^(3.4)=29.964}. To 3 significant figures, {m:y=30.0}.</p></div>
+    </div>
+    <div class="q" data-answers="100000;10^5" data-mode="value">
+      <p class="qtext">A model gives {m:log y=3 log x+2}, with logarithms to base 10. Find y when {m:x=10}. Type it like 5000.</p>
+      <ol class="ladder"><li>Work out {m:log x} when {m:x=10}. Then work out the right side.</li><li>Undo the logarithm to base 10 by raising 10 to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="5">That is {m:log y}. Undo the logarithm to find y.</li>
+        <li data-if="1000">That is {m:x^3}. The intercept 2 means the model also has the factor {m:10^2}.</li>
+      </ul>
+      <div class="solution"><p>{m:log 10=1}, so {m:log y=3*1+2=5}. Then {m:y=10^5=100000}. The model is {m:y=100 x^3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:log y} against x, with logarithms to base 10, is a straight line with gradient 0.3 and intercept 0.7. Which model does it show?</p>
+      <ul class="options">
+        <li data-correct>y equals 5.01 times 2.00 to the power x</li>
+        <li data-why="The numbers 0.7 and 0.3 are logarithms. Undo them: the factor k is 10 to the power 0.7, and b is 10 to the power 0.3.">y equals 0.7 times 0.3 to the power x</li>
+        <li data-why="A straight line of log y against x shows an exponential model, with x in the power. A power model with x as the base would give a straight line of log y against log x.">y equals 5.01 times x to the power 0.3</li>
+      </ul>
+      <ol class="ladder"><li>The line has the form {m:log y=(log b) x+log k}.</li><li>Undo each logarithm by raising 10 to that power.</li></ol>
+      <div class="solution"><p>{m:log b=0.3}, so {m:b=10^(0.3)=1.995}, which is 2.00. And {m:log k=0.7}, so {m:k=10^(0.7)=5.012}, which is 5.01. The model is {m:y=5.01*2.00^x}.</p></div>
+    </div>
+    <div class="q" data-answers="9.97" data-mode="value">
+      <p class="qtext">The graph of {m:ln y} against t is a straight line with gradient 0.25 and intercept 2.3. The model is {m:y=A e^(k t)}. Find A to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The intercept is {m:ln A}.</li><li>Undo the natural logarithm by raising e to that power.</li></ol>
+      <ul class="wrong">
+        <li data-if="2.3">That is {m:ln A}. Undo the logarithm to find A.</li>
+        <li data-if="200">That is {m:10^(2.3)}. The logarithm is natural, so raise e to the power.</li>
+      </ul>
+      <div class="solution"><p>{m:ln A=2.3}, so {m:A=e^(2.3)=9.9742}. To 3 significant figures, {m:A=9.97}. The gradient gives {m:k=0.25}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Amy says:</b> the model is {m:y=5 x^2}, so I will plot {m:log y} against x and I will get a straight line. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The model has x as the base, so the straight line is {m:log y} against {m:log x}</li>
+        <li data-why="The base of the logarithm does not matter, as long as it is the same on both sides. The problem is which quantity goes on the horizontal axis.">She should have used natural logarithms</li>
+        <li data-why="Taking logarithms of y is correct. The change needed is on the horizontal axis, not the vertical one.">She should not have taken a logarithm of y</li>
+      </ul>
+      <ol class="ladder"><li>Take logarithms of both sides of {m:y=5 x^2}.</li><li>Compare your result with {m:Y=m X+c}. What is X?</li></ol>
+      <div class="solution"><p>{m:log y=2 log x+log 5}. This is a straight line in {m:log x}. Plotted against x, {m:log y} is a curve. Check with x equal to 1, 2 and 3. Then {m:log y} is 0.699, 1.301 and 1.653. The steps are 0.602 and then 0.352, which are not equal, so the points are not on a straight line.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> for {m:y=7*2^x}, the graph of {m:log y} against x has gradient 2 and intercept 7. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He used the numbers 2 and 7, not their logarithms: the gradient is {m:log 2} and the intercept is {m:log 7}</li>
+        <li data-why="The gradient comes from the base 2, and the intercept from the 7. They are not swapped.">He swapped the gradient and the intercept</li>
+        <li data-why="Taking logarithms of both sides is the right method. The mistake is in what the gradient and intercept are.">He should not have taken logarithms of both sides</li>
+      </ul>
+      <ol class="ladder"><li>Take logarithms of both sides of {m:y=7*2^x}.</li><li>Compare the result with {m:Y=m X+c}.</li></ol>
+      <div class="solution"><p>{m:log y=(log 2) x+log 7}. The gradient is {m:log 2=0.301} and the intercept is {m:log 7=0.845}. The numbers 2 and 7 come back only when you undo the logarithms.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> the graph of {m:log y} against {m:log x} has intercept 0.9, so a is 0.9. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The gradient is the power n. It is the intercept that gives a, once the logarithm is undone.">She should have used the gradient instead</li>
+        <li data-correct>The intercept is {m:log a}, so she must undo the logarithm: {m:a=10^(0.9)=7.94}</li>
+        <li data-why="The value 0.9 is the intercept of the graph. It has a meaning: it gives a once the logarithm is undone.">The intercept tells you nothing about a</li>
+      </ul>
+      <ol class="ladder"><li>Write {m:y=a x^n} as {m:log y=n log x+log a}.</li><li>What does the intercept equal?</li></ol>
+      <div class="solution"><p>The intercept is {m:log a=0.9}, so {m:a=10^(0.9)=7.943}. The number 0.9 is the logarithm of a, not a itself.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> the model is {m:P=50 e^(0.4t)}, so the population rises by 40% each year. What went wrong?</p>
+      <ul class="options">
+        <li data-why="The initial value 50 does not change the percentage rise. The factor for each unit of t is the same for any starting value.">The rise depends on the initial value 50</li>
+        <li data-correct>The factor is {m:e^(0.4)=1.49}, so the rise is about 49%, not 40%</li>
+        <li data-why="A positive rate constant gives growth, and the factor is above 1. The population does rise. The mistake is the size of the percentage.">The population falls, because 0.4 is less than 1</li>
+      </ul>
+      <ol class="ladder"><li>Each unit of t multiplies P by {m:e^k}.</li><li>Work out {m:e^(0.4)} with your calculator.</li></ol>
+      <div class="solution"><p>{m:e^(0.4)=1.4918}. Each year the population is multiplied by 1.4918, a rise of about 49%. The rate constant is not a percentage.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="1197" data-mode="value">
+      <p class="qtext">A quantity is modelled by {m:N=2000*0.95^t}. Find N when {m:t=10}, to the nearest whole number. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=10}. Work out the power, then multiply by 2000.</li><li>Round to a whole number. Look at the first decimal place.</li></ol>
+      <ul class="wrong">
+        <li data-if="19000">You multiplied {m:2000*0.95*10}. The t is a power: {m:0.95^10} is ten lots of 0.95 multiplied together.</li>
+        <li data-if="1198">You rounded up. The value is 1197.47&hellip;, which is closer to 1197.</li>
+      </ul>
+      <div class="solution"><p>{m:N=2000*0.95^10=2000*0.59874=1197.47}. To the nearest whole number, {m:N=1197}.</p></div>
+    </div>
+    <div class="q" data-answers="0.549" data-mode="value">
+      <p class="qtext">A model is {m:P=8 e^(k t)}. When {m:t=2}, {m:P=24}. Find k to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=2}. Divide both sides by 8.</li><li>Take ln of both sides, then divide by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.1">You forgot to divide by 2. From {m:2k=ln 3}, divide by 2 to find k.</li>
+        <li data-if="1.59">You took ln of 24 without dividing by 8 first. Divide by 8 to leave {m:e^(2k)} on its own.</li>
+      </ul>
+      <div class="solution"><p>{m:8 e^(2k)=24}, so {m:e^(2k)=3} and {m:2k=ln 3=1.0986}. So {m:k=0.5493}, which is 0.549 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="-0.301" data-mode="value">
+      <p class="qtext">A model is {m:y=9*0.5^x}. The graph of {m:log y} against x, with logarithms to base 10, is a straight line. Find its gradient to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The gradient is {m:log b}, where b is the base of the power.</li><li>Is b greater than 1, or between 0 and 1? What does that say about the sign?</li></ol>
+      <ul class="wrong">
+        <li data-if="0.301">You lost the minus sign. The base is between 0 and 1, so its logarithm is negative.</li>
+        <li data-if="-0.693">That is {m:ln 0.5}. The graph uses base 10, so use the log key.</li>
+        <li data-if="0.5">That is b. The gradient is the logarithm of b.</li>
+      </ul>
+      <div class="solution"><p>{m:log y=(log 0.5) x+log 9}. The gradient is {m:log 0.5=-0.30103}, which is {m:-0.301} to 3 significant figures. The line falls because the quantity decays.</p></div>
+    </div>
+    <div class="q" data-answers="20.1" data-mode="value">
+      <p class="qtext">The graph of {m:ln y} against {m:ln x} is a straight line through {m:(1, 5)} and {m:(3, 9)}. The model is {m:y=a x^n}. Find a to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Find the gradient. Then use one point to find the intercept {m:ln a}.</li><li>The line is {m:ln y=n ln x+ln a}. Undo the logarithm at the end.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is {m:ln a}. Undo the logarithm to find a.</li>
+        <li data-if="148">That is {m:e^5}. The value 5 is {m:ln y} at {m:ln x=1}, not the intercept.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:n=frac(9-5, 3-1)=2}. At {m:(1, 5)}: {m:5=2*1+ln a}, so {m:ln a=3}. Then {m:a=e^3=20.086}, which is 20.1 to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A quantity is modelled by {m:N=15+60 e^(-0.4t)}. What happens to N as t gets very large?</p>
+      <ul class="options">
+        <li data-correct>N gets close to 15 but never reaches it</li>
+        <li data-why="The term 60 e to the power minus 0.4t gets close to 0, but the 15 stays. So N does not get close to 0.">N gets close to 0</li>
+        <li data-why="The rate constant is negative, so the exponential term falls. N does not rise.">N rises without limit</li>
+      </ul>
+      <ol class="ladder"><li>What does {m:e^(-0.4t)} get close to for large t?</li><li>What part of the model is left?</li></ol>
+      <div class="solution"><p>{m:60 e^(-0.4t)} gets close to 0 and is always positive. So N gets close to 15 from above. The limiting value is 15.</p></div>
+    </div>
+    <div class="q" data-answers="2.72" data-mode="value">
+      <p class="qtext">Find the gradient of {m:y=4 e^(0.25x)} at {m:x=4}, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The gradient of {m:A e^(k x)} is {m:A k e^(k x)}.</li><li>Work out the power at {m:x=4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">That is {m:A k}. You still need to multiply by the power of e.</li>
+        <li data-if="10.9">That is the height of the curve. The gradient is k times the height.</li>
+      </ul>
+      <div class="solution"><p>The gradient is {m:4*0.25 e^(0.25x)=e^(0.25x)}. At {m:x=4}, it is {m:e^1=2.7183}, which is 2.72 to 3 significant figures.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="0.183" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] A population is modelled by {m:P=A e^(k t)}. When {m:t=0}, {m:P=200}. When {m:t=5}, {m:P=500}. Find k to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=0} to find A. Then put {m:t=5} and divide by A.</li><li>Take ln of both sides, then divide by 5.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.916">You forgot to divide by 5. From {m:5k=ln 2.5}, divide by 5 to find k.</li>
+        <li data-if="1.24">You took ln of 500 without dividing by 200 first. Divide by 200 to leave {m:e^(5k)} on its own.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:A=200}. Then {m:200 e^(5k)=500}, so {m:e^(5k)=2.5} and {m:5k=ln 2.5=0.9163}. So {m:k=0.18326}, which is 0.183 to 3 significant figures.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for {m:A=200}</li>
+          <li><b>M1</b> for {m:200 e^(5k)=500}, or {m:e^(5k)=2.5}</li>
+          <li><b>M1</b> for taking ln of both sides</li>
+          <li><b>A1</b> for {m:k=0.183}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3.98" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] The graph of {m:log y} against {m:log x}, with logarithms to base 10, is a straight line through {m:(0, 0.6)} and {m:(2, 2.4)}. The model is {m:y=a x^n}. Find a to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The point {m:(0, 0.6)} is on the vertical axis, so it gives the intercept.</li><li>The intercept is {m:log a}. Undo the logarithm.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.6">That is {m:log a}. Undo the logarithm to find a.</li>
+        <li data-if="1.82">That is {m:e^(0.6)}. The logarithms are to base 10, so raise 10 to the power.</li>
+      </ul>
+      <div class="solution">
+        <p>The intercept is {m:log a=0.6}, so {m:a=10^(0.6)=3.981}. To 3 significant figures, {m:a=3.98}. The gradient gives {m:n=frac(2.4-0.6, 2)=0.9}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:log y=n log x+log a}</li>
+          <li><b>M1</b> for {m:log a=0.6}</li>
+          <li><b>A1</b> for {m:a=3.98}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The model {m:y=k*b^x} passes through {m:(2, 36)} and {m:(5, 972)}. Find k. Type only the number.</p>
+      <ol class="ladder"><li>Write one equation for each point. Divide to remove k.</li><li>Solve for b first. Then put b into one equation.</li></ol>
+      <ul class="wrong">
+        <li data-if="12">You divided 36 by b instead of {m:b^2}. The point has {m:x=2}, so the power is 2.</li>
+        <li data-if="1.33">You divided 36 by {m:b^3}, where {m:b^3=27}. The point {m:(2, 36)} has {m:x=2}, so divide by {m:b^2}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:k b^2=36} and {m:k b^5=972}. Divide: {m:b^3=27}, so {m:b=3}. Then {m:k*9=36}, so {m:k=4}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for dividing the two equations</li>
+          <li><b>A1</b> for {m:b^3=27}, or {m:b=3}</li>
+          <li><b>M1</b> for substituting b into one equation</li>
+          <li><b>A1</b> for {m:k=4}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.104" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] The temperature of a drink is modelled by {m:T=18+62 e^(-k t)}, where T is in degrees Celsius and t is in minutes. When {m:t=10}, {m:T=40}. Find k to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:t=10} and {m:T=40}. Subtract 18 from both sides.</li><li>Divide by 62, take ln of both sides, then divide by {m:-10}.</li></ol>
+      <ul class="wrong">
+        <li data-if="0.0693">You added 18 to 62 and used {m:T=80 e^(-k t)}. The 18 is not multiplied by the exponential, so subtract it first.</li>
+        <li data-if="-0.104">The sign is wrong. The model has {m:e^(-k t)}, so k is positive when the drink cools.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:18+62 e^(-10k)=40}, so {m:62 e^(-10k)=22} and {m:e^(-10k)=frac(22, 62)}. Then {m:-10k=ln frac(22, 62)=-1.0361}, so {m:k=0.10361}. To 3 significant figures, {m:k=0.104}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for subtracting 18 to get {m:62 e^(-10k)=22}</li>
+          <li><b>M1</b> for dividing by 62</li>
+          <li><b>M1</b> for taking ln of both sides</li>
+          <li><b>M1</b> for dividing by {m:-10}</li>
+          <li><b>A1</b> for {m:k=0.104}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.462" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] The curve {m:y=5 e^(3x)} has gradient 60 at the point P. Find the x-coordinate of P, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Find the gradient function of {m:5 e^(3x)}.</li><li>Set it equal to 60, divide, and take ln of both sides.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.39">You forgot to divide by 3. From {m:3x=ln 4}, divide by 3 to find x.</li>
+        <li data-if="0.828">You set the height equal to 60, not the gradient. The gradient is {m:15 e^(3x)}.</li>
+      </ul>
+      <div class="solution">
+        <p>The gradient is {m:15 e^(3x)}. Set {m:15 e^(3x)=60}, so {m:e^(3x)=4} and {m:3x=ln 4=1.3863}. So {m:x=0.46210}, which is 0.462 to 3 significant figures.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for the gradient {m:15 e^(3x)}</li>
+          <li><b>M1</b> for {m:e^(3x)=4}</li>
+          <li><b>A1</b> for {m:x=0.462}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Why A is the initial value.</b> Put {m:t=0} into {m:A*b^t}. Since {m:b^0=1}, you get A. In {m:A e^(k t)}, {m:e^0=1} gives A in the same way.</li>
+      <li><b>Why b is a factor.</b> {m:A*b^(t+1)=A*b^t*b}. Each step of 1 in t multiplies the value by b. That is why a fall of r% has {m:b=1-frac(r, 100)}.</li>
+      <li><b>Why {m:b=e^k}.</b> Any positive b can be written as {m:b=e^(ln b)}. So {m:A*b^t=A*(e^(ln b))^t=A e^((ln b) t)}, and {m:k=ln b}.</li>
+      <li><b>Why the large-t table shows what it does.</b> If {m:b>1}, write {m:b=1+d} with {m:d>0}. Expanding the bracket gives {m:(1+d)^t>=1+t d} for whole t, and {m:1+t d} passes any number you choose. If {m:0<b<1}, each step multiplies by a number less than 1, so the value shrinks. It is multiplied by a positive number each time, so it stays positive.</li>
+      <li><b>Why logarithms give a straight line.</b> The product law turns a product into a sum, and the power law brings a power down in front. For {m:y=a x^n}, that gives {m:log y=log a+n log x}. For {m:y=k*b^x}, it gives {m:log y=log k+x log b}. Each is of the form {m:Y=m X+c}.</li>
+      <li><b>Why the gradient of {m:e^(k x)} is {m:k e^(k x)}.</b> For {m:k>0}, the curve {m:y=e^(k x)} is the curve {m:y=e^x} stretched along the x-axis by a factor of {m:frac(1, k)}. That makes every slope k times as steep. The curve {m:y=e^x} has gradient equal to its height, so the gradient of {m:e^(k x)} is k times its height. For {m:k<0} the same result holds, and {m:k=0} gives a constant. Both are proved in Differentiating standard functions. The table of chords showed this for {m:k=2} at {m:x=0}.</li>
+      <li><b>Why a model can fail.</b> A model is a rule chosen to fit some data. It says nothing outside the range of the data unless its assumptions stay true. Checking a prediction against a measurement tests the assumptions as well as the arithmetic.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Using the percentage as the factor. A fall of 15% has {m:b=0.85}, not 0.15. A rise of 15% has {m:b=1.15}.</li>
+      <li>Treating k as a percentage. In {m:A e^(k t)}, the factor is {m:e^k}. A rate constant {m:k=0.3} is a rise of about 35%.</li>
+      <li>Forgetting that a decaying quantity does not reach 0. It gets closer and closer, but it is never 0.</li>
+      <li>Giving A as the initial value of {m:c+A e^(-k t)}. The initial value is {m:c+A}.</li>
+      <li>Taking ln of a sum without isolating the exponential first. In {m:20+60 e^(-0.1t)=30}, subtract 20 and divide by 60 before you take ln.</li>
+      <li>Plotting the wrong graph. A power model {m:y=a x^n} gives a line of {m:log y} against {m:log x}. An exponential model {m:y=k*b^x} gives a line of {m:log y} against x.</li>
+      <li>Reading the intercept as a, or the gradient as b. The intercept is {m:log a} (or {m:log k}) and the gradient is {m:log b}. Undo the logarithm.</li>
+      <li>Mixing the bases: using ln for the gradient and then raising 10 to the power. Raise the same base that the logarithm used.</li>
+      <li>Rounding in the middle. Keep the full calculator value for k until the last line.</li>
+      <li>Forgetting the factor A in the gradient. The gradient of {m:A e^(k x)} is {m:A k e^(k x)}, not {m:k e^(k x)}.</li>
+      <li>Trusting a model far outside the data it was built from. Ask what it assumes, and whether that is still true.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="exp-modelling">
+      <li><label><input type="checkbox"> explain what A, b and k mean in {m:A*b^t} and {m:A e^(k t)}</label></li>
+      <li><label><input type="checkbox"> turn a percentage rise or fall into a growth factor, and write {m:b} as {m:e^k}</label></li>
+      <li><label><input type="checkbox"> describe what a model does for large t, with a number to back it up</label></li>
+      <li><label><input type="checkbox"> find the constants of a model from two readings, and find when a value is reached</label></li>
+      <li><label><input type="checkbox"> reduce {m:y=a x^n} and {m:y=k*b^x} to a straight line, and read n, a, b and k from its gradient and intercept</label></li>
+      <li><label><input type="checkbox"> state that the gradient of {m:e^(k x)} is {m:k e^(k x)}, and use it</label></li>
+      <li><label><input type="checkbox"> name the assumptions of an exponential model, and refine a model that fails</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

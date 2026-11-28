@@ -13,6 +13,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/indices-surds.html', titleContains: 'Indices and surds', heading: /^Indices and surds$/ },
   { path: '/courses/a-level/integration-basics.html', titleContains: 'Integration as reverse differentiation', heading: /^Integration as reverse differentiation$/ },
   { path: '/courses/a-level/differentiation-basics.html', titleContains: 'Differentiation from first principles', heading: /^Differentiation from first principles$/ },
+  { path: '/courses/a-level/differentiation-applications.html', titleContains: 'Tangents, normals and stationary points', heading: /^Tangents, normals and stationary points$/ },
   { path: '/courses/a-level/quadratics.html', titleContains: 'Quadratics', heading: /^Quadratics$/ },
   { path: '/courses/a-level/straight-lines.html', titleContains: 'Straight lines', heading: /^Straight lines$/ },
   { path: '/courses/a-level/circles.html', titleContains: 'Circles', heading: /^Circles$/ },
@@ -27,6 +28,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/graphs-polynomials.html', titleContains: 'Graphs of polynomials and reciprocals', heading: /^Graphs of polynomials and reciprocals$/ },
   { path: '/courses/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
   { path: '/courses/a-level/definite-integrals.html', titleContains: 'Definite integrals and area', heading: /^Definite integrals and area$/ },
+  { path: '/courses/a-level/exp-modelling.html', titleContains: 'Exponential modelling', heading: /^Exponential modelling$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
