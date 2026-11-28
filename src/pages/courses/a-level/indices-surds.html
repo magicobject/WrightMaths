@@ -770,7 +770,7 @@
     <h2>6. Exact answers in problems</h2>
     <p>In many problems a length or an area is a surd. Keep it exact unless the question asks for a decimal. Say what you are finding, show the working, and simplify at the end. Pythagoras and area formulas often turn a surd times itself into a whole number.</p>
     <div class="key">
-      <p><b>Key idea:</b> keep a length or an area exact unless the question asks for a decimal. A surd times itself is a whole number: {m:sqrt(a)*sqrt(a)=a} for {m:a>=0}. A conjugate pair multiplies to a whole number: {m:(p+sqrt(q))(p-sqrt(q))=p^2-q}. Simplify at the end.</p>
+      <p><b>Key idea:</b> keep a length or an area exact unless the question asks for a decimal. A surd times itself gives back the number under the root: {m:sqrt(a)*sqrt(a)=a} for {m:a>=0}, so for a whole number a the answer is whole. A conjugate pair multiplies to {m:(p+sqrt(q))(p-sqrt(q))=p^2-q}, a whole number when p and q are whole numbers. Simplify at the end.</p>
     </div>
     <div class="worked">
       <h3>Worked example: a rectangle</h3>
@@ -1064,7 +1064,7 @@
     <div class="q" data-answers="6+2sqrt(2);2sqrt(2)+6;6+2sqrt2;2sqrt2+6;6+2*sqrt(2);2*sqrt(2)+6" data-mode="exact" data-marks="3">
       <p class="qtext">[3 marks] Write {m:frac(14, 3-sqrt(2))} in the form {m:a+b*sqrt(2)}, where a and b are whole numbers. Type it like 1+4sqrt(2).</p>
       <ol class="ladder"><li>Multiply the top and the bottom by the conjugate of the bottom.</li><li>The conjugate is {m:3+sqrt(2)}. The bottom is {m:9-2}.</li></ol>
-      <ul class="wrong"><li data-if="(42+14sqrt(2))/7;(42+14sqrt2)/7">That is the right number, but divide the top and the bottom by 7.</li><li data-if="6-2sqrt(2);6-2sqrt2">The conjugate has the opposite sign, so the top is {m:14(3+sqrt(2))}, with a plus.</li></ul>
+      <ul class="wrong"><li data-if="(42+14sqrt(2))/7;(42+14sqrt2)/7">That is the right number, but divide the top and the bottom by 7.</li><li data-if="6-2sqrt(2);6-2sqrt2">The conjugate has the opposite sign, so the top is {m:14(3+sqrt(2))}, with a plus.</li><li data-if="2(3+sqrt(2));2(3+sqrt2);2(3+&radic;2)">That is the right number, but the question asks for the form {m:a+b*sqrt(2)}. Expand the bracket.</li><li data-if="14(3+sqrt(2))/7;14(3+sqrt2)/7;14(3+&radic;2)/7">That is the right number. Divide 14 by 7 first, then expand the bracket.</li><li data-if="3+sqrt(2);3+sqrt2;3+&radic;2">You left out the 14. The top is {m:14(3+sqrt(2))}, and dividing by 7 gives {m:2(3+sqrt(2))}.</li><li data-if="6+sqrt(8);6+sqrt8;6+&radic;8">That is the right number, but not fully simplified. {m:8=4*2}, so {m:sqrt(8)=2sqrt(2)}.</li></ul>
       <div class="solution">
         <p>{m:frac(14, 3-sqrt(2))=frac(14(3+sqrt(2)), (3-sqrt(2))(3+sqrt(2)))=frac(14(3+sqrt(2)), 7)=2(3+sqrt(2))=6+2sqrt(2)}.</p>
         <ul class="markscheme">

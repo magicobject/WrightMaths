@@ -126,6 +126,9 @@ IDs follow `src/book/topics.mjs`. `Needs` is the prerequisite graph; layers and 
 | `differentiation-implicit-param` | Implicit and parametric differentiation | Y2 | `differentiation-rules`, `parametric` | First derivative only; tangents and normals; constructing a differential equation from a rate-of-change statement starts here |
 | `curve-sketching` | Convexity and points of inflection | Y2 | `differentiation-rules` | f″ > 0 or < 0 (concave up / down); points of inflection, stationary and not; when f′ = f″ = 0 the point may be a max, min or inflection; sketching with every tool |
 
+Note on points of inflection: the glossary term `point-of-inflection` is Year 1, because Year 1 pages meet the stationary point of inflection only (for example y = (x - 1)^3: horizontal tangent, no turn). Convexity, concavity and the second-derivative test for inflection stay in Year 2, in `curve-sketching`.
+
+
 ### I. Integration
 
 | ID | Topic | Y | Needs | Content |

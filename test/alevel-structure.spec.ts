@@ -25,7 +25,7 @@ async function graph() {
   return { byId, needsOf };
 }
 
-test('the "builds on" links in the first Key box are topics this one needs, and every direct need is linked', async () => {
+test('the first Key box links only to prerequisites, and where it links any it names every direct prerequisite', async () => {
   const { byId, needsOf } = await graph();
   const problems: string[] = [];
   let withLinks = 0;
@@ -94,8 +94,23 @@ test('the guide names the real "Give me a clue" button, the warm-up and the calc
   expect(guide).not.toContain('Help, I');
   expect(guide).not.toContain('Last time');
   expect(guide).toContain('<b>Warm-up and recap.</b>');
-  expect(guide).toMatch(/<h2>The calculator<\/h2>[\s\S]*scientific calculator[\s\S]*sin, cos, tan/);
+  expect(guide).toMatch(/<h2>The calculator<\/h2>/);
   expect(guide).toMatch(/It works in degrees/);
+  // the guide says every topic page has a calculator: so every topic page must switch it on
+  if (/Every topic page has a scientific calculator/.test(guide)) {
+    const missing = topicIds.filter((id) => !/<main[^>]*data-calc="scientific"/.test(source(id)));
+    expect(missing, 'topic pages without the scientific calculator').toEqual([]);
+  }
+});
+
+test('the warm-up of a topic links the page for each thing the topic builds on (checked for the topics changed in this review)', async () => {
+  const { byId } = await graph();
+  const problems: string[] = [];
+  for (const id of ['exponentials-logs', 'simultaneous']) {
+    const warm = /<h2>Warm-up[\s\S]*?<\/section>/.exec(source(id))?.[0] ?? '';
+    for (const need of byId.get(id)!.needs) if (!warm.includes(`href="${need}.html`)) problems.push(`${id}: the warm-up does not link ${need}.html`);
+  }
+  expect(problems).toEqual([]);
 });
 
 test('every word in a Year 1 topic\'s "Words you need" strip is a Year 1 word', async () => {
@@ -136,20 +151,40 @@ test('wording fixes from the whole-course review hold', () => {
   expect(text('exp-modelling')).not.toContain('Find the gradient function of');
 });
 
-test('the rationalising exam question is 14 over 3 minus root 2, and its key is 6 + 2 root 2', () => {
+test('the rationalising exam question is 14 over 3 minus root 2, its key is 6 + 2 root 2, and every slip matches its message', () => {
   const q = /<div class="q"[^>]*data-answers="([^"]*)"[^>]*>\s*<p class="qtext">\[3 marks\] Write \{m:frac\(14, 3-sqrt\(2\)\)\}[\s\S]*?<ul class="wrong">([\s\S]*?)<\/ul>/.exec(source('indices-surds'));
   expect(q, 'the question is on the page').not.toBeNull();
+  // read a typed form such as 2(3+sqrt(2)), (42+14sqrt2)/7 or 6+&radic;8 as a number
   const value = (e: string) => {
-    const t = e.replace(/\s+/g, '').replace(/sqrt\(?2\)?/g, `*${Math.SQRT2}`).replace(/(\d)\*/g, '$1*');
-    return Function(`"use strict"; return (${t.replace(/\*\*/g, '*').replace(/\+\*/g, '+')})`)() as number;
+    const t = e.replace(/\s+/g, '').replace(/&radic;/g, 'sqrt').replace(/sqrt(?:\((\d+)\)|(\d+))/g, (_m, n, k) => `*${Math.sqrt(Number(n ?? k))}`)
+      .replace(/\+\*/g, '+').replace(/-\*/g, '-').replace(/\(\*/g, '(').replace(/(\d|\))\(/g, '$1*(').replace(/\*\*/g, '*');
+    try { return Function(`"use strict"; return (${t})`)() as number; } catch { throw new Error(`cannot read "${e}" (${t})`); }
   };
   const right = 14 / (3 - Math.SQRT2);
   expect(right).toBeCloseTo(6 + 2 * Math.SQRT2, 12);
   for (const a of q![1].split(';')) expect(value(a), a).toBeCloseTo(right, 9);
-  const wrongs = [...q![2].matchAll(/data-if="([^"]*)"/g)].flatMap((m) => m[1].split(';'));
-  expect(wrongs.length).toBeGreaterThanOrEqual(2);
-  // the slips: the unreduced fraction is the right value (the message says to divide by 7), the sign slip is 14 over 3 + root 2
-  expect(value(wrongs[0])).toBeCloseTo(right, 9);
-  expect(value('6-2sqrt(2)')).toBeCloseTo(14 / (3 + Math.SQRT2), 9);
-  expect(value(wrongs[wrongs.length - 1])).toBeCloseTo(14 / (3 + Math.SQRT2), 9);
+  const slips = [...q![2].matchAll(/<li data-if="([^"]*)">([\s\S]*?)<\/li>/g)].map((m) => ({ forms: m[1].replace(/&radic;/g, 'sqrt').split(';'), msg: m[2] }));
+  expect(slips.length).toBe(6);
+  const kinds: { name: RegExp; equal: boolean; want?: number }[] = [
+    { name: /^That is the right number, but divide the top and the bottom by 7/, equal: true },
+    { name: /conjugate has the opposite sign/, equal: false, want: 14 / (3 + Math.SQRT2) },
+    { name: /but the question asks for the form[\s\S]*Expand the bracket/, equal: true },
+    { name: /^That is the right number\. Divide 14 by 7 first/, equal: true },
+    { name: /^You left out the 14/, equal: false, want: right / 2 },
+    { name: /not fully simplified[\s\S]*sqrt\(8\)=2sqrt\(2\)/, equal: true },
+  ];
+  slips.forEach((slip, i) => {
+    expect(slip.msg, `slip ${i}`).toMatch(kinds[i].name);
+    for (const f of slip.forms) {
+      const v = value(f);
+      if (kinds[i].equal) expect(v, f).toBeCloseTo(right, 9);
+      else {
+        expect(Math.abs(v - right), `${f} must be wrong`).toBeGreaterThan(0.01);
+        expect(v, f).toBeCloseTo(kinds[i].want!, 9);
+      }
+    }
+  });
+  // a slip that equals the key is only ever a form slip: it is never one of the accepted answers
+  const accepted = new Set(q![1].split(';').map((a) => a.replace(/\s+/g, '')));
+  for (const slip of slips) for (const f of slip.forms) expect(accepted.has(f.replace(/\s+/g, '')), `${f} is also accepted`).toBe(false);
 });

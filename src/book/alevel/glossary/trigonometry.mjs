@@ -241,7 +241,7 @@ export const TERMS = [
       'Solve {m:sin^2 x-sin x-2=0}. It factorises as {m:(sin x-2)(sin x+1)=0}.',
       'The value {m:sin x=2} is rejected, because the sine of an angle is never more than 1. Only {m:sin x=-1} is kept, which gives {m:x=270deg}.',
     ],
-    watch: 'Say why you reject a value. The sine and the cosine are always between {m:-1} and 1, so any other value has no angle. The tangent can be any number, so no value of it is rejected for size.',
+    watch: 'Say why you reject a value. The sine and the cosine are always between {m:-1} and 1, so any other value has no angle. The tangent can be any number, so no value of it is rejected for size. The same idea works for powers: {m:e^x} is always positive, so {m:e^x=-1} has no solution and the value {m:-1} is rejected.',
     see: ['trig-quadratic', 'trigonometric-equation', 'sine', 'cosine'],
   },
 
