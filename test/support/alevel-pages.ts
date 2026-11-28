@@ -21,10 +21,13 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/inequalities.html', titleContains: 'Inequalities', heading: /^Inequalities$/ },
   { path: '/courses/a-level/vectors-2d.html', titleContains: 'Vectors in two dimensions', heading: /^Vectors in two dimensions$/ },
   { path: '/courses/a-level/trig-triangles.html', titleContains: 'Trigonometry in triangles', heading: /^Trigonometry in triangles$/ },
+  { path: '/courses/a-level/trig-graphs.html', titleContains: 'Trigonometric graphs and exact values', heading: /^Trigonometric graphs and exact values$/ },
   { path: '/courses/a-level/binomial-positive.html', titleContains: 'Binomial expansion', heading: /^Binomial expansion \(positive whole-number powers\)$/ },
   { path: '/courses/a-level/proof-methods.html', titleContains: 'Proof: direct, exhaustion, counterexample', heading: /^Proof: direct, exhaustion, counterexample$/ },
   { path: '/courses/a-level/polynomials.html', titleContains: 'Polynomials and the factor theorem', heading: /^Polynomials and the factor theorem$/ },
+  { path: '/courses/a-level/graphs-polynomials.html', titleContains: 'Graphs of polynomials and reciprocals', heading: /^Graphs of polynomials and reciprocals$/ },
   { path: '/courses/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
+  { path: '/courses/a-level/exp-modelling.html', titleContains: 'Exponential modelling', heading: /^Exponential modelling$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
