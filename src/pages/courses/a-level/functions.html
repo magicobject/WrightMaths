@@ -1,0 +1,1170 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="functions" data-calc="scientific">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra &middot; Year 2</span>
+      <h1>Functions</h1>
+      <p class="lead">A function is a rule that turns each input into one output. This page names the kinds of rule, and asks which inputs a rule can take and which outputs it can give. You combine two functions into one, with the second rule applied to the result of the first. You undo a function with its inverse, and you see why the graph of an inverse is a reflection in the line {m:y=x}. At the end you use functions to model a real situation, and you say where the model stops being sensible.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Sequences, in Parametric equations and in Locating roots, which all start from a function. The inverse of a function gives you the inverse trigonometric functions. Any question that says &ldquo;find the range&rdquo;, &ldquo;find {m:fg(x)}&rdquo; or &ldquo;find {m:f^(-1)(x)}&rdquo; uses the rules on this page.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Functions</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="graph-transformations.html">Transformations of graphs</a>. You need the idea that a graph is every point {m:(x, y)} with {m:y=f(x)}, and how a reflection moves a point. Lesson 2 uses the graph of {m:e^x} from <a href="exponentials-logs.html">Exponentials and logarithms</a>. Lessons 2 and 4 use completing the square and solving a quadratic from <a href="quadratics.html">Quadratics</a>. The warm-up shows you where to look if you have forgotten any of it. Angles are in degrees, and radians are not needed.</p></div>
+    <div class="key"><p><b>Formula sheet.</b> Nothing in this topic is on the formula sheet, so learn the two rules that define an inverse: {m:f^(-1)(f(x))=x} and {m:f(f^(-1)(x))=x}. Also learn that {m:fg(x)} means {m:f(g(x))}.</p></div>
+    <div class="key"><p><b>How to type your answers.</b> A point is typed as a pair with x first, like (2, 5). A list of numbers is typed like 1 or 2 or 3. A domain is typed like x&gt;=4, and use x!=3 for &ldquo;x is not equal to 3&rdquo;. A range is typed like f(x)&gt;=4. Write a power with ^, as in x^2, and write ln(x) for the natural logarithm.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-mappings-and-functions">Skip to the lesson</a></p>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=x^2+1}. Work out {m:f(-3)}.</p>
+      <ol class="ladder"><li>Put {m:-3} in place of every x.</li><li>A negative number squared is positive. Then add 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="-8">You worked out {m:(-3)^2} as {m:-9}. A negative number squared is positive: {m:(-3)^2=9}.</li>
+        <li data-if="-2">You did not square the {m:-3}. Square it first, then add 1.</li>
+      </ul>
+      <div class="solution"><p>{m:(-3)^2=9}. So {m:f(-3)=9+1=10}.</p></div>
+    </div>
+    <div class="q" data-answers="3,8;3, 8" data-mode="exact">
+      <p class="qtext">The point {m:(2, 5)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f(x-1)+3}. Type it like (4, 1).</p>
+      <ol class="ladder"><li>The topic <a href="graph-transformations.html">Transformations of graphs</a> has the rules. A number inside the bracket changes the x-coordinate, and it works the opposite way.</li><li>A number outside the bracket changes the y-coordinate.</li></ol>
+      <ul class="wrong">
+        <li data-if="1,8;1, 8">You moved the point to the left. {m:f(x-1)} moves the graph 1 to the right, so the x-coordinate goes up by 1.</li>
+        <li data-if="3,2;3, 2">You subtracted 3. The {m:+3} is outside the bracket and moves the point up.</li>
+      </ul>
+      <div class="solution"><p>{m:f(x-1)} moves the graph 1 to the right, so the x-coordinate is {m:2+1=3}. The {m:+3} moves it up 3, so the y-coordinate is {m:5+3=8}. The matching point is {m:(3, 8)}.</p></div>
+    </div>
+    <div class="q" data-answers="(y-7)/2;y/2-7/2;0.5y-3.5;0.5(y-7)" data-mode="exact">
+      <p class="qtext">Make x the subject of {m:y=2x+7}. Type it like x=3y-1.</p>
+      <ol class="ladder"><li>Undo the {m:+7} first. Do the same to both sides.</li><li>Then undo the multiplication by 2. Divide the whole of the other side.</li></ol>
+      <ul class="wrong">
+        <li data-if="(y+7)/2;y/2+7/2">You added 7. The equation has {m:+7} on the x side, so subtract 7 from both sides.</li>
+        <li data-if="y/2-7">You divided y by 2 but not the 7. Both terms are divided by 2, or put brackets round {m:y-7}.</li>
+      </ul>
+      <div class="solution"><p>Subtract 7: {m:y-7=2x}. Divide by 2: {m:x=frac(y-7, 2)}. Check with {m:x=1}: {m:y=9} and {m:frac(9-7, 2)=1}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">What is the lowest value of {m:(x-2)^2+3}?</p>
+      <ol class="ladder"><li>A square is never negative. What is the smallest a square can be?</li><li>Then add the 3.</li></ol>
+      <ul class="wrong"><li data-if="2">2 is the value of x where the lowest value happens. The question asks for the lowest value of the expression itself.</li></ul>
+      <div class="solution"><p>{m:(x-2)^2} is at least 0, and it is 0 when {m:x=2}. So the lowest value is {m:0+3=3}.</p></div>
+    </div>
+    <div class="q" data-answers="2 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-5x+6=0}. Type both answers like 1 or 4.</p>
+      <ol class="ladder"><li>Look for two numbers that multiply to 6 and add to {m:-5}. The topic <a href="quadratics.html">Quadratics</a> shows the method.</li><li>Write the brackets, then set each bracket equal to 0.</li></ol>
+      <ul class="wrong"><li data-if="-2 or -3">Each root has the opposite sign to the number in its bracket. {m:(x-2)} is 0 when {m:x=2}, not when {m:x=-2}.</li></ul>
+      <div class="solution"><p>{m:(x-2)(x-3)=0}, so {m:x=2} or {m:x=3}. Check: {m:4-10+6=0} and {m:9-15+6=0}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^2+4x+1" data-mode="exact">
+      <p class="qtext">Expand {m:(2x+1)^2}. Type it like 5x^2+3.</p>
+      <ol class="ladder"><li>{m:(2x+1)^2} means {m:(2x+1)(2x+1)}.</li><li>Multiply every term in the first bracket by every term in the second.</li></ol>
+      <ul class="wrong"><li data-if="4x^2+1">You squared each term and left out the middle term. {m:(2x+1)^2} is the bracket times itself, so there are two middle terms, {m:2x} and {m:2x}.</li></ul>
+      <div class="solution"><p>{m:(2x+1)(2x+1)=4x^2+2x+2x+1=4x^2+4x+1}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Mappings and functions</h2>
+    <p>A {term:mapping} sends each input to an output. You can draw one as a {term:mapping-diagram|mapping diagram}: the inputs in one column, the outputs in the other, and an arrow from each input to each of its outputs. A {term:function} is a mapping with one extra rule. Each input has exactly one output.</p>
+    <p>You write a function as {m:f(x)=x^2}, or as {m:f:~x~mapsto~x^2}, read &ldquo;f maps x to x squared&rdquo;. The input is x and the output is {m:f(x)}.</p>
+    <figure class="figure-lg">{fig:functions-map-many-one}<figcaption>Look at the two arrows that arrive at 1, and the two that arrive at 4. Two inputs share each output. Every input still has exactly one arrow leaving it, so the rule {m:x~mapsto~x^2} is a function.</figcaption></figure>
+    <p>The picture above is a {term:many-to-one} function: at least two inputs give the same output. A {term:one-to-one} function is the other kind. Each output comes from exactly one input. For example {m:f(x)=2x+1} is one-to-one.</p>
+    <figure class="figure-lg">{fig:functions-map-one-many}<figcaption>Look at the input 4. It has two arrows leaving it, one to 2 and one to {m:-2}. This mapping gives two outputs for one input, so it is not a function.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> a function gives exactly one output for each input. Two inputs may share an output, but one input may not have two outputs.</p>
+      <ul class="tick">
+        <li>A {term:function} has exactly one output for each input in its domain. In a mapping diagram, exactly one arrow leaves each input.</li>
+        <li>A {term:one-to-one} function has each output coming from exactly one input. A {term:many-to-one} function has at least two inputs sharing an output.</li>
+        <li>A mapping where one input has two or more outputs is not a function.</li>
+        <li>To show that a function is many-to-one, find two different inputs with the same output. One pair is enough.</li>
+        <li>The notation {m:f(x)} does not mean f times x. It means the output of f when the input is x.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: reading a mapping diagram</h3>
+      <p>The rule {m:x~mapsto~x^2} has the inputs {m:-2}, {m:-1}, 1 and 2. Is it a function? Is it one-to-one or many-to-one?</p>
+      <ol class="steps">
+        <li>Each input has one arrow leaving it: {m:-2} goes to 4, {m:-1} goes to 1, 1 goes to 1 and 2 goes to 4. So it is a function.</li>
+        <li>The output 1 comes from two inputs, {m:-1} and 1. The output 4 comes from {m:-2} and 2.</li>
+        <li>Two inputs share an output, so it is many-to-one.</li>
+      </ol>
+      <!-- The picture above this box (the first mapping diagram) shows exactly this rule. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a mapping that is not a function</h3>
+      <p>A mapping sends each of the inputs 1, 4 and 9 to its square roots, both the positive one and the negative one. Is it a function?</p>
+      <ol class="steps">
+        <li>The input 4 goes to 2 and also to {m:-2}. One input has two outputs.</li>
+        <li>So the mapping is not a function.</li>
+        <li>The root sign {m:sqrt(x)} on a calculator gives only the positive root. So {m:f(x)=sqrt(x)} is a function. Writing {m:y=plusminus sqrt(x)} is not.</li>
+      </ol>
+      <!-- The picture above this box (the second mapping diagram) shows exactly this mapping. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: using the notation</h3>
+      <p>The function f is given by {m:f(x)=3x^2-2}. Find {m:f(-2)} and {m:f(2t)}.</p>
+      <ol class="steps">
+        <li>Put {m:-2} in place of x: {m:f(-2)=3*(-2)^2-2=3*4-2=10}.</li>
+        <li>Put {m:2t} in place of x: {m:f(2t)=3*(2t)^2-2}.</li>
+        <li>Square the whole of {m:2t}: {m:(2t)^2=4t^2}. So {m:f(2t)=12t^2-2}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with the notation. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: showing that a function is many-to-one</h3>
+      <p>The function g is given by {m:g(x)=x^2-4x}. Show that g is many-to-one.</p>
+      <ol class="steps">
+        <li>Try the inputs 0 and 4. {m:g(0)=0}.</li>
+        <li>{m:g(4)=16-16=0}.</li>
+        <li>The different inputs 0 and 4 give the same output, 0. So g is many-to-one.</li>
+      </ol>
+      <!-- No figure: two function values are enough. The graph of a similar function is in lesson 4. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The function h is given by {m:h(x)=x^2-6x}. Show that h is many-to-one by comparing {m:h(1)} and {m:h(5)}.</p>
+      <ol class="steps">
+        <li>{m:h(1)=1-6} = <span class="blank" data-answers="-5">___</span>.</li>
+        <li>{m:h(5)=25-30} = <span class="blank" data-answers="-5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The inputs 1 and 5 are different, and both give {m:-5}. So h is many-to-one.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mappings and functions</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement describes a function?</p>
+      <ul class="options">
+        <li data-correct>Each input has exactly one output</li>
+        <li data-why="That describes a one-to-one function, which is a special kind of function. A function such as squaring has two inputs, 2 and &minus;2, that share the output 4.">Each output comes from exactly one input</li>
+        <li data-why="A function gives one output for each input. A mapping where an input has two outputs, such as one that sends 4 to both 2 and &minus;2, is not a function.">Each input has at least two outputs</li>
+      </ul>
+      <ol class="ladder"><li>Think about the arrows in a mapping diagram.</li><li>How many arrows may leave one input?</li></ol>
+      <div class="solution"><p>A function gives exactly one output for each input. In a mapping diagram, exactly one arrow leaves each input.</p></div>
+    </div>
+    <div class="q" data-answers="-5" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=4-x^2}. Find {m:f(-3)}.</p>
+      <ol class="ladder"><li>Put {m:-3} in place of x. Square it before you subtract.</li><li>{m:4-x^2} means 4 minus the square of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="13">You changed the sign of the square. {m:(-3)^2=9}, and then 9 is subtracted from 4.</li>
+        <li data-if="10">You worked out {m:(-3)^2} as {m:-6}. A square is the number times itself, not times 2.</li>
+      </ul>
+      <div class="solution"><p>{m:f(-3)=4-(-3)^2=4-9=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="2t-5" data-mode="exact">
+      <p class="qtext">The function h is given by {m:h(x)=2x+1}. Write {m:h(t-3)} in simplified form. Type it like 4t+7.</p>
+      <ol class="ladder"><li>Put {m:t-3} in place of x. Keep it in a bracket.</li><li>Multiply the whole bracket by 2, then add 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="2t-2">You multiplied only the t by 2. The whole bracket {m:(t-3)} is multiplied by 2.</li>
+        <li data-if="t-2">You left out the 2. In {m:h(x)=2x+1}, the x is multiplied by 2, so the whole bracket {m:(t-3)} is.</li>
+      </ul>
+      <div class="solution"><p>{m:h(t-3)=2(t-3)+1=2t-6+1=2t-5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The function f is given by {m:f(x)=x^2}, for all real x. Which statement is true?</p>
+      <ul class="options">
+        <li data-correct>f is many-to-one, because f(2) = f(&minus;2)</li>
+        <li data-why="Each input does have one output, and that makes it a function. One-to-one needs more: each output must come from only one input. Here f(2) and f(&minus;2) are both 4.">f is one-to-one, because each input has one output</li>
+        <li data-why="Two inputs sharing the output 4 is allowed. A function needs each input to have one output, and that is true here.">f is not a function, because 4 comes from two inputs</li>
+      </ul>
+      <ol class="ladder"><li>Work out {m:f(2)} and {m:f(-2)}.</li><li>A function must give one output for each input. It may repeat an output.</li></ol>
+      <div class="solution"><p>{m:f(2)=4} and {m:f(-2)=4}. Two different inputs share the output 4, so f is many-to-one. Each input still has one output, so f is a function.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=x^2}, and the allowed inputs are only {m:-3}, {m:-2}, {m:-1}, 1, 2 and 3. How many different outputs are there?</p>
+      <ol class="ladder"><li>Work out the output of each input. Write the outputs down.</li><li>Pairs such as 2 and {m:-2} give the same output. Count each output once.</li></ol>
+      <ul class="wrong"><li data-if="6">You counted the inputs. The question asks for the number of different outputs, and each output comes from two inputs.</li></ul>
+      <div class="solution"><p>The outputs are 9, 4, 1, 1, 4 and 9. The different outputs are 1, 4 and 9, so there are 3.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The function g is given by {m:g(x)=x^2-6x}. The input 0 gives the output 0. Find the other input that gives the output 0.</p>
+      <ol class="ladder"><li>Solve {m:x^2-6x=0}.</li><li>Take out the common factor x, then set each factor equal to 0.</li></ol>
+      <ul class="wrong"><li data-if="-6">Your factor was {m:(x+6)}. {m:x^2-6x=x(x-6)}, so the second factor is 0 when {m:x=6}.</li></ul>
+      <div class="solution"><p>{m:x^2-6x=x(x-6)=0}, so {m:x=0} or {m:x=6}. The other input is 6. Check: {m:g(6)=36-36=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Domain and range</h2>
+    <p>The {term:domain} of a function is the set of inputs it is allowed to take. The {term:range} is the set of outputs it gives. Sometimes a question states the domain, as in {m:f(x)=x^2-4x+5} for {m:0 <= x <= 3}. That is a {term:restricted-domain|restricted domain}. If the question gives a formula and no domain, you use the {term:largest-domain|largest possible domain}: every {term:real-number|real number} that the formula can accept.</p>
+    <p>A formula breaks in three ways. You cannot divide by 0. You cannot take the square root of a negative number. And {m:ln x} needs a positive x (see <a href="exponentials-logs.html">Exponentials and logarithms</a>). The largest domain leaves out every x that causes one of these.</p>
+    <figure class="figure-lg">{fig:functions-domain-recip}<figcaption>Look at the dashed line {m:x=2}. The curve gets close to it but there is no point with {m:x=2}. The two branches are above and below the x-axis, and the curve never meets the x-axis.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the domain is a set of x-values and the range is a set of y-values. When no domain is given, take the largest one the formula allows.</p>
+      <ul class="tick">
+        <li>Largest domain: leave out the x that make a denominator 0. Under a square root, the expression must be at least 0, written {m:>= 0}. Inside {m:ln}, the expression must be greater than 0. If a formula has several of these, all the conditions hold at the same time.</li>
+        <li>Write a domain with x, as in {m:x >= 1}, {m:x != 2} or {m:0 <= x <= 3}. Write a range with {m:f(x)}, as in {m:f(x) >= 0}.</li>
+        <li>To find the range, look at the graph for the lowest and highest outputs, or work them out. For a restricted domain, check the end points and any turning point between them.</li>
+        <li>A different domain gives a different function, and it may have a different range.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a fraction</h3>
+      <p>The function f is given by {m:f(x)=frac(1, x-2)}. Find the largest possible domain and the range.</p>
+      <ol class="steps">
+        <li>The bottom {m:x-2} is 0 when {m:x=2}. So the domain is {m:x != 2}.</li>
+        <li>The top is 1, so the fraction is never 0. The output 0 is not in the range.</li>
+        <li>Every other output happens. For any number {m:k != 0}, the input {m:x=2+frac(1, k)} gives {m:f(x)=k}.</li>
+        <li>The range is {m:f(x) != 0}.</li>
+      </ol>
+      <!-- The picture above the Key idea box (the graph of 1/(x - 2)) shows this function. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a square root</h3>
+      <p>The function f is given by {m:f(x)=sqrt(x-1)}. Find the largest possible domain and the range.</p>
+      <ol class="steps">
+        <li>The number under the root must be at least 0: {m:x-1 >= 0}. So the domain is {m:x >= 1}.</li>
+        <li>A square root is never negative, so every output is at least 0.</li>
+        <li>Every output {m:k >= 0} happens: the input {m:x=1+k^2} gives {m:f(x)=k}. The range is {m:f(x) >= 0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:functions-domain-sqrt}<figcaption>Look at the point {m:(1, 0)}, where the curve starts. There is no curve to the left of {m:x=1} and none below the x-axis.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two conditions at once</h3>
+      <p>Find the largest possible domain of {m:f(x)=frac(sqrt(x+3), x-1)}.</p>
+      <ol class="steps">
+        <li>The root needs {m:x+3 >= 0}, so {m:x >= -3}.</li>
+        <li>The bottom must not be 0: {m:x-1 != 0}, so {m:x != 1}.</li>
+        <li>Both must hold. The domain is {m:x >= -3} with {m:x != 1}. In words: every number from {m:-3} upwards, except 1.</li>
+      </ol>
+      <!-- No figure: this example is about combining two conditions. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the range on a restricted domain</h3>
+      <p>The function f is given by {m:f(x)=x^2-4x+5} for {m:0 <= x <= 3}. Find the range.</p>
+      <ol class="steps">
+        <li>Complete the square: {m:f(x)=(x-2)^2+1}. The lowest value is 1, when {m:x=2}. And 2 is inside the domain {m:0 <= x <= 3}.</li>
+        <li>The curve is highest at one of the two ends. {m:f(0)=5} and {m:f(3)=9-12+5=2}. The larger is 5.</li>
+        <li>The range is {m:1 <= f(x) <= 5}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:functions-range-quad}<figcaption>Look at the three marked points. The lowest point {m:(2, 1)} is between the two ends, and the left end {m:(0, 5)} is higher than the right end {m:(3, 2)}. The range runs from the lowest height to the highest.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the range of an exponential</h3>
+      <p>The function f is given by {m:f(x)=3-2e^x} for all real x. Find the range.</p>
+      <ol class="steps">
+        <li>{m:e^x} is always greater than 0. So {m:2e^x > 0}.</li>
+        <li>Subtract from 3: {m:3-2e^x < 3}. The outputs are all below 3.</li>
+        <li>{m:e^x} takes every positive value, so {m:3-2e^x} takes every value below 3. The range is {m:f(x) < 3}.</li>
+      </ol>
+      <!-- No figure: the graph of this function is the graph of e^x reflected in the x-axis, stretched and moved up 3, as in the topic on transformations of graphs. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the largest possible domain of {m:f(x)=sqrt(2x-6)}.</p>
+      <ol class="steps">
+        <li>The number under the root must be at least 0: {m:2x-6 >= 0}. Add 6 to both sides: 2x &ge; <span class="blank" data-answers="6">___</span>.</li>
+        <li>Divide both sides by 2: x &ge; <span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The largest possible domain is {m:x >= 3}. Check: at {m:x=3} the root is {m:sqrt(0)=0}, which is allowed.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: domain and range</h2>
+    <div class="q" data-answers="x&gt;=5" data-mode="exact">
+      <p class="qtext">Find the largest possible domain of {m:f(x)=sqrt(x-5)}. Type it like x&gt;=2.</p>
+      <ol class="ladder"><li>The number under the root cannot be negative.</li><li>Is 0 allowed under a root? Decide whether the sign is {m:>} or {m:>=}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;5">The root of 0 is 0, which is allowed. So {m:x=5} is in the domain, and the sign is {m:>=}.</li>
+        <li data-if="x&lt;=5">That has the wrong direction. The root needs {m:x-5 >= 0}, so x is 5 or bigger.</li>
+      </ul>
+      <div class="solution"><p>{m:x-5 >= 0} gives {m:x >= 5}. At {m:x=5} the root is {m:sqrt(0)=0}, so 5 is allowed.</p></div>
+    </div>
+    <div class="q" data-answers="x!=2;x&ne;2" data-mode="exact">
+      <p class="qtext">Find the largest possible domain of {m:f(x)=frac(3, 2x-4)}. Type it like x!=7.</p>
+      <ol class="ladder"><li>A fraction is not defined when its bottom is 0.</li><li>Solve {m:2x-4=0}.</li></ol>
+      <ul class="wrong"><li data-if="x!=-2;x&ne;-2">You changed the sign. {m:2x-4=0} gives {m:2x=4}, so {m:x=2}.</li></ul>
+      <div class="solution"><p>{m:2x-4=0} gives {m:x=2}. The domain is every real number except 2: {m:x != 2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The function f is given by {m:f(x)=frac(1, sqrt(x-4))}. What is its largest possible domain?</p>
+      <ul class="options">
+        <li data-correct>x &gt; 4</li>
+        <li data-why="At x = 4 the root is 0, and then the fraction would have a bottom of 0. So 4 is not allowed, and the sign must be strict.">x &ge; 4</li>
+        <li data-why="Taking 4 out is not enough. For x less than 4 the number under the root is negative, and there is no real square root.">x &ne; 4</li>
+      </ul>
+      <ol class="ladder"><li>The root needs {m:x-4 >= 0}.</li><li>The root is on the bottom of the fraction, so it must not be 0 either.</li></ol>
+      <div class="solution"><p>The root needs {m:x-4 >= 0}, and it is on the bottom, so {m:sqrt(x-4) != 0}. Together they give {m:x-4 > 0}, so {m:x > 4}.</p></div>
+    </div>
+    <div class="q" data-answers="f(x)&gt;=3;y&gt;=3;3&lt;=f(x)" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^2+3} for all real x. Find the range of f. Type it like f(x)&gt;=1.</p>
+      <ol class="ladder"><li>What is the smallest value of {m:x^2}?</li><li>Is the lowest output actually reached? Decide whether the sign is {m:>} or {m:>=}.</li></ol>
+      <ul class="wrong">
+        <li data-if="f(x)&gt;=0;y&gt;=0">{m:x^2} is at least 0, and then 3 is added, so the outputs start at 3, not at 0.</li>
+        <li data-if="f(x)&gt;3;y&gt;3">The output 3 is reached: {m:f(0)=3}. So the sign is {m:>=}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2 >= 0}, so {m:x^2+3 >= 3}. The value 3 is reached when {m:x=0}. The range is {m:f(x) >= 3}.</p></div>
+    </div>
+    <div class="q" data-answers="1&lt;=g(x)&lt;=7;1&lt;=y&lt;=7" data-mode="exact">
+      <p class="qtext">The function g is given by {m:g(x)=2x-1} for {m:1 <= x <= 4}. Find the range of g. Type it like 2&lt;=g(x)&lt;=9.</p>
+      <ol class="ladder"><li>The function is a straight line, so the lowest output is at one end of the domain and the highest at the other.</li><li>Work out {m:g(1)} and {m:g(4)}.</li></ol>
+      <ul class="wrong"><li data-if="1&lt;=g(x)&lt;=4;1&lt;=y&lt;=4">These are the end values of the domain, the inputs. The range is made of outputs: put 1 and 4 into {m:g(x)}.</li></ul>
+      <div class="solution"><p>{m:g(1)=2-1=1} and {m:g(4)=8-1=7}. The line rises, so the range is {m:1 <= g(x) <= 7}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The function h is given by {m:h(x)=x^2-6x+11} for all real x. Find the smallest value of {m:h(x)}.</p>
+      <ol class="ladder"><li>Complete the square on {m:x^2-6x+11}.</li><li>The smallest value of a squared bracket is 0. What is left?</li></ol>
+      <ul class="wrong">
+        <li data-if="11">That is {m:h(0)}, the output when the input is 0. The smallest output happens at a different x.</li>
+        <li data-if="3">3 is the input where the smallest value happens. The question asks for the smallest value of {m:h(x)}, which is an output.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-6x+11=(x-3)^2+2}. The square is at least 0, so the smallest value of {m:h(x)} is 2, when {m:x=3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Composite functions</h2>
+    <p>You can apply one function and then another. The result is a {term:composite-function|composite function}. If g is applied first and then f, you write {m:fg(x)}, which means {m:f(g(x))}. You read it from the right: the function next to x goes first.</p>
+    <figure class="figure-lg">{fig:functions-chain}<figcaption>Look at the order of the boxes. The input 2 meets g first and comes out as 5. Then 5 goes into f and comes out as 25. So {m:fg(2)=25}, with g applied before f.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> {m:fg(x)} means {m:f(g(x))}. Apply g first, then f. The order matters.</p>
+      <ul class="tick">
+        <li>{m:fg(x)=f(g(x))}: put {m:g(x)} into f. And {m:gf(x)=g(f(x))}: put {m:f(x)} into g. In general {m:fg(x)} and {m:gf(x)} are different functions.</li>
+        <li>{m:ff(x)=f(f(x))}: apply f twice.</li>
+        <li>For {m:fg(x)} to exist, x must be in the domain of g, and {m:g(x)} must be in the domain of f.</li>
+        <li>To solve {m:fg(x)=k}, first write {m:fg(x)} as an expression in x, then solve the equation.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: composite functions at a number</h3>
+      <p>The functions f and g are given by {m:f(x)=x^2} and {m:g(x)=3x-1}. Find {m:fg(2)} and {m:gf(2)}.</p>
+      <ol class="steps">
+        <li>For {m:fg(2)}, apply g first: {m:g(2)=3*2-1=5}. Then apply f: {m:f(5)=5^2=25}.</li>
+        <li>For {m:gf(2)}, apply f first: {m:f(2)=2^2=4}. Then apply g: {m:g(4)=3*4-1=11}.</li>
+        <li>So {m:fg(2)=25} and {m:gf(2)=11}. They are different, so the order matters.</li>
+      </ol>
+      <!-- The picture above the Key idea box (the two boxes in a row) shows the first of these. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: composite functions as expressions</h3>
+      <p>With {m:f(x)=x^2} and {m:g(x)=3x-1}, write {m:fg(x)} and {m:gf(x)} in simplified form.</p>
+      <ol class="steps">
+        <li>{m:fg(x)=f(g(x))=f(3x-1)=(3x-1)^2=9x^2-6x+1}.</li>
+        <li>{m:gf(x)=g(f(x))=g(x^2)=3x^2-1}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra of the new function. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: applying a function twice</h3>
+      <p>The function f is given by {m:f(x)=2x+3}. Find {m:ff(x)}.</p>
+      <ol class="steps">
+        <li>{m:ff(x)=f(f(x))=f(2x+3)}.</li>
+        <li>Put {m:2x+3} in place of x in {m:2x+3}: {m:2(2x+3)+3=4x+6+3=4x+9}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra of the new function. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: solving an equation with a composite function</h3>
+      <p>With {m:f(x)=x^2} and {m:g(x)=3x-1}, solve {m:fg(x)=16}.</p>
+      <ol class="steps">
+        <li>{m:fg(x)=(3x-1)^2}, so {m:(3x-1)^2=16}.</li>
+        <li>Take the square root of both sides. There are two roots: {m:3x-1=4} or {m:3x-1=-4}.</li>
+        <li>The first gives {m:3x=5}, so {m:x=frac(5, 3)}. The second gives {m:3x=-3}, so {m:x=-1}.</li>
+        <li>Check {m:x=-1}: {m:g(-1)=-4} and {m:f(-4)=16}.</li>
+      </ol>
+      <!-- No figure: this example is about solving an equation. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the domain of a composite function</h3>
+      <p>The functions f and g are given by {m:f(x)=sqrt(x)} and {m:g(x)=x-4}. Find {m:fg(x)} and {m:gf(x)}, and the largest domain of each.</p>
+      <ol class="steps">
+        <li>{m:fg(x)=f(x-4)=sqrt(x-4)}. The input of f is {m:x-4}, and f needs it to be at least 0. So {m:x >= 4}.</li>
+        <li>{m:gf(x)=g(sqrt(x))=sqrt(x)-4}. The input of f is x, and f needs {m:x >= 0}. Then g accepts any number. So {m:x >= 0}.</li>
+        <li>The two composites have different formulas and different domains.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra and the conditions. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The functions f and g are given by {m:f(x)=x+5} and {m:g(x)=2x^2}. Find {m:fg(1)} and {m:gf(1)}.</p>
+      <ol class="steps">
+        <li>For {m:fg(1)}: {m:g(1)=2*1^2} = <span class="blank" data-answers="2">___</span>, and then {m:f(2)=2+5} = <span class="blank" data-answers="7">___</span>.</li>
+        <li>For {m:gf(1)}: {m:f(1)=1+5} = <span class="blank" data-answers="6">___</span>, and then {m:g(6)=2*6^2} = <span class="blank" data-answers="72">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:fg(1)=7} and {m:gf(1)=72}. They are different.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: composite functions</h2>
+    <div class="q" data-answers="19" data-mode="value">
+      <p class="qtext">The functions f and g are given by {m:f(x)=2x+1} and {m:g(x)=x^2}. Find {m:fg(3)}.</p>
+      <ol class="ladder"><li>{m:fg(3)} means {m:f(g(3))}. Which function goes first?</li><li>Work out {m:g(3)}, then put the result into f.</li></ol>
+      <ul class="wrong">
+        <li data-if="49">You applied f first. That is {m:gf(3)}. In {m:fg(3)} the function next to the number goes first.</li>
+        <li data-if="9">You stopped after g. That is {m:g(3)}. Now put 9 into f.</li>
+      </ul>
+      <div class="solution"><p>{m:g(3)=3^2=9}, and then {m:f(9)=2*9+1=19}. So {m:fg(3)=19}.</p></div>
+    </div>
+    <div class="q" data-answers="4x^2+4x+1" data-mode="exact">
+      <p class="qtext">The functions f and g are given by {m:f(x)=2x+1} and {m:g(x)=x^2}. Write {m:gf(x)} in the form {m:a*x^2+b*x+c}. Type it like 5x^2+3x+2.</p>
+      <ol class="ladder"><li>{m:gf(x)=g(f(x))}. Put {m:2x+1} into g.</li><li>g squares its input. Square the whole bracket and expand it.</li></ol>
+      <ul class="wrong">
+        <li data-if="2x^2+1">That is {m:fg(x)}, with g applied first. For {m:gf(x)}, f goes first and g squares the result.</li>
+        <li data-if="4x^2+1">You squared each term of {m:2x+1}. {m:(2x+1)^2} is the bracket times itself, so there is a middle term.</li>
+      </ul>
+      <div class="solution"><p>{m:gf(x)=g(2x+1)=(2x+1)^2=4x^2+4x+1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which expression means &ldquo;apply g first, then apply f&rdquo;?</p>
+      <ul class="options">
+        <li data-correct>fg(x)</li>
+        <li data-why="gf(x) means g(f(x)). The function written next to x, here f, is applied first, so this one applies f first and then g.">gf(x)</li>
+        <li data-why="f(x)g(x) is the product of two outputs, f(x) times g(x). It is not one function applied to the result of another.">f(x) &times; g(x)</li>
+      </ul>
+      <ol class="ladder"><li>Read the name from the right. The one nearest x goes first.</li></ol>
+      <div class="solution"><p>{m:fg(x)=f(g(x))}: the function nearest to x, which is g, goes first, and then f.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 3" data-mode="value">
+      <p class="qtext">The functions f and g are given by {m:f(x)=x-3} and {m:g(x)=x^2}. Solve {m:fg(x)=6}. Type both answers like 1 or 4.</p>
+      <ol class="ladder"><li>Write {m:fg(x)=f(g(x))} as an expression in x. Put {m:x^2} into f.</li><li>Solve {m:x^2-3=6}. A square root has two values.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">You found only the positive root. {m:x^2=9} has two solutions, 3 and {m:-3}.</li>
+        <li data-if="9">9 is the value of {m:x^2}. The question asks for x, so take the square root.</li>
+      </ul>
+      <div class="solution"><p>{m:fg(x)=x^2-3}. Then {m:x^2-3=6} gives {m:x^2=9}, so {m:x=3} or {m:x=-3}.</p></div>
+    </div>
+    <div class="q" data-answers="9x-8" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=3x-2}. Write {m:ff(x)} in simplified form. Type it like 4x+5.</p>
+      <ol class="ladder"><li>{m:ff(x)=f(f(x))}. Put {m:3x-2} in place of x.</li><li>Multiply the whole bracket by 3 before you subtract 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="9x-2">You multiplied only the {m:3x} by 3. The whole bracket {m:(3x-2)} is multiplied by 3, so {m:-2} becomes {m:-6}.</li>
+        <li data-if="6x-4">That is {m:2f(x)}. For {m:ff(x)}, put {m:f(x)} into f.</li>
+      </ul>
+      <div class="solution"><p>{m:ff(x)=3(3x-2)-2=9x-6-2=9x-8}.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;=3" data-mode="exact">
+      <p class="qtext">The functions f and g are given by {m:f(x)=sqrt(x)} and {m:g(x)=2x-6}. Find the largest possible domain of {m:fg(x)}. Type it like x&gt;=2.</p>
+      <ol class="ladder"><li>{m:fg(x)=f(g(x))}. The input of f is {m:g(x)}, and f needs a number that is at least 0.</li><li>Solve {m:2x-6 >= 0}.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;=0">{m:x >= 0} is the domain of f on its own. In {m:fg(x)}, the input of f is {m:2x-6}, and that must be at least 0.</li>
+        <li data-if="x&gt;=6">You added 6 and forgot to divide by 2. {m:2x >= 6} gives {m:x >= 3}.</li>
+      </ul>
+      <div class="solution"><p>{m:fg(x)=sqrt(2x-6)}. The number under the root must be at least 0: {m:2x-6 >= 0}, so {m:x >= 3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Inverse functions</h2>
+    <p>An {term:inverse-function|inverse function} undoes a function. If {m:f(2)=7} then {m:f^(-1)(7)=2}. The inverse is written {m:f^(-1)} and read &ldquo;f inverse&rdquo;. Putting an input through f and then through {m:f^(-1)} gives the input back: {m:f^(-1)(f(x))=x}. And in the other order, {m:f(f^(-1)(x))=x}.</p>
+    <p>Not every function can be undone. If two inputs give the same output, the inverse cannot tell which one to give back. Only a {term:one-to-one} function has an inverse. On a graph you can check this with the {term:horizontal-line-test|horizontal line test}.</p>
+    <figure class="figure-lg">{fig:functions-not-one-one}<figcaption>Look at the dashed line {m:y=4}. It meets the curve at {m:(-2, 4)} and {m:(2, 4)}. The output 4 comes from two inputs, so {m:x^2} for all real x is many-to-one and has no inverse.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> to find {m:f^(-1)(x)}, swap the roles of input and output. The domain and the range swap too.</p>
+      <ul class="tick">
+        <li>Method: write {m:y=f(x)}. Make x the subject. Then write the answer as a function of x: that is {m:f^(-1)(x)}.</li>
+        <li>The domain of {m:f^(-1)} is the range of f. The range of {m:f^(-1)} is the domain of f.</li>
+        <li>Only a one-to-one function has an inverse. A many-to-one function gets one by a restricted domain, such as {m:x >= 0} for {m:x^2}.</li>
+        <li>{m:f^(-1)(x)} is not {m:frac(1, f(x))}. The small {m:-1} is not a power.</li>
+        <li>To find a single value such as {m:f^(-1)(k)}, you can solve {m:f(x)=k} without finding the whole inverse.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a linear function</h3>
+      <p>The function f is given by {m:f(x)=3x-5}. Find {m:f^(-1)(x)}.</p>
+      <ol class="steps">
+        <li>Write {m:y=3x-5}. Add 5: {m:y+5=3x}. Divide by 3: {m:x=frac(y+5, 3)}.</li>
+        <li>So {m:f^(-1)(x)=frac(x+5, 3)}.</li>
+        <li>Check: {m:f(f^(-1)(x))=3*frac(x+5, 3)-5=x+5-5=x}.</li>
+      </ol>
+      <!-- The picture in lesson 5 shows a straight line and its inverse. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: x on both parts of a fraction</h3>
+      <p>The function f is given by {m:f(x)=frac(x+1, x-2)} for {m:x != 2}. Find {m:f^(-1)(x)} and its domain.</p>
+      <ol class="steps">
+        <li>Write {m:y=frac(x+1, x-2)}. Multiply by {m:x-2}: {m:y(x-2)=x+1}. Expand: {m:xy-2y=x+1}.</li>
+        <li>Collect the x terms on one side: {m:xy-x=2y+1}. Factorise: {m:x(y-1)=2y+1}.</li>
+        <li>So {m:x=frac(2y+1, y-1)}, and {m:f^(-1)(x)=frac(2x+1, x-1)}.</li>
+        <li>The domain of {m:f^(-1)} is the range of f. Write {m:f(x)=1+frac(3, x-2)}, which never equals 1. So the domain of {m:f^(-1)} is {m:x != 1}, which matches the bottom of {m:f^(-1)(x)}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a restricted domain</h3>
+      <p>The function f is given by {m:f(x)=x^2-4x} for {m:x >= 2}. Find {m:f^(-1)(x)}, and state its domain.</p>
+      <ol class="steps">
+        <li>Complete the square: {m:y=(x-2)^2-4}. Add 4: {m:y+4=(x-2)^2}.</li>
+        <li>Take the square root: {m:x-2=sqrt(y+4)} or {m:x-2=-sqrt(y+4)}. The domain of f is {m:x >= 2}, so {m:x-2 >= 0}. Use the positive root.</li>
+        <li>So {m:x=2+sqrt(y+4)}, and {m:f^(-1)(x)=2+sqrt(x+4)}.</li>
+        <li>The lowest output of f is {m:f(2)=-4}, so the range of f is {m:f(x) >= -4}. The domain of {m:f^(-1)} is {m:x >= -4}.</li>
+      </ol>
+      <!-- No figure: the graph of a function and its inverse is drawn in lesson 5, for x squared. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exponential function</h3>
+      <p>The function f is given by {m:f(x)=e^(2x)-3} for all real x. Find {m:f^(-1)(x)} and its domain.</p>
+      <ol class="steps">
+        <li>Write {m:y=e^(2x)-3}. Add 3: {m:y+3=e^(2x)}.</li>
+        <li>Take natural logarithms, which undo the exponential: {m:ln(y+3)=2x}. So {m:x=frac(1, 2)*ln(y+3)}.</li>
+        <li>So {m:f^(-1)(x)=frac(1, 2)*ln(x+3)}.</li>
+        <li>{m:e^(2x) > 0}, so the range of f is {m:f(x) > -3}. The domain of {m:f^(-1)} is {m:x > -3}, and that is where {m:ln(x+3)} is defined.</li>
+      </ol>
+      <!-- No figure: the graph of e^x and its inverse ln x is drawn in lesson 5. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The function f is given by {m:f(x)=2x+7}. Find {m:f^(-1)(x)}.</p>
+      <ol class="steps">
+        <li>Write {m:y=2x+7}. Subtract 7 from both sides: 2x = y &minus; <span class="blank" data-answers="7">___</span>.</li>
+        <li>Divide both sides by 2: x = (y &minus; 7) / <span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:f^(-1)(x)=frac(x-7, 2)}. Check: {m:f(f^(-1)(x))=2*frac(x-7, 2)+7=x}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: inverse functions</h2>
+    <div class="q" data-answers="(x+3)/4;x/4+3/4;0.25x+0.75;0.25(x+3)" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=4x-3}. Find {m:f^(-1)(x)}. Type it like (x+9)/2.</p>
+      <ol class="ladder"><li>Write {m:y=4x-3}, and make x the subject.</li><li>Undo the {m:-3} first, then undo the multiplication by 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-3)/4;x/4-3/4">You subtracted 3 again. To undo {m:-3} you add 3 to both sides.</li>
+        <li data-if="4x+3">You changed only the sign of the 3. To undo f you must undo the multiplication by 4 as well, by dividing.</li>
+        <li data-if="1/(4x-3)">That is {m:frac(1, f(x))}, the reciprocal. The inverse function undoes f: make x the subject of {m:y=4x-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=4x-3} gives {m:4x=y+3}, so {m:x=frac(y+3, 4)}. So {m:f^(-1)(x)=frac(x+3, 4)}. Check: {m:f(f^(-1)(x))=4*frac(x+3, 4)-3=x}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Each function is defined for all real x. Which one has an inverse function?</p>
+      <ul class="options">
+        <li data-correct>f(x) = x&sup3;</li>
+        <li data-why="This is many-to-one. f(0) = 0 and f(4) = 16 &minus; 16 = 0 are equal, so the output 0 comes from two inputs and the inverse could not tell which to give back.">f(x) = x&sup2; &minus; 4x</li>
+        <li data-why="This is many-to-one. f(2) = 4 and f(&minus;2) = 4 are equal, so there is no inverse until the domain is restricted.">f(x) = x&sup2;</li>
+      </ul>
+      <ol class="ladder"><li>An inverse needs a one-to-one function.</li><li>Look for two different inputs with the same output in each option.</li></ol>
+      <div class="solution"><p>{m:x^3} is one-to-one: different inputs give different cubes. The other two each have two inputs with the same output, so they are many-to-one and have no inverse on all real numbers.</p></div>
+    </div>
+    <div class="q" data-answers="x&gt;=1" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^2+1} for {m:x >= 0}. Find the domain of {m:f^(-1)}. Type it like x&gt;=6.</p>
+      <ol class="ladder"><li>The domain of {m:f^(-1)} is the range of f.</li><li>Find the lowest output of f for {m:x >= 0}. The outputs rise from there.</li></ol>
+      <ul class="wrong">
+        <li data-if="x&gt;=0">That is the domain of f. The domain of {m:f^(-1)} is the range of f, the outputs.</li>
+        <li data-if="x&gt;1">The output 1 is reached, because {m:f(0)=1}. So the sign is {m:>=}.</li>
+      </ul>
+      <div class="solution"><p>For {m:x >= 0}, {m:x^2 >= 0}, so {m:f(x) >= 1}, and 1 is reached at {m:x=0}. The range of f is {m:f(x) >= 1}, so the domain of {m:f^(-1)} is {m:x >= 1}.</p></div>
+    </div>
+    <div class="q" data-answers="3+sqrt(x-2);sqrt(x-2)+3;3+&radic;(x-2);&radic;(x-2)+3" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=(x-3)^2+2} for {m:x >= 3}. Find {m:f^(-1)(x)}. Type it like 1+sqrt(x+5).</p>
+      <ol class="ladder"><li>Write {m:y=(x-3)^2+2}. Subtract 2, then take the square root.</li><li>The domain of f is {m:x >= 3}. That tells you whether to take the positive root or the negative root.</li></ol>
+      <ul class="wrong">
+        <li data-if="3-sqrt(x-2);3-&radic;(x-2)">You took the negative root. The domain of f is {m:x >= 3}, so {m:x-3 >= 0}, and the positive root is the one that fits.</li>
+        <li data-if="sqrt(x-2)-3;&radic;(x-2)-3">You took the 3 over to the wrong side. {m:x-3=sqrt(y-2)} gives {m:x=3+sqrt(y-2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:y-2=(x-3)^2}, so {m:x-3=sqrt(y-2)} (positive root, because {m:x >= 3}). So {m:x=3+sqrt(y-2)}, and {m:f^(-1)(x)=3+sqrt(x-2)}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=2x+1}. Find {m:f^(-1)(9)}.</p>
+      <ol class="ladder"><li>{m:f^(-1)(9)} is the input that f turns into 9.</li><li>Solve {m:2x+1=9}.</li></ol>
+      <ul class="wrong"><li data-if="19">You worked out {m:f(9)}. The value {m:f^(-1)(9)} is the input that gives the output 9.</li></ul>
+      <div class="solution"><p>{m:2x+1=9} gives {m:2x=8}, so {m:x=4}. So {m:f^(-1)(9)=4}. Check: {m:f(4)=9}.</p></div>
+    </div>
+    <div class="q" data-answers="ln(x-4);ln(x&minus;4)" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=e^x+4} for all real x. Find {m:f^(-1)(x)}. Type it like ln(x+1).</p>
+      <ol class="ladder"><li>Write {m:y=e^x+4}. Subtract 4 to get {m:e^x} on its own.</li><li>Then take natural logarithms of both sides. See <a href="exponentials-logs.html">Exponentials and logarithms</a>.</li></ol>
+      <ul class="wrong">
+        <li data-if="ln(x+4)">You added 4 inside the logarithm. {m:y=e^x+4} gives {m:e^x=y-4}, so the 4 is subtracted.</li>
+        <li data-if="ln(x)-4">You took the logarithm before you subtracted 4. First get {m:e^x} on its own: {m:e^x=y-4}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=e^x+4} gives {m:e^x=y-4}, so {m:x=ln(y-4)}. So {m:f^(-1)(x)=ln(x-4)}, for {m:x > 4}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. The graph of an inverse function</h2>
+    <p>If f sends a to b, then {m:f^(-1)} sends b back to a. So when the point {m:(a, b)} is on the graph of {m:y=f(x)}, the point {m:(b, a)} is on the graph of {m:y=f^(-1)(x)}. The coordinates swap places.</p>
+    <p>Swapping x and y is a reflection in the line {m:y=x}. So the graph of {m:f^(-1)} is the graph of f reflected in the line {m:y=x}. To see the mirror properly, draw both axes with the same scale.</p>
+    <figure class="figure-lg">{fig:functions-inverse-line}<figcaption>Look at the points {m:(0, -1)} and {m:(-1, 0)}. They are mirror images in the dotted line {m:y=x}. The point {m:(1, 1)} is on the dotted line, so it does not move.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=f^(-1)(x)} is the reflection of the graph of {m:y=f(x)} in the line {m:y=x}. The point {m:(a, b)} goes to {m:(b, a)}.</p>
+      <ul class="tick">
+        <li>The graph of f must be one-to-one for the reflection to be the graph of a function.</li>
+        <li>Where the graph of f crosses an axis, the graph of {m:f^(-1)} crosses the other axis. An asymptote {m:y=c} of f becomes the asymptote {m:x=c} of {m:f^(-1)}.</li>
+        <li>A point on the line {m:y=x} stays where it is. If f is strictly increasing, the graphs of f and {m:f^(-1)} meet only on the line {m:y=x}, so you find the meeting points by solving {m:f(x)=x}.</li>
+        <li>A function that is its own inverse is {term:self-inverse}. Then {m:ff(x)=x} for every x in the domain, and the graph is its own reflection in {m:y=x}.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a straight line</h3>
+      <p>The graph of {m:y=f(x)} with {m:f(x)=2x-1} passes through {m:(0, -1)}. Find the matching point on {m:y=f^(-1)(x)}, and check it.</p>
+      <ol class="steps">
+        <li>Swap the coordinates: the matching point is {m:(-1, 0)}.</li>
+        <li>The inverse is {m:f^(-1)(x)=frac(x+1, 2)}. Check: {m:f^(-1)(-1)=frac(-1+1, 2)=0}.</li>
+      </ol>
+      <!-- The picture above the Key idea box shows this straight line and its inverse. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: x squared and its inverse</h3>
+      <p>The function f is given by {m:f(x)=x^2} for {m:x >= 0}. The point {m:(2, 4)} is on its graph. Find the matching point on {m:y=f^(-1)(x)}.</p>
+      <ol class="steps">
+        <li>Swap the coordinates: {m:(4, 2)}.</li>
+        <li>The inverse is {m:f^(-1)(x)=sqrt(x)}, and {m:sqrt(4)=2}. So {m:(4, 2)} is on its graph.</li>
+        <li>The graph of f is flat at the origin and gets steeper. Its reflection is steep at the origin and gets flatter.</li>
+      </ol>
+      <figure class="figure-lg">{fig:functions-inverse-sq}<figcaption>Look at the points {m:(2, 4)} and {m:(4, 2)}. The dashed curve is the solid curve reflected in the dotted line {m:y=x}. Both curves start at the origin.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the exponential and the logarithm</h3>
+      <p>The graph of {m:y=e^x} passes through {m:(0, 1)}. Find the matching point on {m:y=ln x}, and say what happens to the asymptote.</p>
+      <ol class="steps">
+        <li>Swap the coordinates: {m:(1, 0)}. Check: {m:ln 1=0}.</li>
+        <li>The asymptote of {m:e^x} is the x-axis, {m:y=0}. Its reflection is {m:x=0}, so the y-axis is the asymptote of {m:ln x}.</li>
+        <li>The domain of {m:ln x} is {m:x > 0}, which is the range of {m:e^x}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:functions-inverse-exp}<figcaption>Look at the points {m:(0, 1)} and {m:(1, 0)}. The two curves are mirror images in the dotted line {m:y=x}. The solid curve is above the x-axis and the dashed curve is to the right of the y-axis.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: where a function meets its inverse</h3>
+      <p>The function f is given by {m:f(x)=2x-1}. Find where the graph of f meets the graph of {m:f^(-1)}.</p>
+      <ol class="steps">
+        <li>The gradient of f is 2, so f is strictly increasing. Its graph and the graph of {m:f^(-1)} meet only on the line {m:y=x}.</li>
+        <li>Solve {m:f(x)=x}: {m:2x-1=x}, so {m:x=1}.</li>
+        <li>The graphs meet at {m:(1, 1)}. Check: {m:f^(-1)(1)=frac(1+1, 2)=1}.</li>
+      </ol>
+      <!-- The first picture of this lesson shows the meeting point (1, 1). -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a function that is its own inverse</h3>
+      <p>The function f is given by {m:f(x)=5-x} for all real x. Show that f is self-inverse.</p>
+      <ol class="steps">
+        <li>{m:ff(x)=f(5-x)=5-(5-x)=x}.</li>
+        <li>So f undoes itself, and {m:f^(-1)(x)=5-x}.</li>
+        <li>The graph is a line with gradient {m:-1}. Reflecting it in {m:y=x} swaps its points in pairs, such as {m:(1, 4)} and {m:(4, 1)}, which are both on it. So it is its own mirror image.</li>
+      </ol>
+      <!-- No figure: the graph is a straight line of gradient minus 1, and the reflection facts are in the Key idea box. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The point {m:(3, 7)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f^(-1)(x)}.</p>
+      <ol class="steps">
+        <li>Swap the coordinates. The x-coordinate of the new point is the old y-coordinate: <span class="blank" data-answers="7">___</span>.</li>
+        <li>The y-coordinate is the old x-coordinate: <span class="blank" data-answers="3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The matching point is {m:(7, 3)}. It says {m:f^(-1)(7)=3}, which undoes {m:f(3)=7}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the graph of an inverse function</h2>
+    <div class="q" data-answers="9,2;9, 2" data-mode="exact">
+      <p class="qtext">The point {m:(2, 9)} is on the graph of {m:y=f(x)}. Find the matching point on the graph of {m:y=f^(-1)(x)}. Type it like (4, 1).</p>
+      <ol class="ladder"><li>The graph of {m:f^(-1)} is the graph of f reflected in the line {m:y=x}.</li><li>A reflection in {m:y=x} swaps the two coordinates.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,9;2, 9">That is the original point. The graph of {m:f^(-1)} is a reflection, so the coordinates swap places.</li>
+        <li data-if="-2,-9;-2, -9">That changes both signs, which is a half turn about the origin. A reflection in {m:y=x} swaps the coordinates and keeps their signs.</li>
+      </ul>
+      <div class="solution"><p>{m:f(2)=9}, so {m:f^(-1)(9)=2}. The matching point is {m:(9, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=x^3+x}, and f is one-to-one. You are told that {m:f(2)=10}. Write down {m:f^(-1)(10)}.</p>
+      <ol class="ladder"><li>{m:f^(-1)} undoes f.</li><li>If f sends 2 to 10, what does {m:f^(-1)} send 10 to?</li></ol>
+      <ul class="wrong"><li data-if="10">That is {m:f(2)}, the output of f. The inverse sends 10 back to the input that made it.</li></ul>
+      <div class="solution"><p>{m:f(2)=10}, so {m:f^(-1)(10)=2}. No algebra is needed: the inverse undoes f.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=f^(-1)(x)} is the graph of {m:y=f(x)} reflected in which line?</p>
+      <ul class="options">
+        <li data-correct>The line y = x</li>
+        <li data-why="A reflection in the x-axis gives the graph of y = &minus;f(x), where each y-value changes sign. It does not swap x and y.">The x-axis</li>
+        <li data-why="A reflection in the y-axis gives the graph of y = f(&minus;x), where each x-value changes sign. It does not swap x and y.">The y-axis</li>
+      </ul>
+      <ol class="ladder"><li>The inverse swaps the roles of input and output. Which reflection swaps x and y?</li></ol>
+      <div class="solution"><p>The point {m:(a, b)} goes to {m:(b, a)}, and that is a reflection in the line {m:y=x}.</p></div>
+    </div>
+    <div class="q" data-answers="0,5;0, 5" data-mode="exact">
+      <p class="qtext">The graph of {m:y=f(x)} crosses the x-axis at {m:(5, 0)}. Find the point where the graph of {m:y=f^(-1)(x)} crosses the y-axis. Type it like (0, 3).</p>
+      <ol class="ladder"><li>Swap the coordinates of {m:(5, 0)}.</li><li>The new point has x-coordinate 0, so it is on the y-axis.</li></ol>
+      <ul class="wrong">
+        <li data-if="5,0;5, 0">That is the original point, on the x-axis. After the swap the point is on the y-axis.</li>
+        <li data-if="0,-5;0, -5">The sign does not change in a reflection in {m:y=x}. The coordinates swap and keep their signs.</li>
+      </ul>
+      <div class="solution"><p>{m:f(5)=0}, so {m:f^(-1)(0)=5}. The graph of {m:f^(-1)} passes through {m:(0, 5)}, on the y-axis.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=3x-4}, which is strictly increasing. Find the x-coordinate of the point where the graph of f meets the graph of {m:f^(-1)}.</p>
+      <ol class="ladder"><li>For a strictly increasing function, the graphs meet on the line {m:y=x}.</li><li>Solve {m:f(x)=x}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">You moved the terms the wrong way. {m:3x-4=x} gives {m:2x=4}, so x is positive.</li>
+        <li data-if="4">You stopped after {m:2x=4}. Divide by 2.</li>
+      </ul>
+      <div class="solution"><p>{m:3x-4=x} gives {m:2x=4}, so {m:x=2}. Check: {m:f^(-1)(x)=frac(x+4, 3)}, and {m:f^(-1)(2)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="1,0;1, 0" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^2+1} for {m:x >= 0}. The graph of f starts at {m:(0, 1)}. Find the point where the graph of {m:f^(-1)} starts. Type it like (4, 2).</p>
+      <ol class="ladder"><li>The graph of {m:f^(-1)} is the reflection of the graph of f in {m:y=x}.</li><li>Swap the coordinates of the starting point.</li></ol>
+      <ul class="wrong"><li data-if="0,1;0, 1">That is the starting point of f. The graph of {m:f^(-1)} starts where the coordinates are swapped.</li></ul>
+      <div class="solution"><p>Swapping the coordinates of {m:(0, 1)} gives {m:(1, 0)}. This matches the domain of {m:f^(-1)}, which is {m:x >= 1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Functions in modelling</h2>
+    <p>A function can be a model: a rule that describes a real situation. A model is not the real thing. It works for some inputs and not for others, and its outputs are only as good as its assumptions. Four questions help you to use a model well.</p>
+    <p>What inputs make sense? That is the domain, and the situation decides it. What outputs can it give? That is the range. Which input gives a particular output? That is an inverse. Where does the model stop being sensible? That is a limit of the model, and a better model can remove it.</p>
+    <figure class="figure-lg">{fig:functions-model-refine}<figcaption>Look at the dashed line {m:V=2000}. The solid curve gets close to the horizontal axis, so it says the car is worth almost nothing. The dashed curve gets close to {m:V=2000} and never goes below it. Both curves start at {m:(0, 15000)}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> in a model, the domain comes from the situation, and the limits of the model are found from the range and from what the function does for large inputs.</p>
+      <ul class="tick">
+        <li>Domain: use the situation, not only the formula. A time cannot be negative, so {m:t >= 0}. A count of items is a whole number.</li>
+        <li>Range: the outputs the model can give. A value that the model never reaches is not in the range.</li>
+        <li>A {term:limiting-value} is the level the output gets close to for very large inputs. On a graph it is a horizontal asymptote. The model may never reach it.</li>
+        <li>To refine a model, change the function so that an unrealistic prediction is removed, and say what you changed and why. A refined model is still only a model.</li>
+        <li>A composite function joins two models, when the output of the first is the input of the second. An inverse answers &ldquo;what input gives this output?&rdquo;.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a model with an inverse</h3>
+      <p>A taxi fare in pounds is modelled by {m:F(d)=3+1.5d}, where d is the distance in km. State a sensible domain and the range. Find the distance for a fare of &pound;12.</p>
+      <ol class="steps">
+        <li>A distance cannot be negative, so the domain is {m:d >= 0}.</li>
+        <li>{m:F(0)=3}, and the fare rises with d. The range is {m:F >= 3}.</li>
+        <li>Solve {m:F(d)=12}: {m:3+1.5d=12}, so {m:1.5d=9} and {m:d=6}.</li>
+        <li>A &pound;12 fare is for 6 km. This answers the question &ldquo;what input gives this output?&rdquo;, so it is an inverse.</li>
+      </ol>
+      <!-- No figure: this is a straight-line model, and the picture of a straight line and its inverse is in lesson 5. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: limits and a refinement</h3>
+      <p>The value of a car in pounds after t years is modelled by {m:V(t)=15000e^(-0.2t)} for {m:t >= 0}. Find {m:V(5)} to the nearest pound, and the time when the value is &pound;3000, to 3 significant figures. Then say what the model predicts for large t, and refine it.</p>
+      <ol class="steps">
+        <li>{m:V(5)=15000e^(-1)=5518.19}, so the value is about &pound;5518.</li>
+        <li>Solve {m:15000e^(-0.2t)=3000}: {m:e^(-0.2t)=0.2}. Take natural logarithms: {m:-0.2t=ln 0.2}, so {m:t=frac(ln 0.2, -0.2)=8.05}. The value is &pound;3000 after about 8.05 years.</li>
+        <li>For large t, {m:e^(-0.2t)} gets close to 0, so V gets close to 0. The model says the car loses all its value, and the range is {m:0 < V <= 15000}. The model never reaches 0.</li>
+        <li>A car has a scrap value. Refine it: {m:V(t)=2000+13000e^(-0.2t)}. It still starts at {m:V(0)=15000}, and its limiting value is 2000. Its range is {m:2000 < V <= 15000}.</li>
+      </ol>
+      <!-- The picture above the Key idea box shows both models. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: joining two models</h3>
+      <p>A circular ripple has radius {m:r(t)=2t} cm after t seconds. Its area is {m:A(r)=pi*r^2} cm&sup2;. Find the area as a function of t, and the area at {m:t=3}. The tank has a radius of 10 cm: say what the domain is.</p>
+      <ol class="steps">
+        <li>The area after t seconds is {m:Ar(t)=A(r(t))=pi(2t)^2=4*pi*t^2}.</li>
+        <li>At {m:t=3}: {m:4*pi*3^2=36*pi}, which is about 113 cm&sup2;.</li>
+        <li>The ripple stops when its radius reaches 10: {m:2t=10} gives {m:t=5}. The domain is {m:0 <= t <= 5}.</li>
+      </ol>
+      <!-- No figure: this example is about joining two functions and choosing the domain. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Use the taxi model {m:F(d)=3+1.5d}. Find the distance for a fare of &pound;15.</p>
+      <ol class="steps">
+        <li>Solve {m:3+1.5d=15}. Subtract 3 from both sides: 1.5d = <span class="blank" data-answers="12">___</span>.</li>
+        <li>Divide both sides by 1.5: d = <span class="blank" data-answers="8">___</span> km.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The distance is 8 km. Check: {m:F(8)=3+12=15}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: functions in modelling</h2>
+    <div class="q" data-answers="13.8" data-mode="value">
+      <p class="qtext">The taxi fare in pounds is modelled by {m:F(d)=3+1.5d}, where d is the distance in km. Find the fare for 7.2 km. Type only the number.</p>
+      <ol class="ladder"><li>Put {m:d=7.2} into the formula.</li><li>Do the multiplication first, then add the 3.</li></ol>
+      <ul class="wrong"><li data-if="10.8">You left out the standing charge of 3 pounds. The formula is {m:3+1.5d}.</li></ul>
+      <div class="solution"><p>{m:F(7.2)=3+1.5*7.2=3+10.8=13.8}. The fare is &pound;13.80.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">With the same model {m:F(d)=3+1.5d}, a fare is &pound;21. Find the distance in km.</p>
+      <ol class="ladder"><li>Solve {m:F(d)=21}.</li><li>Take away the 3 first, then divide by 1.5.</li></ol>
+      <ul class="wrong">
+        <li data-if="14">You divided 21 by 1.5 and did not subtract the 3 first. The standing charge is part of the 21.</li>
+        <li data-if="18">You subtracted 3 and stopped. {m:1.5d=18}, so divide by 1.5.</li>
+      </ul>
+      <div class="solution"><p>{m:3+1.5d=21} gives {m:1.5d=18}, so {m:d=12}. The distance is 12 km.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The value of a car in pounds is modelled by {m:V(t)=20000e^(-0.3t)} for {m:t >= 0}, where t is the time in years. What does the model give for the range of V?</p>
+      <ul class="options">
+        <li data-correct>V is greater than 0 and at most 20000</li>
+        <li data-why="The value starts at 20000 when t = 0 and falls. It never goes above 20000, so it cannot be any positive number.">V can be any positive number</li>
+        <li data-why="The exponential e to the power of a negative number is always positive, so V is never 0. It gets close to 0 for large t.">V reaches 0 for a large enough t</li>
+      </ul>
+      <ol class="ladder"><li>Work out V at {m:t=0}. Does V rise or fall as t grows?</li><li>Can {m:e^(-0.3t)} ever equal 0?</li></ol>
+      <div class="solution"><p>{m:V(0)=20000}, and V falls as t grows. {m:e^(-0.3t)} is always positive and gets close to 0, so V gets close to 0 but never reaches it. The range is {m:0 < V <= 20000}.</p></div>
+    </div>
+    <div class="q" data-answers="3000" data-mode="value">
+      <p class="qtext">A refined model for the car is {m:V(t)=3000+17000e^(-0.3t)} for {m:t >= 0}. What value does V get close to for very large t?</p>
+      <ol class="ladder"><li>What does {m:e^(-0.3t)} get close to when t is very large?</li><li>The 3000 does not change. Add the two parts.</li></ol>
+      <ul class="wrong">
+        <li data-if="20000">That is the value at {m:t=0}, when the car is new. The question asks about very large t.</li>
+        <li data-if="0">That would be the limiting value of the model without the 3000. Here the 3000 stays, and only the exponential part gets close to 0.</li>
+      </ul>
+      <div class="solution"><p>For large t, {m:e^(-0.3t)} gets close to 0, so {m:17000e^(-0.3t)} does too. V gets close to {m:3000+0=3000}.</p></div>
+    </div>
+    <div class="q" data-answers="36pi;36&pi;;36*pi" data-mode="exact">
+      <p class="qtext">A ripple has radius {m:r(t)=3t} cm after t seconds, and its area is {m:A(r)=pi*r^2} cm&sup2;. Find {m:Ar(2)}, the area at {m:t=2}, as a multiple of pi. Type it like 5pi.</p>
+      <ol class="ladder"><li>Find the radius at {m:t=2}, then put it into A.</li><li>Square the radius. Do not multiply it by 2.</li></ol>
+      <ul class="wrong"><li data-if="12pi;12&pi;;12*pi">That is {m:2*pi*r}, the circumference. The area is {m:pi*r^2}.</li></ul>
+      <div class="solution"><p>{m:r(2)=3*2=6}. Then {m:A(6)=pi*6^2=36pi}. So {m:Ar(2)=36pi} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The ripple has radius {m:r(t)=2t} cm after t seconds. It stops when its radius reaches the edge of a tank, which has radius 12 cm. What is the largest sensible value of t?</p>
+      <ol class="ladder"><li>The ripple stops when {m:r(t)=12}.</li><li>Solve {m:2t=12}.</li></ol>
+      <ul class="wrong"><li data-if="24">You multiplied 12 by 2. The radius is {m:2t}, so t is the radius divided by 2.</li></ul>
+      <div class="solution"><p>{m:2t=12} gives {m:t=6}. The domain for the model is {m:0 <= t <= 6}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from an input to an output, and back again</h2>
+    <p>So far you have put an input into a function and read off the output. Now go the other way. Start with the output, and find the input. And start with a composite function, and find the two functions inside it.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From an input to an output: put the input into the formula.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From an output to an input: solve {m:f(x)=k}. If f is many-to-one, there may be more than one input. The domain says which ones count.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: one value of an inverse, without the inverse</h3>
+      <p>The function f is given by {m:f(x)=x^2-4x} for {m:x >= 2}. Find {m:f^(-1)(5)}.</p>
+      <ol class="steps">
+        <li>{m:f^(-1)(5)} is the input that f turns into 5. Solve {m:x^2-4x=5}.</li>
+        <li>{m:x^2-4x-5=0} factorises as {m:(x-5)(x+1)=0}. So {m:x=5} or {m:x=-1}.</li>
+        <li>The domain is {m:x >= 2}, so {m:x=-1} is not allowed. Then {m:f^(-1)(5)=5}.</li>
+        <li>Check: {m:f(5)=25-20=5}.</li>
+      </ol>
+      <!-- No figure: this example is about solving an equation and using the domain. -->
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From two functions to a composite: put one into the other.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a composite to the two functions: find the inside part, which is applied first, and then what is done to it.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: taking a composite function apart</h3>
+      <p>The function h is given by {m:h(x)=sqrt(2x+5)}. It can be written as {m:fg(x)}, with {m:g(x)=2x+5}. Find {m:f(x)}.</p>
+      <ol class="steps">
+        <li>{m:fg(x)=f(g(x))=f(2x+5)}. This must equal {m:sqrt(2x+5)}.</li>
+        <li>So f takes its input and finds the square root: {m:f(x)=sqrt(x)}.</li>
+        <li>Check: {m:f(g(x))=sqrt(2x+5)}.</li>
+      </ol>
+      <!-- No figure: this example is about the algebra. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="6" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=x^2-4x} for {m:x >= 2}. Find {m:f^(-1)(12)}.</p>
+      <ol class="ladder"><li>{m:f^(-1)(12)} is the input that f turns into 12. Solve {m:f(x)=12}.</li><li>You get two solutions. The domain {m:x >= 2} says which one counts.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">{m:x=-2} solves the equation, but it is not in the domain {m:x >= 2}. Only one solution is allowed.</li>
+        <li data-if="6 or -2">Both solve the equation, but the question wants one value. The domain {m:x >= 2} rules out {m:-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-4x=12} gives {m:x^2-4x-12=0}, so {m:(x-6)(x+2)=0}. Then {m:x=6} or {m:x=-2}. Only 6 is in the domain {m:x >= 2}, so {m:f^(-1)(12)=6}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3;f(x)=x^3" data-mode="exact">
+      <p class="qtext">The function h is given by {m:h(x)=(2x+1)^3}. It can be written as {m:fg(x)}, with {m:g(x)=2x+1}. Find {m:f(x)}. Type it like x^5.</p>
+      <ol class="ladder"><li>{m:fg(x)=f(g(x))}. The inside part is {m:g(x)}.</li><li>What does f do to its input to get from {m:2x+1} to {m:(2x+1)^3}?</li></ol>
+      <ul class="wrong">
+        <li data-if="(2x+1)^3">That is h itself. The function f is written with x as its input: f cubes whatever it is given.</li>
+        <li data-if="2x+1">That is g. The function f is what happens after g: the cubing.</li>
+      </ul>
+      <div class="solution"><p>g gives {m:2x+1}, and then f cubes it. So {m:f(x)=x^3}. Check: {m:f(g(x))=(2x+1)^3}.</p></div>
+    </div>
+    <div class="q" data-answers="4,0;4, 0" data-mode="exact">
+      <p class="qtext">The graph shows {m:y=f(x)}, where f is one-to-one and the curve never turns back. Find the point where the graph of {m:y=f^(-1)(x)} crosses the x-axis. Type it like (2, 0).</p>
+      <figure class="qfig-lg">{fig:functions-q-inverse}</figure>
+      <ol class="ladder"><li>The graph of {m:f^(-1)} is the reflection of the graph of f in {m:y=x}. Look at where the graph of f meets an axis.</li><li>The coordinates of that point swap.</li></ol>
+      <ul class="wrong">
+        <li data-if="0,4;0, 4">That is where f crosses the y-axis. The graph of {m:f^(-1)} crosses the x-axis at the swapped point.</li>
+        <li data-if="5,1;5, 1">That is the swapped point for {m:(1, 5)}, which is not on an axis. Use the point where the graph of f crosses an axis.</li>
+      </ul>
+      <div class="solution"><p>The graph of f meets the y-axis at {m:(0, 4)}. Swapping the coordinates gives {m:(4, 0)}, on the x-axis. So {m:f^(-1)(4)=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph shows {m:y=g(x)}, drawn for {m:-1 <= x <= 3}. What is the range of g?</p>
+      <figure class="qfig-lg">{fig:functions-q-range}</figure>
+      <ul class="options">
+        <li data-correct>&minus;2 &le; g(x) &le; 2</li>
+        <li data-why="The numbers &minus;1 and 3 are the ends of the domain, which are inputs. The range is made of outputs, read from the heights on the graph.">&minus;1 &le; g(x) &le; 3</li>
+        <li data-why="Both ends of the graph are at height 2, and the curve reaches its end points. So the highest output 2 is in the range, and the sign at the top is &le;.">&minus;2 &le; g(x) &lt; 2</li>
+      </ul>
+      <ol class="ladder"><li>The range is the set of heights. Look for the lowest and the highest point of the curve.</li><li>The lowest point is not at an end.</li></ol>
+      <div class="solution"><p>The lowest point is at height {m:-2}, and the highest points are the two ends, at height 2. The range is {m:-2 <= g(x) <= 2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dan says:</b> the largest possible domain of {m:f(x)=sqrt(x-3)} is {m:x > 3}, because you cannot take the root of 0. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The root of 0 is 0, which is allowed, so the domain is x &ge; 3</li>
+        <li data-why="Taking the root of a negative number is the problem. At x = 3 the number under the root is 0, which is fine. So x = 3 must stay in the domain.">The domain should be x &le; 3</li>
+        <li data-why="Check x = 3 itself: f(3) = the root of 0 = 0. That is a real number, so the formula works at x = 3.">Nothing, because f(3) is not defined</li>
+      </ul>
+      <ol class="ladder"><li>Work out {m:f(3)}.</li><li>Is the result a real number?</li></ol>
+      <div class="solution"><p>{m:f(3)=sqrt(0)=0}, which is a real number. So 3 is in the domain, and the domain is {m:x >= 3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Meera says:</b> {m:gf(x)} means &ldquo;apply g first, then f&rdquo;, because g is written first. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>gf(x) means g(f(x)): f is applied first, because it is next to x</li>
+        <li data-why="The written order does not decide which function goes first. The function next to x is applied first, so gf(x) = g(f(x)).">Nothing, because the first letter is applied first</li>
+        <li data-why="gf(x) is a composite, one function applied to the output of the other. It is not a product of two outputs.">gf(x) means g(x) times f(x)</li>
+      </ul>
+      <ol class="ladder"><li>Write {m:gf(x)} with a bracket: {m:g(f(x))}. Which function is inside the bracket?</li></ol>
+      <div class="solution"><p>{m:gf(x)=g(f(x))}. The input x goes into f first, and the result goes into g.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> the inverse of {m:f(x)=2x+3} is {m:f^(-1)(x)=frac(1, 2x+3)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The inverse undoes f, so f&#8315;&sup1;(x) = (x &minus; 3)/2. The reciprocal is a different function</li>
+        <li data-why="The small &#8315;&sup1; in f&#8315;&sup1; is not a power. The reciprocal 1/f(x) is a different function, and putting 3 into 1/(2x + 3) does not give 0.">Nothing, because the power &minus;1 means one over</li>
+        <li data-why="The inverse must undo both steps, the multiplying and the adding. And it reverses their order: subtract 3 first, then divide by 2.">The inverse is f&#8315;&sup1;(x) = 2x &minus; 3</li>
+      </ul>
+      <ol class="ladder"><li>Write {m:y=2x+3} and make x the subject.</li><li>Test your answer: {m:f^(-1)(f(x))} should be x.</li></ol>
+      <div class="solution"><p>{m:y=2x+3} gives {m:x=frac(y-3, 2)}, so {m:f^(-1)(x)=frac(x-3, 2)}. Check: {m:f^(-1)(f(0))=f^(-1)(3)=0}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="f(x)&gt;=-7;y&gt;=-7;-7&lt;=f(x)" data-mode="exact">
+      <p class="qtext">The function f is given by {m:f(x)=x^2-6x+2} for all real x. Find the range of f. Type it like f(x)&gt;=1.</p>
+      <ol class="ladder"><li>Complete the square on {m:x^2-6x+2}.</li><li>The smallest value of the squared bracket is 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="f(x)&gt;=2;y&gt;=2">That is {m:f(0)}, the output at {m:x=0}. The lowest output is at the lowest point, where {m:x=3}.</li>
+        <li data-if="f(x)&gt;=7;y&gt;=7">You lost a minus sign. {m:(x-3)^2-7} has lowest value {m:-7}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-6x+2=(x-3)^2-7}. The square is at least 0, so {m:f(x) >= -7}, and {m:-7} is reached at {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="x!=-2;x&ne;-2" data-mode="exact">
+      <p class="qtext">The functions f and g are given by {m:f(x)=frac(1, x)} for {m:x != 0}, and {m:g(x)=x+2} for all real x. Find the largest possible domain of {m:fg(x)}. Type it like x!=5.</p>
+      <ol class="ladder"><li>First write {m:fg(x)=f(g(x))} as one expression.</li><li>The bottom of the fraction cannot be 0.</li></ol>
+      <ul class="wrong"><li data-if="x!=0;x&ne;0">That is the condition for f alone. In {m:fg(x)}, the bottom is {m:g(x)=x+2}, and it must not be 0.</li></ul>
+      <div class="solution"><p>{m:fg(x)=frac(1, x+2)}. The bottom is 0 when {m:x=-2}, so the domain is {m:x != -2}.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">The function f is given by {m:f(x)=frac(x+1, x-3)} for {m:x != 3}. Find {m:f^(-1)(2)}.</p>
+      <ol class="ladder"><li>{m:f^(-1)(2)} is the input that f turns into 2. Solve {m:f(x)=2}.</li><li>Multiply both sides by {m:x-3}, then collect the x terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="-5">You moved a term across with the wrong sign. {m:x+1=2x-6} gives {m:7=x}.</li>
+        <li data-if="5">You subtracted the 1 and the 6 on the wrong sides. {m:x+1=2x-6} gives {m:7=x}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x+1, x-3)=2} gives {m:x+1=2(x-3)=2x-6}. So {m:x=7}. Check: {m:frac(7+1, 7-3)=frac(8, 4)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 2" data-mode="value">
+      <p class="qtext">The functions f and g are given by {m:f(x)=2x-1} and {m:g(x)=x^2+1}. Solve {m:gf(x)=10}. Type both answers like 1 or 4.</p>
+      <ol class="ladder"><li>Write {m:gf(x)=g(f(x))} as an expression in x. Put {m:2x-1} into g.</li><li>Then solve {m:(2x-1)^2+1=10}. A square root has two values.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">You found only the positive root. {m:(2x-1)^2=9} gives {m:2x-1=3} or {m:2x-1=-3}.</li>
+        <li data-if="5">You solved {m:2x-1=9}. The bracket is squared, so first take the square root of 9: it is 3 or {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:gf(x)=(2x-1)^2+1}. Then {m:(2x-1)^2=9}, so {m:2x-1=3} or {m:2x-1=-3}. That gives {m:x=2} or {m:x=-1}.</p></div>
+    </div>
+    <div class="q" data-answers="h(x)&gt;2;y&gt;2" data-mode="exact">
+      <p class="qtext">The function h is given by {m:h(x)=2+e^(-x)} for all real x. Find the range of h. Type it like h(x)&gt;=6.</p>
+      <ol class="ladder"><li>{m:e^(-x)} is always positive. Is it ever 0?</li><li>Add the 2. Decide whether the sign is {m:>} or {m:>=}.</li></ol>
+      <ul class="wrong">
+        <li data-if="h(x)&gt;=2;y&gt;=2">The output 2 is never reached, because {m:e^(-x)} is never 0. So the sign is {m:>}.</li>
+        <li data-if="h(x)&gt;3;y&gt;3">3 is the output at {m:x=0}, but the outputs go lower. {m:e^(-x)} gets close to 0 for large x, so h gets close to 2.</li>
+      </ul>
+      <div class="solution"><p>{m:e^(-x) > 0}, so {m:h(x) > 2}. The value 2 is never reached, but h gets as close to it as you like for large x. The range is {m:h(x) > 2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement or fact.</p>
+    <div class="q" data-answers="f(x)&gt;=5;y&gt;=5;5&lt;=f(x)" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The function f is given by {m:f(x)=x^2-6x+14} for {m:x >= 3}. Find the range of f. Type it like f(x)&gt;=1.</p>
+      <ol class="ladder"><li>Complete the square on {m:x^2-6x+14}.</li><li>The lowest point of the curve is at {m:x=3}, which is in the domain. The outputs rise from there.</li></ol>
+      <ul class="wrong">
+        <li data-if="f(x)&gt;=14;y&gt;=14">That is {m:f(0)}, and 0 is not in the domain. The lowest output is at {m:x=3}.</li>
+        <li data-if="f(x)&gt;=-5;y&gt;=-5">You lost the sign. {m:(x-3)^2+5} has lowest value {m:+5}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2-6x+14=(x-3)^2+5}. The lowest value is 5, at {m:x=3}, which is in the domain. The curve rises for {m:x >= 3}. So the range is {m:f(x) >= 5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for completing the square</li>
+          <li><b>A1</b> for the lowest value 5</li>
+          <li><b>A1</b> for {m:f(x) >= 5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3+sqrt(x-5);sqrt(x-5)+3;3+&radic;(x-5);&radic;(x-5)+3" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The function f is given by {m:f(x)=x^2-6x+14} for {m:x >= 3}. Find {m:f^(-1)(x)}. Type it like 2+sqrt(x+1).</p>
+      <ol class="ladder"><li>Write {m:y=(x-3)^2+5}. Subtract 5, then take the square root.</li><li>The domain of f is {m:x >= 3}. That tells you which root to take.</li></ol>
+      <ul class="wrong">
+        <li data-if="3-sqrt(x-5);3-&radic;(x-5)">You took the negative root. The domain is {m:x >= 3}, so {m:x-3 >= 0}, and the positive root is the one that fits.</li>
+        <li data-if="3+sqrt(x+5);3+&radic;(x+5)">You added 5 inside the root. {m:y=(x-3)^2+5} gives {m:(x-3)^2=y-5}, so the 5 is subtracted.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:y=(x-3)^2+5} gives {m:(x-3)^2=y-5}. As {m:x >= 3}, {m:x-3=sqrt(y-5)}. So {m:f^(-1)(x)=3+sqrt(x-5)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for completing the square</li>
+          <li><b>M1</b> for {m:(x-3)^2=y-5}</li>
+          <li><b>B1</b> for the positive root</li>
+          <li><b>A1</b> for {m:f^(-1)(x)=3+sqrt(x-5)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.305" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The functions f and g are given by {m:f(x)=e^x} and {m:g(x)=2x+1}. Solve {m:fg(x)=5}. Give your answer to 3 significant figures.</p>
+      <ol class="ladder"><li>Write {m:fg(x)=f(g(x))} as an expression in x. Put {m:2x+1} into f.</li><li>Take natural logarithms of both sides, then solve for x.</li></ol>
+      <ul class="wrong">
+        <li data-if="1.3">You added 1. {m:2x+1=ln 5} gives {m:2x=ln 5-1}, so subtract the 1.</li>
+        <li data-if="0.805">You left out the 1. {m:2x+1=ln 5} has the 1 on the left, so it is taken from {m:ln 5} before you divide by 2.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:fg(x)=e^(2x+1)}. So {m:e^(2x+1)=5} and {m:2x+1=ln 5}. Then {m:2x=ln 5-1=0.6094} and {m:x=0.305} to 3 significant figures.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:fg(x)=e^(2x+1)}</li>
+          <li><b>M1</b> for {m:2x+1=ln 5}</li>
+          <li><b>M1</b> for {m:2x=ln 5-1}</li>
+          <li><b>A1</b> for {m:x=0.305}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-1&lt;=g(x)&lt;=2;-1&lt;=y&lt;=2" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] The function g is given by {m:g(x)=3*sin x-1} for {m:0deg <= x <= 90deg}. Find the range of g. Type it like 1&lt;=g(x)&lt;=6.</p>
+      <ol class="ladder"><li>On {m:0deg <= x <= 90deg}, {m:sin x} rises from one value to another. Find both.</li><li>Multiply by 3, then subtract 1.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4&lt;=g(x)&lt;=2;-4&lt;=y&lt;=2">You used the lowest value of {m:sin x} over a whole turn, {m:-1}. On {m:0deg <= x <= 90deg} the lowest value of {m:sin x} is 0.</li>
+        <li data-if="0&lt;=g(x)&lt;=3;0&lt;=y&lt;=3">That is the range of {m:3*sin x}. The graph of g is also moved down 1.</li>
+      </ul>
+      <div class="solution">
+        <p>On {m:0deg <= x <= 90deg}, {m:sin x} rises from 0 to 1. So {m:3*sin x} rises from 0 to 3, and {m:3*sin x-1} rises from {m:-1} to 2. The range is {m:-1 <= g(x) <= 2}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the values of {m:sin x} at the ends</li>
+          <li><b>A1</b> for {m:g(0deg)=-1}</li>
+          <li><b>A1</b> for {m:g(90deg)=2}, with the range</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1.5;3/2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The functions f and g are given by {m:f(x)=x^2} and {m:g(x)=x-2}. Solve {m:fg(x)=gf(x)}.</p>
+      <ol class="ladder"><li>Write {m:fg(x)} and {m:gf(x)} as expressions in x. Expand the bracket in {m:fg(x)}.</li><li>Put them equal. The {m:x^2} terms cancel.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1.5;-3/2">You made a sign error. {m:x^2-4x+4=x^2-2} gives {m:-4x=-6}, so x is positive.</li>
+        <li data-if="6">You solved {m:-4x=-6} as {m:x=6}. Divide both sides by {m:-4}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:fg(x)=(x-2)^2=x^2-4x+4}. {m:gf(x)=x^2-2}. Put them equal: {m:x^2-4x+4=x^2-2}, so {m:-4x=-6} and {m:x=1.5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:fg(x)=(x-2)^2}</li>
+          <li><b>M1</b> for {m:gf(x)=x^2-2}</li>
+          <li><b>M1</b> for equating and cancelling</li>
+          <li><b>A1</b> for {m:x=1.5}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="x&lt;=1 or x&gt;=5" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The function f is given by {m:f(x)=sqrt((x-1)(x-5))}. Find the largest possible domain of f. Type it like x&lt;=2 or x&gt;=8.</p>
+      <ol class="ladder"><li>The number under the root must be at least 0. Solve {m:(x-1)(x-5) >= 0}.</li><li>Sketch the curve {m:y=(x-1)(x-5)}. Where is it on or above the x-axis?</li></ol>
+      <ul class="wrong">
+        <li data-if="1&lt;=x&lt;=5">That is where {m:(x-1)(x-5)} is negative or 0, between the roots. The curve is a U-shape, so it is at least 0 outside the roots.</li>
+        <li data-if="x&gt;=5">That is only one of the two regions. The U-shaped curve is also at least 0 for {m:x <= 1}.</li>
+      </ul>
+      <div class="solution">
+        <p>The curve {m:y=(x-1)(x-5)} is a U-shape that crosses the x-axis at 1 and 5. It is at least 0 for {m:x <= 1} and for {m:x >= 5}. So the domain is {m:x <= 1} or {m:x >= 5}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:(x-1)(x-5) >= 0}</li>
+          <li><b>A1</b> for the critical values 1 and 5</li>
+          <li><b>M1</b> for choosing the outside regions</li>
+          <li><b>A1</b> for {m:x <= 1} or {m:x >= 5}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>A function is a rule with no choices.</b> Each input gives one output, so you can always say what {m:f(x)} is. That is why a mapping with two outputs for one input is not a function. Many inputs may share an output, because the rule does not have to be reversible.</li>
+      <li><b>The domain and range come from the rule.</b> The formula decides which inputs break it: dividing by 0, the root of a negative number, the logarithm of a number that is not positive. The range is whatever the rule gives for the allowed inputs, so changing the domain can change the range.</li>
+      <li><b>The order in {m:fg(x)} is the order of the brackets.</b> {m:f(g(x))} has g inside, and you work from the inside out. That is why the function next to x goes first.</li>
+      <li><b>An inverse needs a one-to-one function.</b> To undo f you must be able to read the input back from the output. If two inputs gave the same output, you could not. A restricted domain removes the repeats.</li>
+      <li><b>The graph of an inverse is a reflection in {m:y=x}.</b> The point {m:(a, b)} is on the graph of f when {m:f(a)=b}. That is the same as {m:f^(-1)(b)=a}, so {m:(b, a)} is on the graph of {m:f^(-1)}. Swapping the two coordinates of every point is a reflection in the line {m:y=x}.</li>
+      <li><b>A strictly increasing function meets its inverse only on y = x.</b> Suppose {m:f(x)=f^(-1)(x)=y}. Then {m:f(x)=y} and {m:f(y)=x}. If {m:x < y}, an increasing f gives {m:f(x) < f(y)}, which says {m:y < x}. That is impossible. The case {m:x > y} fails the same way. So {m:x=y}.</li>
+      <li><b>A model is a function chosen for a purpose.</b> Its domain is chosen from the situation, its range is what it can predict, and its limits show where it stops being believable. Refining a model changes the function, not the situation.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Writing a domain with y, or a range with x. The domain is a set of inputs, so it is written with x. The range is a set of outputs, so it is written with {m:f(x)}.</li>
+      <li>Forgetting that the root of 0 is allowed: {m:sqrt(x-3)} has domain {m:x >= 3}, not {m:x > 3}.</li>
+      <li>Reading {m:fg(x)} as &ldquo;f first&rdquo;. The function next to x goes first.</li>
+      <li>Expanding {m:(2x+1)^2} as {m:4x^2+1}. The middle term {m:4x} is missing.</li>
+      <li>Treating {m:f^(-1)(x)} as {m:frac(1, f(x))}. The small {m:-1} marks an inverse, not a power.</li>
+      <li>Finding an inverse of a many-to-one function without restricting the domain, such as taking the inverse of {m:x^2} for all real x.</li>
+      <li>Taking both roots when the domain allows only one. For {m:x >= 2}, only the root with {m:x-2 >= 0} fits.</li>
+      <li>Giving the domain of {m:f^(-1)} as the domain of f. It is the range of f.</li>
+      <li>Forgetting that a composite function may have a smaller domain than the inner function: the output of g must be in the domain of f.</li>
+      <li>Drawing a graph and its inverse with different scales on the two axes. The reflection in {m:y=x} then looks wrong.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="functions">
+      <li><label><input type="checkbox"> say whether a mapping is a function, and whether a function is one-to-one or many-to-one</label></li>
+      <li><label><input type="checkbox"> find the largest possible domain of a formula, and write it with an inequality</label></li>
+      <li><label><input type="checkbox"> find the range of a function, including on a restricted domain</label></li>
+      <li><label><input type="checkbox"> work out {m:fg(x)}, {m:gf(x)} and {m:ff(x)}, with g applied first in {m:fg(x)}</label></li>
+      <li><label><input type="checkbox"> solve an equation such as {m:fg(x)=k}, and find the domain of a composite function</label></li>
+      <li><label><input type="checkbox"> find {m:f^(-1)(x)}, and give its domain and range</label></li>
+      <li><label><input type="checkbox"> restrict a domain so that a many-to-one function has an inverse</label></li>
+      <li><label><input type="checkbox"> sketch the graph of {m:f^(-1)} as the reflection of the graph of f in {m:y=x}</label></li>
+      <li><label><input type="checkbox"> use a function as a model, and say where the model stops being sensible</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    <h2>Where this goes next</h2>
+    <p>Everything on this page prepares for Further Pure and for university. In Further Maths, functions such as sinh x and cosh x are built from {m:e^x}, and their inverses are found by the method of lesson 4. At university, a one-to-one function is called an injective function, and a function with an inverse is called a bijection. Composing functions is the idea behind the chain rule in differentiation, which comes later in this book.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
