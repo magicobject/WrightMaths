@@ -123,6 +123,17 @@ export const TERMS = [
     aka: ['ASTC', 'all sin tan cos'],
   },
   {
+    id: 'quadrant', term: 'Quadrant', strand: 'al-trigonometry', level: 'Y1',
+    def: 'One of the four quarters that the x-axis and the y-axis split the plane into. They are numbered 1 to 4, going anticlockwise from the top right.',
+    example: [
+      'The point {m:(3, 2)} is in quadrant 1. The point {m:(-3, 2)} is in quadrant 2, {m:(-3, -2)} is in quadrant 3 and {m:(3, -2)} is in quadrant 4.',
+      'An angle between 90&deg; and 180&deg; has its point on the {term:unit-circle} in quadrant 2. There the sine is positive and the cosine is negative.',
+    ],
+    watch: 'A point on an axis, such as {m:(0, 1)}, is in no quadrant. The angles 0&deg;, 90&deg;, 180&deg; and 270&deg; are on the borders between quadrants.',
+    see: ['unit-circle', 'cast-diagram'],
+    aka: ['quadrants', 'quarter'],
+  },
+  {
     id: 'period', term: 'Period', strand: 'al-trigonometry', level: 'Y1',
     def: 'The length of one full cycle of a repeating graph. It is how far you move along the x-axis before the graph repeats.',
     example: [
