@@ -278,7 +278,7 @@ export const TERMS = [
     term: 'point of inflection',
     strand: 'al-differentiation',
     level: 'Y2',
-    def: 'A point where a curve changes from concave to convex, or from convex to concave. The second derivative changes sign there.',
+    def: 'A point where a curve changes the way it bends, such as (1, 0) on y = (x - 1)^3. Formally, the curve changes from concave to convex, or the other way round.',
     example: ['{m:y=x^3-3x^2} has {m:frac(d^2y, dx^2)=6x-6}.', 'This is zero at {m:x=1}. The second derivative is negative to the left of {m:x=1} and positive to the right, so (1, -2) is a point of inflection. The gradient there is {m:-3}, so it is not a stationary point.'],
     watch: 'Having {m:frac(d^2y, dx^2)=0} is not enough. {m:y=x^4} has {m:frac(d^2y, dx^2)=0} at 0, but the second derivative does not change sign, so there is no inflection. Check the sign on both sides. A point of inflection can be stationary or not.',
     see: ['concave', 'convex', 'second-derivative', 'stationary-point'],
