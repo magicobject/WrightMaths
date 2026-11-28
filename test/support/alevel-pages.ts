@@ -26,6 +26,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/proof-methods.html', titleContains: 'Proof: direct, exhaustion, counterexample', heading: /^Proof: direct, exhaustion, counterexample$/ },
   { path: '/courses/a-level/polynomials.html', titleContains: 'Polynomials and the factor theorem', heading: /^Polynomials and the factor theorem$/ },
   { path: '/courses/a-level/graphs-polynomials.html', titleContains: 'Graphs of polynomials and reciprocals', heading: /^Graphs of polynomials and reciprocals$/ },
+  { path: '/courses/a-level/graph-transformations.html', titleContains: 'Transformations of graphs', heading: /^Transformations of graphs$/ },
   { path: '/courses/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
   { path: '/courses/a-level/definite-integrals.html', titleContains: 'Definite integrals and area', heading: /^Definite integrals and area$/ },
   { path: '/courses/a-level/exp-modelling.html', titleContains: 'Exponential modelling', heading: /^Exponential modelling$/ },
