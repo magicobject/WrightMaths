@@ -1,0 +1,1144 @@
+<main class="book strand-al-trigonometry" data-book-page="topic" data-topic="radians" data-calc="scientific">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Trigonometry &middot; Year 2</span>
+      <h1>Radians, arcs and sectors</h1>
+      <p class="lead">Degrees cut a full turn into 360 parts. That number was chosen long ago, and the circle has no say in it. A radian is different: it is measured with the circle itself. One radian is the angle at the centre that cuts off an arc as long as the radius. In radians, the length of an arc and the area of a sector have short formulae. Sine and cosine of a small angle become simple. The graphs keep their shapes, with a new scale on the x-axis. Exact values are written in terms of {m:pi}.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Differentiating standard functions (Year 2), where the derivative of sine is cosine only when the angle is in radians. From there, radians are the unit for the calculus of sine and cosine in the rest of Year 2.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Radians, arcs and sectors</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="trig-graphs.html">Trigonometric graphs and exact values</a>: the unit circle, the exact values at 30&deg;, 45&deg; and 60&deg;, the graphs of sine, cosine and tangent, and finding every angle with a given value. It also uses the circumference and area of a circle from GCSE. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+    <div class="key"><p><b>Four reminders.</b> A formula marked <b>[Learn]</b> is not on the exam formula sheet, so you must remember it. A formula marked <b>[Given]</b> is on the sheet, so you must know how to use it. Set your own calculator to radians: the screen should show RAD or R. The calculator on this page works in degrees only, and lesson 2 shows how to use it for radians. To type {m:pi} in an answer, write pi: for example, type 5pi/6 for {m:frac(5*pi, 6)}.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look. The first two questions use <a href="trig-graphs.html">Trigonometric graphs and exact values</a>.</p>
+    <p><a href="#s-1-measuring-an-angle-with-the-circle">Skip to the lesson</a></p>
+    <div class="q" data-answers="sqrt(3)/2;sqrt3/2;&radic;3/2;(sqrt3)/2;(sqrt(3))/2;(1/2)sqrt(3);0.5sqrt(3)" data-mode="exact">
+      <p class="qtext">Write down the exact value of {m:sin(60deg)}. Type it like 1/sqrt(2).</p>
+      <ol class="ladder"><li>Recall the table of exact values, or rebuild it from half of an equilateral triangle. See <a href="trig-graphs.html">Trigonometric graphs and exact values</a>.</li><li>The side opposite 60&deg; is the longer short side of that triangle.</li></ol>
+      <ul class="wrong"><li data-if="1/2;0.5">That is {m:sin(30deg)}. At 60&deg; the sine is larger, because the sine rises from 0 at 0&deg; to 1 at 90&deg;.</li></ul>
+      <div class="solution"><p>{m:sin(60deg)=frac(sqrt(3), 2)}. The half-triangle has hypotenuse 2 and the side opposite 60&deg; is {m:sqrt(3)}.</p></div>
+    </div>
+    <div class="q" data-answers="30 or 150" data-mode="value">
+      <p class="qtext">Solve {m:sin x=0.5} for {m:0deg<=x<=360deg}. Type your answers like 11 or 22.</p>
+      <ol class="ladder"><li>The calculator gives the first angle, {m:sin^(-1)(0.5)}. The sine graph has a mirror line at 90&deg;.</li><li>If the calculator gives {m:alpha}, the other angle is {m:180deg-alpha}. This is the idea behind finding every angle on <a href="trig-graphs.html">that page</a>.</li></ol>
+      <ul class="wrong"><li data-if="30">That is one solution. The line {m:y=0.5} cuts the sine wave twice in this range, so there is a second solution.</li></ul>
+      <div class="solution"><p>{m:sin^(-1)(0.5)=30deg}. The other solution is {m:180-30=150}. So {m:x=30deg} or {m:x=150deg}.</p></div>
+    </div>
+    <div class="q" data-answers="10pi;10&pi;;10*pi" data-mode="exact">
+      <p class="qtext">A circle has radius 5 cm. Find its circumference in terms of {m:pi}. Type it like 12pi.</p>
+      <ol class="ladder"><li>Circumference is {m:2*pi*r}.</li><li>Put the radius in, then write the number in front of pi.</li></ol>
+      <ul class="wrong"><li data-if="25pi;25&pi;">That is the area, {m:pi r^2}. The circumference is {m:2*pi*r}.</li></ul>
+      <div class="solution"><p>{m:2*pi*5=10*pi}. The circumference is {m:10*pi} cm, which is 31.4 cm to 3 significant figures.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="9pi;9&pi;;9*pi" data-mode="exact">
+      <p class="qtext">A circle has radius 3 cm. Find its area in terms of {m:pi}. Type it like 12pi.</p>
+      <ol class="ladder"><li>Area is {m:pi r^2}.</li><li>Square the radius before you multiply.</li></ol>
+      <ul class="wrong"><li data-if="6pi;6&pi;">You used {m:2*pi*r}, the circumference. The area is {m:pi r^2}.</li><li data-if="3pi;3&pi;">You did not square the radius. The area is {m:pi r^2}, and {m:r^2=9}.</li></ul>
+      <div class="solution"><p>{m:pi*3^2=9*pi}. The area is {m:9*pi} cm&sup2;, which is 28.3 cm&sup2; to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="1/6" data-mode="value">
+      <p class="qtext">What fraction of a full turn is an angle of 60&deg;? Type it like 3/8.</p>
+      <ol class="ladder"><li>A full turn is 360&deg;.</li><li>Write 60 over 360, then simplify.</li></ol>
+      <ul class="wrong"><li data-if="6">You turned the fraction upside down. The angle goes on the top: {m:frac(60, 360)}.</li></ul>
+      <div class="solution"><p>{m:frac(60, 360)=frac(1, 6)}. An angle of 60&deg; is one sixth of a full turn.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Measuring an angle with the circle</h2>
+    <p>You have measured angles in degrees so far. A full turn is 360&deg;, a number chosen because it divides neatly. A {term:radian|radian} is a different unit, and it comes from the circle itself.</p>
+    <p>Draw a circle with radius r and centre O. Mark two points A and B on it so that the {term:arc|arc} AB, the curved part of the circle between them, has length r. The angle between the radii OA and OB is called the {term:central-angle|angle at the centre}. Here it is 1 radian.</p>
+    <figure class="figure-lg">{fig:radians-one-radian}<figcaption>Look at the arc AB. It is as long as each radius, r. So the angle at O is 1 radian. That is about 57.3&deg;.</figcaption></figure>
+    <p>How many radians make a full turn? The circumference of a circle is {m:2*pi*r}. Each arc of length r cuts off 1 radian. So the whole circle holds {m:frac(2*pi*r, r)=2*pi} of them. A full turn is {m:2*pi} radians, which is about 6.28. Half a turn is {m:pi} radians.</p>
+    <div class="key">
+      <p><b>Key idea:</b> radians.</p>
+      <ul class="tick">
+        <li>One radian is the angle at the centre of a circle that cuts off an arc as long as the radius.</li>
+        <li>A full turn is {m:2*pi} radians, so {m:180deg=pi} radians.</li>
+        <li>To change degrees to radians, multiply by {m:frac(pi, 180)}. To change radians to degrees, multiply by {m:frac(180, pi)}.</li>
+        <li>At A-level, an angle written without a degree sign, such as {m:theta=2}, is in radians. The unit is sometimes written rad.</li>
+      </ul>
+      <table class="data">
+        <thead><tr><th scope="col">Degrees</th><th scope="col">{m:0deg}</th><th scope="col">{m:30deg}</th><th scope="col">{m:45deg}</th><th scope="col">{m:60deg}</th><th scope="col">{m:90deg}</th><th scope="col">{m:180deg}</th><th scope="col">{m:270deg}</th><th scope="col">{m:360deg}</th></tr></thead>
+        <tbody><tr><th scope="row">Radians</th><td>0</td><td>{m:frac(pi, 6)}</td><td>{m:frac(pi, 4)}</td><td>{m:frac(pi, 3)}</td><td>{m:frac(pi, 2)}</td><td>{m:pi}</td><td>{m:frac(3*pi, 2)}</td><td>{m:2*pi}</td></tr></tbody>
+      </table>
+    </div>
+    <p>An answer such as {m:frac(pi, 3)} is an {term:in-terms-of-pi|exact answer in terms of pi}. It is not rounded. The decimal 1.047 is its rounded value. Leave {m:pi} in the answer unless the question asks for a decimal.</p>
+    <div class="worked">
+      <h3>Worked example: degrees to radians</h3>
+      <p>Write 150&deg; in radians, in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>Multiply by {m:frac(pi, 180)}. This is the same as dividing by 180 and then multiplying by {m:pi}.</li>
+        <li>{m:150*frac(pi, 180)=frac(150*pi, 180)=frac(5*pi, 6)}. Cancel 30 from the top and the bottom.</li>
+        <li>So {m:150deg=frac(5*pi, 6)} radians.</li>
+        <li>Check: 150&deg; is a little less than 180&deg;, and {m:frac(5*pi, 6)} is a little less than {m:pi}.</li>
+      </ol>
+      <!-- No figure: the unit circle figure in lesson 2 shows these angles marked in radians. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: radians to degrees</h3>
+      <p>Write {m:frac(3*pi, 4)} radians in degrees.</p>
+      <ol class="steps">
+        <li>Multiply by {m:frac(180, pi)}. The {m:pi} on the top and the {m:pi} on the bottom cancel.</li>
+        <li>{m:frac(3*pi, 4)*frac(180, pi)=frac(3*180, 4)=135}.</li>
+        <li>So {m:frac(3*pi, 4)} radians is {m:135deg}.</li>
+      </ol>
+      <!-- No figure: this is a calculation with fractions. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: an angle with no pi in it</h3>
+      <p>Write 2 radians in degrees, to 1 decimal place.</p>
+      <ol class="steps">
+        <li>{m:2*frac(180, pi)=frac(360, pi)}.</li>
+        <li>Use the {m:pi} key: {m:frac(360, pi)=114.6} to 1 decimal place.</li>
+        <li>So 2 radians is {m:114.6deg}. This is bigger than 1 radian, which is {m:57.3deg}, and about twice as big.</li>
+      </ol>
+      <!-- No figure: this is a calculation. The first figure shows 1 radian, and 2 radians is twice as far round the arc. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write 210&deg; in radians, in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>Divide 210 by 180 and cancel: {m:frac(210, 180)=}<span class="blank" data-answers="7/6">___</span>.</li>
+        <li>Multiply by {m:pi}. So {m:210deg=}<span class="blank" data-answers="7pi/6;(7pi)/6;(7/6)pi;7&pi;/6;(7&pi;)/6;(7/6)&pi;">___</span> radians.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(210, 180)=frac(7, 6)}, so {m:210deg=frac(7*pi, 6)} radians. Check: 210&deg; is 30&deg; more than 180&deg;, and {m:frac(7*pi, 6)=pi+frac(pi, 6)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: measuring an angle with the circle</h2>
+    <div class="q" data-answers="2pi/3;2&pi;/3;(2pi)/3;(2&pi;)/3;(2/3)pi;(2/3)&pi;;2pi/3rad;2pi/3radians;2&pi;/3rad;2&pi;/3radians;(2pi)/3rad;(2pi)/3radians;(2&pi;)/3rad;(2&pi;)/3radians;(2/3)pirad;(2/3)piradians;(2/3)&pi;rad;(2/3)&pi;radians" data-mode="exact">
+      <p class="qtext">Write 120&deg; in radians, in terms of {m:pi}. Type it like 3pi/4.</p>
+      <ol class="ladder"><li>Use {m:180deg=pi} radians. What fraction of 180&deg; is 120&deg;?</li><li>Multiply that fraction by {m:pi}.</li></ol>
+      <ul class="wrong"><li data-if="3pi/2;3&pi;/2;(3pi)/2;(3&pi;)/2;(3/2)pi;(3/2)&pi;">You used {m:frac(180, 120)}. Put the angle on the top: multiply by {m:frac(pi, 180)}.</li><li data-if="120pi;120&pi;">You multiplied by {m:pi} and did not divide by 180. Multiply the angle by {m:frac(pi, 180)}.</li></ul>
+      <div class="solution"><p>{m:120*frac(pi, 180)=frac(2*pi, 3)}. So {m:120deg=frac(2*pi, 3)} radians.</p></div>
+    </div>
+    <div class="q" data-answers="150" data-mode="value">
+      <p class="qtext">Write {m:frac(5*pi, 6)} radians in degrees. Type only the number.</p>
+      <ol class="ladder"><li>Multiply by {m:frac(180, pi)}.</li><li>The {m:pi} on the top cancels the {m:pi} on the bottom.</li></ol>
+      <ul class="wrong"><li data-if="2.62;2.618">That is {m:frac(5*pi, 6)} as a decimal. It is still in radians. Multiply by {m:frac(180, pi)} to get degrees.</li></ul>
+      <div class="solution"><p>{m:frac(5*pi, 6)*frac(180, pi)=frac(5*180, 6)=150}. So the angle is {m:150deg}.</p></div>
+    </div>
+    <div class="q" data-answers="114.6" data-mode="value">
+      <p class="qtext">Write 2 radians in degrees. Give your answer to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>There is no {m:pi} in the angle, so use the {m:pi} key at the end.</li><li>Multiply by {m:frac(180, pi)}.</li></ol>
+      <ul class="wrong"><li data-if="0.0349;0.035">You multiplied by {m:frac(pi, 180)}. That changes degrees to radians. To go from radians to degrees, multiply by {m:frac(180, pi)}.</li></ul>
+      <div class="solution"><p>{m:2*frac(180, pi)=114.6} to 1 decimal place.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these angles is the largest?</p>
+      <ul class="options">
+        <li data-why="0.5 radians is about 28.6 degrees. That is smaller than 50 degrees.">0.5 radians</li>
+        <li data-why="50 degrees is about 0.87 radians. That is smaller than 1 radian, which is about 57.3 degrees.">50&deg;</li>
+        <li data-correct>1 radian</li>
+      </ul>
+      <ol class="ladder"><li>Change them all to degrees, or all to radians.</li><li>One radian is about 57.3&deg;.</li></ol>
+      <div class="solution"><p>1 radian is {m:57.3deg}. 0.5 radians is {m:0.5*frac(180, pi)=28.6deg}. So 1 radian is larger than 50&deg;, and 50&deg; is larger than 0.5 radians.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why is half a turn equal to {m:pi} radians?</p>
+      <ul class="options">
+        <li data-correct>Half the circumference is &pi;r, which is &pi; radius-lengths</li>
+        <li data-why="A radian is about 57.3 degrees, not 3.14 degrees. The number pi comes from the circumference of the circle.">There are &pi; degrees in a radian</li>
+        <li data-why="The radius can be any positive length, and the angle does not depend on it.">The radius of a circle is 180</li>
+      </ul>
+      <ol class="ladder"><li>One radian cuts off an arc of one radius-length.</li><li>How many radius-lengths are in half of the circumference {m:2*pi*r}?</li></ol>
+      <div class="solution"><p>Half a turn cuts off half of the circumference. That is {m:pi*r}, which is {m:pi} radius-lengths. So half a turn is {m:pi} radians.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Exact values in radians</h2>
+    <p>The {term:unit-circle|unit circle} works the same way as before. The point P at angle {m:theta} is {m:(cos theta, sin theta)}. Only the unit of the angle changes. Here are six angles marked in radians. Turn each one back into degrees to check: {m:frac(pi, 6)} is 30&deg;, {m:frac(pi, 4)} is 45&deg;, and so on.</p>
+    <figure class="figure-lg">{fig:radians-unit-circle}<figcaption>Look at the six marked points. They are at {m:frac(pi, 6)}, {m:frac(pi, 4)} and {m:frac(pi, 3)} in the top right quarter, then {m:frac(pi, 2)} at the top, {m:pi} on the left and {m:frac(3*pi, 2)} at the bottom. The angle is measured anticlockwise from the positive x-axis.</figcaption></figure>
+    <p>The {term:exact-value|exact values} are the ones you know, with the angles written in radians.</p>
+    <table class="data">
+      <thead><tr><th scope="col">Angle</th><th scope="col">{m:0}</th><th scope="col">{m:frac(pi, 6)}</th><th scope="col">{m:frac(pi, 4)}</th><th scope="col">{m:frac(pi, 3)}</th><th scope="col">{m:frac(pi, 2)}</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">{m:sin theta}</th><td>0</td><td>{m:frac(1,2)}</td><td>{m:frac(sqrt(2),2)}</td><td>{m:frac(sqrt(3),2)}</td><td>1</td></tr>
+        <tr><th scope="row">{m:cos theta}</th><td>1</td><td>{m:frac(sqrt(3),2)}</td><td>{m:frac(sqrt(2),2)}</td><td>{m:frac(1,2)}</td><td>0</td></tr>
+        <tr><th scope="row">{m:tan theta}</th><td>0</td><td>{m:frac(sqrt(3),3)}</td><td>1</td><td>{m:sqrt(3)}</td><td>does not exist</td></tr>
+      </tbody>
+    </table>
+    <div class="key">
+      <p><b>Key idea:</b> the sine, cosine or tangent of a larger angle.</p>
+      <ol class="steps">
+        <li>If {m:theta} is above {m:2*pi} or below 0, add or subtract {m:2*pi} until it is between 0 and {m:2*pi}.</li>
+        <li>Find the acute angle {m:alpha} between the radius and the x-axis. In quadrant 2 it is {m:pi-theta}. In quadrant 3 it is {m:theta-pi}. In quadrant 4 it is {m:2*pi-theta}.</li>
+        <li>The sine, cosine or tangent of {m:theta} is the one of {m:alpha}, with a sign. Use the {term:cast-diagram|CAST diagram}: sine is positive in quadrant 2, tangent in quadrant 3, cosine in quadrant 4.</li>
+      </ol>
+      <p>The angle {m:theta=frac(pi, 2)} sits on the y-axis, {m:pi} on the x-axis and {m:frac(3*pi, 2)} on the y-axis. Their values come straight from the unit circle: {m:sin pi=0}, {m:cos pi=-1} and {m:sin(frac(3*pi, 2))=-1}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: quadrant 2</h3>
+      <p>Find the exact value of {m:sin(frac(2*pi, 3))}.</p>
+      <ol class="steps">
+        <li>{m:frac(2*pi, 3)} is between {m:frac(pi, 2)} and {m:pi}, so it is in quadrant 2.</li>
+        <li>The acute angle is {m:pi-frac(2*pi, 3)=frac(pi, 3)}.</li>
+        <li>Sine is positive in quadrant 2, so {m:sin(frac(2*pi, 3))=sin(frac(pi, 3))=frac(sqrt(3), 2)}.</li>
+      </ol>
+      <!-- No figure: the unit circle figure above shows the point at pi/3, and the quadrant 2 point is its mirror image in the y-axis. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: quadrant 3</h3>
+      <p>Find the exact value of {m:cos(frac(7*pi, 6))}.</p>
+      <ol class="steps">
+        <li>{m:frac(7*pi, 6)} is between {m:pi} and {m:frac(3*pi, 2)}, so it is in quadrant 3.</li>
+        <li>The acute angle is {m:frac(7*pi, 6)-pi=frac(pi, 6)}.</li>
+        <li>Cosine is negative in quadrant 3, so {m:cos(frac(7*pi, 6))=-cos(frac(pi, 6))=-frac(sqrt(3), 2)}.</li>
+      </ol>
+      <!-- No figure: the unit circle figure above shows pi/6, and the quadrant 3 point is its reflection through the origin. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: quadrant 4</h3>
+      <p>Find the exact value of {m:tan(frac(7*pi, 4))}.</p>
+      <ol class="steps">
+        <li>{m:frac(7*pi, 4)} is between {m:frac(3*pi, 2)} and {m:2*pi}, so it is in quadrant 4.</li>
+        <li>The acute angle is {m:2*pi-frac(7*pi, 4)=frac(pi, 4)}.</li>
+        <li>Tangent is negative in quadrant 4, so {m:tan(frac(7*pi, 4))=-tan(frac(pi, 4))=-1}.</li>
+      </ol>
+      <!-- No figure: the point is below the x-axis, where the x-coordinate is positive and the y-coordinate is negative. -->
+    </div>
+    <h3>Using a calculator in radians</h3>
+    <p>Set your own calculator to {term:radian-mode|radian mode}. The screen shows RAD or R. In degree mode, {m:sin 30} is 0.5. In radian mode, {m:sin 30} means the sine of 30 radians, which is {m:-0.988}. A wrong mode gives a wrong answer without any warning.</p>
+    <p>The calculator on this page works in degrees only. To use it for an angle of x radians, change x to degrees inside the bracket. Type sin(x &times; 180 &divide; &pi;) for {m:sin x}.</p>
+    <div class="worked">
+      <h3>Worked example: sine and tangent of an angle in radians</h3>
+      <p>Find {m:sin 0.8} and {m:tan 1.2} to 3 significant figures.</p>
+      <ol class="steps">
+        <li>On your own calculator in radian mode, type sin 0.8. It gives {m:sin 0.8=0.717}.</li>
+        <li>On the calculator on this page, type sin(0.8 &times; 180 &divide; &pi;). It gives the same number, because {m:0.8*frac(180, pi)} is 0.8 radians in degrees.</li>
+        <li>Likewise {m:tan 1.2=2.57}. Check: 1.2 radians is about 69&deg;, and {m:tan(69deg)} is about 2.6.</li>
+      </ol>
+      <!-- No figure: this is a calculator step. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the exact value of {m:cos(frac(5*pi, 6))}.</p>
+      <ol class="steps">
+        <li>{m:frac(5*pi, 6)} is between {m:frac(pi, 2)} and {m:pi}, so it is in quadrant 2. The acute angle is {m:pi-frac(5*pi, 6)=}<span class="blank" data-answers="pi/6;&pi;/6;(pi)/6;(&pi;)/6;(1/6)pi;(1/6)&pi;;pi/6rad;pi/6radians;&pi;/6rad;&pi;/6radians;(pi)/6rad;(pi)/6radians;(&pi;)/6rad;(&pi;)/6radians;(1/6)pirad;(1/6)piradians;(1/6)&pi;rad;(1/6)&pi;radians">___</span>.</li>
+        <li>Cosine is negative in quadrant 2, and {m:cos(frac(pi, 6))=frac(sqrt(3), 2)}. So {m:cos(frac(5*pi, 6))=}<span class="blank" data-answers="-sqrt(3)/2;-sqrt3/2;-&radic;3/2;-(sqrt3)/2;-(sqrt(3))/2;-(sqrt(3)/2);-(1/2)sqrt(3);-0.5sqrt(3)">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The acute angle is {m:frac(pi, 6)}, and {m:cos(frac(5*pi, 6))=-frac(sqrt(3), 2)}. The answer is negative, as it should be for quadrant 2.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: exact values in radians</h2>
+    <div class="q" data-answers="sqrt(3);sqrt3;&radic;3" data-mode="exact">
+      <p class="qtext">Find the exact value of {m:tan(frac(pi, 3))}. Type it like 1/sqrt(2).</p>
+      <ol class="ladder"><li>Use the table: {m:frac(pi, 3)} is 60&deg;.</li><li>Tangent is sine divided by cosine.</li></ol>
+      <ul class="wrong"><li data-if="1/sqrt(3);1/sqrt3;1/&radic;3;sqrt(3)/3;sqrt3/3;&radic;3/3;(1/3)sqrt(3)">That is {m:tan(frac(pi, 6))}, the tangent of 30&deg;. At {m:frac(pi, 3)}, which is 60&deg;, the tangent is larger.</li></ul>
+      <div class="solution"><p>{m:tan(frac(pi, 3))=frac(sin(pi/3), cos(pi/3))=frac(sqrt(3)/2, 1/2)=sqrt(3)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1/2;-0.5" data-mode="value">
+      <p class="qtext">Find the exact value of {m:cos(frac(2*pi, 3))}. Type it like -3/7.</p>
+      <ol class="ladder"><li>{m:frac(2*pi, 3)} is in quadrant 2. Find its acute angle.</li><li>Is cosine positive or negative in quadrant 2?</li></ol>
+      <ul class="wrong"><li data-if="1/2;0.5">You have the size but not the sign. {m:frac(2*pi, 3)} is in quadrant 2, where cosine is negative.</li></ul>
+      <div class="solution"><p>The acute angle is {m:pi-frac(2*pi, 3)=frac(pi, 3)}. Cosine is negative in quadrant 2, so {m:cos(frac(2*pi, 3))=-cos(frac(pi, 3))=-frac(1, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-sqrt(3)/2;-sqrt3/2;-&radic;3/2;-(sqrt3)/2;-(sqrt(3))/2;-(sqrt(3)/2);-(1/2)sqrt(3);-0.5sqrt(3)" data-mode="exact">
+      <p class="qtext">Find the exact value of {m:sin(frac(5*pi, 3))}. Type it like -1/sqrt(2).</p>
+      <ol class="ladder"><li>Decide which quadrant {m:frac(5*pi, 3)} is in, then find its acute angle.</li><li>Is sine positive or negative in that quadrant?</li></ol>
+      <ul class="wrong"><li data-if="sqrt(3)/2;sqrt3/2;&radic;3/2;(sqrt3)/2;(sqrt(3))/2;(1/2)sqrt(3);0.5sqrt(3)">You have the size but not the sign. {m:frac(5*pi, 3)} is in quadrant 4, where sine is negative.</li><li data-if="-1/2;-0.5">That is {m:sin(frac(pi, 6))} with a minus sign. The acute angle here is {m:2*pi-frac(5*pi, 3)=frac(pi, 3)}, not {m:frac(pi, 6)}.</li></ul>
+      <div class="solution"><p>{m:frac(5*pi, 3)} is in quadrant 4, and its acute angle is {m:2*pi-frac(5*pi, 3)=frac(pi, 3)}. Sine is negative in quadrant 4, so {m:sin(frac(5*pi, 3))=-sin(frac(pi, 3))=-frac(sqrt(3), 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-0.416" data-mode="value">
+      <p class="qtext">Find {m:cos 2}, where the angle is in radians. Give your answer to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Check that your own calculator shows RAD. On the calculator on this page, put the angle in degrees inside the bracket first.</li><li>On this page, that means typing cos(2 &times; 180 &divide; &pi;).</li></ol>
+      <ul class="wrong"><li data-if="0.999;0.9994">You used degrees. That is {m:cos(2deg)}. The question says the angle is in radians, so use radian mode.</li></ul>
+      <div class="solution"><p>{m:cos 2=-0.416} to 3 significant figures. The answer is negative because 2 radians is about 115&deg;, which is in quadrant 2.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which one of these is not equal to {m:frac(1, 2)}?</p>
+      <ul class="options">
+        <li data-why="sin(&pi;/6) is the sine of 30 degrees, which is 1/2.">sin(&pi;/6)</li>
+        <li data-correct>cos(2&pi;/3)</li>
+        <li data-why="5&pi;/6 is in quadrant 2 and its acute angle is &pi;/6, so sin(5&pi;/6) = sin(&pi;/6) = 1/2.">sin(5&pi;/6)</li>
+      </ul>
+      <ol class="ladder"><li>Find the quadrant and the acute angle of each angle.</li><li>Check the sign with the CAST diagram.</li></ol>
+      <div class="solution"><p>{m:cos(frac(2*pi, 3))=-frac(1, 2)}, because cosine is negative in quadrant 2. The other two both equal {m:frac(1, 2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Arc length</h2>
+    <p>An arc is a part of the circumference. The angle {m:theta} at the centre is the fraction {m:frac(theta, 2*pi)} of a full turn. So the {term:arc-length|arc length} is the same fraction of the circumference {m:2*pi*r}:</p>
+    {md:s=frac(theta, 2*pi)*2*pi*r=r theta}
+    <figure class="figure-lg">{fig:radians-arc}<figcaption>Look at the arc AB. The radius is 5 and the angle at O is 1.2 radians. The arc is {m:5*1.2=6} long.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> arc length. <b>[Learn]</b></p>
+      <ul class="tick">
+        <li>{m:s=r theta}, where s is the arc length, r is the radius and {m:theta} is the angle at the centre <b>in radians</b>. The radius r is positive, and {m:theta} is between 0 and {m:2*pi}.</li>
+        <li>The perimeter of a {term:sector|sector} is {m:2r+r theta}: the arc and the two straight radii.</li>
+        <li>If the angle is in degrees, change it to radians first.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an arc length</h3>
+      <p>A sector has radius 5 cm and angle 1.2 radians. Find the arc length.</p>
+      <ol class="steps">
+        <li>{m:s=r theta=5*1.2=6}.</li>
+        <li>The arc length is 6 cm. This is the picture above.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exact arc length</h3>
+      <p>A sector has radius 9 cm and angle {m:frac(pi, 3)}. Find the arc length in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>{m:s=r theta=9*frac(pi, 3)=3*pi}.</li>
+        <li>The arc length is {m:3*pi} cm. That is 9.42 cm to 3 significant figures.</li>
+      </ol>
+      <!-- No figure: it is the same shape as the picture above with different numbers, a sector of angle 60 degrees. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding the angle</h3>
+      <p>An arc of length 14 cm is cut from a circle of radius 8 cm. Find the angle at the centre.</p>
+      <ol class="steps">
+        <li>{m:s=r theta}, so {m:theta=frac(s, r)=frac(14, 8)=1.75}.</li>
+        <li>The angle is 1.75 radians. In degrees that is about {m:1.75*frac(180, pi)=100.3deg}.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the perimeter of a sector</h3>
+      <p>A sector has radius 10 cm and angle 0.8 radians. Find its perimeter.</p>
+      <ol class="steps">
+        <li>The arc is {m:s=10*0.8=8} cm.</li>
+        <li>Add the two radii: {m:2*10+8=28}.</li>
+        <li>The perimeter is 28 cm.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: an angle given in degrees</h3>
+      <p>A sector has radius 12 cm and angle 75&deg;. Find the arc length, in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>Change the angle to radians: {m:75*frac(pi, 180)=frac(5*pi, 12)}.</li>
+        <li>{m:s=r theta=12*frac(5*pi, 12)=5*pi}.</li>
+        <li>The arc length is {m:5*pi} cm, which is 15.7 cm to 3 significant figures.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A sector has radius 12 cm and angle 0.75 radians. Find the arc length and the perimeter.</p>
+      <ol class="steps">
+        <li>{m:s=12*0.75=}<span class="blank" data-answers="9">___</span> cm.</li>
+        <li>The perimeter is {m:2*12+9=}<span class="blank" data-answers="33">___</span> cm.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The arc is {m:12*0.75=9} cm and the perimeter is {m:24+9=33} cm.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: arc length</h2>
+    <div class="q" data-answers="7.2" data-mode="value">
+      <p class="qtext">Find the length of the arc of this sector, in cm. Type only the number.</p>
+      <figure class="qfig-lg">{fig:radians-q-sector}</figure>
+      <ol class="ladder"><li>Use {m:s=r theta}. Is the angle already in radians?</li><li>Multiply the radius by the angle.</li></ol>
+      <ul class="wrong"><li data-if="3.6">You halved the answer. The half belongs in the formula for area. The arc length is {m:r theta}.</li><li data-if="8.9">You added the radius and the angle. The arc length is the radius multiplied by the angle.</li></ul>
+      <div class="solution"><p>{m:s=r theta=8*0.9=7.2}. The arc is 7.2 cm long.</p></div>
+    </div>
+    <div class="q" data-answers="4pi;4&pi;;4pirad;4piradians;4&pi;rad;4&pi;radians" data-mode="exact">
+      <p class="qtext">A sector has radius 6 cm and angle {m:frac(2*pi, 3)}. Find the exact arc length, in cm. Type it like 5pi/2.</p>
+      <ol class="ladder"><li>Use {m:s=r theta}.</li><li>Cancel the 3 on the bottom with a factor of 3 in the radius.</li></ol>
+      <ul class="wrong"><li data-if="2pi/3;2&pi;/3;(2pi)/3;(2&pi;)/3;(2/3)pi;(2/3)&pi;">That is the angle. Multiply it by the radius to get the arc length.</li></ul>
+      <div class="solution"><p>{m:s=6*frac(2*pi, 3)=4*pi}. The arc is {m:4*pi} cm long.</p></div>
+    </div>
+    <div class="q" data-answers="2.5" data-mode="value">
+      <p class="qtext">An arc of length 15 cm is cut from a circle of radius 6 cm. Find the angle at the centre, in radians. Type only the number.</p>
+      <ol class="ladder"><li>Rearrange {m:s=r theta} to make {m:theta} the subject.</li><li>Divide the arc length by the radius.</li></ol>
+      <ul class="wrong"><li data-if="0.4;0.40">You divided the radius by the arc length. The angle is {m:theta=frac(s, r)}.</li><li data-if="143.2;143">That is the angle in degrees. The question asks for radians, and {m:frac(s, r)} gives radians.</li></ul>
+      <div class="solution"><p>{m:theta=frac(s, r)=frac(15, 6)=2.5}. The angle is 2.5 radians.</p></div>
+    </div>
+    <div class="q" data-answers="32" data-mode="value">
+      <p class="qtext">A sector has radius 10 cm and angle 1.2 radians. Find its perimeter, in cm. Type only the number.</p>
+      <ol class="ladder"><li>Find the arc length first.</li><li>The perimeter also includes the two straight edges.</li></ol>
+      <ul class="wrong"><li data-if="12">That is the arc only. The perimeter also includes the two radii.</li><li data-if="22">You added one radius. A sector has two straight edges, so add {m:2r}.</li></ul>
+      <div class="solution"><p>The arc is {m:10*1.2=12}. The perimeter is {m:2*10+12=32} cm.</p></div>
+    </div>
+    <div class="q" data-answers="6.98" data-mode="value">
+      <p class="qtext">A sector has radius 5 cm and angle 80&deg;. Find the arc length, in cm, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The formula needs the angle in radians. Change 80&deg; first.</li><li>Multiply 80 by {m:frac(pi, 180)}, then use {m:s=r theta}.</li></ol>
+      <ul class="wrong"><li data-if="400">You used 80 as the angle. The formula needs radians, so change 80&deg; to radians first.</li><li data-if="1.4;1.40;1.396">That is the angle in radians. Multiply it by the radius to get the arc length.</li></ul>
+      <div class="solution"><p>{m:80deg=80*frac(pi, 180)=frac(4*pi, 9)=1.396} radians. Then {m:s=5*1.396=6.98}. The arc is 6.98 cm long.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Area of a sector</h2>
+    <p>The {term:area-of-sector|area of a sector} is the same fraction of the area of the whole circle. The fraction is {m:frac(theta, 2*pi)} and the circle has area {m:pi r^2}:</p>
+    {md:A=frac(theta, 2*pi)*pi r^2=frac(1, 2) r^2 theta}
+    <figure class="figure-lg">{fig:radians-sector}<figcaption>Look at the shaded sector. The radius is 6 and the angle at O is 1.5 radians. Its area is {m:frac(1,2)*6^2*1.5=27}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> area of a sector. <b>[Learn]</b></p>
+      <ul class="tick">
+        <li>{m:A=frac(1, 2) r^2 theta}, where A is the area, r is the radius and {m:theta} is the angle at the centre <b>in radians</b>. The radius r is positive, and {m:theta} is between 0 and {m:2*pi}.</li>
+        <li>Since {m:s=r theta}, you can also write {m:A=frac(1, 2) r s}, where s is the arc length.</li>
+        <li>Check the whole circle: {m:theta=2*pi} gives {m:A=frac(1, 2) r^2*2*pi=pi r^2}.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a sector area</h3>
+      <p>Find the area of a sector with radius 6 cm and angle 1.5 radians.</p>
+      <ol class="steps">
+        <li>{m:A=frac(1, 2) r^2 theta=frac(1, 2)*36*1.5=27}.</li>
+        <li>The area is 27 cm&sup2;. This is the picture above.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an exact area</h3>
+      <p>A sector has radius 3 cm and angle {m:frac(pi, 6)}. Find its area in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>{m:A=frac(1, 2)*3^2*frac(pi, 6)=frac(9*pi, 12)=frac(3*pi, 4)}.</li>
+        <li>The area is {m:frac(3*pi, 4)} cm&sup2;, which is 2.36 cm&sup2; to 3 significant figures.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above, with a smaller angle. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding the angle</h3>
+      <p>A sector of radius 8 cm has area 36 cm&sup2;. Find its angle at the centre.</p>
+      <ol class="steps">
+        <li>{m:36=frac(1, 2)*8^2*theta=32*theta}.</li>
+        <li>{m:theta=frac(36, 32)=1.125}.</li>
+        <li>The angle is 1.125 radians.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding the radius</h3>
+      <p>A sector of angle 0.75 radians has area 24 cm&sup2;. Find its radius.</p>
+      <ol class="steps">
+        <li>{m:24=frac(1, 2)*r^2*0.75=0.375*r^2}.</li>
+        <li>{m:r^2=frac(24, 0.375)=64}.</li>
+        <li>The radius is positive, so {m:r=8}. The radius is 8 cm.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: an angle given in degrees</h3>
+      <p>A sector has radius 10 cm and angle 72&deg;. Find its area, in terms of {m:pi}.</p>
+      <ol class="steps">
+        <li>Change the angle to radians: {m:72*frac(pi, 180)=frac(2*pi, 5)}.</li>
+        <li>{m:A=frac(1, 2)*10^2*frac(2*pi, 5)=20*pi}.</li>
+        <li>The area is {m:20*pi} cm&sup2;, which is 62.8 cm&sup2; to 3 significant figures.</li>
+      </ol>
+      <!-- No figure: this uses the same shape as the picture above. -->
+    </div>
+    <div class="key">
+      <p><b>Proofs you should be able to write.</b> Both formulae come from a fraction of the circle.</p>
+      <ol class="steps">
+        <li><b>Arc length.</b> The angle {m:theta} is the fraction {m:frac(theta, 2*pi)} of a full turn. The arc is the same fraction of the circumference: {m:s=frac(theta, 2*pi)*2*pi*r=r theta}.</li>
+        <li><b>Sector area.</b> The sector is the same fraction of the circle: {m:A=frac(theta, 2*pi)*pi r^2=frac(1, 2) r^2 theta}.</li>
+      </ol>
+      <p>Both need {m:theta} in radians. In degrees the fraction is {m:frac(theta, 360)}, and the formulae have a {m:pi} in them.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A sector has radius 10 cm and angle 0.6 radians. Find its area.</p>
+      <ol class="steps">
+        <li>{m:frac(1, 2)*10^2=}<span class="blank" data-answers="50">___</span>.</li>
+        <li>Multiply by the angle: {m:50*0.6=}<span class="blank" data-answers="30">___</span>. The area is 30 cm&sup2;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:A=frac(1, 2)*100*0.6=50*0.6=30}. The area is 30 cm&sup2;.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: area of a sector</h2>
+    <div class="q" data-answers="16" data-mode="value">
+      <p class="qtext">A sector has radius 8 cm and angle 0.5 radians. Find its area, in cm&sup2;. Type only the number.</p>
+      <ol class="ladder"><li>Use {m:A=frac(1, 2) r^2 theta}.</li><li>Square the radius first.</li></ol>
+      <ul class="wrong"><li data-if="32">You left out the half. The area is {m:frac(1, 2) r^2 theta}.</li><li data-if="2">You did not square the radius. The formula has {m:r^2}, not {m:r}.</li></ul>
+      <div class="solution"><p>{m:A=frac(1, 2)*8^2*0.5=frac(1, 2)*64*0.5=16}. The area is 16 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="6pi;6&pi;;6pirad;6piradians;6&pi;rad;6&pi;radians" data-mode="exact">
+      <p class="qtext">A sector has radius 6 cm and angle {m:frac(pi, 3)}. Find its exact area, in cm&sup2;. Type it like 5pi/2.</p>
+      <ol class="ladder"><li>{m:A=frac(1, 2) r^2 theta}. Square the radius, then halve.</li><li>Cancel the 3 on the bottom with a factor of 3 in the top.</li></ol>
+      <ul class="wrong"><li data-if="12pi;12&pi;">You left out the half. The area is {m:frac(1, 2) r^2 theta}.</li></ul>
+      <div class="solution"><p>{m:A=frac(1, 2)*36*frac(pi, 3)=6*pi}. The area is {m:6*pi} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="1.6" data-mode="value">
+      <p class="qtext">A sector of radius 5 cm has area 20 cm&sup2;. Find its angle at the centre, in radians. Type only the number.</p>
+      <ol class="ladder"><li>Put the numbers into {m:A=frac(1, 2) r^2 theta}.</li><li>Then divide both sides by the number in front of {m:theta}.</li></ol>
+      <ul class="wrong"><li data-if="0.8;0.80">You forgot to multiply by 2. From {m:A=frac(1, 2) r^2 theta} you get {m:theta=frac(2A, r^2)}.</li><li data-if="8">You divided by r instead of {m:r^2}. The formula has {m:r^2}.</li></ul>
+      <div class="solution"><p>{m:20=frac(1, 2)*25*theta=12.5*theta}, so {m:theta=frac(20, 12.5)=1.6}. The angle is 1.6 radians.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">A sector of angle 1.5 radians has area 48 cm&sup2;. Find its radius, in cm. Type only the number.</p>
+      <ol class="ladder"><li>Put the numbers into {m:A=frac(1, 2) r^2 theta} and find {m:r^2}.</li><li>Then take the square root. The radius is positive.</li></ol>
+      <ul class="wrong"><li data-if="64">That is {m:r^2}. Take the square root to get r.</li><li data-if="5.66;5.657">You left out the 2 when you rearranged. From {m:A=frac(1, 2) r^2 theta} you get {m:r^2=frac(2A, theta)}.</li></ul>
+      <div class="solution"><p>{m:48=frac(1, 2)*r^2*1.5=0.75*r^2}, so {m:r^2=64}. The radius is positive, so {m:r=8}. The radius is 8 cm.</p></div>
+    </div>
+    <div class="q" data-answers="28.3" data-mode="value">
+      <p class="qtext">A sector has radius 9 cm and angle 40&deg;. Find its area, in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Change 40&deg; to radians first.</li><li>Then use {m:A=frac(1, 2) r^2 theta}.</li></ol>
+      <ul class="wrong"><li data-if="1620">You used 40 as the angle. The formula needs radians, so change 40&deg; first.</li><li data-if="56.5;56.55">You left out the half. The area is {m:frac(1, 2) r^2 theta}.</li></ul>
+      <div class="solution"><p>{m:40deg=frac(2*pi, 9)}. Then {m:A=frac(1, 2)*81*frac(2*pi, 9)=9*pi=28.3}. The area is 28.3 cm&sup2;.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. The area of a segment</h2>
+    <p>A {term:chord|chord} is a straight line joining two points of a circle. It cuts the circle into two {term:circle-segment|segments}. Here we find the area of the smaller one. To find it, take the sector OAB and cut off the triangle OAB. What is left is the segment.</p>
+    <figure class="figure-lg">{fig:radians-segment}<figcaption>Look at the shaded part. It lies between the straight chord AB and the curved arc AB. It is the sector OAB with the triangle OAB taken away. Here the radius is 10 and the angle at O is {m:frac(pi, 2)}.</figcaption></figure>
+    <p>The triangle OAB has two sides of length r with the angle {m:theta} between them. You met the area of a triangle in <a href="trig-triangles.html">Trigonometry in triangles</a>: it is {m:frac(1, 2) a b sin C}, which here is {m:frac(1, 2) r^2 sin theta}. The segment is the sector minus this triangle.</p>
+    <div class="key">
+      <p><b>Key idea:</b> segments and chords. The segment formula is not on the formula sheet, so build it from the sector and the triangle each time.</p>
+      <ul class="tick">
+        <li>Area of the segment = area of the sector minus area of the triangle: {m:frac(1, 2) r^2 theta-frac(1, 2) r^2 sin theta=frac(1, 2) r^2 (theta-sin theta)}. Here {m:theta} is in radians and between 0 and {m:pi}, so that the segment is the smaller part of the circle.</li>
+        <li>The chord AB has length {m:2 r sin(frac(theta, 2))}, for {m:theta} between 0 and {m:2*pi}. This comes from the right-angled triangle made by cutting the triangle OAB in half: the half-chord is {m:r sin(frac(theta, 2))}.</li>
+        <li>The perimeter of the segment is the arc plus the chord: {m:r theta+2 r sin(frac(theta, 2))}. It has no radii on its boundary.</li>
+        <li>Your calculator must be in radian mode to find {m:sin theta} for an angle that has no exact value.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the area of a segment</h3>
+      <p>A sector has radius 10 cm and angle {m:frac(pi, 2)}. Find the area of the segment cut off by the chord AB.</p>
+      <ol class="steps">
+        <li>The sector has area {m:frac(1, 2)*10^2*frac(pi, 2)=25*pi}, which is 78.54.</li>
+        <li>The triangle OAB has area {m:frac(1, 2)*10^2*sin(frac(pi, 2))=50}.</li>
+        <li>The segment has area {m:25*pi-50=28.5} cm&sup2; to 3 significant figures. This is the shaded part of the figure.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a chord and a larger angle</h3>
+      <p>A sector has radius 6 cm and angle {m:frac(2*pi, 3)}. Find the length of the chord AB and the area of the segment, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Chord: {m:2*6*sin(frac(pi, 3))=12*frac(sqrt(3), 2)=6*sqrt(3)=10.4}. The chord is 10.4 cm.</li>
+        <li>Segment: {m:frac(1, 2)*6^2=18}, so the area is {m:18*(theta-sin theta)} with {m:theta=frac(2*pi, 3)}.</li>
+        <li>{m:18*(2.0944-0.8660)=22.1}. The segment has area 22.1 cm&sup2;.</li>
+      </ol>
+      <!-- No figure: the figure above shows the same idea for a quarter turn. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the perimeter of a segment</h3>
+      <p>A sector has radius 9 cm and angle {m:frac(pi, 3)}. Find the perimeter of the segment, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The arc is {m:9*frac(pi, 3)=3*pi=9.425}.</li>
+        <li>The chord is {m:2*9*sin(frac(pi, 6))=18*frac(1, 2)=9}.</li>
+        <li>The perimeter is {m:9.425+9=18.4} cm. Do not add the radii: they are not on the boundary of the segment.</li>
+      </ol>
+      <!-- No figure: the figure above shows the same idea for a quarter turn. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A sector has radius 4 cm and angle {m:frac(pi, 3)}. Find the area of the segment, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>The sector has area {m:frac(1, 2)*4^2*frac(pi, 3)=}<span class="blank" data-answers="8pi/3;8&pi;/3;(8pi)/3;(8&pi;)/3;(8/3)pi;(8/3)&pi;;8pi/3rad;8pi/3radians;8&pi;/3rad;8&pi;/3radians;(8pi)/3rad;(8pi)/3radians;(8&pi;)/3rad;(8&pi;)/3radians;(8/3)pirad;(8/3)piradians;(8/3)&pi;rad;(8/3)&pi;radians">___</span>.</li>
+        <li>The triangle has area {m:frac(1, 2)*4^2*sin(frac(pi, 3))=}<span class="blank" data-answers="4sqrt(3);4sqrt3;4&radic;3;4*sqrt(3)">___</span>.</li>
+        <li>The segment has area {m:frac(8*pi, 3)-4*sqrt(3)=}<span class="blank" data-answers="1.45">___</span> cm&sup2;.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The sector is {m:frac(8*pi, 3)=8.378}. The triangle is {m:4*sqrt(3)=6.928}. The difference is 1.45 cm&sup2;, which is small, because the angle is small.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: segments and chords</h2>
+    <div class="q" data-answers="10.3" data-mode="value">
+      <p class="qtext">A sector has radius 6 cm and angle {m:frac(pi, 2)}. Find the area of the segment, in cm&sup2;, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Find the area of the sector and the area of the triangle.</li><li>The segment is the sector minus the triangle. For a quarter turn, {m:sin(frac(pi, 2))=1}.</li></ol>
+      <ul class="wrong"><li data-if="28.3;28.27">That is the area of the sector. Take away the area of the triangle to get the segment.</li><li data-if="18">That is the area of the triangle. The segment is the sector minus the triangle.</li></ul>
+      <div class="solution"><p>The sector is {m:frac(1, 2)*36*frac(pi, 2)=9*pi=28.27}. The triangle is {m:frac(1, 2)*36*1=18}. The segment is {m:28.27-18=10.3} cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-answers="11.3" data-mode="value">
+      <p class="qtext">A sector has radius 8 cm and angle {m:frac(pi, 2)}. Find the length of the chord AB, in cm, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The chord is {m:2 r sin(frac(theta, 2))}.</li><li>Halve the angle before you take the sine.</li></ol>
+      <ul class="wrong"><li data-if="16">You used {m:sin theta} instead of {m:sin(frac(theta, 2))}. The chord uses half the angle.</li></ul>
+      <div class="solution"><p>{m:2*8*sin(frac(pi, 4))=16*frac(sqrt(2), 2)=8*sqrt(2)=11.3}. The chord is 11.3 cm long.</p></div>
+    </div>
+    <div class="q" data-answers="23.9" data-mode="value">
+      <p class="qtext">A sector has radius 8 cm and angle {m:frac(pi, 2)}. Find the perimeter of the segment cut off by the chord AB, in cm, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The boundary of the segment is the arc and the chord.</li><li>The arc is {m:r theta}. The chord is {m:2 r sin(frac(theta, 2))}.</li></ol>
+      <ul class="wrong"><li data-if="12.6;12.57">That is the arc only. The segment also has the chord on its boundary.</li><li data-if="28.6;28.57">You added the two radii. They are not on the boundary of a segment: add the chord instead.</li></ul>
+      <div class="solution"><p>The arc is {m:8*frac(pi, 2)=4*pi=12.57}. The chord is {m:8*sqrt(2)=11.31}. The perimeter is {m:12.57+11.31=23.9} cm.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement gives the area of the segment cut off by a chord?</p>
+      <ul class="options">
+        <li data-why="The segment is smaller than the sector, because the triangle OAB is part of the sector but not part of the segment. Adding the triangle would make the area larger.">Area of the sector plus area of the triangle OAB</li>
+        <li data-correct>Area of the sector minus area of the triangle OAB</li>
+        <li data-why="Multiplying by sin of the angle does not remove the triangle. The triangle has to be taken away as a shape.">Area of the sector multiplied by sin of the angle</li>
+      </ul>
+      <ol class="ladder"><li>The sector is the segment together with something else. What is that other shape?</li><li>Look back at the shaded figure.</li></ol>
+      <div class="solution"><p>The sector OAB is made of the segment and the triangle OAB. So the segment is the sector minus the triangle.</p></div>
+    </div>
+    <div class="q" data-answers="1.98" data-mode="value">
+      <p class="qtext">A sector has radius 5 cm and angle 1 radian. Find the area of the segment, in cm&sup2;, to 3 significant figures. Use radian mode. Type only the number.</p>
+      <ol class="ladder"><li>The area is {m:frac(1, 2) r^2 (theta-sin theta)}. Find {m:sin 1} with the calculator in radian mode.</li><li>On the calculator on this page, type sin(1 &times; 180 &divide; &pi;).</li></ol>
+      <ul class="wrong"><li data-if="12.3;12.28">You used degree mode for {m:sin 1}. That gives {m:sin(1deg)=0.0175}. The angle is 1 radian, so find {m:sin 1} in radian mode, which is 0.841.</li></ul>
+      <div class="solution"><p>{m:sin 1=0.8415}. The area is {m:frac(1, 2)*25*(1-0.8415)=12.5*0.1585=1.98} cm&sup2;.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Graphs and equations in radians</h2>
+    <p>The graphs of sine, cosine and tangent have the same shapes in radians. Only the scale on the x-axis changes: 90&deg; becomes {m:frac(pi, 2)}, 180&deg; becomes {m:pi}, and 360&deg; becomes {m:2*pi}. The graph of sine below runs from 0 to {m:2*pi}.</p>
+    <figure class="figure-lg">{fig:radians-sin-graph}<figcaption>Look at the sine wave from 0 to {m:2*pi}. It crosses the x-axis at {m:pi} and {m:2*pi}. The dashed line {m:y=frac(1, 2)} cuts the wave at {m:frac(pi, 6)} and {m:frac(5*pi, 6)}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> graphs and equations in radians.</p>
+      <ul class="tick">
+        <li>The {term:period|period} of {m:sin x} and {m:cos x} is {m:2*pi}. The period of {m:tan x} is {m:pi}. The {term:amplitude|amplitude} of {m:sin x} and {m:cos x} is 1.</li>
+        <li>The graph of {m:tan x} has {term:asymptote|asymptotes} at {m:x=frac(pi, 2)+n*pi}, where n is any whole number: positive, negative or zero.</li>
+        <li>To find every solution of {m:sin x=k}, {m:cos x=k} or {m:tan x=k} in an interval, work as you did in degrees. Replace 180&deg; by {m:pi} and 360&deg; by {m:2*pi}.</li>
+      </ul>
+      <ol class="steps">
+        <li>Find the calculator value {m:alpha}, in radian mode. This is the {term:principal-value|principal value}. For sine and cosine, k must be between {m:-1} and 1 (including both). If it is not, there are no solutions.</li>
+        <li>Find the second solution. For {m:sin x=k} it is {m:pi-alpha}. For {m:cos x=k} it is {m:-alpha}, which is {m:2*pi-alpha} in an interval from 0 to {m:2*pi}. For {m:tan x=k} it is {m:alpha+pi}.</li>
+        <li>Add or subtract {m:2*pi} (or {m:pi} for tangent) until you have every angle in the interval. Keep an end point if the interval includes it.</li>
+      </ol>
+      <p>For an equation in {m:sin(2x)} or {m:cos(x+c)}, first work out the interval for the angle inside the bracket, as you did in degrees.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: sine, with an exact value</h3>
+      <p>Solve {m:sin x=frac(1, 2)} for {m:0<=x<=2*pi}.</p>
+      <ol class="steps">
+        <li>From the table, {m:alpha=frac(pi, 6)}.</li>
+        <li>The second solution is {m:pi-frac(pi, 6)=frac(5*pi, 6)}.</li>
+        <li>Adding {m:2*pi} to either takes it above {m:2*pi}, so there are no more.</li>
+        <li>The solutions are {m:x=frac(pi, 6)} and {m:x=frac(5*pi, 6)}. They are the two marked points in the figure.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: cosine, with an exact value</h3>
+      <p>Solve {m:cos x=-frac(sqrt(3), 2)} for {m:0<=x<=2*pi}.</p>
+      <ol class="steps">
+        <li>The calculator gives {m:alpha=cos^(-1)(-frac(sqrt(3), 2))=frac(5*pi, 6)}. It is in the interval.</li>
+        <li>The second solution is {m:2*pi-frac(5*pi, 6)=frac(7*pi, 6)}.</li>
+        <li>The solutions are {m:x=frac(5*pi, 6)} and {m:x=frac(7*pi, 6)}. These are in quadrants 2 and 3, where cosine is negative.</li>
+      </ol>
+      <!-- No figure: the sine figure above shows the same pairing idea, and the unit circle figure in lesson 2 shows the quadrants. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: tangent, with an exact value</h3>
+      <p>Solve {m:tan x=1} for {m:0<=x<=2*pi}.</p>
+      <ol class="steps">
+        <li>{m:alpha=frac(pi, 4)}.</li>
+        <li>Add the period: {m:frac(pi, 4)+pi=frac(5*pi, 4)}. Adding {m:pi} again gives {m:frac(9*pi, 4)}, which is above {m:2*pi}.</li>
+        <li>The solutions are {m:x=frac(pi, 4)} and {m:x=frac(5*pi, 4)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:radians-tan-graph}<figcaption>Look at the dashed line {m:y=1}. It cuts the tangent graph at {m:frac(pi, 4)} and at {m:frac(5*pi, 4)}. They are {m:pi} apart, the period of tangent.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a decimal answer in radians</h3>
+      <p>Solve {m:sin x=0.3} for {m:0<=x<=2*pi}. Give your answers to 3 significant figures.</p>
+      <ol class="steps">
+        <li>In radian mode, {m:alpha=sin^(-1)(0.3)=0.3047}.</li>
+        <li>The second solution is {m:pi-0.3047=2.8369}.</li>
+        <li>The solutions are {m:x=0.305} and {m:x=2.84}, to 3 significant figures.</li>
+      </ol>
+      <!-- No figure: the sine figure above shows the same pairing idea with a different height. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: an interval with negative angles</h3>
+      <p>Solve {m:cos x=frac(1, 2)} for {m:-pi<=x<=pi}.</p>
+      <ol class="steps">
+        <li>{m:alpha=frac(pi, 3)}.</li>
+        <li>The second solution is {m:-alpha=-frac(pi, 3)}. Both are inside the interval.</li>
+        <li>The solutions are {m:x=-frac(pi, 3)} and {m:x=frac(pi, 3)}.</li>
+      </ol>
+      <!-- No figure: cosine is symmetrical about the y-axis, so the two solutions are mirror images of each other. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a multiple of the angle</h3>
+      <p>Solve {m:sin(2x)=frac(1, 2)} for {m:0<=x<=pi}.</p>
+      <ol class="steps">
+        <li>The interval for {m:2x} is {m:0<=2x<=2*pi}.</li>
+        <li>In that interval, {m:2x=frac(pi, 6)} or {m:2x=frac(5*pi, 6)}.</li>
+        <li>Divide by 2: {m:x=frac(pi, 12)} or {m:x=frac(5*pi, 12)}.</li>
+      </ol>
+      <!-- No figure: this uses the sine figure above with the interval for 2x. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:sin x=frac(sqrt(3), 2)} for {m:0<=x<=2*pi}.</p>
+      <ol class="steps">
+        <li>From the table, {m:alpha=}<span class="blank" data-answers="pi/3;&pi;/3;(pi)/3;(&pi;)/3;(1/3)pi;(1/3)&pi;;pi/3rad;pi/3radians;&pi;/3rad;&pi;/3radians;(pi)/3rad;(pi)/3radians;(&pi;)/3rad;(&pi;)/3radians;(1/3)pirad;(1/3)piradians;(1/3)&pi;rad;(1/3)&pi;radians">___</span>.</li>
+        <li>The second solution is {m:pi-frac(pi, 3)=}<span class="blank" data-answers="2pi/3;2&pi;/3;(2pi)/3;(2&pi;)/3;(2/3)pi;(2/3)&pi;;2pi/3rad;2pi/3radians;2&pi;/3rad;2&pi;/3radians;(2pi)/3rad;(2pi)/3radians;(2&pi;)/3rad;(2&pi;)/3radians;(2/3)pirad;(2/3)piradians;(2/3)&pi;rad;(2/3)&pi;radians">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The solutions are {m:x=frac(pi, 3)} and {m:x=frac(2*pi, 3)}. Both are in quadrants where sine is positive.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: graphs and equations in radians</h2>
+    <div class="q" data-answers="2pi;2&pi;;2pirad;2piradians;2&pi;rad;2&pi;radians" data-mode="exact">
+      <p class="qtext">Write down the period of {m:y=sin x}, in radians, in terms of {m:pi}. Type it like 5pi.</p>
+      <ol class="ladder"><li>The period is the length of one full cycle of the wave.</li><li>In degrees it is 360&deg;. Change it to radians.</li></ol>
+      <ul class="wrong"><li data-if="pi;&pi;">That is the period of {m:tan x}. Sine repeats after a full turn, which is {m:2*pi}.</li><li data-if="360">That is the period in degrees. The question asks for radians.</li></ul>
+      <div class="solution"><p>One full cycle of sine is one full turn, {m:360deg=2*pi} radians. The period is {m:2*pi}.</p></div>
+    </div>
+    <div class="q" data-answers="3pi/2;3&pi;/2;(3pi)/2;(3&pi;)/2;(3/2)pi;(3/2)&pi;;3pi/2rad;3pi/2radians;3&pi;/2rad;3&pi;/2radians;(3pi)/2rad;(3pi)/2radians;(3&pi;)/2rad;(3&pi;)/2radians;(3/2)pirad;(3/2)piradians;(3/2)&pi;rad;(3/2)&pi;radians" data-mode="exact">
+      <p class="qtext">The graph of {m:y=tan x} has an asymptote at {m:x=frac(pi, 2)}. Find the next asymptote to the right, in terms of {m:pi}. Type it like 5pi/4.</p>
+      <ol class="ladder"><li>The period of tangent is {m:pi}.</li><li>Add one period to the asymptote you know.</li></ol>
+      <ul class="wrong"><li data-if="pi;&pi;">At {m:pi} the tangent is 0, because {m:sin pi=0}. It is not an asymptote. Add a period of {m:pi} to {m:frac(pi, 2)}.</li><li data-if="2pi;2&pi;">That is the period of sine. Tangent repeats every {m:pi}, so the next asymptote is one {m:pi} to the right of {m:frac(pi, 2)}.</li></ul>
+      <div class="solution"><p>{m:frac(pi, 2)+pi=frac(3*pi, 2)}. At {m:frac(3*pi, 2)} the cosine is 0, so the tangent has no value.</p></div>
+    </div>
+    <div class="q" data-answers="pi/3 or 5pi/3;&pi;/3 or 5&pi;/3;pi/3 and 5pi/3;&pi;/3 and 5&pi;/3;pi/3, 5pi/3;&pi;/3, 5&pi;/3;pi/3,5pi/3;&pi;/3,5&pi;/3;5pi/3 or pi/3;5&pi;/3 or &pi;/3;5pi/3 and pi/3;5&pi;/3 and &pi;/3;5pi/3, pi/3;5&pi;/3, &pi;/3;5pi/3,pi/3;5&pi;/3,&pi;/3" data-mode="exact">
+      <p class="qtext">Solve {m:cos x=frac(1, 2)} for {m:0<=x<=2*pi}. Give your answers in terms of {m:pi}. Type your answers like pi/4 or 3pi/4.</p>
+      <ol class="ladder"><li>The value {m:alpha} is in the table. The second solution for cosine is {m:2*pi-alpha}.</li><li>Check that both are between 0 and {m:2*pi}.</li></ol>
+      <ul class="wrong"><li data-if="pi/3;&pi;/3;(pi)/3;(&pi;)/3;(1/3)pi;(1/3)&pi;">That is one solution. The line {m:y=frac(1, 2)} cuts the cosine wave twice between 0 and {m:2*pi}.</li><li data-if="pi/3 or 2pi/3;&pi;/3 or 2&pi;/3;pi/3 and 2pi/3;&pi;/3 and 2&pi;/3;pi/3, 2pi/3;&pi;/3, 2&pi;/3;pi/3,2pi/3;&pi;/3,2&pi;/3;2pi/3 or pi/3;2&pi;/3 or &pi;/3;2pi/3 and pi/3;2&pi;/3 and &pi;/3;2pi/3, pi/3;2&pi;/3, &pi;/3;2pi/3,pi/3;2&pi;/3,&pi;/3">You used {m:pi-alpha}, the pair for sine. For cosine the pair is {m:2*pi-alpha}.</li></ul>
+      <div class="solution"><p>{m:alpha=cos^(-1)(frac(1, 2))=frac(pi, 3)}. The second solution is {m:2*pi-frac(pi, 3)=frac(5*pi, 3)}. So {m:x=frac(pi, 3)} or {m:x=frac(5*pi, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="0.927 or 2.21" data-mode="value">
+      <p class="qtext">Solve {m:sin x=0.8} for {m:0<=x<=2*pi}. Give your answers to 3 significant figures. Type your answers like 1.11 or 2.22.</p>
+      <figure class="qfig-lg">{fig:radians-q-sin-line}</figure>
+      <ol class="ladder"><li>Use radian mode for the calculator value. The second solution for sine is {m:pi-alpha}.</li><li>On the calculator on this page, {m:sin^(-1)} gives degrees: multiply by {m:frac(pi, 180)} to get radians.</li></ol>
+      <ul class="wrong"><li data-if="0.927">That is one solution. The line cuts the wave twice, so there is a second solution.</li><li data-if="0.927 or 5.36">You used {m:2*pi-alpha}, the pair for cosine. For sine the pair is {m:pi-alpha}.</li><li data-if="53.1 or 126.9">Your calculator was in degree mode. The interval is in radians, so the answers must be in radians.</li></ul>
+      <div class="solution"><p>In radian mode, {m:sin^(-1)(0.8)=0.927}. The second solution is {m:pi-0.9273=2.21}. So {m:x=0.927} or {m:x=2.21}.</p></div>
+    </div>
+    <div class="q" data-answers="3pi/4 or 7pi/4;3&pi;/4 or 7&pi;/4;3pi/4 and 7pi/4;3&pi;/4 and 7&pi;/4;3pi/4, 7pi/4;3&pi;/4, 7&pi;/4;3pi/4,7pi/4;3&pi;/4,7&pi;/4;7pi/4 or 3pi/4;7&pi;/4 or 3&pi;/4;7pi/4 and 3pi/4;7&pi;/4 and 3&pi;/4;7pi/4, 3pi/4;7&pi;/4, 3&pi;/4;7pi/4,3pi/4;7&pi;/4,3&pi;/4" data-mode="exact">
+      <p class="qtext">Solve {m:tan x=-1} for {m:0<=x<=2*pi}. Give your answers in terms of {m:pi}. Type your answers like pi/4 or 3pi/4.</p>
+      <ol class="ladder"><li>The calculator value is {m:alpha=-frac(pi, 4)}. Is it inside the interval?</li><li>Add {m:pi} to it, and add {m:2*pi} to it, to find the angles that are inside.</li></ol>
+      <ul class="wrong"><li data-if="-pi/4 or 3pi/4;-&pi;/4 or 3&pi;/4;-pi/4 and 3pi/4;-&pi;/4 and 3&pi;/4;-pi/4, 3pi/4;-&pi;/4, 3&pi;/4;-pi/4,3pi/4;-&pi;/4,3&pi;/4;3pi/4 or -pi/4;3&pi;/4 or -&pi;/4;3pi/4 and -pi/4;3&pi;/4 and -&pi;/4;3pi/4, -pi/4;3&pi;/4, -&pi;/4;3pi/4,-pi/4;3&pi;/4,-&pi;/4">{m:-frac(pi, 4)} is not in the interval, which starts at 0. Add {m:2*pi} to it to bring it inside.</li></ul>
+      <div class="solution"><p>{m:alpha=-frac(pi, 4)} is below 0. Add {m:pi}: {m:-frac(pi, 4)+pi=frac(3*pi, 4)}. Add {m:2*pi}: {m:-frac(pi, 4)+2*pi=frac(7*pi, 4)}. So {m:x=frac(3*pi, 4)} or {m:x=frac(7*pi, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="pi/12 or 5pi/12;&pi;/12 or 5&pi;/12;pi/12 and 5pi/12;&pi;/12 and 5&pi;/12;pi/12, 5pi/12;&pi;/12, 5&pi;/12;pi/12,5pi/12;&pi;/12,5&pi;/12;5pi/12 or pi/12;5&pi;/12 or &pi;/12;5pi/12 and pi/12;5&pi;/12 and &pi;/12;5pi/12, pi/12;5&pi;/12, &pi;/12;5pi/12,pi/12;5&pi;/12,&pi;/12" data-mode="exact">
+      <p class="qtext">Solve {m:sin(2x)=frac(1, 2)} for {m:0<=x<=pi}. Give your answers in terms of {m:pi}. Type your answers like pi/4 or 3pi/4.</p>
+      <ol class="ladder"><li>Write the interval for {m:2x}.</li><li>Solve for {m:2x} first, then divide each solution by 2.</li></ol>
+      <ul class="wrong"><li data-if="pi/6 or 5pi/6;&pi;/6 or 5&pi;/6;pi/6 and 5pi/6;&pi;/6 and 5&pi;/6;pi/6, 5pi/6;&pi;/6, 5&pi;/6;pi/6,5pi/6;&pi;/6,5&pi;/6;5pi/6 or pi/6;5&pi;/6 or &pi;/6;5pi/6 and pi/6;5&pi;/6 and &pi;/6;5pi/6, pi/6;5&pi;/6, &pi;/6;5pi/6,pi/6;5&pi;/6,&pi;/6">These are the values of {m:2x}. Divide each by 2 to get x.</li></ul>
+      <div class="solution"><p>The interval for {m:2x} is {m:0<=2x<=2*pi}. There, {m:2x=frac(pi, 6)} or {m:frac(5*pi, 6)}. Divide by 2: {m:x=frac(pi, 12)} or {m:x=frac(5*pi, 12)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>7. Small angles</h2>
+    <p>When {m:theta} is small, the sine of {m:theta} is close to {m:theta} itself, if {m:theta} is in radians. The same is true for the tangent. The cosine is close to 1, with a small correction. The graph below shows the first fact: the curve {m:y=sin x} and the line {m:y=x} lie almost on top of each other near 0.</p>
+    <figure class="figure-lg">{fig:radians-small-angle}<figcaption>Look at the two curves near 0: they are hard to tell apart. At {m:x=1} they have come apart. The line is at height 1 and the sine curve is at {m:sin 1=0.841}.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the small-angle approximations. <b>[Given]</b> They are on the formula sheet.</p>
+      <ul class="tick">
+        <li>For a small angle {m:theta}, in radians: {m:sin theta~=theta}, {m:tan theta~=theta} and {m:cos theta~=1-frac(theta^2, 2)}.</li>
+        <li>The smaller {m:theta} is, the better the approximation. They only work in radians.</li>
+        <li>If the angle is in degrees, change it to radians first.</li>
+      </ul>
+    </div>
+    <p>This table shows how the approximations behave. Each value is to 4 decimal places.</p>
+    <table class="data">
+      <thead><tr><th scope="col">{m:theta}</th><th scope="col">{m:sin theta}</th><th scope="col">{m:tan theta}</th><th scope="col">{m:cos theta}</th><th scope="col">{m:1-frac(theta^2, 2)}</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">0.1</th><td>0.0998</td><td>0.1003</td><td>0.9950</td><td>0.9950</td></tr>
+        <tr><th scope="row">0.5</th><td>0.4794</td><td>0.5463</td><td>0.8776</td><td>0.8750</td></tr>
+        <tr><th scope="row">1</th><td>0.8415</td><td>1.5574</td><td>0.5403</td><td>0.5000</td></tr>
+      </tbody>
+    </table>
+    <p>At {m:theta=0.1} the approximations are very good. At {m:theta=1} they are poor, especially for tangent. A small angle means a number such as 0.1 or less, not 1.</p>
+    <div class="worked">
+      <h3>Worked example: an approximate value</h3>
+      <p>Use a small-angle approximation to estimate {m:sin 0.2}. How far is it from the true value?</p>
+      <ol class="steps">
+        <li>{m:sin 0.2~=0.2}.</li>
+        <li>The true value is {m:sin 0.2=0.1987}. The estimate is too big by about {m:0.2-0.1987=0.0013}.</li>
+        <li>That error is under 1% of the true value.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an angle in degrees</h3>
+      <p>Use a small-angle approximation to estimate {m:sin(4deg)}, to 3 significant figures.</p>
+      <ol class="steps">
+        <li>Change to radians: {m:4deg=4*frac(pi, 180)=0.0698}.</li>
+        <li>{m:sin(4deg)~=0.0698}.</li>
+        <li>The calculator gives {m:sin(4deg)=0.0698} too. Using 4 as the angle would have given 4, which is not close.</li>
+      </ol>
+      <!-- No figure: this is a calculation. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the cosine approximation</h3>
+      <p>Use {m:cos theta~=1-frac(theta^2, 2)} to estimate {m:cos 0.3}.</p>
+      <ol class="steps">
+        <li>{m:1-frac(0.3^2, 2)=1-frac(0.09, 2)=1-0.045=0.955}.</li>
+        <li>The true value is {m:cos 0.3=0.9553}. The estimate is close.</li>
+      </ol>
+      <!-- No figure: this is a calculation. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: a limit of a ratio</h3>
+      <p>For small {m:theta}, use an approximation to find the number that {m:frac(tan(5*theta), 2*theta)} is close to.</p>
+      <ol class="steps">
+        <li>{m:tan(5*theta)~=5*theta}, because {m:5*theta} is also a small angle.</li>
+        <li>So {m:frac(tan(5*theta), 2*theta)~=frac(5*theta, 2*theta)=frac(5, 2)}. The {m:theta} cancels, as long as {m:theta} is not 0.</li>
+        <li>The ratio is close to {m:frac(5, 2)}.</li>
+      </ol>
+      <!-- No figure: this is algebra. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>For small {m:theta}, use an approximation to find the number that {m:frac(sin(4*theta), 2*theta)} is close to.</p>
+      <ol class="steps">
+        <li>{m:sin(4*theta)~=}<span class="blank" data-answers="4theta;4*theta;theta*4">___</span>.</li>
+        <li>So the ratio is close to {m:frac(4*theta, 2*theta)=}<span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:sin(4*theta)~=4*theta}, so the ratio is close to {m:frac(4*theta, 2*theta)=2}. Check with {m:theta=0.01}: {m:frac(sin 0.04, 0.02)=1.9995}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: small angles</h2>
+    <div class="q" data-answers="0.99875" data-mode="value">
+      <p class="qtext">Use {m:cos theta~=1-frac(theta^2, 2)} to estimate {m:cos 0.05}. Type only the number.</p>
+      <ol class="ladder"><li>Square 0.05, then halve it.</li><li>Take the answer away from 1.</li></ol>
+      <ul class="wrong"><li data-if="0.9975">You did not halve {m:theta^2}. The approximation has {m:frac(theta^2, 2)}.</li><li data-if="0.975">You halved {m:theta}. The approximation has {m:theta^2}, divided by 2.</li></ul>
+      <div class="solution"><p>{m:0.05^2=0.0025}, and half of that is 0.00125. So {m:cos 0.05~=1-0.00125=0.99875}.</p></div>
+    </div>
+    <div class="q" data-answers="0.105" data-mode="value">
+      <p class="qtext">Use {m:sin theta~=theta} to estimate {m:sin(6deg)}. Give your answer to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The approximation needs radians. Change 6&deg; to radians first.</li><li>Multiply 6 by {m:frac(pi, 180)}.</li></ol>
+      <ul class="wrong"><li data-if="6">You used 6 as the angle. The approximation needs radians, so change 6&deg; first.</li></ul>
+      <div class="solution"><p>{m:6deg=6*frac(pi, 180)=frac(pi, 30)=0.1047}. So {m:sin(6deg)~=0.105} to 3 significant figures.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">For small {m:theta}, find the number that {m:frac(sin(5*theta), theta)} is close to. Type only the number.</p>
+      <ol class="ladder"><li>Use {m:sin x~=x} with x equal to {m:5*theta}.</li><li>Then cancel {m:theta}.</li></ol>
+      <ul class="wrong"><li data-if="1">You used {m:frac(sin theta, theta)}. Here the angle is {m:5*theta}, so the sine is close to {m:5*theta}.</li></ul>
+      <div class="solution"><p>{m:sin(5*theta)~=5*theta}, so {m:frac(sin(5*theta), theta)~=frac(5*theta, theta)=5}.</p></div>
+    </div>
+    <div class="q" data-answers="2/3" data-mode="value">
+      <p class="qtext">For small {m:theta}, find the number that {m:frac(tan(2*theta), sin(3*theta))} is close to. Type it as a fraction like 3/7.</p>
+      <ol class="ladder"><li>Use an approximation on the top and on the bottom.</li><li>The tangent of a small angle is close to the angle, and so is the sine.</li></ol>
+      <ul class="wrong"><li data-if="3/2;1.5">You turned the fraction upside down. The tangent is on the top: {m:frac(2*theta, 3*theta)}.</li></ul>
+      <div class="solution"><p>{m:tan(2*theta)~=2*theta} and {m:sin(3*theta)~=3*theta}. So the ratio is close to {m:frac(2*theta, 3*theta)=frac(2, 3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why can you not estimate {m:sin(30deg)} by writing {m:sin theta~=theta} with {m:theta=30}?</p>
+      <ul class="options">
+        <li data-correct>The angle must be in radians. 30&deg; is about 0.52 radians, so the estimate would be about 0.52</li>
+        <li data-why="The sine of 30 degrees is 0.5. A sine can never be bigger than 1.">The sine of 30&deg; is exactly 30</li>
+        <li data-why="The small-angle approximations work for sine, for tangent and for cosine, with the right formula for each.">The approximation only works for cosine</li>
+      </ul>
+      <ol class="ladder"><li>What unit does the approximation need?</li><li>Change 30&deg; into that unit.</li></ol>
+      <div class="solution"><p>{m:30deg=frac(pi, 6)=0.524} radians. So {m:sin(30deg)~=0.524}. The true value is 0.5, so this is not a very good estimate: 30&deg; is not very small.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from degrees to radians, and back</h2>
+    <p>You have turned degrees into radians. Now go the other way, and use the arc to find an angle. Each direction undoes the other.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From an angle in degrees to an angle in radians. Multiply by {m:frac(pi, 180)}.</p><p>{m:120deg=frac(2*pi, 3)} radians.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From an angle in radians to an angle in degrees. Multiply by {m:frac(180, pi)}. An angle can also come from an arc: {m:theta=frac(s, r)}.</p><p>{m:frac(2*pi, 3)} radians is {m:120deg}.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from an arc to degrees</h3>
+      <p>A circle has radius 6 cm. An arc of length {m:4*pi} cm is cut from it. Find the angle at the centre, in degrees.</p>
+      <ol class="steps">
+        <li>{m:theta=frac(s, r)=frac(4*pi, 6)=frac(2*pi, 3)} radians.</li>
+        <li>In degrees: {m:frac(2*pi, 3)*frac(180, pi)=120}.</li>
+        <li>The angle is {m:120deg}. A third of the circumference is {m:frac(1, 3)*2*pi*6=4*pi}, so that fits.</li>
+      </ol>
+      <!-- No figure: this is the reverse of the arc length figure in lesson 3. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="57.3" data-mode="value">
+      <p class="qtext">The arc of a sector is exactly as long as the radius. Find the angle at the centre, in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>What is the angle in radians, from {m:theta=frac(s, r)}?</li><li>Change that angle to degrees.</li></ol>
+      <ul class="wrong"><li data-if="1">That is the angle in radians. The question asks for degrees: multiply by {m:frac(180, pi)}.</li></ul>
+      <div class="solution"><p>{m:theta=frac(r, r)=1} radian. In degrees, {m:1*frac(180, pi)=57.3}.</p></div>
+    </div>
+    <div class="q" data-answers="120" data-mode="value">
+      <p class="qtext">An arc of length {m:4*pi} cm is cut from a circle of radius 6 cm. Find the angle at the centre, in degrees. Type only the number.</p>
+      <ol class="ladder"><li>Find the angle in radians from {m:theta=frac(s, r)}.</li><li>Then multiply by {m:frac(180, pi)}.</li></ol>
+      <ul class="wrong"><li data-if="2.09;2.094">That is the angle in radians. Multiply by {m:frac(180, pi)} to get degrees.</li></ul>
+      <div class="solution"><p>{m:theta=frac(4*pi, 6)=frac(2*pi, 3)}. In degrees that is {m:frac(2*pi, 3)*frac(180, pi)=120}.</p></div>
+    </div>
+    <div class="q" data-answers="85.9" data-mode="value">
+      <p class="qtext">Write 1.5 radians in degrees, to 1 decimal place. Type only the number.</p>
+      <ol class="ladder"><li>Multiply by {m:frac(180, pi)}.</li><li>There is no {m:pi} in the angle, so use the {m:pi} key.</li></ol>
+      <ul class="wrong"><li data-if="0.0262;0.026">You multiplied by {m:frac(pi, 180)}. That changes degrees to radians. Here you need {m:frac(180, pi)}.</li></ul>
+      <div class="solution"><p>{m:1.5*frac(180, pi)=85.9} to 1 decimal place.</p></div>
+    </div>
+    <div class="q" data-answers="5pi/8;5&pi;/8;(5pi)/8;(5&pi;)/8;(5/8)pi;(5/8)&pi;;5pi/8rad;5pi/8radians;5&pi;/8rad;5&pi;/8radians;(5pi)/8rad;(5pi)/8radians;(5&pi;)/8rad;(5&pi;)/8radians;(5/8)pirad;(5/8)piradians;(5/8)&pi;rad;(5/8)&pi;radians" data-mode="exact">
+      <p class="qtext">Write 112.5&deg; in radians, in terms of {m:pi}. Type it like 3pi/4.</p>
+      <ol class="ladder"><li>Multiply by {m:frac(pi, 180)} and cancel.</li><li>{m:frac(112.5, 180)=0.625}. Write 0.625 as a fraction.</li></ol>
+      <ul class="wrong"><li data-if="112.5pi;112.5&pi;">You did not divide by 180. Multiply 112.5 by {m:frac(pi, 180)}.</li></ul>
+      <div class="solution"><p>{m:112.5*frac(pi, 180)=frac(112.5*pi, 180)=frac(5*pi, 8)}, because {m:frac(112.5, 180)=0.625=frac(5, 8)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ana says:</b> &ldquo;A sector has radius 6 and angle 60&deg;. The arc length is {m:r theta=6*60=360}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The angle must be in radians. 60&deg; is &pi;/3, so the arc is 2&pi;</li>
+        <li data-why="The formula for arc length is s = r times theta. A half belongs in the formula for area.">The formula should have a half in it</li>
+        <li data-why="The radius is not squared in the arc length formula. Squaring is part of the area formula.">The radius should be squared</li>
+      </ul>
+      <ol class="ladder"><li>Check the unit of the angle in the formula {m:s=r theta}.</li><li>An arc of 360 would be longer than the whole circumference.</li></ol>
+      <div class="solution"><p>{m:s=r theta} needs {m:theta} in radians. {m:60deg=frac(pi, 3)}, so {m:s=6*frac(pi, 3)=2*pi}. The whole circumference is {m:12*pi=37.7}, so 360 is far too big.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> &ldquo;A sector has radius 4 and angle 0.5. The area is {m:frac(1, 2)*4*0.5=1}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not square the radius. The area is 4</li>
+        <li data-why="The area formula does have a half in it. Ben used it correctly.">He should not have halved</li>
+        <li data-why="The angle 0.5 is already in radians, because it has no degree sign. It does not need changing.">The angle should be changed to degrees</li>
+      </ul>
+      <ol class="ladder"><li>Write down the area formula and compare it with Ben&rsquo;s working.</li><li>Is there a square in it?</li></ol>
+      <div class="solution"><p>{m:A=frac(1, 2) r^2 theta=frac(1, 2)*16*0.5=4}. Ben used {m:r} where the formula has {m:r^2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cam says:</b> &ldquo;{m:sin x=frac(1, 2)} for {m:0<=x<=2*pi}. {m:alpha=frac(pi, 6)}, and the second solution is {m:2*pi-frac(pi, 6)=frac(11*pi, 6)}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>For sine the second solution is &pi; &minus; &pi;/6 = 5&pi;/6, not 2&pi; &minus; &pi;/6</li>
+        <li data-why="The first solution pi/6 is correct, because sin(pi/6) = 1/2.">The first solution should not be &pi;/6</li>
+        <li data-why="The interval 0 to 2 pi is the correct one for this question. It is the second solution that is wrong.">The interval should be 0 to &pi;</li>
+      </ul>
+      <ol class="ladder"><li>Find {m:sin(frac(11*pi, 6))}. Is it {m:frac(1, 2)}?</li><li>Which pair belongs to sine, and which to cosine?</li></ol>
+      <div class="solution"><p>{m:sin(frac(11*pi, 6))=-frac(1, 2)}, so {m:frac(11*pi, 6)} is not a solution. The sine pair is {m:alpha} and {m:pi-alpha}, so the solutions are {m:frac(pi, 6)} and {m:frac(5*pi, 6)}. Cam used the pair for cosine.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dee says:</b> &ldquo;For small {m:theta}, {m:cos theta~=1-theta^2}. So {m:cos 0.2~=1-0.04=0.96}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The approximation has &theta;&sup2; divided by 2, so the estimate is 0.98</li>
+        <li data-why="The angle 0.2 is in radians and is small, so the approximation can be used.">0.2 is too big to use the approximation</li>
+        <li data-why="The approximation has a minus sign. cos of a small angle is a little less than 1.">The sign should be plus</li>
+      </ul>
+      <ol class="ladder"><li>Write down the small-angle approximation for cosine.</li><li>Compare it with Dee&rsquo;s.</li></ol>
+      <div class="solution"><p>{m:cos theta~=1-frac(theta^2, 2)}, so {m:cos 0.2~=1-frac(0.04, 2)=1-0.02=0.98}. The true value is {m:cos 0.2=0.9801}. Dee&rsquo;s 0.96 is not close.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eli says:</b> &ldquo;The area of the segment is the sector minus the triangle, so {m:frac(1, 2) r^2 theta-frac(1, 2) r^2 cos theta}.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="The segment is the sector minus the triangle. Eli has that right.">The segment is not the sector minus the triangle</li>
+        <li data-correct>The area of the triangle is &frac12;r&sup2; sin &theta;, not &frac12;r&sup2; cos &theta;</li>
+        <li data-why="The angle theta in the sector formula must be in radians. It is not the problem here.">The sector area should use degrees</li>
+      </ul>
+      <ol class="ladder"><li>The triangle has two sides of length r with the angle {m:theta} between them.</li><li>Which area formula uses two sides and the angle between them?</li></ol>
+      <div class="solution"><p>The area of the triangle is {m:frac(1, 2) a b sin C=frac(1, 2) r^2 sin theta}. So the segment is {m:frac(1, 2) r^2 (theta-sin theta)}. Check with {m:theta=frac(pi, 2)}: the triangle has area {m:frac(1, 2) r^2}, but {m:cos(frac(pi, 2))=0} would give 0.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="54" data-mode="value">
+      <p class="qtext">Write {m:frac(3*pi, 10)} radians in degrees. Type only the number.</p>
+      <ol class="ladder"><li>Multiply by {m:frac(180, pi)}.</li><li>The {m:pi} cancels. Then simplify the fraction.</li></ol>
+      <ul class="wrong"><li data-if="0.942;0.9425">That is {m:frac(3*pi, 10)} as a decimal, which is still in radians. Multiply by {m:frac(180, pi)} to get degrees.</li></ul>
+      <div class="solution"><p>{m:frac(3*pi, 10)*frac(180, pi)=frac(3*180, 10)=54}. So the angle is {m:54deg}.</p></div>
+    </div>
+    <div class="q" data-answers="pi/3 or 4pi/3;&pi;/3 or 4&pi;/3;pi/3 and 4pi/3;&pi;/3 and 4&pi;/3;pi/3, 4pi/3;&pi;/3, 4&pi;/3;pi/3,4pi/3;&pi;/3,4&pi;/3;4pi/3 or pi/3;4&pi;/3 or &pi;/3;4pi/3 and pi/3;4&pi;/3 and &pi;/3;4pi/3, pi/3;4&pi;/3, &pi;/3;4pi/3,pi/3;4&pi;/3,&pi;/3" data-mode="exact">
+      <p class="qtext">Solve {m:tan x=sqrt(3)} for {m:0<=x<=2*pi}. Give your answers in terms of {m:pi}. Type your answers like pi/4 or 3pi/4.</p>
+      <ol class="ladder"><li>Use the table to find {m:alpha}. The second solution for tangent is {m:alpha+pi}.</li><li>Check that both are inside the interval.</li></ol>
+      <ul class="wrong"><li data-if="pi/3;&pi;/3;(pi)/3;(&pi;)/3;(1/3)pi;(1/3)&pi;">That is one solution. The tangent repeats every {m:pi}, so there is a second solution in the interval.</li><li data-if="pi/3 or 2pi/3;&pi;/3 or 2&pi;/3;pi/3 and 2pi/3;&pi;/3 and 2&pi;/3;pi/3, 2pi/3;&pi;/3, 2&pi;/3;pi/3,2pi/3;&pi;/3,2&pi;/3;2pi/3 or pi/3;2&pi;/3 or &pi;/3;2pi/3 and pi/3;2&pi;/3 and &pi;/3;2pi/3, pi/3;2&pi;/3, &pi;/3;2pi/3,pi/3;2&pi;/3,&pi;/3">You used {m:pi-alpha}, the pair for sine. For tangent the next solution is {m:alpha+pi}.</li></ul>
+      <div class="solution"><p>{m:alpha=tan^(-1)(sqrt(3))=frac(pi, 3)}. Add {m:pi}: {m:frac(pi, 3)+pi=frac(4*pi, 3)}. So {m:x=frac(pi, 3)} or {m:x=frac(4*pi, 3)}.</p></div>
+    </div>
+    <div class="q" data-answers="1.6" data-mode="value">
+      <p class="qtext">A sector has radius 5 cm and perimeter 18 cm. Find the angle at the centre, in radians. Type only the number.</p>
+      <ol class="ladder"><li>The perimeter is {m:2r+s}. Find the arc length s.</li><li>Then use {m:theta=frac(s, r)}.</li></ol>
+      <ul class="wrong"><li data-if="3.6">You divided the whole perimeter by the radius. The perimeter includes the two radii, so take them away first.</li><li data-if="2.6">You took away one radius. The perimeter includes two radii.</li></ul>
+      <div class="solution"><p>The arc is {m:18-2*5=8} cm. Then {m:theta=frac(8, 5)=1.6}. The angle is 1.6 radians.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">A sector has radius 4 cm and an arc of length 6 cm. Find its area, in cm&sup2;. Type only the number.</p>
+      <ol class="ladder"><li>Since {m:s=r theta}, the area {m:frac(1, 2) r^2 theta} can be written {m:frac(1, 2) r s}.</li><li>Put the radius and the arc length in.</li></ol>
+      <ul class="wrong"><li data-if="24">You left out the half. The area is {m:frac(1, 2) r s}.</li></ul>
+      <div class="solution"><p>{m:A=frac(1, 2)*4*6=12}. Check: {m:theta=frac(6, 4)=1.5} and {m:frac(1, 2)*16*1.5=12}. The area is 12 cm&sup2;.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which angle is equal to {m:frac(5*pi, 4)} radians?</p>
+      <ul class="options">
+        <li data-why="135 degrees is 3&pi;/4 radians. Multiply 135 by &pi;/180 to check.">135&deg;</li>
+        <li data-why="250 degrees is 25&pi;/18 radians, which is not 5&pi;/4. Multiply 250 by &pi;/180 to check.">250&deg;</li>
+        <li data-correct>225&deg;</li>
+      </ul>
+      <ol class="ladder"><li>Multiply {m:frac(5*pi, 4)} by {m:frac(180, pi)}.</li><li>The {m:pi} cancels.</li></ol>
+      <div class="solution"><p>{m:frac(5*pi, 4)*frac(180, pi)=frac(5*180, 4)=225}. So the angle is {m:225deg}, which is {m:180deg+45deg}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="2pi;2&pi;;2pirad;2piradians;2&pi;rad;2&pi;radians" data-mode="exact" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] The diagram shows a sector OAB of a circle with centre O and radius 12 cm. The angle AOB is {m:frac(pi, 6)} radians. The tangent to the circle at A meets OB extended at T. Find the exact length of the arc AB, in cm. Type it like 5pi/3.</p>
+      <figure class="qfig-lg">{fig:radians-q-tangent}</figure>
+      <ol class="ladder"><li>Use {m:s=r theta}.</li><li>Cancel the 6 on the bottom with a factor of 6 in the radius.</li></ol>
+      <ul class="wrong"><li data-if="pi/6;&pi;/6;(pi)/6;(&pi;)/6;(1/6)pi;(1/6)&pi;">That is the angle. Multiply it by the radius to get the arc length.</li></ul>
+      <div class="solution">
+        <p>{m:s=r theta=12*frac(pi, 6)=2*pi}. The arc is {m:2*pi} cm long.</p>
+        <ul class="markscheme"><li><b>M1</b> for {m:s=12*frac(pi, 6)}</li><li><b>A1</b> for {m:2*pi}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4sqrt(3);4sqrt3;4&radic;3;4*sqrt(3)" data-mode="exact" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] Find the exact length of AT, in cm. Type it like 5sqrt(2).</p>
+      <ol class="ladder"><li>The tangent at A is at right angles to the radius OA. So OAT is a right-angled triangle.</li><li>Use the tangent ratio. Write the answer without a root on the bottom of a fraction.</li></ol>
+      <ul class="wrong"><li data-if="6">You used sine. AT is opposite the angle at O and OA is next to it, so the ratio is tangent.</li><li data-if="12sqrt(3);12sqrt3;12&radic;3">You used {m:tan(60deg)}. The angle at O is {m:frac(pi, 6)}, which is 30&deg;.</li></ul>
+      <div class="solution">
+        <p>{m:tan(frac(pi, 6))=frac(AT, 12)}, so {m:AT=12*frac(1, sqrt(3))=frac(12*sqrt(3), 3)=4*sqrt(3)}. The length AT is {m:4*sqrt(3)} cm.</p>
+        <ul class="markscheme"><li><b>M1</b> for {m:tan(frac(pi, 6))=frac(AT, 12)}</li><li><b>M1</b> for {m:AT=12*frac(1, sqrt(3))}</li><li><b>A1</b> for {m:4*sqrt(3)}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3.87" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(c)</b> [3 marks] Find the area of the shaded region R, bounded by the arc AB and the straight lines BT and TA. Give your answer in cm&sup2; to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>The region is the triangle OAT with the sector OAB taken away.</li><li>Use your answer to part (b) for the triangle, and {m:frac(1, 2) r^2 theta} for the sector.</li></ol>
+      <ul class="wrong"><li data-if="37.7;37.70">That is the area of the sector OAB only. Take it away from the triangle OAT.</li><li data-if="41.6;41.57">That is the area of the whole triangle OAT. The region R is the triangle with the sector cut out.</li></ul>
+      <div class="solution">
+        <p>The triangle OAT has area {m:frac(1, 2)*12*4*sqrt(3)=24*sqrt(3)=41.57}. The sector OAB has area {m:frac(1, 2)*12^2*frac(pi, 6)=12*pi=37.70}. So R has area {m:41.57-37.70=3.87} cm&sup2;.</p>
+        <ul class="markscheme"><li><b>M1</b> for the area of triangle OAT, {m:frac(1, 2)*12*4*sqrt(3)}</li><li><b>M1</b> for the area of sector OAB, {m:12*pi}</li><li><b>A1</b> for 3.87</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2 or 8" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(a)</b> [3 marks] A sector of a circle has radius r cm and angle {m:theta} radians. Its perimeter is 20 cm and its area is 16 cm&sup2;. Show that {m:r^2-10r+16=0}, then find the two possible values of r. Type your answers like 3 or 4.</p>
+      <ol class="ladder"><li>The arc is {m:20-2r}. Put it into {m:A=frac(1, 2) r s}.</li><li>Rearrange to a quadratic, then factorise.</li></ol>
+      <ul class="wrong"><li data-if="8">That is one of the two roots. A quadratic has two roots, and both are possible values of r at this stage.</li></ul>
+      <div class="solution">
+        <p>The arc is {m:s=20-2r}. The area is {m:frac(1, 2) r(20-2r)=r(10-r)}. So {m:r(10-r)=16}, which gives {m:r^2-10r+16=0}. This factorises as {m:(r-2)(r-8)=0}, so {m:r=2} or {m:r=8}.</p>
+        <ul class="markscheme"><li><b>M1</b> for the arc {m:s=20-2r}</li><li><b>M1</b> for {m:frac(1, 2) r s=16} and rearranging to {m:r^2-10r+16=0}</li><li><b>A1</b> for {m:r=2} and {m:r=8}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.5" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] One of the two values of r in part (a) gives an angle of more than {m:2*pi} radians, so it cannot be used. Find the angle {m:theta} for the other value. Type only the number.</p>
+      <ol class="ladder"><li>Find {m:theta=frac(s, r)} for each value of r, using {m:s=20-2r}.</li><li>One full turn is {m:2*pi}, which is about 6.28.</li></ol>
+      <ul class="wrong"><li data-if="8">That is the angle for {m:r=2}. It is more than {m:2*pi}, which is about 6.28, so that sector cannot exist.</li></ul>
+      <div class="solution">
+        <p>For {m:r=2}, the arc is {m:20-4=16} and {m:theta=frac(16, 2)=8}. That is more than {m:2*pi}, so reject it. For {m:r=8}, the arc is {m:20-16=4} and {m:theta=frac(4, 8)=0.5}. The angle is 0.5 radians. Check: {m:frac(1, 2)*64*0.5=16}.</p>
+        <ul class="markscheme"><li><b>M1</b> for {m:theta=frac(s, r)} for either value</li><li><b>B1</b> for rejecting {m:r=2}, because {m:theta=8>2*pi}</li><li><b>A1</b> for {m:theta=0.5}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] For small {m:theta}, use the small-angle approximations to find the number that {m:frac(1-cos(2*theta), theta*tan theta)} is close to. Type only the number.</p>
+      <ol class="ladder"><li>Write {m:cos(2*theta)~=1-frac((2*theta)^2, 2)}. The angle in the cosine is {m:2*theta}.</li><li>Use {m:tan theta~=theta} on the bottom, then cancel.</li></ol>
+      <ul class="wrong"><li data-if="0.5;1/2">You used {m:theta} instead of {m:2*theta} in the cosine. The angle in the cosine is {m:2*theta}, so square {m:2*theta}.</li><li data-if="4">You left out the half. The approximation is {m:1-frac(theta^2, 2)}, so {m:1-cos(2*theta)} is close to {m:frac((2*theta)^2, 2)}.</li></ul>
+      <div class="solution">
+        <p>{m:cos(2*theta)~=1-frac((2*theta)^2, 2)=1-2*theta^2}, so {m:1-cos(2*theta)~=2*theta^2}. Also {m:tan theta~=theta}, so the bottom is close to {m:theta*theta=theta^2}. The ratio is close to {m:frac(2*theta^2, theta^2)=2}.</p>
+        <ul class="markscheme"><li><b>M1</b> for {m:cos(2*theta)~=1-frac((2*theta)^2, 2)}</li><li><b>A1</b> for {m:1-cos(2*theta)~=2*theta^2}</li><li><b>M1</b> for {m:tan theta~=theta}</li><li><b>A1</b> for 2</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.524 or 1.57 or 2.62" data-mode="value" data-marks="5">
+      <p class="qtext">[5 marks] Solve {m:2 sin^2 x-3 sin x+1=0} for {m:0<=x<=2*pi}. Give your answers in radians to 3 significant figures. Type your answers like 1.11 or 2.22 or 3.33.</p>
+      <ol class="ladder"><li>This is a quadratic in {m:sin x}. Factorise it, then solve each bracket.</li><li>Each value of {m:sin x} gives its own solutions in the interval. Use radian mode.</li></ol>
+      <ul class="wrong"><li data-if="0.524 or 2.62">You found the solutions of {m:sin x=frac(1, 2)} only. The other factor gives {m:sin x=1}, which has one more solution.</li><li data-if="30 or 90 or 150">Your calculator was in degree mode. The interval is in radians, so the answers must be in radians.</li></ul>
+      <div class="solution">
+        <p>{m:2 sin^2 x-3 sin x+1=(2 sin x-1)(sin x-1)=0}. So {m:sin x=frac(1, 2)} or {m:sin x=1}. {m:sin x=frac(1, 2)} gives {m:x=frac(pi, 6)=0.524} and {m:x=frac(5*pi, 6)=2.62}. {m:sin x=1} gives {m:x=frac(pi, 2)=1.57}.</p>
+        <ul class="markscheme"><li><b>M1</b> for factorising to {m:(2 sin x-1)(sin x-1)}</li><li><b>A1</b> for {m:sin x=frac(1, 2)} and {m:sin x=1}</li><li><b>M1</b> for finding a second solution of {m:sin x=frac(1, 2)}</li><li><b>A1</b> for {m:0.524} and {m:2.62}</li><li><b>A1</b> for {m:1.57}</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="0.927" data-mode="value" data-marks="2">
+      <p class="qtext"><b>(a)</b> [2 marks] The circle {m:x^2+y^2=25} has centre O. The points A {m:(5, 0)} and B {m:(3, 4)} are on the circle. Find the angle AOB, in radians, to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>OA lies along the x-axis. Find the angle that OB makes with the x-axis, using a right-angled triangle.</li><li>Use radian mode, or convert from degrees.</li></ol>
+      <ul class="wrong"><li data-if="53.1;53.13">That is the angle in degrees. The question asks for radians.</li><li data-if="0.644;0.6435">You used {m:frac(3, 4)}. The side opposite the angle is the y-coordinate 4, and the side next to it is the x-coordinate 3.</li></ul>
+      <div class="solution">
+        <p>{m:tan theta=frac(4, 3)}, so {m:theta=tan^(-1)(frac(4, 3))=0.927} radians, to 3 significant figures.</p>
+        <ul class="markscheme"><li><b>M1</b> for {m:tan theta=frac(4, 3)}</li><li><b>A1</b> for 0.927</li></ul>
+      </div>
+    </div>
+    <div class="q" data-answers="11.6" data-mode="value" data-marks="3">
+      <p class="qtext"><b>(b)</b> [3 marks] Find the area of the sector OAB, in square units, to 3 significant figures. Use your angle from part (a). Type only the number.</p>
+      <ol class="ladder"><li>The radius is 5, from {m:x^2+y^2=25}.</li><li>Use {m:A=frac(1, 2) r^2 theta} with the full value of the angle from your calculator.</li></ol>
+      <ul class="wrong"><li data-if="23.2;23.18">You left out the half. The area is {m:frac(1, 2) r^2 theta}.</li></ul>
+      <div class="solution">
+        <p>The radius is 5. {m:A=frac(1, 2)*25*0.9273=11.6}, to 3 significant figures.</p>
+        <ul class="markscheme"><li><b>B1</b> for {m:r=5}</li><li><b>M1</b> for {m:frac(1, 2) r^2 theta}</li><li><b>A1</b> for 11.6</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Why a full turn is {m:2*pi} radians.</b> One radian cuts off an arc of length r. The whole circumference is {m:2*pi*r}, which is {m:2*pi} radius-lengths. So there are {m:2*pi} radians in a full turn, and {m:pi} in a half turn.</li>
+      <li><b>Why the formulae need radians.</b> The angle {m:theta} is the fraction {m:frac(theta, 2*pi)} of a full turn only when {m:theta} is in radians. With that fraction, the arc is {m:frac(theta, 2*pi)*2*pi*r=r theta} and the sector is {m:frac(theta, 2*pi)*pi r^2=frac(1, 2) r^2 theta}. In degrees the fraction is {m:frac(theta, 360)}, and the same working leaves a {m:frac(pi, 180)} in each formula.</li>
+      <li><b>Why the chord is {m:2 r sin(frac(theta, 2))}.</b> The triangle OAB has two sides of length r. Draw the line from O to the middle of AB. It cuts the triangle into two right-angled triangles, each with hypotenuse r and angle {m:frac(theta, 2)} at O. The half-chord is opposite that angle, so it is {m:r sin(frac(theta, 2))}.</li>
+      <li><b>Why {m:sin theta~=theta} for a small angle.</b> Take a sector of the unit circle with angle {m:theta}, where {m:0<theta<frac(pi, 2)}. It lies inside the triangle OAT, whose upright side is {m:tan theta}, and it contains the triangle OAB, whose height is {m:sin theta}. Comparing areas, {m:frac(1, 2) sin theta<frac(1, 2) theta<frac(1, 2) tan theta}. Divide by {m:frac(1, 2) sin theta} to get {m:1<frac(theta, sin theta)<frac(1, cos theta)}. As {m:theta} gets close to 0, {m:cos theta} gets close to 1, so {m:frac(theta, sin theta)} is squeezed close to 1.</li>
+      <li><b>Why {m:cos theta~=1-frac(theta^2, 2)}.</b> Later, in Addition formulae, double angles and the R-form, you will meet {m:cos theta=1-2 sin^2(frac(theta, 2))}. Put {m:sin(frac(theta, 2))~=frac(theta, 2)} into it and you get {m:1-2*frac(theta^2, 4)=1-frac(theta^2, 2)}.</li>
+      <li><b>Why the second solution of a tangent equation is {m:alpha+pi}.</b> The tangent repeats every {m:pi}, because {m:tan(x+pi)=frac(sin(x+pi), cos(x+pi))=frac(-sin x, -cos x)=tan x}. Sine and cosine both change sign, and the signs cancel.</li>
+      <li><b>Why the calculator mode matters.</b> {m:sin 30} means the sine of 30 radians in radian mode, and the sine of 30 degrees in degree mode. They are different numbers: {m:-0.988} and 0.5. A calculator gives no warning, so check for RAD every time.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Using {m:s=r theta} or {m:A=frac(1, 2) r^2 theta} with the angle in degrees. Change it to radians first.</li>
+      <li>Leaving out the half in the area of a sector, or squaring r in the arc length.</li>
+      <li>Leaving the two radii out of the perimeter of a sector. A segment has no radii on its boundary: its boundary is the arc and the chord.</li>
+      <li>Writing {m:180deg} as {m:2*pi}, or {m:360deg} as {m:pi}. A half turn is {m:pi}, and a full turn is {m:2*pi}.</li>
+      <li>Rounding {m:pi} to 3.14 early in a question. Keep {m:pi}, or the full value on your calculator, until the last step.</li>
+      <li>Using the wrong pair of solutions. Sine uses {m:alpha} and {m:pi-alpha}. Cosine uses {m:alpha} and {m:2*pi-alpha} in an interval from 0 to {m:2*pi}. Tangent uses {m:alpha} and {m:alpha+pi}.</li>
+      <li>Giving answers in degrees when the interval is in radians, such as {m:0<=x<=2*pi}.</li>
+      <li>Using a small-angle approximation with an angle in degrees, or for an angle that is not small.</li>
+      <li>Forgetting that an angle written with no degree sign is in radians.</li>
+      <li>Having the calculator in degree mode. Check that it shows RAD. The calculator on this page works in degrees only.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="radians">
+      <li><label><input type="checkbox"> explain what a radian is, and change an angle between degrees and radians</label></li>
+      <li><label><input type="checkbox"> write exact values of sine, cosine and tangent for angles in radians, using the quadrant and the acute angle</label></li>
+      <li><label><input type="checkbox"> find an arc length and the perimeter of a sector, using {m:s=r theta}, and find the radius or the angle</label></li>
+      <li><label><input type="checkbox"> find the area of a sector, using {m:A=frac(1, 2) r^2 theta}, and find the radius or the angle</label></li>
+      <li><label><input type="checkbox"> find the area of a segment and the length of a chord, and the perimeter of a segment</label></li>
+      <li><label><input type="checkbox"> use the graphs of sine, cosine and tangent in radians, and solve equations in an interval</label></li>
+      <li><label><input type="checkbox"> use the small-angle approximations for sine, cosine and tangent, in radians</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    <h2>Where this goes next</h2>
+    <p>In Differentiating standard functions you will show that the derivative of {m:sin x} is {m:cos x}. That is only true when x is in radians, and the proof rests on the idea behind {m:sin theta~=theta}. In Further Pure and at university, the small-angle approximations turn out to be the first terms of two infinite series: {m:sin x=x-frac(x^3, 6)+"..."} and {m:cos x=1-frac(x^2, 2)+"..."}, called Maclaurin series. Radians are also the unit used for waves, for rotation and for complex numbers.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>

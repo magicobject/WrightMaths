@@ -321,6 +321,40 @@ export const TERMS = [
     aka: ['small angle', 'small angles'],
   },
   {
+    id: 'central-angle', term: 'Angle at the centre', strand: 'al-trigonometry', level: 'Y2',
+    def: 'The angle between two radii of a circle, measured at the centre. It is the angle that cuts off an arc.',
+    example: [
+      'A sector has radius 5 cm. The angle at the centre is {m:theta=1.2} radians, so the arc is {m:5*1.2=6} cm long.',
+      'It is the angle {m:theta} in {m:s=r theta} and {m:A=frac(1,2) r^2 theta}.',
+    ],
+    watch: 'The angle at the centre is not the angle between the arc and a radius. It is made by the two radii, at the point O. In the two formulae it must be in radians.',
+    see: ['radian', 'arc-length', 'area-of-sector', 'sector'],
+    aka: ['angle subtended at the centre', 'angle at the centre of a circle'],
+  },
+  {
+    id: 'radian-mode', term: 'Radian mode (calculator)', strand: 'al-trigonometry', level: 'Y2',
+    def: 'The calculator setting in which the number inside sin, cos and tan is read as radians. The screen shows RAD or R. In degree mode it shows DEG or D.',
+    example: [
+      'In radian mode, {m:sin(frac(pi, 6))=0.5} and {m:sin 30=-0.988}.',
+      'In degree mode, {m:sin 30=0.5}. The calculator gives no warning if the mode is wrong.',
+    ],
+    watch: 'A calculator mode does not change when you move to a new question. Check it each time. The calculator on the pages of this book works in degrees only: for {m:sin x} with x in radians, type sin(x &times; 180 &divide; &pi;).',
+    flip: 'To use a degrees-only calculator for radians, change the angle to degrees inside the bracket. To use degree mode for degrees, do nothing.',
+    see: ['radian', 'sine', 'cosine', 'tangent-function'],
+    aka: ['RAD', 'DEG', 'calculator mode', 'degree mode'],
+  },
+  {
+    id: 'in-terms-of-pi', term: 'In terms of pi', strand: 'al-trigonometry', level: 'Y2',
+    def: 'Written with the symbol pi left in the answer, instead of a rounded decimal. It is an exact answer.',
+    example: [
+      'An arc of a circle of radius 6 cm with angle {m:frac(2*pi, 3)} has length {m:4*pi} cm. The decimal 12.6 is its rounded value.',
+      'In an answer box, type pi for the symbol: for example 4pi or 5pi/6.',
+    ],
+    watch: 'Do not replace pi by 3.14 part-way through. Keep pi, or the full value on your calculator, until the last step, and round once at the end.',
+    see: ['radian', 'exact-value', 'arc-length', 'area-of-sector'],
+    aka: ['exact answer', 'leave in terms of pi', 'answer as a multiple of pi'],
+  },
+  {
     id: 'secant-function', term: 'Secant (sec)', strand: 'al-trigonometry', level: 'Y2',
     def: '1 divided by the cosine of an angle. This is the reciprocal of cosine.',
     example: [
