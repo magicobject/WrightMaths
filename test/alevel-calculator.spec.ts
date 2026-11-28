@@ -12,3 +12,15 @@ test.describe('the scientific calculator on every A-level topic page', () => {
     });
   }
 });
+
+test('only the <main> element of an A-level topic page sets the calculator, so every question gets the same scientific keypad', () => {
+  const { readFileSync } = require('node:fs');
+  const { join } = require('node:path');
+  const bad: string[] = [];
+  for (const topic of ALEVEL_TOPICS) {
+    const src = readFileSync(join(__dirname, '..', 'src', 'pages', topic.path.replace(/^\//, '')), 'utf8') as string;
+    const marks = src.match(/data-calc="[a-z]*"/g) ?? [];
+    if (marks.length !== 1 || !/^<main[^>]*data-calc="scientific"/.test(src)) bad.push(`${topic.path}: ${marks.join(' ')}`);
+  }
+  expect(bad).toEqual([]);
+});
