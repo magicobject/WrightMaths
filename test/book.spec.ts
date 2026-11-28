@@ -3,6 +3,7 @@ import { basename, join } from 'node:path';
 import { test, expect } from './support/fixtures';
 import { ALL_PAGES } from './support/pages';
 import { BOOK_PAGES, BOOK_TOPICS } from './support/book-pages';
+import { ALEVEL_TOPICS } from './support/alevel-pages';
 
 const PUBLIC = join(__dirname, '..', 'public');
 
@@ -73,7 +74,8 @@ test.describe('the book is well formed', () => {
   test('every internal link and every #anchor on every book page resolves', async ({ page, request }) => {
     test.setTimeout(180_000); // walks every book page, so the allowance grows with the book
     const checked = new Set<string>();
-    for (const bookPage of BOOK_PAGES) {
+    // The A-level topic pages are checked too: a skip link whose #id was cut short once went nowhere.
+    for (const bookPage of [...BOOK_PAGES, ...ALEVEL_TOPICS]) {
       await page.goto(bookPage.path);
       const hrefs = await page.$$eval('a[href]', (anchors) => anchors.map((a) => (a as HTMLAnchorElement).href));
       for (const href of hrefs) {

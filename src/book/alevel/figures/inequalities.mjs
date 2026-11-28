@@ -90,8 +90,8 @@ function quadGraph({ id, r1, r2, a = 1, xmin, xmax, ymin, ymax, text, sign, betw
   band(p, 720, text);
   if (between) region(p, id, [...sample(r1, r2).map((x) => [x, fn(x)]), [r2, 0], [r1, 0]]);
   else {
-    region(p, id, [...sample(xmin, r1).map((x) => [x, fn(x)]), [r1, 0], [xmin, 0]]);
-    region(p, id, [...sample(r2, xmax).map((x) => [x, fn(x)]), [xmax, 0], [r2, 0]]);
+    region(p, `${id}-l`, [...sample(xmin, r1).map((x) => [x, fn(x)]), [r1, 0], [xmin, 0]]);
+    region(p, `${id}-r`, [...sample(r2, xmax).map((x) => [x, fn(x)]), [xmax, 0], [r2, 0]]);
   }
   p.curve(fn);
   if (between) p.line(r1, 0, r2, 0, { cls: 'curve' });

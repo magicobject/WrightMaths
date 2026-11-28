@@ -406,6 +406,9 @@
       <li>A number on the bottom of a fraction is a constant multiplier: {m:frac(x^2, 3)=frac(1, 3)x^2}.</li>
     </ul>
     <p>Then use the same two moves: bring the power down, then take 1 off. Take care with the arithmetic. {m:-2-1=-3}, and {m:frac(1, 2)-1=-frac(1, 2)}.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the power rule {m:frac(dy, dx)=n x^(n-1)} for {m:y=x^n} also holds for negative and fractional n. First write each term as a number times a power of x: {m:frac(1, x^2)=x^(-2)} and {m:sqrt(x)=x^(1/2)}. Then bring the power down and take 1 off the power. For a negative n, or an n between 0 and 1, there is no gradient at {m:x=0}.</p>
+    </div>
     <figure class="figure-lg">{fig:differentiation-basics-sqrt-tangents}<figcaption>The curve {m:y=sqrt(x)} gets flatter as x increases. The power rule gives {m:frac(dy, dx)=frac(1, 2)x^(-1/2)}. At {m:x=1} the gradient is {m:frac(1, 2)}. At {m:x=4} the gradient is {m:frac(1, 2)*frac(1, 2)=frac(1, 4)}, which is smaller, as the picture shows.</figcaption></figure>
     <figure class="figure-lg">{fig:differentiation-basics-reciprocal-tangents}<figcaption>The curve {m:y=1/x} falls everywhere, so its gradient is negative. The power rule gives {m:frac(dy, dx)=-x^(-2)=-frac(1, x^2)}. At {m:x=1} the gradient is {m:-1}. At {m:x=2} the gradient is {m:-frac(1, 4)}.</figcaption></figure>
     <div class="worked">
@@ -486,6 +489,9 @@
       <li>{m:frac(x^2+4x+4, x)=x+4+4x^(-1)}. Divide every term on top by x.</li>
       <li>{m:x sqrt(x)=x^1*x^(1/2)=x^(3/2)}. Add the powers when you multiply.</li>
     </ul>
+    <div class="key">
+      <p><b>Key idea:</b> the power rule works on a number times a power of x. If the expression is a product of brackets, or a fraction with several terms on top, rewrite it first: expand the brackets, and divide every term on top by the bottom. Then differentiate each term. Do not differentiate the factors of a product one at a time.</p>
+    </div>
     <figure class="figure-lg">{fig:differentiation-basics-split-then-differentiate}<figcaption>Expand and split first. Then differentiate each term with the power rule.</figcaption></figure>
     <div class="worked">
       <h3>Worked example</h3>
@@ -1121,7 +1127,7 @@
     <h2>Why it works</h2>
     <ul class="tick">
       <li><b>The tangent is the limit of chords.</b> A chord needs two different points, so h is never 0. We simplify while h is not 0, and then ask what value the chord gradient gets close to. That is how a gradient at one point comes from a gradient between two points.</li>
-      <li><b>The power rule, for positive whole n.</b> Use the {term:binomial-expansion|binomial expansion} of {m:(x+h)^n}. The first two terms are {m:x^n} and {m:n x^(n-1) h}. Every other term has at least {m:h^2} in it. Subtract {m:x^n} and divide by h: you get {m:n x^(n-1)} plus terms that each still contain h. As h tends to 0, those terms tend to 0. What is left is {m:n x^(n-1)}.</li>
+      <li><b>The power rule, for positive whole n.</b> Use the {term:binomial-expansion|binomial expansion} of {m:(x+h)^n} (see <a href="binomial-positive.html">Binomial expansion</a>). The first two terms are {m:x^n} and {m:n x^(n-1) h}. Every other term has at least {m:h^2} in it. Subtract {m:x^n} and divide by h: you get {m:n x^(n-1)} plus terms that each still contain h. As h tends to 0, those terms tend to 0. What is left is {m:n x^(n-1)}.</li>
       <li><b>Negative and fractional powers.</b> The same rule holds, and the pictures agree: {m:y=sqrt(x)} flattens as x grows, so its gradient {m:frac(1, 2)x^(-1/2)} falls. {m:y=1/x} falls, so its gradient {m:-x^(-2)} is negative. A full proof for these needs ideas from Year 2.</li>
       <li><b>Constant multiples and sums.</b> If you multiply a function by 5, every chord gradient is multiplied by 5, and so is the limit. If you add two functions, the chord gradients add, and so do the limits.</li>
       <li><b>A constant has derivative 0.</b> Its graph is horizontal, so every chord gradient is 0.</li>

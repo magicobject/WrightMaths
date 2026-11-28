@@ -77,6 +77,8 @@ const CASES: Case[] = [
   C('Solve {m:5^(2x-1)=40}', (1 + ln(40) / ln(5)) / 2, sf3, [['1.15', sf3(ln(40) / ln(5) / 2)], ['3.29', sf3(1 + ln(40) / ln(5))]]),
   C('Solve {m:ln(2x+1)-ln 3=2}', (3 * E ** 2 - 1) / 2, sf3, [['3.19', sf3((E ** 2 - 1) / 2)], ['11.6', sf3((3 * E ** 2 + 1) / 2)]]),
   C('meets the line {m:y=5} at the point Q', -ln(2) / 2, sf3, [['0.347', sf3(ln(2) / 2)], ['-0.693', sf3(-ln(2))]]),
+  // 7 quadratics in 2^x and e^x
+  C('{m:2^(2x)-2^x-6=0}', log2(3), sf3, [['3', 3], ['1.1', sf3(ln(3))], ['1.099', Number(ln(3).toFixed(3))], ['1.0986', Number(ln(3).toFixed(4))]]),
   C('Solve {m:2^x=5^(x-1)}', ln(5) / (ln(5) - ln(2)), sf3, [['-1.76', sf3(-ln(5) / (ln(5) - ln(2)))]]),
 ];
 
@@ -319,6 +321,10 @@ test('every "Now you finish it" blank holds the recomputed value', () => {
     [ln(10) - 1, exact], // 3x = ln 10 - 1, accepted to 4, 3, 2 and 1 decimal places below
     [(ln(10) - 1) / 3, sf3],
     [ln(50) / ln(3), sf3],
+    [3, exact], // 3^(2x) - 12 * 3^x + 27 = 0: the smaller u, the larger u, then the two values of x
+    [9, exact],
+    [1, exact],
+    [2, exact],
   ];
   expect(blanks.length).toBe(want.length);
   blanks.forEach((answers, i) => {
@@ -367,6 +373,7 @@ test('each figure curve is drawn from its equation, and each marked point lies o
     'exponentials-logs-solve': [(x) => 2 ** x],
     'exponentials-logs-region': [(x) => 2 ** x],
     'exponentials-logs-crossing': [(x) => Math.exp(2 * x) - 4],
+    'exponentials-logs-disguise': [(x) => 2 ** (2 * x) - 6 * 2 ** x + 8],
     'exponentials-logs-flip': [(x) => 2 ** x, (x) => Math.log2(x)],
     'exponentials-logs-q-base': [(x) => 3 ** x],
     'exponentials-logs-q-shift': [(x) => Math.exp(2 * x) - 2],
@@ -429,6 +436,10 @@ test('the labels that name a point by a log or by x = a number are right', async
   expect(crossing[0]).toMatchObject({ x: 0, y: -3 });
   expect(crossing[1].x).toBeCloseTo(ln(2), 12);
   expect(strip(FIGURES['exponentials-logs-crossing']())).toContain('(ln 2, 0)');
+  // the disguise picture: (1, 0) and (2, 0) are where u = 2^x is 2 and 4, the roots of u^2 - 6u + 8
+  expect(POINTS['exponentials-logs-disguise'].map((p: { x: number; y: number }) => [p.x, p.y])).toEqual([[1, 0], [2, 0]]);
+  expect(2 ** (2 * 1) - 6 * 2 + 8).toBe(0);
+  expect(2 ** (2 * 2) - 6 * 4 + 8).toBe(0);
   // the mirror pictures: each point on one curve has its swapped point on the other
   for (const id of ['exponentials-logs-inverse', 'exponentials-logs-flip']) {
     const [a, b] = POINTS[id];
@@ -516,3 +527,249 @@ test('the page keeps change of base out: the formula and its name do not appear'
   expect((text.match(/change of base/gi) ?? []).length).toBe(1);
   expect(SOURCE).not.toMatch(/frac\(log_b x, log_b a\)/);
 });
+
+// ---- lesson 7: quadratics in 2^x and e^x ----
+const LESSON7 = /<h2>7\. Quadratics in disguise[\s\S]*?(?=<section class="flip-section">)/.exec(SOURCE)?.[0] ?? '';
+
+test('the page teaches the substitution u = 2^x and u = e^x, with a Key idea, worked examples and a faded example', () => {
+  expect(LESSON7.length).toBeGreaterThan(1000);
+  expect(LESSON7).toContain('{m:u=2^x}');
+  expect(LESSON7).toContain('{m:u=e^x}');
+  expect(LESSON7).toContain('class="key"');
+  expect(LESSON7).toMatch(/where \{m:a>0\}, and otherwise only numbers/);
+  expect((LESSON7.match(/<div class="worked">/g) ?? []).length).toBeGreaterThanOrEqual(2);
+  expect(LESSON7).toContain('<div class="worked faded">');
+  expect(LESSON7).toMatch(/e\^x=-1\} has no solution, because \{m:e\^x\} is always positive/);
+  expect((LESSON7.match(/<div class="q"/g) ?? []).length).toBeGreaterThanOrEqual(4);
+  // the warm-up recaps quadratics, and links the page that teaches them
+  const warm = /<h2>Warm-up[\s\S]*?<\/section>/.exec(SOURCE)?.[0] ?? '';
+  expect(warm).toContain('href="quadratics.html"');
+});
+
+test('every worked, faded and question step "u^2 + bu + c = 0, then (u + p)(u + q) = 0" on lesson 7 is a true factorisation, read from the page', () => {
+  const sign = (t: string) => (t === '-' ? -1 : t === '+' ? 1 : Number(t));
+  const text = decode(LESSON7);
+  const quad2 = [...text.matchAll(/\{m:u\^2([+-]\d*)u([+-]\d+)=0\}[\s\S]{0,200}?\{m:\(u([+-]\d+)\)\(u([+-]\d+)\)=0\}/g)];
+  expect(quad2.length).toBeGreaterThanOrEqual(5);
+  const problems: string[] = [];
+  for (const m of quad2) {
+    const [b, c, p, q] = [sign(m[1]), sign(m[2]), sign(m[3]), sign(m[4])];
+    if (b !== p + q || c !== p * q) problems.push(`${m[0].slice(0, 60)}: (u${p})(u${q}) expands to u^2${p + q}u+${p * q}`);
+  }
+  expect(problems).toEqual([]);
+});
+
+test('the multiple-choice answers and the faded blanks agree with the equations printed next to them', () => {
+  const qs = questions().filter((q) => LESSON7.includes(q.block.slice(0, 120)));
+  const mc = qs.filter((q) => q.type === 'mc');
+  expect(mc.length).toBe(2);
+  // the substitution question: the correct option names the base of the equation printed in the question
+  const sub = mc.find((q) => q.raw.includes('Which substitution'))!;
+  const base = /\{m:(\d+)\^\(2x\)/.exec(sub.raw)![1];
+  const correct = /<li data-correct>([^<]*)<\/li>/.exec(sub.block)![1];
+  expect(correct).toContain(`u = ${base}^x`);
+  expect(correct).toContain(`${base}^(2x) = u^2`);
+  // the number-of-solutions question: both roots of the printed quadratic are negative, and the correct option says none
+  const count = mc.find((q) => q.raw.includes('How many solutions'))!;
+  const m = /e\^\(2x\)\+(\d+)e\^x\+(\d+)=0/.exec(count.raw)!;
+  const [b, c] = [Number(m[1]), Number(m[2])];
+  const d = Math.sqrt(b * b - 4 * c);
+  expect([(-b - d) / 2, (-b + d) / 2].every((u) => u < 0)).toBe(true);
+  expect(/<li data-correct>([^<]*)<\/li>/.exec(count.block)![1]).toMatch(/^None/);
+  // the faded example: its printed equation gives the blanks (the two values of u, then the two values of x)
+  const f = /\{m:(\d+)\^\(2x\)-(\d+)\*\d+\^x\+(\d+)=0\}/.exec(/<div class="worked faded">[\s\S]*?<\/div>/.exec(LESSON7)![0])!;
+  const [a, bb, cc] = [Number(f[1]), Number(f[2]), Number(f[3])];
+  const dd = Math.sqrt(bb * bb - 4 * cc);
+  const us = [(bb - dd) / 2, (bb + dd) / 2];
+  const blanks = [.../<div class="worked faded">[\s\S]*?<\/div>/.exec(LESSON7)![0].matchAll(/<span class="blank" data-answers="([^"]*)"/g)].map((x) => Number(x[1]));
+  expect(blanks).toEqual([us[0], us[1], Math.log(us[0]) / Math.log(a), Math.log(us[1]) / Math.log(a)].map((v) => Math.round(v * 1e9) / 1e9));
+});
+
+test('every quadratic in 2^x or e^x: the typed answers are the recomputed solutions, and every slip is named by its own message', () => {
+  const qs = questions();
+  // a typed solution list such as "0 or ln3" or "ln(2)": read each piece as a number, or NaN for ln of a number that is not positive
+  const piece = (t: string) => {
+    const x = t.replace(/\s+/g, '');
+    if (/^-?\d+(\.\d+)?$/.test(x)) return { v: Number(x), arg: NaN };
+    const m = /^ln\(?(-?\d+(?:\.\d+)?)\)?$/.exec(x);
+    if (m) return { v: Number(m[1]) > 0 ? ln(Number(m[1])) : NaN, arg: Number(m[1]), ln: true };
+    return { v: NaN, arg: NaN };
+  };
+  const list = (t: string) => t.split(/\s*(?:\bor\b|\band\b|,)\s*/).filter(Boolean).map(piece);
+  const sorted = (xs: number[]) => [...xs].sort((a, b) => a - b);
+  const sameList = (a: number[], b: number[]) => a.length === b.length && sorted(a).every((v, i) => Math.abs(v - sorted(b)[i]) < 1e-9);
+  // [question text, base (0 for e), b, c]: the equation is base^(2x) + b * base^x + c = 0
+  const CASES7: [string, number, number, number][] = [
+    ['{m:2^(2x)-3*2^x+2=0}', 2, -3, 2],
+    ['{m:e^(2x)-4e^x+3=0}', 0, -4, 3],
+    ['{m:e^(2x)+e^x-6=0}', 0, 1, -6],
+    ['{m:2^(2x)-2^x-6=0}', 2, -1, -6],
+  ];
+  const problems: string[] = [];
+  const seenKinds = new Set<string>();
+  for (const [find, base, b, c] of CASES7) {
+    const hits = qs.filter((q) => q.raw.includes(find));
+    if (hits.length !== 1) { problems.push(`"${find}" matches ${hits.length} questions`); continue; }
+    const q = hits[0];
+    // the printed equation is the one this case solves
+    const printed = new RegExp(`${base === 0 ? 'e' : base}\\^\\(2x\\)([+-]\\d*)\\*?${base === 0 ? 'e' : base}\\^x([+-]\\d+)=0`).exec(find.replace(/[{}]|m:/g, ''));
+    const sg = (t: string) => (t === '+' ? 1 : t === '-' ? -1 : Number(t));
+    if (!printed || sg(printed[1]) !== b || sg(printed[2]) !== c) problems.push(`${find}: the case coefficients ${b}, ${c} do not match the printed equation`);
+    const d = Math.sqrt(b * b - 4 * c);
+    const us = [(-b - d) / 2, (-b + d) / 2];
+    const lg = base === 0 ? ln : (u: number) => ln(u) / ln(base);
+    const sols = us.filter((u) => u > 0).map(lg);
+    if (q.mode === 'value') {
+      if (sols.length !== 1 || q.answers.some((a) => !same(num(a), sf3(sols[0])))) problems.push(`${find}: answer is not ${sf3(sols[0])}`);
+      continue;
+    }
+    for (const a of q.answers) if (!sameList(list(a).map((t) => t.v), sols)) problems.push(`${find}: the page accepts "${a}", recomputed ${sols}`);
+    // each message with the answers it covers
+    const messages = [...q.block.matchAll(/<li data-if="([^"]*)">([\s\S]*?)<\/li>/g)].map((m) => ({ ifs: decode(m[1]).split(';').map((x) => x.trim()).filter(Boolean), msg: m[2] }));
+    for (const { ifs, msg } of messages) {
+      for (const w of ifs) {
+        const ws = list(w);
+        const vs = ws.map((t) => t.v);
+        const kinds = (() => {
+          const found: string[] = [];
+          if (sameList(vs, sols)) found.push('right-values');
+          if (sameList(vs, us)) found.push('u-values');
+          if (vs.length === 1 && us.some((u) => u > 0 && same(u, vs[0]))) found.push('u-value');
+          if (vs.length === 1 && sols.length > 1 && sols.some((s) => same(s, vs[0]))) found.push('one-solution');
+          if (ws.length === sols.length && !ws.some((x) => x.ln) && sorted(vs).every((v, i) => Math.abs(v - sorted(sols)[i]) < 0.01)) found.push('decimal');
+          if (ws.some((t) => t.arg < 0 && us.some((u) => same(u, t.arg)))) found.push('ln-negative');
+          return found;
+        })();
+        const NAMES: Record<string, RegExp> = {
+          'right-values': /Right values\. \{m:ln 1\} has a simpler name/,
+          'u-values': /values of u/,
+          'u-value': /value of u|values of u/,
+          'one-solution': /one of the two solutions/,
+          decimal: /as a decimal/,
+          'ln-negative': /logarithm of a negative number/,
+        };
+        kinds.forEach((k) => seenKinds.add(k));
+        if (kinds.length === 0) problems.push(`${find}: the slip "${w}" is not a named slip`);
+        else if (!kinds.some((k) => NAMES[k].test(msg))) problems.push(`${find}: the slip "${w}" is a ${kinds.join(' or ')} slip, but its message says "${msg.slice(0, 50)}"`);
+        // the right-values slip is the one message that may hold a right value, and only when it is not written as the page's own key
+        if (kinds.includes('right-values') && q.answers.some((a) => textKeyOf(a) === textKeyOf(w))) problems.push(`${find}: "${w}" is also an accepted answer`);
+      }
+    }
+  }
+  expect(problems).toEqual([]);
+  for (const k of ['right-values', 'u-values', 'u-value', 'one-solution', 'decimal', 'ln-negative']) expect(seenKinds.has(k), `a slip of kind ${k}`).toBe(true);
+  expect(sorted([(-3 - Math.sqrt(1)) / 2, (-3 + Math.sqrt(1)) / 2])).toEqual([-2, -1]);
+  expect(Math.exp(2 * ln(2)) - Math.exp(ln(2)) - 2).toBeCloseTo(0, 12);
+  expect(Math.exp(2 * ln(2)) - 5 * Math.exp(ln(2)) + 6).toBeCloseTo(0, 12);
+  expect(Math.exp(2 * ln(3)) - 5 * Math.exp(ln(3)) + 6).toBeCloseTo(0, 12);
+});
+const textKeyOf = (t: string) => t.replace(/\s+/g, '').replace(/ln\((\d+)\)/g, 'ln$1').toLowerCase();
+
+test('the disguise figure shows what its description says: falling at the left, a shallow valley below the axis between the two marked points', async () => {
+  const { FIGURES, CURVES, POINTS, GEOM } = await figureModule();
+  const id = 'exponentials-logs-disguise';
+  const fn = CURVES[id][0].fn as (x: number) => number;
+  const g = GEOM[id];
+  const [p1, p2] = POINTS[id] as { x: number; y: number }[];
+  // falls from the upper left
+  expect(fn(g.xmin)).toBeGreaterThan(0);
+  for (let x = g.xmin; x < 1.5; x += 0.05) expect(fn(x + 0.05), `falling at x=${x.toFixed(2)}`).toBeLessThan(fn(x));
+  // crosses the axis at the first marked point, dips below it, and rises through the second
+  expect(Math.abs(fn(p1.x))).toBeLessThan(1e-9);
+  expect(Math.abs(fn(p2.x))).toBeLessThan(1e-9);
+  let low = Infinity;
+  for (let x = p1.x + 0.01; x < p2.x; x += 0.01) low = Math.min(low, fn(x));
+  expect(low).toBeLessThan(0);
+  expect(low).toBeGreaterThan(g.ymin); // the valley is inside the picture
+  expect(fn(p2.x + 0.1)).toBeGreaterThan(0);
+  expect(fn(g.xmax)).toBeGreaterThan(fn(p2.x + 0.3)); // climbing on the right
+  const desc = /<desc[^>]*>([\s\S]*?)<\/desc>/.exec(FIGURES[id]())?.[1] ?? '';
+  expect(desc).toBe('A solid curve that falls from the upper left, crosses the x-axis at the marked point (1, 0), dips to a shallow valley a little below the axis, then rises through the marked point (2, 0) and climbs steeply on the right.');
+});
+
+// Each figure's labels, measured in the browser on a phone and on a desktop.
+const minusText = (s: string) => s.replace(/\u2212/g, '-').replace(/\u200b/g, '');
+const labelsOf = (svg: string) => [...svg.matchAll(/<text [^>]*>([\s\S]*?)<\/text>/g)].map((m) => minusText(m[1].replace(/<[^>]+>/g, '')));
+async function geometry() {
+  const { FIGURES, GEOM, POINTS } = await figureModule();
+  const out: Record<string, { title: string; points: { label: string; px: number; py: number }[] }> = {};
+  for (const id of Object.keys(FIGURES)) {
+    const svg: string = FIGURES[id]();
+    const g = GEOM[id];
+    const labels = labelsOf(svg).filter((t) => /^\(.*\)$/.test(t));
+    if (id !== 'exponentials-logs-disguise') continue; // the older figures keep their own key and axis text, which is smaller than this rule asks
+    out[id] = {
+      title: /<title[^>]*>([\s\S]*?)<\/title>/.exec(svg)?.[1] ?? '',
+      points: POINTS[id].map((pt: { x: number; y: number }, k: number) => ({
+        label: labels[k],
+        px: g.left + ((pt.x - g.xmin) / (g.xmax - g.xmin)) * (g.width - g.left - g.right),
+        py: g.top + (g.height - g.top - g.bottom) * (1 - (pt.y - g.ymin) / (g.ymax - g.ymin)),
+      })),
+    };
+  }
+  return out;
+}
+
+for (const width of [320, 1100]) {
+  test(`figures at ${width}px: labels at least 12px, clear of each other and of every line, each point's label nearest its own point`, async ({ page }) => {
+    const geo = await geometry();
+    expect(Object.keys(geo)).toContain('exponentials-logs-disguise');
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/courses/a-level/exponentials-logs.html');
+    const problems = await page.evaluate(({ geo, width }) => {
+      const out: string[] = [];
+      const gap = (a: DOMRect, b: { x: number; y: number; width: number; height: number }) => {
+        const dx = Math.max(a.x - (b.x + b.width), b.x - (a.x + a.width), 0);
+        const dy = Math.max(a.y - (b.y + b.height), b.y - (a.y + a.height), 0);
+        return Math.hypot(dx, dy);
+      };
+      const svgs = [...document.querySelectorAll('main svg.graph-svg')] as SVGSVGElement[];
+      const byTitle = new Map(svgs.map((s) => [s.querySelector('title')?.textContent ?? '', s]));
+      for (const [id, info] of Object.entries(geo) as [string, { title: string; points: { label: string; px: number; py: number }[] }][]) {
+        const svg = byTitle.get(info.title);
+        if (!svg) { out.push(`${id}: figure not on the page`); continue; }
+        const vb = svg.viewBox.baseVal;
+        const scale = svg.getBoundingClientRect().width / vb.width;
+        const texts = [...svg.querySelectorAll('text')].filter((t) => (t.textContent ?? '').replace(/\u200b/g, '').trim());
+        const boxes = texts.map((t) => ({ t, name: (t.textContent ?? '').replace(/\u200b/g, '').replace(/\u2212/g, '-').trim(), b: t.getBBox() }));
+        for (const { t, name, b } of boxes) {
+          if (b.x < 0 || b.y < 0 || b.x + b.width > vb.width || b.y + b.height > vb.height) out.push(`${id}: "${name}" is outside the picture`);
+          const size = parseFloat(getComputedStyle(t).fontSize) * scale;
+          if (width === 320 && size < 12) out.push(`${id}: "${name}" is ${size.toFixed(1)}px at 320px`);
+        }
+        for (let i = 0; i < boxes.length; i += 1) {
+          for (let j = i + 1; j < boxes.length; j += 1) {
+            const a = boxes[i].b;
+            const b = boxes[j].b;
+            const d = Math.hypot(Math.max(a.x - (b.x + b.width), b.x - (a.x + a.width), 0), Math.max(a.y - (b.y + b.height), b.y - (a.y + a.height), 0));
+            if (d < 4) out.push(`${id}: "${boxes[i].name}" and "${boxes[j].name}" are ${d.toFixed(1)} apart`);
+          }
+        }
+        const samples: { x: number; y: number; what: string }[] = [];
+        for (const p of svg.querySelectorAll('path')) {
+          const len = (p as SVGPathElement).getTotalLength();
+          for (let d = 0; d <= len; d += 2) { const pt = (p as SVGPathElement).getPointAtLength(d); samples.push({ x: pt.x, y: pt.y, what: p.getAttribute('class') ?? 'path' }); }
+        }
+        for (const l of svg.querySelectorAll('line')) {
+          const x1 = Number(l.getAttribute('x1')); const y1 = Number(l.getAttribute('y1')); const x2 = Number(l.getAttribute('x2')); const y2 = Number(l.getAttribute('y2'));
+          const n = Math.max(2, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 2));
+          for (let k = 0; k <= n; k += 1) samples.push({ x: x1 + ((x2 - x1) * k) / n, y: y1 + ((y2 - y1) * k) / n, what: l.getAttribute('class') ?? 'line' });
+        }
+        for (const { name, b } of boxes) {
+          const near = samples.find((s) => s.x > b.x - 4 && s.x < b.x + b.width + 4 && s.y > b.y - 4 && s.y < b.y + b.height + 4);
+          if (near) out.push(`${id}: "${name}" is within 4 of a ${near.what}`);
+        }
+        const circles = info.points;
+        circles.forEach((own, k) => {
+          const box = boxes.find((x) => x.name === own.label);
+          if (!box) { out.push(`${id}: no label ${own.label}`); return; }
+          const dists = circles.map((c) => gap(box.b, { x: c.px - 7, y: c.py - 7, width: 14, height: 14 }));
+          dists.forEach((d, j) => { if (j !== k && d <= dists[k]) out.push(`${id}: "${own.label}" is as near to another point as to its own`); if (d < 4) out.push(`${id}: "${own.label}" touches a point`); });
+          if (dists[k] > 70) out.push(`${id}: "${own.label}" is ${dists[k].toFixed(0)} from its point`);
+        });
+      }
+      return out;
+    }, { geo, width });
+    expect(problems).toEqual([]);
+  });
+}

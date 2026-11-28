@@ -186,7 +186,7 @@ export const TERMS = [
       '{md:log_a x=frac(log_b x, log_b a)}',
       '{m:log_2 20=frac(log_10 20, log_10 2)=4.32} to 3 significant figures. Use it to find a logarithm to a base your calculator has no key for.',
     ],
-    watch: 'Not every exam board asks for this formula by name. Check your specification. If the formula is not required, you can still get the same result by taking logarithms of both sides.',
+    watch: 'You do not need this formula for the exam. No board requires it: some leave it out, and Edexcel says you may use it. This book does not use it. You get the same result by taking logarithms of both sides.',
     see: ['logarithm', 'common-logarithm', 'natural-logarithm', 'exponential-equation'],
     aka: ['base change', 'changing the base'],
   },
