@@ -816,3 +816,17 @@ test('no two labels in a figure are closer than 4px, at phone width', async ({ p
   const allowed = [/\|P = \(−0\.866, 0\.5\) \+ y\|/, /\|1 \+ √3\/2\|/, /\|O \+ −1\|/, /\|2 \+ y\|/, /\|dashed: y = sin x \+ solid: y = sin 2x\|/, /\|3 \+ y\|/, /\|\(270°, −1\) \+ 270°\|/, /\|\(180°, −1\) \+ 180°\|/];
   expect(close.filter((c) => !allowed.some((a) => a.test(c)))).toEqual([]);
 });
+
+test('the scientific calculator is offered on the page', async ({ page }) => {
+  await page.goto('/courses/a-level/trig-graphs.html');
+  const q = page.locator('.q').first();
+  await q.locator('.calc-toggle').click();
+  await expect(q.getByRole('button', { name: 'sin, sine', exact: true })).toBeVisible();
+});
+
+test('the exact-value multiple choice shows its options with the root sign and a slash, not words', async ({ page }) => {
+  await page.goto('/courses/a-level/trig-graphs.html');
+  const q = page.locator('.q[data-type="mc"]', { hasText: 'exact value of' }).first();
+  const texts = (await q.locator('.mc-option').allInnerTexts()).map((x) => x.trim()).sort();
+  expect(texts).toEqual(['1/2', '√2/2', '√3/2']);
+});
