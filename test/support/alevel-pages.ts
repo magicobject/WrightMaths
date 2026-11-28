@@ -31,6 +31,7 @@ export const ALEVEL_TOPICS: BookPage[] = [
   { path: '/courses/a-level/exponentials-logs.html', titleContains: 'Exponentials and logarithms', heading: /^Exponentials and logarithms$/ },
   { path: '/courses/a-level/definite-integrals.html', titleContains: 'Definite integrals and area', heading: /^Definite integrals and area$/ },
   { path: '/courses/a-level/exp-modelling.html', titleContains: 'Exponential modelling', heading: /^Exponential modelling$/ },
+  { path: '/courses/a-level/radians.html', titleContains: 'Radians, arcs and sectors', heading: /^Radians, arcs and sectors$/ },
 ];
 
 export const ALEVEL_PAGES: BookPage[] = [...ALEVEL_HUB_PAGES, ...ALEVEL_TOPICS];
