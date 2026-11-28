@@ -48,7 +48,7 @@ const ENTITIES: Record<string, string> = {
   le: '\u2264', ge: '\u2265', ne: '\u2260', radic: '\u221a', pi: '\u03c0', plusmn: '+-', pound: '\u00a3',
 };
 const decode = (t: string) => t.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).replace(/&([a-z0-9]+);/gi, (m, n) => ENTITIES[n] ?? m);
-const plain = (h: string) => decode(h.replace(/<[^>]+>/g, '').replace(/\{m:/g, '').replace(/\}/g, '')).replace(/\s+/g, ' ').trim();
+const plain = (h: string) => decode(h.replace(/<[^>]+>/g, '').replace(/\{term:[^|}]*\|([^}]*)\}/g, '$1').replace(/\{term:([^}]*)\}/g, '$1').replace(/\{m:/g, '').replace(/\}/g, '')).replace(/\s+/g, ' ').trim();
 
 /** A typed answer as a function of one variable: an expression such as (x+3)/4, 2t-5, 3+sqrt(x-2), ln(x-4) or 36pi. */
 function algv(t: string, v = 'x'): (x: number) => number {
@@ -231,8 +231,8 @@ const CHECKS: Check[] = [
   alg('Write ff(x) in simplified form', '9x-8', (x) => 3 * (3 * x - 2) - 2, [{ value: '9x-2', fn: (x) => 3 * (3 * x) - 2, says: /multiplied only the 3x by 3/ }, { value: '6x-4', fn: (x) => 2 * (3 * x - 2), says: /2f\(x\)/ }]),
   set('largest possible domain of fg(x). Type it like x>=2', definedSet((x) => Math.sqrt(2 * x - 6)), domainString(definedSet((x) => Math.sqrt(2 * x - 6))), [{ value: 'x>=0', says: /domain of f on its own/ }, { value: 'x>=6', says: /forgot to divide by 2/ }]),
   // ----- 4. inverse functions -----
-  inverse('Find f^(-1)(x). Type it like (x+9)/2', '(x+3)/4', f43, asc(6, -3.7, 1.7), asc(6, -3.7, 1.7), [{ value: '(x-3)/4', fn: (x) => (x - 3) / 4, says: /subtracted 3 again/ }, { value: '4x+3', fn: (x) => 4 * x + 3, says: /changed only the sign of the 3/ }, { value: '1/(4x-3)', fn: (x) => 1 / (4 * x - 3), says: /the reciprocal/ }]),
-  set('Find the domain of f^(-1). Type it like x>=6', rangeSet(fWarm, xsFrom(0, 40)), rangeString('x', fWarm, xsFrom(0, 40), 'closed'), [{ value: 'x>=0', says: /domain of f\./ }, { value: 'x>1', says: /output 1 is reached/ }]),
+  inverse('Find f^(-1)(x). Type only the expression after f^(-1)(x)=, like (x+9)/2', '(x+3)/4', f43, asc(6, -3.7, 1.7), asc(6, -3.7, 1.7), [{ value: '(x-3)/4', fn: (x) => (x - 3) / 4, says: /subtracted 3 again/ }, { value: '4x+3', fn: (x) => 4 * x + 3, says: /changed only the sign of the 3/ }, { value: '1/(4x-3)', fn: (x) => 1 / (4 * x - 3), says: /the reciprocal/ }]),
+  set('Find the domain of f^(-1). Type it like x>2 or x>=2', rangeSet(fWarm, xsFrom(0, 40)), rangeString('x', fWarm, xsFrom(0, 40), 'closed'), [{ value: 'x>=0', says: /domain of f\./ }, { value: 'x>1', says: /output 1 is reached/ }]),
   inverse('(x-3)^2+2 for x >= 3. Find f^(-1)(x)', '3+sqrt(x-2)', fRoot3, [3, 3.5, 4.2, 6, 9], [2, 2.5, 3.7, 6, 11], [{ value: '3-sqrt(x-2)', fn: (x) => 3 - Math.sqrt(x - 2), says: /negative root/ }, { value: 'sqrt(x-2)-3', fn: (x) => Math.sqrt(x - 2) - 3, says: /wrong side/ }]),
   val('Find f^(-1)(9)', String(solve((x) => 2 * x + 1 - 9)[0]), [{ value: String(2 * 9 + 1), says: /worked out f\(9\)/ }]),
   inverse('f(x)=e^x+4 for all real x', 'ln(x-4)', fExp4, [-2, -0.5, 0.3, 1.2, 2.5], [4.2, 4.8, 6, 9, 20], [{ value: 'ln(x+4)', fn: (x) => Math.log(x + 4), says: /added 4 inside the logarithm/ }, { value: 'ln(x)-4', fn: (x) => Math.log(x) - 4, says: /before you subtracted 4/ }]),
@@ -255,16 +255,16 @@ const CHECKS: Check[] = [
   // ----- mixed review -----
   set('f(x)=x^2-6x+2 for all real x. Find the range', rangeSet((x) => x * x - 6 * x + 2, xsFrom(-40, 40)), rangeString('f(x)', (x) => x * x - 6 * x + 2, xsFrom(-40, 40), 'open'), [{ value: 'f(x)>=2', says: /that is f\(0\)/i }, { value: 'f(x)>=7', says: /lost a minus sign/ }]),
   set('largest possible domain of fg(x). Type it like x!=5', definedSet((x) => 1 / (x + 2)), domainString(definedSet((x) => 1 / (x + 2))), [{ value: 'x!=0', says: /condition for f alone/ }]),
-  val('Find f^(-1)(2)', String(solve((x) => frac13(x) - 2)[0]), [{ value: String(-5), says: /wrong sign/ }, { value: String(5), says: /wrong sides/ }]),
+  val('Find f^(-1)(2)', String(solve((x) => frac13(x) - 2)[0]), [{ value: String(-5), says: /moved the -6 across without changing its sign/ }, { value: String(5), says: /moved the \+1 across without changing its sign/ }]),
   val('Solve gf(x)=10', typedList(solve((x) => (2 * x - 1) ** 2 + 1 - 10)), [{ value: '2', says: /only the positive root/ }, { value: String(5), says: /solved 2x-1=9/ }]),
   set('h(x)=2+e^(-x) for all real x', rangeSet((x) => 2 + Math.exp(-x), xsFrom(-10, 10)), rangeString('h(x)', (x) => 2 + Math.exp(-x), xsFrom(-10, 10), 'open'), [{ value: 'h(x)>=2', says: /output 2 is never reached/ }, { value: 'h(x)>3', says: /outputs go lower/ }]),
   // ----- exam style -----
   set('x^2-6x+14 for x >= 3. Find the range of f', rangeSet(fQuad14, xsFrom(3, 40)), rangeString('f(x)', fQuad14, xsFrom(3, 40), 'closed'), [{ value: 'f(x)>=14', says: /that is f\(0\)/i }, { value: 'f(x)>=-5', says: /lost the sign/ }]),
-  inverse('x >= 3. Find f^(-1)(x). Type it like 2+sqrt(x+1)', '3+sqrt(x-5)', fQuad14, [3, 3.5, 4.2, 6, 9], [5, 5.5, 7.2, 14, 30], [{ value: '3-sqrt(x-5)', fn: (x) => 3 - Math.sqrt(x - 5), says: /negative root/ }, { value: '3+sqrt(x+5)', fn: (x) => 3 + Math.sqrt(x + 5), says: /added 5 inside the root/ }]),
+  inverse('x^2-6x+14 for x >= 3. Find f^(-1)(x). Type only the expression after f^(-1)(x)=. Type a square root like sqrt(x+1)', '3+sqrt(x-5)', fQuad14, [3, 3.5, 4.2, 6, 9], [5, 5.5, 7.2, 14, 30], [{ value: '3-sqrt(x-5)', fn: (x) => 3 - Math.sqrt(x - 5), says: /negative root/ }, { value: '3+sqrt(x+5)', fn: (x) => 3 + Math.sqrt(x + 5), says: /added 5 inside the root/ }]),
   val('Solve fg(x)=5. Give your answer', String(Number(solve((x) => Math.exp(2 * x + 1) - 5)[0].toPrecision(3))), [{ value: String(Math.round(((Math.log(5) + 1) / 2) * 10) / 10), says: /added 1/ }, { value: String(Number((Math.log(5) / 2).toPrecision(3))), says: /left out the 1/ }]),
   set('3*sin x-1 for 0deg <= x <= 90deg', rangeSet((x) => 3 * sinD(x) - 1, xsFrom(0, 90)), rangeString('g(x)', (x) => 3 * sinD(x) - 1, xsFrom(0, 90), 'closed'), [{ value: '-4<=g(x)<=2', says: /lowest value of sin x over a whole turn/ }, { value: '0<=g(x)<=3', says: /range of 3\*sin x/ }]),
-  val('Solve fg(x)=gf(x)', String(solve((x) => (x - 2) ** 2 - (x * x - 2))[0]), [{ value: String(-1.5), says: /sign error/ }, { value: '6', says: /solved -4x=-6 as x=6/ }]),
-  set('Find the largest possible domain of f. Type it like x<=2 or x>=8', definedSet((x) => Math.sqrt((x - 1) * (x - 5))), domainString(definedSet((x) => Math.sqrt((x - 1) * (x - 5)))), [{ value: '1<=x<=5', says: /negative or 0, between the roots/ }, { value: 'x>=5', says: /only one of the two regions/ }]),
+  val('Solve fg(x)=gf(x)', String(solve((x) => (x - 2) ** 2 - (x * x - 2))[0]), [{ value: String(-1.5), says: /sign error/ }, { value: '2/3', says: /divided -4 by -6/ }]),
+  set('Find the largest possible domain of f. Type it like 2<=x<=8', definedSet((x) => Math.sqrt((x - 1) * (x - 5))), domainString(definedSet((x) => Math.sqrt((x - 1) * (x - 5)))), [{ value: '1<=x<=5', says: /negative or 0, between the roots/ }, { value: 'x>=5', says: /only one of the two regions/ }]),
 ];
 
 test('every typed key is recomputed, and every wrong-answer value is tied to the slip its message names', async () => {
@@ -320,8 +320,8 @@ test('students\' usual typings go through the real answer checker', async () => 
   reject('Write ff(x) in simplified form', ['3(3x-2)-2', '9x-2']);
   accept('Solve fg(x)=6', ['-3 or 3', '3 or -3', '3, -3', 'x=3 or x=-3', '-3,3', '-3 and 3']);
   reject('Solve fg(x)=6', ['3', '-3', '9']);
-  accept('Find f^(-1)(x). Type it like (x+9)/2', ['(x+3)/4', 'x/4+3/4', '0.25(x+3)', '0.25x+0.75', '(3+x)/4', 'y=(x+3)/4']);
-  reject('Find f^(-1)(x). Type it like (x+9)/2', ['(x-3)/4', '4x+3', 'x+3/4']);
+  accept('Type only the expression after f^(-1)(x)=, like (x+9)/2', ['(x+3)/4', 'x/4+3/4', '0.25(x+3)', '0.25x+0.75', '(3+x)/4', 'y=(x+3)/4']);
+  reject('Type only the expression after f^(-1)(x)=, like (x+9)/2', ['(x-3)/4', '4x+3', 'x+3/4']);
   accept('(x-3)^2+2 for x >= 3. Find f^(-1)(x)', ['3+sqrt(x-2)', 'sqrt(x-2)+3', '3+\u221a(x-2)', '3 + sqrt(x - 2)']);
   reject('(x-3)^2+2 for x >= 3. Find f^(-1)(x)', ['3-sqrt(x-2)', 'sqrt(x-2)-3', '3+sqrt(x+2)']);
   accept('f(x)=e^x+4 for all real x', ['ln(x-4)', 'ln(x\u22124)', 'ln (x-4)', 'ln(x - 4)']);
@@ -334,8 +334,8 @@ test('students\' usual typings go through the real answer checker', async () => 
   accept('Find f^(-1)(12)', ['6', '6.0']);
   reject('Find f^(-1)(12)', ['-2', '6 or -2']);
   accept('Find f(x). Type it like x^5', ['x^3', 'x\u00b3', 'f(x)=x^3']);
-  accept('Find the largest possible domain of f. Type it like x<=2 or x>=8', ['x<=1 or x>=5', 'x\u22641 or x\u22655', 'x<=1 or x>=5.']);
-  reject('Find the largest possible domain of f. Type it like x<=2 or x>=8', ['1<=x<=5', 'x>=5', 'x<=1 and x>=5']);
+  accept('Find the largest possible domain of f. Type it like 2<=x<=8', ['x<=1 or x>=5', 'x\u22641 or x\u22655', 'x<=1 or x>=5.', 'x>=5 or x<=1', 'x <= 1 or x >= 5']);
+  reject('Find the largest possible domain of f. Type it like 2<=x<=8', ['1<=x<=5', 'x>=5', 'x<=1 and x>=5']);
   accept('h(x)=2+e^(-x) for all real x', ['h(x)>2', 'y>2', 'h(x) > 2']);
   reject('h(x)=2+e^(-x) for all real x', ['h(x)>=2', 'h(x)>3']);
   accept('3*sin x-1 for 0deg <= x <= 90deg', ['-1<=g(x)<=2', '-1 \u2264 g(x) \u2264 2', '2>=g(x)>=-1', '-1<=y<=2']);
@@ -449,9 +449,9 @@ test('the blanks in every "Now you finish it" are recomputed', () => {
   const h = (x: number) => x * x - 6 * x;
   const fLin = (x: number) => 2 * x + 7;
   const expected = [
-    h(1), h(5), // -5, -5
+    h(2), h(4), // -8, -8
     -(-6), solve((x) => 2 * x - 6)[0], // 2x >= 6, x >= 3
-    ((x: number) => 2 * x * x)(1), ((x: number) => x + 5)(2), ((x: number) => x + 5)(1), ((x: number) => 2 * x * x)(6), // 2, 7, 6, 72
+    ((x: number) => 2 * x * x)(1), ((x: number) => 2 * x * x)(1), ((x: number) => x + 5)(2), ((x: number) => x + 5)(1), ((x: number) => x + 5)(1), ((x: number) => 2 * x * x)(6), // 2, 2, 7, 6, 6, 72
     fLin(0), fLin(1) - fLin(0), // 7 and 2: y - 7 over 2
     ...mirror([3, 7]), // 7, 3
     15 - 3, (15 - 3) / 1.5, // 12, 8
@@ -605,7 +605,9 @@ test('the lesson examples on composites, inverses and domains are right', () => 
   // flip it: f(x) = x^2 - 4x for x >= 2, f^-1(5) = 5 (and -1 is not in the domain); h = sqrt(2x + 5) = f(g(x)) with f = sqrt
   expect(solve((x) => f4(x) - 5)).toEqual([-1, 5]);
   expect(f4(5)).toBe(5);
-  for (const x of POS) expect(close(Math.sqrt(2 * x + 5), Math.sqrt(2 * x + 5))).toBe(true);
+  const gIn = (x: number) => 2 * x + 5;
+  const hComp = (x: number) => (2 * x + 5) ** 0.5;
+  for (const x of POS) expect(close(Math.sqrt(gIn(x)), hComp(x))).toBe(true); // f(g(x)) = h(x) with f = sqrt
 });
 
 test('the general rules on the page are pinned with the maths behind them', () => {
@@ -626,14 +628,17 @@ test('the general rules on the page are pinned with the maths behind them', () =
   expect([dec(1), decInv(1)]).toEqual([-1, -1]); // (1, -1) is on both graphs and is not on y = x
   expect([dec(-1), decInv(-1)]).toEqual([1, 1]);
   expect(solve((x) => dec(x) - x, -5, 5)).toEqual([0]);
-  expect(text).toContain('If f is strictly increasing, the graphs of f and f^(-1) meet only on the line y=x');
+  expect(text).toContain('If f is strictly increasing (as x gets bigger, f(x) gets bigger), the graphs of f and f^(-1) meet only on the line y=x');
   expect(text).toContain('Only a one-to-one function has an inverse.');
   expect(text).toContain('The domain of f^(-1) is the range of f. The range of f^(-1) is the domain of f.');
   expect(text).toContain('the output of g must be in the domain of f');
   expect(text).toContain('Under a square root, the expression must be at least 0');
   expect(text).toContain('Inside ln, the expression must be greater than 0');
   expect(text).toContain('A mapping where one input has two or more outputs is not a function.');
-  expect(text).toContain('A many-to-one function gets one by a restricted domain');
+  expect(text).toContain('A many-to-one function can be given an inverse by restricting its domain to a part where it is one-to-one, such as x >= 0 for x^2.');
+  expect(text).toContain('In this topic, a formula can break in three ways.');
+  expect(text).toContain('The symbol sqrt(x) means the positive square root only, and sqrt(0)=0.');
+  expect(text).toContain('sends each input to one or more outputs');
   expect(text).toContain('In general fg(x) and gf(x) are different functions.');
   expect(text).toContain('The graph of f must be one-to-one for the reflection to be the graph of a function.');
   // the domain of the inverse is the range of f: x^2 + 1 for x >= 0 has range f(x) >= 1, and its inverse sqrt(x - 1) has domain x >= 1
@@ -953,7 +958,7 @@ test('a format hint ("Type it like ...") never gives the key away', async () => 
   const problems: string[] = [];
   let hints = 0;
   for (const q of questions()) {
-    const m = /Type (?:it|them|both answers) like (.*?)\.?$/.exec(q.plain);
+    const m = /Type [^.]* like (.*?)\.?$/.exec(q.plain);
     if (!m || q.answers.length === 0) continue;
     hints += 1;
     if (matches(m[1], q.answers, q.mode)) problems.push(`"${m[1]}" is the key of: ${q.plain.slice(0, 60)}`);
@@ -1084,4 +1089,55 @@ test('every word in the "Words you need" strip and every {term:} on the page is 
   for (const m of SOURCE.matchAll(/\{term:([a-z0-9-]+)(?:\|[^}]*)?\}/g)) expect(ids.has(m[1]), m[1]).toBe(true);
   for (const id of ['largest-domain', 'restricted-domain', 'horizontal-line-test', 'mapping-diagram']) { expect(ids.get(id)?.level, id).toBe('Y2'); expect(ids.get(id)?.strand, id).toBe('al-algebra'); expect(t.words, id).toContain(id); }
   expect(t.words.length).toBeGreaterThan(8);
+});
+
+// ---------- review additions ----------
+test('a hint that could give the decision away shows both forms, and an expression prompt says to leave the prefix out', async () => {
+  const strict = (t: string) => norm(t).replace(/>=/g, '>').replace(/<=/g, '<');
+  let boundaryQuestions = 0;
+  for (const q of questions()) {
+    if (q.answers.length === 0) continue;
+    const hint = /Type [^.]* like (.*?)\.?$/.exec(q.plain)?.[1];
+    const key = norm(q.answers[0]);
+    // a slip that differs from the key only in > against >= (or < against <=) must not be hinted by the key's own sign
+    if (/[<>]/.test(key) && q.wrongs.some((w) => w.values.some((v) => strict(v) === strict(key) && norm(v) !== key))) {
+      boundaryQuestions += 1;
+      expect(hint, q.plain.slice(0, 60)).toBeTruthy();
+      expect(norm(hint!), `${q.plain.slice(0, 60)}: shows >= or <=`).toMatch(/>=|<=/);
+      expect(norm(hint!).replace(/>=|<=/g, ''), `${q.plain.slice(0, 60)}: shows > or <`).toMatch(/[<>]/);
+    }
+    // a square root key is hinted only by the way to type a root
+    if (/sqrt/.test(q.answers[0])) expect(hint, q.plain.slice(0, 60)).toBe('sqrt(x+1)');
+  }
+  expect(boundaryQuestions).toBeGreaterThanOrEqual(4);
+  const expr = questions().filter((q) => /Find f\^\(-1\)\(x\)\.|Write h\(t-3\)|Write gf\(x\) in the form|Write ff\(x\) in simplified/.test(q.plain));
+  expect(expr.length).toBe(7);
+  for (const q of expr) expect(q.plain, q.plain.slice(0, 60)).toContain('Type only the expression');
+});
+
+test('every axis letter drawn is the one the figure names, and no blank repeats its own number in the step it finishes', async () => {
+  const { FIGURES } = await import('../src/book/alevel/figures/functions.mjs');
+  for (const [id, make] of Object.entries(FIGURES) as [string, () => string][]) {
+    if (!(id in STATED)) continue;
+    const svg = make();
+    const alts = [...svg.matchAll(/<text[^>]*class="svg-t alt"([^>]*)>([^<]*)<\/text>/g)].map((m) => ({ attrs: m[1], text: m[2] })).filter((t) => !/data-for/.test(t.attrs));
+    const xs = alts.filter((t) => /text-anchor="start"/.test(t.attrs)).map((t) => ({ x: Number(/ x="([\d.-]+)"/.exec(t.attrs)![1]), t: t.text })).sort((a, b) => a.x - b.x);
+    const ys = alts.filter((t) => /text-anchor="middle"/.test(t.attrs));
+    expect(xs[xs.length - 1].t, `${id}: horizontal axis letter`).toBe(id === 'functions-model-refine' ? 't' : 'x');
+    expect(ys.map((t) => t.text), `${id}: vertical axis letter`).toEqual([STATED[id].yname ?? 'y']);
+  }
+  const problems: string[] = [];
+  const faded = SOURCE.split('<div class="worked faded">').slice(1).map((b) => b.split('</details>')[0]);
+  expect(faded.length).toBe(6);
+  for (const box of faded) {
+    for (const li of box.matchAll(/<li>([\s\S]*?)<\/li>/g)) {
+      const parts = li[1].split(/<span class="blank" data-answers="([^"]*)">___<\/span>/);
+      for (let i = 1; i < parts.length; i += 2) {
+        const before = plain(parts.slice(0, i).filter((_, k) => k % 2 === 0).join(' '));
+        const nums = [...before.matchAll(/(?<![\d.])\d+(?:\.\d+)?(?![\d.])/g)].map((m) => Number(m[0]));
+        if (nums.includes(Math.abs(Number(parts[i])))) problems.push(`the blank "${parts[i]}" repeats a number already in: ${before.slice(0, 90)}`);
+      }
+    }
+  }
+  expect(problems).toEqual([]);
 });

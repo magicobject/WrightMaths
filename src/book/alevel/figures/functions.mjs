@@ -28,14 +28,14 @@ const BOTTOM = 52;
 const ROW = 56; // the height of one row of the key above the graph
 
 /** A plane with no grid and no scale numbers, and a key above it of `rows` lines. `equal` gives both axes the same scale. */
-function sketch(id, { xmin, xmax, ymin, ymax, rows = 2, height = 520, ylabel = 'y', equal = false }) {
+function sketch(id, { xmin, xmax, ymin, ymax, rows = 2, height = 520, ylabel = 'y', xlabel = 'x', equal = false }) {
   const top = 64 + ROW * (rows - 1) + 46;
   const h = equal ? Math.round(top + BOTTOM + ((W - LEFT - RIGHT) * (ymax - ymin)) / (xmax - xmin)) : height;
   GEOM[id] = { width: W, height: h, left: LEFT, right: RIGHT, top, bottom: BOTTOM, xmin, xmax, ymin, ymax };
   CURVES[id] = [];
   ITEMS[id] = [];
   PENDING[id] = { points: [], lines: [], taken: [] };
-  return plane({ grid: false, ticks: false, tickLabels: false, width: W, height: h, top, xmin, xmax, ymin, ymax, ylabel });
+  return plane({ grid: false, ticks: false, tickLabels: false, width: W, height: h, top, xmin, xmax, ymin, ymax, xlabel, ylabel });
 }
 
 /** What each picture still has to place: its marked points, its asymptote labels, and the boxes that are already taken. */
@@ -410,7 +410,7 @@ export const FIGURES = {
   // ---- 6. a model and its refinement: the value of a car ----
   'functions-model-refine': () => {
     const id = 'functions-model-refine';
-    const p = sketch(id, { xmin: -3, xmax: 22, ymin: -3000, ymax: 17500, rows: 2, height: 760, ylabel: 'V' });
+    const p = sketch(id, { xmin: -3, xmax: 22, ymin: -3000, ymax: 17500, rows: 2, height: 760, ylabel: 'V', xlabel: 't' });
     keyRow(p, id, 0, 'curve', 'V = 15000e^(-0.2t)');
     keyRow(p, id, 1, 'curve-b', 'V = 2000 + 13000e^(-0.2t)');
     draw(p, id, [{ name: 'first', fn: carFirst, from: 0, to: 22 }, { name: 'refined', cls: 'curve-b', fn: carRefined, from: 0, to: 22 }]);
@@ -433,7 +433,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'A curve that rises from the bottom left to the top right, with two marked points',
-      desc: 'A smooth curve that rises all the way from the bottom left to the top right, and never turns back. It meets the y-axis at the marked point (0, 4) and passes through the marked point (1, 5). Any horizontal line meets the curve exactly once.',
+      desc: 'A smooth curve that rises all the way from the bottom left to the top right, and never turns back. It meets the y-axis at the marked point (0, 4) and passes through the marked point (1, 5). Any horizontal line meets the curve exactly once. It crosses the x-axis to the left of the origin, at an unmarked point.',
     });
   },
 
