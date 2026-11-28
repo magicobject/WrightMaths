@@ -1,0 +1,1254 @@
+<main class="book strand-al-algebra" data-calc="scientific" data-book-page="topic" data-topic="algebraic-fractions">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra and functions &middot; Year 2</span>
+      <h1>Algebraic fractions and partial fractions</h1>
+      <p class="lead">An {term:algebraic-fraction|algebraic fraction} has algebra in its top, its bottom or both, such as {m:frac(x+1, x^2-4)}. This page shows how to simplify one, how to multiply and divide them, and how to add and subtract them. Then it goes the other way. It splits one fraction into simpler fractions, which is called {term:partial-fractions|partial fractions}. The bottoms on this page are made of straight-line factors such as {m:(x-1)}, and one of them may be repeated.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Binomial expansion (fractional and negative powers), where you split a fraction before you expand it. Also in Integrating with partial fractions, where each piece is integrated on its own. It helps whenever an answer must be one neat fraction, or a fraction must be taken apart.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Algebraic fractions and partial fractions</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="polynomials.html">Polynomials and the factor theorem</a>. You need to expand brackets, to factorise quadratics and cubics, and to use the factor theorem. It also uses <a href="quadratics.html">Quadratics</a> and the GCSE rules for adding and dividing fractions. The warm-up shows you where to look if you have forgotten any of it. This page uses bottoms that split into straight-line factors. A bottom with a quadratic factor that does not split is not covered here.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-simplifying-an-algebraic-fraction">Skip to the lesson</a></p>
+    <div class="q" data-answers="5/12" data-mode="value">
+      <p class="qtext">Work out {m:frac(1, 4)+frac(1, 6)}. Type it like 3/5.</p>
+      <ol class="ladder"><li>The bottoms are different, so you cannot add the tops yet.</li><li>Write both fractions with the same bottom. Find the smallest number that 4 and 6 both divide into.</li></ol>
+      <ul class="wrong">
+        <li data-if="2/10">You added the tops and added the bottoms. First write both fractions with the same bottom, then add only the tops.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(1, 4)=frac(3, 12)} and {m:frac(1, 6)=frac(2, 12)}. Add the tops: {m:frac(3, 12)+frac(2, 12)=frac(5, 12)}.</p></div>
+    </div>
+    <div class="q" data-answers="3/2" data-mode="value">
+      <p class="qtext">Work out {m:frac(2, 3)} &divide; {m:frac(4, 9)}. Type it like 3/5.</p>
+      <ol class="ladder"><li>To divide by a fraction, multiply by that fraction turned upside down.</li><li>Turn the second fraction upside down. Then multiply the tops and multiply the bottoms. Cancel if you can.</li></ol>
+      <ul class="wrong">
+        <li data-if="8/27">You multiplied without turning the second fraction upside down. To divide by {m:frac(4, 9)}, multiply by {m:frac(9, 4)}.</li>
+        <li data-if="2/3">You turned the first fraction upside down. The second fraction is the one to turn, and the first stays as it is.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(2, 3)} &divide; {m:frac(4, 9)} is {m:frac(2, 3)*frac(9, 4)=frac(18, 12)=frac(3, 2)}.</p></div>
+    </div>
+    <div class="q" data-answers="(x+3)(x-2);(x-2)(x+3)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^2+x-6}. Type it like (x+1)(x+2).</p>
+      <ol class="ladder"><li>Find two numbers that multiply to {m:-6} and add to 1. The topic <a href="quadratics.html">Quadratics</a> has more on this.</li><li>One number is positive and one is negative. The bigger one is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-3)(x+2);(x+2)(x-3)">Those brackets give {m:x^2-x-6}. The middle term is {m:+x}, so the bigger number must be the positive one.</li>
+        <li data-if="(x+6)(x-1);(x-1)(x+6)">Those two numbers multiply to {m:-6}, but they add to 5. You need two numbers that add to 1.</li>
+      </ul>
+      <div class="solution"><p>{m:3*(-2)=-6} and {m:3+(-2)=1}, so {m:x^2+x-6=(x+3)(x-2)}.</p></div>
+    </div>
+    <div class="q" data-answers="x(x-1)(x+1);x(x+1)(x-1);(x-1)x(x+1);(x+1)x(x-1);(x-1)(x+1)x;(x+1)(x-1)x" data-mode="exact" data-complete="linear">
+      <p class="qtext">Factorise {m:x^3-x} completely. Type it like x(x+1)(x+2).</p>
+      <ol class="ladder"><li>Take out the common factor x first. The topic <a href="polynomials.html">Polynomials and the factor theorem</a> has more on factorising.</li><li>Then look at the bracket that is left. It is a difference of two squares.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-1)(x+1)">You lost the factor x. {m:(x-1)(x+1)=x^2-1}, and you started with {m:x^3-x}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^3-x=x(x^2-1)=x(x-1)(x+1)}. Check with {m:x=2}: {m:2*1*3=6} and {m:8-2=6}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="x^2-x-6;-6-x+x^2" data-mode="exact">
+      <p class="qtext">Expand and simplify {m:(x+2)(x-3)}. Type it like x^2+4x+4.</p>
+      <ol class="ladder"><li>Multiply every term in the first bracket by every term in the second.</li><li>{m:(x+2)(x-3)=x^2-3x+2x-6}. Now collect the x terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^2+x-6;-6+x+x^2">You added {m:-3x} and {m:2x} as {m:+x}. They give {m:-x}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x+2)(x-3)=x^2-3x+2x-6=x^2-x-6}.</p></div>
+    </div>
+    <div class="q" data-answers="2 or 3" data-mode="value">
+      <p class="qtext">Solve {m:x^2-5x+6=0}. Type your answers like 1 or 5.</p>
+      <ol class="ladder"><li>Factorise the quadratic. See <a href="quadratics.html">Quadratics</a> if you need a reminder.</li><li>Set each bracket equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2 or -3">You took the signs from the numbers in the brackets. {m:x-2=0} gives {m:x=2}.</li>
+      </ul>
+      <div class="solution"><p>{m:(x-2)(x-3)=0}, so {m:x=2} or {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="x^3" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(x^4, x)}. Type it like x^5.</p>
+      <ol class="ladder"><li>A lone x is {m:x^1}.</li><li>When you divide powers of the same base, subtract the powers.</li></ol>
+      <ul class="wrong">
+        <li data-if="x^4">You did not take anything off the power. {m:x=x^1}, and {m:4-1=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x^4, x)=x^(4-1)=x^3}, for {m:x != 0}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Simplifying an algebraic fraction</h2>
+    <p>An {term:algebraic-fraction|algebraic fraction} is a fraction with algebra on the top, the bottom or both. You simplify one in the same way as a number fraction. For {m:frac(6, 8)}, the top and the bottom share the factor 2, so {m:frac(6, 8)=frac(2*3, 2*4)=frac(3, 4)}.</p>
+    <p>You can {term:cancel} only a factor. A factor is a part that multiplies the whole top and the whole bottom. A term is a part that is added or subtracted. Compare {m:frac(2*3, 2*4)}, where cancelling the 2 works, with {m:frac(2+3, 2+4)}. Here {m:frac(5, 6)} is not {m:frac(3, 4)}, so cancelling the 2 is wrong.</p>
+    <p>So the first step is to write the top and the bottom as products. Take out common factors. Then factorise quadratics and, where you can, cubics. The factor theorem from <a href="polynomials.html">Polynomials and the factor theorem</a> helps with a cubic.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to simplify an algebraic fraction, factorise the top and the bottom completely. Then cancel every factor that appears on both. Cancel factors, not terms. The simplified fraction equals the original for every x except the values that make the bottom of the original 0. At those values the original has no value. Those values are the {term:excluded-value|excluded values}.</p>
+    </div>
+    <p>Look at {m:frac(x^2-4, x-2)}. Its top factorises: {m:x^2-4=(x-2)(x+2)}. Cancel {m:(x-2)} and you get {m:x+2}. This is true for every x except {m:x=2}. When {m:x=2}, the original is {m:frac(0, 0)}, which has no value. The graph shows this as a gap.</p>
+    <figure class="figure-lg">{fig:algebraic-fractions-hole}<figcaption>Look at the open circle at {m:(2, 4)}. The graph of {m:y=frac(x^2-4, x-2)} is the straight line {m:y=x+2} with that one point missing. The simplified fraction {m:x+2} has the value 4 at {m:x=2}. The original fraction has no value there.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: two quadratics</h3>
+      <p>Simplify {m:frac(x^2-9, x^2+x-6)}. State the values of x that must be left out.</p>
+      <ol class="steps">
+        <li>Factorise the top. It is a difference of two squares: {m:x^2-9=(x-3)(x+3)}.</li>
+        <li>Factorise the bottom. The numbers 3 and {m:-2} multiply to {m:-6} and add to 1: {m:x^2+x-6=(x+3)(x-2)}.</li>
+        <li>Cancel the common factor {m:(x+3)}. What is left is {m:frac(x-3, x-2)}.</li>
+        <li>Find the excluded values from the original bottom. {m:(x+3)(x-2)=0} gives {m:x=-3} or {m:x=2}.</li>
+      </ol>
+      <p>The answer is {m:frac(x-3, x-2)}, for {m:x != -3} and {m:x != 2}. Notice that {m:x=-3} is left out even though {m:frac(x-3, x-2)} has a value there. The original fraction does not.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a common factor first</h3>
+      <p>Simplify {m:frac(3x^2+6x, x^2+3x+2)}.</p>
+      <ol class="steps">
+        <li>Take out the common factor of the top: {m:3x^2+6x=3x(x+2)}.</li>
+        <li>Factorise the bottom: {m:x^2+3x+2=(x+1)(x+2)}.</li>
+        <li>Cancel {m:(x+2)}. What is left is {m:frac(3x, x+1)}.</li>
+        <li>The original bottom is 0 when {m:x=-1} or {m:x=-2}.</li>
+      </ol>
+      <p>The answer is {m:frac(3x, x+1)}, for {m:x != -1} and {m:x != -2}. You cannot cancel the x in {m:3x} with the x in {m:x+1}: that x is a term.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a cubic on the top</h3>
+      <p>Simplify {m:frac(x^3-7x+6, x^2-3x+2)}.</p>
+      <ol class="steps">
+        <li>Factorise the bottom: {m:x^2-3x+2=(x-1)(x-2)}.</li>
+        <li>Let {m:f(x)=x^3-7x+6}. Then {m:f(1)=1-7+6=0}, so {m:(x-1)} is a factor. Divide: {m:x^3-7x+6=(x-1)(x^2+x-6)}.</li>
+        <li>Factorise the quadratic: {m:x^2+x-6=(x+3)(x-2)}. So the top is {m:(x-1)(x+3)(x-2)}.</li>
+        <li>Cancel {m:(x-1)} and {m:(x-2)}. What is left on the top is {m:x+3}, and nothing is left on the bottom.</li>
+      </ol>
+      <p>The answer is {m:x+3}, for {m:x != 1} and {m:x != 2}. A fraction can simplify to something that is not a fraction at all.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Simplify {m:frac(x^2-2x-8, x^2-16)}.</p>
+      <ol class="steps">
+        <li>Factorise the top, {m:x^2-2x-8}. The brackets are (x &minus; 4)(x + <span class="blank" data-answers="2">___</span>).</li>
+        <li>Factorise the bottom, {m:x^2-16}. The brackets are (x &minus; <span class="blank" data-answers="4">___</span>)(x + 4).</li>
+        <li>Cancel {m:(x-4)}. What is left is {m:frac(x+2, x+4)}.</li>
+        <li>The original bottom is 0 when {m:x=4} or {m:x=}<span class="blank" data-answers="-4">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(x^2-2x-8, x^2-16)=frac((x-4)(x+2), (x-4)(x+4))=frac(x+2, x+4)}, for {m:x != 4} and {m:x != -4}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: simplifying</h2>
+    <div class="q" data-answers="(x-4)/(x-3)" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(x^2-16, x^2+x-12)}. Type it like (x+1)/(x+2).</p>
+      <ol class="ladder"><li>Factorise the top and the bottom. The top is a difference of two squares.</li><li>The bottom has two brackets. One of them also appears in the top.</li><li>Cancel that common factor.</li></ol>
+      <ul class="wrong">
+        <li data-if="-16/(x-12);16/(12-x)">You cancelled {m:x^2} from the top and the bottom. {m:x^2} is a term in both, not a factor. Factorise first.</li>
+        <li data-if="(x-4)/(x+3)">Check the bottom. {m:(x+4)(x+3)=x^2+7x+12}, which is not {m:x^2+x-12}. The numbers must multiply to {m:-12}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-16=(x-4)(x+4)} and {m:x^2+x-12=(x+4)(x-3)}. Cancel {m:(x+4)}: the answer is {m:frac(x-4, x-3)}, for {m:x != -4} and {m:x != 3}.</p></div>
+    </div>
+    <div class="q" data-answers="2x/(x-2);(2x)/(x-2)" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(4x^2+8x, 2x^2-8)}. Type it like (x+1)/(x+2).</p>
+      <ol class="ladder"><li>Take out a common factor from the top and from the bottom before you factorise further.</li><li>The bottom has a number factor, and what is left is a difference of two squares.</li></ol>
+      <ul class="wrong">
+        <li data-if="4x/(2x-4);4x/(2(x-2));(4x)/(2(x-2))">That is equal to the answer, but it is not fully simplified. The top and the bottom still share the factor 2.</li>
+        <li data-if="2x/(x+2);(2x)/(x+2)">The bottom is {m:2(x-2)(x+2)}. After you cancel {m:(x+2)}, the factor left on the bottom is {m:(x-2)}, not {m:(x+2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:4x^2+8x=4x(x+2)} and {m:2x^2-8=2(x^2-4)=2(x-2)(x+2)}. Cancel 2 and {m:(x+2)}: the answer is {m:frac(2x, x-2)}, for {m:x != 2} and {m:x != -2}.</p></div>
+    </div>
+    <div class="q" data-answers="2 or 3" data-mode="value">
+      <p class="qtext">The fraction {m:frac(x+1, x^2-5x+6)} has no value for two values of x. Find them. Type them like 1 or 5.</p>
+      <ol class="ladder"><li>A fraction has no value when its bottom is 0.</li><li>Factorise the bottom and set each bracket equal to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1">That makes the top 0. A fraction with a top of 0 has the value 0. It has no value only when the bottom is 0.</li>
+        <li data-if="-2 or -3">You took the signs from the numbers in the brackets. {m:(x-2)(x-3)=0} gives {m:x=2} or {m:x=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-5x+6=(x-2)(x-3)}. The bottom is 0 when {m:x=2} or {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these simplifications is correct?</p>
+      <ul class="options">
+        <li data-correct>(x^2 - 1)/(x - 1) = x + 1, for x not equal to 1</li>
+        <li data-why="The x is added to the 4 and to the 6, so it is a term, not a factor. It cannot be cancelled. Test x = 2: 6/8 = 0.75 but 4/6 = 0.67.">(x + 4)/(x + 6) = 4/6, because the x cancels</li>
+        <li data-why="The 3 on the bottom divides every term on the top, so x^2/3 + 1 is the result, not x^2 + 1. Test x = 3: (9 + 3)/3 = 4 but 3^2 + 1 = 10.">(x^2 + 3)/3 = x^2 + 1</li>
+      </ul>
+      <ol class="ladder"><li>Test each one with a value of x, such as 2 or 3.</li><li>You can cancel a factor but not a term.</li></ol>
+      <div class="solution"><p>{m:x^2-1=(x-1)(x+1)}, so {m:frac(x^2-1, x-1)=x+1} when {m:x != 1}. The other two cancel terms, not factors.</p></div>
+    </div>
+    <div class="q" data-answers="x-2" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(x^3+x^2-4x-4, x^2+3x+2)}. Type it like x+5.</p>
+      <ol class="ladder"><li>Factorise the bottom first. Then test whether each bottom factor is also a factor of the top, using the factor theorem.</li><li>When {m:x=-1}, the top is {m:-1+1+4-4}. What does that tell you?</li><li>Divide the top by that bracket and factorise what is left.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x^2-4)/(x+2);(x-2)(x+2)/(x+2)">That is equal to the answer, but it is not fully simplified. {m:x^2-4=(x-2)(x+2)}, so the factor {m:(x+2)} can be cancelled as well.</li>
+        <li data-if="x+2">The bottom is {m:(x+1)(x+2)}. Both factors cancel, and the factor of the top that is left is {m:(x-2)}.</li>
+      </ul>
+      <div class="solution"><p>The bottom is {m:(x+1)(x+2)}. The top is {m:x^2(x+1)-4(x+1)=(x+1)(x^2-4)=(x+1)(x-2)(x+2)}. Cancel {m:(x+1)} and {m:(x+2)}: the answer is {m:x-2}, for {m:x != -1} and {m:x != -2}.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">Simplify {m:frac(3-x, x-3)}. The answer is a number. Type only the number.</p>
+      <ol class="ladder"><li>Test it with {m:x=5}. What do the top and the bottom give?</li><li>The top is the bottom with its signs changed. Take a factor of {m:-1} out of the top.</li></ol>
+      <ul class="wrong">
+        <li data-if="1">{m:3-x} is not the same as {m:x-3}. The top has the opposite sign, so the fraction is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:3-x=-1*(x-3)}, so {m:frac(3-x, x-3)=frac(-(x-3), x-3)=-1}, for {m:x != 3}. Check with {m:x=5}: {m:frac(-2, 2)=-1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph shows {m:y=frac(x^2-1, x+1)}. The open circle on it marks the point {m:(-1, -2)}. What does the open circle tell you?</p>
+      <figure class="qfig-lg">{fig:algebraic-fractions-q-hole}</figure>
+      <ul class="options">
+        <li data-correct>The fraction has no value at x = -1, because the bottom is 0 there</li>
+        <li data-why="At x = -1 the top is 0 and so is the bottom. A fraction with a bottom of 0 has no value at all, so it is not 0.">The fraction is equal to 0 at x = -1</li>
+        <li data-why="A maximum is a turning point where the curve stops rising and starts to fall. This graph is a straight line, which has no turning points.">The graph has a maximum at x = -1</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=-1} into the bottom of the fraction.</li><li>The open circle shows a point that is left out of the graph.</li></ol>
+      <div class="solution"><p>The bottom {m:x+1} is 0 when {m:x=-1}, so the original fraction has no value there. The top {m:x^2-1=(x-1)(x+1)} is also 0, but that does not give the value 0. Everywhere else the graph is the line {m:y=x-1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Multiplying and dividing</h2>
+    <p>To multiply number fractions, you multiply the tops and multiply the bottoms. You can cancel first, which keeps the numbers small: {m:frac(2, 3)*frac(9, 10)=frac(1*3, 1*5)=frac(3, 5)}. Algebraic fractions work in the same way. You factorise first, so that you can see which factors are there to cancel.</p>
+    <p>To divide by a fraction, you turn it upside down and multiply. Turning a fraction upside down gives its reciprocal. This works for algebraic fractions too.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to multiply algebraic fractions, factorise every top and every bottom. Cancel a factor on any top with the same factor on any bottom, in either fraction. Then multiply what is left. To divide by a fraction, turn the second fraction upside down and then multiply. The result has no value where any bottom is 0. When you divide, it also has no value where the fraction you divide by is 0.</p>
+    </div>
+    <!-- No figure for this section: multiplying and dividing is a calculation with factors, and the graph of a product does not show the rule. The graph in lesson 1 shows what an excluded value looks like. -->
+    <div class="worked">
+      <h3>Worked example: multiplying</h3>
+      <p>Simplify {m:frac(x^2-4, x^2+x)*frac(x+1, x+2)}.</p>
+      <ol class="steps">
+        <li>Factorise: {m:x^2-4=(x-2)(x+2)} and {m:x^2+x=x(x+1)}. The product is {m:frac((x-2)(x+2), x(x+1))*frac(x+1, x+2)}.</li>
+        <li>Cancel {m:(x+1)}: it is on the bottom of the first fraction and the top of the second.</li>
+        <li>Cancel {m:(x+2)}: it is on the top of the first fraction and the bottom of the second.</li>
+        <li>What is left is {m:frac(x-2, x)}.</li>
+      </ol>
+      <p>The answer is {m:frac(x-2, x)}. The original has no value when a bottom is 0, which is for {m:x=0}, {m:x=-1} and {m:x=-2}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: dividing</h3>
+      <p>Simplify {m:frac(x^2-x-6, x^2-1)} &divide; {m:frac(x-3, x+1)}.</p>
+      <ol class="steps">
+        <li>Turn the second fraction upside down and multiply: {m:frac(x^2-x-6, x^2-1)*frac(x+1, x-3)}.</li>
+        <li>Factorise: {m:x^2-x-6=(x-3)(x+2)} and {m:x^2-1=(x-1)(x+1)}.</li>
+        <li>The product is {m:frac((x-3)(x+2), (x-1)(x+1))*frac(x+1, x-3)}. Cancel {m:(x-3)} and {m:(x+1)}.</li>
+        <li>What is left is {m:frac(x+2, x-1)}.</li>
+      </ol>
+      <p>The answer is {m:frac(x+2, x-1)}. The original has no value for {m:x=1} and {m:x=-1}, where a bottom is 0. It also has no value for {m:x=3}, because {m:frac(x-3, x+1)} is 0 there and you cannot divide by 0.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a common factor in the top</h3>
+      <p>Simplify {m:frac(2x+4, x^2-4x)} &divide; {m:frac(x+2, x-4)}.</p>
+      <ol class="steps">
+        <li>Turn the second fraction upside down: {m:frac(2x+4, x^2-4x)*frac(x-4, x+2)}.</li>
+        <li>Factorise: {m:2x+4=2(x+2)} and {m:x^2-4x=x(x-4)}.</li>
+        <li>The product is {m:frac(2(x+2), x(x-4))*frac(x-4, x+2)}. Cancel {m:(x+2)} and {m:(x-4)}.</li>
+        <li>What is left is {m:frac(2, x)}.</li>
+      </ol>
+      <p>The answer is {m:frac(2, x)}. The original has no value for {m:x=0} and {m:x=4}, where a bottom is 0, and for {m:x=-2}, where the fraction you divide by is 0.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Simplify {m:frac(x^2-9, x+1)*frac(x^2+x, x+3)}.</p>
+      <ol class="steps">
+        <li>Factorise the first top: {m:x^2-9=(x-3)(x+3)}. Factorise the second top, {m:x^2+x}. It is x(x + <span class="blank" data-answers="1">___</span>).</li>
+        <li>Cancel each factor that is on a top and on a bottom. The factor {m:(x+3)} goes with the bottom {m:(x+3)}, and the factor {m:(x+1)} goes with the bottom {m:(x+1)}. What is left is x(x &minus; <span class="blank" data-answers="3">___</span>).</li>
+        <li>The bottoms are {m:x+1} and {m:x+3}. They are 0 when {m:x=-1} and {m:x=}<span class="blank" data-answers="-3">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The product is {m:x(x-3)}, for {m:x != -1} and {m:x != -3}. Check with {m:x=2}: {m:frac(-5, 3)*frac(6, 5)=-2}, and {m:2*(2-3)=-2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: multiplying and dividing</h2>
+    <div class="q" data-answers="(x+2)/x" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(x+1, x-2)*frac(x^2-4, x^2+x)}. Type it like (x+1)/(x+2).</p>
+      <ol class="ladder"><li>Factorise {m:x^2-4} and {m:x^2+x}.</li><li>Look for a factor on a top that is also on a bottom, in either fraction.</li></ol>
+      <ul class="wrong">
+        <li data-if="x+2">You cancelled the x on the bottom with the x in {m:x+2}. That x is a term, not a factor. The bottom {m:x} stays.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x+1, x-2)*frac((x-2)(x+2), x(x+1))}. Cancel {m:(x+1)} and {m:(x-2)}. What is left is {m:frac(x+2, x)}, for {m:x != 2}, {m:x != 0} and {m:x != -1}.</p></div>
+    </div>
+    <div class="q" data-answers="x(x+1);x^2+x;(x+1)x;x(1+x)" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(x^2-x-2, x+3)} &divide; {m:frac(x-2, x^2+3x)}. Type it like x(x+5).</p>
+      <ol class="ladder"><li>Turn the second fraction upside down and multiply.</li><li>Factorise {m:x^2-x-2} and {m:x^2+3x}. Then cancel.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-2)^2(x+1)/(x(x+3)^2)">You multiplied without turning the second fraction upside down. To divide by {m:frac(x-2, x^2+3x)}, multiply by {m:frac(x^2+3x, x-2)}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x^2-x-2, x+3)*frac(x^2+3x, x-2)=frac((x-2)(x+1), x+3)*frac(x(x+3), x-2)}. Cancel {m:(x-2)} and {m:(x+3)}. What is left is {m:x(x+1)}, for {m:x != -3}, {m:x != 0} and {m:x != 2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">To work out {m:frac(p, q)} &divide; {m:frac(r, s)}, which is correct? Here p, q, r and s are not 0.</p>
+      <ul class="options">
+        <li data-correct>Multiply p/q by s/r</li>
+        <li data-why="That multiplies by r/s, so it multiplies the two fractions and does not divide. Test: 1/2 divided by 1/4 is 2, but 1/2 times 1/4 is 1/8.">Multiply p/q by r/s</li>
+        <li data-why="That turns the first fraction upside down. The fraction you divide by is the one to turn. Test: 1/2 divided by 1/4 is 2, but 2/1 times 1/4 is 1/2.">Multiply q/p by r/s</li>
+      </ul>
+      <ol class="ladder"><li>Try it with numbers, such as {m:frac(1, 2)} &divide; {m:frac(1, 4)}.</li><li>How many quarters are there in a half?</li></ol>
+      <div class="solution"><p>Dividing by {m:frac(r, s)} is the same as multiplying by its reciprocal {m:frac(s, r)}. So {m:frac(p, q)} &divide; {m:frac(r, s)=frac(p, q)*frac(s, r)}.</p></div>
+    </div>
+    <div class="q" data-answers="x/(2(x-1));x/(2x-2)" data-mode="exact">
+      <p class="qtext">Simplify {m:frac(2x, x^2-1)} &divide; {m:frac(4, x+1)}. Type it like (x+1)/(x+2).</p>
+      <ol class="ladder"><li>Turn {m:frac(4, x+1)} upside down and multiply.</li><li>Factorise {m:x^2-1}. Then cancel the numbers as well as the brackets.</li></ol>
+      <ul class="wrong">
+        <li data-if="x/(x-1);(x)/(x-1)">Check the numbers. {m:frac(2x, 4)} simplifies to {m:frac(x, 2)}, so the 2 stays, on the bottom.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(2x, x^2-1)*frac(x+1, 4)=frac(2x, (x-1)(x+1))*frac(x+1, 4)}. Cancel {m:(x+1)}, and cancel 2 with 4. What is left is {m:frac(x, 2(x-1))}, for {m:x != 1} and {m:x != -1}.</p></div>
+    </div>
+    <div class="q" data-answers="-4 or 1 or 3" data-mode="value">
+      <p class="qtext">The expression {m:frac(x+2, x-1)} &divide; {m:frac(x-3, x+4)} has no value for three values of x. Find them. Type them like 1 or 2 or 5.</p>
+      <ol class="ladder"><li>Find where each bottom is 0.</li><li>You also cannot divide by 0. Find where the fraction you divide by is 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4 or 1">You found where each bottom is 0. You also cannot divide by 0, and {m:frac(x-3, x+4)} is 0 when {m:x=3}.</li>
+        <li data-if="-4 or -2 or 1 or 3">The value {m:x=-2} makes the top of the first fraction 0, so that fraction is 0. The whole expression is then 0, which is a value. Leave {m:x=-2} out.</li>
+      </ul>
+      <div class="solution"><p>The bottoms are 0 when {m:x=1} and {m:x=-4}. The fraction {m:frac(x-3, x+4)} is 0 when {m:x=3}, and you cannot divide by 0. So the expression has no value for {m:x=-4}, {m:x=1} and {m:x=3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Adding and subtracting</h2>
+    <p>To add {m:frac(1, 4)} and {m:frac(1, 6)}, you write both fractions with the bottom 12. This bottom is the {term:lowest-common-denominator|lowest common denominator}: the smallest number that both bottoms divide into. Then you add the tops: {m:frac(3, 12)+frac(2, 12)=frac(5, 12)}.</p>
+    <p>Algebraic fractions work in the same way. The lowest common denominator is made from the bottoms. You write each bottom as factors, and use each different factor once, to the highest power it has in either bottom. Then you multiply the top of each fraction by the factors its bottom is missing.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to add or subtract algebraic fractions, write each over the lowest common denominator. Factorise the bottoms first, and use each factor once, to its highest power. Multiply each top by the factors that its bottom is missing. Then add or subtract the tops over the one bottom. When you subtract, put brackets round the whole top of the second fraction, so that its signs change.</p>
+    </div>
+    <!-- No figure for this section: adding fractions is a rewrite with a common bottom, and the sum of two graphs would not show why the rule works. -->
+    <div class="worked">
+      <h3>Worked example: two different bottoms</h3>
+      <p>Write {m:frac(3, x+1)+frac(2, x-2)} as a single fraction.</p>
+      <ol class="steps">
+        <li>The lowest common denominator is {m:(x+1)(x-2)}.</li>
+        <li>The first fraction is missing {m:(x-2)}: {m:frac(3, x+1)=frac(3(x-2), (x+1)(x-2))}.</li>
+        <li>The second fraction is missing {m:(x+1)}: {m:frac(2, x-2)=frac(2(x+1), (x+1)(x-2))}.</li>
+        <li>Add the tops: {m:3(x-2)+2(x+1)=3x-6+2x+2=5x-4}.</li>
+      </ol>
+      <p>The answer is {m:frac(5x-4, (x+1)(x-2))}. Check with {m:x=3}: {m:frac(3, 4)+frac(2, 1)=frac(11, 4)} and {m:frac(11, 4*1)=frac(11, 4)}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: subtracting</h3>
+      <p>Write {m:frac(x+3, x-1)-frac(x-2, x+2)} as a single fraction.</p>
+      <ol class="steps">
+        <li>The lowest common denominator is {m:(x-1)(x+2)}.</li>
+        <li>The top is {m:(x+3)(x+2)-(x-2)(x-1)}. The brackets round the second part change its signs.</li>
+        <li>Expand each part: {m:(x+3)(x+2)=x^2+5x+6} and {m:(x-2)(x-1)=x^2-3x+2}.</li>
+        <li>Subtract: {m:x^2+5x+6-x^2+3x-2=8x+4}.</li>
+      </ol>
+      <p>The answer is {m:frac(8x+4, (x-1)(x+2))}. The {m:x^2} terms cancel, so the top has a lower degree than the bottom.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a bottom that is a factor of another</h3>
+      <p>Write {m:frac(3, x-2)-frac(4, x^2-4)} as a single fraction.</p>
+      <ol class="steps">
+        <li>Factorise the second bottom: {m:x^2-4=(x-2)(x+2)}. It already contains {m:(x-2)}.</li>
+        <li>The lowest common denominator is {m:(x-2)(x+2)}. Use {m:(x-2)} once, not twice.</li>
+        <li>Only the first fraction needs changing: {m:frac(3, x-2)=frac(3(x+2), (x-2)(x+2))}.</li>
+        <li>Subtract the tops: {m:3(x+2)-4=3x+6-4=3x+2}.</li>
+      </ol>
+      <p>The answer is {m:frac(3x+2, (x-2)(x+2))}, which is {m:frac(3x+2, x^2-4)}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a repeated factor</h3>
+      <p>Write {m:frac(2, x+1)+frac(3, (x+1)^2)} as a single fraction.</p>
+      <ol class="steps">
+        <li>The highest power of {m:(x+1)} in either bottom is 2. So the lowest common denominator is {m:(x+1)^2}.</li>
+        <li>The first fraction is missing one {m:(x+1)}: {m:frac(2, x+1)=frac(2(x+1), (x+1)^2)}.</li>
+        <li>Add the tops: {m:2(x+1)+3=2x+2+3=2x+5}.</li>
+      </ol>
+      <p>The answer is {m:frac(2x+5, (x+1)^2)}. Do not use {m:(x+1)^3} as the bottom: the lowest common denominator uses the highest power once.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:frac(1, x+3)+frac(4, x-1)} as a single fraction.</p>
+      <ol class="steps">
+        <li>The lowest common denominator is {m:(x+3)(x-1)}.</li>
+        <li>The top is {m:1*(x-1)+4(x+3)}. Expand it: {m:x-1+4x} + <span class="blank" data-answers="12">___</span>.</li>
+        <li>Collect like terms: the top is <span class="blank" data-answers="5">___</span>x + <span class="blank" data-answers="11">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(1, x+3)+frac(4, x-1)=frac(5x+11, (x+3)(x-1))}. Check with {m:x=2}: {m:frac(1, 5)+frac(4, 1)=frac(21, 5)} and {m:frac(21, 5*1)=frac(21, 5)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: adding and subtracting</h2>
+    <div class="q" data-answers="(3x-1)/((x-3)(x+1));(3x-1)/((x+1)(x-3));(3x-1)/(x^2-2x-3)" data-mode="exact">
+      <p class="qtext">Write {m:frac(2, x-3)+frac(1, x+1)} as a single fraction. Type it like (x+1)/((x+2)(x+3)).</p>
+      <ol class="ladder"><li>The lowest common denominator is the product of the two bottoms.</li><li>Multiply each top by the bottom of the other fraction. Then add.</li></ol>
+      <ul class="wrong">
+        <li data-if="3/(2x-2)">You added the tops and added the bottoms. Write both fractions over the same bottom first, then add only the tops.</li>
+        <li data-if="(3x-5)/((x-3)(x+1));(3x-5)/((x+1)(x-3))">You multiplied each top by its own bottom's factor. The first fraction is missing {m:(x+1)}, and the second is missing {m:(x-3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(2, x-3)+frac(1, x+1)=frac(2(x+1)+1*(x-3), (x-3)(x+1))=frac(2x+2+x-3, (x-3)(x+1))=frac(3x-1, (x-3)(x+1))}.</p></div>
+    </div>
+    <div class="q" data-answers="(2x-11)/((x+2)(x-1));(2x-11)/((x-1)(x+2));(2x-11)/(x^2+x-2)" data-mode="exact">
+      <p class="qtext">Write {m:frac(5, x+2)-frac(3, x-1)} as a single fraction. Type it like (x+1)/((x+2)(x+3)).</p>
+      <ol class="ladder"><li>Write each fraction over {m:(x+2)(x-1)}.</li><li>Put brackets round the whole second top before you subtract. Then expand.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2x+1)/((x+2)(x-1));(2x+1)/((x-1)(x+2));(2x+1)/(x^2+x-2)">You changed the sign of 3x but not of 6. Subtracting {m:3x+6} gives {m:-3x-6}.</li>
+        <li data-if="(8x+1)/((x+2)(x-1));(8x+1)/((x-1)(x+2));(8x+1)/(x^2+x-2)">You did not change the signs of the second top. The part to subtract is {m:3(x+2)=3x+6}, and subtracting it gives {m:-3x-6}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(5(x-1)-3(x+2), (x+2)(x-1))=frac(5x-5-3x-6, (x+2)(x-1))=frac(2x-11, (x+2)(x-1))}.</p></div>
+    </div>
+    <div class="q" data-answers="(4x-5)/((x+3)(x-3));(4x-5)/((x-3)(x+3));(4x-5)/(x^2-9)" data-mode="exact">
+      <p class="qtext">Write {m:frac(4, x+3)+frac(7, x^2-9)} as a single fraction. Type it like (x+1)/((x+2)(x+3)).</p>
+      <ol class="ladder"><li>Factorise {m:x^2-9}. One of its factors is the other bottom.</li><li>Only one of the fractions needs changing.</li></ol>
+      <ul class="wrong">
+        <li data-if="11/(x^2-9)">You added the tops without first multiplying 4 by {m:(x-3)}. The first fraction is missing the factor {m:(x-3)}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-9=(x+3)(x-3)}. So {m:frac(4, x+3)=frac(4(x-3), (x+3)(x-3))}. The top is {m:4(x-3)+7=4x-12+7=4x-5}. The answer is {m:frac(4x-5, x^2-9)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What is the lowest common denominator of {m:frac(1, x(x+1))} and {m:frac(1, (x+1)^2)}?</p>
+      <ul class="options">
+        <li data-correct>x(x + 1)^2</li>
+        <li data-why="x(x + 1) is not a multiple of (x + 1)^2, so the second fraction cannot be written with it as the bottom.">x(x + 1)</li>
+        <li data-why="This is a common denominator, but it is not the lowest. x(x + 1)^2 is already a multiple of both bottoms.">x(x + 1)^3</li>
+      </ul>
+      <ol class="ladder"><li>Use each factor once, to the highest power it has in either bottom.</li><li>The factor x appears with power 1. What are the powers of {m:(x+1)}?</li></ol>
+      <div class="solution"><p>The factor x has highest power 1. The factor {m:(x+1)} has highest power 2. So the lowest common denominator is {m:x(x+1)^2}.</p></div>
+    </div>
+    <div class="q" data-answers="(3x-2)/(x-2)^2;(3x-2)/((x-2)^2);(3x-2)/(x^2-4x+4);(3x-2)/((x-2)(x-2))" data-mode="exact">
+      <p class="qtext">Write {m:frac(3, x-2)+frac(4, (x-2)^2)} as a single fraction. Type it like (x+1)/(x+2)^2.</p>
+      <ol class="ladder"><li>The lowest common denominator is {m:(x-2)^2}.</li><li>Only the first fraction needs changing. Multiply its top and its bottom by {m:(x-2)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="7/(x-2)^2;7/((x-2)^2);7/(x^2-4x+4)">You added the tops as if the bottoms were the same. {m:frac(3, x-2)} has a different bottom from {m:frac(4, (x-2)^2)}. Change it first.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(3, x-2)=frac(3(x-2), (x-2)^2)}. The top is {m:3(x-2)+4=3x-6+4=3x-2}. The answer is {m:frac(3x-2, (x-2)^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="1/(x(x+1));1/(x^2+x);1/((x+1)x)" data-mode="exact">
+      <p class="qtext">Write {m:frac(1, x)-frac(1, x+1)} as a single fraction. Type it like 1/(x(x+2)).</p>
+      <ol class="ladder"><li>The lowest common denominator is {m:x(x+1)}.</li><li>The top is {m:1*(x+1)-1*x}. Put the brackets in before you subtract.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2x+1)/(x(x+1));(2x+1)/(x^2+x)">You did not change the sign of the second top. {m:(x+1)-x=1}, because the {m:-x} cancels the x.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(1, x)-frac(1, x+1)=frac(1*(x+1)-1*x, x(x+1))=frac(x+1-x, x(x+1))=frac(1, x(x+1))}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Splitting a fraction: two different factors</h2>
+    <p>In lesson 3 you combined two fractions into one. Now you go the other way. Writing one fraction as a sum of simpler fractions is called {term:partial-fractions|partial fractions}. Each simpler fraction has one factor of the original bottom as its own bottom.</p>
+    <p>For example, {m:frac(5x+1, (x-1)(x+2))} can be written as {m:frac(2, x-1)+frac(3, x+2)}. Add those two with the method of lesson 3 and you get the original fraction back. The task is to find the numbers 2 and 3.</p>
+    <p>Why split a fraction? A simple fraction such as {m:frac(2, x-1)} is easier to expand as a series and easier to integrate than the original. You will do both in later topics.</p>
+    <div class="key">
+      <p><b>Key idea:</b> suppose the bottom is two different factors, {m:(x-a)(x-b)}, and the top is a number or a multiple of x plus a number. Then {m:frac(px+q, (x-a)(x-b))=frac(A, x-a)+frac(B, x-b)} for two numbers A and B. To find them, multiply both sides by {m:(x-a)(x-b)}. This gives {m:px+q=A(x-b)+B(x-a)}, and it is true for every x. Put {m:x=a} to find A, because it makes the B part 0. Put {m:x=b} to find B. You can also compare coefficients.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a linear top</h3>
+      <p>Write {m:frac(5x+1, (x-1)(x+2))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(5x+1, (x-1)(x+2))=frac(A, x-1)+frac(B, x+2)}.</li>
+        <li>Multiply both sides by {m:(x-1)(x+2)}: {m:5x+1=A(x+2)+B(x-1)}.</li>
+        <li>Put {m:x=1}. The B part is 0: {m:6=A*3}, so {m:A=2}.</li>
+        <li>Put {m:x=-2}. The A part is 0: {m:-9=B*(-3)}, so {m:B=3}.</li>
+      </ol>
+      <p>The answer is {m:frac(2, x-1)+frac(3, x+2)}. Check by adding: {m:frac(2(x+2)+3(x-1), (x-1)(x+2))=frac(5x+1, (x-1)(x+2))}.</p>
+    </div>
+    <figure class="figure-lg">{fig:algebraic-fractions-two}<figcaption>Look at the two dashed lines. They are at {m:x=-2} and {m:x=1}, the two values that make the bottom 0. The curve runs up or down beside each one. Each partial fraction accounts for one of them: {m:frac(2, x-1)} for {m:x=1} and {m:frac(3, x+2)} for {m:x=-2}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a number on the top</h3>
+      <p>Write {m:frac(7, (x-2)(x+5))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(7, (x-2)(x+5))=frac(A, x-2)+frac(B, x+5)}.</li>
+        <li>Multiply both sides by {m:(x-2)(x+5)}: {m:7=A(x+5)+B(x-2)}.</li>
+        <li>Put {m:x=2}: {m:7=A*7}, so {m:A=1}.</li>
+        <li>Put {m:x=-5}: {m:7=B*(-7)}, so {m:B=-1}.</li>
+      </ol>
+      <p>The answer is {m:frac(1, x-2)-frac(1, x+5)}. When the top is a number and the bottom is {m:(x-a)(x-b)}, A and B are opposite numbers, because the top has no x term. This gives a quick check.</p>
+    </div>
+    <p>The substitution method is quick. You can also compare coefficients. The identity holds for every x, so the x terms on the two sides must match, and so must the number terms.</p>
+    <div class="worked">
+      <h3>Worked example: comparing coefficients</h3>
+      <p>Write {m:frac(2x+11, (x-2)(x+3))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form and multiply through: {m:2x+11=A(x+3)+B(x-2)}.</li>
+        <li>Expand the right side: {m:Ax+3A+Bx-2B=(A+B)x+(3A-2B)}.</li>
+        <li>Match the x terms: {m:A+B=2}. Match the numbers: {m:3A-2B=11}.</li>
+        <li>From the first, {m:B=2-A}. Put it in the second: {m:3A-2(2-A)=11}, so {m:5A-4=11} and {m:A=3}. Then {m:B=-1}.</li>
+      </ol>
+      <p>The answer is {m:frac(3, x-2)-frac(1, x+3)}. Check with {m:x=2}: the identity gives {m:15=A*5}, so {m:A=3}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a factor with a number in front of x</h3>
+      <p>Write {m:frac(5x+2, (2x-1)(x+1))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(A, 2x-1)+frac(B, x+1)}. Multiply through: {m:5x+2=A(x+1)+B(2x-1)}.</li>
+        <li>The bracket {m:(2x-1)} is 0 when {m:x=frac(1, 2)}. Put {m:x=frac(1, 2)}: {m:frac(9, 2)=A*frac(3, 2)}, so {m:A=3}.</li>
+        <li>Put {m:x=-1}: {m:-3=B*(-3)}, so {m:B=1}.</li>
+      </ol>
+      <p>The answer is {m:frac(3, 2x-1)+frac(1, x+1)}. Put the value that makes the bracket 0, even when it is a fraction.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:frac(x+7, (x-1)(x+3))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form and multiply through: {m:x+7=A(x+3)+B(x-1)}.</li>
+        <li>Put {m:x=1}: 8 = A &times; <span class="blank" data-answers="4">___</span>. So {m:A=}<span class="blank" data-answers="2">___</span>.</li>
+        <li>Put {m:x=-3}: 4 = B &times; (&minus;4). So {m:B=}<span class="blank" data-answers="-1">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(x+7, (x-1)(x+3))=frac(2, x-1)-frac(1, x+3)}. Check with {m:x=0}: the left side is {m:frac(7, -3)=-frac(7, 3)}. The right side is {m:frac(2, -1)-frac(1, 3)=-2-frac(1, 3)=-frac(7, 3)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: two different factors</h2>
+    <div class="q" data-answers="2,5" data-mode="exact">
+      <p class="qtext">Write {m:frac(7x+1, (x+1)(x-2))} as {m:frac(A, x+1)+frac(B, x-2)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Multiply both sides by {m:(x+1)(x-2)}.</li><li>Put {m:x=-1} to find A, then {m:x=2} to find B.</li></ol>
+      <ul class="wrong">
+        <li data-if="5,2">You have A and B the wrong way round. A goes with {m:(x+1)}, so you find it by putting {m:x=-1}.</li>
+        <li data-if="-2,5">Check the sign of A. At {m:x=-1} the equation is {m:-6=A*(-3)}, and a negative divided by a negative is positive.</li>
+      </ul>
+      <div class="solution"><p>{m:7x+1=A(x-2)+B(x+1)}. Put {m:x=-1}: {m:-6=-3A}, so {m:A=2}. Put {m:x=2}: {m:15=3B}, so {m:B=5}. The fraction is {m:frac(2, x+1)+frac(5, x-2)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">Write {m:frac(x-5, (x-1)(x-3))} as {m:frac(A, x-1)+frac(B, x-3)}. Find B. Type only the number.</p>
+      <ol class="ladder"><li>Multiply through by {m:(x-1)(x-3)}.</li><li>Which value of x makes the A part 0?</li></ol>
+      <ul class="wrong">
+        <li data-if="1">Check the sign. At {m:x=3} the equation is {m:-2=B*2}, so B is negative.</li>
+        <li data-if="2">That is the value of A. B goes with {m:(x-3)}, so you find it by putting {m:x=3}.</li>
+      </ul>
+      <div class="solution"><p>{m:x-5=A(x-3)+B(x-1)}. Put {m:x=3}: {m:-2=2B}, so {m:B=-1}. (Putting {m:x=1} gives {m:-4=-2A}, so {m:A=2}.)</p></div>
+    </div>
+    <div class="q" data-answers="1/(x-1)-1/(x+2);-1/(x+2)+1/(x-1);1/(x-1)+(-1)/(x+2)" data-mode="exact">
+      <p class="qtext">Write {m:frac(3, (x-1)(x+2))} in partial fractions. Type it like 1/(x+1)+2/(x+2).</p>
+      <ol class="ladder"><li>Write {m:frac(3, (x-1)(x+2))=frac(A, x-1)+frac(B, x+2)} and multiply through.</li><li>Put {m:x=1}, then {m:x=-2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="3/(x-1)-3/(x+2)">The 3 on the top of the original is not A or B. Putting {m:x=1} in {m:3=A(x+2)+B(x-1)} gives {m:3=3A}.</li>
+        <li data-if="1/(x-1)+1/(x+2)">Check the sign of B. At {m:x=-2} the equation is {m:3=B*(-3)}, so {m:B=-1}.</li>
+      </ul>
+      <div class="solution"><p>{m:3=A(x+2)+B(x-1)}. Put {m:x=1}: {m:3=3A}, so {m:A=1}. Put {m:x=-2}: {m:3=-3B}, so {m:B=-1}. The answer is {m:frac(1, x-1)-frac(1, x+2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which is the form of the partial fractions of {m:frac(5, (x+1)(x-4))}?</p>
+      <ul class="options">
+        <li data-correct>A/(x + 1) + B/(x - 4)</li>
+        <li data-why="This is one fraction with the same bottom as the original. Nothing has been split. Each partial fraction has one factor on its bottom.">A/((x + 1)(x - 4))</li>
+        <li data-why="Multiplying two fractions gives one fraction again, with the bottom (x + 1)(x - 4). Partial fractions are added, not multiplied.">A/(x + 1) multiplied by B/(x - 4)</li>
+      </ul>
+      <ol class="ladder"><li>Each partial fraction has one factor of the bottom on its own bottom.</li><li>The fractions are added.</li></ol>
+      <div class="solution"><p>The two factors give {m:frac(5, (x+1)(x-4))=frac(A, x+1)+frac(B, x-4)}.</p></div>
+    </div>
+    <div class="q" data-answers="2,1" data-mode="exact">
+      <p class="qtext">Write {m:frac(5x-1, (3x+1)(x-1))} as {m:frac(A, 3x+1)+frac(B, x-1)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Multiply through by {m:(3x+1)(x-1)}.</li><li>The bracket {m:(3x+1)} is 0 when x is a fraction. Find it, and put it in.</li></ol>
+      <ul class="wrong">
+        <li data-if="1,2">You have A and B the wrong way round. A goes with {m:(3x+1)}.</li>
+        <li data-if="-1,1">The bracket {m:3x+1} is 0 when {m:x=-frac(1, 3)}, not {m:frac(1, 3)}. Check the sign of the value you put in.</li>
+      </ul>
+      <div class="solution"><p>{m:5x-1=A(x-1)+B(3x+1)}. Put {m:x=1}: {m:4=4B}, so {m:B=1}. Put {m:x=-frac(1, 3)}: {m:-frac(8, 3)=A*(-frac(4, 3))}, so {m:A=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Write {m:frac(4, x(x-2))} as {m:frac(A, x)+frac(B, x-2)}. Find A. Type only the number.</p>
+      <ol class="ladder"><li>Multiply through by {m:x(x-2)}. You get {m:4=A(x-2)+Bx}.</li><li>Which value of x makes the B part 0?</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is the value of B, found by putting {m:x=2}. A goes with x, so put {m:x=0}. Then {m:4=A*(-2)}.</li>
+      </ul>
+      <div class="solution"><p>Put {m:x=0}: {m:4=A*(0-2)=-2A}, so {m:A=-2}. Put {m:x=2}: {m:4=2B}, so {m:B=2}. The fraction is {m:-frac(2, x)+frac(2, x-2)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Three different factors</h2>
+    <p>The same method works when the bottom has three different factors. You get three partial fractions, one for each factor. Three fractions are the most this page uses.</p>
+    <div class="key">
+      <p><b>Key idea:</b> suppose the bottom is three different factors, {m:(x-a)(x-b)(x-c)}, and the top is a number or a multiple of x plus a number. Then the fraction equals {m:frac(A, x-a)+frac(B, x-b)+frac(C, x-c)}. Multiply both sides by all three factors. Put {m:x=a}, {m:x=b} and {m:x=c} in turn. Each value makes one bracket 0. That bracket is in two of the three parts, so only one letter is left to find. For these factors and tops, {m:A+B+C=0}. You can use that to check your working.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a linear top</h3>
+      <p>Write {m:frac(12x-6, (x+4)(x+1)(x-2))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(A, x+4)+frac(B, x+1)+frac(C, x-2)}. Multiply through: {m:12x-6=A(x+1)(x-2)+B(x+4)(x-2)+C(x+4)(x+1)}.</li>
+        <li>Put {m:x=-4}: {m:-54=A*(-3)(-6)=18A}, so {m:A=-3}.</li>
+        <li>Put {m:x=-1}: {m:-18=B*(3)(-3)=-9B}, so {m:B=2}.</li>
+        <li>Put {m:x=2}: {m:18=C*(6)(3)=18C}, so {m:C=1}.</li>
+      </ol>
+      <p>The answer is {m:-frac(3, x+4)+frac(2, x+1)+frac(1, x-2)}. Check: {m:A+B+C=-3+2+1=0}.</p>
+    </div>
+    <figure class="figure-lg">{fig:algebraic-fractions-three}<figcaption>Look at the three dashed lines, at {m:x=-4}, {m:x=-1} and {m:x=2}. They are the values that make a factor of the bottom 0. The curve is in four pieces, with one partial fraction for each line.</figcaption></figure>
+    <p>The check {m:A+B+C=0} comes from the {m:x^2} terms. On the right side of the identity, the {m:x^2} terms add to {m:(A+B+C)x^2}. The left side is a number or a multiple of x plus a number, so it has no {m:x^2} term.</p>
+    <div class="worked">
+      <h3>Worked example: a number on the top, and a factor x</h3>
+      <p>Write {m:frac(6, x(x-2)(x+1))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(A, x)+frac(B, x-2)+frac(C, x+1)}. Multiply through: {m:6=A(x-2)(x+1)+Bx(x+1)+Cx(x-2)}.</li>
+        <li>Put {m:x=0}: {m:6=A*(-2)(1)=-2A}, so {m:A=-3}.</li>
+        <li>Put {m:x=2}: {m:6=B*2*3=6B}, so {m:B=1}.</li>
+        <li>Put {m:x=-1}: {m:6=C*(-1)(-3)=3C}, so {m:C=2}.</li>
+      </ol>
+      <p>The answer is {m:-frac(3, x)+frac(1, x-2)+frac(2, x+1)}. Check: {m:-3+1+2=0}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:frac(9x+3, (x-1)(x-3)(x+2))} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form and multiply through: {m:9x+3=A(x-3)(x+2)+B(x-1)(x+2)+C(x-1)(x-3)}.</li>
+        <li>Put {m:x=1}: {m:12=A*(-2)(3)=-6A}. So {m:A=}<span class="blank" data-answers="-2">___</span>.</li>
+        <li>Put {m:x=3}: {m:30=B*(2)(5)=10B}. So {m:B=}<span class="blank" data-answers="3">___</span>.</li>
+        <li>Put {m:x=-2}: {m:-15=C*(-3)(-5)=15C}. So {m:C=}<span class="blank" data-answers="-1">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:A=-2}, {m:B=3} and {m:C=-1}. They add to {m:-2+3-1=0}, as they should.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: three different factors</h2>
+    <div class="q" data-answers="-1,-2,3;A=-1 B=-2 C=3" data-mode="exact">
+      <p class="qtext">Write {m:frac(10x+6, (x+3)(x-1)(x-3))} as {m:frac(A, x+3)+frac(B, x-1)+frac(C, x-3)}. Find A, B and C. Type them like 3,4,5.</p>
+      <ol class="ladder"><li>Multiply through by all three factors.</li><li>Put {m:x=-3}, {m:x=1} and {m:x=3} in turn.</li><li>Check that A, B and C add to 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1,2,3">Check the sign of B. At {m:x=1} the equation is {m:16=B*(4)(-2)}, so B is negative.</li>
+      </ul>
+      <div class="solution"><p>Put {m:x=-3}: {m:-24=A*(-4)(-6)=24A}, so {m:A=-1}. Put {m:x=1}: {m:16=B*(4)(-2)=-8B}, so {m:B=-2}. Put {m:x=3}: {m:36=C*(6)(2)=12C}, so {m:C=3}. Check: {m:-1-2+3=0}.</p></div>
+    </div>
+    <div class="q" data-answers="-2" data-mode="value">
+      <p class="qtext">Write {m:frac(8, (x-1)(x+1)(x+3))} as {m:frac(A, x-1)+frac(B, x+1)+frac(C, x+3)}. Find B. Type only the number.</p>
+      <ol class="ladder"><li>Which value of x makes the brackets for A and C both 0?</li><li>Put it into {m:8=A(x+1)(x+3)+B(x-1)(x+3)+C(x-1)(x+1)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="2">Check the sign. At {m:x=-1}, the bracket {m:(x-1)(x+3)} is {m:(-2)(2)=-4}, so {m:8=-4B}.</li>
+      </ul>
+      <div class="solution"><p>Put {m:x=-1}: {m:8=B*(-2)(2)=-4B}, so {m:B=-2}. (The others are {m:A=1} and {m:C=1}, and {m:1-2+1=0}.)</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The fraction {m:frac(x+8, (x-1)(x-2)(x-4))} equals {m:frac(A, x-1)+frac(B, x-2)+frac(C, x-4)}, with {m:A=3} and {m:B=-5}. Use the check for A, B and C to find C. Type only the number.</p>
+      <ol class="ladder"><li>The top has no {m:x^2} term, so A, B and C add to 0.</li><li>Rearrange {m:A+B+C=0} to find C.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">{m:A+B+C=0} gives {m:C=-(A+B)}. Here {m:A+B=-2}, so C is the opposite: {m:+2}.</li>
+      </ul>
+      <div class="solution"><p>{m:A+B+C=0}, so {m:C=-(3+(-5))=2}. Check with {m:x=4}: {m:12=C*(3)(2)=6C}, so {m:C=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You write {m:frac(N, (x-1)(x+2)(x-5))=frac(A, x-1)+frac(B, x+2)+frac(C, x-5)} and multiply through. Which value of x do you put in to find C on its own?</p>
+      <ul class="options">
+        <li data-correct>x = 5, which makes the A part and the B part 0</li>
+        <li data-why="The bracket (x - 5) is 0 when x = 5, not when x = -5. At x = -5 none of the three brackets is 0.">x = -5</li>
+        <li data-why="At x = 0 none of the three brackets is 0, so the equation still has A, B and C in it. It finds none of them alone.">x = 0, because it gives the smallest numbers</li>
+      </ul>
+      <ol class="ladder"><li>You want the value that makes the A part and the B part 0.</li><li>Which brackets do those parts contain?</li></ol>
+      <div class="solution"><p>The A part contains {m:(x+2)(x-5)} and the B part contains {m:(x-1)(x-5)}. Both are 0 when {m:x=5}, which leaves only the C part.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Write {m:frac(6, x(x+1)(x+2))} as {m:frac(A, x)+frac(B, x+1)+frac(C, x+2)}. Find A. Type only the number.</p>
+      <ol class="ladder"><li>Multiply through by {m:x(x+1)(x+2)}.</li><li>Put {m:x=0}. The B part and the C part both contain the factor x.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">You did not divide by the other brackets. At {m:x=0}, {m:(x+1)(x+2)=1*2=2}, so {m:6=2A}.</li>
+      </ul>
+      <div class="solution"><p>{m:6=A(x+1)(x+2)+Bx(x+2)+Cx(x+1)}. Put {m:x=0}: {m:6=A*1*2=2A}, so {m:A=3}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. A repeated factor</h2>
+    <p>Sometimes a factor appears twice in the bottom, as in {m:(x+2)^2}. This is a {term:repeated-factor|repeated factor}. In lesson 3 you saw that {m:frac(2, x+1)+frac(3, (x+1)^2)=frac(2x+5, (x+1)^2)}. The bottom {m:(x+1)} and the bottom {m:(x+1)^2} are both needed to build fractions with the bottom {m:(x+1)^2}. So partial fractions needs a fraction for each power of the repeated factor.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for a bottom with a repeated factor, write one fraction for each power of that factor, up to the highest power. For the bottom {m:(x-a)(x-b)^2}, write {m:frac(A, x-a)+frac(B, x-b)+frac(C, (x-b)^2)}. For the bottom {m:(x-a)^2}, write {m:frac(A, x-a)+frac(B, (x-a)^2)}. The top is a number or a multiple of x plus a number. Multiply both sides by the whole bottom. Put in the values that make a factor 0 to find the letters at the ends. For three parts, find the middle letter by comparing the {m:x^2} terms or putting in one more value of x. For a square on its own, compare the x terms.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a square on its own</h3>
+      <p>Write {m:frac(3x+1, (x-1)^2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(3x+1, (x-1)^2)=frac(A, x-1)+frac(B, (x-1)^2)}.</li>
+        <li>Multiply both sides by {m:(x-1)^2}: {m:3x+1=A(x-1)+B}.</li>
+        <li>Put {m:x=1}. The A part is 0: {m:4=B}.</li>
+        <li>Compare the x terms: {m:3=A}.</li>
+      </ol>
+      <p>The answer is {m:frac(3, x-1)+frac(4, (x-1)^2)}. Check with {m:x=2}: the left side is {m:frac(7, 1)=7}, and the right side is {m:3+4=7}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: three parts</h3>
+      <p>Write {m:frac(9x+9, (x-1)(x+2)^2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(A, x-1)+frac(B, x+2)+frac(C, (x+2)^2)}. Multiply through: {m:9x+9=A(x+2)^2+B(x-1)(x+2)+C(x-1)}.</li>
+        <li>Put {m:x=1}: {m:18=A*9}, so {m:A=2}.</li>
+        <li>Put {m:x=-2}: {m:-9=C*(-3)}, so {m:C=3}.</li>
+        <li>Compare the {m:x^2} terms. The left side has none, and the right side has {m:Ax^2+Bx^2}. So {m:A+B=0}, and {m:B=-2}.</li>
+      </ol>
+      <p>The answer is {m:frac(2, x-1)-frac(2, x+2)+frac(3, (x+2)^2)}. Check with {m:x=0}: the left side is {m:frac(9, -4)=-frac(9, 4)}. The right side is {m:-2-1+frac(3, 4)=-frac(9, 4)}.</p>
+    </div>
+    <figure class="figure-lg">{fig:algebraic-fractions-repeated}<figcaption>Look at the two dashed lines. At {m:x=-2}, where the factor is squared, the curve goes up on both sides. At {m:x=1}, where the factor is not squared, the curve goes down on the left and up on the right. The squared factor {m:(x+2)^2} is never negative, and the other factor {m:(x-1)} is not 0 at {m:x=-2}. So the bottom keeps its sign there.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a number on the top</h3>
+      <p>Write {m:frac(5, x(x+1)^2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form: {m:frac(A, x)+frac(B, x+1)+frac(C, (x+1)^2)}. Multiply through: {m:5=A(x+1)^2+Bx(x+1)+Cx}.</li>
+        <li>Put {m:x=0}: {m:5=A*1}, so {m:A=5}.</li>
+        <li>Put {m:x=-1}: {m:5=C*(-1)}, so {m:C=-5}.</li>
+        <li>The {m:x^2} terms give {m:0=A+B}, so {m:B=-5}.</li>
+      </ol>
+      <p>The answer is {m:frac(5, x)-frac(5, x+1)-frac(5, (x+1)^2)}. Check with {m:x=1}: the left side is {m:frac(5, 4)}, and the right side is {m:5-frac(5, 2)-frac(5, 4)=frac(5, 4)}.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:frac(5x-1, (x-2)(x+1)^2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Write the form and multiply through: {m:5x-1=A(x+1)^2+B(x-2)(x+1)+C(x-2)}.</li>
+        <li>Put {m:x=2}: {m:9=A*9}. So {m:A=}<span class="blank" data-answers="1">___</span>.</li>
+        <li>Put {m:x=-1}: {m:-6=C*(-3)}. So {m:C=}<span class="blank" data-answers="2">___</span>.</li>
+        <li>The {m:x^2} terms give {m:A+B=0}. So {m:B=}<span class="blank" data-answers="-1">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(5x-1, (x-2)(x+1)^2)=frac(1, x-2)-frac(1, x+1)+frac(2, (x+1)^2)}. Check with {m:x=0}: the left side is {m:frac(-1, (-2)*1)=frac(1, 2)}. The right side is {m:-frac(1, 2)-1+2=frac(1, 2)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: a repeated factor</h2>
+    <div class="q" data-answers="4,1" data-mode="exact">
+      <p class="qtext">Write {m:frac(4x-3, (x-1)^2)} as {m:frac(A, x-1)+frac(B, (x-1)^2)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Multiply both sides by {m:(x-1)^2}.</li><li>Put {m:x=1} to find B. Then compare the x terms to find A.</li></ol>
+      <ul class="wrong">
+        <li data-if="1,4">You have A and B the wrong way round. A goes with {m:frac(A, x-1)}. It is the number in front of x in the top.</li>
+        <li data-if="4,-3">B is not the number term of the top. Put {m:x=1} in {m:4x-3=A(x-1)+B}: that gives {m:1=B}.</li>
+      </ul>
+      <div class="solution"><p>{m:4x-3=A(x-1)+B}. Put {m:x=1}: {m:1=B}. Compare the x terms: {m:4=A}. The fraction is {m:frac(4, x-1)+frac(1, (x-1)^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="2,-2,1;A=2 B=-2 C=1" data-mode="exact">
+      <p class="qtext">Write {m:frac(13-5x, (x+1)(x-2)^2)} as {m:frac(A, x+1)+frac(B, x-2)+frac(C, (x-2)^2)}. Find A, B and C. Type them like 3,4,5.</p>
+      <ol class="ladder"><li>Multiply through by {m:(x+1)(x-2)^2}. Put {m:x=-1} to find A and {m:x=2} to find C.</li><li>The top has no {m:x^2} term. What does that say about A and B?</li></ol>
+      <ul class="wrong">
+        <li data-if="2,2,1">The top has no {m:x^2} term, so the {m:x^2} terms on the right must cancel: {m:A+B=0}. So B is the opposite of A.</li>
+      </ul>
+      <div class="solution"><p>{m:13-5x=A(x-2)^2+B(x+1)(x-2)+C(x+1)}. Put {m:x=-1}: {m:18=9A}, so {m:A=2}. Put {m:x=2}: {m:3=3C}, so {m:C=1}. The {m:x^2} terms give {m:A+B=0}, so {m:B=-2}.</p></div>
+    </div>
+    <div class="q" data-answers="-3" data-mode="value">
+      <p class="qtext">Write {m:frac(9, (x-1)(x+2)^2)} as {m:frac(A, x-1)+frac(B, x+2)+frac(C, (x+2)^2)}. Find C. Type only the number.</p>
+      <ol class="ladder"><li>Multiply through by {m:(x-1)(x+2)^2}.</li><li>Which value of x makes both the A part and the B part 0?</li></ol>
+      <ul class="wrong">
+        <li data-if="3">Check the sign. At {m:x=-2} the equation is {m:9=C*(-3)}, because {m:x-1=-3}.</li>
+        <li data-if="1">That is the value of A, found by putting {m:x=1}. C goes with {m:(x+2)^2}, so put {m:x=-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:9=A(x+2)^2+B(x-1)(x+2)+C(x-1)}. Put {m:x=-2}: {m:9=C*(-3)}, so {m:C=-3}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which is the form of the partial fractions of {m:frac(3, (x+1)(x-2)^2)}?</p>
+      <ul class="options">
+        <li data-correct>A/(x + 1) + B/(x - 2) + C/(x - 2)^2</li>
+        <li data-why="With these two parts, multiplying through gives 3 = A(x - 2)^2 + B(x + 1). The x^2 terms need A = 0, and then B(x + 1) cannot equal 3 for every x.">A/(x + 1) + B/(x - 2)^2</li>
+        <li data-why="These two parts have the bottom (x + 1)(x - 2), not (x + 1)(x - 2)^2. Put x = 2 after you multiply through by (x + 1)(x - 2)^2: the right side is 0 but the left side is 3.">A/(x + 1) + B/(x - 2)</li>
+      </ul>
+      <ol class="ladder"><li>The factor {m:(x-2)} is repeated. How many fractions does it need?</li></ol>
+      <div class="solution"><p>The factor {m:(x+1)} needs one fraction. The repeated factor {m:(x-2)^2} needs two: one with {m:(x-2)} and one with {m:(x-2)^2}.</p></div>
+    </div>
+    <div class="q" data-answers="2/(x+2)-7/(x+2)^2;2/(x+2)-7/((x+2)^2);2/(x+2)-7/(x^2+4x+4);-7/(x+2)^2+2/(x+2);-7/((x+2)^2)+2/(x+2);-7/(x^2+4x+4)+2/(x+2)" data-mode="exact">
+      <p class="qtext">Write {m:frac(2x-3, (x+2)^2)} in partial fractions. Type it like 1/(x+1)+2/(x+1)^2.</p>
+      <ol class="ladder"><li>Write {m:frac(2x-3, (x+2)^2)=frac(A, x+2)+frac(B, (x+2)^2)} and multiply through by {m:(x+2)^2}.</li><li>Put {m:x=-2} to find B. Compare the x terms to find A.</li></ol>
+      <ul class="wrong">
+        <li data-if="2/(x+2)+7/(x+2)^2;2/(x+2)+7/((x+2)^2)">Check the sign of B. At {m:x=-2} the left side is {m:2*(-2)-3=-7}.</li>
+        <li data-if="2/(x+2)^2-7/(x+2);2/((x+2)^2)-7/(x+2)">The powers are the wrong way round. A goes with {m:(x+2)}, and B goes with {m:(x+2)^2}.</li>
+      </ul>
+      <div class="solution"><p>{m:2x-3=A(x+2)+B}. Put {m:x=-2}: {m:-7=B}. Compare the x terms: {m:2=A}. The answer is {m:frac(2, x+2)-frac(7, (x+2)^2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The graph of {m:y=frac(9x+9, (x-1)(x+2)^2)} goes up on both sides of {m:x=-2}. Which fact about the bottom explains this?</p>
+      <ul class="options">
+        <li data-correct>(x + 2) is squared, so the bottom keeps the same sign on both sides of x = -2</li>
+        <li data-why="The top 9x + 9 is -9 at x = -2. It is 0 at x = -1, not at x = -2.">The top is 0 at x = -2</li>
+        <li data-why="The factor (x - 1) gives the asymptote at x = 1, where the curve goes down on the left and up on the right. It does not decide what happens at x = -2.">There is a factor (x - 1) on the bottom</li>
+      </ul>
+      <ol class="ladder"><li>Think about the sign of {m:(x+2)^2} on the left of {m:x=-2} and on the right of it.</li></ol>
+      <div class="solution"><p>The square {m:(x+2)^2} is positive on both sides of {m:x=-2}. The top and the factor {m:(x-1)} have fixed signs there, so the fraction has the same sign on both sides. Near {m:x=-2} it is {m:frac(-9, -3*(x+2)^2)}, which is positive and large.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>7. Choosing the form, and checking</h2>
+    <p>Every partial fractions question in the lessons above has the same three steps. Factorise the bottom into straight-line factors. Write the form that matches those factors. Find the letters, and check.</p>
+    <table class="data">
+      <thead><tr><th scope="col">The bottom is</th><th scope="col">Write</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">two different factors, {m:(x-a)(x-b)}</th><td>{m:frac(A, x-a)+frac(B, x-b)}</td></tr>
+        <tr><th scope="row">three different factors, {m:(x-a)(x-b)(x-c)}</th><td>{m:frac(A, x-a)+frac(B, x-b)+frac(C, x-c)}</td></tr>
+        <tr><th scope="row">a repeated factor, {m:(x-a)(x-b)^2}</th><td>{m:frac(A, x-a)+frac(B, x-b)+frac(C, (x-b)^2)}</td></tr>
+        <tr><th scope="row">a square, {m:(x-a)^2}</th><td>{m:frac(A, x-a)+frac(B, (x-a)^2)}</td></tr>
+      </tbody>
+    </table>
+    <p>The bottom may be given as a quadratic or a cubic that is multiplied out. Then you factorise it first. For a quadratic, use the methods of <a href="quadratics.html">Quadratics</a>. For a cubic, use the factor theorem.</p>
+    <div class="key">
+      <p><b>Key idea:</b> after you find the letters, check the answer. Put a value of x into the original fraction and into your answer. Do not use a value that makes a bottom 0. The value 0 is often the easiest. If the two results differ, there is a mistake. If they agree, that is a good sign, but one value cannot prove the answer is right.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a quadratic that is multiplied out</h3>
+      <p>Write {m:frac(4x+3, x^2-x-6)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Factorise the bottom: {m:x^2-x-6=(x-3)(x+2)}. Two different factors, so write {m:frac(A, x-3)+frac(B, x+2)}.</li>
+        <li>Multiply through: {m:4x+3=A(x+2)+B(x-3)}.</li>
+        <li>Put {m:x=3}: {m:15=5A}, so {m:A=3}. Put {m:x=-2}: {m:-5=-5B}, so {m:B=1}.</li>
+        <li>Check with {m:x=0}. The left side is {m:frac(3, -6)=-frac(1, 2)}. The right side is {m:frac(3, -3)+frac(1, 2)=-1+frac(1, 2)=-frac(1, 2)}.</li>
+      </ol>
+      <p>The answer is {m:frac(3, x-3)+frac(1, x+2)}. The two values agree.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a cubic bottom</h3>
+      <p>Write {m:frac(12, x^3-2x^2-x+2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Let {m:f(x)=x^3-2x^2-x+2}. Then {m:f(1)=1-2-1+2=0}, so {m:(x-1)} is a factor. Dividing gives {m:f(x)=(x-1)(x^2-x-2)=(x-1)(x-2)(x+1)}.</li>
+        <li>Three different factors, so write {m:frac(A, x-1)+frac(B, x-2)+frac(C, x+1)}.</li>
+        <li>Multiply through and put in {m:x=1}, {m:x=2} and {m:x=-1}. These give {m:12=A*(-1)(2)}, {m:12=B*(1)(3)} and {m:12=C*(-2)(-3)}.</li>
+        <li>So {m:A=-6}, {m:B=4} and {m:C=2}. Check: {m:-6+4+2=0}.</li>
+      </ol>
+      <p>The answer is {m:-frac(6, x-1)+frac(4, x-2)+frac(2, x+1)}. Check with {m:x=0}: the left side is {m:frac(12, 2)=6}. The right side is {m:6-2+2=6}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a check that finds a mistake</h3>
+      <p>A student writes {m:frac(5x+1, (x-1)(x+2))=frac(2, x-1)+frac(4, x+2)}. Is that right?</p>
+      <ol class="steps">
+        <li>Put {m:x=0} in the left side: {m:frac(1, -2)=-frac(1, 2)}.</li>
+        <li>Put {m:x=0} in the right side: {m:frac(2, -1)+frac(4, 2)=-2+2=0}.</li>
+        <li>The two values differ, so the answer is wrong.</li>
+        <li>Find the fault: putting {m:x=-2} in {m:5x+1=A(x+2)+B(x-1)} gives {m:-9=-3B}, so {m:B=3}, not 4.</li>
+      </ol>
+      <p>The correct answer is {m:frac(2, x-1)+frac(3, x+2)}. A check at one value is quick, and it caught the mistake.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Write {m:frac(7x+1, x^2-x-2)} in partial fractions.</p>
+      <ol class="steps">
+        <li>Factorise the bottom, {m:x^2-x-2}. The brackets are (x &minus; 2)(x + <span class="blank" data-answers="1">___</span>).</li>
+        <li>Write the form and multiply through: {m:7x+1=A(x+1)+B(x-2)}.</li>
+        <li>Put {m:x=2}: {m:15=3A}. So {m:A=}<span class="blank" data-answers="5">___</span>.</li>
+        <li>Put {m:x=-1}: {m:-6=-3B}. So {m:B=}<span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(7x+1, x^2-x-2)=frac(5, x-2)+frac(2, x+1)}. Check with {m:x=0}: the left side is {m:frac(1, -2)=-frac(1, 2)}. The right side is {m:-frac(5, 2)+2=-frac(1, 2)}.</p></details>
+    </div>
+    <h3>Extra: when the top is as big as the bottom</h3>
+    <p><b>[Extra]</b> None of the four specifications this book follows (AQA, Edexcel, OCR and MEI) states this idea. You never need it for the lessons above. In every partial fractions question so far, the top had a lower {term:degree} than the bottom. When the top has the same degree as the bottom or a higher one, the fraction is an {term:improper-algebraic-fraction|improper algebraic fraction}. Divide first. This is like the division in <a href="polynomials.html">Polynomials and the factor theorem</a>, but here you divide by a quadratic. That gives a whole part and a remainder with a lower degree. Then split the remainder.</p>
+    <div class="worked">
+      <h3>Worked example: [Extra] an improper fraction</h3>
+      <p>Write {m:frac(x^2+4x+1, (x-1)(x+2))} in the form {m:1+frac(A, x-1)+frac(B, x+2)}.</p>
+      <ol class="steps">
+        <li>Multiply out the bottom: {m:(x-1)(x+2)=x^2+x-2}. The top and the bottom both have degree 2.</li>
+        <li>Divide: {m:x^2+4x+1=1*(x^2+x-2)+(3x+3)}. So the fraction is {m:1+frac(3x+3, (x-1)(x+2))}.</li>
+        <li>Split the remainder: {m:3x+3=A(x+2)+B(x-1)}. Put {m:x=1}: {m:6=3A}, so {m:A=2}. Put {m:x=-2}: {m:-3=-3B}, so {m:B=1}.</li>
+      </ol>
+      <p>The answer is {m:1+frac(2, x-1)+frac(1, x+2)}. Check with {m:x=0}: the left side is {m:frac(1, -2)=-frac(1, 2)}. The right side is {m:1-2+frac(1, 2)=-frac(1, 2)}.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: choosing the form, and checking</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Before you can write {m:frac(4x+3, x^2-x-6)} in partial fractions, what must you do first?</p>
+      <ul class="options">
+        <li data-correct>Factorise the bottom into straight-line factors</li>
+        <li data-why="The top has a lower degree than the bottom, so there is no whole part to take out. Dividing gives the same fraction back.">Divide the top by the bottom</li>
+        <li data-why="The bottom is already multiplied out. The form needs its factors, so expanding takes you the wrong way.">Expand the bottom</li>
+      </ul>
+      <ol class="ladder"><li>The form of the partial fractions depends on the factors of the bottom.</li></ol>
+      <div class="solution"><p>The form comes from the factors of the bottom, so factorise first: {m:x^2-x-6=(x-3)(x+2)}.</p></div>
+    </div>
+    <div class="q" data-answers="2/(x+4)+3/(x-3)" data-mode="exact">
+      <p class="qtext">Write {m:frac(5x+6, x^2+x-12)} in partial fractions. Type it like 1/(x+1)+2/(x+2).</p>
+      <ol class="ladder"><li>Factorise {m:x^2+x-12}. Find two numbers that multiply to {m:-12} and add to 1.</li><li>Write the form for two different factors, multiply through, and put in the two values of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="2/(x-4)+3/(x+3)">Check the factors. {m:(x-4)(x+3)=x^2-x-12}, which has the wrong middle term. The numbers must add to 1, so the bigger one is positive.</li>
+        <li data-if="3/(x+4)+2/(x-3)">You have A and B the wrong way round. A goes with {m:(x+4)}, so you find it by putting {m:x=-4}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+x-12=(x+4)(x-3)}. So {m:5x+6=A(x-3)+B(x+4)}. Put {m:x=-4}: {m:-14=-7A}, so {m:A=2}. Put {m:x=3}: {m:21=7B}, so {m:B=3}. The answer is {m:frac(2, x+4)+frac(3, x-3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The fraction {m:frac(5x+1, (x-1)(x+2))} has the value {m:-frac(1, 2)} at {m:x=0}. A student writes it as {m:frac(2, x-1)+frac(4, x+2)}. What does putting {m:x=0} into the student's answer show?</p>
+      <ul class="options">
+        <li data-correct>It gives 0, not -1/2, so the answer is wrong</li>
+        <li data-why="Put x = 0 into the student's answer: 2/(0 - 1) = -2 and 4/(0 + 2) = 2. They add to 0, not to -1/2.">It gives -1/2, so the answer is right</li>
+        <li data-why="A check at one value can find a mistake: when the two results differ, the answer is wrong. What one value cannot do alone is prove an answer is right.">It gives 0, and a check at one value can never find a mistake</li>
+      </ul>
+      <ol class="ladder"><li>Work out {m:frac(2, 0-1)} and {m:frac(4, 0+2)}, and add them.</li><li>Compare the result with the value of the original fraction.</li></ol>
+      <div class="solution"><p>{m:frac(2, -1)+frac(4, 2)=-2+2=0}. The original is {m:-frac(1, 2)}, so the values differ and the answer is wrong. The correct B is 3.</p></div>
+    </div>
+    <div class="q" data-answers="2,3" data-mode="exact">
+      <p class="qtext">Write {m:frac(2x+7, x^2+4x+4)} as {m:frac(A, x+2)+frac(B, (x+2)^2)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Factorise the bottom. It is a square.</li><li>Multiply through by the bottom. Put {m:x=-2}, then compare the x terms.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,7">B is not the number term of the top. Put {m:x=-2} in {m:2x+7=A(x+2)+B}: that gives {m:3=B}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+4x+4=(x+2)^2}. {m:2x+7=A(x+2)+B}. Put {m:x=-2}: {m:3=B}. Compare the x terms: {m:A=2}. The fraction is {m:frac(2, x+2)+frac(3, (x+2)^2)}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The fraction {m:frac(5x+6, (x+4)(x-3))} equals {m:frac(2, x+4)+frac(B, x-3)}. Put {m:x=0} into both sides to find B. Type only the number.</p>
+      <ol class="ladder"><li>Work out the left side at {m:x=0}.</li><li>The right side at {m:x=0} is {m:frac(2, 4)+frac(B, -3)}. Make the two sides equal and solve for B.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">Check the sign. The equation is {m:-frac(1, 2)=frac(1, 2)-frac(B, 3)}, so {m:frac(B, 3)=1}.</li>
+      </ul>
+      <div class="solution"><p>Left side: {m:frac(6, 4*(-3))=-frac(1, 2)}. Right side: {m:frac(2, 4)+frac(B, -3)=frac(1, 2)-frac(B, 3)}. So {m:-frac(1, 2)=frac(1, 2)-frac(B, 3)}, which gives {m:frac(B, 3)=1} and {m:B=3}.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">[Extra] Divide {m:x^2+4x+1} by {m:x^2+x-2}. The quotient is a number. Type only the number.</p>
+      <ol class="ladder"><li>Divide the highest power of the top by the highest power of the bottom.</li></ol>
+      <ul class="wrong">
+        <li data-if="4">That is the number in front of x in the top. The quotient is how many times the whole bottom goes into the top. Compare the {m:x^2} terms.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+4x+1=1*(x^2+x-2)+(3x+3)}. The quotient is 1 and the remainder is {m:3x+3}.</p></div>
+    </div>
+    <div class="q" data-answers="2,1" data-mode="exact">
+      <p class="qtext">[Extra] Write {m:frac(x^2+4x+1, (x-1)(x+2))} in the form {m:1+frac(A, x-1)+frac(B, x+2)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Subtract 1 from the fraction. Write the result as one fraction over {m:(x-1)(x+2)}.</li><li>Then find A and B for that fraction.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,3">Those are the numbers in the remainder {m:3x+3}. Use the remainder as the new top, and put {m:x=1} and {m:x=-2}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x^2+4x+1, (x-1)(x+2))-1=frac(x^2+4x+1-x^2-x+2, (x-1)(x+2))=frac(3x+3, (x-1)(x+2))}. Then {m:3x+3=A(x+2)+B(x-1)}. Put {m:x=1}: {m:6=3A}, so {m:A=2}. Put {m:x=-2}: {m:-3=-3B}, so {m:B=1}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: one fraction &harr; several fractions</h2>
+    <p>Adding fractions and splitting a fraction are opposites. You can go either way, and each way checks the other.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From separate fractions to one fraction. Write each over a common bottom, then add the tops.</p><p>{m:frac(2, x-1)+frac(3, x+2)=frac(5x+1, (x-1)(x+2))}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From one fraction to separate fractions. Write the form, multiply through, and find the letters.</p><p>{m:frac(5x+1, (x-1)(x+2))=frac(2, x-1)+frac(3, x+2)}. The same fractions, read the other way.</p></div>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From the letters to the top of the single fraction. For {m:frac(A, x-a)+frac(B, x-b)}, the top is {m:A(x-b)+B(x-a)}.</p><p>With {m:A=2}, {m:B=3}, {m:a=1} and {m:b=-2}, the top is {m:2(x+2)+3(x-1)=5x+1}.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From the top to the letters. Put {m:x=a} and {m:x=b} into the top {m:A(x-b)+B(x-a)}.</p><p>With the top {m:5x+1}, putting {m:x=1} gives {m:6=3A}, so {m:A=2}.</p></div>
+    </div>
+    <!-- No figure for this section: the idea is a rewrite, and the figures in lessons 4 to 6 already show the asymptotes that the partial fractions come from. -->
+    <div class="worked">
+      <h3>Worked example: there and back</h3>
+      <p>Write {m:frac(3, x-1)-frac(1, x+3)} as a single fraction. Then split your answer again.</p>
+      <ol class="steps">
+        <li>The common bottom is {m:(x-1)(x+3)}. The top is {m:3(x+3)-(x-1)=3x+9-x+1=2x+10}.</li>
+        <li>So the single fraction is {m:frac(2x+10, (x-1)(x+3))}.</li>
+        <li>Now split it. Write {m:2x+10=A(x+3)+B(x-1)}. Put {m:x=1}: {m:12=4A}, so {m:A=3}.</li>
+        <li>Put {m:x=-3}: {m:4=-4B}, so {m:B=-1}.</li>
+      </ol>
+      <p>You are back where you started: {m:frac(3, x-1)-frac(1, x+3)}. Going there and back is a good check.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="(5x+7)/((x-1)(x+3));(5x+7)/((x+3)(x-1));(5x+7)/(x^2+2x-3)" data-mode="exact">
+      <p class="qtext">Write {m:frac(3, x-1)+frac(2, x+3)} as a single fraction. Type it like (x+1)/((x+2)(x+3)).</p>
+      <ol class="ladder"><li>The common bottom is {m:(x-1)(x+3)}.</li><li>Multiply each top by the bracket that its bottom is missing, then add.</li></ol>
+      <ul class="wrong">
+        <li data-if="5/(2x+2)">You added the tops and added the bottoms. Write both fractions over the same bottom first, then add only the tops.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(3(x+3)+2(x-1), (x-1)(x+3))=frac(3x+9+2x-2, (x-1)(x+3))=frac(5x+7, (x-1)(x+3))}.</p></div>
+    </div>
+    <div class="q" data-answers="-x+7;7-x;-(x-7)" data-mode="exact">
+      <p class="qtext">The fraction {m:frac(2, x-1)-frac(3, x+2)} is written as a single fraction with the bottom {m:(x-1)(x+2)}. Find its top. Type it like 3x+1.</p>
+      <ol class="ladder"><li>The top is {m:2(x+2)-3(x-1)}.</li><li>Put brackets round the second part before you subtract.</li></ol>
+      <ul class="wrong">
+        <li data-if="-x+1;1-x">You did not change the sign of the 3 in {m:-3(x-1)}. It gives {m:-3x+3}, not {m:-3x-3}. So the number term is {m:4+3=7}.</li>
+      </ul>
+      <div class="solution"><p>{m:2(x+2)-3(x-1)=2x+4-3x+3=-x+7}.</p></div>
+    </div>
+    <div class="q" data-answers="2/((x-1)(x+1));2/((x+1)(x-1));2/(x^2-1)" data-mode="exact">
+      <p class="qtext">Write {m:frac(1, x-1)-frac(1, x+1)} as a single fraction. Type it like 3/((x+1)(x+2)).</p>
+      <ol class="ladder"><li>The common bottom is {m:(x-1)(x+1)}.</li><li>The top is {m:(x+1)-(x-1)}. Mind the brackets.</li></ol>
+      <ul class="wrong">
+        <li data-if="0">You subtracted the tops, {m:1-1=0}, without first writing both fractions over the same bottom. Each top must be multiplied by the bracket its bottom is missing.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(1, x-1)-frac(1, x+1)=frac((x+1)-(x-1), (x-1)(x+1))=frac(2, (x-1)(x+1))}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which fraction is equal to {m:frac(1, x-1)+frac(1, x+1)}?</p>
+      <ul class="options">
+        <li data-correct>2x/(x^2 - 1)</li>
+        <li data-why="That is 1/(x - 1) minus 1/(x + 1). Adding gives (x + 1) + (x - 1) = 2x on the top, not 2.">2/(x^2 - 1)</li>
+        <li data-why="This adds the tops and adds the bottoms. Test x = 2: 1/1 + 1/3 = 1.33 but 2/4 = 0.5.">2/(2x)</li>
+      </ul>
+      <ol class="ladder"><li>Write both fractions over {m:(x-1)(x+1)} and add the tops.</li><li>Test your choice with {m:x=2}.</li></ol>
+      <div class="solution"><p>{m:frac((x+1)+(x-1), (x-1)(x+1))=frac(2x, x^2-1)}. Check with {m:x=2}: {m:frac(1, 1)+frac(1, 3)=frac(4, 3)} and {m:frac(2*2, 2^2-1)=frac(4, 3)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Amy says:</b> {m:frac(x+3, x+5)=frac(3, 5)}, because the x cancels. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The x is added to 3 and to 5, so it is a term, not a factor, and it cannot be cancelled</li>
+        <li data-why="A sum on the top cannot be split by the terms of the bottom. Test x = 1: (1 + 3)/(1 + 5) = 0.67, but 3/5 + 1/1 = 1.6.">She should have written 3/5 + x/x</li>
+        <li data-why="Cancelling needs the same factor on the top and the bottom. Removing the x from the top alone changes the value. Test x = 1: 4/6 = 0.67 but 3/6 = 0.5.">She should have cancelled the x on the top only</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=1}.</li><li>Work out {m:frac(1+3, 1+5)} and {m:frac(3, 5)}.</li></ol>
+      <div class="solution"><p>At {m:x=1}, {m:frac(4, 6)~=0.67} but {m:frac(3, 5)=0.6}. They differ. Neither {m:x+3} nor {m:x+5} has x as a factor, so there is nothing to cancel and {m:frac(x+3, x+5)} is already in its simplest form.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> {m:frac(1, x+2)+frac(1, x+3)=frac(2, 2x+5)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He added the tops and added the bottoms. The bottoms must be made the same first</li>
+        <li data-why="Multiplying the tops belongs to the rule for multiplying fractions. Fractions that are added need the same bottom, and then the tops are added.">He should have multiplied the tops instead of adding them</li>
+        <li data-why="The top should be (x + 3) + (x + 2) = 2x + 5, not 2. Test x = 1: 1/3 + 1/4 = 0.58 but 2/12 = 0.17.">He should have written 2/((x + 2)(x + 3))</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=1}.</li><li>Add {m:frac(1, 3)} and {m:frac(1, 4)}. Compare with {m:frac(2, 7)}.</li></ol>
+      <div class="solution"><p>At {m:x=1}, {m:frac(1, 3)+frac(1, 4)=frac(7, 12)~=0.58}, but {m:frac(2, 7)~=0.29}. The correct answer is {m:frac((x+3)+(x+2), (x+2)(x+3))=frac(2x+5, (x+2)(x+3))}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Cara says:</b> {m:frac(x^2+6x, x)=x^2+6}. What went wrong?</p>
+      <ul class="options">
+        <li data-why="That is correct but unfinished: x is a factor of the top, because x^2 + 6x = x(x + 6), so the fraction simplifies. Cara's error is in the simplifying.">She should have left it as (x^2 + 6x)/x</li>
+        <li data-correct>She divided 6x by x but did not divide x^2 by x. The answer is x + 6</li>
+        <li data-why="That ignores the division by x. Test x = 2: (4 + 12)/2 = 8, but 4 + 12 = 16.">She should have written x^2 + 6x</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=2}.</li><li>The bottom x must divide every term of the top.</li></ol>
+      <div class="solution"><p>At {m:x=2}, {m:frac(4+12, 2)=8} but {m:2^2+6=10}. Dividing every term by x: {m:frac(x^2, x)+frac(6x, x)=x+6}, for {m:x != 0}. Check: at {m:x=2}, {m:x+6=8}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> {m:frac(5, (x-1)(x+2))=frac(5, x-1)+frac(5, x+2)}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He gave both parts the top 5. The tops A and B must be found from 5 = A(x + 2) + B(x - 1)</li>
+        <li data-why="Then each part would still have two factors on its bottom, so nothing would be split. A partial fraction has one factor on its bottom.">He should have kept (x - 1)(x + 2) on the bottom of each part</li>
+        <li data-why="Test x = 2: the left side is 5/4 = 1.25, but the right side is 5 + 5/4 = 6.25. They differ.">Nothing is wrong, because 5 is the top of the original fraction</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=2}.</li><li>Work out both sides.</li></ol>
+      <div class="solution"><p>At {m:x=2}, the left side is {m:frac(5, 1*4)=1.25}, and the right side is {m:5+frac(5, 4)=6.25}. The correct working is {m:5=A(x+2)+B(x-1)}. Put {m:x=1}: {m:5=3A}. Put {m:x=-2}: {m:5=-3B}. So {m:A=frac(5, 3)} and {m:B=-frac(5, 3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Eli says:</b> {m:frac(3, x+1)-frac(2, x+2)=frac(3(x+2)-2(x+1), (x+1)(x+2))=frac(3x+6-2x+2, (x+1)(x+2))=frac(x+8, (x+1)(x+2))}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>He did not change the sign of the 2 in -2(x + 1). It gives -2x - 2, not -2x + 2</li>
+        <li data-why="The common bottom is the product (x + 1)(x + 2). Adding the bottoms gives something else, and Eli did use the product.">He should have used (x + 1) + (x + 2) as the bottom</li>
+        <li data-why="The first fraction is missing the factor (x + 2), so its top must be multiplied by (x + 2). That step is correct.">He should not have multiplied the 3 by (x + 2)</li>
+      </ul>
+      <ol class="ladder"><li>Test it with {m:x=0}.</li><li>Work out the original fractions at {m:x=0}, and then Eli&rsquo;s answer.</li></ol>
+      <div class="solution"><p>At {m:x=0}, {m:frac(3, 1)-frac(2, 2)=2}. Eli&rsquo;s answer gives {m:frac(8, 2)=4}. The correct top is {m:3x+6-2x-2=x+4}, and {m:frac(4, 2)=2}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="3,2" data-mode="exact">
+      <p class="qtext">The fraction {m:frac(x^2-x-6, x^2-4)} simplifies to {m:frac(x-a, x-b)}. Find a and b. Type them like 4,5.</p>
+      <ol class="ladder"><li>Factorise the top and the bottom.</li><li>Cancel the common factor and read off the brackets that are left.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,3">You have a and b the wrong way round. The top {m:x^2-x-6=(x-3)(x+2)} gives a, and the bottom gives b.</li>
+        <li data-if="-3,-2">The brackets are {m:(x-a)} and {m:(x-b)}. {m:x-3} means {m:a=3}, not {m:-3}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2-x-6=(x-3)(x+2)} and {m:x^2-4=(x-2)(x+2)}. Cancel {m:(x+2)}: {m:frac(x-3, x-2)}, for {m:x != 2} and {m:x != -2}. So {m:a=3} and {m:b=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-16" data-mode="value">
+      <p class="qtext">Work out the discriminant of {m:x^2+2x+5}. A negative discriminant means it has no real straight-line factors, so it cannot be split on this page. Type only the number.</p>
+      <ol class="ladder"><li>The discriminant of {m:ax^2+bx+c} is {m:b^2-4ac}. See <a href="quadratics.html">Quadratics</a>.</li><li>Here {m:a=1}, {m:b=2} and {m:c=5}.</li></ol>
+      <ul class="wrong">
+        <li data-if="16">Check the sign. {m:b^2=4} and {m:4ac=20}, so {m:4-20} is negative.</li>
+        <li data-if="24">You added {m:4ac}. The discriminant is {m:b^2-4ac}, so subtract it.</li>
+      </ul>
+      <div class="solution"><p>{m:b^2-4ac=2^2-4*1*5=4-20=-16}. It is negative, so {m:x^2+2x+5=0} has no real roots and the quadratic does not factorise into straight-line factors.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 2" data-mode="value">
+      <p class="qtext">The curve {m:y=frac(6, x^2+x-6)} has two vertical asymptotes. Find the values of x where they are. Type them like 1 or 5.</p>
+      <ol class="ladder"><li>A vertical asymptote is where the bottom is 0 and the top is not. The top is 6, which is never 0.</li><li>Factorise the bottom.</li></ol>
+      <ul class="wrong">
+        <li data-if="3 or -2">You took the signs from the numbers in the brackets. {m:(x+3)(x-2)=0} gives {m:x=-3} or {m:x=2}.</li>
+      </ul>
+      <div class="solution"><p>{m:x^2+x-6=(x+3)(x-2)}. The bottom is 0 at {m:x=-3} and {m:x=2}, and the top is 6 there. So the asymptotes are {m:x=-3} and {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="-4/(x-1)+3/(x-2)+1/(x+2);3/(x-2)-4/(x-1)+1/(x+2)" data-mode="exact">
+      <p class="qtext">Given that {m:(x-1)} is a factor of {m:x^3-x^2-4x+4}, write {m:frac(12, x^3-x^2-4x+4)} in partial fractions. Type it like 1/(x+1)+2/(x+2)-3/(x+3).</p>
+      <ol class="ladder"><li>Divide {m:x^3-x^2-4x+4} by {m:(x-1)}, then factorise the quadratic.</li><li>Write the form for three different factors, multiply through, and put in three values of x.</li></ol>
+      <ul class="wrong">
+        <li data-if="-4/(x-1)+3/(x-2)-1/(x+2)">Check the sign of C. At {m:x=-2} the equation is {m:12=C*(-3)(-4)}, which is positive.</li>
+        <li data-if="4/(x-1)+3/(x-2)+1/(x+2)">Check the sign of A. At {m:x=1} the equation is {m:12=A*(-1)(3)}, so A is negative.</li>
+      </ul>
+      <div class="solution"><p>{m:x^3-x^2-4x+4=(x-1)(x^2-4)=(x-1)(x-2)(x+2)}. Put {m:x=1}: {m:12=A*(-1)(3)}, so {m:A=-4}. Put {m:x=2}: {m:12=B*(1)(4)}, so {m:B=3}. Put {m:x=-2}: {m:12=C*(-3)(-4)}, so {m:C=1}. Check: {m:-4+3+1=0}.</p></div>
+    </div>
+    <div class="q" data-answers="3/4" data-mode="value">
+      <p class="qtext">For {m:n != 0} and {m:n != -1}, {m:frac(1, n(n+1))=frac(1, n)-frac(1, n+1)}. Use this to find {m:frac(1, 1*2)+frac(1, 2*3)+frac(1, 3*4)}. Type it like 2/5.</p>
+      <ol class="ladder"><li>Write each fraction as a difference, using {m:n=1}, {m:n=2} and {m:n=3}.</li><li>Many of the terms cancel in pairs. See which ones are left.</li></ol>
+      <ul class="wrong">
+        <li data-if="1/4">That is the last term that is left after the cancelling. The first term, {m:frac(1, 1)=1}, is also left: the sum is {m:1-frac(1, 4)}.</li>
+      </ul>
+      <div class="solution"><p>The sum is {m:(1-frac(1, 2))+(frac(1, 2)-frac(1, 3))+(frac(1, 3)-frac(1, 4))}. The middle terms cancel in pairs, which leaves {m:1-frac(1, 4)=frac(3, 4)}. Check directly: {m:frac(1, 2)+frac(1, 6)+frac(1, 12)=frac(6+2+1, 12)=frac(9, 12)=frac(3, 4)}.</p></div>
+    </div>
+    <div class="q" data-answers="8" data-mode="value">
+      <p class="qtext">The curve {m:y=frac(x^3+2x^2, x)} is defined for {m:x != 0}. Simplify the fraction, then find the gradient of the curve at {m:x=3}. Type only the number.</p>
+      <ol class="ladder"><li>Factorise the top, and cancel the factor x.</li><li>Differentiate what is left, using the rule for a power of x. See <a href="differentiation-basics.html">Differentiation from first principles</a>.</li></ol>
+      <ul class="wrong">
+        <li data-if="15">That is the value of y at {m:x=3}, not the gradient. The gradient is the value of {m:frac(dy, dx)}.</li>
+      </ul>
+      <div class="solution"><p>{m:frac(x^3+2x^2, x)=frac(x^2(x+2), x)=x^2+2x}, for {m:x != 0}. So {m:frac(dy, dx)=2x+2}. At {m:x=3}, the gradient is {m:2*3+2=8}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The fraction {m:frac(x+2, x^2-4)} simplifies to {m:frac(1, x-2)}. Why is this true only for {m:x != 2} and {m:x != -2}?</p>
+      <ul class="options">
+        <li data-correct>At x = 2 and x = -2 the bottom of the original is 0, so the original has no value there</li>
+        <li data-why="The top x + 2 is 0 only at x = -2. At x = 2 it is 4, and a top that is 0 does not stop a fraction having a value.">At x = 2 and x = -2 the top of the original is 0</li>
+        <li data-why="At x = -2, 1/(x - 2) = 1/(-4), which has a value. The problem is with the original fraction, which is 0/0 there.">At x = -2 the fraction 1/(x - 2) has no value</li>
+      </ul>
+      <ol class="ladder"><li>Put {m:x=2} and {m:x=-2} into the bottom {m:x^2-4}.</li></ol>
+      <div class="solution"><p>{m:x^2-4=(x-2)(x+2)} is 0 at {m:x=2} and {m:x=-2}. The original has no value at either. The simplified fraction {m:frac(1, x-2)} has a value at {m:x=-2}, but the two fractions only agree where the original has a value.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct fact or value.</p>
+    <div class="q" data-answers="(2x+1)/(x+3)" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Simplify {m:frac(2x^2-5x-3, x^2-9)}. Type it like (x+1)/(x+2).</p>
+      <ol class="ladder"><li>Factorise the top and the bottom. The top has a number in front of {m:x^2}.</li><li>Cancel the common factor.</li></ol>
+      <ul class="wrong">
+        <li data-if="(2x-1)/(x+3)">Check the factors of the top. {m:(2x-1)(x-3)=2x^2-7x+3}, which is not {m:2x^2-5x-3}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:2x^2-5x-3=(2x+1)(x-3)} and {m:x^2-9=(x-3)(x+3)}. Cancel {m:(x-3)}. The answer is {m:frac(2x+1, x+3)}, for {m:x != 3} and {m:x != -3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for factorising the top</li>
+          <li><b>M1</b> for factorising the bottom</li>
+          <li><b>A1</b> for {m:frac(2x+1, x+3)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="4,-1" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] Write {m:frac(3x-13, x^2-2x-3)} in the form {m:frac(A, x+1)+frac(B, x-3)}. Find A and B. Type them like 3,4.</p>
+      <ol class="ladder"><li>Factorise the bottom first.</li><li>Multiply both sides by the bottom. Put in the value of x that makes each bracket 0.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1,4">You have A and B the wrong way round. A goes with {m:(x+1)}, so you find it by putting {m:x=-1}.</li>
+        <li data-if="4,1">Check the sign of B. At {m:x=3} the equation is {m:-4=B*(4)}, so B is negative.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2-2x-3=(x+1)(x-3)}, so {m:3x-13=A(x-3)+B(x+1)}. Put {m:x=-1}: {m:-16=-4A}, so {m:A=4}. Put {m:x=3}: {m:-4=4B}, so {m:B=-1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for factorising the bottom</li>
+          <li><b>M1</b> for {m:3x-13=A(x-3)+B(x+1)}</li>
+          <li><b>A1</b> for {m:A=4}</li>
+          <li><b>A1</b> for {m:B=-1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1/(x-3)-1/(x+1)+3/(x+1)^2;1/(x-3)-1/(x+1)+3/((x+1)^2);1/(x-3)-1/(x+1)+3/(x^2+2x+1);-1/(x+1)+1/(x-3)+3/(x+1)^2;-1/(x+1)+1/(x-3)+3/((x+1)^2);-1/(x+1)+1/(x-3)+3/(x^2+2x+1)" data-mode="exact" data-marks="5">
+      <p class="qtext">[5 marks] Given that {m:(x-3)} is a factor of {m:x^3-x^2-5x-3}, write {m:frac(7x-5, x^3-x^2-5x-3)} in partial fractions. Type it like 1/(x+1)+2/(x+2)^2.</p>
+      <ol class="ladder"><li>Divide {m:x^3-x^2-5x-3} by {m:(x-3)} and factorise the quotient. One factor is repeated.</li><li>Write the form with a fraction for each power of the repeated factor. Put {m:x=3} and the other value of x that makes a factor 0.</li><li>The top has no {m:x^2} term. What does that say about A and B?</li></ol>
+      <ul class="wrong">
+        <li data-if="1/(x-3)+1/(x+1)+3/(x+1)^2;1/(x-3)+1/(x+1)+3/((x+1)^2)">The top has no {m:x^2} term, so the {m:x^2} terms on the right must cancel: {m:A+B=0}. If {m:A=1}, then B is {m:-1}.</li>
+      </ul>
+      <div class="solution">
+        <p>Divide: {m:x^3-x^2-5x-3=(x-3)(x^2+2x+1)=(x-3)(x+1)^2}. Write {m:frac(7x-5, (x-3)(x+1)^2)=frac(A, x-3)+frac(B, x+1)+frac(C, (x+1)^2)}. Then {m:7x-5=A(x+1)^2+B(x-3)(x+1)+C(x-3)}. Put {m:x=3}: {m:16=16A}, so {m:A=1}. Put {m:x=-1}: {m:-12=-4C}, so {m:C=3}. The {m:x^2} terms give {m:A+B=0}, so {m:B=-1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for finding the factor {m:(x+1)^2}</li>
+          <li><b>M1</b> for the correct form with three fractions</li>
+          <li><b>M1</b> for multiplying through and substituting</li>
+          <li><b>A1</b> for {m:A=1} and {m:C=3}</li>
+          <li><b>A1</b> for {m:B=-1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3/2;1.5" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Find {m:int(0, 3) frac(x^2+x-2, x+2) dx}. Type it like 2/5.</p>
+      <ol class="ladder"><li>Factorise the top, and simplify the fraction before you integrate.</li><li>The bottom is 0 at {m:x=-2}. Is that value between 0 and 3?</li></ol>
+      <ul class="wrong">
+        <li data-if="9/2;4.5">You left out the {m:-x} term when you integrated. The integral of {m:x-1} is {m:frac(x^2, 2)-x}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^2+x-2=(x-1)(x+2)}, so {m:frac(x^2+x-2, x+2)=x-1} for {m:x != -2}. The value {m:x=-2} is outside the interval from 0 to 3, so the integrand is defined throughout. The integral of {m:x-1} is {m:frac(x^2, 2)-x}. At {m:x=3} it is {m:frac(9, 2)-3=frac(3, 2)}. At {m:x=0} it is 0. So the answer is {m:frac(3, 2)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for factorising the top and cancelling</li>
+          <li><b>A1</b> for {m:x-1}</li>
+          <li><b>M1</b> for integrating to {m:frac(x^2, 2)-x}</li>
+          <li><b>A1</b> for {m:frac(3, 2)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="(x+7)/((x+1)(2-x));(x+7)/((2-x)(x+1));(-x-7)/((x+1)(x-2));(-x-7)/((x-2)(x+1));(-x-7)/(x^2-x-2);-(x+7)/((x+1)(x-2));-(x+7)/((x-2)(x+1));-(x+7)/(x^2-x-2)" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Write {m:frac(2, x+1)-frac(3, x-2)} as a single fraction. Type it like (x+1)/((x+2)(x+3)).</p>
+      <ol class="ladder"><li>The common bottom is {m:(x+1)(x-2)}.</li><li>Multiply each top by the bracket its bottom is missing. Put brackets round the second part before you subtract.</li></ol>
+      <ul class="wrong">
+        <li data-if="(-x-1)/((x+1)(x-2));(-x-1)/((x-2)(x+1));(-x-1)/(x^2-x-2)">You did not change the sign of the second part. {m:-3(x+1)=-3x-3}, so the number term is {m:-4-3=-7}.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:frac(2(x-2)-3(x+1), (x+1)(x-2))=frac(2x-4-3x-3, (x+1)(x-2))=frac(-x-7, (x+1)(x-2))}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for the common bottom {m:(x+1)(x-2)}</li>
+          <li><b>M1</b> for {m:2(x-2)-3(x+1)}</li>
+          <li><b>A1</b> for {m:frac(-x-7, (x+1)(x-2))}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>Why you cancel factors and not terms.</b> The fraction {m:frac(a*b, a*c)} equals {m:frac(b, c)} when a is not 0, because dividing the top and the bottom by the same non-zero number does not change the value. A term that is added, as in {m:frac(a+b, a+c)}, is not a multiplier of the whole top, so it cannot be divided out.</li>
+      <li><b>Why the excluded values stay.</b> A fraction with the bottom 0 has no value. After cancelling, the new fraction may have a value where the old one did not. The two fractions agree only where the old one has a value.</li>
+      <li><b>Why a common bottom is needed.</b> You can add parts only when they are measured in the same unit. Thirds and quarters are different units. Twelfths measure both. The same is true of {m:frac(1, x-1)} and {m:frac(1, x+2)}.</li>
+      <li><b>Why dividing is multiplying.</b> Dividing by a number d means multiplying by {m:frac(1, d)}, because {m:frac(1, d)*d=1}. The reciprocal of {m:frac(r, s)} is {m:frac(s, r)}, because {m:frac(r, s)*frac(s, r)=1}, when r and s are not 0.</li>
+      <li><b>Why you may put in the value that makes a bracket 0.</b> After you multiply through, no fractions are left. Both sides are polynomials in x. They are equal for every x that does not make a bottom 0, which is infinitely many values. Two polynomials that agree at infinitely many values are the same polynomial. So they agree at every x, including the values that make a bottom 0. That is why the substitution is allowed, even though the original fraction has no value there.</li>
+      <li><b>Why a repeated factor needs two fractions.</b> The bottoms {m:(x+1)} and {m:(x+1)^2} are different. A fraction such as {m:frac(2x+5, (x+1)^2)} needs both {m:frac(A, x+1)} and {m:frac(B, (x+1)^2)}. Multiplying {m:frac(A, x+1)} by {m:(x+1)^2} gives {m:A(x+1)}, which has an x in it. Without that fraction, the top could not have an x term.</li>
+      <li><b>Why A + B + C = 0.</b> The factors are {m:(x-a)}, {m:(x-b)} and {m:(x-c)}. The top of the identity is {m:A(x-b)(x-c)+B(x-a)(x-c)+C(x-a)(x-b)}. Its {m:x^2} terms add to {m:(A+B+C)x^2}. The left side is a number or a multiple of x plus a number, so it has no {m:x^2} term, and {m:A+B+C=0}.</li>
+      <li><b>Why each factor gives an asymptote.</b> As x gets close to a value that makes one factor of the bottom 0, the bottom gets close to 0. When the top is not 0 at that value, the fraction becomes very large, positive or negative. That is why each factor has its own dashed line in the figures, and its own partial fraction.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Cancelling a term instead of a factor. In {m:frac(x+3, x+5)}, the x cannot be cancelled.</li>
+      <li>Forgetting the excluded values after you cancel. The original fraction still has no value where its bottom was 0.</li>
+      <li>Adding the tops and adding the bottoms. Make the bottoms the same first.</li>
+      <li>Not changing every sign when you subtract. Put brackets round the whole top of the second fraction.</li>
+      <li>Using {m:(x+1)^3} as the common bottom of {m:frac(2, x+1)} and {m:frac(3, (x+1)^2)}. The lowest common denominator uses the highest power once.</li>
+      <li>Writing {m:frac(1, (x-1)(x+2))} as {m:frac(1, x-1)+frac(1, x+2)}. The tops A and B must be found, and here they are {m:frac(1, 3)} and {m:-frac(1, 3)}.</li>
+      <li>Putting in {m:x=-a} for a factor {m:(x-a)}. The value that makes {m:(x-a)} zero is {m:x=a}.</li>
+      <li>For a factor such as {m:(2x-1)}, putting in {m:x=1}. The value that makes it 0 is {m:x=frac(1, 2)}.</li>
+      <li>Leaving out a fraction for a repeated factor. {m:(x+2)^2} needs both {m:frac(B, x+2)} and {m:frac(C, (x+2)^2)}.</li>
+      <li>Not checking. Put {m:x=0}, or another value that is allowed, into both sides. A difference shows a mistake.</li>
+      <li>Trying to split a bottom that does not factorise into straight lines, such as {m:x^2+2x+5}. This page does not cover it.</li>
+    </ul>
+    <h2>Where this goes next</h2>
+    <p>This page gave you a tool, and later topics use it. In Binomial expansion (fractional and negative powers), you split a fraction into pieces such as {m:frac(A, x-a)} and expand each piece as a series. In Integrating with partial fractions, each piece integrates on its own, and many give a logarithm. In Further Pure, the same splitting turns a sum such as {m:frac(1, 1*2)+frac(1, 2*3)+frac(1, 3*4)}, and so on, into terms that cancel in pairs. This is called the method of differences. At university, partial fractions are used to integrate rational functions in general, including bottoms with a quadratic factor that does not split, and to undo the Laplace transform when solving differential equations.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="algebraic-fractions">
+      <li><label><input type="checkbox"> simplify an algebraic fraction by factorising and cancelling factors, and state the values it has no value for</label></li>
+      <li><label><input type="checkbox"> multiply and divide algebraic fractions, and say where the result has no value</label></li>
+      <li><label><input type="checkbox"> add and subtract algebraic fractions over the lowest common denominator</label></li>
+      <li><label><input type="checkbox"> write a fraction with two different straight-line factors in its bottom in partial fractions</label></li>
+      <li><label><input type="checkbox"> write a fraction with three different straight-line factors in its bottom in partial fractions, and check that A + B + C = 0</label></li>
+      <li><label><input type="checkbox"> write a fraction with a repeated factor in its bottom in partial fractions, with a fraction for each power</label></li>
+      <li><label><input type="checkbox"> factorise a quadratic or cubic bottom first, using the factor theorem when needed</label></li>
+      <li><label><input type="checkbox"> check a partial fractions answer by putting in a value of x</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
