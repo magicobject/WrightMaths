@@ -77,6 +77,8 @@ const CASES: Case[] = [
   C('Solve {m:5^(2x-1)=40}', (1 + ln(40) / ln(5)) / 2, sf3, [['1.15', sf3(ln(40) / ln(5) / 2)], ['3.29', sf3(1 + ln(40) / ln(5))]]),
   C('Solve {m:ln(2x+1)-ln 3=2}', (3 * E ** 2 - 1) / 2, sf3, [['3.19', sf3((E ** 2 - 1) / 2)], ['11.6', sf3((3 * E ** 2 + 1) / 2)]]),
   C('meets the line {m:y=5} at the point Q', -ln(2) / 2, sf3, [['0.347', sf3(ln(2) / 2)], ['-0.693', sf3(-ln(2))]]),
+  // 7 quadratics in 2^x and e^x
+  C('{m:2^(2x)-2^x-6=0}', log2(3), sf3, [['3', 3], ['1.1', sf3(ln(3))]]),
   C('Solve {m:2^x=5^(x-1)}', ln(5) / (ln(5) - ln(2)), sf3, [['-1.76', sf3(-ln(5) / (ln(5) - ln(2)))]]),
 ];
 
@@ -319,6 +321,10 @@ test('every "Now you finish it" blank holds the recomputed value', () => {
     [ln(10) - 1, exact], // 3x = ln 10 - 1, accepted to 4, 3, 2 and 1 decimal places below
     [(ln(10) - 1) / 3, sf3],
     [ln(50) / ln(3), sf3],
+    [3, exact], // 3^(2x) - 12 * 3^x + 27 = 0: the smaller u, the larger u, then the two values of x
+    [9, exact],
+    [1, exact],
+    [2, exact],
   ];
   expect(blanks.length).toBe(want.length);
   blanks.forEach((answers, i) => {
@@ -367,6 +373,7 @@ test('each figure curve is drawn from its equation, and each marked point lies o
     'exponentials-logs-solve': [(x) => 2 ** x],
     'exponentials-logs-region': [(x) => 2 ** x],
     'exponentials-logs-crossing': [(x) => Math.exp(2 * x) - 4],
+    'exponentials-logs-disguise': [(x) => 2 ** (2 * x) - 6 * 2 ** x + 8],
     'exponentials-logs-flip': [(x) => 2 ** x, (x) => Math.log2(x)],
     'exponentials-logs-q-base': [(x) => 3 ** x],
     'exponentials-logs-q-shift': [(x) => Math.exp(2 * x) - 2],
@@ -429,6 +436,10 @@ test('the labels that name a point by a log or by x = a number are right', async
   expect(crossing[0]).toMatchObject({ x: 0, y: -3 });
   expect(crossing[1].x).toBeCloseTo(ln(2), 12);
   expect(strip(FIGURES['exponentials-logs-crossing']())).toContain('(ln 2, 0)');
+  // the disguise picture: (1, 0) and (2, 0) are where u = 2^x is 2 and 4, the roots of u^2 - 6u + 8
+  expect(POINTS['exponentials-logs-disguise'].map((p: { x: number; y: number }) => [p.x, p.y])).toEqual([[1, 0], [2, 0]]);
+  expect(2 ** (2 * 1) - 6 * 2 + 8).toBe(0);
+  expect(2 ** (2 * 2) - 6 * 4 + 8).toBe(0);
   // the mirror pictures: each point on one curve has its swapped point on the other
   for (const id of ['exponentials-logs-inverse', 'exponentials-logs-flip']) {
     const [a, b] = POINTS[id];
@@ -515,4 +526,76 @@ test('the page keeps change of base out: the formula and its name do not appear'
   // the page says once, in its opening note, that it does not use change of base
   expect((text.match(/change of base/gi) ?? []).length).toBe(1);
   expect(SOURCE).not.toMatch(/frac\(log_b x, log_b a\)/);
+});
+
+// ---- lesson 7: quadratics in 2^x and e^x ----
+test('the page teaches the substitution u = 2^x and u = e^x, with a Key idea, worked examples and a faded example', () => {
+  const lesson = /<h2>7\. Quadratics in disguise[\s\S]*?(?=<section class="flip-section">)/.exec(SOURCE)?.[0] ?? '';
+  expect(lesson.length).toBeGreaterThan(1000);
+  expect(SOURCE).toContain('{m:u=2^x}');
+  expect(SOURCE).toContain('{m:u=e^x}');
+  expect(lesson).toContain('class="key"');
+  expect((lesson.match(/<div class="worked">/g) ?? []).length).toBeGreaterThanOrEqual(2);
+  expect(lesson).toContain('<div class="worked faded">');
+  expect(lesson).toMatch(/e\^x=-1\} has no solution, because \{m:e\^x\} is always positive/);
+  expect((lesson.match(/<div class="q"/g) ?? []).length).toBeGreaterThanOrEqual(4);
+});
+
+test('every quadratic in 2^x or e^x: the typed answers are the recomputed solutions, and every slip is a named slip', () => {
+  const qs = questions();
+  // a typed solution list such as "0 or ln3" or "ln(2)": read each piece as a number, or NaN for ln of a number that is not positive
+  const piece = (t: string) => {
+    const x = t.replace(/\s+/g, '');
+    if (/^-?\d+(\.\d+)?$/.test(x)) return { v: Number(x), arg: NaN };
+    const m = /^ln\(?(-?\d+(?:\.\d+)?)\)?$/.exec(x);
+    if (m) return { v: Number(m[1]) > 0 ? ln(Number(m[1])) : NaN, arg: Number(m[1]) };
+    return { v: NaN, arg: NaN };
+  };
+  const list = (t: string) => t.split(/\s*(?:\bor\b|\band\b|,)\s*/).filter(Boolean).map(piece);
+  const sorted = (xs: number[]) => [...xs].sort((a, b) => a - b);
+  const sameList = (a: number[], b: number[]) => a.length === b.length && sorted(a).every((v, i) => same(v, sorted(b)[i]) || Math.abs(v - sorted(b)[i]) < 1e-9);
+  // [question text, base (0 for e), b, c]: the equation is base^(2x) + b * base^x + c = 0
+  const CASES7: [string, number, number, number][] = [
+    ['{m:2^(2x)-3*2^x+2=0}', 2, -3, 2],
+    ['{m:e^(2x)-4e^x+3=0}', 0, -4, 3],
+    ['{m:e^(2x)+e^x-6=0}', 0, 1, -6],
+    ['{m:2^(2x)-2^x-6=0}', 2, -1, -6],
+  ];
+  const problems: string[] = [];
+  for (const [find, base, b, c] of CASES7) {
+    const hits = qs.filter((q) => q.raw.includes(find));
+    if (hits.length !== 1) { problems.push(`"${find}" matches ${hits.length} questions`); continue; }
+    const q = hits[0];
+    const d = Math.sqrt(b * b - 4 * c);
+    const us = [(-b - d) / 2, (-b + d) / 2];
+    const lg = base === 0 ? ln : (u: number) => ln(u) / ln(base);
+    const sols = us.filter((u) => u > 0).map(lg);
+    if (q.mode === 'value') {
+      // one solution to 3 significant figures; the typed value is checked by the numeric cases above
+      if (sols.length !== 1 || q.answers.some((a) => !same(num(a), sf3(sols[0])))) problems.push(`${find}: answer is not ${sf3(sols[0])}`);
+      continue;
+    }
+    for (const a of q.answers) if (!sameList(list(a).map((t) => t.v), sols)) problems.push(`${find}: the page accepts "${a}", recomputed ${sols}`);
+    for (const w of q.wrongs) {
+      const ws = list(w);
+      const vs = ws.map((t) => t.v);
+      const isU = sameList(vs, us);
+      const isUPositive = vs.length === 1 && us.some((u) => u > 0 && same(u, vs[0]));
+      const isOne = vs.length === 1 && sols.length > 1 && sols.some((s) => same(s, vs[0]));
+      const isDecimal = vs.length === 1 && Math.abs(vs[0] - sols[0]) < 0.01 && !same(vs[0], sols[0]);
+      const isLnNegative = ws.some((t) => t.arg < 0 && us.some((u) => same(u, t.arg)));
+      if (sameList(vs, sols)) problems.push(`${find}: the wrong answer "${w}" is the right answer`);
+      if (!(isU || isUPositive || isOne || isDecimal || isLnNegative)) problems.push(`${find}: the wrong answer "${w}" is not a named slip`);
+    }
+  }
+  expect(problems).toEqual([]);
+  // the rejected-value multiple-choice question: u^2 + 3u + 2 has two negative roots, so no solution
+  expect(sorted([(-3 - Math.sqrt(1)) / 2, (-3 + Math.sqrt(1)) / 2])).toEqual([-2, -1]);
+  // the substitution question: 3^(2x) = (3^x)^2, and the worked and faded examples
+  expect(3 ** (2 * 1.7)).toBeCloseTo((3 ** 1.7) ** 2, 9);
+  expect(3 ** 4 - 12 * 3 ** 2 + 27).toBe(0);
+  expect(Math.exp(2 * ln(2)) - Math.exp(ln(2)) - 2).toBeCloseTo(0, 12);
+  expect(Math.exp(2 * ln(2)) - 5 * Math.exp(ln(2)) + 6).toBeCloseTo(0, 12);
+  expect(Math.exp(2 * ln(3)) - 5 * Math.exp(ln(3)) + 6).toBeCloseTo(0, 12);
+  expect(sf3(ln(3))).toBe(1.1);
 });

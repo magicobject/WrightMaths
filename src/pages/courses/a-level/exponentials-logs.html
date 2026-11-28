@@ -16,7 +16,7 @@
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Exponentials and logarithms</span></nav>
     {prereqs}
     {words}
-    <div class="key"><p>This page builds on <a href="indices-surds.html">Indices and surds</a>. You need the laws of indices, negative powers and fractional powers. The warm-up shows you where to look if you have forgotten any of it. The page does not use change of base, a formula some books add for logarithms. Where the working shows a long decimal, such as 3.3219, the last digit is rounded. On your own calculator, keep every digit.</p></div>
+    <div class="key"><p>This page builds on <a href="indices-surds.html">Indices and surds</a> and <a href="quadratics.html">Quadratics</a>. You need the laws of indices, negative powers and fractional powers. Lesson 7 also uses factorising a quadratic. The warm-up shows you where to look if you have forgotten any of it. The page does not use change of base, a formula some books add for logarithms. Where the working shows a long decimal, such as 3.3219, the last digit is rounded. On your own calculator, keep every digit.</p></div>
   </div>
 </section>
 
@@ -837,6 +837,121 @@
   </div>
 </section>
 
+<section>
+  <div class="wrap narrow">
+    <h2>7. Quadratics in disguise: equations in 2<sup>x</sup> and e<sup>x</sup></h2>
+    <p>Some equations have {m:a^(2x)} and {m:a^x} in them, with no other power of x. They look hard, but they are {term:quadratic-in-disguise|quadratics in disguise}. By the laws of indices, {m:a^(2x)=(a^x)^2}. So {m:a^(2x)} is the square of {m:a^x}. Give {m:a^x} a new letter and you have an ordinary quadratic.</p>
+    <div class="key">
+      <p><b>Key idea:</b> if an equation has {m:a^(2x)} and {m:a^x} and no other power of x, let {m:u=a^x}. Then {m:a^(2x)=u^2}, and the equation is a quadratic in u. For {m:a=2} write {m:u=2^x}. For base e write {m:u=e^x}. Solve for u, then solve each equation {m:a^x=} value. Reject any value of u that is zero or negative, because {m:a^x} and {m:e^x} are always positive. That is a {term:rejected-value|rejected value}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a quadratic in 2<sup>x</sup></h3>
+      <p>Solve {m:2^(2x)-6*2^x+8=0}.</p>
+      <ol class="steps">
+        <li>Write {m:2^(2x)} as {m:(2^x)^2}. Let {m:u=2^x}. The equation becomes {m:u^2-6u+8=0}.</li>
+        <li>Factorise: {m:(u-2)(u-4)=0}. So {m:u=2} or {m:u=4}.</li>
+        <li>Go back to x. {m:2^x=2} gives {m:x=1}. {m:2^x=4} gives {m:x=2}, because {m:4=2^2}.</li>
+      </ol>
+      <p>The solutions are {m:x=1} and {m:x=2}. Check {m:x=2}: {m:2^4-6*2^2+8=16-24+8=0}.</p>
+    </div>
+    <figure class="figure-lg">{fig:exponentials-logs-disguise}<figcaption>Look at the two marked points. The curve {m:y=2^(2x)-6*2^x+8} crosses the x-axis at {m:(1, 0)} and {m:(2, 0)}. These are the two solutions of the equation. Between them the curve is below the axis.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: a quadratic in e<sup>x</sup></h3>
+      <p>Solve {m:e^(2x)-5e^x+6=0}. Give the exact answers.</p>
+      <ol class="steps">
+        <li>Let {m:u=e^x}. Then {m:e^(2x)=u^2}, and the equation is {m:u^2-5u+6=0}.</li>
+        <li>Factorise: {m:(u-2)(u-3)=0}. So {m:u=2} or {m:u=3}.</li>
+        <li>Go back to x. {m:e^x=2} gives {m:x=ln 2}. {m:e^x=3} gives {m:x=ln 3}.</li>
+      </ol>
+      <p>The exact solutions are {m:x=ln 2} and {m:x=ln 3}. As decimals, {m:ln 2=0.693} and {m:ln 3=1.099}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a value that must be rejected</h3>
+      <p>Solve {m:e^(2x)-e^x-2=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=e^x}. The equation is {m:u^2-u-2=0}.</li>
+        <li>Factorise: {m:(u-2)(u+1)=0}. So {m:u=2} or {m:u=-1}.</li>
+        <li>{m:e^x=-1} has no solution, because {m:e^x} is always positive. Reject {m:u=-1}.</li>
+        <li>{m:e^x=2} gives {m:x=ln 2}.</li>
+      </ol>
+      <p>There is one solution, {m:x=ln 2}. A quadratic in u can have two roots, and still give only one value of x.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Solve {m:3^(2x)-12*3^x+27=0}.</p>
+      <ol class="steps">
+        <li>Let {m:u=3^x}. Then {m:3^(2x)=u^2}, and the equation is {m:u^2-12u+27=0}.</li>
+        <li>Factorise: {m:(u-3)(u-9)=0}. The smaller value of u is <span class="blank" data-answers="3">___</span>. The larger value of u is <span class="blank" data-answers="9">___</span>.</li>
+        <li>The smaller value gives {m:3^x=3}, so {m:x=}<span class="blank" data-answers="1">___</span>. The larger value gives {m:3^x=9}, so {m:x=}<span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:u=3} or {m:u=9}. Then {m:3^x=3} gives {m:x=1}, and {m:3^x=9=3^2} gives {m:x=2}. Check {m:x=2}: {m:3^4-12*3^2+27=81-108+27=0}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: quadratics in 2<sup>x</sup> and e<sup>x</sup></h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which substitution turns {m:3^(2x)-10*3^x+9=0} into a quadratic?</p>
+      <ul class="options">
+        <li data-correct>Let u = 3^x, so that 3^(2x) = u^2</li>
+        <li data-why="The power 3^x means 3 multiplied by itself x times. It is not 3 times x. With u = 3x, the term 3^(2x) does not become a square of u.">Let u = 3x, so that 3^(2x) = u^2</li>
+        <li data-why="9^x is the square of 3^x, so the squares go the other way round. Then 3^x would be the square root of u, and the equation would not be a quadratic in u.">Let u = 9^x, so that 3^x = u^2</li>
+      </ul>
+      <ol class="ladder"><li>Look at the two powers in the equation. Which one is the square of the other?</li><li>The law of indices gives {m:(3^x)^2=3^(2x)}.</li></ol>
+      <div class="solution"><p>{m:3^(2x)=(3^x)^2}. So let {m:u=3^x}, and the equation becomes {m:u^2-10u+9=0}.</p></div>
+    </div>
+    <div class="q" data-answers="0 or 1;0 and 1;0,1;1 or 0;1 and 0;1,0" data-mode="exact">
+      <p class="qtext">Solve {m:2^(2x)-3*2^x+2=0}. Type both solutions with &ldquo;or&rdquo; between them, smallest first, like {m:-4} or 7.</p>
+      <ol class="ladder"><li>Let {m:u=2^x}. Write the equation as a quadratic in u.</li><li>Solve the quadratic in u. Then solve {m:2^x=} each value of u.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 2;1 and 2;1,2;2 or 1;2 and 1;2,1">You found the two values of u. The question asks for x. Solve {m:2^x=} each value of u.</li>
+        <li data-if="0;1">That is one of the two solutions. The quadratic in u has two roots, and each root gives a value of x.</li>
+      </ul>
+      <div class="solution"><p>Let {m:u=2^x}. Then {m:u^2-3u+2=0}, so {m:(u-1)(u-2)=0} and {m:u=1} or {m:u=2}. {m:2^x=1} gives {m:x=0}. {m:2^x=2} gives {m:x=1}.</p></div>
+    </div>
+    <div class="q" data-answers="0 or ln3;0 and ln3;0,ln3;0 or ln(3);0 and ln(3);0,ln(3);ln3 or 0;ln3 and 0;ln3,0;ln(3) or 0;ln(3) and 0;ln(3),0" data-mode="exact">
+      <p class="qtext">Solve {m:e^(2x)-4e^x+3=0}. Give the exact solutions, smallest first, with &ldquo;or&rdquo; between them. Write a logarithm like ln 5.</p>
+      <ol class="ladder"><li>Let {m:u=e^x}. Then {m:e^(2x)=u^2}.</li><li>Solve the quadratic in u. Then take ln for each value of u. Remember that {m:ln 1} has a simpler name.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 3;1 and 3;1,3;3 or 1;3 and 1;3,1">You found the two values of u. The question asks for x. Solve {m:e^x=} each value of u.</li>
+        <li data-if="ln3;ln(3)">That is one of the two solutions. The quadratic in u has two roots, and each root gives a value of x.</li>
+      </ul>
+      <div class="solution"><p>Let {m:u=e^x}. Then {m:u^2-4u+3=0}, so {m:(u-1)(u-3)=0} and {m:u=1} or {m:u=3}. {m:e^x=1} gives {m:x=ln 1=0}. {m:e^x=3} gives {m:x=ln 3}.</p></div>
+    </div>
+    <div class="q" data-answers="ln2;ln(2)" data-mode="exact">
+      <p class="qtext">Find all the solutions of {m:e^(2x)+e^x-6=0}. Give the exact answer, written like ln 5.</p>
+      <ol class="ladder"><li>Let {m:u=e^x}. Solve the quadratic in u.</li><li>Check each value of u. Can {m:e^x} equal it?</li></ol>
+      <ul class="wrong">
+        <li data-if="2">That is a value of u, which is {m:e^x}. The question asks for x, so take ln.</li>
+        <li data-if="0.693;0.69;0.7">That is the answer as a decimal. The question asks for the exact answer, written as a logarithm.</li>
+        <li data-if="ln-3;ln(-3);ln2 or ln-3;ln2 and ln-3;ln2 or ln(-3);ln2 and ln(-3)">The logarithm of a negative number does not exist. {m:e^x} is always positive, so a negative value of u is rejected.</li>
+      </ul>
+      <div class="solution"><p>Let {m:u=e^x}. Then {m:u^2+u-6=0}, so {m:(u+3)(u-2)=0} and {m:u=-3} or {m:u=2}. {m:e^x=-3} has no solution, because {m:e^x} is always positive. {m:e^x=2} gives {m:x=ln 2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many solutions does {m:e^(2x)+3e^x+2=0} have?</p>
+      <ul class="options">
+        <li data-correct>None, because both values of u are negative</li>
+        <li data-why="This treats u = -1 and u = -2 as if they were 1 and 2. The brackets (u + 1) and (u + 2) are zero when u is negative.">Two, which are x = 0 and x = ln 2</li>
+        <li data-why="The logarithm of a negative number does not exist, so these are not real numbers. e^x is always positive, so e^x = -1 has no solution.">Two, which are x = ln(-1) and x = ln(-2)</li>
+      </ul>
+      <ol class="ladder"><li>Let {m:u=e^x} and factorise the quadratic in u.</li><li>Is {m:e^x} ever negative?</li></ol>
+      <div class="solution"><p>Let {m:u=e^x}. Then {m:u^2+3u+2=0}, so {m:(u+1)(u+2)=0} and {m:u=-1} or {m:u=-2}. {m:e^x} is always positive, so both values are rejected. There is no solution.</p></div>
+    </div>
+    <div class="q" data-answers="1.58" data-mode="value">
+      <p class="qtext">Solve {m:2^(2x)-2^x-6=0}. Give x to 3 significant figures. Type only the number.</p>
+      <ol class="ladder"><li>Let {m:u=2^x} and factorise the quadratic in u. One value of u must be rejected.</li><li>Solve {m:2^x=} the value that is left, by taking logarithms of both sides, as in lesson 4.</li></ol>
+      <ul class="wrong">
+        <li data-if="3">That is the value of u, which is {m:2^x}. The question asks for x, so take logarithms.</li>
+        <li data-if="1.1;1.10">You took ln of the right side only. Taking ln of both sides gives {m:x ln 2=} the new right side, so divide by {m:ln 2}.</li>
+      </ul>
+      <div class="solution"><p>Let {m:u=2^x}. Then {m:u^2-u-6=0}, so {m:(u-3)(u+2)=0} and {m:u=3} or {m:u=-2}. {m:2^x=-2} has no solution. {m:2^x=3} gives {m:x=frac(ln 3, ln 2)=1.585}. To 3 significant figures, {m:x=1.58}.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="flip-section">
   <div class="wrap narrow">
     <h2>Flip it: power &harr; logarithm</h2>
@@ -1155,6 +1270,7 @@
       <li><b>Why you may take logarithms of both sides.</b> If two positive numbers are equal, their logarithms are equal. And the function {m:ln x} is increasing, so a larger positive number has a larger logarithm. That is why the inequality sign stays when you take ln.</li>
       <li><b>Why the sign sometimes reverses.</b> After taking ln you divide by {m:ln a}. If {m:0<a<1}, then {m:ln a} is negative. Dividing an inequality by a negative number reverses it.</li>
       <li><b>Why the graph of ln is a mirror image.</b> If {m:b=a^c}, then {m:c=log_a b}. So the point {m:(c, b)} is on {m:y=a^x} exactly when {m:(b, c)} is on {m:y=log_a x}. Swapping x and y is a reflection in the line {m:y=x}.</li>
+      <li><b>Why the substitution works.</b> The law {m:(a^m)^n=a^(m n)} gives {m:(a^x)^2=a^(2x)}. So every {m:a^(2x)} in the equation is {m:u^2}, and every {m:a^x} is u. Each root u of the quadratic is a number that {m:a^x} must equal.</li>
       <li><b>Why the argument must be positive.</b> {m:a^y} is positive for every y. So the equation {m:a^y=x} has no solution for {m:x<=0}, and {m:log_a x} does not exist there.</li>
     </ul>
     <h2>Common traps</h2>
@@ -1164,6 +1280,8 @@
       <li>Writing {m:ln x-ln y} as {m:frac(ln x, ln y)}, or {m:ln(frac(x, y))} as {m:frac(ln x, ln y)}. The quotient law turns a difference of logarithms into the logarithm of a quotient.</li>
       <li>Writing {m:ln(x^2)} as {m:(ln x)^2}. The power law gives {m:2 ln x}.</li>
       <li>Forgetting that {m:e^x} is always positive. {m:e^x=-3} has no solution.</li>
+      <li>Stopping at u. In a quadratic in {m:2^x} or {m:e^x}, the values of u are not the answer. Go back and solve for x.</li>
+      <li>Keeping a negative value of u. {m:u=2^x} and {m:u=e^x} are always positive, so a negative u is rejected.</li>
       <li>Forgetting to check the argument. A solution that makes the inside of a logarithm zero or negative must be rejected.</li>
       <li>Taking the logarithm of one term at a time. {m:ln(3^x+1)} is not {m:x ln 3+ln 1}. Take the logarithm of the whole side.</li>
       <li>Not reversing the inequality sign when you divide by {m:ln a} with {m:0<a<1}.</li>
@@ -1185,6 +1303,7 @@
       <li><label><input type="checkbox"> solve {m:a^x=b} by taking logarithms of both sides</label></li>
       <li><label><input type="checkbox"> solve {m:e^(ax+b)=p} and {m:ln(ax+b)=q}, and check the argument is positive</label></li>
       <li><label><input type="checkbox"> solve an inequality with an exponential, and decide whether the sign reverses</label></li>
+      <li><label><input type="checkbox"> solve an equation that is a quadratic in {m:2^x} or {m:e^x}, and reject a value that cannot happen</label></li>
     </ul>
     <p class="muted">Come back in a week and tick again, without looking.</p>
     {unlocks}

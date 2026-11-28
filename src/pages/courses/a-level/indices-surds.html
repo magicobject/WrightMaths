@@ -769,6 +769,9 @@
   <div class="wrap narrow">
     <h2>6. Exact answers in problems</h2>
     <p>In many problems a length or an area is a surd. Keep it exact unless the question asks for a decimal. Say what you are finding, show the working, and simplify at the end. Pythagoras and area formulas often turn a surd times itself into a whole number.</p>
+    <div class="key">
+      <p><b>Key idea:</b> keep a length or an area exact unless the question asks for a decimal. A surd times itself is a whole number: {m:sqrt(a)*sqrt(a)=a} for {m:a>=0}. A conjugate pair multiplies to a whole number: {m:(p+sqrt(q))(p-sqrt(q))=p^2-q}. Simplify at the end.</p>
+    </div>
     <div class="worked">
       <h3>Worked example: a rectangle</h3>
       <p>A rectangle has length {m:(3+sqrt(5))} cm and width {m:(3-sqrt(5))} cm. Find its area and its perimeter.</p>
@@ -788,6 +791,16 @@
         <li>The side is {m:s=sqrt(18)=3sqrt(2)} cm.</li>
         <li>Check: the diagonal of a square is its side times {m:sqrt(2)}. Here {m:3sqrt(2)*sqrt(2)=3*2=6}.</li>
       </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>A right-angled triangle has shorter sides {m:2sqrt(3)} cm and {m:sqrt(6)} cm. Find the length of its hypotenuse in the form {m:a*sqrt(b)}.</p>
+      <ol class="steps">
+        <li>Let the hypotenuse be h cm. By Pythagoras, {m:h^2=(2sqrt(3))^2+(sqrt(6))^2}.</li>
+        <li>{m:(2sqrt(3))^2=4*3=}<span class="blank" data-answers="12">___</span>. Also {m:(sqrt(6))^2=6}. So {m:h^2=12+6=}<span class="blank" data-answers="18">___</span>.</li>
+        <li>{m:18=9*2}, so {m:h=sqrt(18)=}<span class="blank" data-answers="3">___</span>{m:sqrt(2)} cm.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:h^2=12+6=18}, so {m:h=sqrt(18)=3sqrt(2)} cm. Check: {m:3sqrt(2)=4.24}, which is longer than both shorter sides, {m:2sqrt(3)=3.46} and {m:sqrt(6)=2.45}.</p></details>
     </div>
     <!-- No figure for the second worked example: its picture is the square-with-diagonal triangle already shown in section 3, and the step that matters is the arithmetic. -->
   </div>
@@ -1048,16 +1061,16 @@
         </ul>
       </div>
     </div>
-    <div class="q" data-answers="3+sqrt(2);sqrt(2)+3;3+sqrt2;sqrt2+3" data-mode="exact" data-marks="3">
-      <p class="qtext">[3 marks] Write {m:frac(7, 3-sqrt(2))} in the form {m:a+sqrt(b)}, where a and b are whole numbers. Type it like 2+sqrt(5).</p>
+    <div class="q" data-answers="6+2sqrt(2);2sqrt(2)+6;6+2sqrt2;2sqrt2+6;6+2*sqrt(2);2*sqrt(2)+6" data-mode="exact" data-marks="3">
+      <p class="qtext">[3 marks] Write {m:frac(14, 3-sqrt(2))} in the form {m:a+b*sqrt(2)}, where a and b are whole numbers. Type it like 1+4sqrt(2).</p>
       <ol class="ladder"><li>Multiply the top and the bottom by the conjugate of the bottom.</li><li>The conjugate is {m:3+sqrt(2)}. The bottom is {m:9-2}.</li></ol>
-      <ul class="wrong"><li data-if="(21+7sqrt(2))/7;(21+7sqrt2)/7">That is the right number, but divide the top and the bottom by 7.</li><li data-if="3-sqrt(2);3-sqrt2">The conjugate has the opposite sign, so the top is {m:7(3+sqrt(2))}, with a plus.</li></ul>
+      <ul class="wrong"><li data-if="(42+14sqrt(2))/7;(42+14sqrt2)/7">That is the right number, but divide the top and the bottom by 7.</li><li data-if="6-2sqrt(2);6-2sqrt2">The conjugate has the opposite sign, so the top is {m:14(3+sqrt(2))}, with a plus.</li></ul>
       <div class="solution">
-        <p>{m:frac(7, 3-sqrt(2))=frac(7(3+sqrt(2)), (3-sqrt(2))(3+sqrt(2)))=frac(7(3+sqrt(2)), 7)=3+sqrt(2)}.</p>
+        <p>{m:frac(14, 3-sqrt(2))=frac(14(3+sqrt(2)), (3-sqrt(2))(3+sqrt(2)))=frac(14(3+sqrt(2)), 7)=2(3+sqrt(2))=6+2sqrt(2)}.</p>
         <ul class="markscheme">
           <li><b>M1</b> for multiplying the top and the bottom by {m:3+sqrt(2)}</li>
           <li><b>A1</b> for the bottom equal to 7</li>
-          <li><b>A1</b> for {m:3+sqrt(2)}</li>
+          <li><b>A1</b> for {m:6+2sqrt(2)}</li>
         </ul>
       </div>
     </div>

@@ -324,6 +324,9 @@
       <li><b>A number on its own gets an x.</b> {m:int() 5 dx=5x+c}, because the derivative of {m:5x} is 5. This is the rule with {m:5=5x^0}.</li>
     </ol>
     <p>Write one c at the end of the whole answer, not one c for each term. Each term could have its own constant, but a sum of unknown constants is one unknown constant.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for {m:n != -1}, {m:int() k x^n dx=frac(k x^(n+1), n+1)+c}. A number in front stays in front. A sum is integrated one term at a time. A number on its own gets an x: {m:int() k dx=k x+c}. Write one c at the end of the whole answer.</p>
+    </div>
     <figure class="figure-lg">{fig:integration-basics-split}<figcaption>Split the expression into terms, integrate each term, then join the results and add c.</figcaption></figure>
     <div class="worked">
       <h3>Worked example</h3>
@@ -390,6 +393,9 @@
   <div class="wrap narrow">
     <h2>5. Tidy first: brackets, fractions and roots</h2>
     <p>The rule needs each term to be a number times a power of x. Many expressions are not in that form yet. Rewrite them first.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the rule needs each term to be a number times a power of x. Before you integrate, expand brackets, split fractions and write roots as powers. Then integrate term by term and add c. Do not integrate the factors of a product one at a time. Check by differentiating your answer.</p>
+    </div>
     <figure class="figure-lg">{fig:integration-basics-tidy}<figcaption>Rewrite, integrate each term, then add c and check.</figcaption></figure>
     <h3>Brackets: expand first</h3>
     <p>You cannot integrate a product by integrating each factor. Expand the brackets, then integrate each term.</p>

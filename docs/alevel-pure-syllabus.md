@@ -70,7 +70,7 @@ IDs follow `src/book/topics.mjs`. `Needs` is the prerequisite graph; layers and 
 |---|---|---|---|---|
 | `indices-surds` | Indices and surds | Y1 | GCSE | Rational exponents; surd arithmetic including algebraic surds; rationalising denominators; equations with fractional indices that become quadratics [OCR] |
 | `quadratics` | Quadratics | Y1 | `indices-surds` | Factorising, formula, completing the square; discriminant; sketching; quadratics in a function of x (including trig, exponential, log forms) |
-| `simultaneous` | Simultaneous equations | Y1 | `quadratics` | Linear/linear and linear/quadratic, by substitution and elimination; interpretation as intersections |
+| `simultaneous` | Simultaneous equations | Y1 | `quadratics`, `straight-lines` | Linear/linear and linear/quadratic, by substitution and elimination; interpretation as intersections |
 | `inequalities` | Inequalities | Y1 | `quadratics`, `straight-lines` | Linear and quadratic, including with brackets and fractions that reduce to these; set and interval notation, "and"/"or"; regions on a graph |
 | `polynomials` | Polynomials and the factor theorem | Y1 | `quadratics` | Division by linear factors only; factor theorem; factorising and solving cubics and quartics. The remainder theorem is not named by AQA: include as a short, tagged extra |
 | `graphs-polynomials` | Graphs of polynomials and reciprocals | Y1 | `polynomials` | Cubic, quartic, a/x, a/x², asymptotes x = 0 and y = 0 (asymptotes of the form y = a/(x + b) + c move to `graph-transformations`); roots, repeated roots, stationary-point features; intersections solve equations; proportionality (y ∝ powers and roots of x) and its graphs |
@@ -112,7 +112,7 @@ IDs follow `src/book/topics.mjs`. `Needs` is the prerequisite graph; layers and 
 
 | ID | Topic | Y | Needs | Content |
 |---|---|---|---|---|
-| `exponentials-logs` | Exponentials and logarithms | Y1 | `indices-surds` | y = aˣ, eˣ and y = e^(ax+b) + c; logs as inverses; the three laws; solving aˣ = b by taking logs of both sides; e^(ax+b) = p and ln(ax + b) = q; inequalities with exponentials. **Change of base is excluded by OCR A, MEI and WJEC and not in AQA's text; Edexcel says students "may use" it: [beyond]** |
+| `exponentials-logs` | Exponentials and logarithms | Y1 | `indices-surds`, `quadratics` | y = aˣ, eˣ and y = e^(ax+b) + c; logs as inverses; the three laws; solving aˣ = b by taking logs of both sides; e^(ax+b) = p and ln(ax + b) = q; inequalities with exponentials; quadratics in aˣ and eˣ by the substitution u = aˣ (rejecting a value u ≤ 0). **Change of base is excluded by OCR A, MEI and WJEC and not in AQA's text; Edexcel says students "may use" it: [beyond]** |
 | `exp-modelling` | Exponential modelling | Y1 | `exponentials-logs`, `straight-lines` | Growth and decay, meaning of the constants, behaviour for large t; reducing y = axⁿ and y = kbˣ to a straight line using logs and reading n, log a, log b, log k from gradient and intercept; the gradient of eᵏˣ; assumptions and refinement |
 
 ### D. Differentiation

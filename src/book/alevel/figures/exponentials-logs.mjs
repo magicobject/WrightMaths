@@ -180,6 +180,22 @@ export const FIGURES = {
     });
   },
 
+  // ---- 7. y = 2^(2x) - 6*2^x + 8 crosses the x-axis where u = 2^x is 2 and 4 ----
+  'exponentials-logs-disguise': () => {
+    const id = 'exponentials-logs-disguise';
+    const p = sketch(id, { xmin: -1.5, xmax: 2.5, ymin: -2.6, ymax: 10, keys: 1, height: 600 });
+    key(p, [['curve', 'y = 2^(2x) - 6 × 2^x + 8']]);
+    draw(p, id, [{ cls: 'curve', fn: (x) => 2 ** (2 * x) - 6 * 2 ** x + 8 }], [
+      { x: 1, y: 0, on: 0, label: '(1, 0)', dx: -16, dy: -14, anchor: 'end' },
+      { x: 2, y: 0, on: 0, label: '(2, 0)', dx: 16, dy: -14 },
+    ]);
+    return finish(p, {
+      id,
+      title: 'The graph of y = 2^(2x) - 6 × 2^x + 8 crosses the x-axis at (1, 0) and (2, 0)',
+      desc: 'A solid curve that starts high on the left and flattens out, then dips below the x-axis and climbs steeply on the right. It crosses the x-axis at the two marked points (1, 0) and (2, 0), with a shallow valley between them.',
+    });
+  },
+
   // ---- flip it: swap the coordinates of a point on y = 2^x ----
   'exponentials-logs-flip': () => {
     const id = 'exponentials-logs-flip';
