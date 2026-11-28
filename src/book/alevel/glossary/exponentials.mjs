@@ -262,6 +262,41 @@ export const TERMS = [
   },
 
   {
+    id: 'initial-value', term: 'Initial value', strand: 'al-exponentials', level: 'Y1',
+    def: 'The value of a modelled quantity at the start, when t is 0. In the model A times b to the power t, it is the number A.',
+    example: [
+      'In {m:N=100*1.5^t}, the initial value is 100. Put {m:t=0}: {m:N=100*1.5^0=100}.',
+      'In {m:P=50e^(-0.3t)}, the initial value is 50, because {m:e^0=1}.',
+    ],
+    watch: 'In {m:P=20+80e^(-0.5t)}, the initial value is not 80. Put {m:t=0}: {m:P=20+80=100}. The number in front of the exponential is only part of it.',
+    see: ['exponential-model', 'growth-factor', 'rate-constant'],
+    aka: ['starting value', 'value at t = 0'],
+  },
+  {
+    id: 'rate-constant', term: 'Rate constant (k)', strand: 'al-exponentials', level: 'Y1',
+    def: 'The number k in a model such as A e to the power kt. A positive k gives growth and a negative k gives decay.',
+    example: [
+      '{m:P=50e^(0.3t)} has {m:k=0.3}, so it grows. {m:P=50e^(-0.3t)} has {m:k=-0.3}, so it decays.',
+      'It is linked to the growth factor by {m:b=e^k}, and {m:k=ln b}. For {m:b=2}, {m:k=ln 2=0.693}.',
+    ],
+    watch: 'The rate constant is not a percentage. With {m:k=0.3}, the quantity is multiplied by {m:e^(0.3)=1.35} each unit of time, which is a rise of about 35%, not 30%.',
+    flip: 'The matching idea for powers of a number is the {term:growth-factor}: {m:b=e^k}.',
+    see: ['exponential-model', 'growth-factor', 'natural-exponential', 'initial-value'],
+    aka: ['k', 'growth rate constant', 'decay constant'],
+  },
+  {
+    id: 'limiting-value', term: 'Limiting value', strand: 'al-exponentials', level: 'Y1',
+    def: 'The level that a quantity gets closer and closer to as t gets very large, without reaching it. On a graph it is a horizontal asymptote.',
+    example: [
+      'For {m:P=20+80e^(-0.5t)}, the term {m:80e^(-0.5t)} gets close to 0 for large t. So P gets close to 20 from above. The limiting value is 20.',
+      'For {m:P=50e^(-0.3t)}, the limiting value is 0.',
+    ],
+    watch: 'A limiting value is not the value at some time. The quantity may never equal it. At {m:t=20}, {m:20+80e^(-10)=20.0036}, which is above 20.',
+    see: ['exponential-decay', 'asymptote', 'exponential-model'],
+    aka: ['long-term value', 'value for large t'],
+  },
+
+  {
     id: 'log-argument', term: 'Argument of a logarithm', strand: 'al-exponentials', level: 'Y1',
     def: 'The number or expression inside a logarithm. In log to the base a of x, the argument is x. It must be greater than 0.',
     example: [

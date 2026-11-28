@@ -41,7 +41,7 @@ test.describe('A-level maths markup', () => {
 
 // Only pages whose figures have been fixed are listed. The older topic pages still have overlapping labels
 // (for example a y-axis letter over the equation above the graph); add each page here when its figures are fixed.
-const FIGURES_CHECKED = ['/courses/a-level/circles.html', '/courses/a-level/trig-triangles.html', '/courses/a-level/exponentials-logs.html', '/courses/a-level/vectors-2d.html', '/courses/a-level/graphs-polynomials.html', '/courses/a-level/trig-graphs.html'];
+const FIGURES_CHECKED = ['/courses/a-level/circles.html', '/courses/a-level/trig-triangles.html', '/courses/a-level/exponentials-logs.html', '/courses/a-level/vectors-2d.html', '/courses/a-level/graphs-polynomials.html', '/courses/a-level/trig-graphs.html', '/courses/a-level/exp-modelling.html'];
 
 test.describe('A-level figures at 320px', () => {
   for (const bookPage of ALEVEL_TOPICS.filter((t) => FIGURES_CHECKED.includes(t.path))) {
