@@ -1,0 +1,1115 @@
+<main class="book strand-al-proof" data-calc="scientific" data-book-page="topic" data-topic="proof-contradiction">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Proof &middot; Year 2</span>
+      <h1>Proof by contradiction</h1>
+      <p class="lead">Some statements are hard to prove by starting from the facts. Try the opposite. Assume the statement is false, and follow the steps carefully. If they lead to something impossible, the assumption must be wrong, and the statement is true. This page shows the method in two famous proofs: {m:sqrt(2)} cannot be written as a fraction, and there are infinitely many prime numbers. Then you use the same method on proofs you have not seen before.</p>
+      <p class="where-use"><b>Where you will use this:</b> in every question that says &ldquo;prove that &hellip; is irrational&rdquo;, &ldquo;prove that there are no integers &hellip;&rdquo; or &ldquo;prove that there is no greatest &hellip;&rdquo;. It is also the first move in many proofs in Further Pure and at university.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Proof by contradiction</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page builds on <a href="proof-methods.html">Proof: direct, exhaustion, counterexample</a>. It uses even and odd numbers written as {m:2n} and {m:2n+1}, proof by exhaustion with cases, counterexamples, and the signs &rArr; and &there4;. It also uses fractions and square roots from GCSE. There is no formula to learn or to be given on this page: you are asked to write the argument. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-assume-the-opposite">Skip to the lesson</a></p>
+    <div class="q" data-answers="4k^2+4k+1" data-mode="exact">
+      <p class="qtext">Expand {m:(2k+1)^2}. Type it like 3k^2+2k+5.</p>
+      <ol class="ladder"><li>{m:(2k+1)^2} means {m:(2k+1)(2k+1)}.</li><li>Multiply every term in the first bracket by every term in the second.</li><li>Two of the products are the same. Add them.</li></ol>
+      <ul class="wrong">
+        <li data-if="4k^2+1">You squared each term and left out the middle term. Multiplying out {m:(2k+1)(2k+1)} gives two middle terms, and they add.</li>
+        <li data-if="2k^2+4k+1">{m:(2k)^2} is {m:4k^2}, not {m:2k^2}. Square the 2 as well as the k.</li>
+      </ul>
+      <div class="solution"><p>{m:(2k+1)(2k+1)=4k^2+2k+2k+1=4k^2+4k+1}. Check with {m:k=1}: {m:3^2=9} and {m:4+4+1=9}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The statement &ldquo;if n is an even integer, then {m:n^2} is even&rdquo; is true. What is its {term:converse}?</p>
+      <ul class="options">
+        <li data-correct>If n&sup2; is even, then n is an even integer</li>
+        <li data-why="This swaps the two parts and also changes both of them to their opposites. The converse only swaps the two parts.">If n is an odd integer, then n&sup2; is odd</li>
+        <li data-why="This keeps the parts in the same order, so it is the original statement again, not the converse. The converse swaps the two parts.">If n is an even integer, then n&sup2; is even and n is a multiple of 2</li>
+      </ul>
+      <ol class="ladder"><li>The converse swaps the &ldquo;if&rdquo; part and the &ldquo;then&rdquo; part.</li><li>Look again at <a href="proof-methods.html">Proof: direct, exhaustion, counterexample</a> if you want the idea of a converse again.</li></ol>
+      <div class="solution"><p>The original says: even n gives even {m:n^2}. Swap the two parts: even {m:n^2} gives even n. This converse is true, and in section 2 you prove it. A converse is not always true, so each direction needs its own proof.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Find the smallest {term:prime-number|prime number} that divides 91.</p>
+      <ol class="ladder"><li>A prime divides 91 when 91 is a multiple of it.</li><li>Test the primes in order, starting with 2, 3 and 5. Stop at the first one that divides 91.</li></ol>
+      <ul class="wrong"><li data-if="13">13 does divide 91, but it is not the smallest prime that does. Test the smaller primes first.</li><li data-if="1">1 is not a prime number. A prime has exactly two factors.</li></ul>
+      <div class="solution"><p>91 is odd, so 2 does not divide it. The digits add to 10, so 3 does not divide it. It does not end in 0 or 5. Then {m:91=7*13}. The smallest prime factor is 7.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">{m:(2a+1)+(2b+1)=2(a+b+k)}. Find k.</p>
+      <ol class="ladder"><li>Add the two numbers on the left. Group the letters, then the plain numbers.</li><li>Take out the common factor 2.</li></ol>
+      <ul class="wrong"><li data-if="0">The two plain numbers are 1 and 1. They add to 2, and taking 2 out of that leaves 1, not 0.</li><li data-if="2">{m:2(a+b+2)} is {m:2a+2b+4}. The plain numbers on the left only add to 2.</li></ul>
+      <div class="solution"><p>{m:(2a+1)+(2b+1)=2a+2b+2=2(a+b+1)}. So {m:k=1}. The sum of two odd numbers is 2 times an integer, so it is even.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which value of n is a {term:counterexample} to the claim &ldquo;{m:n^2>n} for every positive integer n&rdquo;?</p>
+      <ul class="options">
+        <li data-why="Test n = 2: 2 squared is 4, and 4 is greater than 2. So n = 2 fits the claim and does not break it.">n = 2</li>
+        <li data-correct>n = 1</li>
+        <li data-why="Zero is not a positive integer, so it is outside the claim. A counterexample must satisfy the conditions of the claim.">n = 0</li>
+      </ul>
+      <ol class="ladder"><li>Work out {m:n^2} for each value.</li><li>A counterexample must be a positive integer, and {m:n^2} must not be greater than n.</li></ol>
+      <div class="solution"><p>{m:1^2=1}, and 1 is not greater than 1. So {m:n=1} breaks the claim.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">A whole number has the form {m:3k+2}, where k is an integer. Its square is {m:9k^2+12k+4}. This is a multiple of 3, plus a remainder r, where r is 0, 1 or 2. Find r.</p>
+      <ol class="ladder"><li>{m:9k^2} and {m:12k} are both multiples of 3.</li><li>Look at what is left, and divide it by 3.</li></ol>
+      <ul class="wrong"><li data-if="4">That is the plain number at the end, but 4 is bigger than 3, so it is not yet a remainder. Divide 4 by 3 and keep what is left over.</li><li data-if="2">The remainder of {m:3k+2} itself is 2, but the question asks about its square.</li></ul>
+      <div class="solution"><p>{m:9k^2+12k+4=3(3k^2+4k+1)+1}. So the remainder is 1.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student checks a statement for 100 different integers and it is true each time. What does this show?</p>
+      <ul class="options">
+        <li data-why="A hundred examples are still a finite list. A statement about every integer has infinitely many cases, and the next one could fail.">The statement is proved for every integer</li>
+        <li data-correct>It is evidence, but not a proof, because the 101st integer could fail</li>
+        <li data-why="Examples that work cannot show a statement is false. Only one example that fails can do that.">The statement is false</li>
+      </ul>
+      <ol class="ladder"><li>How many integers are there?</li></ol>
+      <div class="solution"><p>Checking examples never proves a statement about all integers. The expression {m:n^2+n+41} is prime for 40 values of n in a row (n from 0 to 39), then fails at {m:n=40}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. Assume the opposite</h2>
+    <p>A proof by deduction starts from known facts and moves forward. A {term:proof-by-contradiction|proof by contradiction} works the other way. You assume the statement you want to prove is false. Then you follow valid steps. If you reach something that cannot be true, called a {term:contradiction}, then the assumption was wrong. So the statement is true.</p>
+    <p>This works because a {term:statement} is either true or false, never both. If &ldquo;the statement is false&rdquo; leads to nonsense, only &ldquo;the statement is true&rdquo; is left.</p>
+    <div class="key">
+      <p><b>Key idea:</b> four steps.</p>
+      <ul class="tick">
+        <li><b>1. Assume the opposite.</b> Write the {term:negation} of the statement. It is true exactly when the statement is false.</li>
+        <li><b>2. Reason.</b> Use algebra and known facts, one valid step at a time.</li>
+        <li><b>3. Reach a contradiction.</b> Something impossible, such as &ldquo;n is even and n is odd&rdquo;, or a fraction in lowest terms that is not in lowest terms.</li>
+        <li><b>4. Conclude.</b> Say that the assumption is false, so the original statement is true. Write it in the words of the question.</li>
+      </ul>
+    </div>
+    <p>The negation must be exactly right. If it is too weak or too strong, the proof proves the wrong thing. These rules give the negation:</p>
+    <ul class="tick">
+      <li>The negation of &ldquo;every &hellip;&rdquo; is &ldquo;at least one &hellip; is not&rdquo;. It is never &ldquo;none&rdquo;.</li>
+      <li>The negation of &ldquo;there is no &hellip;&rdquo; is &ldquo;there is at least one &hellip;&rdquo;.</li>
+      <li>The negation of &ldquo;A or B&rdquo; is &ldquo;not A and not B&rdquo;. The negation of &ldquo;A and B&rdquo; is &ldquo;not A or not B&rdquo;.</li>
+      <li>The negation of {m:x>3} is {m:x<=3}. The negation of &ldquo;n is even&rdquo; is &ldquo;n is odd&rdquo;, when n is an integer.</li>
+    </ul>
+    <div class="worked">
+      <h3>Worked example: there is no greatest integer</h3>
+      <p>Prove that there is no greatest integer.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> The statement says &ldquo;there is no greatest integer&rdquo;. Its negation is &ldquo;there is a greatest integer&rdquo;. Call it N.</li>
+        <li><b>Reason.</b> The number {m:N+1} is also an integer, because adding 1 to an integer gives an integer.</li>
+        <li><b>Contradiction.</b> {m:N+1>N}, so N is not the greatest integer. But N was assumed to be the greatest.</li>
+        <li><b>Conclude.</b> The assumption is false. So there is no greatest integer.</li>
+      </ol>
+      <!-- No figure: this proof is a chain of written steps, so there is no natural picture. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: writing the negation</h3>
+      <p>Write the negation of each statement. For each one, say whether the statement is true or false.</p>
+      <ol class="steps">
+        <li>&ldquo;Every prime number is odd.&rdquo; Negation: &ldquo;at least one prime number is not odd&rdquo;. The number 2 is prime and even, so the negation is true and the statement is false.</li>
+        <li>&ldquo;{m:a>5} or {m:b>5}.&rdquo; Negation: &ldquo;{m:a<=5} and {m:b<=5}&rdquo;. Both parts must fail, so the &ldquo;or&rdquo; becomes &ldquo;and&rdquo;.</li>
+        <li>&ldquo;There is no even prime number.&rdquo; Negation: &ldquo;there is an even prime number&rdquo;. The number 2 is one, so the negation is true.</li>
+      </ol>
+      <p>Always one of a statement and its negation is true and the other is false. They are never both true and never both false.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that there is no greatest even integer.</p>
+      <ol class="steps">
+        <li>Assume there is a greatest even integer. Call it E.</li>
+        <li>Adding 2 to an even integer gives an even integer. So {m:E} plus <span class="blank" data-answers="2">___</span> is an even integer.</li>
+        <li>But {m:E+2>E}, so E is not the greatest. This contradicts the assumption, so there is no greatest even integer.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>Adding 1 would not do, because {m:E+1} is odd. Adding 2 keeps the number even and makes it bigger. That is the contradiction.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: assume the opposite</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">What is the first step of a proof by contradiction?</p>
+      <ul class="options">
+        <li data-why="You do not assume the statement is true: that is what you are trying to prove. A proof that starts with the statement and finds no problem proves nothing.">Assume the statement is true</li>
+        <li data-correct>Assume the statement is false</li>
+        <li data-why="One example that fails is a counterexample, and it disproves a statement. Proof by contradiction proves a statement is true.">Find one example that breaks the statement</li>
+      </ul>
+      <ol class="ladder"><li>You want to show the statement is true. What would be impossible if it were false?</li></ol>
+      <div class="solution"><p>You assume the negation of the statement, follow valid steps, and reach a contradiction. That shows the negation is false, so the statement is true.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is the negation of &ldquo;every prime number is odd&rdquo;?</p>
+      <ul class="options">
+        <li data-why="Both this statement and the original are false (3 is prime and not even, and 2 is prime and not odd). A statement and its negation are never both false.">Every prime number is even</li>
+        <li data-correct>At least one prime number is not odd</li>
+        <li data-why="This is false (3 is a prime that is odd), and so is the original (2 is prime and not odd). A statement and its negation are never both false.">No prime number is odd</li>
+      </ul>
+      <ol class="ladder"><li>The negation is true exactly when the original is false.</li><li>The original says every one. What is the weakest way to break that?</li></ol>
+      <div class="solution"><p>The original is false because 2 is prime and not odd. The negation &ldquo;at least one prime number is not odd&rdquo; is true. &ldquo;No prime number is odd&rdquo; is too strong: it says that 3, 5 and 7 are not odd.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">The statement &ldquo;n is even or n is a multiple of 3&rdquo; is false for some whole numbers n from 1 to 20. How many?</p>
+      <ol class="ladder"><li>Write the negation. An &ldquo;or&rdquo; is false only when both parts are false.</li><li>List the whole numbers from 1 to 20 that are not even and not a multiple of 3.</li></ol>
+      <ul class="wrong">
+        <li data-if="13">That counts the numbers that make the statement true. The question asks how many make it false.</li>
+        <li data-if="10">That counts the odd numbers. The statement is false only when n is not even and also not a multiple of 3.</li>
+      </ul>
+      <div class="solution"><p>The statement is false when n is odd and not a multiple of 3: {m:1}, 5, 7, 11, 13, 17 and 19. That is 7 numbers.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You want to prove &ldquo;there is no greatest even integer&rdquo; by contradiction. Which assumption do you make?</p>
+      <ul class="options">
+        <li data-why="This is the statement itself, not its negation. Assuming it leaves you with nothing to contradict.">There is no greatest even integer</li>
+        <li data-correct>There is a greatest even integer</li>
+        <li data-why="This is true, but it is not the negation of the statement. The negation says that a greatest even integer exists.">There are infinitely many even integers</li>
+      </ul>
+      <ol class="ladder"><li>The negation of &ldquo;there is no &hellip;&rdquo; is &ldquo;there is &hellip;&rdquo;.</li></ol>
+      <div class="solution"><p>The negation of &ldquo;there is no greatest even integer&rdquo; is &ldquo;there is a greatest even integer&rdquo;. You assume that and look for a contradiction.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these is a contradiction?</p>
+      <ul class="options">
+        <li data-why="Every integer is even or odd, so this is always true. A contradiction is a statement that cannot be true.">n is even or n is odd</li>
+        <li data-correct>n is even and n is odd</li>
+        <li data-why="This can be true: when n is 4, both parts hold. A contradiction cannot be true for any n.">n is even and n&sup2; is even</li>
+      </ul>
+      <ol class="ladder"><li>Can any integer satisfy the statement?</li></ol>
+      <div class="solution"><p>An integer cannot be both even and odd. If a proof ends with that, the assumption at its start must be wrong.</p></div>
+    </div>
+    <div class="q" data-answers="1002" data-mode="value">
+      <p class="qtext">To prove that there is no greatest even integer, you assume the greatest even integer is 1000. Find the even integer that contradicts this, as the next even integer above it.</p>
+      <ol class="ladder"><li>Even integers go up in steps of 2.</li><li>Add the step to 1000.</li></ol>
+      <ul class="wrong"><li data-if="1001">1001 is odd. The next even integer is a whole step of 2 above 1000.</li><li data-if="2000">That doubles 1000. The next even integer is only one step above it.</li></ul>
+      <div class="solution"><p>{m:1000+2=1002} is even and greater than 1000. So 1000 is not the greatest. The same argument works for any assumed greatest even integer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Squares, odd and even</h2>
+    <p>The two famous proofs need one fact first. If you know that {m:n^2} is even, can you say that n is even? Test: {m:6^2=36} is even and 6 is even. But a few examples are not a proof. Here is the proof, and it is a small proof by contradiction.</p>
+    <div class="key">
+      <p><b>Key idea:</b> for an integer n, if {m:n^2} is even then n is even. If {m:n^2} is a multiple of 3, then n is a multiple of 3.</p>
+      <ul class="tick">
+        <li>Assume the opposite: n is not even, or n is not a multiple of 3.</li>
+        <li>Write n in each remaining form, and square it. Each square leaves a remainder that {m:n^2} cannot have.</li>
+        <li>That contradicts what you were told about {m:n^2}.</li>
+        <li>The rule holds for integers n and for a prime number such as 2, 3 or 5. It is false for 4: the integer 2 has {m:2^2=4}, a multiple of 4, but 2 is not.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: {m:n^2} even gives n even</h3>
+      <p>Prove that if {m:n^2} is even then n is even, for an integer n.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> {m:n^2} is even and n is not even. So n is odd, and {m:n=2k+1} for an integer k.</li>
+        <li>Square it: {m:(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1}.</li>
+        <li>{m:2k^2+2k} is an integer, so this is 2 times an integer plus 1. It is odd.</li>
+        <li><b>Contradiction.</b> {m:n^2} is even and {m:n^2} is odd.</li>
+        <li><b>Conclude.</b> The assumption is false. So n is even.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: {m:n^2} a multiple of 3 gives n a multiple of 3</h3>
+      <p>Prove that if {m:n^2} is a multiple of 3 then n is a multiple of 3, for an integer n.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> {m:n^2} is a multiple of 3 and n is not. Every integer is {m:3k}, {m:3k+1} or {m:3k+2}, so n is {m:3k+1} or {m:3k+2}.</li>
+        <li>Case {m:n=3k+1}: {m:(3k+1)^2=9k^2+6k+1=3(3k^2+2k)+1}. The remainder is 1.</li>
+        <li>Case {m:n=3k+2}: {m:(3k+2)^2=9k^2+12k+4=3(3k^2+4k+1)+1}. The remainder is 1.</li>
+        <li><b>Contradiction.</b> In both cases {m:n^2} leaves remainder 1, so it is not a multiple of 3.</li>
+        <li><b>Conclude.</b> The assumption is false. So n is a multiple of 3.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the rule fails for 4</h3>
+      <p>Is it true that if {m:n^2} is a multiple of 4, then n is a multiple of 4?</p>
+      <ol class="steps">
+        <li>Try {m:n=2}. Then {m:n^2=4}, which is a multiple of 4.</li>
+        <li>But 2 is not a multiple of 4.</li>
+        <li>So the statement is false, and {m:n=2} is a counterexample. A proof like the one above would fail. The square of every even number is a multiple of 4, so n does not have to be a multiple of 4.</li>
+      </ol>
+      <p>The method needs the number to be prime, as 2 and 3 are. The numbers 4, 8 and 9 fail: the squares of 2, 4 and 3 are multiples of 4, 8 and 9.</p>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that if {m:n^2} is a multiple of 5 then n is a multiple of 5, for an integer n. You may use the fact that the square of an integer that is not a multiple of 5 leaves remainder 1 or 4 when divided by 5.</p>
+      <ol class="steps">
+        <li>Assume {m:n^2} is a multiple of 5 and n is not.</li>
+        <li>Then {m:n^2} leaves remainder 1 or <span class="blank" data-answers="4">___</span> when divided by 5.</li>
+        <li>But a multiple of 5 leaves remainder <span class="blank" data-answers="0">___</span>. This is a contradiction, so n is a multiple of 5.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The squares of {m:5k+1} and {m:5k+4} leave remainder 1. The squares of {m:5k+2} and {m:5k+3} leave remainder 4. A multiple of 5 leaves remainder 0, so the two cannot agree.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: squares, odd and even</h2>
+    <div class="q" data-answers="2k^2+2k;2k(k+1)" data-mode="exact">
+      <p class="qtext">The odd number {m:2k+1} has square {m:(2k+1)^2=4k^2+4k+1}. Write the square as {m:2m+1}, and give m in terms of k. Type it like 3k^2+k.</p>
+      <ol class="ladder"><li>Take out a factor of 2 from the first two terms {m:4k^2+4k}.</li><li>What is left in the bracket is m.</li></ol>
+      <ul class="wrong"><li data-if="4k^2+4k">That is {m:2m}, the whole of the part before the +1. Take out the factor 2 to find m.</li><li data-if="2k^2+k">Check: {m:2(2k^2+k)+1=4k^2+2k+1}, which is not {m:(2k+1)^2}. Both terms {m:4k^2} and {m:4k} halve.</li></ul>
+      <div class="solution"><p>{m:4k^2+4k=2(2k^2+2k)}, so {m:m=2k^2+2k}. It is also {m:2k(k+1)}. Either way, {m:(2k+1)^2=2m+1} is odd.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In the proof that &ldquo;if {m:n^2} is even then n is even&rdquo;, what do you assume at the start?</p>
+      <ul class="options">
+        <li data-correct>n&sup2; is even and n is odd</li>
+        <li data-why="This is the claim being proved, with nothing assumed to be false. A contradiction proof assumes that the conclusion fails.">n&sup2; is even and n is even</li>
+        <li data-why="This does not assume that the starting fact holds. The proof begins with n squared even, and then assumes that n is not even.">n&sup2; is odd and n is even</li>
+      </ul>
+      <ol class="ladder"><li>Keep the &ldquo;if&rdquo; part true. Make the &ldquo;then&rdquo; part false.</li></ol>
+      <div class="solution"><p>You keep &ldquo;{m:n^2} is even&rdquo; and assume the opposite of &ldquo;n is even&rdquo;. For an integer, the opposite of even is odd.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">When an integer is squared and divided by 3, how many different remainders can you get?</p>
+      <ol class="ladder"><li>Square an integer of each form {m:3k}, {m:3k+1} and {m:3k+2}.</li><li>Count the different remainders of the squares, not of the integers.</li></ol>
+      <ul class="wrong"><li data-if="3">There are 3 remainders for n, but the question asks about {m:n^2}. Two of the cases give the same remainder for the square.</li></ul>
+      <div class="solution"><p>{m:(3k)^2} leaves 0. Both {m:(3k+1)^2} and {m:(3k+2)^2} leave 1. So the remainders are 0 and 1: two different values. A remainder of 2 never happens for a square.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student says: &ldquo;{m:n^2} is a multiple of 4, so n is a multiple of 4.&rdquo; Which value of n shows this is false?</p>
+      <ul class="options">
+        <li data-correct>n = 2, because 2&sup2; = 4 is a multiple of 4 and 2 is not</li>
+        <li data-why="4 is a multiple of 4, so it fits the student&rsquo;s claim. A counterexample must break the claim.">n = 4, because 4 is not a multiple of 4</li>
+        <li data-why="3 squared is 9, which is not a multiple of 4. So n = 3 does not satisfy the starting condition, and it cannot be a counterexample.">n = 3, because 3&sup2; = 9 is not a multiple of 4</li>
+      </ul>
+      <ol class="ladder"><li>A counterexample must make the &ldquo;if&rdquo; part true and the &ldquo;then&rdquo; part false.</li></ol>
+      <div class="solution"><p>{m:n=2} gives {m:n^2=4}, a multiple of 4. But 2 is not a multiple of 4. The rule works for 2, 3 and 5 because they are prime. It does not work for 4.</p></div>
+    </div>
+    <div class="q" data-answers="13" data-mode="value">
+      <p class="qtext">How many integers n from 1 to 50 have {m:n^2} a multiple of 4 but n not a multiple of 4?</p>
+      <ol class="ladder"><li>Which integers n have {m:n^2} a multiple of 4? Try some small even and odd values.</li><li>Then remove the ones where n is also a multiple of 4.</li></ol>
+      <ul class="wrong"><li data-if="25">That counts every even n. The even numbers that are multiples of 4 must be removed, because the question wants n not to be a multiple of 4.</li><li data-if="12">Check the end of the list: the last such integer is 50, because 50 is even and not a multiple of 4.</li></ul>
+      <div class="solution"><p>The even integers have {m:n^2} a multiple of 4, and odd integers do not. The evens from 1 to 50 are 25 numbers, and 12 of them are multiples of 4. So {m:25-12=13} of them are not: 2, 6, 10, &hellip;, 50.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">If {m:n^2} is a multiple of 5, which conclusion is correct for an integer n?</p>
+      <ul class="options">
+        <li data-why="Test n = 5: 5 squared is 25, a multiple of 5, but 5 is not a multiple of 25. So this conclusion fails.">n is a multiple of 25</li>
+        <li data-correct>n is a multiple of 5</li>
+        <li data-why="Test n = 10: 10 squared is 100, a multiple of 5, and 10 is even. So n need not be odd.">n is odd</li>
+      </ul>
+      <ol class="ladder"><li>Try {m:n=5} and {m:n=10}.</li></ol>
+      <div class="solution"><p>The squares of integers that are not multiples of 5 leave remainder 1 or 4 when divided by 5, never 0. So a multiple of 5 for {m:n^2} forces n to be a multiple of 5.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. The square root of 2 is irrational</h2>
+    <p>A {term:rational-number|rational number} can be written as {m:frac(a, b)}, where a and b are {term:integer|integers} and b is not 0. A number that cannot be written this way is an {term:irrational-number|irrational number}. Look at a square with side 1. By Pythagoras, its diagonal has length {m:sqrt(1^2+1^2)=sqrt(2)}.</p>
+    <figure class="figure-lg">{fig:proof-contradiction-unit-square}<figcaption>Look at the diagonal. The two sides are each 1, so the diagonal squared is {m:1^2+1^2=2}. So its length is {m:sqrt(2)}.</figcaption></figure>
+    <p>Your calculator gives {m:sqrt(2)=1.414213562"..."}. It shows only about ten digits, so it cannot show that the digits never end and never repeat. A proof must cover every possible fraction, and there are infinitely many.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the proof that {m:sqrt(2)} is irrational has seven steps.</p>
+      <ul class="tick">
+        <li>Assume {m:sqrt(2)=frac(a, b)}, where a and b are positive integers with no common factor. This is {term:lowest-terms|lowest terms}. You can always reach it by cancelling.</li>
+        <li>Square: {m:a^2=2b^2}. So {m:a^2} is even, and so a is even (section 2).</li>
+        <li>Write {m:a=2k}. Then {m:4k^2=2b^2}, so {m:b^2=2k^2}. So {m:b^2} is even, and so b is even.</li>
+        <li>Now a and b are both even. They share the factor 2. This contradicts &ldquo;no common factor&rdquo;. So {m:sqrt(2)} is irrational.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the proof, line by line</h3>
+      <p>Prove that {m:sqrt(2)} is irrational.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> Suppose {m:sqrt(2)} is rational. Then {m:sqrt(2)=frac(a, b)} for positive integers a and b. Cancel every common factor, so a and b have no common factor greater than 1.</li>
+        <li>Square both sides: {m:2=frac(a^2, b^2)}. Multiply by {m:b^2}: {m:a^2=2b^2}.</li>
+        <li>So {m:a^2} is 2 times an integer. It is even. By section 2, a is even.</li>
+        <li>Write {m:a=2k}, where k is an integer. Then {m:(2k)^2=4k^2=2b^2}. Divide by 2: {m:b^2=2k^2}.</li>
+        <li>So {m:b^2} is even. By section 2, b is even.</li>
+        <li><b>Contradiction.</b> a and b are both even, so they have the common factor 2. But they have no common factor.</li>
+        <li><b>Conclude.</b> The assumption is false. So {m:sqrt(2)} is irrational.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: fractions that nearly work</h3>
+      <p>Some fractions come very close to {m:sqrt(2)}. Find {m:a^2} and {m:2b^2} for {m:frac(7, 5)}, {m:frac(17, 12)} and {m:frac(99, 70)}.</p>
+      <ol class="steps">
+        <li>For {m:frac(7, 5)}: {m:7^2=49} and {m:2*5^2=50}. They differ by 1.</li>
+        <li>For {m:frac(17, 12)}: {m:17^2=289} and {m:2*12^2=288}. They differ by 1.</li>
+        <li>For {m:frac(99, 70)}: {m:99^2=9801} and {m:2*70^2=9800}. They differ by 1.</li>
+      </ol>
+      <p>The proof says that {m:a^2=2b^2} never happens for whole numbers. These fractions come very close, but {m:a^2} and {m:2b^2} are never equal.</p>
+      <figure class="figure-lg">{fig:proof-contradiction-between}<figcaption>Look at the middle point. {m:sqrt(2)} lies between 1.41 and 1.42, because {m:1.41^2=1.9881} is below 2 and {m:1.42^2=2.0164} is above 2. No fraction is exactly equal to it.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: why &ldquo;lowest terms&rdquo; matters</h3>
+      <p>Why can the proof start by cancelling every common factor?</p>
+      <ol class="steps">
+        <li>Any fraction can be cancelled until the top and bottom have no common factor. For example {m:frac(84, 126)=frac(2, 3)}.</li>
+        <li>So if {m:sqrt(2)} were a fraction at all, it would be a fraction in lowest terms. The assumption &ldquo;{m:sqrt(2)} is rational&rdquo; allows this form.</li>
+        <li>In the proof, the contradiction is &ldquo;both are even&rdquo;. That only contradicts the assumption because the fraction is in lowest terms.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Complete the proof. Assume {m:sqrt(2)=frac(a, b)} in lowest terms, with a and b positive integers.</p>
+      <ol class="steps">
+        <li>Squaring gives {m:a^2=}<span class="blank" data-answers="2">___</span>{m:b^2}. So {m:a^2} is even, and a is even.</li>
+        <li>Write {m:a=2k}. Then {m:(2k)^2=}<span class="blank" data-answers="4">___</span>{m:k^2}, and {m:4k^2=2b^2} gives {m:b^2=}<span class="blank" data-answers="2">___</span>{m:k^2}.</li>
+        <li>So b is even. Both a and b are even, which contradicts lowest terms. So {m:sqrt(2)} is irrational.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:a^2=2b^2}, then {m:(2k)^2=4k^2}, then {m:2b^2=4k^2} gives {m:b^2=2k^2}. Check with {m:k=3}: {m:2*9=18}, and {m:4*9=36=2*18}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the square root of 2</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">What do you assume at the start of the proof that {m:sqrt(2)} is irrational?</p>
+      <ul class="options">
+        <li data-why="This is the statement you want to prove. You assume its negation instead, so that you can reach a contradiction.">&radic;2 is irrational</li>
+        <li data-correct>&radic;2 = a/b for integers a and b with no common factor</li>
+        <li data-why="This says nothing about a fraction for the square root of 2. The assumption has to be that the square root itself is a fraction.">a/b = 2</li>
+      </ul>
+      <ol class="ladder"><li>The negation of &ldquo;irrational&rdquo; is &ldquo;rational&rdquo;.</li><li>Rational means a fraction. What must be true about the top and bottom?</li></ol>
+      <div class="solution"><p>The assumption is that {m:sqrt(2)} is rational. So it equals a fraction {m:frac(a, b)} in lowest terms.</p></div>
+    </div>
+    <div class="q" data-answers="-1" data-mode="value">
+      <p class="qtext">A student tries {m:frac(99, 70)} for {m:sqrt(2)}. Work out {m:2b^2-a^2}, with {m:a=99} and {m:b=70}.</p>
+      <ol class="ladder"><li>Find {m:b^2}, then double it.</li><li>Find {m:a^2}. Subtract the second answer from the first.</li></ol>
+      <ul class="wrong"><li data-if="1">You worked out {m:a^2-2b^2}. The question asks for {m:2b^2-a^2}, so the signs are the other way round.</li><li data-if="0">If this were 0, {m:a^2} would equal {m:2b^2} and the fraction would equal {m:sqrt(2)}. The proof shows that never happens.</li></ul>
+      <div class="solution"><p>{m:2*70^2=9800} and {m:99^2=9801}. So {m:9800-9801=-1}. The fraction is close, but not equal.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A proof reads: (1) assume {m:sqrt(2)=frac(a, b)} in lowest terms; (2) so {m:a^2=2b^2}; (3) so a is even; (4) so {m:b^2=2k^2}, where {m:a=2k}; (5) so b is even; (6) so a and b are both even. Which gives the contradiction?</p>
+      <ul class="options">
+        <li data-correct>Line 6 contradicts line 1, because a and b cannot both be even in lowest terms</li>
+        <li data-why="Line 2 follows from line 1 by squaring. A true consequence of an assumption is not a contradiction.">Line 2 contradicts line 1, because squaring changes the number</li>
+        <li data-why="Line 3 is a correct consequence of line 2. It does not conflict with anything earlier.">Line 3 contradicts line 2, because a is even and not odd</li>
+      </ul>
+      <ol class="ladder"><li>A contradiction says that two statements cannot both be true.</li><li>Look for the line that clashes with the words &ldquo;in lowest terms&rdquo;.</li></ol>
+      <div class="solution"><p>Lines 2 to 5 are valid steps. Line 6 says that a and b share the factor 2. Line 1 says they have no common factor. That is the contradiction.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">The next fraction in the pattern after {m:frac(99, 70)} is {m:frac(577, 408)}. Work out {m:577^2-2*408^2}.</p>
+      <ol class="ladder"><li>Work out {m:577^2} and {m:408^2} separately. A calculator helps.</li><li>Double the second answer before you subtract.</li></ol>
+      <ul class="wrong"><li data-if="0">If this were 0, the fraction would equal {m:sqrt(2)}, which cannot happen. Check the squares again.</li><li data-if="-1">Check the order. You subtracted the other way round: the question starts with {m:577^2}.</li></ul>
+      <div class="solution"><p>{m:577^2=332929} and {m:2*408^2=332928}. The difference is 1. Again the two numbers are one apart, and never equal.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student says: &ldquo;My calculator shows {m:sqrt(2)=1.414213562}. I see no pattern in 10 digits, so {m:sqrt(2)} is irrational.&rdquo; What is wrong?</p>
+      <ul class="options">
+        <li data-why="Calculators show a rounded value, but this does not make the square root of 2 rational. The fault is in the method, not in the value.">Calculators round, so the true value is rational</li>
+        <li data-correct>Ten digits are a finite check. A repeating pattern could start after the digits you can see</li>
+        <li data-why="The square root of 2 does have a decimal that never ends. The argument is wrong because digits on a screen are not a proof, not because of the claim.">The decimal is too short to be irrational</li>
+      </ul>
+      <ol class="ladder"><li>Does looking at 10 digits cover the digits after them?</li></ol>
+      <div class="solution"><p>The decimal of a rational number repeats, but the repeat can be long. Only an argument that covers every fraction, like the proof by contradiction, shows that {m:sqrt(2)} is irrational.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Write {m:frac(84, 126)} in lowest terms. What is the bottom number?</p>
+      <ol class="ladder"><li>Find the largest number that divides both 84 and 126.</li><li>Divide the top and the bottom by it.</li></ol>
+      <ul class="wrong">
+        <li data-if="63">{m:frac(42, 63)} is the fraction after dividing by 2, but 42 and 63 still share a common factor. Keep cancelling.</li>
+        <li data-if="21">{m:frac(14, 21)} still has the common factor 7. Cancel again.</li>
+      </ul>
+      <div class="solution"><p>The largest common factor of 84 and 126 is 42. {m:84/42=2} and {m:126/42=3}. So {m:frac(84, 126)=frac(2, 3)}, and the bottom is 3.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Other irrational numbers</h2>
+    <p>The same steps prove other roots are irrational. They also show that adding or multiplying by a rational number keeps a number irrational. Each proof uses a result you already have.</p>
+    <div class="key">
+      <p><b>Key idea:</b> to prove {m:sqrt(p)} is irrational, where p is 2, 3 or 5, follow the {m:sqrt(2)} proof with p in place of 2.</p>
+      <ul class="tick">
+        <li>Assume {m:sqrt(p)=frac(a, b)} in lowest terms. Then {m:a^2=p*b^2}.</li>
+        <li>So {m:a^2} is a multiple of p, so a is a multiple of p (section 2). Write {m:a=pk}.</li>
+        <li>Then {m:p^2k^2=p*b^2}, so {m:b^2=p*k^2}. So b is a multiple of p as well.</li>
+        <li>Both a and b are multiples of p. This contradicts lowest terms.</li>
+      </ul>
+      <p>For a rational number r and an irrational number x: {m:r+x} is irrational. If r is not 0, {m:r*x} is irrational. Two irrational numbers can add to a rational number: {m:sqrt(2)+(-sqrt(2))=0}. They can multiply to a rational number too: {m:sqrt(2)*sqrt(2)=2}.</p>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the square root of 3</h3>
+      <p>Prove that {m:sqrt(3)} is irrational.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> {m:sqrt(3)=frac(a, b)} for positive integers a and b with no common factor.</li>
+        <li>Square both sides and multiply by {m:b^2}: {m:a^2=3b^2}. So {m:a^2} is a multiple of 3, and so a is a multiple of 3 (section 2).</li>
+        <li>Write {m:a=3k}. Then {m:9k^2=3b^2}, so {m:b^2=3k^2}. So b is also a multiple of 3.</li>
+        <li><b>Contradiction.</b> a and b share the factor 3, but they have no common factor.</li>
+        <li><b>Conclude.</b> {m:sqrt(3)} is irrational.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a rational number added to an irrational number</h3>
+      <p>Prove that {m:3+sqrt(2)} is irrational. You may use the fact that {m:sqrt(2)} is irrational.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> {m:3+sqrt(2)=frac(p, q)} for integers p and q, with q not 0.</li>
+        <li>Rearrange: {m:sqrt(2)=frac(p, q)-3=frac(p-3q, q)}.</li>
+        <li>{m:p-3q} is an integer and q is a non-zero integer. So {m:sqrt(2)} is rational.</li>
+        <li><b>Contradiction.</b> {m:sqrt(2)} is irrational (section 3).</li>
+        <li><b>Conclude.</b> The assumption is false. {m:3+sqrt(2)} is irrational.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: why the method fails for 4</h3>
+      <p>Why does the {m:sqrt(2)} proof not show that {m:sqrt(4)} is irrational?</p>
+      <ol class="steps">
+        <li>Assume {m:sqrt(4)=frac(a, b)} in lowest terms. Then {m:a^2=4b^2}.</li>
+        <li>So a is even. Write {m:a=2k}. Then {m:4k^2=4b^2}, so {m:k^2=b^2}, and {m:k=b}.</li>
+        <li>This does not give &ldquo;b is even&rdquo;. There is no contradiction.</li>
+        <li>And there should not be one: {m:sqrt(4)=2=frac(2, 1)}, which is rational. A proof cannot show a false statement is true.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that {m:4*sqrt(3)} is irrational. You may use the fact that {m:sqrt(3)} is irrational.</p>
+      <ol class="steps">
+        <li>Assume {m:4*sqrt(3)=frac(p, q)} for integers p and q, with q not 0.</li>
+        <li>Divide by 4: {m:sqrt(3)=frac(p, kq)}, where k is <span class="blank" data-answers="4">___</span>.</li>
+        <li>The top and the bottom are integers, and the bottom is not 0. So {m:sqrt(3)} is rational. This contradicts what you know, so {m:4*sqrt(3)} is irrational.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:4*sqrt(3)=frac(p, q)} gives {m:sqrt(3)=frac(p, 4q)}. The bottom {m:4q} is a non-zero integer, because q is. So {m:sqrt(3)} would be rational, which it is not.</p></details>
+    </div>
+    <h3>Extra: which square roots are irrational?</h3>
+    <p><b>[Extra]</b> No exam board asks you to prove this. For a positive integer n, {m:sqrt(n)} is irrational if n is not a square number. If n is a square number, {m:sqrt(n)} is a whole number. A proof uses the prime factors of n. So from {m:sqrt(2)} to {m:sqrt(30)}, only the square numbers 4, 9, 16 and 25 give rational roots.</p>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: other irrational numbers</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which fact is used in the proof that {m:sqrt(3)} is irrational?</p>
+      <ul class="options">
+        <li data-why="This fact is used for the square root of 2. For 3, you need a fact about multiples of 3.">If n&sup2; is even then n is even</li>
+        <li data-correct>If n&sup2; is a multiple of 3 then n is a multiple of 3</li>
+        <li data-why="This is not true: n = 3 gives 9, a multiple of 3, and 3 is not a multiple of 9. Also it is not needed.">If n&sup2; is a multiple of 3 then n is a multiple of 9</li>
+      </ul>
+      <ol class="ladder"><li>From {m:a^2=3b^2}, what do you know about {m:a^2}?</li></ol>
+      <div class="solution"><p>{m:a^2=3b^2} makes {m:a^2} a multiple of 3. The fact from section 2 then makes a a multiple of 3.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">To prove {m:sqrt(5)} is irrational, you assume {m:sqrt(5)=frac(a, b)} in lowest terms. Squaring and multiplying by {m:b^2} gives {m:a^2=kb^2}. Find k.</p>
+      <ol class="ladder"><li>Square both sides of {m:sqrt(5)=frac(a, b)}.</li><li>Multiply both sides by {m:b^2}.</li></ol>
+      <ul class="wrong"><li data-if="25">Squaring {m:sqrt(5)} gives 5, not 25. A square root squared returns the number inside it.</li><li data-if="1">Check the square of {m:sqrt(5)}. It is a number greater than 1.</li></ul>
+      <div class="solution"><p>{m:5=frac(a^2, b^2)}, so {m:a^2=5b^2}. Then {m:k=5}. So {m:a^2} is a multiple of 5, and a is a multiple of 5.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement about rational and irrational numbers is true?</p>
+      <ul class="options">
+        <li data-why="Test it: the square root of 2 and minus the square root of 2 are both irrational, and they add to 0, which is rational.">The sum of two irrational numbers is always irrational</li>
+        <li data-why="Test it with the rational number 0: 0 times the square root of 2 is 0, which is rational. The product is irrational only when the rational number is not 0.">The product of a rational number and an irrational number is always irrational</li>
+        <li data-correct>The sum of a rational number and an irrational number is irrational</li>
+      </ul>
+      <ol class="ladder"><li>Look for a counterexample to each statement.</li></ol>
+      <div class="solution"><p>The first fails for {m:sqrt(2)+(-sqrt(2))=0}. The second fails for the rational number 0. The third is always true: if {m:r+x} were rational, then {m:x=(r+x)-r} would be rational too.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Assume {m:3+sqrt(2)=frac(p, q)}. Then {m:sqrt(2)=frac(p-kq, q)}. Find k.</p>
+      <ol class="ladder"><li>Move the 3 to the other side of the equation.</li><li>Write {m:frac(p, q)-3} as a single fraction with bottom q.</li></ol>
+      <ul class="wrong"><li data-if="-3">That makes {m:p-(-3)q=p+3q}, so you added 3. The 3 on the left is added to the root, so you subtract it from {m:frac(p, q)}.</li></ul>
+      <div class="solution"><p>{m:sqrt(2)=frac(p, q)-3=frac(p, q)-frac(3q, q)=frac(p-3q, q)}. So {m:k=3}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Look at these five numbers: {m:sqrt(2)+1}, {m:sqrt(9)}, {m:2*sqrt(3)}, {m:(sqrt(2))^2} and {m:sqrt(2)*sqrt(8)}. How many of them are irrational?</p>
+      <ol class="ladder"><li>Simplify each number first. A root of a square number is a whole number.</li><li>For {m:sqrt(2)*sqrt(8)}, multiply the numbers under the roots.</li></ol>
+      <ul class="wrong"><li data-if="3">{m:sqrt(2)*sqrt(8)=sqrt(16)=4}, which is rational. Two irrational numbers can multiply to a rational number.</li><li data-if="4">Check {m:sqrt(9)=3} and {m:(sqrt(2))^2=2}. Both are whole numbers, so they are rational.</li></ul>
+      <div class="solution"><p>{m:sqrt(2)+1} is irrational (rational plus irrational). {m:sqrt(9)=3} is rational. {m:2*sqrt(3)} is irrational. {m:(sqrt(2))^2=2} is rational. {m:sqrt(2)*sqrt(8)=sqrt(16)=4} is rational. So two are irrational.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Why does the proof for {m:sqrt(2)} not show that {m:sqrt(4)} is irrational?</p>
+      <ul class="options">
+        <li data-correct>&radic;4 = 2 = 2/1 is rational, and the steps do not give a contradiction</li>
+        <li data-why="Being even does not make a root rational or irrational. The square root of 6 is also from an even number, and it is irrational.">4 is an even number</li>
+        <li data-why="The square root of 4 is 2, which is positive. Its sign has nothing to do with the proof.">&radic;4 is negative</li>
+      </ul>
+      <ol class="ladder"><li>Work out {m:sqrt(4)}. Is it a fraction?</li></ol>
+      <div class="solution"><p>{m:sqrt(4)=2}, which is rational, so no correct proof can show it is irrational. The steps give {m:k=b}, and not a contradiction.</p></div>
+    </div>
+    <div class="q" data-answers="25" data-mode="value">
+      <p class="qtext">[Extra] For a positive integer n that is not a square number, {m:sqrt(n)} is irrational. How many of {m:sqrt(2)}, {m:sqrt(3)}, &hellip;, {m:sqrt(30)} are irrational?</p>
+      <ol class="ladder"><li>Count the numbers from 2 to 30.</li><li>Remove the numbers that are square numbers.</li></ol>
+      <ul class="wrong"><li data-if="29">That counts every number from 2 to 30. Remove the square numbers, whose roots are whole numbers.</li></ul>
+      <div class="solution"><p>The numbers 2 to 30 are 29 numbers. The squares among them are 4, 9, 16 and 25. So {m:29-4=25} of the roots are irrational.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. There are infinitely many primes</h2>
+    <p>A {term:prime-number|prime number} is an integer greater than 1 with exactly two factors: 1 and itself. The primes start 2, 3, 5, 7, 11, 13. Do they ever stop? Euclid, a Greek mathematician, gave a proof more than two thousand years ago. It is a proof by contradiction.</p>
+    <p>The proof uses three facts. Fact 1: every integer greater than 1 has at least one {term:prime-factor|prime factor}. Fact 2: if a number divides two integers, it divides their difference. Fact 3: no prime number divides 1.</p>
+    <div class="key">
+      <p><b>Key idea:</b> Euclid&rsquo;s proof, step by step.</p>
+      <ul class="tick">
+        <li>Assume there are finitely many primes. List them all: {m:p_1}, {m:p_2}, &hellip;, {m:p_n}.</li>
+        <li>Let P be their product, and let {m:N=P+1}. Then N is greater than 1, so it has a prime factor q.</li>
+        <li>q is a prime, so it is on the list. So q divides P. Also q divides N. So q divides {m:N-P=1}.</li>
+        <li>No prime divides 1. This is a contradiction, so there are infinitely many primes.</li>
+        <li>N does not have to be prime. The proof only needs N to have a prime factor.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: Euclid&rsquo;s numbers</h3>
+      <p>Build N from the first three primes, then from the first six.</p>
+      <ol class="steps">
+        <li>The primes 2, 3, 5 give {m:P=30} and {m:N=31}. The number 31 is prime, and it is not on the list.</li>
+        <li>The primes 2, 3, 5, 7, 11, 13 give {m:P=30030} and {m:N=30031}.</li>
+        <li>{m:30031=59*509}. So N is not prime. But its prime factors 59 and 509 are not on the list either.</li>
+        <li>Each prime on the list leaves remainder 1 when it divides N. For example {m:30031=2*15015+1} and {m:30031=13*2310+1}. So none of them is a factor of N.</li>
+      </ol>
+      <!-- No figure: Euclid's proof is a chain of written steps about a list that is assumed to be complete, so there is no natural picture. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: where the contradiction comes from</h3>
+      <p>In Euclid&rsquo;s proof, the prime q divides both N and P. Show that q divides 1.</p>
+      <ol class="steps">
+        <li>Write {m:P=qs} and {m:N=qt}, where s and t are integers.</li>
+        <li>{m:N-P=qt-qs=q(t-s)}.</li>
+        <li>But {m:N-P=(P+1)-P=1}. So {m:q(t-s)=1}.</li>
+        <li>This says that q is a factor of 1. The only positive integer that divides 1 is 1, and a prime is greater than 1. This is the contradiction.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: Fact 1, a proof by contradiction</h3>
+      <p>Prove that every integer N greater than 1 has a prime factor.</p>
+      <ol class="steps">
+        <li>Let d be the smallest factor of N that is greater than 1. It exists, because N is a factor of itself.</li>
+        <li><b>Assume the opposite.</b> d is not prime. Then d has a factor f with {m:1<f<d}.</li>
+        <li>f divides d, and d divides N, so f divides N.</li>
+        <li><b>Contradiction.</b> f is a factor of N that is greater than 1 and smaller than d. But d is the smallest such factor.</li>
+        <li><b>Conclude.</b> d is prime, so N has a prime factor.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Build N from the first four primes, and show it has a new prime factor.</p>
+      <ol class="steps">
+        <li>{m:P=2*3*5*7=}<span class="blank" data-answers="210">___</span>.</li>
+        <li>{m:N=P+1=}<span class="blank" data-answers="211">___</span>.</li>
+        <li>Divide N by each of 2, 3, 5 and 7. Each leaves remainder <span class="blank" data-answers="1">___</span>. So none of them divides N, and N has a prime factor that is not on the list.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:2*3*5*7=210} and {m:210+1=211}. Since 210 is a multiple of each of 2, 3, 5 and 7, the number 211 is one more than a multiple of each. In fact, 211 is itself prime.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: infinitely many primes</h2>
+    <div class="q" data-answers="2311" data-mode="value">
+      <p class="qtext">Euclid&rsquo;s number for the first five primes 2, 3, 5, 7 and 11 is {m:N=P+1}. Find N.</p>
+      <ol class="ladder"><li>Multiply the five primes together. That is P.</li><li>Then add 1.</li></ol>
+      <ul class="wrong"><li data-if="2310">That is P, the product of the primes. Euclid&rsquo;s number is one more.</li></ul>
+      <div class="solution"><p>{m:2*3*5*7*11=2310}. So {m:N=2310+1=2311}.</p></div>
+    </div>
+    <div class="q" data-answers="59" data-mode="value">
+      <p class="qtext">Euclid&rsquo;s number for the first six primes is 30031. Find its smallest prime factor.</p>
+      <ol class="ladder"><li>It is not divisible by 2, 3, 5, 7, 11 or 13: each leaves remainder 1.</li><li>Test the next primes in order.</li></ol>
+      <ul class="wrong"><li data-if="30031">30031 is not prime. It has a smaller factor, so look for it.</li><li data-if="509">509 is a factor, but it is not the smallest. It is the larger of two prime factors.</li></ul>
+      <div class="solution"><p>{m:30031=59*509}. Both 59 and 509 are prime, and 59 is the smaller. So N is not prime, but it still has a prime factor that is not on the list.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A student says: &ldquo;Euclid&rsquo;s number {m:N=P+1} is always prime.&rdquo; Which list of the first primes gives a counterexample?</p>
+      <ul class="options">
+        <li data-why="These give P = 210 and N = 211. The number 211 is prime, so it does not break the claim.">The first four primes: 2, 3, 5, 7</li>
+        <li data-why="These give P = 2310 and N = 2311. The number 2311 is prime, so it does not break the claim.">The first five primes: 2, 3, 5, 7, 11</li>
+        <li data-correct>The first six primes: 2, 3, 5, 7, 11, 13</li>
+      </ul>
+      <ol class="ladder"><li>Work out N for each list. Then test whether it is prime.</li></ol>
+      <div class="solution"><p>The first six primes give {m:N=30031=59*509}, which is not prime. So the claim is false. The proof does not need N to be prime.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">In Euclid&rsquo;s proof, which statement is the contradiction?</p>
+      <ul class="options">
+        <li data-why="This can be true. It does not clash with anything else in the proof.">N is bigger than every prime on the list</li>
+        <li data-correct>A prime q would divide 1, but no prime divides 1</li>
+        <li data-why="This is true, because P is a product of primes that includes 2. It is not a contradiction.">N is odd</li>
+      </ul>
+      <ol class="ladder"><li>The contradiction comes from the prime q that divides both P and N.</li></ol>
+      <div class="solution"><p>q divides N and q divides P, so q divides {m:N-P=1}. A prime is greater than 1, so it cannot divide 1.</p></div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value">
+      <p class="qtext">Find the remainder when 30031 is divided by 13.</p>
+      <ol class="ladder"><li>{m:2*3*5*7*11*13=30030}.</li><li>How does 30031 compare with 30030?</li></ol>
+      <ul class="wrong"><li data-if="0">13 divides 30030, not 30031. The number 30031 is 1 more than a multiple of 13.</li></ul>
+      <div class="solution"><p>30030 is a multiple of 13, because 13 is one of the primes in the product. So 30031 is one more than a multiple of 13, and the remainder is 1.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">A student builds {m:N=P+2} from the primes 2, 3 and 5 instead. N is a power of a single prime. Find that prime.</p>
+      <ol class="ladder"><li>Find P for 2, 3 and 5. Then add 2.</li><li>Write N as a product of prime factors.</li></ol>
+      <ul class="wrong"><li data-if="32">32 is N itself. The question asks for the prime that N is a power of.</li></ul>
+      <div class="solution"><p>{m:P=30}, so {m:N=32=2^5}. The only prime factor is 2, which is already on the list. So the proof breaks: q divides N and P, so it divides {m:N-P=2}, and 2 can divide 2. There is no contradiction. This is why the proof adds 1.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Using the method on a proof you have not seen</h2>
+    <p>Exam questions ask for new proofs, not only {m:sqrt(2)} and Euclid. The method is the same. Work through the four steps and look for the kind of clash that suits the question.</p>
+    <div class="key">
+      <p><b>Key idea:</b> how to attack an unfamiliar proof.</p>
+      <ul class="tick">
+        <li><b>Spot the signs.</b> Statements such as &ldquo;there are no integers &hellip;&rdquo;, &ldquo;is irrational&rdquo;, &ldquo;there is no greatest or smallest &hellip;&rdquo; are often easier by contradiction.</li>
+        <li><b>Write the negation exactly.</b> &ldquo;There are no &hellip;&rdquo; becomes &ldquo;there are some &hellip;&rdquo;. &ldquo;A or B&rdquo; becomes &ldquo;not A and not B&rdquo;.</li>
+        <li><b>Look for the clash.</b> Common clashes: a number that is even and odd, a fraction not in lowest terms, a number that is rational and irrational, a &ldquo;greatest&rdquo; that is beaten, an inequality that cannot hold.</li>
+        <li><b>Finish with a sentence.</b> Say the assumption is false, so the statement is true.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: no integer solutions</h3>
+      <p>Prove that there are no integers m and n such that {m:14m+21n=1}.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> There are integers m and n with {m:14m+21n=1}.</li>
+        <li>Take out the common factor: {m:14m+21n=7(2m+3n)}. So {m:7(2m+3n)=1}.</li>
+        <li>{m:2m+3n} is an integer, so 1 would be a multiple of 7.</li>
+        <li><b>Contradiction.</b> 1 is not a multiple of 7.</li>
+        <li><b>Conclude.</b> There are no such integers.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: an &ldquo;or&rdquo; in the conclusion</h3>
+      <p>For real numbers a and b, prove that if {m:a+b>10} then {m:a>5} or {m:b>5}.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> {m:a+b>10}, and not ({m:a>5} or {m:b>5}). The negation of &ldquo;or&rdquo; is &ldquo;and&rdquo;: {m:a<=5} and {m:b<=5}.</li>
+        <li>Add the two inequalities: {m:a+b<=10}.</li>
+        <li><b>Contradiction.</b> {m:a+b>10} and {m:a+b<=10} cannot both be true.</li>
+        <li><b>Conclude.</b> If {m:a+b>10}, then {m:a>5} or {m:b>5}.</li>
+      </ol>
+    </div>
+    <div class="worked">
+      <h3>Worked example: no smallest positive rational number</h3>
+      <p>Prove that there is no smallest positive rational number.</p>
+      <ol class="steps">
+        <li><b>Assume the opposite.</b> There is a smallest positive rational number r. Write {m:r=frac(a, b)}, where a and b are positive integers.</li>
+        <li>Then {m:frac(r, 2)=frac(a, 2b)}. This is a rational number, and it is positive.</li>
+        <li><b>Contradiction.</b> {m:frac(r, 2)<r}, so r was not the smallest.</li>
+        <li><b>Conclude.</b> There is no smallest positive rational number.</li>
+      </ol>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Prove that there are no integers x and y such that {m:x^2=4y+2}.</p>
+      <ol class="steps">
+        <li>Assume there are such integers. Then {m:x^2} is even, so x is even. Write {m:x=2k}.</li>
+        <li>Then {m:4k^2=4y+2}. Divide by 2: {m:2k^2=2y+}<span class="blank" data-answers="1">___</span>.</li>
+        <li>The left side is even and the right side is odd. This is a contradiction, so there are no such integers.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>Dividing {m:4y+2} by 2 gives {m:2y+1}. So {m:2k^2=2y+1}: an even number equal to an odd number.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: unfamiliar proofs</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">You want to prove that there are no integers m and n with {m:14m+21n=1}. Which assumption do you make?</p>
+      <ul class="options">
+        <li data-why="This is the statement itself. Assuming it gives you nothing to contradict.">There are no integers m and n with 14m + 21n = 1</li>
+        <li data-correct>There are integers m and n with 14m + 21n = 1</li>
+        <li data-why="This describes one pair of integers, but the assumption must say that some pair exists. Also, this particular pair does not work.">m and n are both even</li>
+      </ul>
+      <ol class="ladder"><li>The negation of &ldquo;there are no &hellip;&rdquo; is &ldquo;there are &hellip;&rdquo;.</li></ol>
+      <div class="solution"><p>You assume that some pair of integers m and n works. Then you show that leads to 1 being a multiple of 7.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">Find the largest integer c that divides {m:14m+21n} for all integers m and n.</p>
+      <ol class="ladder"><li>Take out a common factor from 14 and 21.</li><li>Check that your c divides both 14 and 21.</li></ol>
+      <ul class="wrong"><li data-if="14">14 divides {m:14m}, but not {m:21n}: when {m:m=0} and {m:n=1}, the value is 21, which is not a multiple of 14.</li><li data-if="21">21 divides {m:21n}, but not {m:14m}: when {m:m=1} and {m:n=0}, the value is 14, which is not a multiple of 21.</li></ul>
+      <div class="solution"><p>{m:14m+21n=7(2m+3n)}, so 7 always divides it. 7 is the largest, because 14 and 21 have no larger common factor. So an equation {m:14m+21n=c} has an integer solution only when c is a multiple of 7.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is the negation of &ldquo;{m:a>5} or {m:b>5}&rdquo;?</p>
+      <ul class="options">
+        <li data-why="This keeps the word &lsquo;or&rsquo;. With &lsquo;or&rsquo;, a = 4 and b = 6 satisfies this and also satisfies the original, so it is not the negation.">a &le; 5 or b &le; 5</li>
+        <li data-correct>a &le; 5 and b &le; 5</li>
+        <li data-why="The negation of a greater-than sign is less than or equal to, not less than. This leaves out a = 5 and b = 5, which also make the original false.">a &lt; 5 and b &lt; 5</li>
+      </ul>
+      <ol class="ladder"><li>An &ldquo;or&rdquo; is false only when both parts are false.</li><li>The negation of {m:a>5} includes a = 5.</li></ol>
+      <div class="solution"><p>Both parts must fail: {m:a<=5} and {m:b<=5}. For example, {m:a=5} and {m:b=5} make the original false, and they fit the answer.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">Assume {m:a<=5} and {m:b<=5}. What is the largest possible value of {m:a+b}?</p>
+      <ol class="ladder"><li>Take each of a and b at its largest allowed value.</li></ol>
+      <ul class="wrong"><li data-if="5">That is the largest value of one of the two numbers. The sum uses both.</li></ul>
+      <div class="solution"><p>The largest value is {m:5+5=10}. So {m:a+b<=10}. This clashes with {m:a+b>10}, which gives the contradiction.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You assume r is the smallest positive rational number. Which number is a smaller positive rational number, whatever r is?</p>
+      <ul class="options">
+        <li data-why="2r is bigger than r. A contradiction needs a number smaller than r.">2r</li>
+        <li data-why="Test r = 3: r squared is 9, which is bigger than 3. So r squared is not always smaller than r.">r&sup2;</li>
+        <li data-correct>r/2</li>
+      </ul>
+      <ol class="ladder"><li>The number must be positive, rational and smaller than r for every positive r.</li></ol>
+      <div class="solution"><p>Half of a positive number is positive and smaller. If {m:r=frac(a, b)}, then {m:frac(r, 2)=frac(a, 2b)} is rational. So r was not the smallest.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many different remainders can the square of an integer leave when divided by 4?</p>
+      <ol class="ladder"><li>An integer is {m:2k} or {m:2k+1}. Square each form.</li><li>Write each square as a multiple of 4 plus a remainder.</li></ol>
+      <ul class="wrong"><li data-if="4">Any integer can leave four remainders when divided by 4, but a square leaves fewer. Check the squares of {m:2k} and {m:2k+1}.</li></ul>
+      <div class="solution"><p>{m:(2k)^2=4k^2} leaves 0. {m:(2k+1)^2=4k^2+4k+1=4(k^2+k)+1} leaves 1. So only 0 and 1 happen. This is why {m:x^2=4y+2} has no integer solutions: the remainder 2 never happens.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: proving a statement, and finding that it is false</h2>
+    <p>A statement about every case is either true or false. If it is true, a proof by contradiction can show it. If it is false, one example is enough to show it. Try small cases first to decide which job you have.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>Prove a statement is true. Assume the opposite, follow valid steps, and reach a contradiction.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>Show a statement is false. Find one {term:counterexample} that meets the conditions and breaks the claim.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: prove or disprove</h3>
+      <p>Decide whether each claim is true, and prove or disprove it.</p>
+      <ol class="steps">
+        <li>&ldquo;The sum of two irrational numbers is irrational.&rdquo; Try {m:sqrt(2)} and {m:-sqrt(2)}. Both are irrational and their sum is 0, which is rational. The claim is false, and this is a counterexample.</li>
+        <li>&ldquo;{m:sqrt(2)} is irrational.&rdquo; Small cases cannot settle it, and it is true. Use a proof by contradiction (section 3).</li>
+        <li>&ldquo;The product of two irrational numbers is irrational.&rdquo; Try {m:sqrt(2)*sqrt(2)=2}. The product is rational. The claim is false.</li>
+      </ol>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>If n is even, then {m:n^2} is even. This is direct: write {m:n=2k} and square it.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>The converse: if {m:n^2} is even, then n is even. This needs its own proof, and it is proved by contradiction.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a statement and its converse</h3>
+      <p>Statement: if n is a multiple of 4, then {m:n^2} is a multiple of 4. Is the converse true?</p>
+      <ol class="steps">
+        <li>The statement is true: {m:n=4k} gives {m:n^2=16k^2=4(4k^2)}.</li>
+        <li>The converse is: if {m:n^2} is a multiple of 4, then n is a multiple of 4.</li>
+        <li>Try {m:n=2}. Then {m:n^2=4}, a multiple of 4, and 2 is not.</li>
+        <li>The converse is false. For 2 and for 3 the converse is true, but for 4 it is not.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which statement is the converse of &ldquo;if {m:n^2} is even, then n is even&rdquo;?</p>
+      <ul class="options">
+        <li data-why="This keeps the parts in the same order and changes both to their opposites. The converse swaps the parts and keeps each as it is.">If n&sup2; is odd, then n is odd</li>
+        <li data-correct>If n is even, then n&sup2; is even</li>
+        <li data-why="This is the original statement with the words rearranged. The converse swaps the two parts.">If n is not even, then n&sup2; is not even</li>
+      </ul>
+      <ol class="ladder"><li>Swap the &ldquo;if&rdquo; part and the &ldquo;then&rdquo; part.</li></ol>
+      <div class="solution"><p>The converse is &ldquo;if n is even, then {m:n^2} is even&rdquo;. Both the statement and its converse are true, so you can write {m:n^2} even &hArr; n even.</p></div>
+    </div>
+    <div class="q" data-answers="7" data-mode="value">
+      <p class="qtext">How many integers n from 1 to 30 have {m:n^2} a multiple of 9 but n not a multiple of 9?</p>
+      <ol class="ladder"><li>Which n have {m:n^2} a multiple of 9? Try {m:n=3}, then {m:n=9}.</li><li>Count the multiples of 3 up to 30, then remove those that are multiples of 9.</li></ol>
+      <ul class="wrong"><li data-if="10">That counts all the multiples of 3. Three of them (9, 18 and 27) are multiples of 9, so remove them.</li></ul>
+      <div class="solution"><p>{m:n^2} is a multiple of 9 exactly when n is a multiple of 3. The multiples of 3 up to 30 are 10 numbers, and 9, 18, 27 are multiples of 9. So {m:10-3=7}: 3, 6, 12, 15, 21, 24, 30. For 3 the rule works, but for 9 it does not.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these statements can be disproved with one counterexample?</p>
+      <ul class="options">
+        <li data-why="This is true, so no counterexample exists. It is proved by contradiction in section 3.">&radic;2 is irrational</li>
+        <li data-correct>The sum of two irrational numbers is irrational</li>
+        <li data-why="This is true, so no counterexample exists. It is proved by contradiction in section 5.">There are infinitely many prime numbers</li>
+      </ul>
+      <ol class="ladder"><li>A counterexample is possible only for a false statement.</li><li>Which statement have you shown is false?</li></ol>
+      <div class="solution"><p>{m:sqrt(2)+(-sqrt(2))=0} breaks the claim about sums. The other two are true, so no counterexample can exist for them.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The numbers {m:sqrt(2)} and {m:5-sqrt(2)} are irrational. Work out their sum.</p>
+      <ol class="ladder"><li>Add the two numbers. Look at the terms with {m:sqrt(2)}.</li></ol>
+      <ul class="wrong"><li data-if="0">That is {m:sqrt(2)+(-sqrt(2))}, the sum of the root and its opposite. The second number here is {m:5-sqrt(2)}, which has a 5 as well.</li></ul>
+      <div class="solution"><p>{m:sqrt(2)+(5-sqrt(2))=5}. The two irrational numbers add to the rational number 5, so the sum of two irrational numbers is not always irrational.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dev says:</b> &ldquo;Assume {m:sqrt(2)=frac(a, b)} in lowest terms. Then {m:a^2=2b^2}, so a is even. So {m:sqrt(2)} is irrational.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Squaring is correct here. The error is that the proof stops before it finds a contradiction.">Squaring both sides is not allowed</li>
+        <li data-correct>He stopped too soon. He has not shown that b is even too, so there is no contradiction with lowest terms yet</li>
+        <li data-why="He assumed the right thing: the square root of 2 is a fraction in lowest terms. The error is later in the proof.">He should have assumed &radic;2 is irrational</li>
+      </ul>
+      <ol class="ladder"><li>Where does Dev reach something impossible?</li><li>What would make a and b share a factor?</li></ol>
+      <div class="solution"><p>Knowing that a is even is only the first half. Writing {m:a=2k} gives {m:b^2=2k^2}, so b is even as well. Only then do a and b share the factor 2, which contradicts lowest terms.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ana says:</b> &ldquo;Take the first six primes. Their product plus 1 is 30031. It is prime, because 2, 3, 5, 7, 11 and 13 do not divide it. So it is a new prime.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Adding 1 is exactly what the proof does. The error is the claim about the result.">She should have added 2, not 1</li>
+        <li data-correct>The number 30031 is not prime: it is 59 times 509. What is true is that it has a prime factor not on the list</li>
+        <li data-why="Six primes are enough to show how the proof works. The error is that she says the new number is prime.">She needs more than six primes</li>
+      </ul>
+      <ol class="ladder"><li>Not being divisible by the primes on the list does not make a number prime.</li><li>Try dividing 30031 by the primes after 13.</li></ol>
+      <div class="solution"><p>{m:30031=59*509}. The prime factors 59 and 509 are not on the list, which is all the proof needs. The number N does not have to be prime.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Lee says:</b> &ldquo;To prove that every prime greater than 2 is odd, I assume that every prime greater than 2 is even.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="The statement and the assumption are different statements, and the assumption is stronger than the negation.">He should have assumed that every prime is odd</li>
+        <li data-correct>The negation of &ldquo;every &hellip; is odd&rdquo; is &ldquo;at least one &hellip; is not odd&rdquo;, not &ldquo;every &hellip; is even&rdquo;</li>
+        <li data-why="There is nothing wrong with starting from the opposite. The error is in what he wrote as the opposite.">A proof by contradiction cannot be used for primes</li>
+      </ul>
+      <ol class="ladder"><li>The negation of &ldquo;every&rdquo; is &ldquo;at least one is not&rdquo;.</li></ol>
+      <div class="solution"><p>The assumption is: some prime greater than 2 is even. Such a prime is a multiple of 2 and greater than 2, so it has a factor other than 1 and itself. That contradicts it being prime.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Zoe says:</b> &ldquo;I squared 1.41421356 and got 1.9999999..., which is not 2. So {m:sqrt(2)} is not a fraction.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Squaring is fine. The problem is the number she squared.">Squaring a decimal is not allowed</li>
+        <li data-correct>1.41421356 is a rounded value, not &radic;2 itself. Its square is not 2, whether &radic;2 is rational or not</li>
+        <li data-why="1.9999999 is close to 2 but not equal. The error is not in that arithmetic.">1.9999999 is equal to 2</li>
+      </ul>
+      <ol class="ladder"><li>Is 1.41421356 exactly the square root of 2?</li><li>Her number is a fraction: 141421356 over 100000000.</li></ol>
+      <div class="solution"><p>The decimal 1.41421356 is a fraction, and it is not exactly {m:sqrt(2)}. Its square is a little below 2. This shows nothing about {m:sqrt(2)}. Only the proof by contradiction does.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Tom says:</b> &ldquo;{m:sqrt(2)+sqrt(3)} is irrational, and so is {m:sqrt(2)+sqrt(5)}. So the sum of two irrational numbers is always irrational.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Both of his examples are right. The problem is that examples cannot prove a statement about all irrational numbers.">His two examples are wrong</li>
+        <li data-correct>Examples do not prove a statement about all irrational numbers. &radic;2 + (&minus;&radic;2) = 0 is a counterexample</li>
+        <li data-why="It is a true fact that the sum can be rational, so the claim is not a safe one. He needs a counterexample, not more examples.">He needs to test three more pairs</li>
+      </ul>
+      <ol class="ladder"><li>Does a list of examples cover every pair?</li><li>Try two irrational numbers that cancel.</li></ol>
+      <div class="solution"><p>{m:sqrt(2)} and {m:-sqrt(2)} are both irrational, and they add to 0. So the claim is false. Also, {m:sqrt(2)+(2-sqrt(2))=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Ben says:</b> &ldquo;Assume n is the smallest positive integer. Then {m:n-1} is smaller. That is a contradiction, so there is no smallest positive integer.&rdquo; What went wrong?</p>
+      <ul class="options">
+        <li data-why="Ben has assumed the opposite correctly. The error is in the claim that n minus 1 is a smaller positive integer.">He should not have assumed anything</li>
+        <li data-correct>n-1 need not be positive. When n = 1, n-1 = 0. There is a smallest positive integer, 1</li>
+        <li data-why="n minus 1 is smaller than n, and that is correct. The error is that it might not be positive.">n-1 is bigger than n</li>
+      </ul>
+      <ol class="ladder"><li>Try {m:n=1} in his argument.</li><li>The new number must also be positive.</li></ol>
+      <div class="solution"><p>The proof needs a smaller positive integer. For {m:n=1}, {m:n-1=0} is not positive. So there is no contradiction, and in fact the statement is false: 1 is the smallest positive integer. A proof by contradiction cannot prove a false statement, so a correct-looking proof of one must have an error.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which order of steps is correct for a proof by contradiction?</p>
+      <ul class="options">
+        <li data-correct>Assume the negation, reason with valid steps, reach a contradiction, conclude that the statement is true</li>
+        <li data-why="This assumes the statement is true and looks for an example. That does not prove anything about all cases.">Assume the statement, find one example that works, conclude that it is true</li>
+        <li data-why="This is the order for a counterexample, and it disproves a statement. A contradiction proof proves a statement is true.">Find an example that breaks the statement, then conclude that it is false</li>
+      </ul>
+      <ol class="ladder"><li>The proof starts by assuming the opposite of what you want.</li></ol>
+      <div class="solution"><p>The four steps are: assume the opposite, reason, reach a contradiction, conclude.</p></div>
+    </div>
+    <div class="q" data-answers="19" data-mode="value">
+      <p class="qtext">Euclid&rsquo;s number for the first seven primes 2, 3, 5, 7, 11, 13 and 17 is 510511. Find its smallest prime factor.</p>
+      <ol class="ladder"><li>None of the seven primes divides it.</li><li>Test the primes after 17 in order, using a calculator.</li></ol>
+      <ul class="wrong"><li data-if="510511">510511 is not prime. It has a smaller prime factor, so keep testing.</li><li data-if="1">1 is not a prime number, and every number has it as a factor.</li></ul>
+      <div class="solution"><p>{m:510511=19*26869}, and 19 is the first prime after 17 that divides it. In fact {m:510511=19*97*277}. So N is not prime, and its smallest prime factor, 19, is not on the list.</p></div>
+    </div>
+    <div class="q" data-answers="11" data-mode="value">
+      <p class="qtext">Write 0.375 as a fraction in lowest terms {m:frac(a, b)}. Find {m:a+b}.</p>
+      <ol class="ladder"><li>0.375 is 375 thousandths.</li><li>Cancel the common factors until none are left.</li></ol>
+      <ul class="wrong"><li data-if="1375">{m:frac(375, 1000)} is not in lowest terms. Both numbers divide by 125.</li><li data-if="22">{m:frac(6, 16)} still has the common factor 2. Cancel again.</li></ul>
+      <div class="solution"><p>{m:0.375=frac(375, 1000)=frac(3, 8)}. So {m:a=3} and {m:b=8}, and {m:a+b=11}. The decimal ends, so the number is rational.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these numbers is rational?</p>
+      <ul class="options">
+        <li data-why="The square root of 7 is not a square number root, so it is irrational by the same method as the square root of 2.">&radic;7</li>
+        <li data-why="A rational number plus an irrational number is irrational, so this number is irrational.">3 + &radic;5</li>
+        <li data-correct>&radic;2 &times; &radic;8</li>
+      </ul>
+      <ol class="ladder"><li>Multiply the numbers under the roots for the last option.</li></ol>
+      <div class="solution"><p>{m:sqrt(2)*sqrt(8)=sqrt(16)=4}. Two irrational numbers can multiply to a rational number.</p></div>
+    </div>
+    <div class="q" data-answers="18" data-mode="value">
+      <p class="qtext">m and n are integers. {m:6m+9n=3(2m+3n)}. What is the largest integer c less than 20 for which {m:6m+9n=c} has an integer solution?</p>
+      <ol class="ladder"><li>The left side is always a multiple of the common factor you can take out.</li><li>Find the largest multiple of that factor below 20, and check it can be made.</li></ol>
+      <ul class="wrong"><li data-if="19">The left side is always a multiple of 3, and 19 is not. Try a smaller number.</li></ul>
+      <div class="solution"><p>The left side is always a multiple of 3, so c must be one. The largest multiple of 3 below 20 is 18, and {m:6*3+9*0=18}. So {m:c=18}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">You assume {m:2*sqrt(3)=frac(p, q)} with integers p and q, q not 0. Which fact gives the contradiction?</p>
+      <ul class="options">
+        <li data-why="This is the fact for the square root of 2. The assumption here leads to the square root of 3.">&radic;2 is irrational</li>
+        <li data-correct>&radic;3 is irrational, and here &radic;3 = p/2q</li>
+        <li data-why="Every integer is rational, so this does not cause a clash. The clash is between the form of the square root of 3 and its being irrational.">2 is an integer</li>
+      </ul>
+      <ol class="ladder"><li>Divide both sides by 2.</li></ol>
+      <div class="solution"><p>{m:sqrt(3)=frac(p, 2q)} has an integer on top and a non-zero integer on the bottom, so {m:sqrt(3)} would be rational. That contradicts section 4.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Proofs you must know</h2>
+    <p>Examiners expect you to be able to write both of these. Learn the order of the steps, then write each in your own words.</p>
+    <div class="key">
+      <p><b>The square root of 2 is irrational.</b></p>
+      <ol class="steps">
+        <li>Assume {m:sqrt(2)=frac(a, b)}, where a and b are positive integers with no common factor.</li>
+        <li>Then {m:a^2=2b^2}, so {m:a^2} is even, so a is even.</li>
+        <li>Write {m:a=2k}. Then {m:b^2=2k^2}, so {m:b^2} is even, so b is even.</li>
+        <li>a and b are both even, which contradicts having no common factor. So {m:sqrt(2)} is irrational.</li>
+      </ol>
+    </div>
+    <div class="key">
+      <p><b>There are infinitely many primes.</b></p>
+      <ol class="steps">
+        <li>Assume there are finitely many primes, {m:p_1}, {m:p_2}, &hellip;, {m:p_n}.</li>
+        <li>Let {m:N=p_1*p_2*"..."*p_n+1}. N has a prime factor q.</li>
+        <li>q is one of the {m:p_i}, so q divides the product, and q divides N. So q divides 1.</li>
+        <li>No prime divides 1. Contradiction, so there are infinitely many primes.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper. For the proofs, open the mark scheme and tick each mark you earned. For the typed answer, type it, then read the mark scheme. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement.</p>
+    <div class="q" data-type="show" data-marks="3">
+      <p class="qtext">[3 marks] Prove by contradiction that there are no integers m and n such that {m:12m+18n=5}. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Assume the opposite. What does it say about m and n?</li><li>Take out the largest common factor from 12 and 18.</li><li>What does the left side have to be a multiple of? Is 5 one?</li></ol>
+      <div class="solution">
+        <p>Assume there are integers m and n with {m:12m+18n=5}. Then {m:6(2m+3n)=5}. {m:2m+3n} is an integer, so 5 would be a multiple of 6. It is not. This is a contradiction, so there are no such integers.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for assuming that there are integers m and n with {m:12m+18n=5}</li>
+          <li><b>M1</b> for taking out the common factor: {m:6(2m+3n)=5}</li>
+          <li><b>A1</b> for saying that 5 would be a multiple of 6 (or that the left side is even and the right side is odd), a contradiction, and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="4">
+      <p class="qtext">[4 marks] Given that {m:sqrt(2)} is irrational, prove that {m:frac(1, sqrt(2)+1)} is irrational. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Rationalise the denominator first. Multiply top and bottom by {m:sqrt(2)-1}.</li><li>Then assume that the simplified number is rational, and write it as {m:frac(p, q)}.</li><li>Rearrange to find {m:sqrt(2)} in terms of p and q.</li></ol>
+      <div class="solution">
+        <p>{m:frac(1, sqrt(2)+1)=frac(sqrt(2)-1, (sqrt(2)+1)(sqrt(2)-1))=frac(sqrt(2)-1, 1)=sqrt(2)-1}. Assume {m:sqrt(2)-1=frac(p, q)} for integers p and q, with q not 0. Then {m:sqrt(2)=frac(p, q)+1=frac(p+q, q)}. This makes {m:sqrt(2)} rational, which contradicts what is given. So {m:frac(1, sqrt(2)+1)} is irrational.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for multiplying top and bottom by {m:sqrt(2)-1}</li>
+          <li><b>A1</b> for {m:sqrt(2)-1}</li>
+          <li><b>M1</b> for assuming {m:sqrt(2)-1=frac(p, q)} and rearranging to {m:sqrt(2)=frac(p+q, q)}</li>
+          <li><b>A1</b> for the contradiction with {m:sqrt(2)} irrational, and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="5">
+      <p class="qtext">[5 marks] The quadratic equation {m:ax^2+bx+c=0} has integer coefficients a, b and c that are all odd. Prove by contradiction that it has no rational roots. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Assume a root is {m:frac(p, q)} in lowest terms, so p and q are not both even.</li><li>Substitute it and multiply by {m:q^2}.</li><li>Check each case: p and q both odd, p odd and q even, p even and q odd. Is the total odd or even?</li></ol>
+      <div class="solution">
+        <p>Assume a root {m:x=frac(p, q)} in lowest terms, so p and q are not both even. Then {m:a*frac(p^2, q^2)+b*frac(p, q)+c=0}. Multiply by {m:q^2}: {m:ap^2+bpq+cq^2=0}. Check three cases. If p and q are both odd, each of the three terms is odd, and odd + odd + odd is odd. If p is odd and q is even, then {m:ap^2} is odd, and {m:bpq} and {m:cq^2} are even, so the total is odd. If p is even and q is odd, then {m:cq^2} is odd, and {m:ap^2} and {m:bpq} are even, so the total is odd. In every case the total is odd, but it equals 0, which is even. This is a contradiction, so there are no rational roots.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for assuming a rational root {m:frac(p, q)} in lowest terms, so p and q are not both even</li>
+          <li><b>M1</b> for substituting and multiplying by {m:q^2} to get {m:ap^2+bpq+cq^2=0}</li>
+          <li><b>M1</b> for considering the cases by whether p and q are odd or even</li>
+          <li><b>A1</b> for the total being odd in every one of the three cases, with reasons</li>
+          <li><b>A1</b> for the contradiction (odd equals 0) and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="19" data-mode="value" data-marks="2">
+      <p class="qtext">[2 marks] A student builds a number N from the prime factors of 360, which is {m:2^3*3^2*5}. They take {m:N=2^3*3^2*5+1}. Find the smallest prime factor of N.</p>
+      <ol class="ladder"><li>Work out N. Then test the primes in order: 2, 3, 5, and so on.</li><li>N is not divisible by 2, 3 or 5.</li></ol>
+      <ul class="wrong"><li data-if="361">361 is N itself. The question asks for its smallest prime factor, and N is not prime.</li><li data-if="7">Check {m:N=361}. It is not a multiple of 7: 7 times 51 is 357, and the remainder is 4.</li></ul>
+      <div class="solution">
+        <p>{m:360=2^3*3^2*5}, so {m:N=361}. It is not divisible by 2, 3, 5, 7, 11, 13 or 17. And {m:361=19^2}. So the smallest prime factor is 19. The number N is not prime, but its prime factor 19 is not among 2, 3 and 5.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:N=361}, and testing the primes in order</li>
+          <li><b>A1</b> for 19, with {m:361=19^2}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-type="show" data-marks="4">
+      <p class="qtext">[4 marks] Prove by contradiction that there are no integers x and y such that {m:x^2-y^2=2}. Write your answer on paper, then open the mark scheme.</p>
+      <ol class="ladder"><li>Factorise the left side as a difference of two squares.</li><li>Look at the sum of the two brackets. Is it even or odd?</li><li>So the two brackets are both odd or both even. What happens to the product in each case?</li></ol>
+      <div class="solution">
+        <p>Assume there are integers x and y with {m:x^2-y^2=2}. Then {m:(x-y)(x+y)=2}. The two brackets add to {m:2x}, which is even, so they are both odd or both even. If both are odd, the product is odd, not 2. If both are even, the product is a multiple of 4, and 2 is not. This is a contradiction, so there are no such integers.</p>
+        <ul class="markscheme">
+          <li><b>B1</b> for assuming that there are integers x and y with {m:x^2-y^2=2}</li>
+          <li><b>M1</b> for {m:(x-y)(x+y)=2}</li>
+          <li><b>M1</b> for showing that {m:x-y} and {m:x+y} are both odd or both even (their sum {m:2x} is even)</li>
+          <li><b>A1</b> for both cases giving a product that is not 2, a contradiction, and a conclusion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>A statement is true or false, never both.</b> If &ldquo;the statement is false&rdquo; leads to something impossible, then it cannot be false, so it is true.</li>
+      <li><b>Valid steps keep the truth.</b> If the assumption were true, every correct step would give a true result. A false result such as &ldquo;1 is a multiple of 7&rdquo; can only come from a false assumption.</li>
+      <li><b>Lowest terms always exist.</b> Any fraction can be cancelled until the top and bottom share no factor. So &ldquo;{m:sqrt(2)} is a fraction&rdquo; means &ldquo;{m:sqrt(2)} is a fraction in lowest terms&rdquo;.</li>
+      <li><b>Primes behave.</b> A prime that divides a product of two integers divides one of them. This is why &ldquo;{m:n^2} is a multiple of 2 or 3&rdquo; forces &ldquo;n is a multiple of 2 or 3&rdquo;. It is not true for 4, because 4 is not prime: 4 divides {m:2*2}, but it does not divide 2.</li>
+      <li><b>Adding 1 breaks the list.</b> P is a multiple of every prime on the list, so {m:P+1} is one more than a multiple of each. So no prime on the list divides it.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Writing the negation wrongly. &ldquo;Every &hellip; is odd&rdquo; becomes &ldquo;at least one &hellip; is not odd&rdquo;, not &ldquo;every &hellip; is even&rdquo;.</li>
+      <li>Forgetting to say that {m:frac(a, b)} is in lowest terms, so that &ldquo;both even&rdquo; is not a contradiction.</li>
+      <li>Stopping after one of a and b is even. You need to show both.</li>
+      <li>Saying that Euclid&rsquo;s number N is prime. It only has a prime factor that is not on the list.</li>
+      <li>Using the {m:sqrt(2)} proof for a square number such as 4. Square numbers have rational roots.</li>
+      <li>Saying that the sum of two irrational numbers is irrational, or that the product of a rational and an irrational number is irrational when the rational number is 0.</li>
+      <li>Using the &ldquo;n squared is a multiple of &hellip; so n is a multiple of &hellip;&rdquo; fact for a number that is not prime, such as 4 or 9.</li>
+      <li>Ending without a sentence that says the assumption is false and the statement is true.</li>
+      <li>Treating many examples, or a calculator display, as a proof.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Where this goes next</h2>
+    <p>In Further Pure and at university, proof by contradiction becomes a main tool. You prove that the numbers e and {m:pi} are irrational. You meet unique factorisation: every integer greater than 1 is a product of primes in only one way. You also see Cantor&rsquo;s diagonal argument, which uses contradiction to show that the real numbers cannot be put in a list. Each one starts with the same move: assume the opposite.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="proof-contradiction">
+      <li><label><input type="checkbox"> state the four steps of a proof by contradiction, and write the negation of a statement exactly</label></li>
+      <li><label><input type="checkbox"> prove that if {m:n^2} is even (or a multiple of 3) then n is even (or a multiple of 3)</label></li>
+      <li><label><input type="checkbox"> prove that {m:sqrt(2)} is irrational, and explain where lowest terms is used</label></li>
+      <li><label><input type="checkbox"> prove that other roots, and a rational number plus or times an irrational number, are irrational</label></li>
+      <li><label><input type="checkbox"> prove that there are infinitely many primes, and say why Euclid&rsquo;s number need not be prime</label></li>
+      <li><label><input type="checkbox"> choose the assumption, find the clash and write the conclusion for a proof I have not seen</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
