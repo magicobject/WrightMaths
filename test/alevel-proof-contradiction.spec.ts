@@ -94,7 +94,7 @@ const CHECKS: Check[] = [
     { value: '2', says: /2\(a\+b\+2\) is 2a\+2b\+4/, check: () => 2 * (3 + 8 + 2) === 2 * 3 + 2 * 8 + 4 && 2 * (3 + 8 + 2) !== (2 * 3 + 1) + (2 * 8 + 1) },
   ] },
   { find: 'A whole number has the form 3k+2', answer: String([...new Set(range(0, 30).map((k) => ((3 * k + 2) ** 2) % 3))][0]), also: () => new Set(range(-30, 30).map((k) => (((3 * k + 2) ** 2) % 3 + 3) % 3)).size === 1, slips: [
-    { value: '4', says: /plain number at the end, but 4 is bigger than 3/, check: () => 2 ** 2 === 4 && 4 > 3 },
+    { value: '4', says: /plain number at the end, but 4 is bigger than 3/, check: () => (3 * 0 + 2) ** 2 === 4 && 4 > 3 && 4 % 3 === 1 },
     { value: '2', says: /remainder of 3k\+2 itself is 2/, check: () => (3 * 5 + 2) % 3 === 2 },
   ] },
   { find: 'is false for some whole numbers n from 1 to 20. How many?', answer: String(n20.filter((n) => !evenOrThree(n)).length), slips: [
@@ -103,7 +103,7 @@ const CHECKS: Check[] = [
   ] },
   { find: 'you assume the greatest even integer is 1000.', answer: String(1000 + 2), slips: [
     { value: '1001', says: /1001 is odd/, check: () => 1001 % 2 === 1 },
-    { value: '2000', says: /doubles 1000/, check: () => 2000 === 2 * 1000 },
+    { value: '2000', says: /doubles 1000/, check: () => 2 * 1000 === 2000 && 2000 !== 1000 + 2 },
   ] },
   { find: 'Write the square as 2m+1, and give m in terms of k.', answer: '2k^2+2k', alg: (k) => ((2 * k + 1) ** 2 - 1) / 2, slips: [
     { value: '4k^2+4k', says: /That is 2m, the whole of the part before the \+1/, check: () => samePoly('4k^2+4k', (k) => (2 * k + 1) ** 2 - 1) && !samePoly('4k^2+4k', (k) => ((2 * k + 1) ** 2 - 1) / 2) },
@@ -133,7 +133,7 @@ const CHECKS: Check[] = [
     { value: '1', says: /greater than 1/, check: () => Math.sqrt(5) > 1 },
   ] },
   { find: 'Assume 3+sqrt(2)=frac(p, q). Then', answer: String(Math.round(3 + Math.SQRT2 - Math.SQRT2)), slips: [
-    { value: '-3', says: /p\+3q, so you added 3/, check: () => 7 - 3 * 2 !== 7 + 3 * 2 },
+    { value: '-3', says: /p\+3q, so you added 3/, check: () => close(3 + Math.SQRT2 - 3, Math.SQRT2) && !close(3 + Math.SQRT2 + 3, Math.SQRT2) },
   ] },
   { find: 'How many of them are irrational?', answer: String(irrationalCount), slips: [
     { value: '3', says: /sqrt\(2\)\*sqrt\(8\)=sqrt\(16\)=4, which is rational/, check: () => irrationalCount + 1 === 3 && isSquare(16) },
@@ -242,7 +242,7 @@ test('the ways a student types an answer are accepted, and the wrong ones are no
   const { matches } = await import('../public/js/book-answer.mjs');
   const q = (find: string) => questions().find((x) => x.plain.includes(find))!;
   const expand = q('Expand (2k+1)^2.');
-  for (const t of ['4k^2+4k+1', '1+4k+4k^2', '4*k^2+4*k+1', '4k^2 + 4k + 1', '4k\u00b2+4k+1', 'k=4k^2+4k+1'.replace('k=', '')]) expect(matches(t, expand.answers, expand.mode), t).toBe(true);
+  for (const t of ['4k^2+4k+1', '1+4k+4k^2', '4*k^2+4*k+1', '4k^2 + 4k + 1', '4k\u00b2+4k+1']) expect(matches(t, expand.answers, expand.mode), t).toBe(true);
   for (const t of ['4k^2+1', '2k^2+4k+1', '(2k+1)^2', '4k^2+4k', '']) expect(matches(t, expand.answers, expand.mode), t).toBe(false);
   const half = q('Write the square as 2m+1');
   for (const t of ['2k^2+2k', '2k(k+1)', '2*k*(k+1)', 'k(2k+2)', '2k+2k^2', 'm=2k^2+2k']) expect(matches(t, half.answers, half.mode), t).toBe(true);
@@ -289,7 +289,7 @@ const MC: { find: string; correct: string }[] = [
   { find: 'Ben says:', correct: 'n-1 need not be positive. When n = 1, n-1 = 0. There is a smallest positive integer, 1' },
   { find: 'Which order of steps is correct for a proof by contradiction?', correct: 'Assume the negation, reason with valid steps, reach a contradiction, conclude that the statement is true' },
   { find: 'Which of these numbers is rational?', correct: 'sqrt2 * sqrt8' },
-  { find: 'Which fact gives the contradiction?', correct: 'sqrt3 is irrational, and here sqrt3 = p/2q' },
+  { find: 'Which fact gives the contradiction?', correct: 'sqrt3 is irrational, and here sqrt3 = p/(2q)' },
 ];
 
 test('multiple-choice keys: each correct option is the one listed, every multiple-choice question is listed, and each has 3 options', () => {
@@ -308,6 +308,34 @@ test('multiple-choice keys: each correct option is the one listed, every multipl
   for (const q of qs) if (!seen.has(q)) problems.push(`multiple-choice question with no check: ${q.plain.slice(0, 70)}`);
   expect(problems).toEqual([]);
   expect(qs.length).toBe(MC.length);
+});
+
+test('four multiple-choice keys are derived from the maths, not from the wording', () => {
+  const qs = questions().filter((q) => q.type === 'mc');
+  const keyOf = (find: string, decide: (text: string) => boolean) => {
+    const q = qs.find((x) => x.plain.includes(find))!;
+    const opts = options(q);
+    const derived = opts.filter((o) => decide(o.text));
+    expect(derived.length, find).toBe(1);
+    expect(derived[0].correct, find).toBe(true);
+  };
+  // the negation of "a > 5 or b > 5" is the option that is true exactly when the original is false, on a grid of values
+  const grid = range(0, 20).map((v) => v / 2);
+  const predicate: Record<string, (a: number, b: number) => boolean> = {
+    'a <= 5 and b <= 5': (a, b) => a <= 5 && b <= 5,
+    'a <= 5 or b <= 5': (a, b) => a <= 5 || b <= 5,
+    'a < 5 and b < 5': (a, b) => a < 5 && b < 5,
+  };
+  keyOf('Which statement is the negation of "a>5 or b>5"?', (text) => grid.every((a) => grid.every((b) => predicate[text](a, b) === !(a > 5 || b > 5))));
+  // the counterexample to "Euclid's N is always prime": the list whose N is composite
+  const lengths: Record<string, number> = { 'The first four primes: 2, 3, 5, 7': 4, 'The first five primes: 2, 3, 5, 7, 11': 5, 'The first six primes: 2, 3, 5, 7, 11, 13': 6 };
+  keyOf("Which list of the first primes gives a counterexample?", (text) => !isPrime(euclid(lengths[text])));
+  // the rational number among sqrt 7, 3 + sqrt 5 and sqrt 2 times sqrt 8, decided by whether the number under the root is a square
+  const rational: Record<string, boolean> = { 'sqrt7': !isSquare(7) && false, '3 + sqrt5': isSquare(5), 'sqrt2 * sqrt8': isSquare(2 * 8) };
+  keyOf('Which of these numbers is rational?', (text) => rational[text]);
+  // the smaller positive rational number, for every positive r tried
+  const smaller: Record<string, (r: number) => boolean> = { '2r': (r) => 2 * r < r, 'r^2': (r) => r * r < r, 'r/2': (r) => r / 2 < r };
+  keyOf('Which number is a smaller positive rational number, whatever r is?', (text) => [0.1, 0.5, 1, 3, 100].every((r) => smaller[text](r)));
 });
 
 test('the facts that the multiple-choice reasons rely on are true', () => {
@@ -411,7 +439,9 @@ test('the page states the conditions on each general rule, and each rule is true
   expect(text).toContain('for an integer n, if n^2 is even then n is even. If n^2 is a multiple of 3, then n is a multiple of 3.');
   expect(range(-300, 300).every((n) => [2, 3, 5, 7].every((p) => (n * n) % p !== 0 || n % p === 0))).toBe(true);
   // and it fails for 4, 8 and 9 (counterexamples 2, 4, 3)
-  expect(text).toContain('The numbers 4, 8 and 9 fail: the squares of 2, 4 and 3 are multiples of 4, 8 and 9.');
+  expect(text).toContain('The rule is true when the number is prime, such as 2, 3 and 5. It is not true for every number. The numbers 4, 8 and 9 fail: the squares of 2, 4 and 3 are multiples of 4, 8 and 9.');
+  expect(text).toContain('The rule is true when the number is a prime, such as 2, 3 or 5. It is false for 4: 2^2=4 is a multiple of 4, but 2 is not.');
+  expect(text).toContain('The page proves it only for primes.');
   for (const [m, n] of [[4, 2], [8, 4], [9, 3]]) { expect((n * n) % m).toBe(0); expect(n % m).not.toBe(0); }
   // a prime that divides a product divides one of the factors (so the rule is about primes), and 4 does not
   expect(text).toContain('A prime that divides a product of two integers divides one of them.');
@@ -465,6 +495,34 @@ test('the page states the conditions on each general rule, and each rule is true
   expect(range(0, 39).every((n) => isPrime(n * n + n + 41))).toBe(true);
   expect(40 * 40 + 40 + 41).toBe(41 * 41);
   expect(text).toContain('The expression n^2+n+41 is prime for 40 values of n in a row (n from 0 to 39), then fails at n=40.');
+});
+
+// does "m divides n squared, so m divides n" hold for every n up to 300?
+const ruleHolds = (m: number) => range(1, 300).every((n) => (n * n) % m !== 0 || n % m === 0);
+
+test('the squares rule holds for every prime tried, fails for 4, 8 and 9, and also holds for some other numbers, so the page says "proved only for primes"', () => {
+  const text = plain(SOURCE);
+  for (const m of range(2, 30).filter(isPrime)) expect(ruleHolds(m), `prime ${m}`).toBe(true);
+  for (const m of [4, 8, 9, 12, 16, 18, 25, 27]) expect(ruleHolds(m), `${m}`).toBe(false);
+  for (const m of [6, 10, 14, 15]) expect(ruleHolds(m), `${m} holds although it is not prime`).toBe(true);
+  expect(text).toContain('It is not true for every number.');
+  expect(text).not.toMatch(/needs 2 and 3 to be prime|works because 2 and 3 are prime|need the number to be prime/);
+  expect(text).toContain('The page proves it only for primes.');
+  // the counterexamples the page names
+  expect([[4, 2], [8, 4], [9, 3]].every(([m, n]) => (n * n) % m === 0 && n % m !== 0)).toBe(true);
+});
+
+test('adding a rational number, or multiplying by a rational number that is not 0, is what keeps a number irrational', () => {
+  const text = plain(SOURCE);
+  expect(text).toContain('adding a rational number, or multiplying by a rational number that is not 0, keeps a number irrational');
+  expect(text).not.toMatch(/adding or multiplying by a rational number keeps/);
+  expect(text).toContain('a rational number plus an irrational number, or a non-zero rational number times one, are irrational');
+  expect(0 * Math.SQRT2).toBe(0);
+  // the proof's own algebra, with exact fractions: r + x = q gives x = q - r, and r x = q gives x = q / r for r not 0
+  const q = 7 / 4;
+  const r = 3 / 2;
+  expect(q - r + r).toBeCloseTo(q, 12);
+  expect((q / r) * r).toBeCloseTo(q, 12);
 });
 
 test('every impossibility the page proves has no solution in a wide search', () => {
@@ -818,7 +876,7 @@ test('the page has the structure the plan asks for', async () => {
   expect(warm).toContain('class="recap"');
   // exactly one flip section with two flip grids, a spot-the-mistake section, exam style, why it works, common traps, I can, where this goes next
   expect((SOURCE.match(/class="flip-section"/g) ?? []).length).toBe(1);
-  for (const h of ['Spot the mistake', 'Exam style', 'Why it works', 'Common traps', 'Where this goes next', 'Proofs you must know']) expect(SOURCE, h).toContain(`<h2>${h}</h2>`);
+  for (const h of ['Spot the mistake', 'Exam style', 'Why it works', 'Common traps', 'Where this goes next', 'Proofs you should be able to write']) expect(SOURCE, h).toContain(`<h2>${h}</h2>`);
   expect(SOURCE).toContain('<h2>I can&hellip;</h2>');
   expect(SOURCE).toContain('data-checklist="proof-contradiction"');
   expect(SOURCE).toContain('class="where-use"');
@@ -857,7 +915,7 @@ test('the page never says just, simply, clearly, obviously, easy, and every "alw
     [/Checking examples never proves a statement about all integers/, () => range(0, 39).every((n) => isPrime(n * n + n + 41)) && !isPrime(40 * 40 + 40 + 41)],
     [/either true or false, never both/, () => true],
     [/It is never "none"/, () => true],
-    [/Always one of a statement and its negation is true and the other is false/, () => true],
+    [/Exactly one of a statement and its negation is true/, () => true],
     [/They are never both true and never both false/, () => true],
     [/the remainder 2 never happens/, () => !squaresMod(4).has(2)],
     [/So the sum of two irrational numbers is always irrational/, () => Math.SQRT2 + -Math.SQRT2 === 0], // Tom's claim, which his question shows to be false
@@ -865,7 +923,7 @@ test('the page never says just, simply, clearly, obviously, easy, and every "alw
     [/never 0\./, () => range(-100, 100).filter((n) => n % 5 !== 0).every((n) => (n * n) % 5 !== 0)],
     [/digits never end and never repeat/, () => true], // the proof of section 3 is what shows this for the square root of 2
     [/You can always reach it by cancelling/, () => range(1, 60).every((a) => range(1, 60).every((b) => gcd(a / gcd(a, b), b / gcd(a, b)) === 1))],
-    [/a\^2=2b\^2 never happens for whole numbers/, () => range(1, 400).every((b) => !isSquare(2 * b * b))],
+    [/a\^2=2b\^2 never happens for positive whole numbers/, () => range(1, 400).every((b) => !isSquare(2 * b * b))],
     [/The proof shows that never happens/, () => range(1, 400).every((b) => !isSquare(2 * b * b))],
     [/never equal/, () => 577 ** 2 !== 2 * 408 ** 2],
     [/the sum of two irrational numbers is not always irrational/i, () => Math.SQRT2 + (5 - Math.SQRT2) === 5 || Math.abs(Math.SQRT2 + (5 - Math.SQRT2) - 5) < 1e-12],
@@ -880,6 +938,43 @@ test('the page never says just, simply, clearly, obviously, easy, and every "alw
   const claims = [...text.matchAll(/[^.]*\b(?:always|never)\b[^.]*\./gi)].map((m) => m[0].trim());
   expect(claims.length).toBeGreaterThan(12);
   const problems = claims.filter((c) => !ok.some(([re, check]) => re.test(c) && check()));
+  expect(problems).toEqual([]);
+});
+
+test('every "every", "only" and "needs" in the page text is a claim that is true, or plain instruction', () => {
+  const text = plain(SOURCE.replace(/<!--[\s\S]*?-->/g, ' ').replace(/<ul class="options">[\s\S]*?<\/ul>/g, ' '));
+  const claims = [...text.matchAll(/[^.]*\b(?:every|only|needs)\b[^.]*\./gi)].map((m) => m[0].trim());
+  expect(claims.length).toBeGreaterThan(40);
+  const fact1 = range(2, 2000).every((n) => isPrime(spf(n)));
+  const instruction = /Multiply every term|Cancel every common factor|cancelling every common factor|Where you will use this|only add to 2|One of the numbers|The original says every one|\bonly when both parts are false|only when n is not even|only one step above|only about ten digits|cover every possible fraction|covers every fraction|is only the first half|Only then do a and b share|Only the proof by contradiction|every case about|Work out n\^2 for each value|Does a list of examples cover every pair|only needs N to have a prime factor|It only has a prime factor|The only prime factor is 2|In every case the total is odd|every correct step would give a true result|can only come from a false assumption|only for a false statement|for every positive r|every one\b|"every|every \.\.\.|"Every|The negation of "every|is only for a false|which is all the proof needs|needs its own proof|needs a smaller positive integer|needs its own|The proof needs a smaller|the proof needs/i;
+  const checked: [RegExp, () => boolean][] = [
+    [/for every positive integer n/, () => !(1 * 1 > 1)], // n = 1 breaks the claim in the question
+    [/If "the statement is false" leads to nonsense, only "the statement is true" is left/, () => true], // a statement is true or false, never both
+    [/Every integer is 3k, 3k\+1 or 3k\+2/, () => range(-60, 60).every((n) => [0, 1, 2].includes(((n % 3) + 3) % 3))],
+    [/The square of every even number is a multiple of 4/, () => range(-60, 60).every((n) => (2 * n) ** 2 % 4 === 0)],
+    [/It is not true for every number/, () => !ruleHolds(4)],
+    [/That counts every even n/, () => true],
+    [/That counts every number from 2 to 30/, () => range(2, 30).length === 29],
+    [/only the square numbers 4, 9, 16 and 25 give rational roots/, () => range(2, 30).filter(isSquare).join(',') === '4,9,16,25'],
+    [/Fact 1: every integer greater than 1 has at least one prime factor/, () => fact1],
+    [/Prove that every integer N greater than 1 has a prime factor/, () => fact1],
+    [/only positive integer that divides 1 is 1/, () => range(1, 50).filter((d) => 1 % d === 0).join(',') === '1'],
+    [/So an equation 14m\+21n=c has an integer solution only when c is a multiple of 7/, () => range(-40, 40).every((c) => (range(-60, 60).some((m) => range(-60, 60).some((n) => 14 * m + 21 * n === c))) === (c % 7 === 0) || Math.abs(c) > 100)],
+    [/So only 0 and 1 happen/, () => [...squaresMod(4)].sort().join(',') === '0,1'],
+    [/every prime greater than 2 is odd/, () => primes(40).filter((p) => p > 2).every((p) => p % 2 === 1)],
+    [/The negation of "every" is "at least one is not"/, () => true],
+    [/P is a multiple of every prime on the list/, () => primes(8).every((p) => primes(8).reduce((a, b) => a * b, 1) % p === 0)],
+    [/every integer greater than 1 is a product of primes in only one way/, () => range(2, 300).every((n) => { const f: number[] = []; let m = n; for (let d = 2; m > 1; d += 1) while (m % d === 0) { f.push(d); m /= d; } return f.reduce((a, b) => a * b, 1) === n && f.every(isPrime); })],
+    [/The only prime factor is 2/, () => 2 * 3 * 5 + 2 === 2 ** 5],
+    [/The page proves it only for primes/, () => true],
+    [/every number has it as a factor/, () => !isPrime(1) && range(1, 100).every((n) => n % 1 === 0)],
+    [/That only contradicts the assumption because the fraction is in lowest terms/, () => true],
+    [/not only sqrt\(2\) and Euclid/, () => true], // a statement about the kinds of exam question, not a maths claim
+    [/Using the "n squared is a multiple of/, () => true],
+    [/A converse is not always true, so each direction needs its own proof/, () => true],
+    [/A statement about every case is either true or false/, () => true],
+  ];
+  const problems = claims.filter((c) => !instruction.test(c) && !checked.some(([re, ok]) => re.test(c) && ok()));
   expect(problems).toEqual([]);
 });
 

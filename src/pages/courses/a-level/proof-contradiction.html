@@ -4,8 +4,8 @@
     <div>
       <span class="eyebrow">Proof &middot; Year 2</span>
       <h1>Proof by contradiction</h1>
-      <p class="lead">Some statements are hard to prove by starting from the facts. Try the opposite. Assume the statement is false, and follow the steps carefully. If they lead to something impossible, the assumption must be wrong, and the statement is true. This page shows the method in two famous proofs: {m:sqrt(2)} cannot be written as a fraction, and there are infinitely many prime numbers. Then you use the same method on proofs you have not seen before.</p>
-      <p class="where-use"><b>Where you will use this:</b> in every question that says &ldquo;prove that &hellip; is irrational&rdquo;, &ldquo;prove that there are no integers &hellip;&rdquo; or &ldquo;prove that there is no greatest &hellip;&rdquo;. It is also the first move in many proofs in Further Pure and at university.</p>
+      <p class="lead">Some statements are hard to prove by starting from the facts. Try the opposite. Assume the statement is false, and follow the steps carefully. If they lead to something impossible, the assumption must be wrong, and the statement is true. This page shows the method in two famous proofs: {m:sqrt(2)} cannot be written as a fraction of two whole numbers, and there are infinitely many prime numbers. Then you use the same method on proofs you have not seen before.</p>
+      <p class="where-use"><b>Where you will use this:</b> in questions that say &ldquo;prove that &hellip; is irrational&rdquo;, &ldquo;prove that there are no integers &hellip;&rdquo; or &ldquo;prove that there is no greatest &hellip;&rdquo;. It is also the first move in many proofs in Further Pure and at university.</p>
       <p class="progress-line" data-topic-progress aria-live="polite"></p>
     </div>
   </div>
@@ -38,7 +38,7 @@
       <p class="qtext">The statement &ldquo;if n is an even integer, then {m:n^2} is even&rdquo; is true. What is its {term:converse}?</p>
       <ul class="options">
         <li data-correct>If n&sup2; is even, then n is an even integer</li>
-        <li data-why="This swaps the two parts and also changes both of them to their opposites. The converse only swaps the two parts.">If n is an odd integer, then n&sup2; is odd</li>
+        <li data-why="This keeps the two parts in the same order and changes both to their opposites. The converse swaps the two parts and keeps each as it is.">If n is an odd integer, then n&sup2; is odd</li>
         <li data-why="This keeps the parts in the same order, so it is the original statement again, not the converse. The converse swaps the two parts.">If n is an even integer, then n&sup2; is even and n is a multiple of 2</li>
       </ul>
       <ol class="ladder"><li>The converse swaps the &ldquo;if&rdquo; part and the &ldquo;then&rdquo; part.</li><li>Look again at <a href="proof-methods.html">Proof: direct, exhaustion, counterexample</a> if you want the idea of a converse again.</li></ol>
@@ -127,7 +127,7 @@
         <li>&ldquo;{m:a>5} or {m:b>5}.&rdquo; Negation: &ldquo;{m:a<=5} and {m:b<=5}&rdquo;. Both parts must fail, so the &ldquo;or&rdquo; becomes &ldquo;and&rdquo;.</li>
         <li>&ldquo;There is no even prime number.&rdquo; Negation: &ldquo;there is an even prime number&rdquo;. The number 2 is one, so the negation is true.</li>
       </ol>
-      <p>Always one of a statement and its negation is true and the other is false. They are never both true and never both false.</p>
+      <p>Exactly one of a statement and its negation is true. They are never both true and never both false.</p>
     </div>
     <div class="worked faded">
       <h3>Now you finish it</h3>
@@ -172,12 +172,12 @@
         <li data-if="13">That counts the numbers that make the statement true. The question asks how many make it false.</li>
         <li data-if="10">That counts the odd numbers. The statement is false only when n is not even and also not a multiple of 3.</li>
       </ul>
-      <div class="solution"><p>The statement is false when n is odd and not a multiple of 3: {m:1}, 5, 7, 11, 13, 17 and 19. That is 7 numbers.</p></div>
+      <div class="solution"><p>The statement is false when n is odd and not a multiple of 3: 1, 5, 7, 11, 13, 17 and 19. That is 7 numbers.</p></div>
     </div>
     <div class="q" data-type="mc">
       <p class="qtext">You want to prove &ldquo;there is no greatest even integer&rdquo; by contradiction. Which assumption do you make?</p>
       <ul class="options">
-        <li data-why="This is the statement itself, not its negation. Assuming it leaves you with nothing to contradict.">There is no greatest even integer</li>
+        <li data-why="That is the statement being proved, not its negation. Assuming it gives you nothing to contradict.">There is no greatest even integer</li>
         <li data-correct>There is a greatest even integer</li>
         <li data-why="This is true, but it is not the negation of the statement. The negation says that a greatest even integer exists.">There are infinitely many even integers</li>
       </ul>
@@ -213,7 +213,7 @@
         <li>Assume the opposite: n is not even, or n is not a multiple of 3.</li>
         <li>Write n in each remaining form, and square it. Each square leaves a remainder that {m:n^2} cannot have.</li>
         <li>That contradicts what you were told about {m:n^2}.</li>
-        <li>The rule holds for integers n and for a prime number such as 2, 3 or 5. It is false for 4: the integer 2 has {m:2^2=4}, a multiple of 4, but 2 is not.</li>
+        <li>The rule is true when the number is a prime, such as 2, 3 or 5. It is false for 4: {m:2^2=4} is a multiple of 4, but 2 is not.</li>
       </ul>
     </div>
     <div class="worked">
@@ -246,7 +246,7 @@
         <li>But 2 is not a multiple of 4.</li>
         <li>So the statement is false, and {m:n=2} is a counterexample. A proof like the one above would fail. The square of every even number is a multiple of 4, so n does not have to be a multiple of 4.</li>
       </ol>
-      <p>The method needs the number to be prime, as 2 and 3 are. The numbers 4, 8 and 9 fail: the squares of 2, 4 and 3 are multiples of 4, 8 and 9.</p>
+      <p>The rule is true when the number is prime, such as 2, 3 and 5. It is not true for every number. The numbers 4, 8 and 9 fail: the squares of 2, 4 and 3 are multiples of 4, 8 and 9.</p>
     </div>
     <div class="worked faded">
       <h3>Now you finish it</h3>
@@ -322,7 +322,7 @@
     <figure class="figure-lg">{fig:proof-contradiction-unit-square}<figcaption>Look at the diagonal. The two sides are each 1, so the diagonal squared is {m:1^2+1^2=2}. So its length is {m:sqrt(2)}.</figcaption></figure>
     <p>Your calculator gives {m:sqrt(2)=1.414213562"..."}. It shows only about ten digits, so it cannot show that the digits never end and never repeat. A proof must cover every possible fraction, and there are infinitely many.</p>
     <div class="key">
-      <p><b>Key idea:</b> the proof that {m:sqrt(2)} is irrational has seven steps.</p>
+      <p><b>Key idea:</b> the proof that {m:sqrt(2)} is irrational has four stages.</p>
       <ul class="tick">
         <li>Assume {m:sqrt(2)=frac(a, b)}, where a and b are positive integers with no common factor. This is {term:lowest-terms|lowest terms}. You can always reach it by cancelling.</li>
         <li>Square: {m:a^2=2b^2}. So {m:a^2} is even, and so a is even (section 2).</li>
@@ -351,7 +351,7 @@
         <li>For {m:frac(17, 12)}: {m:17^2=289} and {m:2*12^2=288}. They differ by 1.</li>
         <li>For {m:frac(99, 70)}: {m:99^2=9801} and {m:2*70^2=9800}. They differ by 1.</li>
       </ol>
-      <p>The proof says that {m:a^2=2b^2} never happens for whole numbers. These fractions come very close, but {m:a^2} and {m:2b^2} are never equal.</p>
+      <p>The proof says that {m:a^2=2b^2} never happens for positive whole numbers. These fractions come very close, but {m:a^2} and {m:2b^2} are never equal.</p>
       <figure class="figure-lg">{fig:proof-contradiction-between}<figcaption>Look at the middle point. {m:sqrt(2)} lies between 1.41 and 1.42, because {m:1.41^2=1.9881} is below 2 and {m:1.42^2=2.0164} is above 2. No fraction is exactly equal to it.</figcaption></figure>
     </div>
     <div class="worked">
@@ -436,7 +436,7 @@
 <section>
   <div class="wrap narrow">
     <h2>4. Other irrational numbers</h2>
-    <p>The same steps prove other roots are irrational. They also show that adding or multiplying by a rational number keeps a number irrational. Each proof uses a result you already have.</p>
+    <p>The same steps prove other roots are irrational. They also show that adding a rational number, or multiplying by a rational number that is not 0, keeps a number irrational. Each proof uses a result you already have.</p>
     <div class="key">
       <p><b>Key idea:</b> to prove {m:sqrt(p)} is irrational, where p is 2, 3 or 5, follow the {m:sqrt(2)} proof with p in place of 2.</p>
       <ul class="tick">
@@ -490,7 +490,7 @@
       <details class="check-line"><summary>Check my answer</summary><p>{m:4*sqrt(3)=frac(p, q)} gives {m:sqrt(3)=frac(p, 4q)}. The bottom {m:4q} is a non-zero integer, because q is. So {m:sqrt(3)} would be rational, which it is not.</p></details>
     </div>
     <h3>Extra: which square roots are irrational?</h3>
-    <p><b>[Extra]</b> No exam board asks you to prove this. For a positive integer n, {m:sqrt(n)} is irrational if n is not a square number. If n is a square number, {m:sqrt(n)} is a whole number. A proof uses the prime factors of n. So from {m:sqrt(2)} to {m:sqrt(30)}, only the square numbers 4, 9, 16 and 25 give rational roots.</p>
+    <p><b>[Extra]</b> You do not need this proof for the exam. For a positive integer n, {m:sqrt(n)} is irrational if n is not a square number. If n is a square number, {m:sqrt(n)} is a whole number. A proof uses the prime factors of n. So from {m:sqrt(2)} to {m:sqrt(30)}, only the square numbers 4, 9, 16 and 25 give rational roots.</p>
   </div>
 </section>
 
@@ -642,7 +642,7 @@
     <div class="q" data-type="mc">
       <p class="qtext">In Euclid&rsquo;s proof, which statement is the contradiction?</p>
       <ul class="options">
-        <li data-why="This can be true. It does not clash with anything else in the proof.">N is bigger than every prime on the list</li>
+        <li data-why="This is always true, because N is bigger than the product P. It does not clash with anything in the proof.">N is bigger than every prime on the list</li>
         <li data-correct>A prime q would divide 1, but no prime divides 1</li>
         <li data-why="This is true, because P is a product of primes that includes 2. It is not a contradiction.">N is odd</li>
       </ul>
@@ -727,9 +727,9 @@
     <div class="q" data-type="mc">
       <p class="qtext">You want to prove that there are no integers m and n with {m:14m+21n=1}. Which assumption do you make?</p>
       <ul class="options">
-        <li data-why="This is the statement itself. Assuming it gives you nothing to contradict.">There are no integers m and n with 14m + 21n = 1</li>
+        <li data-why="That is the statement being proved, not its negation. Assuming it gives you nothing to contradict.">There are no integers m and n with 14m + 21n = 1</li>
         <li data-correct>There are integers m and n with 14m + 21n = 1</li>
-        <li data-why="This describes one pair of integers, but the assumption must say that some pair exists. Also, this particular pair does not work.">m and n are both even</li>
+        <li data-why="This is a condition on m and n, not the negation. The negation says that some integers m and n make 14m + 21n equal to 1.">m and n are both even</li>
       </ul>
       <ol class="ladder"><li>The negation of &ldquo;there are no &hellip;&rdquo; is &ldquo;there are &hellip;&rdquo;.</li></ol>
       <div class="solution"><p>You assume that some pair of integers m and n works. Then you show that leads to 1 being a multiple of 7.</p></div>
@@ -803,7 +803,7 @@
         <li>The statement is true: {m:n=4k} gives {m:n^2=16k^2=4(4k^2)}.</li>
         <li>The converse is: if {m:n^2} is a multiple of 4, then n is a multiple of 4.</li>
         <li>Try {m:n=2}. Then {m:n^2=4}, a multiple of 4, and 2 is not.</li>
-        <li>The converse is false. For 2 and for 3 the converse is true, but for 4 it is not.</li>
+        <li>The converse is false. With 2 or 3 in place of 4, the converse is true. With 4 it is false.</li>
       </ol>
     </div>
   </div>
@@ -874,7 +874,7 @@
     <div class="q" data-type="mc">
       <p class="qtext"><b>Lee says:</b> &ldquo;To prove that every prime greater than 2 is odd, I assume that every prime greater than 2 is even.&rdquo; What went wrong?</p>
       <ul class="options">
-        <li data-why="The statement and the assumption are different statements, and the assumption is stronger than the negation.">He should have assumed that every prime is odd</li>
+        <li data-why="That is the statement being proved, not its negation. Assuming it gives you nothing to contradict.">He should have assumed that every prime is odd</li>
         <li data-correct>The negation of &ldquo;every &hellip; is odd&rdquo; is &ldquo;at least one &hellip; is not odd&rdquo;, not &ldquo;every &hellip; is even&rdquo;</li>
         <li data-why="There is nothing wrong with starting from the opposite. The error is in what he wrote as the opposite.">A proof by contradiction cannot be used for primes</li>
       </ul>
@@ -942,7 +942,7 @@
     <div class="q" data-type="mc">
       <p class="qtext">Which of these numbers is rational?</p>
       <ul class="options">
-        <li data-why="The square root of 7 is not a square number root, so it is irrational by the same method as the square root of 2.">&radic;7</li>
+        <li data-why="7 is not a square number, so the square root of 7 is irrational, by the same method as for the square root of 2.">&radic;7</li>
         <li data-why="A rational number plus an irrational number is irrational, so this number is irrational.">3 + &radic;5</li>
         <li data-correct>&radic;2 &times; &radic;8</li>
       </ul>
@@ -959,7 +959,7 @@
       <p class="qtext">You assume {m:2*sqrt(3)=frac(p, q)} with integers p and q, q not 0. Which fact gives the contradiction?</p>
       <ul class="options">
         <li data-why="This is the fact for the square root of 2. The assumption here leads to the square root of 3.">&radic;2 is irrational</li>
-        <li data-correct>&radic;3 is irrational, and here &radic;3 = p/2q</li>
+        <li data-correct>&radic;3 is irrational, and here &radic;3 = p/(2q)</li>
         <li data-why="Every integer is rational, so this does not cause a clash. The clash is between the form of the square root of 3 and its being irrational.">2 is an integer</li>
       </ul>
       <ol class="ladder"><li>Divide both sides by 2.</li></ol>
@@ -970,7 +970,7 @@
 
 <section>
   <div class="wrap narrow">
-    <h2>Proofs you must know</h2>
+    <h2>Proofs you should be able to write</h2>
     <p>Examiners expect you to be able to write both of these. Learn the order of the steps, then write each in your own words.</p>
     <div class="key">
       <p><b>The square root of 2 is irrational.</b></p>
@@ -1026,9 +1026,9 @@
       <p class="qtext">[5 marks] The quadratic equation {m:ax^2+bx+c=0} has integer coefficients a, b and c that are all odd. Prove by contradiction that it has no rational roots. Write your answer on paper, then open the mark scheme.</p>
       <ol class="ladder"><li>Assume a root is {m:frac(p, q)} in lowest terms, so p and q are not both even.</li><li>Substitute it and multiply by {m:q^2}.</li><li>Check each case: p and q both odd, p odd and q even, p even and q odd. Is the total odd or even?</li></ol>
       <div class="solution">
-        <p>Assume a root {m:x=frac(p, q)} in lowest terms, so p and q are not both even. Then {m:a*frac(p^2, q^2)+b*frac(p, q)+c=0}. Multiply by {m:q^2}: {m:ap^2+bpq+cq^2=0}. Check three cases. If p and q are both odd, each of the three terms is odd, and odd + odd + odd is odd. If p is odd and q is even, then {m:ap^2} is odd, and {m:bpq} and {m:cq^2} are even, so the total is odd. If p is even and q is odd, then {m:cq^2} is odd, and {m:ap^2} and {m:bpq} are even, so the total is odd. In every case the total is odd, but it equals 0, which is even. This is a contradiction, so there are no rational roots.</p>
+        <p>Assume a root {m:x=frac(p, q)}, for integers p and q with q not 0, in lowest terms, so p and q are not both even. Then {m:a*frac(p^2, q^2)+b*frac(p, q)+c=0}. Multiply by {m:q^2}: {m:ap^2+bpq+cq^2=0}. Check three cases. If p and q are both odd, each of the three terms is odd, and odd + odd + odd is odd. If p is odd and q is even, then {m:ap^2} is odd, and {m:bpq} and {m:cq^2} are even, so the total is odd. If p is even and q is odd, then {m:cq^2} is odd, and {m:ap^2} and {m:bpq} are even, so the total is odd. In every case the total is odd, but it equals 0, which is even. This is a contradiction, so there are no rational roots.</p>
         <ul class="markscheme">
-          <li><b>B1</b> for assuming a rational root {m:frac(p, q)} in lowest terms, so p and q are not both even</li>
+          <li><b>B1</b> for assuming a rational root {m:frac(p, q)}, for integers p and q with q not 0, in lowest terms, so p and q are not both even</li>
           <li><b>M1</b> for substituting and multiplying by {m:q^2} to get {m:ap^2+bpq+cq^2=0}</li>
           <li><b>M1</b> for considering the cases by whether p and q are odd or even</li>
           <li><b>A1</b> for the total being odd in every one of the three cases, with reasons</li>
@@ -1082,7 +1082,7 @@
       <li>Saying that Euclid&rsquo;s number N is prime. It only has a prime factor that is not on the list.</li>
       <li>Using the {m:sqrt(2)} proof for a square number such as 4. Square numbers have rational roots.</li>
       <li>Saying that the sum of two irrational numbers is irrational, or that the product of a rational and an irrational number is irrational when the rational number is 0.</li>
-      <li>Using the &ldquo;n squared is a multiple of &hellip; so n is a multiple of &hellip;&rdquo; fact for a number that is not prime, such as 4 or 9.</li>
+      <li>Using the &ldquo;n squared is a multiple of &hellip; so n is a multiple of &hellip;&rdquo; fact for a number such as 4 or 9, where it is false. The page proves it only for primes.</li>
       <li>Ending without a sentence that says the assumption is false and the statement is true.</li>
       <li>Treating many examples, or a calculator display, as a proof.</li>
     </ul>
@@ -1092,7 +1092,7 @@
 <section>
   <div class="wrap narrow">
     <h2>Where this goes next</h2>
-    <p>In Further Pure and at university, proof by contradiction becomes a main tool. You prove that the numbers e and {m:pi} are irrational. You meet unique factorisation: every integer greater than 1 is a product of primes in only one way. You also see Cantor&rsquo;s diagonal argument, which uses contradiction to show that the real numbers cannot be put in a list. Each one starts with the same move: assume the opposite.</p>
+    <p>At university, proof by contradiction becomes a main tool. You may see proofs that the numbers e and {m:pi} are irrational, the proof that every integer greater than 1 is a product of primes in only one way, and Cantor&rsquo;s diagonal argument, which shows that the real numbers cannot be put in a list. Each one starts with the same move: assume the opposite.</p>
   </div>
 </section>
 
@@ -1103,7 +1103,7 @@
       <li><label><input type="checkbox"> state the four steps of a proof by contradiction, and write the negation of a statement exactly</label></li>
       <li><label><input type="checkbox"> prove that if {m:n^2} is even (or a multiple of 3) then n is even (or a multiple of 3)</label></li>
       <li><label><input type="checkbox"> prove that {m:sqrt(2)} is irrational, and explain where lowest terms is used</label></li>
-      <li><label><input type="checkbox"> prove that other roots, and a rational number plus or times an irrational number, are irrational</label></li>
+      <li><label><input type="checkbox"> prove that other roots, and a rational number plus an irrational number, or a non-zero rational number times one, are irrational</label></li>
       <li><label><input type="checkbox"> prove that there are infinitely many primes, and say why Euclid&rsquo;s number need not be prime</label></li>
       <li><label><input type="checkbox"> choose the assumption, find the clash and write the conclusion for a proof I have not seen</label></li>
     </ul>

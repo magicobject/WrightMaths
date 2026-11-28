@@ -303,6 +303,7 @@ export const TERMS = [
     level: 'Y2',
     def: 'Two statements that cannot both be true, or a statement that cannot be true at all. In a proof by contradiction it is the impossible result that shows the assumption was wrong.',
     example: ['"n is even and n is odd" is a contradiction, because no integer is both.', 'In the proof that {m:sqrt(2)} is irrational, the contradiction is that a and b are both even, when the fraction was in {term:lowest-terms}.'],
+    flip: 'A {term:counterexample} shows a statement is false; a contradiction reached from its negation shows it is true.',
     watch: 'A contradiction must come from valid steps. If a step is wrong, reaching an impossible result tells you nothing about the assumption.',
     see: ['proof-by-contradiction', 'negation', 'lowest-terms'],
   },
