@@ -103,7 +103,7 @@ type Check = { find: string; answer: string; fn?: (x: number) => number; slips?:
 
 // the graphs the equation questions name, written here from the question's own numbers
 const parabF = (x: number) => (x - 2) ** 2 - 3; // the figure of "form y=(x-a)^2+b": lowest point (2, -3), through (0, 1)
-const recipF = (x: number) => 6 / (x - 3) - 1; // the figure of "form y=frac(a, x+b)+c": asymptotes x = 3 and y = -1, through (0, -3)
+const recipF = (x: number) => 8 / (x - 2) - 1; // the figure of "form y=frac(a, x+b)+c": asymptotes x = 2 and y = -1, through (0, -5)
 const trigA = (5 - 1) / 2; // the figure of "y=a*sin x+c": highest value 5 and lowest value 1
 const trigC = (5 + 1) / 2;
 
@@ -149,7 +149,7 @@ const CHECKS: Check[] = [
   { find: 'y=2^x+3 meets the y-axis', answer: String(2 ** 0 + 3), slips: [{ value: String(0 + 3), says: /treated 2\^0 as 0/ }, { value: String(2 + 3), says: /2\^0 as 2/ }] },
   // flip it
   { find: 'form y=(x-a)^2+b', answer: '(x-2)^2-3', fn: parabF, slips: [{ value: '(x+2)^2-3', fn: (x) => (x + 2) ** 2 - 3, says: /copied the sign/ }, { value: '(x-2)^2+3', fn: (x) => (x - 2) ** 2 + 3, says: /below the x-axis/ }] },
-  { find: 'in the form y=frac(a, x+b)+c', answer: '6/(x-3)-1', fn: recipF, slips: [{ value: '-6/(x-3)-1', fn: (x) => -6 / (x - 3) - 1, says: /does not fit/ }, { value: '6/(x+3)-1', fn: (x) => 6 / (x + 3) - 1, says: /bracket must be 0 when x=3/ }] },
+  { find: 'in the form y=frac(a, x+b)+c', answer: '8/(x-2)-1', fn: recipF, slips: [{ value: '-8/(x-2)-1', fn: (x) => -8 / (x - 2) - 1, says: /does not fit/ }, { value: '8/(x+2)-1', fn: (x) => 8 / (x + 2) - 1, says: /bracket must be 0 when x=2/ }] },
   { find: 'y=a*sin x+c. Find a and c', answer: `${trigA},${trigC}`, slips: [{ value: `${trigC},${trigA}`, says: /gave c first/ }, { value: '5,1', says: /highest and lowest values/ }] },
   { find: 'f(x+k)', answer: String(4 - 1), slips: [{ value: String(-(4 - 1)), says: /3 to the right/ }, { value: String(4 + 1), says: /added the two numbers/ }] },
   // mixed review
@@ -352,7 +352,7 @@ const STATED: Record<string, Stated> = {
   'graph-transformations-hstretch': { curves: [{ cls: 'curve', f: cub }, { cls: 'curve-b', f: (x) => cub(2 * x) }], points: { r1: [-0.5, 0], r2: [0.5, 0], r3: [1.5, 0] }, on: { r1: [1], r2: [1], r3: [1] } },
   'graph-transformations-xreflect': { curves: [{ cls: 'curve', f: cub }, { cls: 'curve-b', f: (x) => -cub(x) }], points: { yint: [0, -3] }, on: { yint: [1] } },
   'graph-transformations-yreflect': { curves: [{ cls: 'curve', f: cub }, { cls: 'curve-b', f: (x) => cub(-x) }], points: { r1: [-3, 0], r2: [-1, 0], r3: [1, 0] }, on: { r1: [1], r2: [1], r3: [1] } },
-  'graph-transformations-recip-shift': { curves: [{ cls: 'curve', f: (x) => 4 / x }, { cls: 'curve-b', f: (x) => 4 / (x - 2) + 1 }], points: { xint: [-2, 0], yint: [0, -1] }, on: { xint: [1], yint: [1] }, vlines: { va: 2 }, hlines: { ha: 1 }, branches: { curve: 1, centre: [2, 1], sign: 1 } },
+  'graph-transformations-recip-shift': { curves: [{ cls: 'curve', f: (x) => 6 / x }, { cls: 'curve-b', f: (x) => 6 / (x - 3) + 1 }], points: { xint: [-3, 0], yint: [0, -1] }, on: { xint: [1], yint: [1] }, vlines: { va: 3 }, hlines: { ha: 1 }, branches: { curve: 1, centre: [3, 1], sign: 1 } },
   'graph-transformations-recip-neg': { curves: [{ cls: 'curve', f: (x) => -3 / x }, { cls: 'curve-b', f: (x) => -3 / (x + 1) + 1 }], points: { yint: [0, -2], xint: [2, 0] }, on: { yint: [1], xint: [1] }, vlines: { va: -1 }, hlines: { ha: 1 }, branches: { curve: 1, centre: [-1, 1], sign: -1 } },
   'graph-transformations-combo-quad': { curves: [{ cls: 'curve', f: (x) => x * x }, { cls: 'curve-b', f: (x) => 2 * (x - 1) ** 2 + 3 }], points: { v0: [0, 0], vertex: [1, 3], yint: [0, 5] }, on: { v0: [0], vertex: [1], yint: [1] } },
   'graph-transformations-sin-amp': { curves: [{ cls: 'curve', f: sinD, ...full }, { cls: 'curve-b', f: (x) => 2 * sinD(x), ...full }], points: { max: [90, 2], min: [270, -2] }, on: { max: [1], min: [1] }, unit: DEG },
@@ -362,7 +362,7 @@ const STATED: Record<string, Stated> = {
   'graph-transformations-exp-mirror': { curves: [{ cls: 'curve', f: (x) => 2 ** x }, { cls: 'curve-b', f: (x) => 2 ** -x }], points: { right: [2, 4], left: [-2, 4], yint: [0, 1] }, on: { right: [0], left: [1], yint: [0, 1] } },
   'graph-transformations-flip-recip': { curves: [{ cls: 'curve', f: (x) => 3 / (x + 1) + 2 }], points: { p: [0, 5] }, on: { p: [0] }, vlines: { va: -1 }, hlines: { ha: 2 }, branches: { curve: 0, centre: [-1, 2], sign: 1 } },
   'graph-transformations-q-parab': { curves: [{ cls: 'curve', f: parabF }], points: { vertex: [2, -3], yint: [0, 1] }, on: { vertex: [0], yint: [0] } },
-  'graph-transformations-q-recip': { curves: [{ cls: 'curve', f: recipF }], points: { p: [0, -3] }, on: { p: [0] }, vlines: { va: 3 }, hlines: { ha: -1 }, branches: { curve: 0, centre: [3, -1], sign: 1 } },
+  'graph-transformations-q-recip': { curves: [{ cls: 'curve', f: recipF }], points: { p: [0, -5] }, on: { p: [0] }, vlines: { va: 2 }, hlines: { ha: -1 }, branches: { curve: 0, centre: [2, -1], sign: 1 } },
   'graph-transformations-q-trig': { curves: [{ cls: 'curve', f: (x) => trigA * sinD(x) + trigC, ...full }], points: { max: [90, 5], min: [270, 1] }, on: { max: [0], min: [0] }, unit: DEG },
 };
 

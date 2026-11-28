@@ -93,6 +93,10 @@ function place(p, id) {
       dots.push([px(x), py(y)]);
     }
   }
+  // the axes and the asymptote lines are thin boxes that no label may touch
+  taken.push({ x0: px(g.xmin), x1: px(g.xmax) + 12, y0: py(0) - 3, y1: py(0) + 3 });
+  taken.push({ x0: px(0) - 3, x1: px(0) + 3, y0: py(g.ymax) - 12, y1: py(g.ymin) });
+  for (const l of lines) taken.push(l.x !== undefined ? { owner: l.name, x0: px(l.x) - 3, x1: px(l.x) + 3, y0: py(g.ymax), y1: py(g.ymin) } : { owner: l.name, x0: px(g.xmin), x1: px(g.xmax), y0: py(l.y) - 3, y1: py(l.y) + 3 });
   // the two axis letters
   taken.push({ x0: px(g.xmax) + 8, x1: px(g.xmax) + 40, y0: py(0) - 20, y1: py(0) + 20 });
   taken.push({ x0: px(0) - 16, x1: px(0) + 16, y0: py(g.ymax) - 50, y1: py(g.ymax) - 6 });
@@ -107,15 +111,19 @@ function place(p, id) {
     const x0 = anchor === 'start' ? x : anchor === 'end' ? x - width : x - width / 2;
     return { x0, x1: x0 + width, y0: y - 26, y1: y + 8, cx: x0 + width / 2, cy: y - 8 };
   };
+  const why = {};
   const clear = (b, own, isPoint) => {
-    if (b.x0 < 4 || b.x1 > W - 4 || b.y0 < 4 || b.y1 > GEOM[id].height - 4) return false;
-    for (const [qx, qy] of dots) if (qx > b.x0 - 5 && qx < b.x1 + 5 && qy > b.y0 - 5 && qy < b.y1 + 5) return false;
-    for (const t of [...taken, ...placed]) if (Math.max(t.x0 - b.x1, b.x0 - t.x1) < 6 && Math.max(t.y0 - b.y1, b.y0 - t.y1) < 6) return false;
+    if (b.x0 < 4 || b.x1 > W - 4 || b.y0 < 4 || b.y1 > GEOM[id].height - 4) { why.edge = (why.edge ?? 0) + 1; return false; }
+    for (const [qx, qy] of dots) if (qx > b.x0 - 5 && qx < b.x1 + 5 && qy > b.y0 - 5 && qy < b.y1 + 5) { why.curve = (why.curve ?? 0) + 1; return false; }
+    for (const t of [...taken, ...placed]) {
+      const margin = t.owner === own.name ? 0 : 6; // a label may sit close beside its own asymptote
+      if (Math.max(t.x0 - b.x1, b.x0 - t.x1) < margin && Math.max(t.y0 - b.y1, b.y0 - t.y1) < margin) { why.taken = (why.taken ?? 0) + 1; return false; }
+    }
     for (const c of circles) {
-      if (c.cx > b.x0 - 14 && c.cx < b.x1 + 14 && c.cy > b.y0 - 14 && c.cy < b.y1 + 14) return false; // a label never covers a marker
+      if (c.cx > b.x0 - 14 && c.cx < b.x1 + 14 && c.cy > b.y0 - 14 && c.cy < b.y1 + 14) { why.marker = (why.marker ?? 0) + 1; return false; } // a label never covers a marker
     }
     const mine = own.at(b.cx, b.cy);
-    for (const other of items) if (other !== own && (!isPoint || other.point) && other.at(b.cx, b.cy) < mine + 2) return false;
+    for (const other of items) if (other !== own && (!isPoint || other.point) && other.at(b.cx, b.cy) < mine + 2) { why.near = (why.near ?? 0) + 1; return false; }
     return true;
   };
   const out = [];
@@ -123,8 +131,9 @@ function place(p, id) {
     const own = items.find((i) => i.name === q.name);
     const text = label(q.text);
     const cands = [];
-    for (const [anchor, dxs] of [['start', [16, 22, 32, 46, 62]], ['end', [-16, -22, -32, -46, -62]], ['middle', [0]]]) {
-      for (const dx of dxs) for (const dy of [-16, -22, -30, -42, 10, 40, 46, 56, 70, 88]) {
+    const dys = [-16, -22, -30, -40, -52, -66, -82, 4, 10, 16, 22, 28, 34, 40, 46, 54, 64, 76, 90, 106, 124];
+    for (const [anchor, dxs] of [['start', [16, 22, 30, 40, 52, 66, 84, 104]], ['end', [-16, -22, -30, -40, -52, -66, -84, -104]], ['middle', [0]]]) {
+      for (const dx of dxs) for (const dy of dys) {
         cands.push({ anchor, x: px(q.x) + dx, y: py(q.y) + dy, cost: Math.abs(dx) + Math.abs(dy - 10) * 0.8 });
       }
     }
@@ -134,7 +143,7 @@ function place(p, id) {
       const b = boxOf(q.text, c.x, c.y, c.anchor);
       if (clear(b, own, true)) { best = { ...c, b }; break; }
     }
-    if (!best) throw new Error(`${id}: no place for the label of "${q.name}"`);
+    if (!best) throw new Error(`${id}: no place for the label of "${q.name}" ${JSON.stringify(why)}`);
     placed.push(best.b);
     out.push(`<text class="svg-t" data-for="${q.name}" x="${f2(best.x)}" y="${f2(best.y)}" text-anchor="${best.anchor}">${text}</text>`);
   }
@@ -177,8 +186,8 @@ const cubTall = (x) => 2 * cub(x);
 const cubNarrow = (x) => cub(2 * x);
 const cubFlipX = (x) => -cub(x);
 const cubFlipY = (x) => cub(-x);
-const hyper4 = (x) => 4 / x;
-const hyper4Moved = (x) => 4 / (x - 2) + 1;
+const hyper6 = (x) => 6 / x;
+const hyper6Moved = (x) => 6 / (x - 3) + 1;
 const hyperNeg3 = (x) => -3 / x;
 const hyperNeg3Moved = (x) => -3 / (x + 1) + 1;
 const quadCombo = (x) => 2 * (x - 1) ** 2 + 3;
@@ -191,7 +200,7 @@ const exp2Down = (x) => 2 ** x - 2;
 const exp2Mirror = (x) => 2 ** -x;
 const recipFind = (x) => 3 / (x + 1) + 2;
 const qParab = (x) => (x - 2) ** 2 - 3;
-const qRecip = (x) => 6 / (x - 3) - 1;
+const qRecip = (x) => 8 / (x - 2) - 1;
 const qTrig = (x) => 2 * Math.sin(rad(x)) + 3;
 
 const SINE = { from: 0, to: 360 }; // a trigonometric picture shows one turn of the curve
@@ -210,7 +219,7 @@ export const FIGURES = {
     return finish(p, {
       id,
       title: 'The graph of y = f(x), where f(x) = (x + 1)(x - 1)(x - 3), crosses the x-axis at -1, 1 and 3 and the y-axis at 3',
-      desc: 'A cubic curve that comes up from the bottom left and crosses the x-axis at the marked point (-1, 0). It reaches a high point just to the left of the y-axis, passing the marked point (0, 3) on the y-axis, then falls and crosses the x-axis at the marked point (1, 0). It reaches a low point below the axis, then crosses the axis a third time at the marked point (3, 0) and keeps rising to the top right.',
+      desc: 'A cubic curve that comes up from the bottom left and crosses the x-axis at the marked point (-1, 0). It reaches a high point close to the left of the y-axis, passing the marked point (0, 3) on the y-axis, then falls and crosses the x-axis at the marked point (1, 0). It reaches a low point below the axis, then crosses the axis a third time at the marked point (3, 0) and keeps rising to the top right.',
     });
   },
 
@@ -265,7 +274,7 @@ export const FIGURES = {
   // ---- 2. a horizontal stretch: y = f(2x) ----
   'graph-transformations-hstretch': () => {
     const id = 'graph-transformations-hstretch';
-    const p = sketch(id, { xmin: -2, xmax: 4, ymin: -9, ymax: 9, rows: 2 });
+    const p = sketch(id, { xmin: -1.3, xmax: 2.3, ymin: -9, ymax: 9, rows: 2 });
     keyRow(p, id, 0, 'curve', 'y = f(x)');
     keyRow(p, id, 1, 'curve-b', 'y = f(2x)');
     draw(p, id, [{ name: 'f', fn: cub }, { name: 'moved', cls: 'curve-b', fn: cubNarrow }]);
@@ -311,21 +320,21 @@ export const FIGURES = {
     });
   },
 
-  // ---- 4. the reciprocal graph moved: y = 4/x becomes y = 4/(x - 2) + 1 ----
+  // ---- 4. the reciprocal graph moved: y = 6/x becomes y = 6/(x - 3) + 1 ----
   'graph-transformations-recip-shift': () => {
     const id = 'graph-transformations-recip-shift';
-    const p = sketch(id, { xmin: -3.5, xmax: 5.5, ymin: -5, ymax: 7, rows: 2, height: 560 });
-    keyRow(p, id, 0, 'curve', 'y = 4/x');
-    keyRow(p, id, 1, 'curve-b', 'y = 4/(x - 2) + 1');
-    draw(p, id, [{ name: 'base', fn: hyper4 }, { name: 'moved', cls: 'curve-b', fn: hyper4Moved }]);
-    asymptote(p, id, { name: 'va', x: 2, text: 'x = 2', at: [2, -4.2] });
-    asymptote(p, id, { name: 'ha', y: 1, text: 'y = 1', at: [-3.4, 1] });
-    mark(p, id, { name: 'xint', x: -2, y: 0, text: '(-2, 0)' });
+    const p = sketch(id, { xmin: -5, xmax: 6, ymin: -4, ymax: 4.5, rows: 2, height: 720 });
+    keyRow(p, id, 0, 'curve', 'y = 6/x');
+    keyRow(p, id, 1, 'curve-b', 'y = 6/(x - 3) + 1');
+    draw(p, id, [{ name: 'base', fn: hyper6 }, { name: 'moved', cls: 'curve-b', fn: hyper6Moved }]);
+    asymptote(p, id, { name: 'va', x: 3, text: 'x = 3', at: [3, -4.2] });
+    asymptote(p, id, { name: 'ha', y: 1, text: 'y = 1', at: [-4.9, 1] });
+    mark(p, id, { name: 'xint', x: -3, y: 0, text: '(-3, 0)' });
     mark(p, id, { name: 'yint', x: 0, y: -1, text: '(0, -1)' });
     return finish(p, {
       id,
-      title: 'The graph of y = 4/(x - 2) + 1 is the graph of y = 4/x moved 2 to the right and 1 up, with asymptotes x = 2 and y = 1',
-      desc: 'Two reciprocal curves, each in two branches. The solid curve, y equals 4 over x, has one branch in the top right and one in the bottom left, and the two axes are its asymptotes. The dashed curve, y equals 4 over (x minus 2), plus 1, has the same shape moved 2 to the right and 1 up. Its asymptotes are two dashed lines, labelled x = 2 and y = 1. It has one branch in the top right and one in the bottom left of the point where those lines cross. The bottom left branch passes through the marked points (-2, 0) on the x-axis and (0, -1) on the y-axis.',
+      title: 'The graph of y = 6/(x - 3) + 1 is the graph of y = 6/x moved 3 to the right and 1 up, with asymptotes x = 3 and y = 1',
+      desc: 'Two reciprocal curves, each in two branches. The solid curve, y equals 6 over x, has one branch in the top right and one in the bottom left, and the two axes are its asymptotes. The dashed curve, y equals 6 over (x minus 3), plus 1, has the same shape moved 3 to the right and 1 up. Its asymptotes are two dashed lines, labelled x = 3 and y = 1. It has one branch in the top right and one in the bottom left of the point where those lines cross. The bottom left branch passes through the marked points (-3, 0) on the x-axis and (0, -1) on the y-axis.',
     });
   },
 
@@ -415,7 +424,7 @@ export const FIGURES = {
   // ---- 6. an exponential graph moved down: y = 2^x - 2 ----
   'graph-transformations-exp-shift': () => {
     const id = 'graph-transformations-exp-shift';
-    const p = sketch(id, { xmin: -3.2, xmax: 3.4, ymin: -3.5, ymax: 9, rows: 2, height: 540 });
+    const p = sketch(id, { xmin: -3.2, xmax: 3.4, ymin: -3, ymax: 6.5, rows: 2, height: 640 });
     keyRow(p, id, 0, 'curve', 'y = 2^x');
     keyRow(p, id, 1, 'curve-b', 'y = 2^x - 2');
     draw(p, id, [{ name: 'f', fn: exp2 }, { name: 'moved', cls: 'curve-b', fn: exp2Down }]);
@@ -481,13 +490,13 @@ export const FIGURES = {
     const id = 'graph-transformations-q-recip';
     const p = sketch(id, { xmin: -3.5, xmax: 8.5, ymin: -7, ymax: 7, rows: 1, height: 540 });
     draw(p, id, [{ name: 'curve', fn: qRecip }]);
-    asymptote(p, id, { name: 'va', x: 3, text: 'x = 3', at: [3, 5.6] });
+    asymptote(p, id, { name: 'va', x: 2, text: 'x = 2', at: [2, 5.6] });
     asymptote(p, id, { name: 'ha', y: -1, text: 'y = -1', at: [8.4, -1] });
-    mark(p, id, { name: 'p', x: 0, y: -3, text: '(0, -3)' });
+    mark(p, id, { name: 'p', x: 0, y: -5, text: '(0, -5)' });
     return finish(p, {
       id,
       title: 'A reciprocal curve with two dashed asymptotes and one marked point',
-      desc: 'A reciprocal curve in two branches. Its asymptotes are two dashed lines, labelled x = 3 and y = -1. One branch is in the top right of the point where the asymptotes cross. The other branch is in the bottom left and passes through the marked point (0, -3) on the y-axis.',
+      desc: 'A reciprocal curve in two branches. Its asymptotes are two dashed lines, labelled x = 2 and y = -1. One branch is in the top right of the point where the asymptotes cross. The other branch is in the bottom left and passes through the marked point (0, -5) on the y-axis.',
     });
   },
 
