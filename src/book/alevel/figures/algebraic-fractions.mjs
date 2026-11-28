@@ -46,7 +46,9 @@ function sketch(id, { xmin, xmax, ymin, ymax, rows = 2, height = 520 }) {
 /** A key row: a sample of how a curve is drawn, then what it is. */
 function keyRow(p, id, row, cls, text) {
   const y = 40 + ROW * row;
-  p.raw(`<line class="${cls}" x1="${LEFT}" y1="${y - 8}" x2="${LEFT + 56}" y2="${y - 8}"/>`);
+  // an open circle is drawn as a circle, as it is on the graph; a curve or a line is drawn as a short stroke
+  if (cls === 'open') p.raw(`<circle class="pt-open" cx="${LEFT + 28}" cy="${y - 8}" r="9"/>`);
+  else p.raw(`<line class="${cls}" x1="${LEFT}" y1="${y - 8}" x2="${LEFT + 56}" y2="${y - 8}"/>`);
   p.note(LEFT + 72, y, text, { cls: 'alt' });
   PENDING[id].taken.push({ x0: LEFT + 72, x1: LEFT + 72 + text.length * CHAR, y0: y - 26, y1: y + 8 });
 }
@@ -182,7 +184,7 @@ export const FIGURES = {
     const id = 'algebraic-fractions-hole';
     const p = sketch(id, { xmin: -5, xmax: 5, ymin: -4, ymax: 8, rows: 2, height: 560 });
     keyRow(p, id, 0, 'curve', 'y = (x^2 - 4)/(x - 2)');
-    keyRow(p, id, 1, 'line', 'open circle: not on the graph');
+    keyRow(p, id, 1, 'open', 'open circle: not on the graph');
     draw(p, id, [{ name: 'f', fn: holeLine }]);
     mark(p, id, { name: 'gap', x: 2, y: 4, text: '(2, 4)', hole: true });
     return finish(p, {
@@ -195,15 +197,14 @@ export const FIGURES = {
   // ---- 2. a question figure: an open circle on a line (the answer is what the circle means) ----
   'algebraic-fractions-q-hole': () => {
     const id = 'algebraic-fractions-q-hole';
-    const p = sketch(id, { xmin: -5, xmax: 5, ymin: -6, ymax: 5, rows: 2, height: 540 });
+    const p = sketch(id, { xmin: -5, xmax: 5, ymin: -6, ymax: 5, rows: 1, height: 500 });
     keyRow(p, id, 0, 'curve', 'y = (x^2 - 1)/(x + 1)');
-    keyRow(p, id, 1, 'line', 'open circle: not on the graph');
     draw(p, id, [{ name: 'f', fn: holeQ }]);
     mark(p, id, { name: 'gap', x: -1, y: -2, text: '(-1, -2)', hole: true });
     return finish(p, {
       id,
       title: 'The graph of y = (x squared minus 1) over (x plus 1), with an open circle on it',
-      desc: 'A straight line that slopes up to the right. It has one open circle on it, at the point (-1, -2). An open circle marks a point that is not part of the graph.',
+      desc: 'A straight line that slopes up to the right. It has one open circle on it, at the point (-1, -2).',
     });
   },
 

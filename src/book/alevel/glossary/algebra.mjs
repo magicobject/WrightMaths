@@ -804,7 +804,7 @@ export const TERMS = [
     term: 'cancel',
     strand: 'al-algebra',
     level: 'Y2',
-    def: 'To divide the top and the bottom of a fraction by the same factor, which leaves the value of the fraction unchanged.',
+    def: 'To divide the top and the bottom of a fraction by the same non-zero factor, which leaves the value of the fraction unchanged.',
     example: ['{m:frac(6, 8)=frac(2*3, 2*4)=frac(3, 4)}: the factor 2 is cancelled.', '{m:frac((x-3)(x+3), (x+3)(x-2))=frac(x-3, x-2)}: the factor {m:(x+3)} is cancelled, for {m:x != -3}.'],
     watch: 'Only a factor can be cancelled, never a term. In {m:frac(x+3, x+5)} the x is added, so it is a term, and {m:frac(x+3, x+5)} is not {m:frac(3, 5)}.',
     see: ['algebraic-fraction', 'excluded-value'],
@@ -830,7 +830,7 @@ export const TERMS = [
     example: ['For {m:frac(1, 4)} and {m:frac(1, 6)} it is 12.', 'For {m:frac(1, x(x+1))} and {m:frac(1, (x+1)^2)} it is {m:x(x+1)^2}.'],
     watch: 'A common denominator that is not the lowest still works, but the working is longer and the answer may need cancelling.',
     see: ['algebraic-fraction', 'repeated-factor'],
-    aka: ['LCD', 'common denominator', 'common bottom'],
+    aka: ['LCD', 'common bottom'],
   },
   {
     id: 'repeated-factor',
