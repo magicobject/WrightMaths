@@ -1,0 +1,1160 @@
+<main class="book strand-al-algebra" data-book-page="topic" data-topic="graphs-polynomials">
+<section class="hero book-hero">
+  <div class="wrap" style="grid-template-columns:1fr;">
+    <div>
+      <span class="eyebrow">Algebra &middot; Year 1</span>
+      <h1>Graphs of polynomials and reciprocals</h1>
+      <p class="lead">A sketch is a quick drawing that shows the shape of a graph and the points that matter. You do not need a table of values. This page shows you how to sketch a cubic or a quartic from its factors. You find where it crosses or touches the x-axis, where it meets the y-axis, and what its two ends do. Then you meet the graphs of {m:frac(a, x)} and {m:frac(a, x^2)}, which have asymptotes: lines they get closer and closer to but never touch. Last, you find where two graphs meet by solving their equations together.</p>
+      <p class="where-use"><b>Where you will use this:</b> in Transformations of graphs, which moves and stretches the graphs you sketch here. It also helps in Differentiation, where you find the exact turning points that a sketch only shows roughly. Any question that says &ldquo;sketch the curve&rdquo; uses the four facts on this page.</p>
+      <p class="progress-line" data-topic-progress aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">A-level Maths Book</a> <span aria-hidden="true">/</span> <span>Graphs of polynomials and reciprocals</span></nav>
+    {prereqs}
+    {words}
+    <div class="key"><p>This page uses the factor theorem, factorised cubics and quartics, and solving a quadratic by factorising. The warm-up shows you where to look if you have forgotten any of it.</p></div>
+    <div class="key"><p><b>How to type your answers.</b> A list of x-values is typed like 1 or 2 or 3. A point is typed as a pair with x first, like (2, 5). An equation is typed like y=2(x+1)(x-3)^2 or y=6/x, with ^ for a power.</p></div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Warm-up: what do you remember from earlier?</h2>
+    <p class="intro">Quick warm-up. No marks. A wrong answer shows where to look.</p>
+    <p><a href="#s-1-the-ends-of-a-graph-and-the-y-intercep">Skip to the lesson</a></p>
+    <div class="q" data-answers="24" data-mode="value">
+      <p class="qtext">Work out {m:(-2)*3*(-4)}.</p>
+      <ol class="ladder"><li>Multiply the first two numbers. Then multiply the result by the third.</li><li>{m:(-2)*3=-6}. Now work out {m:-6*(-4)}.</li></ol>
+      <ul class="wrong"><li data-if="-24">You made the answer negative. Two of the three numbers are negative, and a negative times a negative is positive.</li></ul>
+      <div class="solution"><p>{m:(-2)*3=-6}, and {m:-6*(-4)=24}. The two negative numbers cancel, so the answer is positive.</p></div>
+    </div>
+    <div class="q" data-answers="3 or -5" data-mode="value">
+      <p class="qtext">Solve {m:(x-3)(x+5)=0}. Type your answers like 1 or 2.</p>
+      <ol class="ladder"><li>One of the two brackets must be 0.</li><li>{m:x-3=0} gives one solution. {m:x+5=0} gives the other.</li></ol>
+      <ul class="wrong"><li data-if="-3 or 5">You copied the numbers from the brackets with the signs as they are. Each bracket must equal 0: {m:x-3=0} gives {m:x=3}.</li></ul>
+      <div class="solution"><p>{m:x-3=0} gives {m:x=3}. {m:x+5=0} gives {m:x=-5}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Work out {m:frac(8, (-2)^2)}.</p>
+      <ol class="ladder"><li>Square the bottom first.</li><li>A negative number squared is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">You worked out {m:(-2)^2} as {m:-4}. A negative number squared is positive: {m:(-2)^2=4}.</li>
+        <li data-if="-4">You did not square the bottom. You divided by {m:-2}. Square it first.</li>
+      </ul>
+      <div class="solution"><p>{m:(-2)^2=4}, and {m:8/4=2}.</p></div>
+    </div>
+    <details class="recap"><summary>Quick recap of earlier topics (skip it if you are confident)</summary>
+    <div class="q" data-answers="(x-3)(x+2);(x+2)(x-3)" data-mode="exact">
+      <p class="qtext">Factorise {m:x^2-x-6}. Type it like (x+1)(x+2).</p>
+      <ol class="ladder"><li>Find two numbers that multiply to {m:-6} and add to {m:-1}.</li><li>Try {m:-3} and 2.</li></ol>
+      <ul class="wrong"><li data-if="(x+3)(x-2);(x-2)(x+3)">Expand it to check. {m:(x+3)(x-2)=x^2+x-6}. The middle term should be {m:-x}, so the numbers must add to {m:-1}.</li></ul>
+      <div class="solution"><p>{m:-3*2=-6} and {m:-3+2=-1}. So {m:x^2-x-6=(x-3)(x+2)}.</p></div>
+    </div>
+    <div class="q" data-answers="0.5" data-mode="value">
+      <p class="qtext">Solve {m:frac(5, x)=10}.</p>
+      <ol class="ladder"><li>Multiply both sides by x.</li><li>You get {m:5=10x}. Divide both sides by 10.</li></ol>
+      <ul class="wrong"><li data-if="2">You worked out {m:10/5}. After multiplying by x you have {m:5=10x}, so {m:x=5/10}.</li></ul>
+      <div class="solution"><p>{m:5=10x}, so {m:x=frac(5, 10)=0.5}. Check: {m:frac(5, 0.5)=10}.</p></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>1. The ends of a graph, and the y-intercept</h2>
+    <p>A {term:polynomial} is a sum of powers of x, such as {m:x^3-5x^2+2}. When x is very large, the highest power takes over. Try {m:x=100} in {m:y=x^3-5x^2+2}. The term {m:x^3} is 1&nbsp;000&nbsp;000 and the term {m:5x^2} is only 50&nbsp;000. The first is 20 times bigger. So far from the origin, the graph looks like the graph of {m:x^3}.</p>
+    <p>The {term:leading-term|leading term} is the term with the highest power of x. It decides the {term:end-behaviour|end behaviour}: whether the left end and the right end of the graph go up or down.</p>
+    <figure class="figure-lg">{fig:graphs-polynomials-ends-odd}<figcaption>Look at the two curves. The solid curve has a positive {m:x^3} term. It starts at the bottom left and ends at the top right. The dashed curve has a negative {m:x^3} term. It starts at the top left and ends at the bottom right. An odd power gives two ends that point in opposite directions.</figcaption></figure>
+    <figure class="figure-lg">{fig:graphs-polynomials-ends-even}<figcaption>Look at the two curves. The solid curve has a positive {m:x^4} term, and both ends go up. The dashed curve has a negative {m:x^4} term, and both ends go down. An even power gives two ends that point the same way.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> look at the leading term. Two things decide the ends: the power (odd or even) and the sign of its number.</p>
+      <ul class="tick">
+        <li>Odd power, positive number: the graph starts at the bottom left and ends at the top right.</li>
+        <li>Odd power, negative number: the graph starts at the top left and ends at the bottom right.</li>
+        <li>Even power, positive number: both ends go up.</li>
+        <li>Even power, negative number: both ends go down.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: the ends of a graph</h3>
+      <p>Describe the ends of {m:y=-2x^4+x^2-5}.</p>
+      <ol class="steps">
+        <li>The highest power is 4, so the leading term is {m:-2x^4}.</li>
+        <li>The power 4 is even, so both ends point the same way.</li>
+        <li>The number {m:-2} is negative, so both ends go down.</li>
+      </ol>
+      <!-- No figure: the dashed curve in the second picture above shows both ends going down. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the highest power is not written first</h3>
+      <p>Describe the ends of {m:y=5-x^3}.</p>
+      <ol class="steps">
+        <li>Put the terms in order of power: {m:y=-x^3+5}. The leading term is {m:-x^3}.</li>
+        <li>The power 3 is odd, so the two ends point in opposite directions.</li>
+        <li>The number {m:-1} is negative, so the graph starts at the top left and ends at the bottom right.</li>
+      </ol>
+      <!-- No figure: the dashed curve in the first picture above has this shape. -->
+    </div>
+    <p>The {term:y-intercept} is where the graph meets the y-axis. At that point {m:x=0}. For an expanded polynomial, the y-intercept is the constant term. For a factorised polynomial, put {m:x=0} into every bracket and multiply the numbers you get.</p>
+    <div class="worked">
+      <h3>Worked example: the y-intercept of a factorised cubic</h3>
+      <p>Find the y-intercept of {m:y=(x+2)(x-1)(x-3)}.</p>
+      <ol class="steps">
+        <li>Put {m:x=0} into each bracket: {m:(0+2)=2}, {m:(0-1)=-1} and {m:(0-3)=-3}.</li>
+        <li>Multiply: {m:2*(-1)*(-3)=6}.</li>
+        <li>The y-intercept is {m:(0, 6)}.</li>
+      </ol>
+      <!-- No figure: this curve is drawn in the next lesson, with the y-intercept marked. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: the leading term of a factorised cubic</h3>
+      <p>Describe the ends of {m:y=(2-x)(x+1)^2}.</p>
+      <ol class="steps">
+        <li>Multiply the x terms from each bracket. The first bracket gives {m:-x}. The other two give {m:x} and {m:x}.</li>
+        <li>The leading term is {m:(-x)*x*x=-x^3}.</li>
+        <li>The power 3 is odd and the number is negative, so the graph starts at the top left and ends at the bottom right.</li>
+      </ol>
+      <!-- No figure: this curve is drawn in the next lesson. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the y-intercept of {m:y=(x-4)(x+1)(x+3)}.</p>
+      <ol class="steps">
+        <li>Put {m:x=0} into each bracket. The numbers are {m:-4}, 1 and 3.</li>
+        <li>Multiply the first two: {m:(-4)*1} = <span class="blank" data-answers="-4">___</span>.</li>
+        <li>Multiply by the third: the y-coordinate is <span class="blank" data-answers="-12">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:(-4)*1*3=-12}. The y-intercept is {m:(0, -12)}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: the ends and the y-intercept</h2>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these describes the ends of the graph of {m:y=x^3-6x+2}?</p>
+      <ul class="options">
+        <li data-correct>The left end goes down and the right end goes up</li>
+        <li data-why="That is the pattern for a negative x cubed term. This graph has a positive x cubed term, so it is the other way round.">The left end goes up and the right end goes down</li>
+        <li data-why="Two ends that point the same way need an even power. The highest power here is 3, which is odd.">Both ends go up</li>
+      </ul>
+      <ol class="ladder"><li>Find the leading term. It is the term with the highest power.</li><li>Is the power odd or even? Is the number in front positive or negative?</li></ol>
+      <div class="solution"><p>The leading term is {m:x^3}. The power 3 is odd, so the ends point in opposite directions. The number in front is positive, so the graph starts at the bottom left and ends at the top right.</p></div>
+    </div>
+    <div class="q" data-answers="-40" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=(x+4)(x-2)(x+5)} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>The numbers are 4, {m:-2} and 5. Multiply them.</li></ol>
+      <ul class="wrong">
+        <li data-if="40">You used 2 instead of {m:-2}. At {m:x=0} the bracket {m:(x-2)} is {m:-2}.</li>
+        <li data-if="7">You added the three numbers. The brackets are multiplied, so multiply the numbers.</li>
+      </ul>
+      <div class="solution"><p>At {m:x=0} the brackets are 4, {m:-2} and 5. {m:4*(-2)*5=-40}. The graph meets the y-axis at {m:(0, -40)}.</p></div>
+    </div>
+    <div class="q" data-answers="-24" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=3(x-1)(x+2)(x+4)} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>Do not forget the 3 in front. It multiplies everything.</li></ol>
+      <ul class="wrong"><li data-if="-8">You left out the 3 in front. The 3 multiplies the whole expression.</li></ul>
+      <div class="solution"><p>{m:3*(-1)*2*4=-24}. The graph meets the y-axis at {m:(0, -24)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these describes the ends of the graph of {m:y=4-x^4}?</p>
+      <ul class="options">
+        <li data-correct>Both ends go down</li>
+        <li data-why="The leading term is minus x to the power 4, not the number 4. The minus sign makes both ends go down.">Both ends go up</li>
+        <li data-why="Ends that point in opposite directions need an odd power. The highest power here is 4, which is even.">The left end goes up and the right end goes down</li>
+      </ul>
+      <ol class="ladder"><li>Write the terms in order of power: {m:y=-x^4+4}.</li><li>The leading term is {m:-x^4}.</li></ol>
+      <div class="solution"><p>The leading term is {m:-x^4}. The power 4 is even, so both ends point the same way. The number is negative, so both ends go down.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Look at {m:y=(3-x)(x+1)(x+2)}. What happens to y when x is very large and positive?</p>
+      <ul class="options">
+        <li data-correct>y is very large and negative</li>
+        <li data-why="Check the sign of the first bracket. When x is large and positive, 3 minus x is negative, and the other two brackets are positive.">y is very large and positive</li>
+        <li data-why="A polynomial does not settle near zero. When x is very large, the brackets are all large, so the product is very large.">y gets close to 0</li>
+      </ul>
+      <ol class="ladder"><li>Find the leading term. The first bracket gives {m:-x}.</li><li>The leading term is {m:-x^3}.</li></ol>
+      <div class="solution"><p>The leading term is {m:(-x)*x*x=-x^3}. The power is odd and the number is negative, so the right end goes down. For large positive x, y is very large and negative.</p></div>
+    </div>
+    <div class="q" data-answers="-7" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=x^3-5x^2+2x-7} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into the equation.</li><li>Every term with an x becomes 0.</li></ol>
+      <ul class="wrong"><li data-if="7">The constant term is {m:-7}. Keep its sign.</li></ul>
+      <div class="solution"><p>At {m:x=0} only the constant term is left. The y-intercept is {m:(0, -7)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>2. Sketching a cubic from its factors</h2>
+    <p>A {term:sketch} shows the shape of a graph and the points that matter. It is not drawn to scale, and you do not plot a table of values. For a {term:cubic} written in factors you need four facts.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the four facts for a sketch.</p>
+      <ul class="tick">
+        <li><b>The roots.</b> Set each bracket to 0. Mark each point on the x-axis.</li>
+        <li><b>Cross or touch.</b> Look at the power of each bracket. Power 1: the graph crosses the axis. Power 2: it touches the axis and turns back. Power 3: it crosses, and the gradient is 0 at the root. This number is the {term:multiplicity}.</li>
+        <li><b>The y-intercept.</b> Put {m:x=0} into every bracket and multiply.</li>
+        <li><b>The ends.</b> Multiply the x terms of the brackets to find the leading term.</li>
+      </ul>
+    </div>
+    <p>Then draw one smooth curve through the points. Label the coordinates you found. The turning points between the roots are drawn roughly. A sketch does not need their exact position. You find that with Differentiation.</p>
+    <div class="worked">
+      <h3>Worked example: a cubic with three different roots</h3>
+      <p>Sketch {m:y=(x+2)(x-1)(x-3)}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x+2=0}, {m:x-1=0} and {m:x-3=0} give {m:x=-2}, {m:x=1} and {m:x=3}.</li>
+        <li>Each bracket appears once, so the graph crosses the x-axis at all three points.</li>
+        <li>y-intercept: {m:2*(-1)*(-3)=6}, so {m:(0, 6)}.</li>
+        <li>Ends: the leading term is {m:x*x*x=x^3}, which is positive. The graph starts at the bottom left and ends at the top right.</li>
+        <li>Draw it: start low on the left, cross at {m:-2}, rise to a high point a little left of the y-axis, come down through {m:(0, 6)}, cross at 1, dip, cross at 3 and keep rising.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-three}<figcaption>Look at the three marked points on the x-axis. The curve crosses the axis at each of them. It meets the y-axis at {m:(0, 6)}.</figcaption></figure>
+    </div>
+    <p>A bracket that appears twice is a {term:repeated-root|repeated root}. The graph touches the x-axis there. It does not cross.</p>
+    <div class="worked">
+      <h3>Worked example: a cubic with a repeated root</h3>
+      <p>Sketch {m:y=(x+3)(x-1)^2}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=-3} and {m:x=1}.</li>
+        <li>The bracket {m:(x+3)} appears once, so the graph crosses at {m:-3}. The bracket {m:(x-1)} is squared, so the graph touches the axis at 1.</li>
+        <li>y-intercept: {m:3*(-1)^2=3}, so {m:(0, 3)}.</li>
+        <li>Ends: the leading term is {m:x^3}, which is positive. The graph starts at the bottom left and ends at the top right.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-touch}<figcaption>Look at the point {m:(1, 0)}. The curve comes down to the x-axis, touches it and turns back up. At {m:(-3, 0)} it crosses.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a cubic that ends at the bottom right</h3>
+      <p>Sketch {m:y=(2-x)(x+1)^2}.</p>
+      <ol class="steps">
+        <li>Roots: {m:2-x=0} gives {m:x=2}. {m:x+1=0} gives {m:x=-1}.</li>
+        <li>The bracket {m:(x+1)} is squared, so the graph touches the axis at {m:-1}. The bracket {m:(2-x)} appears once, so it crosses at 2.</li>
+        <li>y-intercept: {m:2*1^2=2}, so {m:(0, 2)}.</li>
+        <li>Ends: the leading term is {m:-x^3}. The graph starts at the top left and ends at the bottom right.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-negative}<figcaption>Look at the left end and the right end. The left end is high and the right end is low, because the {m:x^3} term is negative. The curve touches the axis at {m:-1} and crosses at 2.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a bracket that appears three times</h3>
+      <p>Sketch {m:y=(x-1)^3}.</p>
+      <ol class="steps">
+        <li>The only root is {m:x=1}. The bracket appears three times, which is an odd number, so the graph crosses the axis.</li>
+        <li>With a power of 3 the gradient is 0 at the root. The graph levels out for a moment and keeps going the same way. This is a {term:point-of-inflection}.</li>
+        <li>y-intercept: {m:(-1)^3=-1}, so {m:(0, -1)}.</li>
+        <li>Ends: the leading term is {m:x^3}, which is positive. The graph starts at the bottom left and ends at the top right.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-triple}<figcaption>Look at the point {m:(1, 0)}. The gradient is 0 there. The curve levels out, crosses the x-axis and keeps going the same way. It does not turn back.</figcaption></figure>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> the power of a bracket tells you what the graph does at its root.</p>
+      <ul class="tick">
+        <li>An odd power (1 or 3): the graph crosses the x-axis.</li>
+        <li>An even power (2 or 4): the graph touches the x-axis and turns back.</li>
+        <li>A power of 2 or more makes the graph level with the axis at the root. With 2 it touches and turns back. With 3 the gradient is 0 and it crosses.</li>
+      </ul>
+    </div>
+    <p>If the polynomial is not factorised, factorise it first. Take out any common factor, then factorise what is left.</p>
+    <div class="worked">
+      <h3>Worked example: from an expanded cubic</h3>
+      <p>Find the roots and the y-intercept of {m:y=x^3-x^2-6x}.</p>
+      <ol class="steps">
+        <li>Every term has an x. Take it out: {m:y=x(x^2-x-6)}.</li>
+        <li>Factorise the quadratic: {m:x^2-x-6=(x-3)(x+2)}. So {m:y=x(x-3)(x+2)}.</li>
+        <li>The roots are {m:x=0}, {m:x=3} and {m:x=-2}. Each bracket appears once, so the graph crosses at all three.</li>
+        <li>The constant term is 0, so the y-intercept is {m:(0, 0)}. This is the root at {m:x=0}.</li>
+      </ol>
+      <!-- No figure: the curve has the same shape as the first cubic in this lesson, with different roots. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: brackets with a number in front of x</h3>
+      <p>Sketch {m:y=x(2x-1)(x+2)}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=0}. Then {m:2x-1=0} gives {m:x=0.5}, and {m:x+2=0} gives {m:x=-2}. Each bracket appears once, so the graph crosses at all three.</li>
+        <li>y-intercept: put {m:x=0} into the first bracket and the product is 0, so {m:(0, 0)}. This is the root {m:x=0}.</li>
+        <li>Ends: multiply the x terms: {m:x*2x*x=2x^3}. The number 2 is positive, so the graph starts at the bottom left and ends at the top right.</li>
+        <li>The 2 in {m:(2x-1)} does not make the root 2. It makes the root {m:x=0.5}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-cubic-nonmonic}<figcaption>Look at the three marked points on the x-axis. The curve crosses at each one. The root at {m:(0.5, 0)} is close to the one at the origin, so the dip between them is small.</figcaption></figure>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the facts for {m:y=(x+1)(x-4)^2}.</p>
+      <ol class="steps">
+        <li>The bracket {m:(x-4)} is squared, so the graph touches the x-axis at x = <span class="blank" data-answers="4">___</span>.</li>
+        <li>The bracket {m:(x+1)} appears once, so the graph crosses at {m:x=-1}.</li>
+        <li>At {m:x=0} the y-value is {m:1*(-4)^2} = <span class="blank" data-answers="16">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The graph touches at {m:x=4}, crosses at {m:x=-1} and meets the y-axis at {m:(0, 16)}. The ends are the same as {m:x^3}: bottom left to top right.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: sketching a cubic</h2>
+    <div class="q" data-answers="-5 or -1 or 4" data-mode="value">
+      <p class="qtext">Find the x-coordinates of the points where {m:y=(x-4)(x+1)(x+5)} meets the x-axis. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>Set each bracket equal to 0.</li><li>{m:x-4=0} gives one root. Do the same for the other two.</li></ol>
+      <ul class="wrong"><li data-if="-4 or 1 or 5">You copied the numbers from the brackets with the signs as they are. {m:x-4=0} gives {m:x=4}, and {m:x+1=0} gives {m:x=-1}.</li></ul>
+      <div class="solution"><p>{m:x-4=0} gives {m:x=4}. {m:x+1=0} gives {m:x=-1}. {m:x+5=0} gives {m:x=-5}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The curve {m:y=(x+1)^2(x-3)} is sketched. Which statement is true?</p>
+      <ul class="options">
+        <li data-correct>It touches the x-axis at x = &minus;1 and crosses it at x = 3</li>
+        <li data-why="The squared bracket is (x + 1), so the touching point is x = &minus;1, not 3. The bracket (x &minus; 3) appears once, so the curve crosses at 3.">It touches the x-axis at x = 3 and crosses it at x = &minus;1</li>
+        <li data-why="The bracket (x &minus; 3) appears once, which is an odd number of times, so the curve crosses the axis at x = 3.">It touches the x-axis at both x = &minus;1 and x = 3</li>
+      </ul>
+      <ol class="ladder"><li>Find the bracket that is squared. The graph touches the axis at its root.</li><li>A bracket that appears once gives a crossing.</li></ol>
+      <div class="solution"><p>The squared bracket is {m:(x+1)}, so the curve touches the axis at {m:x=-1}. The bracket {m:(x-3)} appears once, so the curve crosses at {m:x=3}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many different points does {m:y=(x-2)^2(x+1)} have on the x-axis?</p>
+      <ol class="ladder"><li>Find each root.</li><li>A repeated root is one point on the axis.</li></ol>
+      <ul class="wrong"><li data-if="3">You counted the squared bracket twice. A repeated root is one point on the axis, where the graph touches it.</li></ul>
+      <div class="solution"><p>The roots are {m:x=2} and {m:x=-1}. The root 2 is repeated, but it is one point. So there are 2 points.</p></div>
+    </div>
+    <div class="q" data-answers="-20" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=(x-5)(x+2)^2} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>The squared bracket is {m:2^2}.</li></ol>
+      <ul class="wrong">
+        <li data-if="20">You used 5 instead of {m:-5}. At {m:x=0} the bracket {m:(x-5)} is {m:-5}.</li>
+        <li data-if="-10">You did not square the second bracket. {m:(0+2)^2=4}, not 2.</li>
+      </ul>
+      <div class="solution"><p>{m:(0-5)=-5} and {m:(0+2)^2=4}. {m:-5*4=-20}. The graph meets the y-axis at {m:(0, -20)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">A cubic crosses the x-axis at x = &minus;2, touches it at x = 3, and its right end goes up. Which could be its equation?</p>
+      <ul class="options">
+        <li data-correct>The curve y = (x + 2)(x &minus; 3)&sup2;</li>
+        <li data-why="This curve touches at x = &minus;2 and crosses at x = 3. The squared bracket is on the wrong factor.">The curve y = (x + 2)&sup2;(x &minus; 3)</li>
+        <li data-why="The brackets give roots at x = 2 and x = &minus;3. The signs are the wrong way round.">The curve y = (x &minus; 2)(x + 3)&sup2;</li>
+      </ul>
+      <ol class="ladder"><li>The touching root has a squared bracket.</li><li>The root x = &minus;2 comes from the bracket (x + 2).</li></ol>
+      <div class="solution"><p>The root {m:x=-2} comes from {m:(x+2)}, which appears once, so it crosses. The root {m:x=3} comes from {m:(x-3)}, which is squared, so it touches. The leading term is {m:x^3}, so the right end goes up.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">Find the largest x-coordinate of a point where {m:y=x^3-x^2-6x} meets the x-axis.</p>
+      <ol class="ladder"><li>Take out the common factor x.</li><li>Factorise the quadratic that is left.</li></ol>
+      <ul class="wrong"><li data-if="-2">That is the smallest root. You need the largest.</li></ul>
+      <div class="solution"><p>{m:x^3-x^2-6x=x(x-3)(x+2)}. The roots are {m:-2}, 0 and 3. The largest is 3.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">What does the graph of {m:y=(x-1)^3} do at x = 1?</p>
+      <ul class="options">
+        <li data-correct>It crosses the x-axis, with gradient 0 there</li>
+        <li data-why="Only an even power makes the graph turn back. The bracket has the power 3, which is odd, so the graph crosses.">It touches the x-axis and turns back</li>
+        <li data-why="At x = 1 the bracket is 0, so y = 0. The graph does meet the x-axis there.">It does not meet the x-axis at x = 1</li>
+      </ul>
+      <ol class="ladder"><li>Is the power odd or even?</li><li>An odd power crosses.</li></ol>
+      <div class="solution"><p>The power 3 is odd, so the graph crosses the axis. A power of 3 also makes the gradient 0 at the root, and the graph keeps going the same way. This is a point of inflection. See the figure in this lesson.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>3. Sketching a quartic from its factors</h2>
+    <p>A {term:quartic} has degree 4. It has up to four roots, and its two ends point the same way. You use the same four facts as for a cubic: the roots, cross or touch, the y-intercept and the ends. The ends come from the leading term, which is an even power.</p>
+    <div class="worked">
+      <h3>Worked example: a quartic with four different roots</h3>
+      <p>Sketch {m:y=(x+3)(x+1)(x-2)(x-4)}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=-3}, {m:x=-1}, {m:x=2} and {m:x=4}. Each bracket appears once, so the graph crosses at all four.</li>
+        <li>y-intercept: {m:3*1*(-2)*(-4)=24}, so {m:(0, 24)}.</li>
+        <li>Ends: the leading term is {m:x^4}, which is positive. Both ends go up.</li>
+        <li>Draw it: come down from the top left, cross at {m:-3}, dip, cross at {m:-1}, rise past {m:(0, 24)}, cross at 2, dip, cross at 4 and rise.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-quartic-four}<figcaption>Look at the four marked points on the x-axis. The curve crosses at each one, so it makes the shape of the letter W. Both ends go up.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a quartic with a repeated root</h3>
+      <p>Sketch {m:y=(x+2)^2(x-1)(x-3)}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=-2}, {m:x=1} and {m:x=3}.</li>
+        <li>The bracket {m:(x+2)} is squared, so the graph touches the axis at {m:-2}. The other two brackets appear once, so it crosses at 1 and at 3.</li>
+        <li>y-intercept: {m:2^2*(-1)*(-3)=12}, so {m:(0, 12)}.</li>
+        <li>Ends: the leading term is {m:x^4}, which is positive. Both ends go up.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-quartic-double}<figcaption>Look at the point {m:(-2, 0)}. The curve comes down to the axis, touches it and turns back up. At {m:(1, 0)} and {m:(3, 0)} it crosses.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: two repeated roots</h3>
+      <p>Sketch {m:y=(x+1)^2(x-2)^2}.</p>
+      <ol class="steps">
+        <li>Roots: {m:x=-1} and {m:x=2}. Both brackets are squared, so the graph touches the axis at both.</li>
+        <li>y-intercept: {m:1^2*(-2)^2=4}, so {m:(0, 4)}.</li>
+        <li>Ends: the leading term is {m:x^4}. Both ends go up.</li>
+        <li>A square is never negative, so the product of two squares is never negative. The graph stays on or above the x-axis.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-quartic-two}<figcaption>Look at the two marked points on the x-axis. The curve touches the axis at both and never goes below it. Between them it makes a small hump above the axis.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from an expanded quartic</h3>
+      <p>Sketch {m:y=x^4-4x^2}.</p>
+      <ol class="steps">
+        <li>Take out the common factor {m:x^2}: {m:y=x^2(x^2-4)}.</li>
+        <li>Factorise {m:x^2-4=(x-2)(x+2)}. So {m:y=x^2(x-2)(x+2)}.</li>
+        <li>Roots: {m:x=0}, {m:x=2} and {m:x=-2}. The factor {m:x^2} is squared, so the graph touches the axis at 0. It crosses at 2 and at {m:-2}.</li>
+        <li>y-intercept: the constant term is 0, so {m:(0, 0)}. Ends: the leading term is {m:x^4}, so both ends go up.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-quartic-flat}<figcaption>Look at the origin. The curve rises to touch the x-axis there from below, then goes back down. It crosses the axis at {m:-2} and at 2.</figcaption></figure>
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> a minus sign in front of the whole expression reflects the graph in the x-axis. This flips it upside down.</p>
+      <ul class="tick">
+        <li>The roots stay where they are, and the graph still touches or crosses at each one.</li>
+        <li>The ends change: {m:y=-x^2(x-2)(x+2)} has both ends going down, because its leading term is {m:-x^4}.</li>
+        <li>The y-intercept changes sign.</li>
+      </ul>
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find the facts for {m:y=(x-1)^2(x+3)(x-4)}.</p>
+      <ol class="steps">
+        <li>The bracket {m:(x-1)} is squared, so the graph touches the x-axis at x = <span class="blank" data-answers="1">___</span>.</li>
+        <li>The other two brackets appear once, so the graph crosses at {m:x=-3} and {m:x=4}.</li>
+        <li>At {m:x=0} the y-value is {m:(-1)^2*3*(-4)} = <span class="blank" data-answers="-12">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>The graph touches at {m:x=1}, crosses at {m:x=-3} and {m:x=4}, and meets the y-axis at {m:(0, -12)}. The leading term is {m:x^4}, so both ends go up.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: sketching a quartic</h2>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">How many different points does {m:y=(x+1)^2(x-3)^2} have on the x-axis?</p>
+      <ol class="ladder"><li>Find each root.</li><li>A squared bracket gives one point.</li></ol>
+      <ul class="wrong"><li data-if="4">You counted each squared bracket twice. A repeated root is one point, where the graph touches the axis.</li></ul>
+      <div class="solution"><p>The roots are {m:x=-1} and {m:x=3}. Each one is a touching point. So there are 2 points on the x-axis.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these describes the graph of {m:y=(x-1)(x-2)(x-3)(x-4)}?</p>
+      <ul class="options">
+        <li data-correct>It crosses the x-axis four times, and both ends go up</li>
+        <li data-why="A quartic has an even power as its leading term. The x to the power 4 term is positive, so both ends go up, not opposite ways.">It crosses the x-axis four times, with the left end down and the right end up</li>
+        <li data-why="None of the brackets is squared, so the graph never touches the axis and turns back. It crosses at every root.">It touches the x-axis at two of its roots</li>
+      </ul>
+      <ol class="ladder"><li>Is any bracket squared?</li><li>Find the leading term to decide the ends.</li></ol>
+      <div class="solution"><p>There are four different brackets, each appearing once, so the graph crosses four times. The leading term is {m:x^4}, which is positive, so both ends go up.</p></div>
+    </div>
+    <div class="q" data-answers="-30" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=(x+1)(x-2)(x+3)(x+5)} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>The numbers are 1, {m:-2}, 3 and 5. Multiply them.</li></ol>
+      <ul class="wrong">
+        <li data-if="30">You used 2 instead of {m:-2}. At {m:x=0} the bracket {m:(x-2)} is {m:-2}.</li>
+        <li data-if="7">You added the four numbers. The brackets are multiplied, so multiply the numbers.</li>
+      </ul>
+      <div class="solution"><p>{m:1*(-2)*3*5=-30}. The graph meets the y-axis at {m:(0, -30)}.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 0 or 3" data-mode="value">
+      <p class="qtext">Find the x-coordinates of the points where {m:y=x^4-9x^2} meets the x-axis. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>Take out the common factor {m:x^2}.</li><li>Factorise what is left as a difference of two squares.</li></ol>
+      <ul class="wrong"><li data-if="-3 or 3">You left out {m:x=0}. The factor {m:x^2} gives the root {m:x=0}, which the graph touches.</li></ul>
+      <div class="solution"><p>{m:x^4-9x^2=x^2(x^2-9)=x^2(x-3)(x+3)}. The roots are {m:-3}, 0 and 3.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these describes the ends of the graph of {m:y=-2(x+1)^2(x-4)^2}?</p>
+      <ul class="options">
+        <li data-correct>Both ends go down</li>
+        <li data-why="The number &minus;2 in front is negative. It turns the whole graph upside down, so both ends go down.">Both ends go up</li>
+        <li data-why="The two squared brackets give an overall power of 4, which is even. Ends that point in opposite directions need an odd power.">The left end goes up and the right end goes down</li>
+      </ul>
+      <ol class="ladder"><li>Multiply the x terms: {m:x^2*x^2=x^4}.</li><li>Include the {m:-2} in front.</li></ol>
+      <div class="solution"><p>The leading term is {m:-2x^4}. The power is even and the number is negative, so both ends go down. The graph touches the axis at {m:-1} and at 4.</p></div>
+    </div>
+    <div class="q" data-answers="36" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=(x-2)^2(x+3)^2} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket, then square.</li><li>{m:(0-2)^2} and {m:(0+3)^2}.</li></ol>
+      <ul class="wrong"><li data-if="-6">You did not square the brackets. {m:(-2)^2=4} and {m:3^2=9}, so the answer is {m:4*9}.</li></ul>
+      <div class="solution"><p>{m:(-2)^2=4} and {m:3^2=9}. {m:4*9=36}. The graph meets the y-axis at {m:(0, 36)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>4. Reciprocal graphs</h2>
+    <p>The reciprocal of a number is 1 divided by it. A reciprocal graph divides a number by x. The equation is {m:y=frac(a, x)}, where a is a number that is not 0. Try {m:y=frac(6, x)}.</p>
+    <ul class="tick">
+      <li>When {m:x=1}, {m:y=6}. When {m:x=2}, {m:y=3}. When {m:x=6}, {m:y=1}.</li>
+      <li>As x gets bigger, y gets smaller and closer to 0. It never reaches 0.</li>
+      <li>As x gets closer to 0 from the positive side, y gets bigger and bigger.</li>
+      <li>When {m:x=0} you cannot divide by 0. So the graph has no point on the y-axis.</li>
+    </ul>
+    <p>The graph gets closer and closer to the two axes but never touches them. A line like this is an {term:asymptote}. The x-axis, {m:y=0}, is one. The y-axis, {m:x=0}, is the other. Here the asymptotes are the two axes themselves. Write their equations on your sketch. An asymptote that is not an axis is drawn as a dashed line, with its equation written beside it.</p>
+    <p>The graph has two separate pieces, called {term:branch|branches}. For negative x the values of y are negative, so the second branch is in the bottom left.</p>
+    <figure class="figure-lg">{fig:graphs-polynomials-recip-pos}<figcaption>Look at the two branches. The top right branch passes through {m:(1, 6)}, {m:(2, 3)} and {m:(6, 1)}. The bottom left branch passes through {m:(-2, -3)}. The two axes are the asymptotes {m:x=0} and {m:y=0}.</figcaption></figure>
+    <div class="worked">
+      <h3>Worked example: points on a reciprocal graph</h3>
+      <p>Find the y-value on {m:y=frac(6, x)} when {m:x=2}, when {m:x=6} and when {m:x=-2}.</p>
+      <ol class="steps">
+        <li>When {m:x=2}: {m:y=frac(6, 2)=3}.</li>
+        <li>When {m:x=6}: {m:y=frac(6, 6)=1}.</li>
+        <li>When {m:x=-2}: {m:y=frac(6, -2)=-3}. A positive divided by a negative is negative.</li>
+      </ol>
+      <!-- No figure: these points are marked on the picture above. -->
+    </div>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=frac(a, x)} has two branches and two asymptotes, {m:x=0} and {m:y=0}.</p>
+      <ul class="tick">
+        <li>If a is positive, the branches are in the top right and the bottom left.</li>
+        <li>If a is negative, the branches are in the top left and the bottom right.</li>
+        <li>The product {m:x*y} is always a. Doubling x halves y. We say y is {term:inversely-proportional|inversely proportional} to x.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a negative number on top</h3>
+      <p>Sketch {m:y=frac(-6, x)}.</p>
+      <ol class="steps">
+        <li>The number {m:-6} is negative, so the branches are in the top left and the bottom right.</li>
+        <li>When {m:x=2}: {m:y=frac(-6, 2)=-3}. When {m:x=-2}: {m:y=frac(-6, -2)=3}.</li>
+        <li>The asymptotes are {m:x=0} and {m:y=0}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-recip-neg}<figcaption>Look at the two branches. They are the branches of the first graph, but in the other two corners. The branch in the bottom right passes through {m:(2, -3)}. The branch in the top left passes through {m:(-2, 3)}.</figcaption></figure>
+    </div>
+    <p>Now look at {m:y=frac(a, x^2)}. The bottom is {m:x^2}, which is never negative. So y has the same sign as a for every x except 0. Both branches are on the same side of the x-axis. Also {m:(-x)^2=x^2}, so the left branch is the mirror image of the right branch in the y-axis.</p>
+    <figure class="figure-lg">{fig:graphs-polynomials-recip-sq}<figcaption>Look at the two branches of {m:y=frac(4, x^2)}. Both are above the x-axis. They pass through {m:(1, 4)} and {m:(-1, 4)}, and through {m:(2, 1)} and {m:(-2, 1)}. The y-axis is a line of symmetry.</figcaption></figure>
+    <div class="key">
+      <p><b>Key idea:</b> the graph of {m:y=frac(a, x^2)} also has the asymptotes {m:x=0} and {m:y=0}.</p>
+      <ul class="tick">
+        <li>If a is positive, both branches are above the x-axis.</li>
+        <li>If a is negative, both branches are below the x-axis.</li>
+        <li>The graph is symmetrical in the y-axis.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding a from a point</h3>
+      <p>The curve {m:y=frac(a, x)} passes through {m:(4, 3)}. Find a.</p>
+      <ol class="steps">
+        <li>Put the point into the equation: {m:3=frac(a, 4)}.</li>
+        <li>Multiply both sides by 4: {m:a=3*4=12}.</li>
+        <li>The curve is {m:y=frac(12, x)}.</li>
+      </ol>
+      <!-- No figure: the shape is the same as the first graph in this lesson, with a different number on top. -->
+    </div>
+    <div class="worked">
+      <h3>Worked example: finding a for an x squared graph</h3>
+      <p>The curve {m:y=frac(a, x^2)} passes through {m:(2, 5)}. Find a.</p>
+      <ol class="steps">
+        <li>Put the point into the equation: {m:5=frac(a, 2^2)=frac(a, 4)}.</li>
+        <li>Multiply both sides by 4: {m:a=5*4=20}.</li>
+        <li>The curve is {m:y=frac(20, x^2)}.</li>
+      </ol>
+      <!-- No figure: the shape is the same as the graph of y = 4 over x squared above. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>The curve is {m:y=frac(10, x)}. Find y when {m:x=5} and when {m:x=-2}.</p>
+      <ol class="steps">
+        <li>When {m:x=5}: {m:y=frac(10, 5)} = <span class="blank" data-answers="2">___</span>.</li>
+        <li>When {m:x=-2}: {m:y=frac(10, -2)} = <span class="blank" data-answers="-5">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:frac(10, 5)=2} and {m:frac(10, -2)=-5}. The second point is on the bottom left branch.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: reciprocal graphs</h2>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">The curve is {m:y=frac(12, x)}. Find y when {m:x=4}.</p>
+      <ol class="ladder"><li>Put {m:x=4} into the equation.</li><li>The top number is 12. Divide it by x.</li></ol>
+      <ul class="wrong">
+        <li data-if="48">You multiplied 12 by 4. The equation divides 12 by x.</li>
+        <li data-if="1/3;0.33">You worked out 4 divided by 12. The top number is 12, so divide 12 by 4.</li>
+      </ul>
+      <div class="solution"><p>{m:y=frac(12, 4)=3}.</p></div>
+    </div>
+    <div class="q" data-answers="4" data-mode="value">
+      <p class="qtext">The curve is {m:y=frac(-8, x)}. Find y when {m:x=-2}.</p>
+      <ol class="ladder"><li>Put {m:x=-2} into the equation.</li><li>A negative divided by a negative is positive.</li></ol>
+      <ul class="wrong"><li data-if="-4">You kept the minus sign. {m:-8} divided by {m:-2} is positive.</li></ul>
+      <div class="solution"><p>{m:y=frac(-8, -2)=4}. The point {m:(-2, 4)} is on the top left branch.</p></div>
+    </div>
+    <div class="q" data-answers="10" data-mode="value">
+      <p class="qtext">The curve {m:y=frac(a, x)} passes through the point {m:(2, 5)}. Find a.</p>
+      <ol class="ladder"><li>Put {m:x=2} and {m:y=5} into the equation.</li><li>You get {m:5=frac(a, 2)}. Multiply both sides by 2.</li></ol>
+      <ul class="wrong">
+        <li data-if="2.5">You worked out 5 divided by 2. Multiply both sides of {m:5=frac(a, 2)} by 2.</li>
+        <li data-if="7">You added the two coordinates. Multiply them: {m:a=x*y}.</li>
+      </ul>
+      <div class="solution"><p>{m:5=frac(a, 2)}, so {m:a=5*2=10}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which pair gives the equations of the two asymptotes of {m:y=frac(5, x)}?</p>
+      <ul class="options">
+        <li data-correct>x = 0 and y = 0</li>
+        <li data-why="The number 5 is the number on top. It does not move the asymptotes. The curve gets close to the axes, not to the lines x = 5 and y = 5.">x = 5 and y = 5</li>
+        <li data-why="There is a second asymptote. As x gets very large, y gets close to 0, so the line y = 0 is an asymptote too.">x = 0 only</li>
+      </ul>
+      <ol class="ladder"><li>What can x not be?</li><li>What number does y get close to when x is very large?</li></ol>
+      <div class="solution"><p>You cannot divide by 0, so the curve never reaches {m:x=0}. When x is very large, y is close to 0. The asymptotes are {m:x=0} and {m:y=0}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which description fits the graph of {m:y=frac(-3, x^2)}?</p>
+      <ul class="options">
+        <li data-correct>Both branches are below the x-axis</li>
+        <li data-why="That describes y = &minus;3 over x, with x to the power 1. Here the bottom is x squared, which is positive, so both branches are on the same side.">One branch in the top left and one in the bottom right</li>
+        <li data-why="The number on top is negative and x squared is positive, so y is negative for every x. The branches cannot be above the axis.">Both branches are above the x-axis</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:x^2} ever negative?</li><li>What sign is a negative number divided by a positive one?</li></ol>
+      <div class="solution"><p>{m:x^2} is positive for every x except 0. So y is {m:-3} divided by a positive number, which is negative. Both branches are below the x-axis.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">The curve is {m:y=frac(18, x^2)}. Find y when {m:x=-3}.</p>
+      <ol class="ladder"><li>Square x first.</li><li>{m:(-3)^2} is positive.</li></ol>
+      <ul class="wrong">
+        <li data-if="-2">You worked out {m:(-3)^2} as {m:-9}. A negative number squared is positive: {m:(-3)^2=9}.</li>
+        <li data-if="-6">You did not square x. The bottom is {m:x^2}, which is {m:(-3)^2=9}.</li>
+      </ul>
+      <div class="solution"><p>{m:y=frac(18, (-3)^2)=frac(18, 9)=2}.</p></div>
+    </div>
+    <div class="q" data-answers="12" data-mode="value">
+      <p class="qtext">The curve {m:y=frac(a, x^2)} passes through the point {m:(2, 3)}. Find a.</p>
+      <ol class="ladder"><li>Put {m:x=2} and {m:y=3} into the equation.</li><li>You get {m:3=frac(a, 4)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="6">You multiplied 3 by 2. The bottom is {m:x^2=4}, so multiply 3 by 4.</li>
+        <li data-if="3/4;0.75">You divided 3 by 4. Multiply both sides of {m:3=frac(a, 4)} by 4.</li>
+      </ul>
+      <div class="solution"><p>{m:3=frac(a, 2^2)=frac(a, 4)}, so {m:a=3*4=12}.</p></div>
+    </div>
+    <div class="q" data-answers="0" data-mode="value">
+      <p class="qtext">The curve is {m:y=frac(7, x)}. As x gets bigger and bigger, y gets closer and closer to which number?</p>
+      <ol class="ladder"><li>Try {m:x=100} and {m:x=1000}.</li><li>What happens when you divide 7 by a very large number?</li></ol>
+      <ul class="wrong"><li data-if="7">The number 7 is on the top. Dividing it by a huge number gives a tiny number, close to 0.</li></ul>
+      <div class="solution"><p>{m:frac(7, 100)=0.07} and {m:frac(7, 1000)=0.007}. The values get closer to 0. This is why {m:y=0} is an asymptote.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>5. Where two graphs meet</h2>
+    <p>At a {term:point-of-intersection|point where two graphs meet}, both graphs have the same x and the same y. So set the two expressions for y equal to each other. Solve for x. Then put each x back into one equation to find y.</p>
+    <div class="key">
+      <p><b>Key idea:</b> the steps for where two graphs meet.</p>
+      <ul class="tick">
+        <li>Write the two y-expressions equal to each other.</li>
+        <li>Rearrange so that one side is 0, then factorise and solve.</li>
+        <li>Put each x into the simpler equation to find y. Check in the other equation.</li>
+        <li>The number of solutions is the number of points. A sketch of both graphs shows how many to expect.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a reciprocal graph and a line</h3>
+      <p>Find where {m:y=frac(6, x)} meets {m:y=x+1}.</p>
+      <ol class="steps">
+        <li>Set the y-values equal: {m:frac(6, x)=x+1}.</li>
+        <li>Multiply by x. This is safe because x cannot be 0 on the curve: {m:6=x^2+x}.</li>
+        <li>Rearrange: {m:x^2+x-6=0}. Factorise: {m:(x+3)(x-2)=0}. So {m:x=-3} or {m:x=2}.</li>
+        <li>Put the values into {m:y=x+1}: {m:x=-3} gives {m:y=-2}, and {m:x=2} gives {m:y=3}.</li>
+        <li>Check in {m:y=frac(6, x)}: {m:frac(6, -3)=-2} and {m:frac(6, 2)=3}.</li>
+        <li>The graphs meet at {m:(-3, -2)} and {m:(2, 3)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-meet-recip}<figcaption>Look at the two marked points. The dashed line crosses the top right branch at {m:(2, 3)} and the bottom left branch at {m:(-3, -2)}. There are two solutions, and two points.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a cubic and a line</h3>
+      <p>Find where {m:y=x^3-4x} meets {m:y=-3x}.</p>
+      <ol class="steps">
+        <li>Set the y-values equal: {m:x^3-4x=-3x}.</li>
+        <li>Move everything to one side: {m:x^3-x=0}. Do not divide by x, because you would lose the solution {m:x=0}.</li>
+        <li>Factorise: {m:x(x^2-1)=x(x-1)(x+1)=0}. So {m:x=0}, {m:x=1} or {m:x=-1}.</li>
+        <li>Put the values into {m:y=-3x}: the y-values are 0, {m:-3} and 3.</li>
+        <li>The graphs meet at {m:(-1, 3)}, {m:(0, 0)} and {m:(1, -3)}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-meet-cubic}<figcaption>Look at the three marked points. The dashed line goes through the cubic three times, so there are three solutions.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: how many times do they meet?</h3>
+      <p>Show that {m:y=frac(8, x)} and {m:y=x^2} meet at one point only, and find it.</p>
+      <ol class="steps">
+        <li>On the left of the y-axis, {m:frac(8, x)} is negative and {m:x^2} is positive. So they cannot meet there.</li>
+        <li>Set the y-values equal: {m:frac(8, x)=x^2}. Multiply by x: {m:8=x^3}.</li>
+        <li>The only real number whose cube is 8 is 2. So {m:x=2}.</li>
+        <li>Then {m:y=2^2=4}. The graphs meet at {m:(2, 4)} only.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-meet-once}<figcaption>Look at the marked point {m:(2, 4)}. The bottom left branch stays below the x-axis, and the dashed curve stays above it, so they never meet on the left.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: a horizontal line</h3>
+      <p>Find where {m:y=frac(4, x^2)} meets {m:y=1}.</p>
+      <ol class="steps">
+        <li>Set the y-values equal: {m:frac(4, x^2)=1}.</li>
+        <li>Multiply by {m:x^2}: {m:4=x^2}.</li>
+        <li>So {m:x=2} or {m:x=-2}. Both have {m:x^2=4}.</li>
+        <li>The graphs meet at {m:(2, 1)} and {m:(-2, 1)}.</li>
+      </ol>
+      <!-- No new figure: the picture of y = 4 over x squared in lesson 4 shows both points. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>Find where {m:y=frac(2, x)} meets {m:y=x+1} for positive x.</p>
+      <ol class="steps">
+        <li>Set equal and multiply by x: {m:2=x^2+x}. So {m:x^2+x-2=0}.</li>
+        <li>Factorise: (x + 2)(x &minus; <span class="blank" data-answers="1">___</span>) = 0. The positive solution is {m:x=1}.</li>
+        <li>Put {m:x=1} into {m:y=x+1}. The y-value is <span class="blank" data-answers="2">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:x^2+x-2=(x+2)(x-1)}, so {m:x=1} or {m:x=-2}. At {m:x=1}, {m:y=2}. The point is {m:(1, 2)}. Check: {m:frac(2, 1)=2}.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: where two graphs meet</h2>
+    <div class="q" data-answers="2,5;2, 5" data-mode="exact">
+      <p class="qtext">The graphs of {m:y=frac(10, x)} and {m:y=x+3} meet at two points. Find the point with positive x. Type it like (4, 7).</p>
+      <ol class="ladder"><li>Set {m:frac(10, x)=x+3} and multiply by x.</li><li>Rearrange to {m:x^2+3x-10=0} and factorise.</li></ol>
+      <ul class="wrong">
+        <li data-if="5,2;5, 2">You gave the y-value first. A point is written with x first.</li>
+        <li data-if="-5,-2;-5, -2">That is the other point. The question asks for the point with positive x.</li>
+      </ul>
+      <div class="solution"><p>{m:10=x^2+3x}, so {m:x^2+3x-10=(x+5)(x-2)=0}. The positive solution is {m:x=2}. Then {m:y=2+3=5}. Check: {m:frac(10, 2)=5}. The point is {m:(2, 5)}.</p></div>
+    </div>
+    <div class="q" data-answers="-1 or 0 or 2" data-mode="value">
+      <p class="qtext">The graphs of {m:y=x^3-x^2} and {m:y=2x} meet. Find the x-coordinates of all the points where they meet. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>Set {m:x^3-x^2=2x} and move everything to one side.</li><li>Take out the factor x. Do not divide by x.</li></ol>
+      <ul class="wrong"><li data-if="-1 or 2">You divided by x and lost the solution {m:x=0}. Move everything to one side and take x out as a factor instead.</li></ul>
+      <div class="solution"><p>{m:x^3-x^2-2x=0}, so {m:x(x^2-x-2)=x(x-2)(x+1)=0}. The solutions are {m:x=-1}, {m:x=0} and {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">How many points of intersection do {m:y=frac(4, x^2)} and {m:y=1} have?</p>
+      <ul class="options">
+        <li data-correct>Two</li>
+        <li data-why="The equation x squared = 4 has two solutions, x = 2 and x = &minus;2, because (&minus;2) squared is also 4.">One</li>
+        <li data-why="The curve takes the value 1 when x = 2 and when x = &minus;2, so the line meets it at those two points.">None</li>
+      </ul>
+      <ol class="ladder"><li>Set {m:frac(4, x^2)=1}.</li><li>How many numbers have a square equal to 4?</li></ol>
+      <div class="solution"><p>{m:frac(4, x^2)=1} gives {m:x^2=4}, so {m:x=2} or {m:x=-2}. There are two points: {m:(2, 1)} and {m:(-2, 1)}.</p></div>
+    </div>
+    <div class="q" data-answers="3,4;3, 4" data-mode="exact">
+      <p class="qtext">The graphs of {m:y=frac(12, x)} and {m:y=7-x} meet at two points. Find the point with the smaller x-coordinate. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Set {m:frac(12, x)=7-x} and multiply by x.</li><li>Rearrange to {m:x^2-7x+12=0} and factorise.</li></ol>
+      <ul class="wrong"><li data-if="4,3;4, 3">That is the point with the larger x-coordinate. The question asks for the smaller one.</li></ul>
+      <div class="solution"><p>{m:12=7x-x^2}, so {m:x^2-7x+12=(x-3)(x-4)=0}. The solutions are {m:x=3} and {m:x=4}. The smaller is 3, and {m:y=7-3=4}. Check: {m:frac(12, 3)=4}. The point is {m:(3, 4)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which equation do you solve to find where {m:y=frac(5, x)} meets {m:y=x-4}?</p>
+      <ul class="options">
+        <li data-correct>Set the two expressions for y equal: 5/x = x &minus; 4</li>
+        <li data-why="That finds where the curve meets the x-axis, where y = 0. The curve y = 5/x never meets the x-axis.">Set the curve equal to zero: 5/x = 0</li>
+        <li data-why="That says the two y-values add up to 0. At a point where the graphs meet the two y-values must be equal, not add to 0.">Add the two expressions and make them zero: 5/x + (x &minus; 4) = 0</li>
+      </ul>
+      <ol class="ladder"><li>At a point where the graphs meet, what is true about the two y-values?</li></ol>
+      <div class="solution"><p>At a meeting point both graphs have the same y. So you set the two expressions for y equal: {m:frac(5, x)=x-4}.</p></div>
+    </div>
+    <div class="q" data-answers="2" data-mode="value">
+      <p class="qtext">Sketch {m:y=x^3} and {m:y=frac(1, x)} on the same axes. How many times do they meet?</p>
+      <ol class="ladder"><li>Set {m:x^3=frac(1, x)} and multiply by x. You get {m:x^4=1}.</li><li>How many real numbers have a fourth power equal to 1?</li></ol>
+      <ul class="wrong"><li data-if="1">You found only {m:x=1}. The value {m:x=-1} works too: {m:(-1)^3=-1} and {m:frac(1, -1)=-1}.</li></ul>
+      <div class="solution"><p>{m:x^4=1} gives {m:x=1} or {m:x=-1}. The graphs meet at {m:(1, 1)} and {m:(-1, -1)}. That is 2 points.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>6. Proportion</h2>
+    <p>Two quantities are in {term:proportional|proportion} when one is a fixed number times the other. The sign &prop; reads &ldquo;is proportional to&rdquo;. The fixed number is k.</p>
+    <ul class="tick">
+      <li>{m:y=kx^n} means y is proportional to {m:x^n}. For example, {m:y=kx^2} means y is proportional to {m:x^2}.</li>
+      <li>{m:y=frac(k, x)} means y is {term:inversely-proportional|inversely proportional} to x. Its graph is a reciprocal graph.</li>
+      <li>{m:y=k*sqrt(x)} means y is proportional to the square root of x. Its graph is half of a parabola on its side, starting at the origin.</li>
+    </ul>
+    <div class="key">
+      <p><b>Key idea:</b> to use a proportion, write the equation with k, find k from one known point, then use the equation. The graph shows which kind of proportion it is.</p>
+      <ul class="tick">
+        <li>{m:y=kx} is a straight line through the origin.</li>
+        <li>{m:y=kx^2} is a parabola through the origin. When k is positive it is U-shaped, and the bigger k is, the steeper it is.</li>
+        <li>{m:y=frac(k, x)} is a reciprocal graph, with the asymptotes {m:x=0} and {m:y=0}.</li>
+        <li>{m:y=k*sqrt(x)} starts at the origin and exists only for {m:x >= 0}.</li>
+      </ul>
+    </div>
+    <div class="worked">
+      <h3>Worked example: proportional to x squared</h3>
+      <p>y is proportional to {m:x^2}. When {m:x=3}, {m:y=45}. Find y when {m:x=4}.</p>
+      <ol class="steps">
+        <li>Write {m:y=kx^2}. Put in the point: {m:45=k*3^2}, so {m:45=9k} and {m:k=5}.</li>
+        <li>When {m:x=4}: {m:y=5*4^2=80}.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-proportion-square}<figcaption>Look at the curve {m:y=5x^2}. It is a parabola through the origin, with the y-axis as a line of symmetry. It passes through {m:(1, 5)}, {m:(-1, 5)} and {m:(2, 20)}.</figcaption></figure>
+    </div>
+    <div class="worked">
+      <h3>Worked example: inversely proportional to x</h3>
+      <p>y is inversely proportional to x. When {m:x=2}, {m:y=6}. Find y when {m:x=4}.</p>
+      <ol class="steps">
+        <li>Write {m:y=frac(k, x)}. Put in the point: {m:6=frac(k, 2)}. So {m:k=12}.</li>
+        <li>When {m:x=4}: {m:y=frac(12, 4)=3}. Doubling x halved y.</li>
+      </ol>
+      <!-- No figure: the reciprocal graph is drawn in lesson 4. -->
+    </div>
+    <div class="worked faded">
+      <h3>Now you finish it</h3>
+      <p>y is proportional to {m:x^3}. When {m:x=3}, {m:y=54}. Find y when {m:x=2}.</p>
+      <ol class="steps">
+        <li>Write {m:y=kx^3}. Put in the point: {m:54=k*27}, so k = <span class="blank" data-answers="2">___</span>.</li>
+        <li>When {m:x=2}: {m:y=2*2^3} = <span class="blank" data-answers="16">___</span>.</li>
+      </ol>
+      <details class="check-line"><summary>Check my answer</summary><p>{m:54=27k} gives {m:k=2}. Then {m:y=2*8=16}.</p></details>
+    </div>
+    <div class="worked">
+      <h3>Worked example: proportional to the square root of x</h3>
+      <p>y is proportional to {m:sqrt(x)}. When {m:x=4}, {m:y=6}. Find y when {m:x=9}, and sketch the graph.</p>
+      <ol class="steps">
+        <li>Write {m:y=k*sqrt(x)}. Put in the point: {m:6=k*sqrt(4)}, so {m:6=2k} and {m:k=3}.</li>
+        <li>When {m:x=9}: {m:y=3*sqrt(9)=9}.</li>
+        <li>The graph exists only for {m:x >= 0}. It starts at the origin and rises, more and more slowly.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-proportion-root}<figcaption>Look at the curve. It starts at the origin and passes through {m:(1, 3)}, {m:(4, 6)} and {m:(9, 9)}. It has no points to the left of the y-axis.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: proportion</h2>
+    <div class="q" data-answers="80" data-mode="value">
+      <p class="qtext">y is proportional to {m:x^2}. When {m:x=2}, {m:y=20}. Find y when {m:x=4}.</p>
+      <ol class="ladder"><li>Write {m:y=kx^2} and find k.</li><li>{m:20=k*2^2}.</li></ol>
+      <ul class="wrong"><li data-if="40">You treated y as proportional to x. It is proportional to {m:x^2}, so use {m:x^2} in both steps.</li></ul>
+      <div class="solution"><p>{m:20=4k}, so {m:k=5}. When {m:x=4}, {m:y=5*4^2=80}.</p></div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value">
+      <p class="qtext">y is inversely proportional to x. When {m:x=3}, {m:y=8}. Find y when {m:x=8}.</p>
+      <ol class="ladder"><li>Write {m:y=frac(k, x)} and find k.</li><li>{m:8=frac(k, 3)}.</li></ol>
+      <ul class="wrong"><li data-if="21.33;21.3;21.333;64/3">You treated y as directly proportional to x. For inverse proportion, y is k divided by x.</li></ul>
+      <div class="solution"><p>{m:8=frac(k, 3)}, so {m:k=24}. When {m:x=8}, {m:y=frac(24, 8)=3}.</p></div>
+    </div>
+    <div class="q" data-answers="30" data-mode="value">
+      <p class="qtext">y is proportional to {m:sqrt(x)}. When {m:x=4}, {m:y=12}. Find y when {m:x=25}.</p>
+      <ol class="ladder"><li>Write {m:y=k*sqrt(x)} and find k.</li><li>{m:12=k*sqrt(4)}.</li></ol>
+      <ul class="wrong"><li data-if="75">You treated y as proportional to x. The square root of x is what matters here.</li></ul>
+      <div class="solution"><p>{m:12=2k}, so {m:k=6}. When {m:x=25}, {m:y=6*sqrt(25)=30}.</p></div>
+    </div>
+    <div class="q" data-answers="5" data-mode="value">
+      <p class="qtext">The curve {m:y=k*sqrt(x)} passes through the point {m:(9, 15)}. Find k.</p>
+      <ol class="ladder"><li>Put {m:x=9} and {m:y=15} in.</li><li>{m:sqrt(9)=3}.</li></ol>
+      <ul class="wrong">
+        <li data-if="135">You multiplied 15 by 9. The equation has {m:sqrt(9)=3}, so divide 15 by 3.</li>
+        <li data-if="5/3;1.67;1.667;1.7">You divided by 9. Divide by {m:sqrt(9)=3}.</li></ul>
+      <div class="solution"><p>{m:15=k*sqrt(9)}, so {m:15=3k} and {m:k=5}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="flip-section">
+  <div class="wrap narrow">
+    <h2>Flip it: from the equation to the graph, and from the graph to the equation</h2>
+    <p>So far you have started with an equation and drawn the graph. Now go the other way. Start with the graph and write the equation.</p>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From a factorised equation to a sketch. Each bracket gives a root. A squared bracket gives a touch. Put {m:x=0} in for the y-intercept. The leading term gives the ends.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a sketch to an equation. Each root gives a bracket. A root where the graph touches gives a squared bracket. Write {m:k} in front, then use one more point to find k.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a sketch to an equation</h3>
+      <p>A cubic crosses the x-axis at {m:x=-1}, touches it at {m:x=2} and passes through {m:(0, 8)}. Find its equation.</p>
+      <ol class="steps">
+        <li>The graph crosses at {m:-1}, so {m:(x+1)} is a factor. It touches at 2, so {m:(x-2)^2} is a factor.</li>
+        <li>Write {m:y=k(x+1)(x-2)^2}, where k is a number to find.</li>
+        <li>Use the point {m:(0, 8)}. Put {m:x=0} and {m:y=8} into the equation: {m:8=k*1*4}.</li>
+        <li>So {m:8=4k} and {m:k=2}.</li>
+        <li>The equation is {m:y=2(x+1)(x-2)^2}.</li>
+        <li>Check the ends: k is positive and the leading term is {m:2x^3}, so the graph starts at the bottom left and ends at the top right. This matches the sketch.</li>
+      </ol>
+      <figure class="figure-lg">{fig:graphs-polynomials-flip-back}<figcaption>Look at the three marked points. The curve crosses at {m:(-1, 0)}, touches at {m:(2, 0)} and meets the y-axis at {m:(0, 8)}. Those three facts give the whole equation.</figcaption></figure>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-side"><h3>Forwards</h3><p>From {m:y=frac(a, x)} to a point. Put in an x-value and divide a by it.</p></div>
+      <div class="flip-side"><h3>Backwards</h3><p>From a point to {m:y=frac(a, x)}. Multiply the x-coordinate by the y-coordinate. That product is a.</p></div>
+    </div>
+    <div class="worked">
+      <h3>Worked example: from a point to an equation, and on to another point</h3>
+      <p>The point {m:(4, -3)} is on the curve {m:y=frac(a, x)}. Find a. Then find y when {m:x=6}.</p>
+      <ol class="steps">
+        <li>Backwards: {m:a=x*y=4*(-3)=-12}. The curve is {m:y=frac(-12, x)}.</li>
+        <li>Forwards: when {m:x=6}, {m:y=frac(-12, 6)=-2}.</li>
+        <li>Check: the product {m:x*y} is {m:4*(-3)=-12} at the first point and {m:6*(-2)=-12} at the second. It is the same number, as it must be.</li>
+      </ol>
+      <!-- No figure: the shape is the same as the graph of y = &minus;6 over x above, with a different number on top. -->
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: flip it</h2>
+    <div class="q" data-answers="-(x+2)(x-3)^2;-1(x+2)(x-3)^2;-(x-3)^2(x+2);-(x+2)(x-3)(x-3);-(x-3)(x-3)(x+2)" data-mode="exact">
+      <p class="qtext">The graph shows a cubic. It crosses the x-axis at the left marked point and touches it at the right marked point. Find its equation. Write it in factorised form. Type it like y=3(x+4)(x-5)^2.</p>
+      <figure class="qfig-lg">{fig:graphs-polynomials-q-cubic}</figure>
+      <ol class="ladder"><li>The crossing root gives a bracket. The touching root gives a squared bracket.</li><li>Write {m:y=k(x+2)(x-3)^2}, then use the point on the y-axis to find k.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x+2)(x-3)^2;(x-3)^2(x+2)">This curve meets the y-axis at {m:(0, 18)}, not at the marked point below the axis. Find k from the marked point: {m:k*2*9=-18}.</li>
+        <li data-if="-(x+2)^2(x-3);-(x-3)(x+2)^2">The squared bracket is on the wrong factor. The graph touches the axis at {m:x=3}, so {m:(x-3)} is the squared bracket.</li>
+      </ul>
+      <div class="solution"><p>The roots are {m:x=-2} (crossing) and {m:x=3} (touching). So {m:y=k(x+2)(x-3)^2}. At {m:(0, -18)}: {m:-18=k*2*9=18k}, so {m:k=-1}. The equation is {m:y=-(x+2)(x-3)^2}.</p></div>
+    </div>
+    <div class="q" data-answers="-6/x;-(6/x)" data-mode="exact">
+      <p class="qtext">The curve in the figure has the equation {m:y=frac(a, x)}. Find its equation. Type it like y=5/x.</p>
+      <figure class="qfig-lg">{fig:graphs-polynomials-q-recip}</figure>
+      <ol class="ladder"><li>Multiply the x-coordinate of the marked point by its y-coordinate.</li><li>That product is a.</li></ol>
+      <ul class="wrong">
+        <li data-if="6/x">The marked point has a positive x and a negative y, so a is negative: {m:a=3*(-2)}.</li>
+        <li data-if="-6x">That is {m:y=-6x}, a straight line. The equation divides a by x: {m:y=frac(a, x)}.</li>
+      </ul>
+      <div class="solution"><p>{m:a=x*y=3*(-2)=-6}. The equation is {m:y=frac(-6, x)}.</p></div>
+    </div>
+    <div class="q" data-answers="(x-1)^2(x+2)(x-3);(x+2)(x-3)(x-1)^2;(x-1)(x-1)(x+2)(x-3)" data-mode="exact">
+      <p class="qtext">A quartic has {m:x^4} coefficient 1. It touches the x-axis at {m:x=1} and crosses it at {m:x=-2} and {m:x=3}. Write its equation in factorised form. Type it like y=(x+4)(x-5)^3.</p>
+      <ol class="ladder"><li>A quartic has four factors. The touching root appears twice.</li><li>Each root {m:x=a} gives a bracket {m:(x-a)}.</li></ol>
+      <ul class="wrong">
+        <li data-if="(x-1)(x+2)(x-3);(x+2)(x-3)(x-1)">That has only three factors, so it is a cubic. The touching root at 1 must appear twice.</li>
+        <li data-if="(x+1)^2(x-2)(x+3);(x-2)(x+3)(x+1)^2">The signs are the wrong way round. The root {m:x=1} gives the bracket {m:(x-1)}.</li>
+      </ul>
+      <div class="solution"><p>The root {m:x=1} touches, so {m:(x-1)^2}. The roots {m:x=-2} and {m:x=3} cross, so {m:(x+2)} and {m:(x-3)}. The equation is {m:y=(x-1)^2(x+2)(x-3)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">The points (1, 6), (2, 3) and (3, 2) are all on one curve. Which equation fits all three?</p>
+      <ul class="options">
+        <li data-correct>The curve y = 6/x</li>
+        <li data-why="At x = 2 this gives y = 6 over 4, which is 1.5, not 3.">The curve y = 6/x&sup2;</li>
+        <li data-why="At x = 1 this gives y = 6, but at x = 2 it gives y = 5, not 3.">The line y = 7 &minus; x</li>
+      </ul>
+      <ol class="ladder"><li>Multiply the x-coordinate by the y-coordinate for each point.</li><li>If the product is always the same number, the curve is y = a over x.</li></ol>
+      <div class="solution"><p>{m:1*6=6}, {m:2*3=6} and {m:3*2=6}. The product is always 6, so {m:y=frac(6, x)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Spot the mistake</h2>
+    <p>Finding an error in someone else&rsquo;s working helps you learn. For each one, decide what went wrong.</p>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Dan says:</b> the curve {m:y=(x-3)^2(x+1)} crosses the x-axis at {m:x=3} and at {m:x=-1}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>The bracket (x &minus; 3) is squared, so the curve touches the axis at x = 3. It crosses only at x = &minus;1</li>
+        <li data-why="The signs are correct. The bracket (x &minus; 3) gives x = 3 and the bracket (x + 1) gives x = &minus;1. The mistake is about touching and crossing.">He should have used x = &minus;3 and x = 1</li>
+        <li data-why="The bracket (x + 1) is not squared, so the curve does meet the x-axis there. It crosses at x = &minus;1.">The curve does not meet the x-axis at x = &minus;1</li>
+      </ul>
+      <ol class="ladder"><li>Which bracket is squared?</li><li>What does a squared bracket do to the graph at its root?</li></ol>
+      <div class="solution"><p>A squared bracket gives a repeated root, where the graph touches the axis and turns back. The curve touches at {m:x=3} and crosses at {m:x=-1}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Meera says:</b> the y-intercept of {m:y=(x-2)(x+3)(x+4)} is {m:(0, 5)}, because {m:-2+3+4=5}. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>She added the numbers. The y-intercept needs the product: {m:(-2)*3*4=-24}</li>
+        <li data-why="At x = 0 the bracket (x &minus; 2) is &minus;2, so using &minus;2 is right. The mistake is adding instead of multiplying.">She should have used 2 instead of &minus;2</li>
+        <li data-why="Setting each bracket to 0 finds the x-intercepts, at 2, &minus;3 and &minus;4. The y-intercept is found by putting x = 0 into the brackets.">She should have set each bracket equal to 0</li>
+      </ul>
+      <ol class="ladder"><li>The brackets are multiplied, not added.</li><li>Put {m:x=0} into each bracket and multiply the three numbers.</li></ol>
+      <div class="solution"><p>At {m:x=0} the brackets are {m:-2}, 3 and 4. {m:(-2)*3*4=-24}. The y-intercept is {m:(0, -24)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext"><b>Sam says:</b> the graph of {m:y=frac(-3, x^2)} has one branch in the top left and one in the bottom right. What went wrong?</p>
+      <ul class="options">
+        <li data-correct>That describes y = &minus;3/x. For x squared, both branches are below the x-axis, because x squared is never negative</li>
+        <li data-why="Branches in the top right and bottom left belong to a positive number on top with x to the power 1. Here the number is negative and x squared is positive, so y is negative.">The branches should be in the top right and the bottom left</li>
+        <li data-why="A negative number on top makes y negative whenever the bottom is positive. The bottom, x squared, is positive, so both branches are below the axis.">Both branches should be above the x-axis</li>
+      </ul>
+      <ol class="ladder"><li>Is {m:x^2} ever negative?</li><li>What sign is a negative number divided by a positive one?</li></ol>
+      <div class="solution"><p>{m:x^2} is positive for every x except 0, and {m:-3} is negative. So y is negative everywhere, and both branches are below the x-axis.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ckw">
+  <div class="wrap narrow">
+    <h2>Check your knowledge: mixed review</h2>
+    <div class="q" data-answers="-6" data-mode="value">
+      <p class="qtext">Find the y-coordinate of the point where {m:y=-(x+3)(x-1)(x-2)} meets the y-axis.</p>
+      <ol class="ladder"><li>Put {m:x=0} into each bracket.</li><li>Keep the minus sign in front of the whole expression.</li></ol>
+      <ul class="wrong"><li data-if="6">You left out the minus sign in front. It changes the sign of the answer.</li></ul>
+      <div class="solution"><p>The brackets give {m:3*(-1)*(-2)=6}. The minus sign in front makes it {m:-6}. The graph meets the y-axis at {m:(0, -6)}.</p></div>
+    </div>
+    <div class="q" data-answers="-3 or 0.5 or 2" data-mode="value">
+      <p class="qtext">Find the x-coordinates of the points where {m:y=(2x-1)(x+3)(x-2)} meets the x-axis. Type them like 1 or 2 or 3.</p>
+      <ol class="ladder"><li>Set each bracket equal to 0.</li><li>{m:2x-1=0} gives {m:2x=1}.</li></ol>
+      <ul class="wrong"><li data-if="-3 or -0.5 or 2">{m:2x-1=0} gives {m:2x=1}, so {m:x=0.5}, not {m:-0.5}.</li></ul>
+      <div class="solution"><p>{m:2x-1=0} gives {m:x=0.5}. {m:x+3=0} gives {m:x=-3}. {m:x-2=0} gives {m:x=2}.</p></div>
+    </div>
+    <div class="q" data-answers="20" data-mode="value">
+      <p class="qtext">The curve {m:y=frac(a, x^2)} passes through the point {m:(-2, 5)}. Find a.</p>
+      <ol class="ladder"><li>Put {m:x=-2} and {m:y=5} into the equation.</li><li>{m:(-2)^2=4}.</li></ol>
+      <ul class="wrong">
+        <li data-if="-10">You multiplied 5 by x. The bottom is {m:x^2}, so multiply 5 by {m:(-2)^2=4}.</li>
+        <li data-if="1.25;5/4">You divided 5 by 4. Multiply both sides of {m:5=frac(a, 4)} by 4.</li>
+      </ul>
+      <div class="solution"><p>{m:5=frac(a, (-2)^2)=frac(a, 4)}, so {m:a=5*4=20}.</p></div>
+    </div>
+    <div class="q" data-answers="-1,-2;-1, -2" data-mode="exact">
+      <p class="qtext">The graphs of {m:y=frac(2, x)} and {m:y=x-1} meet at two points. Find the point with negative x. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Set {m:frac(2, x)=x-1} and multiply by x.</li><li>Rearrange to {m:x^2-x-2=0} and factorise.</li></ol>
+      <ul class="wrong">
+        <li data-if="2,1;2, 1">That is the point with positive x. The question asks for negative x.</li>
+        <li data-if="-2,-1;-2, -1">You gave the y-value first. A point is written with x first.</li>
+      </ul>
+      <div class="solution"><p>{m:2=x^2-x}, so {m:x^2-x-2=(x-2)(x+1)=0}. The negative solution is {m:x=-1}, and {m:y=-1-1=-2}. Check: {m:frac(2, -1)=-2}. The point is {m:(-1, -2)}.</p></div>
+    </div>
+    <div class="q" data-type="mc">
+      <p class="qtext">Which of these describes the ends of the graph of {m:y=5x-x^3}?</p>
+      <ul class="options">
+        <li data-correct>The left end goes up and the right end goes down</li>
+        <li data-why="That is the pattern for a positive x cubed term. Here the x cubed term is minus x cubed, so it is the other way round.">The left end goes down and the right end goes up</li>
+        <li data-why="Ends that point the same way need an even power. The highest power here is 3, which is odd.">Both ends go up</li>
+      </ul>
+      <ol class="ladder"><li>Find the term with the highest power.</li><li>It is {m:-x^3}. Is the power odd or even? Is the number positive or negative?</li></ol>
+      <div class="solution"><p>The leading term is {m:-x^3}. The power is odd, so the ends point in opposite directions. The number is negative, so the left end goes up and the right end goes down.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="exam-section">
+  <div class="wrap narrow">
+    <h2>Exam style</h2>
+    <p class="muted">Use these like a real paper. The marks tell you how much to write. Write your working on paper, then type the answer. The mark scheme appears in the worked solution. In a mark scheme, M1 is a mark for a correct method. A1 is a mark for a correct answer. B1 is a mark for a correct statement or fact.</p>
+    <div class="q" data-answers="4" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] The curve C has equation {m:y=x^3-3x^2-4x}. The curve meets the x-axis at three points. Find the largest x-coordinate of these points.</p>
+      <ol class="ladder"><li>Put {m:y=0}. Take out the common factor x.</li><li>Factorise the quadratic that is left.</li></ol>
+      <ul class="wrong">
+        <li data-if="-1">That is the smallest of the three roots. The question asks for the largest.</li>
+        <li data-if="0">That is the middle root. The question asks for the largest.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^3-3x^2-4x=x(x^2-3x-4)=x(x-4)(x+1)}. The roots are {m:-1}, 0 and 4. The largest is 4.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for taking out the factor x</li>
+          <li><b>M1</b> for {m:(x-4)(x+1)}</li>
+          <li><b>A1</b> for 4</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1,3;1, 3" data-mode="exact" data-marks="4">
+      <p class="qtext">[4 marks] The curve {m:y=frac(3, x)} and the line {m:y=x+2} meet at two points. Find the coordinates of the point with positive x. Type it like (2, 5).</p>
+      <ol class="ladder"><li>Set the two expressions for y equal. Multiply by x.</li><li>Rearrange to a quadratic equal to 0 and factorise.</li><li>Find y from the line.</li></ol>
+      <ul class="wrong">
+        <li data-if="3,1;3, 1">You gave the y-value first. A point is written with x first.</li>
+        <li data-if="-3,-1;-3, -1">That is the other point. The question asks for the point with positive x.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:frac(3, x)=x+2} gives {m:3=x^2+2x}. So {m:x^2+2x-3=(x+3)(x-1)=0}, and {m:x=1} or {m:x=-3}. For positive x, {m:x=1} and {m:y=1+2=3}. The point is {m:(1, 3)}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for setting {m:frac(3, x)=x+2}</li>
+          <li><b>M1</b> for {m:x^2+2x-3=0}</li>
+          <li><b>M1</b> for solving it</li>
+          <li><b>A1</b> for {m:(1, 3)}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="3" data-mode="value" data-marks="3">
+      <p class="qtext">[3 marks] The curve {m:y=k(x+2)(x-1)^2} passes through the point {m:(0, 6)}. Find the value of k.</p>
+      <ol class="ladder"><li>Put {m:x=0} and {m:y=6} into the equation.</li><li>Work out each bracket at {m:x=0}. Square the second one.</li></ol>
+      <ul class="wrong">
+        <li data-if="-3">You made {m:(0-1)^2} negative. A square is positive, so {m:(-1)^2=1}.</li>
+        <li data-if="12">You multiplied 6 by 2. The equation is {m:6=2k}, so divide 6 by 2.</li>
+      </ul>
+      <div class="solution">
+        <p>At {m:x=0}: {m:6=k*(0+2)*(0-1)^2=k*2*1=2k}. So {m:k=3}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for substituting {m:x=0} and {m:y=6}</li>
+          <li><b>M1</b> for {m:(0+2)(0-1)^2=2}</li>
+          <li><b>A1</b> for {m:k=3}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="1" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] The curve {m:y=frac(a, x^2)} passes through the point {m:(3, 4)}. Find the value of y when {m:x=-6}.</p>
+      <ol class="ladder"><li>Use the point {m:(3, 4)} to find a.</li><li>Then put {m:x=-6} into the equation. Square x first.</li></ol>
+      <ul class="wrong">
+        <li data-if="-6">You did not square x. The bottom is {m:x^2=(-6)^2=36}.</li>
+        <li data-if="-1">You made {m:(-6)^2} negative. A negative number squared is positive.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:4=frac(a, 3^2)=frac(a, 9)}, so {m:a=36}. When {m:x=-6}, {m:y=frac(36, (-6)^2)=frac(36, 36)=1}.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:4=frac(a, 9)}</li>
+          <li><b>A1</b> for {m:a=36}</li>
+          <li><b>M1</b> for {m:frac(36, (-6)^2)}</li>
+          <li><b>A1</b> for {m:y=1}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="q" data-answers="-2 or -1 or 1 or 2" data-mode="value" data-marks="4">
+      <p class="qtext">[4 marks] Find the x-coordinates of the points where {m:y=x^4-5x^2+4} meets the x-axis. Type them like 1 or 2 or 3 or 4.</p>
+      <ol class="ladder"><li>Treat {m:x^2} as one unknown. The expression looks like a quadratic.</li><li>Factorise it as {m:(x^2-1)(x^2-4)}.</li><li>Solve {m:x^2=1} and {m:x^2=4}. Each has two solutions.</li></ol>
+      <ul class="wrong">
+        <li data-if="1 or 4">These are the values of {m:x^2}, not of x. Take the square root, positive and negative.</li>
+        <li data-if="-2 or 2">You solved {m:x^2=4} only. The factor {m:(x^2-1)} gives {m:x=1} and {m:x=-1} as well.</li>
+      </ul>
+      <div class="solution">
+        <p>{m:x^4-5x^2+4=(x^2-1)(x^2-4)=(x-1)(x+1)(x-2)(x+2)}. The roots are {m:-2}, {m:-1}, 1 and 2.</p>
+        <ul class="markscheme">
+          <li><b>M1</b> for {m:(x^2-1)(x^2-4)}</li>
+          <li><b>A1</b> for the correct factors</li>
+          <li><b>M1</b> for solving {m:x^2=1} and {m:x^2=4}</li>
+          <li><b>A1</b> for all four values</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap narrow">
+    <h2>Why it works</h2>
+    <ul class="tick">
+      <li><b>The leading term wins far away.</b> When x is very large, the highest power is far bigger than all the others. So the ends of the graph follow the leading term.</li>
+      <li><b>A factor gives a root.</b> If {m:(x-a)} is a factor, then putting {m:x=a} makes one bracket 0, and the whole product is 0. That is why each bracket gives a point on the x-axis.</li>
+      <li><b>An odd power keeps the sign change.</b> Shortly before a root a bracket {m:(x-a)} is negative, and soon after it is positive. Raise it to an odd power and the sign still changes, so the graph crosses. Raise it to an even power and the sign does not change, so the graph touches and turns back.</li>
+      <li><b>The y-intercept is x = 0.</b> Every point on the y-axis has {m:x=0}. So you put 0 into each bracket and multiply.</li>
+      <li><b>A reciprocal graph has no point at x = 0.</b> You cannot divide by 0. As x gets close to 0, the size of {m:frac(a, x)} grows without limit: it is very large and positive on one side of 0 and very large and negative on the other. As x grows, it shrinks towards 0. That is why the axes are asymptotes.</li>
+      <li><b>The product xy stays constant.</b> If {m:y=frac(a, x)}, then {m:x*y=a}. Doubling x halves y, which is inverse proportion.</li>
+      <li><b>Where graphs meet, the y-values are equal.</b> Both equations hold at the same point. So setting the two expressions for y equal gives every x where the graphs meet.</li>
+    </ul>
+    <h2>Common traps</h2>
+    <ul class="tick traps">
+      <li>Copying the signs from the brackets. The bracket {m:(x+3)} gives the root {m:x=-3}.</li>
+      <li>Adding the numbers to find the y-intercept. Multiply them.</li>
+      <li>Forgetting the number in front of the brackets when you find the y-intercept.</li>
+      <li>Drawing a crossing where a bracket is squared. A squared bracket touches the axis and turns back.</li>
+      <li>Counting a repeated root as two points on the axis. It is one point.</li>
+      <li>Reading the ends from the first term written, instead of from the highest power. {m:5-x^3} has the leading term {m:-x^3}.</li>
+      <li>Missing a minus sign hidden in a bracket such as {m:(2-x)}, which turns the leading term negative.</li>
+      <li>Giving {m:y=frac(a, x^2)} one branch in each of two corners. Both branches are on the same side of the x-axis.</li>
+      <li>Dividing both sides by x when solving, which loses the solution {m:x=0}.</li>
+      <li>Giving a point as (y, x). A point is written with x first.</li>
+      <li>Leaving out the coordinates of the points on a sketch, or drawing the curve through an asymptote.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>I can&hellip;</h2>
+    <ul class="checklist" data-checklist="graphs-polynomials">
+      <li><label><input type="checkbox"> use the leading term to say what the two ends of a graph do</label></li>
+      <li><label><input type="checkbox"> find the y-intercept of a graph from its equation</label></li>
+      <li><label><input type="checkbox"> find the roots of a factorised cubic or quartic, and say where it crosses and where it touches the x-axis</label></li>
+      <li><label><input type="checkbox"> sketch a cubic or a quartic from its factors, with the coordinates marked</label></li>
+      <li><label><input type="checkbox"> sketch {m:y=frac(a, x)} and {m:y=frac(a, x^2)} for a positive and a negative a, with their asymptotes</label></li>
+      <li><label><input type="checkbox"> find a from a point on a reciprocal graph</label></li>
+      <li><label><input type="checkbox"> find where two graphs meet by solving their equations together, and use a sketch to see how many points to expect</label></li>
+      <li><label><input type="checkbox"> use a proportion to find k from one point, and say what its graph looks like</label></li>
+      <li><label><input type="checkbox"> read the roots and one more point from a sketch, and write the equation</label></li>
+    </ul>
+    <p class="muted">Come back in a week and tick again, without looking.</p>
+    {unlocks}
+    <p><a class="btn btn-navy" href="index.html#pyramid">Back to the pyramid</a> <a class="btn btn-ghost-dark" href="glossary.html">Glossary</a></p>
+  </div>
+</section>
+</main>
